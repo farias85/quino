@@ -1,0 +1,26 @@
+Tareas Realizadas
+    1- Estudio del sistema y su flujo de trabajo.
+    2- Estudio de la estructura interna del software.
+    3- Refactorización del código existente ejecutando buenas practicas de
+        desarrollo de sofware con el propósito de incrementar la usabilidad
+        del codigo existente:
+            - Nuevos nombres a las clases de las vistas para diferenciarlas de
+            las clases controladores y del modelo.
+            - Eliminación de código redundante y atributos de clases q no eran
+            necesarios.
+            - Utilización de Polimorfismo en el diseño visual de los ensayos.
+            - Un ensayo se ha divido en etapas: EN_ESPERA, PREPARADO,
+                EJECUTANDO_MOVIMIENTO, ESPERANDO_RESPUESTA, TERMINADO, y a
+                cada etapa se ha asignado método a ejecutar y un tiempo q
+                puede ser configurable. Todo esto con vistas al desarrollo
+                de nuevos diseños de ensayos.
+            - Se ha añadido la documentación de los métodos y las clases
+            generadas
+     4- Nuevo flujo de trabajo para las pruebas paracentrales
+     5- Solución del error 7. Como el ensayo ahora se encuentra divido en
+        etapas se controla mucho mejor la creación y eliminación del listener
+        de escucha del teclado.
+     6- Nueva forma de calcular el tiempo de respuesta
+     7- *La sobreescritura de las pruebas foveal y periferica (ver donde poner
+        el metodo GuardarPrueba()) /*no terminado aun, en curso...*/
+     8- Nuevo flujo de trabajo para las pruebas perifericas

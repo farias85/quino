@@ -4,11 +4,10 @@
  */
 
 /*
- * RealizarPrueba.java
+ * TipoPruebaView.java
  *
  * Created on 25-sep-2010, 13:40:15
  */
-
 package vistas.Paciente;
 
 import vistas.ErrorDialog;
@@ -21,13 +20,18 @@ import vistas.Prueba.ManualConfigView;
  * @author Davisito
  */
 public class TipoPruebaView extends javax.swing.JDialog {
-    PrincipalView parent;
-    /** Creates new form RealizarPrueba */
+
+    private PrincipalView parent;
+
+    public TipoPruebaView() {
+    }
+
     public TipoPruebaView(PrincipalView parent, boolean modal) {
         super(parent, modal);
+
         initComponents();
         setLocationRelativeTo(null);
-        this.parent=parent;
+        this.parent = parent;
     }
 
     /** This method is called from within the constructor to
@@ -122,35 +126,35 @@ public class TipoPruebaView extends javax.swing.JDialog {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        try{
-             if(!jRadioButton1.isSelected()&&!jRadioButton2.isSelected()){
+        try {
+            if (!jRadioButton1.isSelected() && !jRadioButton2.isSelected()) {
                 throw new Exception("Debe seleccionar un tipo de Prueba");
-             }
-             else if(jRadioButton1.isSelected()){
-                 ManualConfigView conf = new ManualConfigView(parent, true);
-                 conf.setVisible(true);
-             }
-             else if(jRadioButton2.isSelected()){
-                 AutoConfigView c = new AutoConfigView(parent, true);
-                 c.setVisible(true);
-             }
-             setVisible(false);
-             dispose();
-        }
-        catch(Exception e){
+            } else if (jRadioButton1.isSelected()) {
+                ManualConfigView conf = new ManualConfigView(parent, true);
+                conf.setVisible(true);
+            } else if (jRadioButton2.isSelected()) {
+                AutoConfigView c = new AutoConfigView(parent, true);
+                c.setVisible(true);
+            }
+            setVisible(false);
+            dispose();
+        } catch (Exception e) {
             ErrorDialog err = new ErrorDialog(parent, true, e.getMessage());
             err.setVisible(true);
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
-    * @param args the command line arguments
-    */
+     * @param args the command line arguments
+     */
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(new Runnable() {
+
             public void run() {
-                TipoPruebaView dialog = new TipoPruebaView(new PrincipalView(), true);
+                TipoPruebaView dialog = new TipoPruebaView();
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
+
+                    @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {
                         System.exit(0);
                     }
@@ -159,12 +163,10 @@ public class TipoPruebaView extends javax.swing.JDialog {
             }
         });
     }
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JRadioButton jRadioButton1;
     private javax.swing.JRadioButton jRadioButton2;
     // End of variables declaration//GEN-END:variables
-
 }

@@ -4,129 +4,54 @@
  */
 
 /*
- * Central_Test.java
+ * FovealTestView.java
  *
  * Created on 07-nov-2010, 15:27:47
  */
-
 package vistas.Prueba;
 
-import Utiles.Timers.AutoFovealTimer;
-import Utiles.Timers.ManualFovealTimer;
 import Utiles.CentralJPanel;
 import Utiles.QuinoJPanel;
+import Utiles.Timers.ZFovealTimer;
 import clases.prueba.Configuracion;
 import clases.prueba.Prueba;
 import java.awt.Color;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
 import java.util.Timer;
 import java.util.TimerTask;
 import javax.swing.JOptionPane;
 import vistas.ErrorDialog;
 import vistas.PrincipalView;
+
 /**
  *
  * @author Davisito
  */
 public class FovealTestView extends javax.swing.JDialog {
 
-    /** Creates new form Central_Test */
-    private TimerTask task;
-    private Configuracion configuracion;
     private PrincipalView parent;
-    private int duracion;
-    private int total;
-    private boolean pract;
-    Timer ti;
-    
-    public FovealTestView(PrincipalView parent, boolean modal, Prueba prueba, Configuracion conf, boolean auto, boolean pract) {
+
+    public FovealTestView() {
+    }
+
+    public FovealTestView(PrincipalView parent, boolean modal, boolean practica) {
         super(parent, modal);
+
         this.parent = parent;
-        this.configuracion = conf;
-        duracion = parent.conf_avanzada.getT_interestimulo();
-        total = parent.conf_avanzada.getDuracion();
-        this.pract = pract;
         initComponents();
-        getContentPane().setBackground(Color.BLACK);
         setLocationRelativeTo(null);
-        ((QuinoJPanel)jPanel1).Inicializar();
-        ((QuinoJPanel)jPanel2).Inicializar();
-        ((QuinoJPanel)jPanel3).Inicializar();
-        ((QuinoJPanel)jPanel4).Inicializar();
-        ((QuinoJPanel)jPanel5).Inicializar();
-        ((QuinoJPanel)jPanel6).Inicializar();
-        ((QuinoJPanel)jPanel7).Inicializar();
-        ((QuinoJPanel)jPanel8).Inicializar();
 
-         if (auto) {
-            task = new AutoFovealTimer(prueba, configuracion, (QuinoJPanel)jPanel1, (QuinoJPanel)jPanel2, (QuinoJPanel)jPanel3, (QuinoJPanel)jPanel4, (QuinoJPanel)jPanel5, (QuinoJPanel)jPanel6, (QuinoJPanel)jPanel7, (QuinoJPanel)jPanel8,(CentralJPanel)jPanel9, this, pract);
-        }
-        else{
-            task = new ManualFovealTimer(prueba, configuracion, (QuinoJPanel)jPanel1, (QuinoJPanel)jPanel2, (QuinoJPanel)jPanel3, (QuinoJPanel)jPanel4, (QuinoJPanel)jPanel5, (QuinoJPanel)jPanel6, (QuinoJPanel)jPanel7, (QuinoJPanel)jPanel8,(CentralJPanel)jPanel9, this);
-        }
-       ti = new Timer();
-       ti.scheduleAtFixedRate(task, 0, 1);
+        getContentPane().setBackground(Color.BLACK);
 
-               KeyListener keyPress = new KeyListener() {
+        TimerTask task = new ZFovealTimer(parent.getPrueba(), parent.getConf(),
+                (QuinoJPanel) jPanel1,
+                (QuinoJPanel) jPanel2, (QuinoJPanel) jPanel3,
+                (QuinoJPanel) jPanel4, (QuinoJPanel) jPanel5,
+                (QuinoJPanel) jPanel6, (QuinoJPanel) jPanel7,
+                (QuinoJPanel) jPanel8, (CentralJPanel) jPanel9,
+                this, practica);
 
-            public void keyTyped(KeyEvent e) {
-                throw new UnsupportedOperationException("Not supported yet.");
-            }
-
-            public void keyPressed(KeyEvent e) {
-
-                if(task instanceof ManualFovealTimer)
-                {
-                   if( ((ManualFovealTimer)task).isCantPress())//Si lo aprieta
-                   {
-                       int k=e.getKeyCode();
-                       ((ManualFovealTimer)task).getEnsayo().setKey(k);
-                        if(((ManualFovealTimer)task).getEnsayo().getP_estimulo() == 0 && !((ManualFovealTimer)task).getEnsayo().getConfiguracion().isControl()){
-                          ((ManualFovealTimer)task).getEnsayo().setError(true);
-                          ((ManualFovealTimer)task).getEnsayo().setDescripcion("No hubo estímulo");
-                        }
-                            
-                        else if(((ManualFovealTimer)task).getEnsayo().getP_estimulo()>0)
-                        {
-                          ((ManualFovealTimer)task).getEnsayo().setT_respuesta(((ManualFovealTimer)task).getT_total()-(duracion/2));
-                        }
-
-                   }
-                }
-                else
-                {
-                     if(((AutoFovealTimer)task).isCantPress())//Si lo aprieta
-                     {
-                         int k=e.getKeyCode();
-                       ((AutoFovealTimer)task).getEnsayo().setKey(k);
-                        if(((AutoFovealTimer)task).getEnsayo().getP_estimulo() == 0 && !((AutoFovealTimer)task).getEnsayo().getConfiguracion().isControl()){
-                          ((AutoFovealTimer)task).getEnsayo().setError(true);
-                          ((AutoFovealTimer)task).getEnsayo().setDescripcion("No hubo estímulo");
-                        }
-                        else if(((AutoFovealTimer)task).getEnsayo().getP_estimulo()>0)
-                        {
-                          ((AutoFovealTimer)task).getEnsayo().setT_respuesta(((AutoFovealTimer)task).getT_total()-(duracion/2));
-                        }
-
-                      }
-                }
-
-            }
-
-            public void keyReleased(KeyEvent e) {
-                throw new UnsupportedOperationException("Not supported yet.");
-            }
-        };
-        this.addKeyListener(keyPress);
-        this.addWindowListener(new java.awt.event.WindowAdapter() {
-                    @Override
-                    public void windowClosing(java.awt.event.WindowEvent e) {
-                       ti.cancel();
-                       setVisible(false);
-                       dispose();
-                    }
-                });
+        Timer ti = new Timer();
+        ti.scheduleAtFixedRate(task, 0, 1);
     }
 
     /** This method is called from within the constructor to
@@ -134,47 +59,50 @@ public class FovealTestView extends javax.swing.JDialog {
      * WARNING: Do NOT modify this code. The content of this method is
      * always regenerated by the Form Editor.
      */
-    public PrincipalView GetParet(){
+    public PrincipalView GetParet() {
         return parent;
     }
-    public void GuardarPrueba(Prueba prueba){
-         int option;
-        try{
-            int pos = parent.getSel_paciente();
-            if(parent.pacientes.paciente_Pos(pos).Prueba()!=null){
-               option = JOptionPane.showConfirmDialog(this, "¿Desea sobreescribir la prueba realizada?", "Advertencia", JOptionPane.YES_NO_OPTION);
-               switch(option){
-                   case 0:{
-                        parent.pacientes.paciente_Pos(pos).setPrueba(prueba);
-                        parent.pacientes.SaveObject("datos.bin");
-                        parent.Mod_Tabla();
-                   }break;
-                   case 1:break;}
-            }else{
 
-                        parent.pacientes.paciente_Pos(pos).setFobeal(prueba);
-                        parent.pacientes.SaveObject("datos.bin");
-                        parent.Mod_Tabla();
-                  }
-        }
-        catch(Exception e){
+    public void GuardarPrueba(Prueba prueba) {
+        int option;
+        try {
+            if (parent.getPacienteActual().Prueba() != null) {
+                option = JOptionPane.showConfirmDialog(this, "¿Desea sobreescribir la prueba realizada?", "Advertencia", JOptionPane.YES_NO_OPTION);
+                switch (option) {
+                    case 0: {
+                        parent.getPacienteActual().setPrueba(prueba);
+                        parent.getRegistro().SaveObject("datos.bin");
+                        parent.Modificar_Tabla();
+                    }
+                    break;
+                    case 1:
+                        break;
+                }
+            } else {
+
+                parent.getPacienteActual().setFobeal(prueba);
+                parent.getRegistro().SaveObject("datos.bin");
+                parent.Modificar_Tabla();
+            }
+        } catch (Exception e) {
             ErrorDialog err = new ErrorDialog(parent, true, e.getMessage());
             err.setVisible(true);
         }
     }
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
         jPanel9 = new Utiles.CentralJPanel(Color.RED);
-        jPanel2 = new Utiles.QuinoJPanel(configuracion.getDensidad(), configuracion.getCantidad());
-        jPanel7 = new Utiles.QuinoJPanel(configuracion.getDensidad(), configuracion.getCantidad());
-        jPanel4 = new Utiles.QuinoJPanel(configuracion.getDensidad(), configuracion.getCantidad());
-        jPanel5 = new Utiles.QuinoJPanel(configuracion.getDensidad(), configuracion.getCantidad());
-        jPanel1 = new Utiles.QuinoJPanel(configuracion.getDensidad(), configuracion.getCantidad());
-        jPanel6 = new Utiles.QuinoJPanel(configuracion.getDensidad(), configuracion.getCantidad());
-        jPanel8 = new Utiles.QuinoJPanel(configuracion.getDensidad(), configuracion.getCantidad());
-        jPanel3 = new Utiles.QuinoJPanel(configuracion.getDensidad(), configuracion.getCantidad());
+        jPanel2 = new Utiles.QuinoJPanel(parent.getConf().getDensidad(), parent.getConf().getCantidad());
+        jPanel7 = new Utiles.QuinoJPanel(parent.getConf().getDensidad(), parent.getConf().getCantidad());
+        jPanel4 = new Utiles.QuinoJPanel(parent.getConf().getDensidad(), parent.getConf().getCantidad());
+        jPanel5 = new Utiles.QuinoJPanel(parent.getConf().getDensidad(), parent.getConf().getCantidad());
+        jPanel1 = new Utiles.QuinoJPanel(parent.getConf().getDensidad(), parent.getConf().getCantidad());
+        jPanel6 = new Utiles.QuinoJPanel(parent.getConf().getDensidad(), parent.getConf().getCantidad());
+        jPanel8 = new Utiles.QuinoJPanel(parent.getConf().getDensidad(), parent.getConf().getCantidad());
+        jPanel3 = new Utiles.QuinoJPanel(parent.getConf().getDensidad(), parent.getConf().getCantidad());
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setResizable(false);
@@ -355,13 +283,15 @@ public class FovealTestView extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     /**
-    * @param args the command line arguments
-    */
+     * @param args the command line arguments
+     */
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(new Runnable() {
+
             public void run() {
-                FovealTestView dialog = new FovealTestView(new PrincipalView(), true, new Prueba(), new Configuracion(), true, false);
+                FovealTestView dialog = new FovealTestView();
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
+
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {
                         System.exit(0);
@@ -371,7 +301,6 @@ public class FovealTestView extends javax.swing.JDialog {
             }
         });
     }
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
@@ -383,5 +312,4 @@ public class FovealTestView extends javax.swing.JDialog {
     private javax.swing.JPanel jPanel8;
     private javax.swing.JPanel jPanel9;
     // End of variables declaration//GEN-END:variables
-
 }

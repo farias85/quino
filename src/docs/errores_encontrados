@@ -1,0 +1,32 @@
+Errores:
+    1- Explota en el arbol de resultados de ResultView, en los nodos del arbol.
+    2- En la ventana AutoConfigView si le das aceptar sin poner cantidad de
+        ensayos, lanza excepcion no tratada.
+    3- La clase QuinoJPanel el metodo MidPunto(boolean foveal) no se lo q hace
+        y explota.
+    4- Cuando se configura un ensayo de forma manual y no se selecciona
+        movimiento alguno, ni se controla el movimiento, las pantallas
+        de los ensayos no se mueven (ver si esto es normal para la investigac..)
+    5- El control de movimiento no funciona si no se ha seleccionado
+        el movimiento a controlar (ver si esto es normal respecto a la
+        investigacón)
+    6- Las clases de los paquetes de Datos y de Prueba no se pueden modificar
+        debido a la forma en que se guardan los datos en los ficheros config.bin
+        para la configuracion del sistema, y datos.bin para los datos de los
+        registros cargados. Sucede q se ha usado para persistir los datos en
+        los ficheros antes descritos el formato serializable en bytes de objetos
+        java, por lo q un cambio de estructura en el objeto (por ejemplo,
+        añadirle un nuevo atributo a la clase del objeto) determinaría una
+        discordancia entre el objeto nuevo cargado en memoria y el q está
+        guardado, entonces no se efectuaría la carga de los datos al iniciar
+        el sistema y por consiguiente toda la bases de datos existentes no
+        podrian cargarse en las versiones nuevas del sistema.
+        Para esto se propone utilizar una persistencia de datos basada en xml,
+        garantizando la estandarización del formato guardado para su utilización
+        incluso desde otros sistemas, no necesariamente JAVA.
+     7- Existian errores de coordinación en la obtención de la accion entrada
+        por teclado, o sea q en un ensayo asi se detectara visualmente el
+        movimiento y se presionara la tecla correspondiente en tiempo, el ensayo
+        quedaba registrado como fallido.
+     8- Cuando se realiza una prueba foveal esta sobreescribe a la anterior sin
+        preguntar confirmación

@@ -4,11 +4,10 @@
  */
 
 /*
- * Configuracion_Avanzada.java
+ * AvanzadaConfigView.java
  *
  * Created on 15-sep-2010, 17:58:34
  */
-
 package vistas;
 
 /**
@@ -16,15 +15,21 @@ package vistas;
  * @author Davisito
  */
 public class AvanzadaConfigView extends javax.swing.JDialog {
-    PrincipalView parent;
-    /** Creates new form Configuracion_Avanzada */
+
+    private PrincipalView parent;
+
+    public AvanzadaConfigView() {
+    }
+
     public AvanzadaConfigView(PrincipalView parent, boolean modal) {
         super(parent, modal);
+
         initComponents();
         this.parent = parent;
-        jTextField1.setText(String.valueOf(parent.conf_avanzada.getDuracion()));
-        jTextField2.setText(String.valueOf(parent.conf_avanzada.getT_interestimulo()));
         setLocationRelativeTo(null);
+
+        jTextField1.setText(String.valueOf(parent.getConfAvanzada().getDuracion()));
+        jTextField2.setText(String.valueOf(parent.getConfAvanzada().getT_interestimulo()));
     }
 
     /** This method is called from within the constructor to
@@ -136,16 +141,14 @@ public class AvanzadaConfigView extends javax.swing.JDialog {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        try{
+        try {
             int t_ensayo = Integer.parseInt(jTextField1.getText());
             int t_interestimulo = Integer.parseInt(jTextField2.getText());
-            parent.conf_avanzada.setDuracion(t_ensayo);
-            parent.conf_avanzada.setT_interestimulo(t_interestimulo);
+            parent.getConfAvanzada().setDuracion(t_ensayo);
+            parent.getConfAvanzada().setT_interestimulo(t_interestimulo);
             setVisible(false);
-            parent.conf_avanzada.SaveObject("config.bin");
-        }
-        catch(Exception e)
-        {
+            parent.getConfAvanzada().SaveObject("config.bin");
+        } catch (Exception e) {
             String msg = "Datos incorrectos, verifíquelos";
             ErrorDialog err = new ErrorDialog(parent, true, msg);
             err.setVisible(true);
@@ -153,13 +156,16 @@ public class AvanzadaConfigView extends javax.swing.JDialog {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
-    * @param args the command line arguments
-    */
+     * @param args the command line arguments
+     */
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(new Runnable() {
+
             public void run() {
-                AvanzadaConfigView dialog = new AvanzadaConfigView(new PrincipalView(), true);
+                AvanzadaConfigView dialog = new AvanzadaConfigView();
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
+
+                    @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {
                         System.exit(0);
                     }
@@ -168,7 +174,6 @@ public class AvanzadaConfigView extends javax.swing.JDialog {
             }
         });
     }
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
@@ -179,5 +184,4 @@ public class AvanzadaConfigView extends javax.swing.JDialog {
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
     // End of variables declaration//GEN-END:variables
-
 }

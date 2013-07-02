@@ -4,14 +4,12 @@
  */
 
 /*
- * FichaPaciente.java
+ * FichaPacienteView.java
  *
  * Created on 17-sep-2010, 11:51:26
  */
-
 package vistas.Paciente;
 
-import Datos.Paciente;
 import vistas.ErrorDialog;
 import vistas.PrincipalView;
 
@@ -21,19 +19,21 @@ import vistas.PrincipalView;
  */
 public class FichaPacienteView extends javax.swing.JDialog {
 
-    /** Creates new form FichaPaciente */
-    int pos;
-    PrincipalView parent;
-    public FichaPacienteView(PrincipalView parent, boolean modal, int pos) {
+    private PrincipalView parent;
+
+    public FichaPacienteView() {
+    }
+
+    public FichaPacienteView(PrincipalView parent, boolean modal) {
         super(parent, modal);
+
         initComponents();
         setLocationRelativeTo(null);
-        this.pos = pos;
         this.parent = parent;
-        Paciente p = parent.pacientes.paciente_Pos(pos);
-        jTextField1.setText(p.getNo_historia());
-        jTextField2.setText(p.getNombre());
-        jTextArea1.setText(p.getFicha());
+
+        jTextField1.setText(parent.getPacienteActual().getNo_historia());
+        jTextField2.setText(parent.getPacienteActual().getNombre());
+        jTextArea1.setText(parent.getPacienteActual().getFicha());
     }
 
     /** This method is called from within the constructor to
@@ -163,13 +163,12 @@ public class FichaPacienteView extends javax.swing.JDialog {
 
     private void aceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aceptarActionPerformed
         // TODO add your handling code here:
-        parent.pacientes.paciente_Pos(pos).setFicha(jTextArea1.getText());
+        parent.getPacienteActual().setFicha(jTextArea1.getText());
         jTextArea1.setEditable(false);
-        parent.Mod_Tabla();
-        try{
-            parent.pacientes.SaveObject("datos.bin");
-        }
-        catch(Exception e){
+        parent.Modificar_Tabla();
+        try {
+            parent.getRegistro().SaveObject("datos.bin");
+        } catch (Exception e) {
             ErrorDialog err = new ErrorDialog(parent, true, e.getMessage());
             err.setVisible(true);
         }
@@ -177,13 +176,16 @@ public class FichaPacienteView extends javax.swing.JDialog {
     }//GEN-LAST:event_aceptarActionPerformed
 
     /**
-    * @param args the command line arguments
-    */
+     * @param args the command line arguments
+     */
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(new Runnable() {
+
             public void run() {
-                FichaPacienteView dialog = new FichaPacienteView(new PrincipalView(), true, 0);
+                FichaPacienteView dialog = new FichaPacienteView();
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
+
+                    @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {
                         System.exit(0);
                     }
@@ -192,7 +194,6 @@ public class FichaPacienteView extends javax.swing.JDialog {
             }
         });
     }
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton aceptar;
     private javax.swing.JButton jButton1;
@@ -202,5 +203,4 @@ public class FichaPacienteView extends javax.swing.JDialog {
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
     // End of variables declaration//GEN-END:variables
-
 }

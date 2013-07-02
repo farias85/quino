@@ -4,11 +4,10 @@
  */
 
 /*
- * BuscarPaciente.java
+ * BuscarPacienteView.java
  *
  * Created on 17-sep-2010, 12:09:28
  */
-
 package vistas.Paciente;
 
 import Datos.Paciente;
@@ -21,14 +20,18 @@ import vistas.PrincipalView;
  */
 public class BuscarPacienteView extends javax.swing.JDialog {
 
-    /** Creates new form BuscarPaciente */
-    PrincipalView parent;
-    int pos;
+    private PrincipalView parent;
+
+    public BuscarPacienteView() {
+    }
+
     public BuscarPacienteView(PrincipalView parent, boolean modal) {
         super(parent, modal);
+
         initComponents();
-        this.parent=parent;
         setLocationRelativeTo(null);
+        this.parent = parent;
+
         sexo.setVisible(false);
         cambios.setVisible(false);
     }
@@ -299,23 +302,32 @@ public class BuscarPacienteView extends javax.swing.JDialog {
 
     private void cambiosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cambiosActionPerformed
         // TODO add your handling code here:
-        try{
-            String hist = historia.getText();            
-            String fich = parent.pacientes.paciente_Pos(pos).getFicha();
+        try {
+            String hist = historia.getText();
+            String fich = parent.getPacienteActual().getFicha();
             String nombre1 = this.nombre.getText();
             long ci = IsCi(CI.getText());
             String esco = escolaridad.getText();
-            int edad1= Integer.parseInt(this.edad.getText());
+            int edad1 = Integer.parseInt(this.edad.getText());
             String sexo1 = String.valueOf(this.sexo.getSelectedItem());
-            Paciente p = new Paciente(nombre1,edad1,sexo1,esco,hist,ci,fich);
-            parent.pacientes.Modificar(pos, p);
+
+            parent.getPacienteActual().setNombre(nombre1);
+            parent.getPacienteActual().setEdad(edad1);
+            parent.getPacienteActual().setSexo(sexo1);
+            parent.getPacienteActual().setEscolaridad(esco);
+            parent.getPacienteActual().setNo_historia(hist);
+            parent.getPacienteActual().setCI(ci);
+            parent.getPacienteActual().setFicha(fich);
+
+            //Paciente p = new Paciente(nombre1, edad1, sexo1, esco, hist, ci, fich);
+            //parent.getRegistro().Modificar(pos, p);
+
             ErrorDialog er = new ErrorDialog(parent, true, "Cambos realizados exitosamente");
             er.setVisible(true);
-            parent.Mod_Tabla();
-            parent.pacientes.SaveObject("datos.bin");
-        }
-        catch(Exception e){
-            ErrorDialog err= new ErrorDialog(parent, true, e.getMessage());
+            parent.Modificar_Tabla();
+            parent.getRegistro().SaveObject("datos.bin");
+        } catch (Exception e) {
+            ErrorDialog err = new ErrorDialog(parent, true, e.getMessage());
             err.setVisible(true);
         }
 }//GEN-LAST:event_cambiosActionPerformed
@@ -338,20 +350,23 @@ public class BuscarPacienteView extends javax.swing.JDialog {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
-        try{
-            pos = parent.pacientes.Buscar(historia.getText());
-            Paciente p = parent.pacientes.paciente_Pos(pos);
-            nombre.setText(p.getNombre());
-            CI.setText(String.valueOf(p.getCI()));
-            escolaridad.setText(p.getEscolaridad());
-            edad.setText(String.valueOf(p.getEdad()));
-            jTextField5.setText(p.getSexo());
+        try {
+            //Aqui si está permitido buscar por posicion en el registro
+            //ya q no puedo editar la clase registro por el error codigo 7
+            int pos = parent.getRegistro().Buscar(historia.getText());
+            parent.setPacienteActual(parent.getRegistro().paciente_Pos(pos));
+
+            nombre.setText(parent.getPacienteActual().getNombre());
+            CI.setText(String.valueOf(parent.getPacienteActual().getCI()));
+            escolaridad.setText(parent.getPacienteActual().getEscolaridad());
+            edad.setText(String.valueOf(parent.getPacienteActual().getEdad()));
+            jTextField5.setText(parent.getPacienteActual().getSexo());
+
             eliminar.setEnabled(true);
             modificar.setEnabled(true);
             ficha.setEnabled(true);
             prueba.setEnabled(true);
-        }
-        catch(Exception e){
+        } catch (Exception e) {
             eliminar.setEnabled(false);
             modificar.setEnabled(false);
             ficha.setEnabled(false);
@@ -361,67 +376,61 @@ public class BuscarPacienteView extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_jButton2ActionPerformed
 
-    public boolean Numero(String valor)
-        {
+    public boolean Numero(String valor) {
 
-            if (valor.length() != 0)
+        if (valor.length() != 0) {
+            for (int i = 0; i < valor.length(); i++) {
+                int ASCII = (int) valor.charAt(i);
+                if (ASCII < 48 || ASCII > 57) {
+                    return false;
+                }
+            }
+
+            return true;
+        } else {
+            return false;
+        }
+
+    }
+
+    public long IsCi(String ci) throws Exception {
+        int[] DaysByMonths = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
+
+        if (Numero(ci)) //Si todos sus elementos son números
+        {
+            if (ci.length() == 11) //Si contiene 11 dígitos
             {
-                for (int i = 0; i < valor.length(); i++)
+
+                int day = new Integer(String.valueOf(ci.charAt(4)) + String.valueOf(ci.charAt(5))).intValue();
+                int month = new Integer(String.valueOf(ci.charAt(2)) + String.valueOf(ci.charAt(3))).intValue();
+                int year = new Integer(String.valueOf(ci.charAt(0)) + String.valueOf(ci.charAt(1))).intValue();
+
+                if (month >= 1 && month <= 12) //Si el mes está comprendido entre 1 y 12
                 {
-                    int ASCII = (int)valor.charAt(i);
-                    if(ASCII < 48 || ASCII > 57)
+                    if (day >= 1 && day <= DaysByMonths[month - 1]) //Si el mes específico contiene la cantidad de dias necesarios
                     {
-                        return false;
+                        return Long.parseLong(ci);
+                    } else {
+                        throw new Exception("Error en la cantidad de dias, debe estar en el rango [01-" + DaysByMonths[month - 1] + "]");
                     }
+                } else {
+                    throw new Exception("Error en el mes, debe estar en el rango [01-12]");
                 }
 
-                return true;
-            }
-            else
-            {
-                return false;
+
+            } else {
+                throw new Exception("El carnet debe contener 11 dígitos");
             }
 
+        } else {
+            throw new Exception("El carnet debe contener solamante números");
         }
-
-    public long IsCi(String ci) throws Exception
-        {
-            int[] DaysByMonths = { 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
-
-           if(Numero(ci)) //Si todos sus elementos son números
-           {
-                if (ci.length() == 11) //Si contiene 11 dígitos
-                {
-
-                        int day = new Integer(String.valueOf(ci.charAt(4)) + String.valueOf(ci.charAt(5))).intValue();
-                        int month = new Integer(String.valueOf(ci.charAt(2)) + String.valueOf(ci.charAt(3))).intValue();
-                        int year = new Integer(String.valueOf(ci.charAt(0)) + String.valueOf(ci.charAt(1))).intValue();
-
-                        if (month >= 1 && month <= 12) //Si el mes está comprendido entre 1 y 12
-                        {
-                            if (day >= 1 && day <= DaysByMonths[month - 1]) //Si el mes específico contiene la cantidad de dias necesarios
-
-                                return Long.parseLong(ci);
-                            else
-                                throw new Exception("Error en la cantidad de dias, debe estar en el rango [01-" + DaysByMonths[month - 1] + "]");
-                        }
-                        else
-                            throw new Exception("Error en el mes, debe estar en el rango [01-12]");
-
-
-                }
-                else
-                    throw new Exception("El carnet debe contener 11 dígitos");
-
-           }
-           else
-               throw new Exception("El carnet debe contener solamante números");
-        }
+    }
     private void eliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eliminarActionPerformed
         // TODO add your handling code here:
-        try{
+        try {
             String hist = this.historia.getText();
-            parent.pacientes.Eliminar(hist);
+            parent.getRegistro().Eliminar(hist);
             ErrorDialog err = new ErrorDialog(parent, true, "El Paciente ha sido eliminado satisfactoriamente");
             err.setVisible(true);
             historia.setText("");
@@ -435,24 +444,23 @@ public class BuscarPacienteView extends javax.swing.JDialog {
             escolaridad.setEditable(false);
             edad.setEditable(false);
             jTextField5.setEditable(false);
-            parent.Mod_Tabla();
-            parent.pacientes.SaveObject("datos.bin");
-        }
-        catch(Exception e){
-          ErrorDialog err = new ErrorDialog(parent, true, e.getMessage());
-          err.setVisible(true);
+            parent.Modificar_Tabla();
+            parent.getRegistro().SaveObject("datos.bin");
+        } catch (Exception e) {
+            ErrorDialog err = new ErrorDialog(parent, true, e.getMessage());
+            err.setVisible(true);
         }
 
     }//GEN-LAST:event_eliminarActionPerformed
 
     private void fichaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fichaActionPerformed
         // TODO add your handling code here:
-        try{
-            int pos = parent.pacientes.Buscar(historia.getText());
-            FichaPacienteView fich = new FichaPacienteView(parent, true, pos);
+        try {
+            int pos = parent.getRegistro().Buscar(historia.getText());
+            parent.setPacienteActual(parent.getRegistro().paciente_Pos(pos));
+            FichaPacienteView fich = new FichaPacienteView(parent, true);
             fich.setVisible(true);
-        }
-        catch(Exception e){
+        } catch (Exception e) {
             ErrorDialog err = new ErrorDialog(parent, true, e.getMessage());
             err.setVisible(true);
         }
@@ -472,13 +480,16 @@ public class BuscarPacienteView extends javax.swing.JDialog {
 }//GEN-LAST:event_pruebaActionPerformed
 
     /**
-    * @param args the command line arguments
-    */
+     * @param args the command line arguments
+     */
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(new Runnable() {
+
             public void run() {
-                BuscarPacienteView dialog = new BuscarPacienteView(new PrincipalView(), true);
+                BuscarPacienteView dialog = new BuscarPacienteView();
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
+
+                    @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {
                         System.exit(0);
                     }
@@ -487,7 +498,6 @@ public class BuscarPacienteView extends javax.swing.JDialog {
             }
         });
     }
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField CI;
     private javax.swing.JButton cambios;
@@ -511,5 +521,4 @@ public class BuscarPacienteView extends javax.swing.JDialog {
     private javax.swing.JButton prueba;
     private javax.swing.JComboBox sexo;
     // End of variables declaration//GEN-END:variables
-
 }

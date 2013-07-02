@@ -4,11 +4,10 @@
  */
 
 /*
- * NuevoPaciente.java
+ * NuevoPacienteView.java
  *
  * Created on 17-sep-2010, 11:24:16
  */
-
 package vistas.Paciente;
 
 import Datos.Paciente;
@@ -20,14 +19,19 @@ import vistas.PrincipalView;
  * @author Davisito
  */
 public class NuevoPacienteView extends javax.swing.JDialog {
-    PrincipalView parent;
-    /** Creates new form NuevoPaciente */
+
+    private PrincipalView parent;
+
+    public NuevoPacienteView() {
+    }
+
+    /** Creates new form NuevoPacienteView */
     public NuevoPacienteView(PrincipalView parent, boolean modal) {
         super(parent, modal);
+
         initComponents();
         setLocationRelativeTo(null);
-        this.parent=parent;
-      
+        this.parent = parent;
     }
 
     /** This method is called from within the constructor to
@@ -221,104 +225,99 @@ public class NuevoPacienteView extends javax.swing.JDialog {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        try{
-            if(historia.getText().isEmpty() || nombre.getText().isEmpty()|| escolaridad.getText().isEmpty()||ficha.getText().isEmpty()
-                    ||CI.getText().isEmpty()||edad.getText().isEmpty()){
-                throw  new Exception("Existen datos del Paciente en blanco");
+        try {
+            if (historia.getText().isEmpty() || nombre.getText().isEmpty() || escolaridad.getText().isEmpty() || ficha.getText().isEmpty()
+                    || CI.getText().isEmpty() || edad.getText().isEmpty()) {
+                throw new Exception("Existen datos del Paciente en blanco");
             }
-            String hist=historia.getText();
-            String nomb=nombre.getText();
+            String hist = historia.getText();
+            String nomb = nombre.getText();
             String sex = String.valueOf(sexo.getSelectedItem());
-            String esc= escolaridad.getText();
-            String fich=ficha.getText();
+            String esc = escolaridad.getText();
+            String fich = ficha.getText();
             long ci;
-            int age;           
+            int age;
             ci = IsCi(CI.getText());
-            try{
-                age=Integer.parseInt(edad.getText());
-            }
-            catch(Exception e){
-                throw  new Exception("La edad debe ser un número");
+            try {
+                age = Integer.parseInt(edad.getText());
+            } catch (Exception e) {
+                throw new Exception("La edad debe ser un número");
             }
             Paciente p = new Paciente(nomb, age, sex, esc, hist, ci, fich);
-            parent.pacientes.Nuevo(p);
-            parent.pacientes.SaveObject("datos.bin");
-            parent.Mod_Tabla();
+            parent.getRegistro().Nuevo(p);
+            parent.getRegistro().SaveObject("datos.bin");
+            parent.Modificar_Tabla();
             //parent.ActivarPractica();
             setVisible(false);
             dispose();
-        }
-        catch(Exception e){
-           ErrorDialog err = new ErrorDialog(parent, true, e.getMessage());
-           err.setVisible(true);
+        } catch (Exception e) {
+            ErrorDialog err = new ErrorDialog(parent, true, e.getMessage());
+            err.setVisible(true);
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
-    * @param args the command line arguments
-    */
-      public boolean Numero(String valor)
-        {
+     * @param args the command line arguments
+     */
+    public boolean Numero(String valor) {
 
-            if (valor.length() != 0)
+        if (valor.length() != 0) {
+            for (int i = 0; i < valor.length(); i++) {
+                int ASCII = (int) valor.charAt(i);
+                if (ASCII < 48 || ASCII > 57) {
+                    return false;
+                }
+            }
+
+            return true;
+        } else {
+            return false;
+        }
+
+    }
+
+    public long IsCi(String ci) throws Exception {
+        int[] DaysByMonths = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
+
+        if (Numero(ci)) //Si todos sus elementos son números
+        {
+            if (ci.length() == 11) //Si contiene 11 dígitos
             {
-                for (int i = 0; i < valor.length(); i++)
+
+                int day = new Integer(String.valueOf(ci.charAt(4)) + String.valueOf(ci.charAt(5))).intValue();
+                int month = new Integer(String.valueOf(ci.charAt(2)) + String.valueOf(ci.charAt(3))).intValue();
+                int year = new Integer(String.valueOf(ci.charAt(0)) + String.valueOf(ci.charAt(1))).intValue();
+
+                if (month >= 1 && month <= 12) //Si el mes está comprendido entre 1 y 12
                 {
-                    int ASCII = (int)valor.charAt(i);
-                    if(ASCII < 48 || ASCII > 57)
+                    if (day >= 1 && day <= DaysByMonths[month - 1]) //Si el mes específico contiene la cantidad de dias necesarios
                     {
-                        return false;
+                        return Long.parseLong(ci);
+                    } else {
+                        throw new Exception("Error en la cantidad de dias, debe estar en el rango [01-" + DaysByMonths[month - 1] + "]");
                     }
+                } else {
+                    throw new Exception("Error en el mes, debe estar en el rango [01-12]");
                 }
 
-                return true;
-            }
-            else
-            {
-                return false;
+
+            } else {
+                throw new Exception("El carnet debe contener 11 dígitos");
             }
 
+        } else {
+            throw new Exception("El carnet debe contener solamante números");
         }
+    }
 
-
-        public long IsCi(String ci) throws Exception
-        {
-            int[] DaysByMonths = { 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
-
-           if(Numero(ci)) //Si todos sus elementos son números
-           {
-                if (ci.length() == 11) //Si contiene 11 dígitos
-                {
-
-                        int day = new Integer(String.valueOf(ci.charAt(4)) + String.valueOf(ci.charAt(5))).intValue();
-                        int month = new Integer(String.valueOf(ci.charAt(2)) + String.valueOf(ci.charAt(3))).intValue();
-                        int year = new Integer(String.valueOf(ci.charAt(0)) + String.valueOf(ci.charAt(1))).intValue();
-
-                        if (month >= 1 && month <= 12) //Si el mes está comprendido entre 1 y 12
-                        {
-                            if (day >= 1 && day <= DaysByMonths[month - 1]) //Si el mes específico contiene la cantidad de dias necesarios
-
-                                return Long.parseLong(ci);
-                            else
-                                throw new Exception("Error en la cantidad de dias, debe estar en el rango [01-" + DaysByMonths[month - 1] + "]");
-                        }
-                        else
-                            throw new Exception("Error en el mes, debe estar en el rango [01-12]");
-
-
-                }
-                else
-                    throw new Exception("El carnet debe contener 11 dígitos");
-
-           }
-           else
-               throw new Exception("El carnet debe contener solamante números");
-        }
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(new Runnable() {
+
             public void run() {
-                NuevoPacienteView dialog = new NuevoPacienteView(new PrincipalView(), true);
+                NuevoPacienteView dialog = new NuevoPacienteView();
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
+
+                    @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {
                         System.exit(0);
                     }
@@ -327,7 +326,6 @@ public class NuevoPacienteView extends javax.swing.JDialog {
             }
         });
     }
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField CI;
     private javax.swing.JTextField edad;
@@ -348,5 +346,4 @@ public class NuevoPacienteView extends javax.swing.JDialog {
     private javax.swing.JTextField nombre;
     private javax.swing.JComboBox sexo;
     // End of variables declaration//GEN-END:variables
-
 }

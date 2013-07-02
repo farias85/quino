@@ -4,14 +4,13 @@
  */
 
 /*
- * Principal.java
+ * PrincipalView.java
  *
  * Created on 24-jul-2010, 10:23:06
  */
-
 package vistas;
 
-
+import Datos.Paciente;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.event.ListSelectionEvent;
@@ -21,6 +20,7 @@ import Datos.Registro;
 import clases.prueba.Configuracion;
 import clases.prueba.ConfiguracionAutomatica;
 import clases.prueba.ConfiguracionAvanzada;
+import clases.prueba.IConfiguracion;
 import clases.prueba.Prueba;
 import java.io.IOException;
 import javax.swing.ListSelectionModel;
@@ -39,32 +39,68 @@ import javax.swing.JFileChooser;
 import vistas.Paciente.TipoPruebaView;
 import vistas.Prueba.FovealTestView;
 
-
-
 /**
  *
  * @author davisito
  */
 public class PrincipalView extends javax.swing.JFrame {
     //public clases.prueba.Tester tester;
-   public Configuracion configuracion;
-   public Prueba prueba;
-   public ConfiguracionAvanzada conf_avanzada;
-   public Registro pacientes;
-   private int sel_paciente;
-   private int respuesta;
 
-    /** Creates new form Principal */
+    private Configuracion conf;
+    private Prueba prueba;
+    private ConfiguracionAvanzada confAvanzada;
+    private Registro registro;
+    private Paciente pacienteActual;
+
+    /*private int sel_paciente;
+    private int respuesta;*/
+    public Configuracion getConf() {
+        return conf;
+    }
+
+    public void setConf(Configuracion conf) {
+        this.conf = conf;
+    }
+
+    public ConfiguracionAvanzada getConfAvanzada() {
+        return confAvanzada;
+    }
+
+    /*public void setConfAvanzada(ConfiguracionAvanzada confAvanzada) {
+        this.confAvanzada = confAvanzada;
+    }*/
+
+    public Paciente getPacienteActual() {
+        return pacienteActual;
+    }
+
+    public void setPacienteActual(Paciente pacienteActual) {
+        this.pacienteActual = pacienteActual;
+    }
+
+    public Prueba getPrueba() {
+        return prueba;
+    }
+
+    public void setPrueba(Prueba prueba) {
+        this.prueba = prueba;
+    }
+
+    public Registro getRegistro() {
+        return registro;
+    }
+
+    /** Creates new form PrincipalView */
     public PrincipalView() {
         initComponents();
         this.setLocationRelativeTo(null);
         jMenuItem10.setEnabled(false);
         jMenuItem15.setEnabled(false);
-        try{
-            pacientes = new Registro();
-            pacientes = Registro.OpenObject("datos.bin");
-            Mod_Tabla();
-            if (pacientes.Size()==0) {
+        try {
+            registro = new Registro();
+            registro = Registro.OpenObject("datos.bin");
+            Modificar_Tabla();
+            if (registro.Size() == 0) {
                 b_busc.setEnabled(false);
                 b_del.setEnabled(false);
                 b_fich.setEnabled(false);
@@ -74,35 +110,31 @@ public class PrincipalView extends javax.swing.JFrame {
                 jMenuItem15.setEnabled(false);
                 throw new Exception("No existen Pacientes registrados");
             }
-        }
-        catch(Exception e){
-            if(e instanceof IOException){
+        } catch (Exception e) {
+            if (e instanceof IOException) {
                 ErrorDialog err = new ErrorDialog(this, true, "No existen Pacientes registrados");
                 err.setVisible(true);
-            }else{
+            } else {
                 ErrorDialog err = new ErrorDialog(this, true, e.getMessage());
                 err.setVisible(true);
-                pacientes = new Registro();
+                registro = new Registro();
             }
         }
-        /*if(pacientes.Size()==0){
-            jMenuItem10.setEnabled(false);
-        }*/
-        try{
-            conf_avanzada = new ConfiguracionAvanzada(WIDTH, WIDTH);
-            conf_avanzada = ConfiguracionAvanzada.OpenObject("config.bin");
-        }
-        catch(Exception e){
-            if(e instanceof IOException){
-                conf_avanzada = new ConfiguracionAvanzada(1000, 400);
-            }            
+        
+        try {
+            confAvanzada = ConfiguracionAvanzada.OpenObject("config.bin");
+        } catch (Exception e) {
+            if (e instanceof IOException) {
+                confAvanzada = new ConfiguracionAvanzada(IConfiguracion.TIEMPO_DURACION, IConfiguracion.TIEMPO_ESTIMULO);
+            }
         }
         jMenu5.add(jMenuItem1);
         jMenu5.add(jMenuItem2);
         //jTable1.setComponentPopupMenu(menu);
         jTable1.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
+
             public void valueChanged(ListSelectionEvent e) {
-               ListSelectionModel lsm = (ListSelectionModel)e.getSource();
+                ListSelectionModel lsm = (ListSelectionModel) e.getSource();
                 if (lsm.isSelectionEmpty()) {
                     jMenu5.setEnabled(false);
                     jMenuItem6.setEnabled(false);
@@ -115,8 +147,8 @@ public class PrincipalView extends javax.swing.JFrame {
                     b_prueba.setEnabled(false);
                     jMenuItem10.setEnabled(false);
                     jMenuItem15.setEnabled(false);
-                    
-                }else{
+
+                } else {
                     jMenu5.setEnabled(true);
                     jMenuItem6.setEnabled(true);
                     jMenuItem7.setEnabled(true);
@@ -128,7 +160,8 @@ public class PrincipalView extends javax.swing.JFrame {
                     b_prueba.setEnabled(true);
                     jMenuItem10.setEnabled(true);
                     jMenuItem15.setEnabled(true);
-                    sel_paciente = lsm.getMinSelectionIndex();
+                    int sel_paciente = lsm.getMinSelectionIndex();
+                    pacienteActual = registro.paciente_Pos(sel_paciente);
                     jTable1.setComponentPopupMenu(menu);
                 }
             }
@@ -141,30 +174,27 @@ public class PrincipalView extends javax.swing.JFrame {
         b_prueba.setToolTipText("Realizar Prueba al Paciente seleccionado");
     }
 
-    public int getSel_paciente() {
-        return sel_paciente;
-    }
-
-
-    public void Mod_Tabla(){
-        DefaultTableModel tm = new DefaultTableModel(){
+    /*public int getSel_paciente() {
+    return sel_paciente;
+    }*/
+    public void Modificar_Tabla() {
+        DefaultTableModel tm = new DefaultTableModel() {
             //para que las celdas no se puedan editar
+
             boolean[] celdasNoEditables = {false, false, false, false, false, false};
-            Class[] types = new Class [] {
+            Class[] types = new Class[]{
                 java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.String.class, java.lang.String.class
             };
 
             @Override
             public Class<?> getColumnClass(int columnIndex) {
-                return types [columnIndex];
+                return types[columnIndex];
             }
 
             @Override
             public boolean isCellEditable(int fila, int columna) {
                 return celdasNoEditables[columna];
             }
-
-
         };
         tm.addColumn("Historia Clínica");
         tm.addColumn("Nombre y Apellidos");
@@ -172,19 +202,19 @@ public class PrincipalView extends javax.swing.JFrame {
         tm.addColumn("Edad");
         tm.addColumn("Escolaridad");
         tm.addColumn("Sexo");
-        for (int i = 0; i < pacientes.Size(); i++) {
-            Object[] fila = {pacientes.paciente_Pos(i).getNo_historia(), pacientes.paciente_Pos(i).getNombre(),
-                             pacientes.paciente_Pos(i).getCI(), pacientes.paciente_Pos(i).getEdad(),
-                            pacientes.paciente_Pos(i).getEscolaridad(), pacientes.paciente_Pos(i).getSexo()};
+        for (int i = 0; i < registro.Size(); i++) {
+            Object[] fila = {registro.paciente_Pos(i).getNo_historia(), registro.paciente_Pos(i).getNombre(),
+                registro.paciente_Pos(i).getCI(), registro.paciente_Pos(i).getEdad(),
+                registro.paciente_Pos(i).getEscolaridad(), registro.paciente_Pos(i).getSexo()};
             tm.addRow(fila);
         }
-        if (pacientes.Size()==0) {
+        if (registro.Size() == 0) {
             b_busc.setEnabled(false);
-        }else{
+        } else {
             b_busc.setEnabled(true);
         }
         jTable1.setModel(tm);
-        jTable1.getTableHeader().setFont(new java.awt.Font("Tahoma", 1, 12));        
+        jTable1.getTableHeader().setFont(new java.awt.Font("Tahoma", 1, 12));
         //jTable1.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         //jTable1.setCellSelectionEnabled(false);
         jTable1.getColumnModel().getColumn(0).setPreferredWidth(40);
@@ -194,16 +224,18 @@ public class PrincipalView extends javax.swing.JFrame {
         jTable1.getColumnModel().getColumn(4).setPreferredWidth(80);
         jTable1.getColumnModel().getColumn(5).setPreferredWidth(30);
     }
-    public boolean itemSelected(){
-        for (int i = 0; i < pacientes.Size(); i++){
-             if (jTable1.isRowSelected(i)) {
-                 return true;
+
+    public boolean itemSelected() {
+        for (int i = 0; i < registro.Size(); i++) {
+            if (jTable1.isRowSelected(i)) {
+                return true;
             }
         }
-        return false;  
+        return false;
     }
-    public void ActivarPractica(){
-          jMenuItem10.setEnabled(true);
+
+    public void ActivarPractica() {
+        jMenuItem10.setEnabled(true);
     }
 
     /** This method is called from within the constructor to
@@ -534,7 +566,7 @@ public class PrincipalView extends javax.swing.JFrame {
         jMenu7.setText("Práctica");
         jMenu7.setFont(new java.awt.Font("Tahoma", 1, 12));
 
-        jMenuItem16.setFont(new java.awt.Font("Tahoma", 1, 12));
+        jMenuItem16.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jMenuItem16.setText("Paracentral");
         jMenuItem16.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -619,13 +651,13 @@ public class PrincipalView extends javax.swing.JFrame {
 
     private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
         // TODO add your handling code here:
-        AvanzadaConfigView conf = new AvanzadaConfigView(this, true);
-        conf.setVisible(true);
+        AvanzadaConfigView avanzadaConfigView = new AvanzadaConfigView(this, true);
+        avanzadaConfigView.setVisible(true);
     }//GEN-LAST:event_jMenuItem3ActionPerformed
 
     private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
         // TODO add your handling code here:
-        NuevoPacienteView np= new NuevoPacienteView(this, true);
+        NuevoPacienteView np = new NuevoPacienteView(this, true);
         np.setVisible(true);
     }//GEN-LAST:event_jMenuItem4ActionPerformed
 
@@ -637,28 +669,25 @@ public class PrincipalView extends javax.swing.JFrame {
 
     private void jMenuItem8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem8ActionPerformed
         // TODO add your handling code here:
-       try{
-            String hist = pacientes.paciente_Pos(sel_paciente).getNo_historia();
-            pacientes.Eliminar(hist);
-            /*Errores err = new Errores(this, true, "El Paciente ha sido eliminado satisfactoriamente");
+        try {
+            String hist = pacienteActual.getNo_historia();
+            registro.Eliminar(hist);
+            /*ErrorDialog err = new ErrorDialog(this, true, "El Paciente ha sido eliminado satisfactoriamente");
             err.setVisible(true);*/
-            Mod_Tabla();
-            pacientes.SaveObject("datos.bin");
-        }
-        catch(Exception e){
-          ErrorDialog err = new ErrorDialog(this, true, e.getMessage());
-          err.setVisible(true);
+            Modificar_Tabla();
+            registro.SaveObject("datos.bin");
+        } catch (Exception e) {
+            ErrorDialog err = new ErrorDialog(this, true, e.getMessage());
+            err.setVisible(true);
         }
     }//GEN-LAST:event_jMenuItem8ActionPerformed
 
     private void jMenuItem7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem7ActionPerformed
         // TODO add your handling code here:
-         try{
-            int pos = sel_paciente;
-            FichaPacienteView fich = new FichaPacienteView(this, true, pos);
+        try {
+            FichaPacienteView fich = new FichaPacienteView(this, true);
             fich.setVisible(true);
-        }
-        catch(Exception e){
+        } catch (Exception e) {
             ErrorDialog err = new ErrorDialog(this, true, e.getMessage());
             err.setVisible(true);
         }
@@ -666,43 +695,42 @@ public class PrincipalView extends javax.swing.JFrame {
 
     private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
         // TODO add your handling code here:
-        ModificarPacienteView mp = new ModificarPacienteView(this, true, sel_paciente);
+        ModificarPacienteView mp = new ModificarPacienteView(this, true);
         mp.setVisible(true);
     }//GEN-LAST:event_jMenuItem6ActionPerformed
 
     private void jMenuItem9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem9ActionPerformed
         // TODO add your handling code here:
-        try{
-            Prueba p = pacientes.paciente_Pos(sel_paciente).getPrueba();
+        Prueba p = pacienteActual.Prueba();
+        if (p != null) {
             ResultView resultado = new ResultView(this, true, p);
             resultado.setVisible(true);
-        }
-        catch(Exception e){
-            ErrorDialog err = new ErrorDialog(this, true, e.getMessage());
+        } else {
+            ErrorDialog err = new ErrorDialog(this, true,
+                    "A este paciente no se le ha realizdo este tipo de prueba");
             err.setVisible(true);
         }
     }//GEN-LAST:event_jMenuItem9ActionPerformed
 
     private void jMenuItem12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem12ActionPerformed
         // TODO add your handling code here:
-        try{
-            
-            FileNameExtensionFilter  filter =  new FileNameExtensionFilter("Archivos de base (*.tls)","tls");
-            jFileChooser1.addChoosableFileFilter( filter);
+        try {
+
+            FileNameExtensionFilter filter = new FileNameExtensionFilter("Archivos de base (*.tls)", "tls");
+            jFileChooser1.addChoosableFileFilter(filter);
             jFileChooser1.setDialogTitle("Exportar Base");
             jFileChooser1.setDialogType(JFileChooser.SAVE_DIALOG);
             jFileChooser1.showSaveDialog(this);
             File selectPlaced = jFileChooser1.getSelectedFile();
-            String extension = selectPlaced.getPath().substring(selectPlaced.getPath().length()-".tls".length(),selectPlaced.getPath().length());
-            if(extension.equals(".tls"))
-                pacientes.SaveObject(selectPlaced.getPath());
-            else
-                pacientes.SaveObject(selectPlaced.getPath()+ "." +filter.getExtensions()[0]);
-        }
-        catch (ClassNotFoundException ex) {
+            String extension = selectPlaced.getPath().substring(selectPlaced.getPath().length() - ".tls".length(), selectPlaced.getPath().length());
+            if (extension.equals(".tls")) {
+                registro.SaveObject(selectPlaced.getPath());
+            } else {
+                registro.SaveObject(selectPlaced.getPath() + "." + filter.getExtensions()[0]);
+            }
+        } catch (ClassNotFoundException ex) {
             Logger.getLogger(PrincipalView.class.getName()).log(Level.SEVERE, null, ex);
-        }
-         catch (IOException ex) {
+        } catch (IOException ex) {
             ErrorDialog err = new ErrorDialog(this, true, ex.getMessage());
             err.setVisible(true);
         }
@@ -714,89 +742,87 @@ public class PrincipalView extends javax.swing.JFrame {
 
     private void jMenuItem11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem11ActionPerformed
         // TODO add your handling code here:
-        FileNameExtensionFilter  filter =  new FileNameExtensionFilter("Archivos de base (*.tls)","tls");
-        jFileChooser1.addChoosableFileFilter( filter);
+        FileNameExtensionFilter filter = new FileNameExtensionFilter("Archivos de base (*.tls)", "tls");
+        jFileChooser1.addChoosableFileFilter(filter);
         jFileChooser1.setDialogTitle("Importar Base");
         jFileChooser1.setDialogType(JFileChooser.OPEN_DIALOG);
-        int status =  jFileChooser1.showOpenDialog(this);
+        int status = jFileChooser1.showOpenDialog(this);
 
-        if(status == JFileChooser.APPROVE_OPTION)
-        {
+        if (status == JFileChooser.APPROVE_OPTION) {
             File selectedFile = jFileChooser1.getSelectedFile();
             try {
-                 Registro base = Registro.OpenObject(selectedFile.getPath());
-                 pacientes.Importar(base);
-                 Mod_Tabla();
-                 pacientes.SaveObject("datos.bin");
+                Registro base = Registro.OpenObject(selectedFile.getPath());
+                registro.Importar(base);
+                Modificar_Tabla();
+                registro.SaveObject("datos.bin");
             } catch (Exception ex) {
                 ErrorDialog e = new ErrorDialog(this, true, ex.getMessage());
                 e.setVisible(true);
-            } 
+            }
         }
     }//GEN-LAST:event_jMenuItem11ActionPerformed
 
     private void b_addActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b_addActionPerformed
         // TODO add your handling code here:
-        NuevoPacienteView np= new NuevoPacienteView(this, true);
+        NuevoPacienteView np = new NuevoPacienteView(this, true);
         np.setVisible(true);
     }//GEN-LAST:event_b_addActionPerformed
 
     private void b_modActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b_modActionPerformed
         // TODO add your handling code here:
-        ModificarPacienteView mp= new ModificarPacienteView(this, true, sel_paciente);
+        ModificarPacienteView mp = new ModificarPacienteView(this, true);
         mp.setVisible(true);
     }//GEN-LAST:event_b_modActionPerformed
 
     private void b_fichActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b_fichActionPerformed
         // TODO add your handling code here:
-        FichaPacienteView fp= new FichaPacienteView(this, true, sel_paciente);
+        FichaPacienteView fp = new FichaPacienteView(this, true);
         fp.setVisible(true);
     }//GEN-LAST:event_b_fichActionPerformed
 
     private void b_pruebaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b_pruebaActionPerformed
         // TODO add your handling code here:
-        TipoPruebaView rp= new TipoPruebaView(this, true);
+        TipoPruebaView rp = new TipoPruebaView(this, true);
         rp.setVisible(true);
     }//GEN-LAST:event_b_pruebaActionPerformed
 
     private void b_buscActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b_buscActionPerformed
         // TODO add your handling code here:
-        BuscarPacienteView bp= new BuscarPacienteView(this, true);
+        BuscarPacienteView bp = new BuscarPacienteView(this, true);
         bp.setVisible(true);
     }//GEN-LAST:event_b_buscActionPerformed
 
     private void b_delActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b_delActionPerformed
         // TODO add your handling code here:
-        ConfirmDialog conf = new ConfirmDialog(this, true);
-        conf.setVisible(true);
-        respuesta = conf.getReturnStatus();
-          
-        if(respuesta == 1){
-             try{
-                String hist = pacientes.paciente_Pos(sel_paciente).getNo_historia();
-                pacientes.Eliminar(hist);
-                
-                Mod_Tabla();
-                pacientes.SaveObject("datos.bin");
+        ConfirmDialog confirmDialog = new ConfirmDialog(this, true);
+        confirmDialog.setVisible(true);
+
+        int respuesta = confirmDialog.getReturnStatus();
+
+        if (respuesta == 1) {
+            try {
+                String hist = pacienteActual.getNo_historia();
+                registro.Eliminar(hist);
+
+                Modificar_Tabla();
+                registro.SaveObject("datos.bin");
+            } catch (Exception e) {
+                ErrorDialog err = new ErrorDialog(this, true, e.getMessage());
+                err.setVisible(true);
             }
-            catch(Exception e){
-              ErrorDialog err = new ErrorDialog(this, true, e.getMessage());
-              err.setVisible(true);
-            }
+        } else {
+            Modificar_Tabla();
         }
-        else
-            Mod_Tabla();
-        
+
     }//GEN-LAST:event_b_delActionPerformed
 
     private void jMenuItem14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem14ActionPerformed
         // TODO add your handling code here:
-        try{
-            Prueba p = pacientes.paciente_Pos(sel_paciente).getFobeal();
+        try {
+            Prueba p = pacienteActual.getFobeal();
             ResultView resultado = new ResultView(this, true, p);
             resultado.setVisible(true);
-        }
-        catch(Exception e){
+        } catch (Exception e) {
             ErrorDialog err = new ErrorDialog(this, true, e.getMessage());
             err.setVisible(true);
         }
@@ -805,7 +831,7 @@ public class PrincipalView extends javax.swing.JFrame {
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
         // TODO add your handling code here:
         ManualConfigView c = new ManualConfigView(this, true);
-            c.setVisible(true);
+        c.setVisible(true);
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
@@ -816,19 +842,19 @@ public class PrincipalView extends javax.swing.JFrame {
 
     private void jMenuItem17ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem17ActionPerformed
         // TODO add your handling code here:
-        Configuracion confi = new ConfiguracionAutomatica(false);
-        ConfiguracionAvanzada ca= new ConfiguracionAvanzada(3000, 1600);
-        Prueba p = new Prueba(5, ca);
-        PerifericaTestView t = new PerifericaTestView(this, true, p, confi, true, true);
+        conf = new ConfiguracionAutomatica(false);
+        confAvanzada = new ConfiguracionAvanzada(IConfiguracion.TIEMPO_DURACION, IConfiguracion.TIEMPO_ESTIMULO);
+        prueba = new Prueba(IConfiguracion.CANT_ENSAYOS, confAvanzada);
+        PerifericaTestView t = new PerifericaTestView(this, true, true);
         t.setVisible(true);
     }//GEN-LAST:event_jMenuItem17ActionPerformed
 
     private void jMenuItem16ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem16ActionPerformed
         // TODO add your handling code here:
-        Configuracion confi = new ConfiguracionAutomatica(false);
-        ConfiguracionAvanzada ca= new ConfiguracionAvanzada(3000, 1600);
-        Prueba p = new Prueba(5, ca);
-        FovealTestView t = new FovealTestView(this, true, p, confi, true, true);
+        conf = new ConfiguracionAutomatica(false);
+        confAvanzada = new ConfiguracionAvanzada(IConfiguracion.TIEMPO_DURACION, IConfiguracion.TIEMPO_ESTIMULO);
+        prueba = new Prueba(IConfiguracion.CANT_ENSAYOS, confAvanzada);
+        FovealTestView t = new FovealTestView(this, true, true);
         t.setVisible(true);
     }//GEN-LAST:event_jMenuItem16ActionPerformed
 
@@ -846,20 +872,19 @@ public class PrincipalView extends javax.swing.JFrame {
 
     private void jMenuItem10MouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenuItem10MouseMoved
         // TODO add your handling code here:
-
     }//GEN-LAST:event_jMenuItem10MouseMoved
 
     /**
-    * @param args the command line arguments
-    */
+     * @param args the command line arguments
+     */
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(new Runnable() {
+
             public void run() {
                 new PrincipalView().setVisible(true);
             }
         });
     }
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenu Resultados;
     private javax.swing.JButton b_add;
@@ -900,5 +925,4 @@ public class PrincipalView extends javax.swing.JFrame {
     private javax.swing.JTable jTable1;
     private javax.swing.JPopupMenu menu;
     // End of variables declaration//GEN-END:variables
-
 }

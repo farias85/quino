@@ -4,7 +4,7 @@
  */
 
 /*
- * Confirmacion.java
+ * ConfirmDialog.java
  *
  * Created on 23-jun-2012, 13:20:17
  */
@@ -21,9 +21,10 @@ public class ConfirmDialog extends javax.swing.JDialog {
     /** A return status code - returned if OK button has been pressed */
     public static final int RET_OK = 1;
 
-    /** Creates new form Confirmacion */
+    /** Creates new form ConfirmDialog */
     public ConfirmDialog(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
+        
         initComponents();
         setLocationRelativeTo(null);
     }
@@ -132,6 +133,8 @@ public class ConfirmDialog extends javax.swing.JDialog {
             public void run() {
                 ConfirmDialog dialog = new ConfirmDialog(new javax.swing.JFrame(), true);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
+
+                    @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {
                         System.exit(0);
                     }

@@ -113,8 +113,8 @@
                                   </Group>
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="t_densayo" alignment="0" pref="62" max="32767" attributes="1"/>
-                                      <Component id="t_interestimulo" alignment="0" pref="62" max="32767" attributes="1"/>
+                                      <Component id="t_densayo" alignment="0" pref="66" max="32767" attributes="1"/>
+                                      <Component id="t_interestimulo" alignment="0" pref="66" max="32767" attributes="1"/>
                                   </Group>
                               </Group>
                           </Group>
@@ -376,7 +376,7 @@
                                                           <Component id="t_velocidad" alignment="0" pref="140" max="32767" attributes="1"/>
                                                           <Component id="t_angulo" alignment="0" pref="140" max="32767" attributes="1"/>
                                                       </Group>
-                                                      <EmptySpace pref="10" max="-2" attributes="0"/>
+                                                      <EmptySpace pref="6" max="-2" attributes="0"/>
                                                   </Group>
                                                   <Component id="jLabel34" alignment="1" min="-2" max="-2" attributes="0"/>
                                               </Group>
@@ -810,7 +810,7 @@
                           <Component id="jButton3" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
                           <Component id="jButton1" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace pref="150" max="32767" attributes="0"/>
+                      <EmptySpace pref="157" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>

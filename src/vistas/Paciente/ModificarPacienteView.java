@@ -4,11 +4,10 @@
  */
 
 /*
- * ModificarPaciente.java
+ * ModificarPacienteView.java
  *
  * Created on 24-sep-2010, 21:26:26
  */
-
 package vistas.Paciente;
 
 import Datos.Paciente;
@@ -17,28 +16,30 @@ import vistas.PrincipalView;
 
 /**
  *
- * @author Davisito
+ * @author Felipao
  */
 public class ModificarPacienteView extends javax.swing.JDialog {
-    PrincipalView parent;
-    int pos;
-    Paciente pac;
-    /** Creates new form ModificarPaciente */
-    public ModificarPacienteView(PrincipalView parent, boolean modal, int pos) {
+
+    private PrincipalView parent;
+
+    public ModificarPacienteView() {
+    }
+
+    public ModificarPacienteView(PrincipalView parent, boolean modal) {
         super(parent, modal);
+
         initComponents();
         setLocationRelativeTo(null);
-        this.parent=parent;
-        this.pos=pos;
-        pac = parent.pacientes.paciente_Pos(pos);
-        jTextField1.setText(pac.getNo_historia());
-        jTextField3.setText(pac.getNombre());
-        jTextField4.setText(String.valueOf(pac.getCI()));
-        jTextField5.setText(pac.getEscolaridad());
-        jTextField2.setText(String.valueOf(pac.getEdad()));
-        if (pac.getSexo().matches("Masculino")) {
+        this.parent = parent;
+
+        jTextField1.setText(parent.getPacienteActual().getNo_historia());
+        jTextField3.setText(parent.getPacienteActual().getNombre());
+        jTextField4.setText(String.valueOf(parent.getPacienteActual().getCI()));
+        jTextField5.setText(parent.getPacienteActual().getEscolaridad());
+        jTextField2.setText(String.valueOf(parent.getPacienteActual().getEdad()));
+        if (parent.getPacienteActual().getSexo().matches("Masculino")) {
             jComboBox1.setSelectedIndex(0);
-        }else{
+        } else {
             jComboBox1.setSelectedIndex(1);
         }
     }
@@ -208,47 +209,60 @@ public class ModificarPacienteView extends javax.swing.JDialog {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        try{
+        try {
             String hist = jTextField1.getText();
-            String fich = parent.pacientes.paciente_Pos(pos).getFicha();
+            String fich = parent.getPacienteActual().getFicha();
             String nombre1 = jTextField3.getText();
             long ci = Long.parseLong(jTextField4.getText());
             String esco = jTextField5.getText();
-            int edad1= Integer.parseInt(jTextField2.getText());
+            int edad1 = Integer.parseInt(jTextField2.getText());
             String sexo1 = String.valueOf(jComboBox1.getSelectedItem());
-            Paciente p = new Paciente(nombre1,edad1,sexo1,esco,hist,ci,fich);
-            parent.pacientes.Modificar(pos, p);           
-            parent.Mod_Tabla();
-            parent.pacientes.SaveObject("datos.bin");
+            
+            parent.getPacienteActual().setNombre(nombre1);
+            parent.getPacienteActual().setEdad(edad1);
+            parent.getPacienteActual().setSexo(sexo1);
+            parent.getPacienteActual().setEscolaridad(esco);
+            parent.getPacienteActual().setNo_historia(hist);
+            parent.getPacienteActual().setCI(ci);
+            parent.getPacienteActual().setFicha(fich);
+
+            //Paciente paciente = new Paciente(nombre1, edad1, sexo1, esco,
+            //        hist, ci, fich);
+            //parent.setPacienteActual(paciente);
+            //parent.getRegistro().Modificar(pos, p);
+            
+            parent.Modificar_Tabla();
+            parent.getRegistro().SaveObject("datos.bin");
             setVisible(false);
             dispose();
-        }
-        catch(Exception e){
-            ErrorDialog err= new ErrorDialog(parent, true, e.getMessage());
+        } catch (Exception e) {
+            ErrorDialog err = new ErrorDialog(parent, true, e.getMessage());
             err.setVisible(true);
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
-         try{
-            FichaPacienteView fich = new FichaPacienteView(parent, true, pos);
+        try {
+            FichaPacienteView fich = new FichaPacienteView(parent, true);
             fich.setVisible(true);
-        }
-        catch(Exception e){
+        } catch (Exception e) {
             ErrorDialog err = new ErrorDialog(parent, true, e.getMessage());
             err.setVisible(true);
         }
     }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
-    * @param args the command line arguments
-    */
+     * @param args the command line arguments
+     */
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(new Runnable() {
+
             public void run() {
-                ModificarPacienteView dialog = new ModificarPacienteView(new PrincipalView(), true, 0);
+                ModificarPacienteView dialog = new ModificarPacienteView();
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
+
+                    @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {
                         System.exit(0);
                     }
@@ -257,7 +271,6 @@ public class ModificarPacienteView extends javax.swing.JDialog {
             }
         });
     }
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
@@ -275,5 +288,4 @@ public class ModificarPacienteView extends javax.swing.JDialog {
     private javax.swing.JTextField jTextField4;
     private javax.swing.JTextField jTextField5;
     // End of variables declaration//GEN-END:variables
-
 }

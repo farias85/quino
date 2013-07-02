@@ -4,11 +4,10 @@
  */
 
 /*
- * Result.java
+ * ResultView.java
  *
  * Created on 25-sep-2010, 11:37:23
  */
-
 package vistas.Prueba;
 
 import Utiles.Grafica;
@@ -30,55 +29,57 @@ import vistas.PrincipalView;
  * @author Davisito
  */
 public class ResultView extends javax.swing.JDialog {
+
     PrincipalView parent;
     Prueba prueba;
     private ArrayList<Results> resultados;
-    /** Creates new form Result */
+
+    /** Creates new form ResultView */
     public ResultView(PrincipalView parent, boolean modal, Prueba prueba) {
         super(parent, modal);
         initComponents();
         setLocationRelativeTo(null);
-        this.prueba=prueba;
-        this.parent=parent;
-        try{
-            if(prueba!=null){
-                resultados= prueba.getResultados();
+        this.prueba = prueba;
+        this.parent = parent;
+        try {
+            if (prueba != null) {
+                resultados = prueba.getResultados();
                 t_ensayos1.setText(String.valueOf(resultados.size()));
                 t_errores1.setText(String.valueOf(prueba.cant_Errores()));
                 t_denpromedio1.setText(String.valueOf(prueba.densidad_Promedio()));
                 t_trespg1.setText(String.valueOf(prueba.tr_Promedio()));
-                t_densayo.setText(String.valueOf(parent.conf_avanzada.getDuracion()));
-                t_interestimulo.setText(String.valueOf(parent.conf_avanzada.getT_interestimulo()));
-            }
-            else{
+                t_densayo.setText(String.valueOf(parent.getConfAvanzada().getDuracion()));
+                t_interestimulo.setText(String.valueOf(parent.getConfAvanzada().getT_interestimulo()));
+            } else {
                 throw new Exception("Al paciente seleccionado no se le ha realizado ninguna prueba");
             }
             this.Arbol(resultados);
             PintarPastel();
-        }
-        catch(Exception e){
+        } catch (Exception e) {
             ErrorDialog err = new ErrorDialog(parent, true, e.getMessage());
             err.setVisible(true);
             setVisible(false);
             dispose();
         }
     }
-    public void Arbol(final ArrayList<Results> resultados){
+
+    public void Arbol(final ArrayList<Results> resultados) {
         DefaultMutableTreeNode root = new DefaultMutableTreeNode("Ensayos");
-        DefaultTreeModel tm= new DefaultTreeModel(root);
+        DefaultTreeModel tm = new DefaultTreeModel(root);
         for (int i = 0; i < resultados.size(); i++) {
-            String nombre = "Ensayo" + " " + "#"+String.valueOf(resultados.get(i).getNum_ensayo());
+            String nombre = "Ensayo" + " " + "#" + String.valueOf(resultados.get(i).getNum_ensayo());
             DefaultMutableTreeNode nodo = new DefaultMutableTreeNode(nombre);
             tm.insertNodeInto(nodo, root, i);
         }
         jTree1.setModel(tm);
         jTree1.getSelectionModel().setSelectionMode(TreeSelectionModel.SINGLE_TREE_SELECTION);
         jTree1.addTreeSelectionListener(new TreeSelectionListener() {
+
             public void valueChanged(TreeSelectionEvent e) {
-                DefaultMutableTreeNode node = (DefaultMutableTreeNode)(e.getPath().getLastPathComponent());
+                DefaultMutableTreeNode node = (DefaultMutableTreeNode) (e.getPath().getLastPathComponent());
                 int pos = node.getParent().getIndex(node);
                 int densidad = resultados.get(pos).getDensidad();
-                int cantidad = (resultados.get(pos).getCant_puntos()*100)/densidad;
+                int cantidad = (resultados.get(pos).getCant_puntos() * 100) / densidad;
                 int velocidad = resultados.get(pos).getVelocidad_mov();
                 ImageIcon direccion = CambiarDireccion(resultados.get(pos).getDireccion(), resultados.get(pos).getP_estimulo());
                 String panel = PanelMov(resultados.get(pos).getP_estimulo());
@@ -90,20 +91,21 @@ public class ResultView extends javax.swing.JDialog {
                 double angulo = resultados.get(pos).getAngulo();
 
                 t_densidad1.setText(String.valueOf(densidad));
-                t_cantidad1.setText(String.valueOf(cantidad)+"%");
+                t_cantidad1.setText(String.valueOf(cantidad) + "%");
                 t_vmov1.setText(String.valueOf(velocidad));
                 t_direccion1.setIcon(direccion);
                 t_pestimulo1.setText(panel);
                 b_keypressed.setIcon(key);
                 e_desc.setText(descripcion);
                 t_velocidad.setText(Double.toString(vel) + " " + "cm/ms");
-                t_angulo.setText(Double.toString(angulo)+ "º");
-                if(tiempo_res == 0){
+                t_angulo.setText(Double.toString(angulo) + "º");
+                if (tiempo_res == 0) {
                     t_trespuesta1.setText("N/R");
-                }else
-                t_trespuesta1.setText(String.valueOf(tiempo_res));
+                } else {
+                    t_trespuesta1.setText(String.valueOf(tiempo_res));
+                }
                 t_resultado1.setIcon(resultado);
-                if(resultados.get(pos).getP_estimulo() ==0){
+                if (resultados.get(pos).getP_estimulo() == 0) {
                     t_cantidad1.setText("-");
                     t_vmov1.setText(String.valueOf("-"));
                     t_velocidad.setText("-");
@@ -113,124 +115,138 @@ public class ResultView extends javax.swing.JDialog {
         });
     }
 
-    public ImageIcon CambiarDireccion(int pos, int panel){
-        if(panel==0){
+    public ImageIcon CambiarDireccion(int pos, int panel) {
+        if (panel == 0) {
             pos = -1;
         }
-        switch(pos){
-            case 0:{
+        switch (pos) {
+            case 0: {
                 return new ImageIcon(getClass().getResource("/vistas/Iconos/asincronico.gif"));
             }
-            case 1:{
-                 return new ImageIcon(getClass().getResource("/vistas/Iconos/direccion1.gif"));
+            case 1: {
+                return new ImageIcon(getClass().getResource("/vistas/Iconos/direccion1.gif"));
             }
-            case 2:{
-                 return new ImageIcon(getClass().getResource("/vistas/Iconos/direccion2.gif"));
+            case 2: {
+                return new ImageIcon(getClass().getResource("/vistas/Iconos/direccion2.gif"));
             }
-            case 3:{
-                 return new ImageIcon(getClass().getResource("/vistas/Iconos/direccion3.gif"));
+            case 3: {
+                return new ImageIcon(getClass().getResource("/vistas/Iconos/direccion3.gif"));
             }
-            case 4:{
-                 return new ImageIcon(getClass().getResource("/vistas/Iconos/direccion4.gif"));
+            case 4: {
+                return new ImageIcon(getClass().getResource("/vistas/Iconos/direccion4.gif"));
             }
-            case 5:{
-                 return new ImageIcon(getClass().getResource("/vistas/Iconos/direccion5.gif"));
+            case 5: {
+                return new ImageIcon(getClass().getResource("/vistas/Iconos/direccion5.gif"));
             }
-            case 6:{
-                 return new ImageIcon(getClass().getResource("/vistas/Iconos/direccion6.gif"));
+            case 6: {
+                return new ImageIcon(getClass().getResource("/vistas/Iconos/direccion6.gif"));
             }
-            case 7:{
-                 return new ImageIcon(getClass().getResource("/vistas/Iconos/direccion7.gif"));
+            case 7: {
+                return new ImageIcon(getClass().getResource("/vistas/Iconos/direccion7.gif"));
             }
-            case 8:{
-                 return new ImageIcon(getClass().getResource("/vistas/Iconos/direccion8.gif"));
+            case 8: {
+                return new ImageIcon(getClass().getResource("/vistas/Iconos/direccion8.gif"));
             }
         }
         return new ImageIcon(getClass().getResource("/vistas/Iconos/error.gif"));
     }
-     public ImageIcon CambiarKey(int key, boolean control){
-         if (!control || key ==0) {
-             key =-1;
-         }
-         switch(key){
-            case 104:{
-                 return new ImageIcon(getClass().getResource("/vistas/Iconos/direccion1.gif"));
-            }
-            case 98:{
-                 return new ImageIcon(getClass().getResource("/vistas/Iconos/direccion2.gif"));
-            }
-            case 102:{
-                 return new ImageIcon(getClass().getResource("/vistas/Iconos/direccion3.gif"));
-            }
-            case 100:{
-                 return new ImageIcon(getClass().getResource("/vistas/Iconos/direccion4.gif"));
-            }
-            case 105:{
-                 return new ImageIcon(getClass().getResource("/vistas/Iconos/direccion5.gif"));
-            }
-            case 103:{
-                 return new ImageIcon(getClass().getResource("/vistas/Iconos/direccion6.gif"));
-            }
-            case 99:{
-                 return new ImageIcon(getClass().getResource("/vistas/Iconos/direccion7.gif"));
-            }
-            case 97:{
-                 return new ImageIcon(getClass().getResource("/vistas/Iconos/direccion8.gif"));
-            }
-        }
-         return new ImageIcon(getClass().getResource("/vistas/Iconos/error.gif"));
-     }
-     public ImageIcon CambiarError(boolean error){
-            if(error){
 
-                    return new ImageIcon(getClass().getResource("/vistas/Iconos/error.gif"));
-                }
-            else{
-                     return new ImageIcon(getClass().getResource("/vistas/Iconos/exito.gif"));
+    public ImageIcon CambiarKey(int key, boolean control) {
+        if (!control || key == 0) {
+            key = -1;
+        }
+        switch (key) {
+            case 104: {
+                return new ImageIcon(getClass().getResource("/vistas/Iconos/direccion1.gif"));
             }
+            case 98: {
+                return new ImageIcon(getClass().getResource("/vistas/Iconos/direccion2.gif"));
+            }
+            case 102: {
+                return new ImageIcon(getClass().getResource("/vistas/Iconos/direccion3.gif"));
+            }
+            case 100: {
+                return new ImageIcon(getClass().getResource("/vistas/Iconos/direccion4.gif"));
+            }
+            case 105: {
+                return new ImageIcon(getClass().getResource("/vistas/Iconos/direccion5.gif"));
+            }
+            case 103: {
+                return new ImageIcon(getClass().getResource("/vistas/Iconos/direccion6.gif"));
+            }
+            case 99: {
+                return new ImageIcon(getClass().getResource("/vistas/Iconos/direccion7.gif"));
+            }
+            case 97: {
+                return new ImageIcon(getClass().getResource("/vistas/Iconos/direccion8.gif"));
+            }
+        }
+        return new ImageIcon(getClass().getResource("/vistas/Iconos/error.gif"));
     }
-    public String PanelMov(int panel){
-        if(prueba.isFobeal()){
-            switch(panel){
-                case 1: return "Superior Izquierdo";
-                case 2: return "Superior";
-                case 3: return "Superior Derecho";
-                case 4: return "Derecho";
-                case 5: return "Izquierdo";
-                case 6: return "Inferior Izquierdo";
-                case 7: return "Inferior";
-                case 8: return "Inferior Derecho";
-                default: return "Ninguno";
+
+    public ImageIcon CambiarError(boolean error) {
+        if (error) {
+
+            return new ImageIcon(getClass().getResource("/vistas/Iconos/error.gif"));
+        } else {
+            return new ImageIcon(getClass().getResource("/vistas/Iconos/exito.gif"));
+        }
+    }
+
+    public String PanelMov(int panel) {
+        if (prueba.isFobeal()) {
+            switch (panel) {
+                case 1:
+                    return "Superior Izquierdo";
+                case 2:
+                    return "Superior";
+                case 3:
+                    return "Superior Derecho";
+                case 4:
+                    return "Derecho";
+                case 5:
+                    return "Izquierdo";
+                case 6:
+                    return "Inferior Izquierdo";
+                case 7:
+                    return "Inferior";
+                case 8:
+                    return "Inferior Derecho";
+                default:
+                    return "Ninguno";
             }
-        }else{
-            switch(panel){
-                case 1: return "Ojo Izquierdo";
-                case 2: return "Ojo Derecho";
-                default: return "Ninguno";
+        } else {
+            switch (panel) {
+                case 1:
+                    return "Ojo Izquierdo";
+                case 2:
+                    return "Ojo Derecho";
+                default:
+                    return "Ninguno";
             }
         }
     }
-    public void PintarPastel(){
+
+    public void PintarPastel() {
         //int aciertos = prueba.getResultados().size()-prueba.cant_Errores();
         int errores = prueba.cant_Errores();
-        int perrores = (errores*100)/prueba.getResultados().size();
-        int paciertos = 100-perrores;
-        String laciertos = String.valueOf(paciertos)+"%"+" "+"Aciertos";
-        String lerrores = String.valueOf(perrores)+"%"+" "+"Errores";
+        int perrores = (errores * 100) / prueba.getResultados().size();
+        int paciertos = 100 - perrores;
+        String laciertos = String.valueOf(paciertos) + "%" + " " + "Aciertos";
+        String lerrores = String.valueOf(perrores) + "%" + " " + "Errores";
         Grafica g = new Grafica();
         int diametro = 200;
-        int x = (Pastel.getWidth()/2)-(diametro/2);
-        int y =(Pastel.getHeight()/2)-(diametro/2);
+        int x = (Pastel.getWidth() / 2) - (diametro / 2);
+        int y = (Pastel.getHeight() / 2) - (diametro / 2);
 
-        try{
-            g.PintarPastel(Pastel.getGraphics(), diametro, x,y, perrores, paciertos, lerrores, laciertos);
-        }catch (Exception e) {
-            //Logger.getLogger(Result.class.getName()).log(Level.SEVERE, null, e);
+        try {
+            g.PintarPastel(Pastel.getGraphics(), diametro, x, y, perrores, paciertos, lerrores, laciertos);
+        } catch (Exception e) {
+            //Logger.getLogger(ResultView.class.getName()).log(Level.SEVERE, null, e);
             ErrorDialog err = new ErrorDialog(parent, true, e.getMessage());
             err.setVisible(true);
         }
     }
-
 
     /** This method is called from within the constructor to
      * initialize the form.
@@ -532,7 +548,7 @@ public class ResultView extends javax.swing.JDialog {
                                             .addComponent(t_densidad1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                             .addComponent(t_velocidad, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 140, Short.MAX_VALUE)
                                             .addComponent(t_angulo, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 140, Short.MAX_VALUE))
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 10, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 6, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addComponent(jLabel34)))
                             .addGroup(jPanel7Layout.createSequentialGroup()
                                 .addGap(65, 65, 65)
@@ -625,8 +641,8 @@ public class ResultView extends javax.swing.JDialog {
                             .addComponent(jLabel11))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(t_densayo, javax.swing.GroupLayout.DEFAULT_SIZE, 62, Short.MAX_VALUE)
-                            .addComponent(t_interestimulo, javax.swing.GroupLayout.DEFAULT_SIZE, 62, Short.MAX_VALUE))))
+                            .addComponent(t_densayo, javax.swing.GroupLayout.DEFAULT_SIZE, 66, Short.MAX_VALUE)
+                            .addComponent(t_interestimulo, javax.swing.GroupLayout.DEFAULT_SIZE, 66, Short.MAX_VALUE))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, 625, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
@@ -732,7 +748,7 @@ public class ResultView extends javax.swing.JDialog {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(150, Short.MAX_VALUE))
+                .addContainerGap(157, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Gráficos", jPanel2);
@@ -776,18 +792,20 @@ public class ResultView extends javax.swing.JDialog {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
-         setVisible(false);
+        setVisible(false);
         dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
-    * @param args the command line arguments
-    */
+     * @param args the command line arguments
+     */
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(new Runnable() {
+
             public void run() {
                 ResultView dialog = new ResultView(new PrincipalView(), true, new Prueba());
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
+
                     public void windowClosing(java.awt.event.WindowEvent e) {
                         System.exit(0);
                     }
@@ -796,7 +814,6 @@ public class ResultView extends javax.swing.JDialog {
             }
         });
     }
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel Pastel;
     private javax.swing.JButton b_keypressed;
@@ -846,5 +863,4 @@ public class ResultView extends javax.swing.JDialog {
     private javax.swing.JTextField t_velocidad;
     private javax.swing.JTextField t_vmov1;
     // End of variables declaration//GEN-END:variables
-
 }

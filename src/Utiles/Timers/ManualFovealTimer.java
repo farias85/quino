@@ -2,7 +2,6 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package Utiles.Timers;
 
 import Utiles.Aleatorio;
@@ -18,13 +17,15 @@ import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.util.TimerTask;
 import vistas.Prueba.FovealTestView;
+
 ;
 
 /**
  *
  * @author Davisito
  */
-public class ManualFovealTimer extends TimerTask{
+public class ManualFovealTimer extends TimerTask {
+
     private Prueba prueba;
     private Configuracion configuracion;
     private QuinoJPanel panel1;
@@ -36,10 +37,10 @@ public class ManualFovealTimer extends TimerTask{
     private QuinoJPanel panel7;
     private QuinoJPanel panel8;
     private CentralJPanel panel9;
-    private int t_total=0;
-    private boolean cantPress=false;
+    private int t_total = 0;
+    private boolean cantPress = false;
     private Ensayo ensayo;
-    private int num_ensayo=0;
+    private int num_ensayo = 0;
     FovealTestView test;
     private int duracion;
     private int t_interestimulo;
@@ -52,7 +53,10 @@ public class ManualFovealTimer extends TimerTask{
         this.prueba = prueba;
     }
 
-    public ManualFovealTimer(Prueba prueba, Configuracion configuracion, QuinoJPanel panel1, QuinoJPanel panel2, QuinoJPanel panel3, QuinoJPanel panel4, QuinoJPanel panel5, QuinoJPanel panel6, QuinoJPanel panel7, QuinoJPanel panel8, CentralJPanel panel9,FovealTestView test) {
+    public ManualFovealTimer(Prueba prueba, Configuracion configuracion, QuinoJPanel panel1,
+            QuinoJPanel panel2, QuinoJPanel panel3, QuinoJPanel panel4, QuinoJPanel panel5,
+            QuinoJPanel panel6, QuinoJPanel panel7, QuinoJPanel panel8, CentralJPanel panel9,
+            FovealTestView test) {
         this.prueba = prueba;
         this.configuracion = configuracion;
         this.panel1 = panel1;
@@ -67,7 +71,7 @@ public class ManualFovealTimer extends TimerTask{
         this.test = test;
         duracion = prueba.getConf_avanzada().getDuracion();
         t_interestimulo = prueba.getConf_avanzada().getT_interestimulo();
-            
+
     }
 
     public boolean isCantPress() {
@@ -77,7 +81,6 @@ public class ManualFovealTimer extends TimerTask{
     public void setCantPress(boolean cantPress) {
         this.cantPress = cantPress;
     }
-
 
     public Configuracion getConfiguracion() {
         return configuracion;
@@ -147,41 +150,37 @@ public class ManualFovealTimer extends TimerTask{
         return t_total;
     }
 
-
-
-     @Override
+    @Override
     public void run() {
-       if (prueba.getCant_ensayos()>0){
-            if(t_total==0)
-            {               
+        if (prueba.getCant_ensayos() > 0) {
+            if (t_total == 0) {
                 ensayo = new Ensayo(configuracion);
-                 Aleatorio al = new Aleatorio();
-                 p_estimulo = al.nextInt(0, 8);
+                Aleatorio al = new Aleatorio();
+                p_estimulo = al.nextInt(0, 8);
             }
-            if(t_total<t_interestimulo/4){
-                 panel9.setColor(Color.RED);
-                 panel9.repaint();
-                 panel1.repaint();
-                 panel2.repaint();
-                 panel3.repaint();
-                 panel4.repaint();
-                 panel5.repaint();
-                 panel6.repaint();
-                 panel7.repaint();
-                 panel8.repaint();
-                 t_total++;
+            if (t_total < t_interestimulo / 4) {
+                panel9.setColor(Color.RED);
+                panel9.repaint();
+                panel1.repaint();
+                panel2.repaint();
+                panel3.repaint();
+                panel4.repaint();
+                panel5.repaint();
+                panel6.repaint();
+                panel7.repaint();
+                panel8.repaint();
+                t_total++;
             }
-            if (t_total<t_interestimulo/2) {              
-              panel9.setColor(Color.RED);
-              panel9.repaint();
-              t_total++;
-            } else if(t_total<=(t_interestimulo/2)+configuracion.getTiempo_movimiento()){
+            if (t_total < t_interestimulo / 2) {
+                panel9.setColor(Color.RED);
+                panel9.repaint();
+                t_total++;
+            } else if (t_total <= (t_interestimulo / 2) + configuracion.getTiempo_movimiento()) {
                 panel9.setColor(Color.GREEN);
-              panel9.repaint();
-                if (t_total == ((t_interestimulo/2)+configuracion.getTiempo_movimiento())/2 || (t_total== (t_interestimulo/2)+configuracion.getTiempo_movimiento()-1))
-                {
-                    switch(p_estimulo){
-                        case 0:{
+                panel9.repaint();
+                if (t_total == ((t_interestimulo / 2) + configuracion.getTiempo_movimiento()) / 2 || (t_total == (t_interestimulo / 2) + configuracion.getTiempo_movimiento() - 1)) {
+                    switch (p_estimulo) {
+                        case 0: {
                             panel1.repaint();
                             panel2.repaint();
                             panel3.repaint();
@@ -190,9 +189,14 @@ public class ManualFovealTimer extends TimerTask{
                             panel6.repaint();
                             panel7.repaint();
                             panel8.repaint();
-                        }break;
-                        case 1:{
-                            panel1.Mover(configuracion.getDireccion(), configuracion.isAsincronico());
+                        }
+                        break;
+                        case 1: {
+                            if (configuracion.isAsincronico()) {
+                                panel1.moverAsincronico();
+                            } else {
+                                panel1.moverEnDireccion(configuracion.getDireccion());
+                            }
                             panel1.repaint();
                             panel2.repaint();
                             panel3.repaint();
@@ -201,9 +205,14 @@ public class ManualFovealTimer extends TimerTask{
                             panel6.repaint();
                             panel7.repaint();
                             panel8.repaint();
-                        }break;
-                        case 2:{
-                            panel2.Mover(configuracion.getDireccion(), configuracion.isAsincronico());
+                        }
+                        break;
+                        case 2: {
+                            if (configuracion.isAsincronico()) {
+                                panel2.moverAsincronico();
+                            } else {
+                                panel2.moverEnDireccion(configuracion.getDireccion());
+                            }
                             panel1.repaint();
                             panel2.repaint();
                             panel3.repaint();
@@ -212,9 +221,14 @@ public class ManualFovealTimer extends TimerTask{
                             panel6.repaint();
                             panel7.repaint();
                             panel8.repaint();
-                        }break;
-                        case 3:{
-                            panel3.Mover(configuracion.getDireccion(), configuracion.isAsincronico());
+                        }
+                        break;
+                        case 3: {
+                            if (configuracion.isAsincronico()) {
+                                panel3.moverAsincronico();
+                            } else {
+                                panel3.moverEnDireccion(configuracion.getDireccion());
+                            }
                             panel1.repaint();
                             panel2.repaint();
                             panel3.repaint();
@@ -223,9 +237,14 @@ public class ManualFovealTimer extends TimerTask{
                             panel6.repaint();
                             panel7.repaint();
                             panel8.repaint();
-                        }break;
-                        case 4:{
-                            panel4.Mover(configuracion.getDireccion(), configuracion.isAsincronico());
+                        }
+                        break;
+                        case 4: {
+                            if (configuracion.isAsincronico()) {
+                                panel4.moverAsincronico();
+                            } else {
+                                panel4.moverEnDireccion(configuracion.getDireccion());
+                            }
                             panel1.repaint();
                             panel2.repaint();
                             panel3.repaint();
@@ -234,9 +253,14 @@ public class ManualFovealTimer extends TimerTask{
                             panel6.repaint();
                             panel7.repaint();
                             panel8.repaint();
-                        }break;
-                        case 5:{
-                            panel5.Mover(configuracion.getDireccion(), configuracion.isAsincronico());
+                        }
+                        break;
+                        case 5: {
+                            if (configuracion.isAsincronico()) {
+                                panel5.moverAsincronico();
+                            } else {
+                                panel5.moverEnDireccion(configuracion.getDireccion());
+                            }
                             panel1.repaint();
                             panel2.repaint();
                             panel3.repaint();
@@ -245,9 +269,14 @@ public class ManualFovealTimer extends TimerTask{
                             panel6.repaint();
                             panel7.repaint();
                             panel8.repaint();
-                        }break;
-                        case 6:{
-                            panel6.Mover(configuracion.getDireccion(), configuracion.isAsincronico());
+                        }
+                        break;
+                        case 6: {
+                            if (configuracion.isAsincronico()) {
+                                panel6.moverAsincronico();
+                            } else {
+                                panel6.moverEnDireccion(configuracion.getDireccion());
+                            }
                             panel1.repaint();
                             panel2.repaint();
                             panel3.repaint();
@@ -256,9 +285,14 @@ public class ManualFovealTimer extends TimerTask{
                             panel6.repaint();
                             panel7.repaint();
                             panel8.repaint();
-                        }break;
-                        case 7:{
-                            panel7.Mover(configuracion.getDireccion(), configuracion.isAsincronico());
+                        }
+                        break;
+                        case 7: {
+                            if (configuracion.isAsincronico()) {
+                                panel7.moverAsincronico();
+                            } else {
+                                panel7.moverEnDireccion(configuracion.getDireccion());
+                            }
                             panel1.repaint();
                             panel2.repaint();
                             panel3.repaint();
@@ -267,9 +301,14 @@ public class ManualFovealTimer extends TimerTask{
                             panel6.repaint();
                             panel7.repaint();
                             panel8.repaint();
-                        }break;
-                        case 8:{
-                            panel8.Mover(configuracion.getDireccion(), configuracion.isAsincronico());
+                        }
+                        break;
+                        case 8: {
+                            if (configuracion.isAsincronico()) {
+                                panel8.moverAsincronico();
+                            } else {
+                                panel8.moverEnDireccion(configuracion.getDireccion());
+                            }
                             panel1.repaint();
                             panel2.repaint();
                             panel3.repaint();
@@ -278,142 +317,154 @@ public class ManualFovealTimer extends TimerTask{
                             panel6.repaint();
                             panel7.repaint();
                             panel8.repaint();
-                        }break;
+                        }
+                        break;
                     }
                     cantPress = true;
                 }
                 t_total++;
-            }else if(t_total<duracion){
-                if (t_total == duracion-(t_interestimulo/4)) {
+            } else if (t_total < duracion) {
+                if (t_total == duracion - (t_interestimulo / 4)) {
                     panel9.setColor(Color.RED);
                     panel9.repaint();
                 }
                 cantPress = true;
                 t_total++;
-            }
-            else{
-                
-                if(configuracion.isControl()&& (p_estimulo)>0 && ensayo.getKey()!=0){ // ensayo.getP_estimulo(), frank  7/10/2012
-                    switch(configuracion.getDireccion()){
-                        case 1:{
-                              if (ensayo.getKey()!=104 && !ensayo.isError()) {
+            } else {
+
+                if (configuracion.isControl() && (p_estimulo) > 0 && ensayo.getKey() != 0) { // ensayo.getP_estimulo(), frank  7/10/2012
+                    switch (configuracion.getDireccion()) {
+                        case 1: {
+                            if (ensayo.getKey() != 104 && !ensayo.isError()) {
                                 ensayo.setError(true);
                                 ensayo.setDescripcion("Las direcciones no coinciden");
                             }
-                        }break;
-                        case 2:{
-                              if (ensayo.getKey()!=98 && !ensayo.isError()) {
+                        }
+                        break;
+                        case 2: {
+                            if (ensayo.getKey() != 98 && !ensayo.isError()) {
                                 ensayo.setError(true);
                                 ensayo.setDescripcion("Las direcciones no coinciden");
                             }
-                        }break;
-                        case 3:{
-                              if (ensayo.getKey()!=102 && !ensayo.isError()) {
+                        }
+                        break;
+                        case 3: {
+                            if (ensayo.getKey() != 102 && !ensayo.isError()) {
                                 ensayo.setError(true);
                                 ensayo.setDescripcion("Las direcciones no coinciden");
                             }
-                        }break;
-                        case 4:{
-                              if (ensayo.getKey()!=100 && !ensayo.isError()) {
+                        }
+                        break;
+                        case 4: {
+                            if (ensayo.getKey() != 100 && !ensayo.isError()) {
                                 ensayo.setError(true);
                                 ensayo.setDescripcion("Las direcciones no coinciden");
                             }
-                        }break;
-                        case 5:{
-                              if (ensayo.getKey()!=105 && !ensayo.isError()) {
+                        }
+                        break;
+                        case 5: {
+                            if (ensayo.getKey() != 105 && !ensayo.isError()) {
                                 ensayo.setError(true);
                                 ensayo.setDescripcion("Las direcciones no coinciden");
                             }
-                        }break;
-                        case 6:{
-                              if (ensayo.getKey()!=103 && !ensayo.isError()) {
+                        }
+                        break;
+                        case 6: {
+                            if (ensayo.getKey() != 103 && !ensayo.isError()) {
                                 ensayo.setError(true);
                                 ensayo.setDescripcion("Las direcciones no coinciden");
                             }
-                        }break;
-                        case 7:{
-                              if (ensayo.getKey()!=99 && !ensayo.isError()) {
+                        }
+                        break;
+                        case 7: {
+                            if (ensayo.getKey() != 99 && !ensayo.isError()) {
                                 ensayo.setError(true);
                                 ensayo.setDescripcion("Las direcciones no coinciden");
                             }
-                        }break;
-                        case 8:{
-                              if (ensayo.getKey()!=97 && !ensayo.isError()) {
+                        }
+                        break;
+                        case 8: {
+                            if (ensayo.getKey() != 97 && !ensayo.isError()) {
                                 ensayo.setError(true);
                                 ensayo.setDescripcion("Las direcciones no coinciden");
                             }
-                        }break;
+                        }
+                        break;
                     }
-                     if(p_estimulo == 0&& !ensayo.isError())
-                    {
-                      ensayo.setError(true);
-                      ensayo.setDescripcion("No hubo Estímulo");
-                    }
-                    
-                }
-                if(p_estimulo == 0 && !ensayo.isError() && ensayo.getKey()>0)
-                    {
-                      ensayo.setError(true);
-                      ensayo.setDescripcion("No hubo Estímulo");
-                    }
-                if(/*ensayo.getT_respuesta()==0*/ensayo.getKey()==0 && p_estimulo > 0)
-                    {
-                      ensayo.setError(true);
-                      ensayo.setDescripcion("Omisión");
+                    if (p_estimulo == 0 && !ensayo.isError()) {
+                        ensayo.setError(true);
+                        ensayo.setDescripcion("No hubo Estímulo");
                     }
 
-                if(p_estimulo >0){ // ensayo.getP_estimulo(), frank  7/10/2012
-                    switch(p_estimulo ){ // ensayo.getP_estimulo(), frank 7/10/2012
+                }
+                if (p_estimulo == 0 && !ensayo.isError() && ensayo.getKey() > 0) {
+                    ensayo.setError(true);
+                    ensayo.setDescripcion("No hubo Estímulo");
+                }
+                if (/*ensayo.getT_respuesta()==0*/ensayo.getKey() == 0 && p_estimulo > 0) {
+                    ensayo.setError(true);
+                    ensayo.setDescripcion("Omisión");
+                }
+
+                if (p_estimulo > 0) { // ensayo.getP_estimulo(), frank  7/10/2012
+                    switch (p_estimulo) { // ensayo.getP_estimulo(), frank 7/10/2012
                         case 1:
-                            p2=panel1.MidPunto(true);break;
+                            p2 = panel1.MidPunto(true);
+                            break;
                         case 2:
-                            p2=panel2.MidPunto(true);break;
+                            p2 = panel2.MidPunto(true);
+                            break;
                         case 3:
-                            p2=panel3.MidPunto(true);break;
+                            p2 = panel3.MidPunto(true);
+                            break;
                         case 4:
-                            p2=panel4.MidPunto(true);break;
+                            p2 = panel4.MidPunto(true);
+                            break;
                         case 5:
-                            p2=panel5.MidPunto(true);break;
+                            p2 = panel5.MidPunto(true);
+                            break;
                         case 6:
-                            p2=panel6.MidPunto(true);break;
+                            p2 = panel6.MidPunto(true);
+                            break;
                         case 7:
-                            p2=panel7.MidPunto(true);break;
+                            p2 = panel7.MidPunto(true);
+                            break;
                         case 8:
-                            p2=panel8.MidPunto(true);break;
+                            p2 = panel8.MidPunto(true);
+                            break;
                     }
                     Dimension d = Toolkit.getDefaultToolkit().getScreenSize();
-                    double x = d.getWidth()/2;
-                    double y = d.getHeight()/2;
+                    double x = d.getWidth() / 2;
+                    double y = d.getHeight() / 2;
                     p1 = new Punto(x, y);
                     angulo = ensayo.CalcularAngulo(p1, p2);
                 }
 
                 num_ensayo++;
                 cantPress = false;
-                t_total=0;
+                t_total = 0;
                 prueba.decre_Ensayos();
                 int cantidad = configuracion.getCantidad();
                 int velocidad = configuracion.getTiempo_movimiento();
-                int t_respuesta= ensayo.getT_respuesta();
+                int t_respuesta = ensayo.getT_respuesta();
                 int direccion = configuracion.getDireccion();
-                int densidad = (configuracion.getDensidad()*8)+configuracion.getResto();
+                int densidad = (configuracion.getDensidad() * 8) + configuracion.getResto();
                 boolean error = ensayo.isError();
                 boolean asincronico = configuracion.isAsincronico();
                 String descrip = ensayo.getDescripcion();
                 int key = ensayo.getKey();
                 boolean control = configuracion.isControl();
-                double velo= configuracion.CalcularVelocidad();
+                double velo = configuracion.CalcularVelocidad();
                 Results result = new Results(velocidad, t_respuesta, direccion, densidad, cantidad, error, num_ensayo, asincronico, p_estimulo, descrip, key, control, velo, angulo);
-                p_estimulo =0;
+                p_estimulo = 0;
                 prueba.add_Result(result);
             }
         } else {
-           test.GuardarPrueba(prueba);
-           vistas.Prueba.ResultView res = new vistas.Prueba.ResultView(test.GetParet(), true, prueba);
-           test.setVisible(false);
-           res.setVisible(true);
-           cancel();
+            test.GuardarPrueba(prueba);
+            vistas.Prueba.ResultView res = new vistas.Prueba.ResultView(test.GetParet(), true, prueba);
+            test.setVisible(false);
+            res.setVisible(true);
+            cancel();
         }
     }
-
 }

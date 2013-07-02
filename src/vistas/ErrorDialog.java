@@ -4,11 +4,10 @@
  */
 
 /*
- * Errores.java
+ * ErrorDialog.java
  *
  * Created on 16-sep-2010, 17:00:30
  */
-
 package vistas;
 
 /**
@@ -16,12 +15,13 @@ package vistas;
  * @author Davisito
  */
 public class ErrorDialog extends javax.swing.JDialog {
+
     /** A return status code - returned if Cancel button has been pressed */
     public static final int RET_CANCEL = 0;
     /** A return status code - returned if OK button has been pressed */
     public static final int RET_OK = 1;
 
-    /** Creates new form Errores */
+    /** Creates new form ErrorDialog */
     public ErrorDialog(java.awt.Frame parent, boolean modal, String msg) {
         super(parent, modal);
         initComponents();
@@ -111,13 +111,16 @@ public class ErrorDialog extends javax.swing.JDialog {
     }
 
     /**
-    * @param args the command line arguments
-    */
+     * @param args the command line arguments
+     */
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(new Runnable() {
+
             public void run() {
                 ErrorDialog dialog = new ErrorDialog(new javax.swing.JFrame(), true, new String());
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
+
+                    @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {
                         System.exit(0);
                     }
@@ -126,11 +129,9 @@ public class ErrorDialog extends javax.swing.JDialog {
             }
         });
     }
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
     private javax.swing.JButton okButton;
     // End of variables declaration//GEN-END:variables
-
     private int returnStatus = RET_CANCEL;
 }

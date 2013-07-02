@@ -4,11 +4,10 @@
  */
 
 /*
- * Configuracion_Automatica.java
+ * AutoConfigView.java
  *
  * Created on 16-sep-2010, 16:24:25
  */
-
 package vistas.Prueba;
 
 import vistas.*;
@@ -20,16 +19,16 @@ import clases.prueba.Prueba;
  * @author Davisito
  */
 public class AutoConfigView extends javax.swing.JDialog {
+
     private PrincipalView parent;
     private boolean fobeal = true;
     private boolean control;
 
-
-    /** Creates new form Configuracion_Automatica */
+    /** Creates new form AutoConfigView */
     public AutoConfigView(PrincipalView parent, boolean modal) {
         super(parent, modal);
         initComponents();
-        this.parent=parent;
+        this.parent = parent;
         setLocationRelativeTo(null);
         jRadioButton1.setSelected(true);
     }
@@ -138,7 +137,7 @@ public class AutoConfigView extends javax.swing.JDialog {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(19, 19, 19)
                         .addComponent(jButton1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 10, Short.MAX_VALUE)
                         .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(44, 44, 44))
                     .addGroup(layout.createSequentialGroup()
@@ -177,31 +176,27 @@ public class AutoConfigView extends javax.swing.JDialog {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        try{
-            control=jCheckBox1.isSelected();
-            int cant_ensayos=Integer.parseInt(jTextField1.getText());
-            parent.configuracion = new ConfiguracionAutomatica(control);
-            parent.prueba = new Prueba(cant_ensayos, parent.conf_avanzada);
+        try {
+            control = jCheckBox1.isSelected();
+            int cant_ensayos = Integer.parseInt(jTextField1.getText());
+            parent.setConf(new ConfiguracionAutomatica(control));
+            parent.setPrueba(new Prueba(cant_ensayos, parent.getConfAvanzada()));
 
-            if(fobeal)
-            {
-                parent.configuracion.setDensidad((parent.configuracion.getDensidad()/8));
-                parent.prueba.setFobeal(true);
-                FovealTestView t = new FovealTestView(parent, true, parent.prueba, parent.configuracion, true, false);
+            if (fobeal) {
+                parent.getConf().setDensidad((parent.getConf().getDensidad() / 8));
+                parent.getPrueba().setFobeal(true);
+                FovealTestView t = new FovealTestView(parent, true, false);
                 t.setVisible(true);
                 setVisible(false);
                 dispose();
+            } else {
+                parent.getPrueba().setFobeal(false);
+                PerifericaTestView test = new PerifericaTestView(parent, true, false);
+                test.setVisible(true);
+                setVisible(false);
+                dispose();
             }
-            else
-            {
-              parent.prueba.setFobeal(false);
-              PerifericaTestView test = new PerifericaTestView(parent, true, parent.prueba, parent.configuracion, true, false);
-              test.setVisible(true);
-              setVisible(false);
-              dispose();
-            }
-        }
-        catch(Exception e){
+        } catch (Exception e) {
             //String msg = "El valor de la cantidad de esnsayos debe ser un número entero, verifíquelo";
             ErrorDialog er = new ErrorDialog(parent, true, e.getMessage());
             er.setVisible(true);
@@ -214,7 +209,7 @@ public class AutoConfigView extends javax.swing.JDialog {
     }//GEN-LAST:event_jTextField1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-                // TODO add your handling code here:
+        // TODO add your handling code here:
         setVisible(false);
         dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
@@ -230,13 +225,16 @@ public class AutoConfigView extends javax.swing.JDialog {
     }//GEN-LAST:event_jRadioButton2ActionPerformed
 
     /**
-    * @param args the command line arguments
-    */
+     * @param args the command line arguments
+     */
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(new Runnable() {
+
             public void run() {
                 AutoConfigView dialog = new AutoConfigView(new PrincipalView(), true);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
+
+                    @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {
                         System.exit(0);
                     }
@@ -245,7 +243,6 @@ public class AutoConfigView extends javax.swing.JDialog {
             }
         });
     }
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
@@ -256,5 +253,4 @@ public class AutoConfigView extends javax.swing.JDialog {
     private javax.swing.JRadioButton jRadioButton2;
     private javax.swing.JTextField jTextField1;
     // End of variables declaration//GEN-END:variables
-
 }

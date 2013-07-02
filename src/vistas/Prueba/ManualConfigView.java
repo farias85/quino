@@ -4,26 +4,23 @@
  */
 
 /*
- * Configuración_Manual.java
+ * ManualConfigView.java
  *
  * Created on 25-jul-2010, 16:30:43
  */
-
 package vistas.Prueba;
-
 
 import vistas.*;
 import clases.prueba.Configuracion;
 import clases.prueba.Prueba;
 //import clases.prueba.Ensayo;
 
-
-
 /**
  *
  * @author davisito
  */
 public class ManualConfigView extends javax.swing.JDialog {
+
     private PrincipalView parent;
     private int tiempo_movimiento;
     private int densidad;
@@ -34,7 +31,7 @@ public class ManualConfigView extends javax.swing.JDialog {
     private boolean fobeal = true;
     boolean control;
 
-    /** Creates new form Configuración_Manual */
+    /** Creates new form ManualConfigView */
     @SuppressWarnings("empty-statement")
     public ManualConfigView(PrincipalView parent, boolean modal) {
         super(parent, modal);
@@ -105,7 +102,8 @@ public class ManualConfigView extends javax.swing.JDialog {
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 12));
         jLabel1.setText("Cantidad de Ensayos");
 
-        jTextField1.setFont(new java.awt.Font("Tahoma", 1, 12));
+        jTextField1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jTextField1.setText("4");
         jTextField1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField1ActionPerformed(evt);
@@ -118,14 +116,16 @@ public class ManualConfigView extends javax.swing.JDialog {
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 12));
         jLabel3.setText("Puntos a Mover");
 
-        jTextField2.setFont(new java.awt.Font("Tahoma", 1, 12));
+        jTextField2.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jTextField2.setText("600");
         jTextField2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField2ActionPerformed(evt);
             }
         });
 
-        jTextField3.setFont(new java.awt.Font("Tahoma", 1, 12));
+        jTextField3.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jTextField3.setText("23");
         jTextField3.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
                 jTextField3FocusLost(evt);
@@ -334,14 +334,15 @@ public class ManualConfigView extends javax.swing.JDialog {
                     .addComponent(jRadioButton1)))
         );
 
-        jTextField5.setFont(new java.awt.Font("Tahoma", 1, 12));
+        jTextField5.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jTextField5.setText("60");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(112, Short.MAX_VALUE)
+                .addContainerGap(116, Short.MAX_VALUE)
                 .addComponent(jButton1)
                 .addGap(54, 54, 54)
                 .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -371,7 +372,7 @@ public class ManualConfigView extends javax.swing.JDialog {
                                 .addComponent(jLabel5)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 51, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 55, Short.MAX_VALUE))
                     .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
@@ -432,7 +433,7 @@ public class ManualConfigView extends javax.swing.JDialog {
 
     private void jToggleButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton1ActionPerformed
         // TODO add your handling code here:
-        direccion =0;
+        direccion = 0;
         asincronico = true;
         jToggleButton2.setSelected(false);
         jToggleButton3.setSelected(false);
@@ -446,8 +447,8 @@ public class ManualConfigView extends javax.swing.JDialog {
 
     private void jToggleButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton2ActionPerformed
         // TODO add your handling code here:
-        direccion =1;
-        asincronico =false;
+        direccion = 1;
+        asincronico = false;
         jToggleButton1.setSelected(false);
         jToggleButton3.setSelected(false);
         jToggleButton4.setSelected(false);
@@ -460,9 +461,9 @@ public class ManualConfigView extends javax.swing.JDialog {
 
     private void jToggleButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton7ActionPerformed
         // TODO add your handling code here:
-        direccion =2;
-        asincronico =false;
-         jToggleButton1.setSelected(false);
+        direccion = 2;
+        asincronico = false;
+        jToggleButton1.setSelected(false);
         jToggleButton3.setSelected(false);
         jToggleButton4.setSelected(false);
         jToggleButton5.setSelected(false);
@@ -474,9 +475,9 @@ public class ManualConfigView extends javax.swing.JDialog {
 
     private void jToggleButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton4ActionPerformed
         // TODO add your handling code here:
-        direccion =3;
-        asincronico =false;
-         jToggleButton1.setSelected(false);
+        direccion = 3;
+        asincronico = false;
+        jToggleButton1.setSelected(false);
         jToggleButton3.setSelected(false);
         jToggleButton2.setSelected(false);
         jToggleButton5.setSelected(false);
@@ -488,9 +489,9 @@ public class ManualConfigView extends javax.swing.JDialog {
 
     private void jToggleButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton6ActionPerformed
         // TODO add your handling code here:
-        direccion=4;
-        asincronico =false;
-         jToggleButton1.setSelected(false);
+        direccion = 4;
+        asincronico = false;
+        jToggleButton1.setSelected(false);
         jToggleButton3.setSelected(false);
         jToggleButton4.setSelected(false);
         jToggleButton5.setSelected(false);
@@ -502,9 +503,9 @@ public class ManualConfigView extends javax.swing.JDialog {
 
     private void jToggleButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton5ActionPerformed
         // TODO add your handling code here:
-        direccion=5;
-        asincronico =false;
-         jToggleButton1.setSelected(false);
+        direccion = 5;
+        asincronico = false;
+        jToggleButton1.setSelected(false);
         jToggleButton3.setSelected(false);
         jToggleButton4.setSelected(false);
         jToggleButton2.setSelected(false);
@@ -516,9 +517,9 @@ public class ManualConfigView extends javax.swing.JDialog {
 
     private void jToggleButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton8ActionPerformed
         // TODO add your handling code here:
-        direccion=6;
-        asincronico =false;
-         jToggleButton1.setSelected(false);
+        direccion = 6;
+        asincronico = false;
+        jToggleButton1.setSelected(false);
         jToggleButton3.setSelected(false);
         jToggleButton4.setSelected(false);
         jToggleButton5.setSelected(false);
@@ -530,9 +531,9 @@ public class ManualConfigView extends javax.swing.JDialog {
 
     private void jToggleButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton3ActionPerformed
         // TODO add your handling code here:
-        direccion=7;
-        asincronico =false;
-         jToggleButton1.setSelected(false);
+        direccion = 7;
+        asincronico = false;
+        jToggleButton1.setSelected(false);
         jToggleButton2.setSelected(false);
         jToggleButton4.setSelected(false);
         jToggleButton5.setSelected(false);
@@ -544,9 +545,9 @@ public class ManualConfigView extends javax.swing.JDialog {
 
     private void jToggleButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton9ActionPerformed
         // TODO add your handling code here:
-        direccion=8;
-        asincronico =false;
-         jToggleButton1.setSelected(false);
+        direccion = 8;
+        asincronico = false;
+        jToggleButton1.setSelected(false);
         jToggleButton3.setSelected(false);
         jToggleButton4.setSelected(false);
         jToggleButton5.setSelected(false);
@@ -559,66 +560,64 @@ public class ManualConfigView extends javax.swing.JDialog {
     @SuppressWarnings("static-access")
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        try
-        {
-            if(jTextField1.getText().isEmpty()||jTextField2.getText().isEmpty()||jTextField3.getText().isEmpty()){
+        try {
+            if (jTextField1.getText().isEmpty() || jTextField2.getText().isEmpty() || jTextField3.getText().isEmpty()) {
                 throw new Exception("No puede dejar datos en blanco");
             }
             int dens = Integer.parseInt(jTextField2.getText());
             int porciento = Integer.parseInt(jTextField3.getText());
-            cantidad = (porciento*dens)/100;
-            control=jCheckBox1.isSelected();
+            cantidad = (porciento * dens) / 100;
+            control = jCheckBox1.isSelected();
             int resto;
             tiempo_movimiento = Integer.parseInt(jTextField5.getText());
-            densidad = Integer.parseInt(jTextField2.getText());            
+            densidad = Integer.parseInt(jTextField2.getText());
             ensayos = Integer.parseInt(jTextField1.getText());
-            if(fobeal){
-                 resto = densidad%8;
-                 cantidad = ((densidad/8)*porciento)/100;
-                 parent.configuracion = new Configuracion(tiempo_movimiento, densidad/8, cantidad, direccion, asincronico, control);
-                 parent.configuracion.setResto(resto);
-                 parent.prueba = new Prueba(ensayos, parent.conf_avanzada);
-                 parent.prueba.setFobeal(true);
-                 FovealTestView t = new FovealTestView(parent, true, parent.prueba, parent.configuracion, false, false);
-                 t.setVisible(true);
-                 setVisible(false);
-                 dispose();
-            }else{
-                parent.configuracion = new Configuracion(tiempo_movimiento, densidad, cantidad, direccion, asincronico, control);
-                parent.prueba = new Prueba(ensayos, parent.conf_avanzada);
-                parent.prueba.setFobeal(false);
-                PerifericaTestView t = new PerifericaTestView(parent, true, parent.prueba, parent.configuracion, false, false);
+            if (fobeal) {
+                resto = densidad % 8;
+                cantidad = ((densidad / 8) * porciento) / 100;
+                parent.setConf(new Configuracion(tiempo_movimiento,
+                        densidad / 8, cantidad, direccion, asincronico, control));
+                parent.getConf().setResto(resto);
+                parent.setPrueba(new Prueba(ensayos, parent.getConfAvanzada()));
+                parent.getPrueba().setFobeal(true);
+                FovealTestView t = new FovealTestView(parent, true, false);
+                t.setVisible(true);
+                setVisible(false);
+                dispose();
+            } else {
+                parent.setConf(new Configuracion(tiempo_movimiento, densidad,
+                        cantidad, direccion, asincronico, control));
+                parent.setPrueba(new Prueba(ensayos, parent.getConfAvanzada()));
+                parent.getPrueba().setFobeal(false);
+                PerifericaTestView t = new PerifericaTestView(parent, true, false);
                 t.setVisible(true);
                 setVisible(false);
                 dispose();
             }
-        }
-        catch(Exception e)
-        {
-            ErrorDialog err= new ErrorDialog(parent, true, e.getMessage());
+        } catch (Exception e) {
+            ErrorDialog err = new ErrorDialog(parent, true, e.getMessage());
             err.setVisible(true);
         }
-              
+
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jTextField3FocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextField3FocusLost
         // TODO add your handling code here:
-        try{
-            if (jTextField2.getText().isEmpty()){
+        try {
+            if (jTextField2.getText().isEmpty()) {
                 throw new Exception("La Densidad no puede estar vacia");
             }
-            if (jTextField3.getText().isEmpty()){
+            if (jTextField3.getText().isEmpty()) {
                 throw new Exception("Debe escribir el porciento");
             }
-            if (Integer.parseInt(jTextField2.getText())==0){
+            if (Integer.parseInt(jTextField2.getText()) == 0) {
                 throw new Exception("La Densidad no puede ser cero");
             }
             int dens = Integer.parseInt(jTextField2.getText());
             int porciento = Integer.parseInt(jTextField3.getText());
-            int cant = (porciento*dens)/100;
+            int cant = (porciento * dens) / 100;
             jTextField4.setText(Integer.toString(cant));
-        }
-        catch(Exception e){
+        } catch (Exception e) {
             ErrorDialog er = new ErrorDialog(parent, true, e.getMessage());
             er.setVisible(true);
         }
@@ -638,27 +637,28 @@ public class ManualConfigView extends javax.swing.JDialog {
 
     private void jCheckBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox1ActionPerformed
         // TODO add your handling code here:
-
     }//GEN-LAST:event_jCheckBox1ActionPerformed
 
     private void jCheckBox1StateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jCheckBox1StateChanged
         // TODO add your handling code here:
         control = jCheckBox1.isSelected();
-        if(control)
-        {
-            jToggleButton1.setEnabled(false);            
-        }else
+        if (control) {
+            jToggleButton1.setEnabled(false);
+        } else {
             jToggleButton1.setEnabled(true);
+        }
     }//GEN-LAST:event_jCheckBox1StateChanged
 
     /**
-    * @param args the command line arguments
-    */
+     * @param args the command line arguments
+     */
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(new Runnable() {
+
             public void run() {
-                ManualConfigView dialog=new ManualConfigView(new PrincipalView(), true);
+                ManualConfigView dialog = new ManualConfigView(new PrincipalView(), true);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
+
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {
                         System.exit(0);
@@ -668,7 +668,6 @@ public class ManualConfigView extends javax.swing.JDialog {
             }
         });
     }
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
@@ -697,5 +696,4 @@ public class ManualConfigView extends javax.swing.JDialog {
     private javax.swing.JToggleButton jToggleButton8;
     private javax.swing.JToggleButton jToggleButton9;
     // End of variables declaration//GEN-END:variables
-
 }

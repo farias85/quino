@@ -10,7 +10,7 @@ package quino.clases.config;
  * @author Administrador
  */
 public interface IConfiguracion {
-    public int CANT_ENSAYOS = 5;
+    public int CANT_ENSAYOS = 2;
     public int TIEMPO_DURACION = 3000;
     public int TIEMPO_ESTIMULO = 1600;
     

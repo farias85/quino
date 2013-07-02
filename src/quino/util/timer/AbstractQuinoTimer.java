@@ -6,7 +6,7 @@ package quino.util.timer;
 
 import quino.clases.model.Prueba;
 import quino.clases.model.Ensayo;
-import quino.clases.model.Results;
+import quino.clases.model.Resultado;
 import quino.util.Aleatorio;
 import quino.util.QuinoJPanel;
 import quino.clases.config.*;
@@ -311,7 +311,7 @@ public abstract class AbstractQuinoTimer extends TimerTask {
         double velocidad = configuracion.CalcularVelocidad();
         double angulo = buscarAngulo();
 
-        Results result = new Results(tiempoMovimiento, tiempoRespuesta, direccion,
+        Resultado result = new Resultado(tiempoMovimiento, tiempoRespuesta, direccion,
                 densidad, cantidad, error, numEnsayo, asincronico, panelEstimulo,
                 descrip, key, configuracion.isControl(), velocidad, angulo);
         prueba.add_Result(result);

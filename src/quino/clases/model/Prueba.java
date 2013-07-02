@@ -18,7 +18,7 @@ import quino.clases.config.ConfiguracionAvanzada;
 public class Prueba implements Serializable {
 
     private int cant_ensayos;
-    private ArrayList<Results> resultados;
+    private ArrayList<Resultado> resultados;
     private ConfiguracionAvanzada conf_avanzada;
     private Date fecha;
     private boolean fobeal;
@@ -26,7 +26,7 @@ public class Prueba implements Serializable {
 
     public Prueba(int cant_ensayos, ConfiguracionAvanzada conf) {
         this.cant_ensayos = cant_ensayos;
-        resultados = new ArrayList<Results>();
+        resultados = new ArrayList<Resultado>();
         conf_avanzada = conf;
     }
 
@@ -45,7 +45,7 @@ public class Prueba implements Serializable {
         return cant_ensayos;
     }
 
-    public ArrayList<Results> getResultados() {
+    public ArrayList<Resultado> getResultados() {
         return resultados;
     }
 
@@ -53,7 +53,7 @@ public class Prueba implements Serializable {
         cant_ensayos--;
     }
 
-    public void add_Result(Results resultado) {
+    public void add_Result(Resultado resultado) {
         resultados.add(resultado);
     }
 

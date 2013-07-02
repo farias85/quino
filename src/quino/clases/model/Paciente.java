@@ -67,7 +67,7 @@ public class Paciente implements Serializable{
 
     public Prueba getPrueba() throws Exception{
         if(prueba==null)
-            throw  new Exception("A este paciente no se le ha realizado este tipo de prueba");
+            throw  new Exception("A este paciente no se le ha realizado este tipo de prueba periferica");
         return prueba;
     }
     public Prueba Prueba(){
@@ -80,7 +80,7 @@ public class Paciente implements Serializable{
 
     public Prueba getFobeal() throws Exception {
         if(fobeal==null)
-            throw  new Exception("A este paciente no se le ha realizdo este tipo de prueba");
+            throw  new Exception("A este paciente no se le ha realizdo este tipo de prueba foveal");
         return fobeal;
     }
 

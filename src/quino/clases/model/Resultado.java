@@ -11,7 +11,7 @@ import java.io.Serializable;
  *
  * @author Casa
  */
-public class Results implements Serializable{
+public class Resultado implements Serializable{
      private int velocidad_mov;
     private int t_respuesta;
     private int direccion;
@@ -27,7 +27,7 @@ public class Results implements Serializable{
     private double velocidad;
     private double angulo;
 
-    public Results(int velocidad_mov, int t_respuesta, int direccion, int densidad, int cant_puntos, boolean error, int num_ensayo, boolean asin, int p_estimulo, String descrip, int key, boolean control, double velocidad, double angulo) {
+    public Resultado(int velocidad_mov, int t_respuesta, int direccion, int densidad, int cant_puntos, boolean error, int num_ensayo, boolean asin, int p_estimulo, String descrip, int key, boolean control, double velocidad, double angulo) {
         this.velocidad_mov = velocidad_mov;
         this.t_respuesta = t_respuesta;
         this.direccion = direccion;

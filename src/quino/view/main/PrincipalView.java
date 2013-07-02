@@ -93,8 +93,8 @@ public class PrincipalView extends javax.swing.JFrame {
     public PrincipalView() {
         initComponents();
         this.setLocationRelativeTo(null);
-        jMenuItem10.setEnabled(false);
-        //jMenuItem15.setEnabled(false);
+        jMenuItem16.setEnabled(false);
+        jMenuItem17.setEnabled(false);
         try {
             registro = new Registro();
             registro = Registro.OpenObject("datos.bin");
@@ -105,8 +105,8 @@ public class PrincipalView extends javax.swing.JFrame {
                 b_fich.setEnabled(false);
                 b_mod.setEnabled(false);
                 b_prueba.setEnabled(false);
-                jMenuItem10.setEnabled(false);
-                //jMenuItem15.setEnabled(false);
+                jMenuItem16.setEnabled(false);
+                jMenuItem17.setEnabled(false);
                 throw new Exception("No existen Pacientes registrados");
             }
         } catch (Exception e) {
@@ -121,7 +121,8 @@ public class PrincipalView extends javax.swing.JFrame {
         }
         
         try {
-            confAvanzada = ConfiguracionAvanzada.OpenObject("config.bin");
+            //confAvanzada = ConfiguracionAvanzada.OpenObject("config.bin");
+            confAvanzada = new ConfiguracionAvanzada(IConfiguracion.TIEMPO_DURACION, IConfiguracion.TIEMPO_ESTIMULO);
         } catch (Exception e) {
             if (e instanceof IOException) {
                 confAvanzada = new ConfiguracionAvanzada(IConfiguracion.TIEMPO_DURACION, IConfiguracion.TIEMPO_ESTIMULO);
@@ -144,8 +145,8 @@ public class PrincipalView extends javax.swing.JFrame {
                     b_fich.setEnabled(false);
                     b_mod.setEnabled(false);
                     b_prueba.setEnabled(false);
-                    jMenuItem10.setEnabled(false);
-                    //jMenuItem15.setEnabled(false);
+                    jMenuItem16.setEnabled(false);
+                    jMenuItem17.setEnabled(false);
 
                 } else {
                     jMenu5.setEnabled(true);
@@ -157,8 +158,8 @@ public class PrincipalView extends javax.swing.JFrame {
                     b_fich.setEnabled(true);
                     b_mod.setEnabled(true);
                     b_prueba.setEnabled(true);
-                    jMenuItem10.setEnabled(true);
-                    //jMenuItem15.setEnabled(true);
+                    jMenuItem16.setEnabled(true);
+                    jMenuItem17.setEnabled(true);
                     int sel_paciente = lsm.getMinSelectionIndex();
                     pacienteActual = registro.paciente_Pos(sel_paciente);
                     jTable1.setComponentPopupMenu(menu);
@@ -234,7 +235,7 @@ public class PrincipalView extends javax.swing.JFrame {
     }
 
     public void ActivarPractica() {
-        jMenuItem10.setEnabled(true);
+        jMenuItem16.setEnabled(true);
     }
 
     /** This method is called from within the constructor to
@@ -530,6 +531,11 @@ public class PrincipalView extends javax.swing.JFrame {
         jMenuItem13.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jMenuItem13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/quino/view/main/icons/system-shutdown-restart-panel.png"))); // NOI18N
         jMenuItem13.setText("Cerrar");
+        jMenuItem13.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem13ActionPerformed(evt);
+            }
+        });
         jMenu6.add(jMenuItem13);
 
         jMenuBar1.add(jMenu6);
@@ -873,6 +879,12 @@ public class PrincipalView extends javax.swing.JFrame {
         AvanzadaConfigView avanzadaConfigView = new AvanzadaConfigView(this, true);
         avanzadaConfigView.setVisible(true);
     }//GEN-LAST:event_jMenuItem10ActionPerformed
+
+    private void jMenuItem13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem13ActionPerformed
+        // TODO add your handling code here:
+        this.setVisible(false);
+        this.dispose();
+    }//GEN-LAST:event_jMenuItem13ActionPerformed
 
     /**
      * @param args the command line arguments

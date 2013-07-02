@@ -102,7 +102,7 @@ public class ManualConfigView extends javax.swing.JDialog {
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 12));
         jLabel1.setText("Cantidad de Ensayos");
 
-        jTextField1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jTextField1.setFont(new java.awt.Font("Tahoma", 1, 12));
         jTextField1.setText("4");
         jTextField1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -116,7 +116,7 @@ public class ManualConfigView extends javax.swing.JDialog {
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 12));
         jLabel3.setText("Puntos a Mover");
 
-        jTextField2.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jTextField2.setFont(new java.awt.Font("Tahoma", 1, 12));
         jTextField2.setText("600");
         jTextField2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -124,7 +124,7 @@ public class ManualConfigView extends javax.swing.JDialog {
             }
         });
 
-        jTextField3.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jTextField3.setFont(new java.awt.Font("Tahoma", 1, 12));
         jTextField3.setText("23");
         jTextField3.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
@@ -137,82 +137,81 @@ public class ManualConfigView extends javax.swing.JDialog {
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Dirección", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12))); // NOI18N
 
-        jToggleButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/vistas/Iconos/asincronico.gif"))); // NOI18N
-        jToggleButton1.setDisabledIcon(new javax.swing.ImageIcon(getClass().getResource("/vistas/Iconos/asincronico_dis.gif"))); // NOI18N
-        jToggleButton1.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/vistas/Iconos/asincronico_clk.gif"))); // NOI18N
-        jToggleButton1.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/vistas/Iconos/asincronico_clk.gif"))); // NOI18N
+        jToggleButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/quino/view/main/icons/asincronico.gif"))); // NOI18N
+        jToggleButton1.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/quino/view/main/icons/asincronico_clk.gif"))); // NOI18N
+        jToggleButton1.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/quino/view/main/icons/asincronico_clk.gif"))); // NOI18N
         jToggleButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jToggleButton1ActionPerformed(evt);
             }
         });
 
-        jToggleButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/vistas/Iconos/direccion1.gif"))); // NOI18N
-        jToggleButton2.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/vistas/Iconos/direccion1_clk.gif"))); // NOI18N
-        jToggleButton2.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/vistas/Iconos/direccion1_clk.gif"))); // NOI18N
+        jToggleButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/quino/view/main/icons/direccion1.gif"))); // NOI18N
+        jToggleButton2.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/quino/view/main/icons/direccion1_clk.gif"))); // NOI18N
+        jToggleButton2.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/quino/view/main/icons/direccion1_clk.gif"))); // NOI18N
         jToggleButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jToggleButton2ActionPerformed(evt);
             }
         });
 
-        jToggleButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/vistas/Iconos/direccion7.gif"))); // NOI18N
-        jToggleButton3.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/vistas/Iconos/direccion7_clk.gif"))); // NOI18N
-        jToggleButton3.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/vistas/Iconos/direccion7_clk.gif"))); // NOI18N
+        jToggleButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/quino/view/main/icons/direccion7.gif"))); // NOI18N
+        jToggleButton3.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/quino/view/main/icons/direccion7_clk.gif"))); // NOI18N
+        jToggleButton3.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/quino/view/main/icons/direccion7_clk.gif"))); // NOI18N
         jToggleButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jToggleButton3ActionPerformed(evt);
             }
         });
 
-        jToggleButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/vistas/Iconos/direccion3.gif"))); // NOI18N
-        jToggleButton4.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/vistas/Iconos/direccion3_clk.gif"))); // NOI18N
-        jToggleButton4.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/vistas/Iconos/direccion3_clk.gif"))); // NOI18N
+        jToggleButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/quino/view/main/icons/direccion3.gif"))); // NOI18N
+        jToggleButton4.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/quino/view/main/icons/direccion3_clk.gif"))); // NOI18N
+        jToggleButton4.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/quino/view/main/icons/direccion3_clk.gif"))); // NOI18N
         jToggleButton4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jToggleButton4ActionPerformed(evt);
             }
         });
 
-        jToggleButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/vistas/Iconos/direccion5.gif"))); // NOI18N
-        jToggleButton5.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/vistas/Iconos/direccion5_clk.gif"))); // NOI18N
-        jToggleButton5.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/vistas/Iconos/direccion5_clk.gif"))); // NOI18N
+        jToggleButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/quino/view/main/icons/direccion5.gif"))); // NOI18N
+        jToggleButton5.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/quino/view/main/icons/direccion5_clk.gif"))); // NOI18N
+        jToggleButton5.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/quino/view/main/icons/direccion5_clk.gif"))); // NOI18N
         jToggleButton5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jToggleButton5ActionPerformed(evt);
             }
         });
 
-        jToggleButton6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/vistas/Iconos/direccion4.gif"))); // NOI18N
-        jToggleButton6.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/vistas/Iconos/direccion4_clk.gif"))); // NOI18N
-        jToggleButton6.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/vistas/Iconos/direccion4_clk.gif"))); // NOI18N
+        jToggleButton6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/quino/view/main/icons/direccion4.gif"))); // NOI18N
+        jToggleButton6.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/quino/view/main/icons/direccion4_clk.gif"))); // NOI18N
+        jToggleButton6.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/quino/view/main/icons/direccion4_clk.gif"))); // NOI18N
         jToggleButton6.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jToggleButton6ActionPerformed(evt);
             }
         });
 
-        jToggleButton7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/vistas/Iconos/direccion2.gif"))); // NOI18N
-        jToggleButton7.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/vistas/Iconos/direccion2_clk.gif"))); // NOI18N
-        jToggleButton7.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/vistas/Iconos/direccion2_clk.gif"))); // NOI18N
+        jToggleButton7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/quino/view/main/icons/direccion2.gif"))); // NOI18N
+        jToggleButton7.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/quino/view/main/icons/direccion2_clk.gif"))); // NOI18N
+        jToggleButton7.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/quino/view/main/icons/direccion2_clk.gif"))); // NOI18N
         jToggleButton7.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jToggleButton7ActionPerformed(evt);
             }
         });
 
-        jToggleButton8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/vistas/Iconos/direccion6.gif"))); // NOI18N
-        jToggleButton8.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/vistas/Iconos/direccion6_clk.gif"))); // NOI18N
-        jToggleButton8.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/vistas/Iconos/direccion6_clk.gif"))); // NOI18N
+        jToggleButton8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/quino/view/main/icons/direccion6.gif"))); // NOI18N
+        jToggleButton8.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/quino/view/main/icons/direccion6_clk.gif"))); // NOI18N
+        jToggleButton8.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/quino/view/main/icons/direccion6_clk.gif"))); // NOI18N
         jToggleButton8.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jToggleButton8ActionPerformed(evt);
             }
         });
 
-        jToggleButton9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/vistas/Iconos/direccion8.gif"))); // NOI18N
-        jToggleButton9.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/vistas/Iconos/direccion8_clk.gif"))); // NOI18N
-        jToggleButton9.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/vistas/Iconos/direccion8_clk.gif"))); // NOI18N
+        jToggleButton9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/quino/view/main/icons/direccion8.gif"))); // NOI18N
+        jToggleButton9.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/quino/view/main/icons/direccion8_clk.gif"))); // NOI18N
+        jToggleButton9.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/quino/view/main/icons/direccion8_clk.gif"))); // NOI18N
         jToggleButton9.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jToggleButton9ActionPerformed(evt);
@@ -237,7 +236,7 @@ public class ManualConfigView extends javax.swing.JDialog {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(14, Short.MAX_VALUE)
                 .addComponent(jToggleButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jToggleButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -321,7 +320,7 @@ public class ManualConfigView extends javax.swing.JDialog {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addGap(118, 118, 118)
                 .addComponent(jRadioButton1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 52, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 56, Short.MAX_VALUE)
                 .addComponent(jRadioButton2)
                 .addGap(101, 101, 101))
         );
@@ -334,7 +333,7 @@ public class ManualConfigView extends javax.swing.JDialog {
                     .addComponent(jRadioButton1)))
         );
 
-        jTextField5.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jTextField5.setFont(new java.awt.Font("Tahoma", 1, 12));
         jTextField5.setText("60");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());

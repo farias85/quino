@@ -233,7 +233,7 @@
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="1" attributes="0">
-                  <EmptySpace max="32767" attributes="0"/>
+                  <EmptySpace pref="14" max="32767" attributes="0"/>
                   <Component id="jToggleButton1" min="-2" pref="42" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="jToggleButton2" min="-2" pref="42" max="-2" attributes="0"/>
@@ -285,16 +285,13 @@
         <Component class="javax.swing.JToggleButton" name="jToggleButton1">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/vistas/Iconos/asincronico.gif"/>
-            </Property>
-            <Property name="disabledIcon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/vistas/Iconos/asincronico_dis.gif"/>
+              <Image iconType="3" name="/quino/view/main/icons/asincronico.gif"/>
             </Property>
             <Property name="pressedIcon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/vistas/Iconos/asincronico_clk.gif"/>
+              <Image iconType="3" name="/quino/view/main/icons/asincronico_clk.gif"/>
             </Property>
             <Property name="selectedIcon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/vistas/Iconos/asincronico_clk.gif"/>
+              <Image iconType="3" name="/quino/view/main/icons/asincronico_clk.gif"/>
             </Property>
           </Properties>
           <AccessibilityProperties>
@@ -307,13 +304,13 @@
         <Component class="javax.swing.JToggleButton" name="jToggleButton2">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/vistas/Iconos/direccion1.gif"/>
+              <Image iconType="3" name="/quino/view/main/icons/direccion1.gif"/>
             </Property>
             <Property name="pressedIcon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/vistas/Iconos/direccion1_clk.gif"/>
+              <Image iconType="3" name="/quino/view/main/icons/direccion1_clk.gif"/>
             </Property>
             <Property name="selectedIcon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/vistas/Iconos/direccion1_clk.gif"/>
+              <Image iconType="3" name="/quino/view/main/icons/direccion1_clk.gif"/>
             </Property>
           </Properties>
           <AccessibilityProperties>
@@ -326,13 +323,13 @@
         <Component class="javax.swing.JToggleButton" name="jToggleButton3">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/vistas/Iconos/direccion7.gif"/>
+              <Image iconType="3" name="/quino/view/main/icons/direccion7.gif"/>
             </Property>
             <Property name="pressedIcon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/vistas/Iconos/direccion7_clk.gif"/>
+              <Image iconType="3" name="/quino/view/main/icons/direccion7_clk.gif"/>
             </Property>
             <Property name="selectedIcon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/vistas/Iconos/direccion7_clk.gif"/>
+              <Image iconType="3" name="/quino/view/main/icons/direccion7_clk.gif"/>
             </Property>
           </Properties>
           <AccessibilityProperties>
@@ -345,13 +342,13 @@
         <Component class="javax.swing.JToggleButton" name="jToggleButton4">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/vistas/Iconos/direccion3.gif"/>
+              <Image iconType="3" name="/quino/view/main/icons/direccion3.gif"/>
             </Property>
             <Property name="pressedIcon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/vistas/Iconos/direccion3_clk.gif"/>
+              <Image iconType="3" name="/quino/view/main/icons/direccion3_clk.gif"/>
             </Property>
             <Property name="selectedIcon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/vistas/Iconos/direccion3_clk.gif"/>
+              <Image iconType="3" name="/quino/view/main/icons/direccion3_clk.gif"/>
             </Property>
           </Properties>
           <AccessibilityProperties>
@@ -364,13 +361,13 @@
         <Component class="javax.swing.JToggleButton" name="jToggleButton5">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/vistas/Iconos/direccion5.gif"/>
+              <Image iconType="3" name="/quino/view/main/icons/direccion5.gif"/>
             </Property>
             <Property name="pressedIcon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/vistas/Iconos/direccion5_clk.gif"/>
+              <Image iconType="3" name="/quino/view/main/icons/direccion5_clk.gif"/>
             </Property>
             <Property name="selectedIcon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/vistas/Iconos/direccion5_clk.gif"/>
+              <Image iconType="3" name="/quino/view/main/icons/direccion5_clk.gif"/>
             </Property>
           </Properties>
           <AccessibilityProperties>
@@ -383,13 +380,13 @@
         <Component class="javax.swing.JToggleButton" name="jToggleButton6">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/vistas/Iconos/direccion4.gif"/>
+              <Image iconType="3" name="/quino/view/main/icons/direccion4.gif"/>
             </Property>
             <Property name="pressedIcon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/vistas/Iconos/direccion4_clk.gif"/>
+              <Image iconType="3" name="/quino/view/main/icons/direccion4_clk.gif"/>
             </Property>
             <Property name="selectedIcon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/vistas/Iconos/direccion4_clk.gif"/>
+              <Image iconType="3" name="/quino/view/main/icons/direccion4_clk.gif"/>
             </Property>
           </Properties>
           <AccessibilityProperties>
@@ -402,13 +399,13 @@
         <Component class="javax.swing.JToggleButton" name="jToggleButton7">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/vistas/Iconos/direccion2.gif"/>
+              <Image iconType="3" name="/quino/view/main/icons/direccion2.gif"/>
             </Property>
             <Property name="pressedIcon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/vistas/Iconos/direccion2_clk.gif"/>
+              <Image iconType="3" name="/quino/view/main/icons/direccion2_clk.gif"/>
             </Property>
             <Property name="selectedIcon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/vistas/Iconos/direccion2_clk.gif"/>
+              <Image iconType="3" name="/quino/view/main/icons/direccion2_clk.gif"/>
             </Property>
           </Properties>
           <AccessibilityProperties>
@@ -421,13 +418,13 @@
         <Component class="javax.swing.JToggleButton" name="jToggleButton8">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/vistas/Iconos/direccion6.gif"/>
+              <Image iconType="3" name="/quino/view/main/icons/direccion6.gif"/>
             </Property>
             <Property name="pressedIcon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/vistas/Iconos/direccion6_clk.gif"/>
+              <Image iconType="3" name="/quino/view/main/icons/direccion6_clk.gif"/>
             </Property>
             <Property name="selectedIcon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/vistas/Iconos/direccion6_clk.gif"/>
+              <Image iconType="3" name="/quino/view/main/icons/direccion6_clk.gif"/>
             </Property>
           </Properties>
           <AccessibilityProperties>
@@ -440,13 +437,13 @@
         <Component class="javax.swing.JToggleButton" name="jToggleButton9">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/vistas/Iconos/direccion8.gif"/>
+              <Image iconType="3" name="/quino/view/main/icons/direccion8.gif"/>
             </Property>
             <Property name="pressedIcon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/vistas/Iconos/direccion8_clk.gif"/>
+              <Image iconType="3" name="/quino/view/main/icons/direccion8_clk.gif"/>
             </Property>
             <Property name="selectedIcon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/vistas/Iconos/direccion8_clk.gif"/>
+              <Image iconType="3" name="/quino/view/main/icons/direccion8_clk.gif"/>
             </Property>
           </Properties>
           <AccessibilityProperties>
@@ -507,7 +504,7 @@
               <Group type="102" alignment="1" attributes="0">
                   <EmptySpace min="-2" pref="118" max="-2" attributes="0"/>
                   <Component id="jRadioButton1" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace pref="52" max="32767" attributes="0"/>
+                  <EmptySpace pref="56" max="32767" attributes="0"/>
                   <Component id="jRadioButton2" min="-2" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="101" max="-2" attributes="0"/>
               </Group>

@@ -13,7 +13,7 @@ package quino.view.prueba;
 import quino.util.Grafica;
 
 import quino.clases.model.Prueba;
-import quino.clases.model.Results;
+import quino.clases.model.Resultado;
 import java.util.ArrayList;
 import javax.swing.ImageIcon;
 import javax.swing.event.TreeSelectionEvent;
@@ -33,7 +33,7 @@ public class ResultView extends javax.swing.JDialog {
 
     PrincipalView parent;
     Prueba prueba;
-    private ArrayList<Results> resultados;
+    private ArrayList<Resultado> resultados;
 
     /** Creates new form ResultView */
     public ResultView(PrincipalView parent, boolean modal, Prueba prueba) {
@@ -64,7 +64,7 @@ public class ResultView extends javax.swing.JDialog {
         }
     }
 
-    public void Arbol(final ArrayList<Results> resultados) {
+    public void Arbol(final ArrayList<Resultado> resultados) {
         DefaultMutableTreeNode root = new DefaultMutableTreeNode("Ensayos");
         DefaultTreeModel tm = new DefaultTreeModel(root);
         for (int i = 0; i < resultados.size(); i++) {

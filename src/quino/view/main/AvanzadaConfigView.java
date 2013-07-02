@@ -24,8 +24,8 @@ public class AvanzadaConfigView extends javax.swing.JDialog {
     public AvanzadaConfigView(PrincipalView parent, boolean modal) {
         super(parent, modal);
 
-        initComponents();
         this.parent = parent;
+        initComponents();
         setLocationRelativeTo(null);
 
         jTextField1.setText(String.valueOf(parent.getConfAvanzada().getDuracion()));

@@ -2,24 +2,22 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package quino.clases.model;
-
-import java.io.Serializable;
 
 /**
  *
- * @author Casa
+ * @author Felipao
  */
-public class Resultado implements Serializable{
-     private int velocidad_mov;
-    private int t_respuesta;
+public class Resultado {
+
+    private int velocidadMovimiento;
+    private int tiempoRespuesta;
     private int direccion;
     private int densidad;
-    private int cant_puntos;
+    private int cantPuntos;
     private boolean error;
-    private int num_ensayo;
-    private int p_estimulo;
+    private int numEnsayo;
+    private int panelEstimulo;
     private boolean asincronico;
     private String descripcion;
     private int key;
@@ -27,74 +25,139 @@ public class Resultado implements Serializable{
     private double velocidad;
     private double angulo;
 
-    public Resultado(int velocidad_mov, int t_respuesta, int direccion, int densidad, int cant_puntos, boolean error, int num_ensayo, boolean asin, int p_estimulo, String descrip, int key, boolean control, double velocidad, double angulo) {
-        this.velocidad_mov = velocidad_mov;
-        this.t_respuesta = t_respuesta;
+    public Resultado() {
+    }
+
+    public Resultado(int velocidadMovimiento, int tiempoRespuesta, int direccion,
+            int densidad, int cantPuntos, boolean error, int numEnsayo, int panelEstimulo,
+            boolean asincronico, String descripcion, int key, boolean control,
+            double velocidad, double angulo) {
+
+        this.velocidadMovimiento = velocidadMovimiento;
+        this.tiempoRespuesta = tiempoRespuesta;
         this.direccion = direccion;
         this.densidad = densidad;
-        this.cant_puntos = cant_puntos;
+        this.cantPuntos = cantPuntos;
         this.error = error;
-        this.num_ensayo = num_ensayo;
-        this.asincronico = asin;
-        this.p_estimulo = p_estimulo;
-        this.descripcion = descrip;
+        this.numEnsayo = numEnsayo;
+        this.panelEstimulo = panelEstimulo;
+        this.asincronico = asincronico;
+        this.descripcion = descripcion;
         this.key = key;
         this.control = control;
         this.velocidad = velocidad;
         this.angulo = angulo;
     }
 
-    public int getCant_puntos() {
-        return cant_puntos;
+    public double getAngulo() {
+        return angulo;
     }
 
-    public int getDensidad() {
-        return densidad;
+    public void setAngulo(double angulo) {
+        this.angulo = angulo;
     }
 
-    public int getDireccion() {
-        return direccion;
+    public boolean isAsincronico() {
+        return asincronico;
     }
 
-    public boolean isError() {
-        return error;
+    public void setAsincronico(boolean asincronico) {
+        this.asincronico = asincronico;
     }
 
-    public int getNum_ensayo() {
-        return num_ensayo;
+    public int getCantPuntos() {
+        return cantPuntos;
     }
 
-    public int getT_respuesta() {
-        return t_respuesta;
-    }
-
-    public int getVelocidad_mov() {
-        return velocidad_mov;
-    }
-
-    public int getP_estimulo() {
-        return p_estimulo;
-    }
-
-    public String getDescripcion() {
-        return descripcion;
-    }
-
-    public int getKey() {
-        return key;
+    public void setCantPuntos(int cantPuntos) {
+        this.cantPuntos = cantPuntos;
     }
 
     public boolean isControl() {
         return control;
     }
 
+    public void setControl(boolean control) {
+        this.control = control;
+    }
+
+    public int getDensidad() {
+        return densidad;
+    }
+
+    public void setDensidad(int densidad) {
+        this.densidad = densidad;
+    }
+
+    public String getDescripcion() {
+        return descripcion;
+    }
+
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
+    }
+
+    public int getDireccion() {
+        return direccion;
+    }
+
+    public void setDireccion(int direccion) {
+        this.direccion = direccion;
+    }
+
+    public boolean isError() {
+        return error;
+    }
+
+    public void setError(boolean error) {
+        this.error = error;
+    }
+
+    public int getKey() {
+        return key;
+    }
+
+    public void setKey(int key) {
+        this.key = key;
+    }
+
+    public int getNumEnsayo() {
+        return numEnsayo;
+    }
+
+    public void setNumEnsayo(int numEnsayo) {
+        this.numEnsayo = numEnsayo;
+    }
+
+    public int getPanelEstimulo() {
+        return panelEstimulo;
+    }
+
+    public void setPanelEstimulo(int panelEstimulo) {
+        this.panelEstimulo = panelEstimulo;
+    }
+
+    public int getTiempoRespuesta() {
+        return tiempoRespuesta;
+    }
+
+    public void setTiempoRespuesta(int tiempoRespuesta) {
+        this.tiempoRespuesta = tiempoRespuesta;
+    }
+
     public double getVelocidad() {
         return velocidad;
     }
 
-    public double getAngulo() {
-        return angulo;
+    public void setVelocidad(double velocidad) {
+        this.velocidad = velocidad;
     }
 
+    public int getVelocidadMovimiento() {
+        return velocidadMovimiento;
+    }
 
+    public void setVelocidadMovimiento(int velocidadMovimiento) {
+        this.velocidadMovimiento = velocidadMovimiento;
+    }
 }

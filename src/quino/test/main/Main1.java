@@ -19,7 +19,6 @@ import java.util.TimerTask;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.naming.spi.DirStateFactory.Result;
-import quino.clases.config.ConfiguracionAvanzada;
 import quino.clases.config.IConfiguracion;
 import quino.clases.model.Paciente;
 import quino.clases.model.Prueba;
@@ -57,7 +56,7 @@ public class Main1 {
             List<Staff> ls = new ArrayList<Staff>();
             ls.add(staff);
 
-            Staff staff2 = new Staff("felipon-pon11");
+            Staff staff2 = new Staff("fel", 45);
             ls.add(staff2);
             
             TestBean bean = new TestBean("xxxx", 111, 2, tbean, ls);

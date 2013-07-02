@@ -12,6 +12,15 @@ package quino.test.main;
 public class Staff {
 
     private String st;
+    private double numXXX;
+
+    public double getNumXXX() {
+        return numXXX;
+    }
+
+    public void setNumXXX(double numXXX) {
+        this.numXXX = numXXX;
+    }
 
     public Staff() {
         st = "xc";
@@ -19,6 +28,11 @@ public class Staff {
 
     public Staff(String st) {
         this.st = st;
+    }
+
+    public Staff(String st, double numXXX) {
+        this.st = st;
+        this.numXXX = numXXX;
     }
 
     public String getSt() {

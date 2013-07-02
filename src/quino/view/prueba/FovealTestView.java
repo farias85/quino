@@ -66,11 +66,11 @@ public class FovealTestView extends javax.swing.JDialog {
     public void GuardarPrueba(Prueba prueba) {
         int option;
         try {
-            if (parent.getPacienteActual().Prueba() != null) {
+            if (parent.getPacienteActual().getFoveal() != null) {
                 option = JOptionPane.showConfirmDialog(this, "¿Desea sobreescribir la prueba realizada?", "Advertencia", JOptionPane.YES_NO_OPTION);
                 switch (option) {
                     case 0: {
-                        parent.getPacienteActual().setPrueba(prueba);
+                        parent.getPacienteActual().setFoveal(prueba);
                         parent.getRegistro().SaveObject("datos.bin");
                         parent.Modificar_Tabla();
                     }
@@ -80,7 +80,7 @@ public class FovealTestView extends javax.swing.JDialog {
                 }
             } else {
 
-                parent.getPacienteActual().setFobeal(prueba);
+                parent.getPacienteActual().setFoveal(prueba);
                 parent.getRegistro().SaveObject("datos.bin");
                 parent.Modificar_Tabla();
             }

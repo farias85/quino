@@ -31,7 +31,7 @@ public class FichaPacienteView extends javax.swing.JDialog {
         setLocationRelativeTo(null);
         this.parent = parent;
 
-        jTextField1.setText(parent.getPacienteActual().getNo_historia());
+        jTextField1.setText(parent.getPacienteActual().getHistoria());
         jTextField2.setText(parent.getPacienteActual().getNombre());
         jTextArea1.setText(parent.getPacienteActual().getFicha());
     }

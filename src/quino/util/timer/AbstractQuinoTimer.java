@@ -136,7 +136,7 @@ public abstract class AbstractQuinoTimer extends TimerTask {
      */
     protected boolean cancelarTarea() {
         numEnsayo++;
-        if (numEnsayo == prueba.getCant_ensayos()) {
+        if (numEnsayo == prueba.getCantEnsayos()) {
             cancel();
             return true;
         }
@@ -286,7 +286,7 @@ public abstract class AbstractQuinoTimer extends TimerTask {
         ensayo.setKey(k);
 
         if (panelEstimulo > 0) {
-            ensayo.setT_respuesta(tiempoTranscurrido - (enEspera + preparado + 1));
+            ensayo.setTiempoRespuesta(tiempoTranscurrido - (enEspera + preparado + 1));
         }
 
         controlarEnsayo();
@@ -301,7 +301,7 @@ public abstract class AbstractQuinoTimer extends TimerTask {
 
         int cantidad = configuracion.getCantidad();
         int tiempoMovimiento = configuracion.getTiempo_movimiento();
-        int tiempoRespuesta = ensayo.getT_respuesta();
+        int tiempoRespuesta = ensayo.getTiempoRespuesta();
         int direccion = configuracion.getDireccion();
         int densidad = configuracion.getDensidad();
         boolean error = ensayo.isError();
@@ -312,8 +312,9 @@ public abstract class AbstractQuinoTimer extends TimerTask {
         double angulo = buscarAngulo();
 
         Resultado result = new Resultado(tiempoMovimiento, tiempoRespuesta, direccion,
-                densidad, cantidad, error, numEnsayo, asincronico, panelEstimulo,
+                densidad, cantidad, error, numEnsayo, panelEstimulo, asincronico,
                 descrip, key, configuracion.isControl(), velocidad, angulo);
-        prueba.add_Result(result);
+
+        prueba.getResultados().add(result);
     }
 }

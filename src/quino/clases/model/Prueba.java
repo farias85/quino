@@ -9,55 +9,34 @@ import java.util.ArrayList;
 
 
 import java.util.Date;
-import quino.clases.config.ConfiguracionAvanzada;
 
 /**
  *
- * @author davisito
+ * @author Felipao
  */
-public class Prueba implements Serializable {
+public class Prueba {
 
-    private int cant_ensayos;
+    private int cantEnsayos;
     private ArrayList<Resultado> resultados;
-    private ConfiguracionAvanzada conf_avanzada;
     private Date fecha;
-    private boolean fobeal;
-    private int key;
-
-    public Prueba(int cant_ensayos, ConfiguracionAvanzada conf) {
-        this.cant_ensayos = cant_ensayos;
-        resultados = new ArrayList<Resultado>();
-        conf_avanzada = conf;
-    }
+    private boolean foveal;
 
     public Prueba() {
     }
-
-    public boolean isFobeal() {
-        return fobeal;
+    
+    public Prueba(int cantEnsayos) {
+        this.cantEnsayos = cantEnsayos;
+        resultados = new ArrayList<Resultado>();
     }
 
-    public void setFobeal(boolean fobeal) {
-        this.fobeal = fobeal;
+    public Prueba(int cantEnsayos, ArrayList<Resultado> resultados, Date fecha, boolean foveal) {
+        this.cantEnsayos = cantEnsayos;
+        this.resultados = resultados;
+        this.fecha = fecha;
+        this.foveal = foveal;
     }
 
-    public int getCant_ensayos() {
-        return cant_ensayos;
-    }
-
-    public ArrayList<Resultado> getResultados() {
-        return resultados;
-    }
-
-    public void decre_Ensayos() {
-        cant_ensayos--;
-    }
-
-    public void add_Result(Resultado resultado) {
-        resultados.add(resultado);
-    }
-
-    public int cant_Errores() {
+    public int cantErrores() {
         int count = 0;
         for (int i = 0; i < resultados.size(); i++) {
             if (resultados.get(i).isError()) {
@@ -67,7 +46,7 @@ public class Prueba implements Serializable {
         return count;
     }
 
-    public int densidad_Promedio() {
+    public int densidadPromedio() {
         int sum = 0;
         int prom = 0;
         for (int i = 0; i < resultados.size(); i++) {
@@ -77,13 +56,13 @@ public class Prueba implements Serializable {
         return prom;
     }
 
-    public int tr_Promedio() {
+    public int tiempoRespuestaPromedio() {
         int sum = 0;
         int prom = 0;
         int cont = 0;
         for (int i = 0; i < resultados.size(); i++) {
-            if (resultados.get(i).getT_respuesta() != 0) {
-                sum = sum + resultados.get(i).getT_respuesta();
+            if (resultados.get(i).getTiempoRespuesta() != 0) {
+                sum = sum + resultados.get(i).getTiempoRespuesta();
                 cont++;
             }
         }
@@ -93,15 +72,35 @@ public class Prueba implements Serializable {
         return prom;
     }
 
-    public ConfiguracionAvanzada getConf_avanzada() {
-        return conf_avanzada;
+    public int getCantEnsayos() {
+        return cantEnsayos;
     }
 
-    public void setKey(int k) {
-        this.key = k;
+    public void setCantEnsayos(int cantEnsayos) {
+        this.cantEnsayos = cantEnsayos;
     }
 
-    public int getKey() {
-        return this.key;
+    public Date getFecha() {
+        return fecha;
+    }
+
+    public void setFecha(Date fecha) {
+        this.fecha = fecha;
+    }
+
+    public boolean isFoveal() {
+        return foveal;
+    }
+
+    public void setFoveal(boolean foveal) {
+        this.foveal = foveal;
+    }
+
+    public ArrayList<Resultado> getResultados() {
+        return resultados;
+    }
+
+    public void setResultados(ArrayList<Resultado> resultados) {
+        this.resultados = resultados;
     }
 }

@@ -4,7 +4,10 @@
  */
 package quino.clases.model;
 
+import java.beans.XMLDecoder;
 import java.beans.XMLEncoder;
+import java.io.BufferedInputStream;
+import java.io.BufferedOutputStream;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -15,19 +18,11 @@ import java.util.LinkedList;
 
 /**
  *
- * @author Davisito
+ * @author Felipao
  */
-public class Registro /*implements Serializable */{
+public class Registro {
 
     private LinkedList<Paciente> pacientes;
-
-    public LinkedList<Paciente> getPacientes() {
-        return pacientes;
-    }
-
-    public void setPacientes(LinkedList<Paciente> pacientes) {
-        this.pacientes = pacientes;
-    }
 
     public Registro() {
         pacientes = new LinkedList<Paciente>();
@@ -37,77 +32,39 @@ public class Registro /*implements Serializable */{
         this.pacientes = pacientes;
     }
 
-    public boolean exist_Paciente(Paciente paciente) {
+    public boolean existePaciente(Paciente paciente) {
         for (int i = 0; i < pacientes.size(); i++) {
-            if (paciente.getCI() == pacientes.get(i).getCI() || paciente.getNo_historia().matches(pacientes.get(i).getNo_historia())) {
+            if (paciente.getCi() == pacientes.get(i).getCi() || paciente.getHistoria().equals(pacientes.get(i).getHistoria())) {
                 return true;
             }
         }
         return false;
     }
 
-    public int Buscar(String historia) throws Exception {
+    public Paciente buscarPaciente(String historia) throws Exception {
         for (int i = 0; i < pacientes.size(); i++) {
-            if (pacientes.get(i).getNo_historia().matches(historia)) {
-                return i;
+            if (pacientes.get(i).getHistoria().equals(historia)) {
+                return pacientes.get(i);
             }
         }
-        throw new Exception("No existe ningún paciente con ese número de Historia Clínica");
+        throw new Exception("No existe ningún paciente con ese número de historia clínica");
     }
 
-    public void Nuevo(Paciente p) throws Exception {
-        if (exist_Paciente(p)) {
-            Exception error = new Exception("Ya existe un paciente con ese número de Carné o Historia Clínica");
-            throw error;
-        } else {
-            pacientes.add(p);
+    public boolean nuevoPaciente(Paciente p) {
+        if (existePaciente(p)) {
+            return false;
         }
+
+        pacientes.add(p);
+        return true;
     }
 
-    public Paciente paciente_Pos(int pos) {
-        return pacientes.get(pos);
-    }
-
-    public void Eliminar(int pos) {
-        pacientes.remove(pacientes.get(pos));
-    }
-
-    public void Eliminar(String historia) throws Exception {
+    public void eliminarXHistoria(String historia) throws Exception {
         try {
-            pacientes.remove(pacientes.get(Buscar(historia)));
+            pacientes.remove(buscarPaciente(historia));
         } catch (Exception e) {
-            throw e;
+            throw new Exception("Ha ocurrido un error eliminando al paciente.");
         }
-    }
-
-    public void Modificar(int pos, Paciente p) {
-        pacientes.get(pos).setCI(p.getCI());
-        pacientes.get(pos).setEdad(p.getEdad());
-        pacientes.get(pos).setEscolaridad(p.getEscolaridad());
-        pacientes.get(pos).setFicha(p.getFicha());
-        pacientes.get(pos).setNo_historia(p.getNo_historia());
-        pacientes.get(pos).setNombre(p.getNombre());
-        pacientes.get(pos).setSexo(p.getSexo());
-    }
-
-    public void Modificar(String historia, Paciente p) throws Exception {
-        int pos;
-        try {
-            pos = Buscar(historia);
-            pacientes.get(pos).setCI(p.getCI());
-            pacientes.get(pos).setEdad(p.getEdad());
-            pacientes.get(pos).setEscolaridad(p.getEscolaridad());
-            pacientes.get(pos).setFicha(p.getFicha());
-            pacientes.get(pos).setNo_historia(p.getNo_historia());
-            pacientes.get(pos).setNombre(p.getNombre());
-            pacientes.get(pos).setSexo(p.getSexo());
-        } catch (Exception e) {
-            throw e;
-        }
-    }
-
-    public int Size() {
-        return pacientes.size();
     }
 
     public void SaveObject(String path) throws IOException, ClassNotFoundException {
@@ -115,31 +72,52 @@ public class Registro /*implements Serializable */{
         out.writeObject(this);
         out.close();*/
 
-        try {
-            FileOutputStream xmlos = new FileOutputStream("registro.xml");
-            XMLEncoder encoder = new XMLEncoder(xmlos);
-            encoder.writeObject(this);
-            encoder.close();
-            xmlos.close();
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-        }
+        XMLEncoder e = new XMLEncoder(
+                new BufferedOutputStream(
+                new FileOutputStream(path)));
+
+        e.writeObject(this);
+        e.close();
     }
 
     public static Registro OpenObject(String path) throws IOException, ClassNotFoundException {
-        ObjectInputStream in = new ObjectInputStream(new FileInputStream(path));
+        /*ObjectInputStream in = new ObjectInputStream(new FileInputStream(path));
         Registro pacientes = (Registro) in.readObject();
         in.close();
+        return pacientes;*/
+
+        XMLDecoder d = new XMLDecoder(
+                new BufferedInputStream(
+                new FileInputStream(path)));
+        Registro result = (Registro) (d.readObject());
+        d.close();
+
+        return result;
+    }
+
+    public void importarRegistro(Registro nuevo) throws Exception {
+        String msg = "";
+        if (nuevo.getPacientes().size() == 0) {
+            throw new Exception("La base que trata de importar no tiene pacientes");
+        } else {
+            for (int i = 0; i < nuevo.getPacientes().size(); i++) {
+                if (!nuevoPaciente(nuevo.getPacientes().get(i))) {
+                    msg += nuevo.getPacientes().get(i).getHistoria() + ", ";
+                }
+            }
+        }
+
+        if (!msg.equals("")) {
+            throw new Exception("Los pacientes con historia clinica número: \n"
+                    + msg + "no se adicionaron debido a que su historia clinica está repetida");
+        }
+    }
+
+    public LinkedList<Paciente> getPacientes() {
         return pacientes;
     }
 
-    public void Importar(Registro base) throws Exception {
-        if (base.Size() == 0) {
-            throw new Exception("La base que trata de importar no tiene pacientes");
-        } else {
-            for (int i = 0; i < base.Size(); i++) {
-                this.Nuevo(base.paciente_Pos(i));
-            }
-        }
+    public void setPacientes(LinkedList<Paciente> pacientes) {
+        this.pacientes = pacientes;
     }
 }

@@ -200,7 +200,7 @@ public class PerifericaTimer extends AbstractQuinoTimer {
             double x = d.getWidth() / 2;
             double y = d.getHeight() / 2;
             p1 = new Punto(x, y);
-            angulo = ensayo.CalcularAngulo(p1, p2);
+            angulo = ensayo.getAngulo(p1, p2);
         }
 
         return angulo;

@@ -32,9 +32,9 @@ public class ModificarPacienteView extends javax.swing.JDialog {
         setLocationRelativeTo(null);
         this.parent = parent;
 
-        jTextField1.setText(parent.getPacienteActual().getNo_historia());
+        jTextField1.setText(parent.getPacienteActual().getHistoria());
         jTextField3.setText(parent.getPacienteActual().getNombre());
-        jTextField4.setText(String.valueOf(parent.getPacienteActual().getCI()));
+        jTextField4.setText(String.valueOf(parent.getPacienteActual().getCi()));
         jTextField5.setText(parent.getPacienteActual().getEscolaridad());
         jTextField2.setText(String.valueOf(parent.getPacienteActual().getEdad()));
         if (parent.getPacienteActual().getSexo().matches("Masculino")) {
@@ -222,8 +222,8 @@ public class ModificarPacienteView extends javax.swing.JDialog {
             parent.getPacienteActual().setEdad(edad1);
             parent.getPacienteActual().setSexo(sexo1);
             parent.getPacienteActual().setEscolaridad(esco);
-            parent.getPacienteActual().setNo_historia(hist);
-            parent.getPacienteActual().setCI(ci);
+            parent.getPacienteActual().setHistoria(hist);
+            parent.getPacienteActual().setCi(ci);
             parent.getPacienteActual().setFicha(fich);
 
             //Paciente paciente = new Paciente(nombre1, edad1, sexo1, esco,

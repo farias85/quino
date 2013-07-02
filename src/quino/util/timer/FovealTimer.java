@@ -242,7 +242,7 @@ public class FovealTimer extends AbstractQuinoTimer {
             double y = d.getHeight() / 2;
             p1 = new Punto(x, y);
 
-            return ensayo.CalcularAngulo(p1, p2);
+            return ensayo.getAngulo(p1, p2);
         }
 
         return 0;

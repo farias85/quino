@@ -180,17 +180,17 @@ public class AutoConfigView extends javax.swing.JDialog {
             control = jCheckBox1.isSelected();
             int cant_ensayos = Integer.parseInt(jTextField1.getText());
             parent.setConf(new ConfiguracionAutomatica(control));
-            parent.setPrueba(new Prueba(cant_ensayos, parent.getConfAvanzada()));
+            parent.setPrueba(new Prueba(cant_ensayos));
 
             if (fobeal) {
                 parent.getConf().setDensidad((parent.getConf().getDensidad() / 8));
-                parent.getPrueba().setFobeal(true);
+                parent.getPrueba().setFoveal(true);
                 FovealTestView t = new FovealTestView(parent, true, false);
                 t.setVisible(true);
                 setVisible(false);
                 dispose();
             } else {
-                parent.getPrueba().setFobeal(false);
+                parent.getPrueba().setFoveal(false);
                 PerifericaTestView test = new PerifericaTestView(parent, true, false);
                 test.setVisible(true);
                 setVisible(false);

@@ -28,8 +28,8 @@ public class AvanzadaConfigView extends javax.swing.JDialog {
         initComponents();
         setLocationRelativeTo(null);
 
-        jTextField1.setText(String.valueOf(parent.getConfAvanzada().getDuracion()));
-        jTextField2.setText(String.valueOf(parent.getConfAvanzada().getT_interestimulo()));
+        //jTextField1.setText(String.valueOf(parent.getConfAvanzada().getDuracion()));
+        //jTextField2.setText(String.valueOf(parent.getConfAvanzada().getT_interestimulo()));
     }
 
     /** This method is called from within the constructor to
@@ -102,9 +102,9 @@ public class AvanzadaConfigView extends javax.swing.JDialog {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel4)
                     .addComponent(jLabel5))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(296, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(79, Short.MAX_VALUE)
+                .addContainerGap(365, Short.MAX_VALUE)
                 .addComponent(jButton1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButton2)
@@ -125,8 +125,8 @@ public class AvanzadaConfigView extends javax.swing.JDialog {
                     .addComponent(jLabel5))
                 .addGap(42, 42, 42)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, 32, Short.MAX_VALUE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 32, Short.MAX_VALUE))
+                    .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, 49, Short.MAX_VALUE)
+                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 49, Short.MAX_VALUE))
                 .addContainerGap())
         );
 
@@ -140,8 +140,8 @@ public class AvanzadaConfigView extends javax.swing.JDialog {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-        try {
+        // TODO Guardar configuracion:
+        /*try {
             int t_ensayo = Integer.parseInt(jTextField1.getText());
             int t_interestimulo = Integer.parseInt(jTextField2.getText());
             parent.getConfAvanzada().setDuracion(t_ensayo);
@@ -152,7 +152,7 @@ public class AvanzadaConfigView extends javax.swing.JDialog {
             String msg = "Datos incorrectos, verifíquelos";
             ErrorDialog err = new ErrorDialog(parent, true, msg);
             err.setVisible(true);
-        }
+        }*/
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**

@@ -238,14 +238,21 @@ public class NuevoPacienteView extends javax.swing.JDialog {
             long ci;
             int age;
             ci = IsCi(CI.getText());
+
             try {
                 age = Integer.parseInt(edad.getText());
             } catch (Exception e) {
                 throw new Exception("La edad debe ser un número");
             }
-            Paciente p = new Paciente(nomb, age, sex, esc, hist, ci, fich);
-            parent.getRegistro().Nuevo(p);
+
+            Paciente p = new Paciente(nomb, age, sex, esc, hist, ci, fich, null, null);
+
+            if (!parent.getRegistro().nuevoPaciente(p)) {
+                throw new Exception("Ya existe un paciente con la misma historia clinica o carné de identidad");
+            }
+
             parent.getRegistro().SaveObject("datos.bin");
+
             parent.Modificar_Tabla();
             //parent.ActivarPractica();
             setVisible(false);

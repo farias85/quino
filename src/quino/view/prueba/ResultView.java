@@ -46,11 +46,11 @@ public class ResultView extends javax.swing.JDialog {
             if (prueba != null) {
                 resultados = prueba.getResultados();
                 t_ensayos1.setText(String.valueOf(resultados.size()));
-                t_errores1.setText(String.valueOf(prueba.cant_Errores()));
-                t_denpromedio1.setText(String.valueOf(prueba.densidad_Promedio()));
-                t_trespg1.setText(String.valueOf(prueba.tr_Promedio()));
-                t_densayo.setText(String.valueOf(parent.getConfAvanzada().getDuracion()));
-                t_interestimulo.setText(String.valueOf(parent.getConfAvanzada().getT_interestimulo()));
+                t_errores1.setText(String.valueOf(prueba.cantErrores()));
+                t_denpromedio1.setText(String.valueOf(prueba.densidadPromedio()));
+                t_trespg1.setText(String.valueOf(prueba.tiempoRespuestaPromedio()));
+                t_densayo.setText(String.valueOf(IConfiguracion.TIEMPO_DURACION));
+                t_interestimulo.setText(String.valueOf(IConfiguracion.TIEMPO_DURACION));
             } else {
                 throw new Exception("Al paciente seleccionado no se le ha realizado ninguna prueba");
             }
@@ -68,7 +68,7 @@ public class ResultView extends javax.swing.JDialog {
         DefaultMutableTreeNode root = new DefaultMutableTreeNode("Ensayos");
         DefaultTreeModel tm = new DefaultTreeModel(root);
         for (int i = 0; i < resultados.size(); i++) {
-            String nombre = "Ensayo" + " " + "#" + String.valueOf(resultados.get(i).getNum_ensayo());
+            String nombre = "Ensayo" + " " + "#" + String.valueOf(resultados.get(i).getNumEnsayo());
             DefaultMutableTreeNode nodo = new DefaultMutableTreeNode(nombre);
             tm.insertNodeInto(nodo, root, i);
         }
@@ -80,11 +80,11 @@ public class ResultView extends javax.swing.JDialog {
                 DefaultMutableTreeNode node = (DefaultMutableTreeNode) (e.getPath().getLastPathComponent());
                 int pos = node.getParent().getIndex(node);
                 int densidad = resultados.get(pos).getDensidad();
-                int cantidad = (resultados.get(pos).getCant_puntos() * 100) / densidad;
-                int velocidad = resultados.get(pos).getVelocidad_mov();
-                ImageIcon direccion = CambiarDireccion(resultados.get(pos).getDireccion(), resultados.get(pos).getP_estimulo());
-                String panel = PanelMov(resultados.get(pos).getP_estimulo());
-                int tiempo_res = resultados.get(pos).getT_respuesta();
+                int cantidad = (resultados.get(pos).getCantPuntos() * 100) / densidad;
+                int velocidad = resultados.get(pos).getVelocidadMovimiento();
+                ImageIcon direccion = CambiarDireccion(resultados.get(pos).getDireccion(), resultados.get(pos).getPanelEstimulo());
+                String panel = PanelMov(resultados.get(pos).getPanelEstimulo());
+                int tiempo_res = resultados.get(pos).getTiempoRespuesta();
                 ImageIcon resultado = CambiarError(resultados.get(pos).isError());
                 ImageIcon key = CambiarKey(resultados.get(pos).getKey(), resultados.get(pos).isControl());
                 String descripcion = resultados.get(pos).getDescripcion();
@@ -100,13 +100,14 @@ public class ResultView extends javax.swing.JDialog {
                 e_desc.setText(descripcion);
                 t_velocidad.setText(Double.toString(vel) + " " + "cm/ms");
                 t_angulo.setText(Double.toString(angulo) + "º");
+
                 if (tiempo_res == 0) {
                     t_trespuesta1.setText("N/R");
                 } else {
                     t_trespuesta1.setText(String.valueOf(tiempo_res));
                 }
                 t_resultado1.setIcon(resultado);
-                if (resultados.get(pos).getP_estimulo() == 0) {
+                if (resultados.get(pos).getPanelEstimulo() == 0) {
                     t_cantidad1.setText("-");
                     t_vmov1.setText(String.valueOf("-"));
                     t_velocidad.setText("-");
@@ -195,7 +196,7 @@ public class ResultView extends javax.swing.JDialog {
     }
 
     public String PanelMov(int panel) {
-        if (prueba.isFobeal()) {
+        if (prueba.isFoveal()) {
             switch (panel) {
                 case 1:
                     return "Superior Izquierdo";
@@ -230,7 +231,7 @@ public class ResultView extends javax.swing.JDialog {
 
     public void PintarPastel() {
         //int aciertos = prueba.getResultados().size()-prueba.cant_Errores();
-        int errores = prueba.cant_Errores();
+        int errores = prueba.cantErrores();
         int perrores = (errores * 100) / prueba.getResultados().size();
         int paciertos = 100 - perrores;
         String laciertos = String.valueOf(paciertos) + "%" + " " + "Aciertos";
@@ -807,6 +808,7 @@ public class ResultView extends javax.swing.JDialog {
                 ResultView dialog = new ResultView(new PrincipalView(), true, new Prueba());
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
 
+                    @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {
                         System.exit(0);
                     }

@@ -316,8 +316,8 @@ public class BuscarPacienteView extends javax.swing.JDialog {
             parent.getPacienteActual().setEdad(edad1);
             parent.getPacienteActual().setSexo(sexo1);
             parent.getPacienteActual().setEscolaridad(esco);
-            parent.getPacienteActual().setNo_historia(hist);
-            parent.getPacienteActual().setCI(ci);
+            parent.getPacienteActual().setHistoria(hist);
+            parent.getPacienteActual().setCi(ci);
             parent.getPacienteActual().setFicha(fich);
 
             //Paciente p = new Paciente(nombre1, edad1, sexo1, esco, hist, ci, fich);
@@ -352,13 +352,10 @@ public class BuscarPacienteView extends javax.swing.JDialog {
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
         try {
-            //Aqui si está permitido buscar por posicion en el registro
-            //ya q no puedo editar la clase registro por el error codigo 7
-            int pos = parent.getRegistro().Buscar(historia.getText());
-            parent.setPacienteActual(parent.getRegistro().paciente_Pos(pos));
+            parent.setPacienteActual(parent.getRegistro().buscarPaciente(historia.getText()));
 
             nombre.setText(parent.getPacienteActual().getNombre());
-            CI.setText(String.valueOf(parent.getPacienteActual().getCI()));
+            CI.setText(String.valueOf(parent.getPacienteActual().getCi()));
             escolaridad.setText(parent.getPacienteActual().getEscolaridad());
             edad.setText(String.valueOf(parent.getPacienteActual().getEdad()));
             jTextField5.setText(parent.getPacienteActual().getSexo());
@@ -431,8 +428,8 @@ public class BuscarPacienteView extends javax.swing.JDialog {
         // TODO add your handling code here:
         try {
             String hist = this.historia.getText();
-            parent.getRegistro().Eliminar(hist);
-            ErrorDialog err = new ErrorDialog(parent, true, "El Paciente ha sido eliminado satisfactoriamente");
+            parent.getRegistro().eliminarXHistoria(hist);
+            ErrorDialog err = new ErrorDialog(parent, true, "El paciente ha sido eliminado satisfactoriamente");
             err.setVisible(true);
             historia.setText("");
             nombre.setText("");
@@ -457,8 +454,7 @@ public class BuscarPacienteView extends javax.swing.JDialog {
     private void fichaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fichaActionPerformed
         // TODO add your handling code here:
         try {
-            int pos = parent.getRegistro().Buscar(historia.getText());
-            parent.setPacienteActual(parent.getRegistro().paciente_Pos(pos));
+            parent.setPacienteActual(parent.getRegistro().buscarPaciente(historia.getText()));
             FichaPacienteView fich = new FichaPacienteView(parent, true);
             fich.setVisible(true);
         } catch (Exception e) {

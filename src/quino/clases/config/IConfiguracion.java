@@ -12,7 +12,7 @@ package quino.clases.config;
 public interface IConfiguracion {
     public int CANT_ENSAYOS = 2;
     public int TIEMPO_DURACION = 3000;
-    public int TIEMPO_ESTIMULO = 1600;
+    //public int TIEMPO_ESTIMULO = 1600;
     
     public int PC_EN_ESPERA = 30;
     public int PC_PREPARADO = 40;

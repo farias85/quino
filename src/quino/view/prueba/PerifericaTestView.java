@@ -62,11 +62,11 @@ public class PerifericaTestView extends javax.swing.JDialog {
     public void GuardarPrueba(Prueba prueba) {
         int option;
         try {
-            if (parent.getPacienteActual().Prueba() != null) {
+            if (parent.getPacienteActual().getPeriferica() != null) {
                 option = JOptionPane.showConfirmDialog(this, "¿Desea sobreescribir la prueba realizada?", "Advertencia", JOptionPane.YES_NO_OPTION);
                 switch (option) {
                     case 0: {
-                        parent.getPacienteActual().setPrueba(prueba);
+                        parent.getPacienteActual().setPeriferica(prueba);
                         parent.getRegistro().SaveObject("datos.bin");
                         parent.Modificar_Tabla();
                     }
@@ -75,7 +75,7 @@ public class PerifericaTestView extends javax.swing.JDialog {
                         break;
                 }
             } else {
-                parent.getPacienteActual().setPrueba(prueba);
+                parent.getPacienteActual().setPeriferica(prueba);
                 parent.getRegistro().SaveObject("datos.bin");
                 parent.Modificar_Tabla();
             }

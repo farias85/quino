@@ -577,8 +577,8 @@ public class ManualConfigView extends javax.swing.JDialog {
                 parent.setConf(new Configuracion(tiempo_movimiento,
                         densidad / 8, cantidad, direccion, asincronico, control));
                 parent.getConf().setResto(resto);
-                parent.setPrueba(new Prueba(ensayos, parent.getConfAvanzada()));
-                parent.getPrueba().setFobeal(true);
+                parent.setPrueba(new Prueba(ensayos));
+                parent.getPrueba().setFoveal(true);
                 FovealTestView t = new FovealTestView(parent, true, false);
                 t.setVisible(true);
                 setVisible(false);
@@ -586,8 +586,8 @@ public class ManualConfigView extends javax.swing.JDialog {
             } else {
                 parent.setConf(new Configuracion(tiempo_movimiento, densidad,
                         cantidad, direccion, asincronico, control));
-                parent.setPrueba(new Prueba(ensayos, parent.getConfAvanzada()));
-                parent.getPrueba().setFobeal(false);
+                parent.setPrueba(new Prueba(ensayos));
+                parent.getPrueba().setFoveal(false);
                 PerifericaTestView t = new PerifericaTestView(parent, true, false);
                 t.setVisible(true);
                 setVisible(false);

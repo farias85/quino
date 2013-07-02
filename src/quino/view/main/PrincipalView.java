@@ -19,7 +19,6 @@ import quino.view.prueba.AutoConfigView;
 import quino.clases.model.Registro;
 import quino.clases.config.Configuracion;
 import quino.clases.config.ConfiguracionAutomatica;
-import quino.clases.config.ConfiguracionAvanzada;
 import quino.clases.config.IConfiguracion;
 import quino.clases.model.Prueba;
 import java.io.IOException;
@@ -47,7 +46,6 @@ public class PrincipalView extends javax.swing.JFrame {
 
     private Configuracion conf;
     private Prueba prueba;
-    private ConfiguracionAvanzada confAvanzada;
     private Registro registro;
     private Paciente pacienteActual;
 
@@ -60,15 +58,7 @@ public class PrincipalView extends javax.swing.JFrame {
     public void setConf(Configuracion conf) {
         this.conf = conf;
     }
-
-    public ConfiguracionAvanzada getConfAvanzada() {
-        return confAvanzada;
-    }
-
-    /*public void setConfAvanzada(ConfiguracionAvanzada confAvanzada) {
-        this.confAvanzada = confAvanzada;
-    }*/
-
+    
     public Paciente getPacienteActual() {
         return pacienteActual;
     }
@@ -99,7 +89,7 @@ public class PrincipalView extends javax.swing.JFrame {
             registro = new Registro();
             registro = Registro.OpenObject("datos.bin");
             Modificar_Tabla();
-            if (registro.Size() == 0) {
+            if (registro.getPacientes().size() == 0) {
                 b_busc.setEnabled(false);
                 b_del.setEnabled(false);
                 b_fich.setEnabled(false);
@@ -120,17 +110,8 @@ public class PrincipalView extends javax.swing.JFrame {
             }
         }
         
-        try {
-            //confAvanzada = ConfiguracionAvanzada.OpenObject("config.bin");
-            confAvanzada = new ConfiguracionAvanzada(IConfiguracion.TIEMPO_DURACION, IConfiguracion.TIEMPO_ESTIMULO);
-        } catch (Exception e) {
-            if (e instanceof IOException) {
-                confAvanzada = new ConfiguracionAvanzada(IConfiguracion.TIEMPO_DURACION, IConfiguracion.TIEMPO_ESTIMULO);
-            }
-        }
         jMenu5.add(jMenuItem1);
         jMenu5.add(jMenuItem2);
-        //jTable1.setComponentPopupMenu(menu);
         jTable1.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
 
             public void valueChanged(ListSelectionEvent e) {
@@ -161,7 +142,7 @@ public class PrincipalView extends javax.swing.JFrame {
                     jMenuItem16.setEnabled(true);
                     jMenuItem17.setEnabled(true);
                     int sel_paciente = lsm.getMinSelectionIndex();
-                    pacienteActual = registro.paciente_Pos(sel_paciente);
+                    pacienteActual = registro.getPacientes().get(sel_paciente);
                     jTable1.setComponentPopupMenu(menu);
                 }
             }
@@ -202,21 +183,26 @@ public class PrincipalView extends javax.swing.JFrame {
         tm.addColumn("Edad");
         tm.addColumn("Escolaridad");
         tm.addColumn("Sexo");
-        for (int i = 0; i < registro.Size(); i++) {
-            Object[] fila = {registro.paciente_Pos(i).getNo_historia(), registro.paciente_Pos(i).getNombre(),
-                registro.paciente_Pos(i).getCI(), registro.paciente_Pos(i).getEdad(),
-                registro.paciente_Pos(i).getEscolaridad(), registro.paciente_Pos(i).getSexo()};
+        
+        for (int i = 0; i < registro.getPacientes().size(); i++) {
+            Object[] fila = {registro.getPacientes().get(i).getHistoria(), registro.getPacientes().get(i).getNombre(),
+                registro.getPacientes().get(i).getCi(), registro.getPacientes().get(i).getEdad(),
+                registro.getPacientes().get(i).getEscolaridad(), registro.getPacientes().get(i).getSexo()};
             tm.addRow(fila);
         }
-        if (registro.Size() == 0) {
+
+        if (registro.getPacientes().size() == 0) {
             b_busc.setEnabled(false);
         } else {
             b_busc.setEnabled(true);
         }
+
         jTable1.setModel(tm);
         jTable1.getTableHeader().setFont(new java.awt.Font("Tahoma", 1, 12));
+
         //jTable1.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         //jTable1.setCellSelectionEnabled(false);
+        
         jTable1.getColumnModel().getColumn(0).setPreferredWidth(40);
         jTable1.getColumnModel().getColumn(1).setPreferredWidth(250);
         jTable1.getColumnModel().getColumn(2).setPreferredWidth(70);
@@ -226,7 +212,7 @@ public class PrincipalView extends javax.swing.JFrame {
     }
 
     public boolean itemSelected() {
-        for (int i = 0; i < registro.Size(); i++) {
+        for (int i = 0; i < registro.getPacientes().size(); i++) {
             if (jTable1.isRowSelected(i)) {
                 return true;
             }
@@ -674,10 +660,10 @@ public class PrincipalView extends javax.swing.JFrame {
     private void jMenuItem8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem8ActionPerformed
         // TODO add your handling code here:
         try {
-            String hist = pacienteActual.getNo_historia();
-            registro.Eliminar(hist);
-            /*ErrorDialog err = new ErrorDialog(this, true, "El Paciente ha sido eliminado satisfactoriamente");
-            err.setVisible(true);*/
+            String hist = pacienteActual.getHistoria();
+            registro.eliminarXHistoria(hist);
+            ErrorDialog err = new ErrorDialog(this, true, "El paciente ha sido eliminado satisfactoriamente");
+            err.setVisible(true);
             Modificar_Tabla();
             registro.SaveObject("datos.bin");
         } catch (Exception e) {
@@ -705,7 +691,7 @@ public class PrincipalView extends javax.swing.JFrame {
 
     private void jMenuItem9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem9ActionPerformed
         // TODO add your handling code here:
-        Prueba p = pacienteActual.Prueba();
+        Prueba p = pacienteActual.getPeriferica();
         if (p != null) {
             ResultView resultado = new ResultView(this, true, p);
             resultado.setVisible(true);
@@ -727,11 +713,13 @@ public class PrincipalView extends javax.swing.JFrame {
             jFileChooser1.showSaveDialog(this);
             File selectPlaced = jFileChooser1.getSelectedFile();
             String extension = selectPlaced.getPath().substring(selectPlaced.getPath().length() - ".tls".length(), selectPlaced.getPath().length());
+
             if (extension.equals(".tls")) {
                 registro.SaveObject(selectPlaced.getPath());
             } else {
                 registro.SaveObject(selectPlaced.getPath() + "." + filter.getExtensions()[0]);
             }
+
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(PrincipalView.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IOException ex) {
@@ -756,7 +744,7 @@ public class PrincipalView extends javax.swing.JFrame {
             File selectedFile = jFileChooser1.getSelectedFile();
             try {
                 Registro base = Registro.OpenObject(selectedFile.getPath());
-                registro.Importar(base);
+                registro.importarRegistro(base);
                 Modificar_Tabla();
                 registro.SaveObject("datos.bin");
             } catch (Exception ex) {
@@ -805,8 +793,8 @@ public class PrincipalView extends javax.swing.JFrame {
 
         if (respuesta == 1) {
             try {
-                String hist = pacienteActual.getNo_historia();
-                registro.Eliminar(hist);
+                String hist = pacienteActual.getHistoria();
+                registro.eliminarXHistoria(hist);
 
                 Modificar_Tabla();
                 registro.SaveObject("datos.bin");
@@ -823,7 +811,7 @@ public class PrincipalView extends javax.swing.JFrame {
     private void jMenuItem14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem14ActionPerformed
         // TODO add your handling code here:
         try {
-            Prueba p = pacienteActual.getFobeal();
+            Prueba p = pacienteActual.getFoveal();
             ResultView resultado = new ResultView(this, true, p);
             resultado.setVisible(true);
         } catch (Exception e) {
@@ -847,17 +835,15 @@ public class PrincipalView extends javax.swing.JFrame {
     private void jMenuItem18ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem18ActionPerformed
         // TODO add your handling code here:
         conf = new ConfiguracionAutomatica(false);
-        confAvanzada = new ConfiguracionAvanzada(IConfiguracion.TIEMPO_DURACION, IConfiguracion.TIEMPO_ESTIMULO);
-        prueba = new Prueba(IConfiguracion.CANT_ENSAYOS, confAvanzada);
+        prueba = new Prueba(IConfiguracion.CANT_ENSAYOS);
         FovealTestView t = new FovealTestView(this, true, true);
         t.setVisible(true);
     }//GEN-LAST:event_jMenuItem18ActionPerformed
 
     private void jMenuItem19ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem19ActionPerformed
         // TODO add your handling code here:
-         conf = new ConfiguracionAutomatica(false);
-        confAvanzada = new ConfiguracionAvanzada(IConfiguracion.TIEMPO_DURACION, IConfiguracion.TIEMPO_ESTIMULO);
-        prueba = new Prueba(IConfiguracion.CANT_ENSAYOS, confAvanzada);
+        conf = new ConfiguracionAutomatica(false);
+        prueba = new Prueba(IConfiguracion.CANT_ENSAYOS);
         PerifericaTestView t = new PerifericaTestView(this, true, true);
         t.setVisible(true);
     }//GEN-LAST:event_jMenuItem19ActionPerformed
@@ -870,7 +856,7 @@ public class PrincipalView extends javax.swing.JFrame {
 
     private void jMenuItem17ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem17ActionPerformed
         // TODO add your handling code here:
-         AutoConfigView c = new AutoConfigView(this, true);
+        AutoConfigView c = new AutoConfigView(this, true);
         c.setVisible(true);
     }//GEN-LAST:event_jMenuItem17ActionPerformed
 

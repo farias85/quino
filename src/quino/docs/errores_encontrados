@@ -30,3 +30,7 @@ Errores:
         quedaba registrado como fallido.
      8- Cuando se realiza una prueba foveal esta sobreescribe a la anterior sin
         preguntar confirmación
+     9- Cuando se quire mostrar una prueba de un paciente q no tiene pruebas
+        se muestra la pantalla de resultado sin resultados. No debería abrirse
+        esta pantalla sino mostrar un mensaje de q no existen pruebas de tal
+        tipo

@@ -14,6 +14,7 @@ import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import quino.util.QuinoTools;
 import quino.view.prueba.PerifericaTestView;
 import quino.view.prueba.ResultView;
 
@@ -140,9 +141,9 @@ public class PerifericaTimer extends AbstractQuinoTimer {
 
         if (cancelarTarea()) {
             if (!practica) {
-                test.GuardarPrueba(prueba);
+                QuinoTools.salvarPruebaEnRegistro(test.getParentView(), test, prueba);
             }
-            ResultView res = new ResultView(test.getParet(), true, prueba);
+            ResultView res = new ResultView(test.getParentView(), true, prueba);
             test.setVisible(false);
             res.setVisible(true);
         }

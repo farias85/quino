@@ -4,7 +4,6 @@
  */
 package quino.clases.model;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 
 

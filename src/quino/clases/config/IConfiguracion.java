@@ -19,4 +19,7 @@ public interface IConfiguracion {
     public int PC_ESPERANDO_RESPUESTA = 30;
 
     public String RESOURCES_LOCATION = "/quino/view/main/icons/";
+
+    public String REGISTRO_FILE_NAME = "quino.config/registro.xml";
+    public String CONFIG_FILE_NAME = "quino.config/configuracion.xml";
 }

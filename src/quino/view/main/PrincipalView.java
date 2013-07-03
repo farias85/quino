@@ -35,6 +35,7 @@ import quino.view.prueba.PerifericaTestView;
 import java.io.File;
 import javax.swing.filechooser.*;
 import javax.swing.JFileChooser;
+import quino.util.ScreenSplash;
 import quino.view.prueba.FovealTestView;
 
 /**
@@ -58,7 +59,7 @@ public class PrincipalView extends javax.swing.JFrame {
     public void setConf(Configuracion conf) {
         this.conf = conf;
     }
-    
+
     public Paciente getPacienteActual() {
         return pacienteActual;
     }
@@ -87,7 +88,8 @@ public class PrincipalView extends javax.swing.JFrame {
         jMenuItem17.setEnabled(false);
         try {
             registro = new Registro();
-            registro = Registro.OpenObject("datos.bin");
+            registro = Registro.cargarRegistro(IConfiguracion.REGISTRO_FILE_NAME);
+
             Modificar_Tabla();
             if (registro.getPacientes().size() == 0) {
                 b_busc.setEnabled(false);
@@ -109,7 +111,7 @@ public class PrincipalView extends javax.swing.JFrame {
                 registro = new Registro();
             }
         }
-        
+
         jMenu5.add(jMenuItem1);
         jMenu5.add(jMenuItem2);
         jTable1.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
@@ -183,7 +185,7 @@ public class PrincipalView extends javax.swing.JFrame {
         tm.addColumn("Edad");
         tm.addColumn("Escolaridad");
         tm.addColumn("Sexo");
-        
+
         for (int i = 0; i < registro.getPacientes().size(); i++) {
             Object[] fila = {registro.getPacientes().get(i).getHistoria(), registro.getPacientes().get(i).getNombre(),
                 registro.getPacientes().get(i).getCi(), registro.getPacientes().get(i).getEdad(),
@@ -202,7 +204,7 @@ public class PrincipalView extends javax.swing.JFrame {
 
         //jTable1.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         //jTable1.setCellSelectionEnabled(false);
-        
+
         jTable1.getColumnModel().getColumn(0).setPreferredWidth(40);
         jTable1.getColumnModel().getColumn(1).setPreferredWidth(250);
         jTable1.getColumnModel().getColumn(2).setPreferredWidth(70);
@@ -665,7 +667,7 @@ public class PrincipalView extends javax.swing.JFrame {
             ErrorDialog err = new ErrorDialog(this, true, "El paciente ha sido eliminado satisfactoriamente");
             err.setVisible(true);
             Modificar_Tabla();
-            registro.SaveObject("datos.bin");
+            registro.salvarRegistro(IConfiguracion.REGISTRO_FILE_NAME);
         } catch (Exception e) {
             ErrorDialog err = new ErrorDialog(this, true, e.getMessage());
             err.setVisible(true);
@@ -697,7 +699,7 @@ public class PrincipalView extends javax.swing.JFrame {
             resultado.setVisible(true);
         } else {
             ErrorDialog err = new ErrorDialog(this, true,
-                    "A este paciente no se le ha realizdo este tipo de prueba");
+                    "A este paciente no se le ha realizado este tipo de prueba");
             err.setVisible(true);
         }
     }//GEN-LAST:event_jMenuItem9ActionPerformed
@@ -706,7 +708,7 @@ public class PrincipalView extends javax.swing.JFrame {
         // TODO add your handling code here:
         try {
 
-            FileNameExtensionFilter filter = new FileNameExtensionFilter("Archivos de base (*.tls)", "tls");
+            FileNameExtensionFilter filter = new FileNameExtensionFilter("Archivos de base de datos(*.tls)", "tls");
             jFileChooser1.addChoosableFileFilter(filter);
             jFileChooser1.setDialogTitle("Exportar Base");
             jFileChooser1.setDialogType(JFileChooser.SAVE_DIALOG);
@@ -715,9 +717,9 @@ public class PrincipalView extends javax.swing.JFrame {
             String extension = selectPlaced.getPath().substring(selectPlaced.getPath().length() - ".tls".length(), selectPlaced.getPath().length());
 
             if (extension.equals(".tls")) {
-                registro.SaveObject(selectPlaced.getPath());
+                registro.salvarRegistro(selectPlaced.getPath());
             } else {
-                registro.SaveObject(selectPlaced.getPath() + "." + filter.getExtensions()[0]);
+                registro.salvarRegistro(selectPlaced.getPath() + "." + filter.getExtensions()[0]);
             }
 
         } catch (ClassNotFoundException ex) {
@@ -734,7 +736,7 @@ public class PrincipalView extends javax.swing.JFrame {
 
     private void jMenuItem11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem11ActionPerformed
         // TODO add your handling code here:
-        FileNameExtensionFilter filter = new FileNameExtensionFilter("Archivos de base (*.tls)", "tls");
+        FileNameExtensionFilter filter = new FileNameExtensionFilter("Archivos de base de datos (*.tls)", "tls");
         jFileChooser1.addChoosableFileFilter(filter);
         jFileChooser1.setDialogTitle("Importar Base");
         jFileChooser1.setDialogType(JFileChooser.OPEN_DIALOG);
@@ -743,10 +745,10 @@ public class PrincipalView extends javax.swing.JFrame {
         if (status == JFileChooser.APPROVE_OPTION) {
             File selectedFile = jFileChooser1.getSelectedFile();
             try {
-                Registro base = Registro.OpenObject(selectedFile.getPath());
+                Registro base = Registro.cargarRegistro(selectedFile.getPath());
                 registro.importarRegistro(base);
                 Modificar_Tabla();
-                registro.SaveObject("datos.bin");
+                registro.salvarRegistro(IConfiguracion.REGISTRO_FILE_NAME);
             } catch (Exception ex) {
                 ErrorDialog e = new ErrorDialog(this, true, ex.getMessage());
                 e.setVisible(true);
@@ -797,7 +799,7 @@ public class PrincipalView extends javax.swing.JFrame {
                 registro.eliminarXHistoria(hist);
 
                 Modificar_Tabla();
-                registro.SaveObject("datos.bin");
+                registro.salvarRegistro(IConfiguracion.REGISTRO_FILE_NAME);
             } catch (Exception e) {
                 ErrorDialog err = new ErrorDialog(this, true, e.getMessage());
                 err.setVisible(true);
@@ -810,12 +812,13 @@ public class PrincipalView extends javax.swing.JFrame {
 
     private void jMenuItem14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem14ActionPerformed
         // TODO add your handling code here:
-        try {
-            Prueba p = pacienteActual.getFoveal();
+        Prueba p = pacienteActual.getFoveal();
+        if (p != null) {
             ResultView resultado = new ResultView(this, true, p);
             resultado.setVisible(true);
-        } catch (Exception e) {
-            ErrorDialog err = new ErrorDialog(this, true, e.getMessage());
+        } else {
+            ErrorDialog err = new ErrorDialog(this, true,
+                    "A este paciente no se le ha realizdo este tipo de prueba");
             err.setVisible(true);
         }
     }//GEN-LAST:event_jMenuItem14ActionPerformed
@@ -876,6 +879,9 @@ public class PrincipalView extends javax.swing.JFrame {
      * @param args the command line arguments
      */
     public static void main(String args[]) {
+
+        new ScreenSplash().animar();
+
         java.awt.EventQueue.invokeLater(new Runnable() {
 
             public void run() {

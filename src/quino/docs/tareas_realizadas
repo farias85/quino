@@ -24,3 +24,14 @@ Tareas Realizadas
      7- *La sobreescritura de las pruebas foveal y periferica (ver donde poner
         el metodo GuardarPrueba()) /*no terminado aun, en curso...*/
      8- Nuevo flujo de trabajo para las pruebas perifericas
+     9- Mejora de la interfaz visual, añadiendo íconos y reestructurando el
+        la barra de menú
+     10- Solución al error #6, guardando la configuración y el registro en
+        formato xml, con XMLEncoder y XMLDecoder. Se genera un archivo xml
+        estandar lo q permite q aunque se realicen cambios en las clases q
+        tienen relación con registro se puedan leer los datos escritos en xml.
+        registro.
+     11- Se arregla lo de la carga de la base de datos, para aquellos pacientes
+        q tienen repetido el numero de historia clinica o el carnet de identidad.
+        La carga sigue su curso normalmente, sin adicionar aquellos q estan
+        repetidos, pero sin el cambio brusco de una excepcion.

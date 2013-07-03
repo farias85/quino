@@ -10,6 +10,7 @@
  */
 package quino.view.paciente;
 
+import quino.clases.config.IConfiguracion;
 import quino.clases.model.Paciente;
 import quino.view.main.ErrorDialog;
 import quino.view.main.PrincipalView;
@@ -225,14 +226,10 @@ public class ModificarPacienteView extends javax.swing.JDialog {
             parent.getPacienteActual().setHistoria(hist);
             parent.getPacienteActual().setCi(ci);
             parent.getPacienteActual().setFicha(fich);
-
-            //Paciente paciente = new Paciente(nombre1, edad1, sexo1, esco,
-            //        hist, ci, fich);
-            //parent.setPacienteActual(paciente);
-            //parent.getRegistro().Modificar(pos, p);
             
             parent.Modificar_Tabla();
-            parent.getRegistro().SaveObject("datos.bin");
+            parent.getRegistro().salvarRegistro(IConfiguracion.REGISTRO_FILE_NAME);
+
             setVisible(false);
             dispose();
         } catch (Exception e) {

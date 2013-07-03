@@ -19,7 +19,7 @@
      <void property="foveal">
       <object class="quino.clases.model.Prueba">
        <void property="cantEnsayos">
-        <int>3</int>
+        <int>2</int>
        </void>
        <void property="foveal">
         <boolean>true</boolean>
@@ -28,49 +28,8 @@
         <object class="java.util.ArrayList">
          <void method="add">
           <object class="quino.clases.model.Resultado">
-           <void property="cantPuntos">
-            <int>163</int>
-           </void>
-           <void property="densidad">
-            <int>237</int>
-           </void>
-           <void property="direccion">
-            <int>3</int>
-           </void>
-           <void property="velocidad">
-            <double>0.001</double>
-           </void>
-           <void property="velocidadMovimiento">
-            <int>189</int>
-           </void>
-          </object>
-         </void>
-         <void method="add">
-          <object class="quino.clases.model.Resultado">
-           <void property="cantPuntos">
-            <int>110</int>
-           </void>
-           <void property="densidad">
-            <int>175</int>
-           </void>
-           <void property="direccion">
-            <int>8</int>
-           </void>
-           <void property="numEnsayo">
-            <int>1</int>
-           </void>
-           <void property="velocidad">
-            <double>0.001</double>
-           </void>
-           <void property="velocidadMovimiento">
-            <int>174</int>
-           </void>
-          </object>
-         </void>
-         <void method="add">
-          <object class="quino.clases.model.Resultado">
            <void property="angulo">
-            <double>20.14</double>
+            <double>18.68</double>
            </void>
            <void property="cantPuntos">
             <int>3</int>
@@ -79,25 +38,44 @@
             <int>12</int>
            </void>
            <void property="direccion">
-            <int>3</int>
+            <int>2</int>
            </void>
            <void property="key">
             <int>32</int>
            </void>
-           <void property="numEnsayo">
-            <int>2</int>
-           </void>
            <void property="panelEstimulo">
-            <int>1</int>
+            <int>6</int>
            </void>
            <void property="tiempoRespuesta">
-            <int>512</int>
+            <int>419</int>
+           </void>
+           <void property="velocidad">
+            <double>0.002</double>
+           </void>
+           <void property="velocidadMovimiento">
+            <int>54</int>
+           </void>
+          </object>
+         </void>
+         <void method="add">
+          <object class="quino.clases.model.Resultado">
+           <void property="cantPuntos">
+            <int>106</int>
+           </void>
+           <void property="densidad">
+            <int>137</int>
+           </void>
+           <void property="direccion">
+            <int>3</int>
+           </void>
+           <void property="numEnsayo">
+            <int>1</int>
            </void>
            <void property="velocidad">
             <double>0.001</double>
            </void>
            <void property="velocidadMovimiento">
-            <int>184</int>
+            <int>124</int>
            </void>
           </object>
          </void>
@@ -174,6 +152,31 @@
         </object>
        </void>
       </object>
+     </void>
+     <void property="sexo">
+      <string>Masculino</string>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="quino.clases.model.Paciente">
+     <void property="ci">
+      <long>85052200307</long>
+     </void>
+     <void property="edad">
+      <int>3</int>
+     </void>
+     <void property="escolaridad">
+      <string>3</string>
+     </void>
+     <void property="ficha">
+      <string>sd</string>
+     </void>
+     <void property="historia">
+      <string>34</string>
+     </void>
+     <void property="nombre">
+      <string>erwe</string>
      </void>
      <void property="sexo">
       <string>Masculino</string>

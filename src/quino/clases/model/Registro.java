@@ -67,11 +67,8 @@ public class Registro {
         }
     }
 
-    public void SaveObject(String path) throws IOException, ClassNotFoundException {
-        /*ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(path));
-        out.writeObject(this);
-        out.close();*/
-
+    public void salvarRegistro(String path) throws IOException, ClassNotFoundException {
+        
         XMLEncoder e = new XMLEncoder(
                 new BufferedOutputStream(
                 new FileOutputStream(path)));
@@ -80,12 +77,8 @@ public class Registro {
         e.close();
     }
 
-    public static Registro OpenObject(String path) throws IOException, ClassNotFoundException {
-        /*ObjectInputStream in = new ObjectInputStream(new FileInputStream(path));
-        Registro pacientes = (Registro) in.readObject();
-        in.close();
-        return pacientes;*/
-
+    public static Registro cargarRegistro(String path) throws IOException, ClassNotFoundException {
+        
         XMLDecoder d = new XMLDecoder(
                 new BufferedInputStream(
                 new FileInputStream(path)));
@@ -108,8 +101,8 @@ public class Registro {
         }
 
         if (!msg.equals("")) {
-            throw new Exception("Los pacientes con historia clinica número: \n"
-                    + msg + "no se adicionaron debido a que su historia clinica está repetida");
+            throw new Exception("Los pacientes de hc número: \n"
+                    + msg + "no se adicionaron debido a que su hc está repetida");
         }
     }
 

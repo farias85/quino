@@ -14,12 +14,9 @@ import quino.view.main.*;
 import quino.util.QuinoJPanel;
 import quino.util.CentralJPanel;
 import quino.util.timer.PerifericaTimer;
-import quino.clases.config.Configuracion;
-import quino.clases.model.Prueba;
 import java.awt.Color;
 import java.util.Timer;
 import java.util.TimerTask;
-import javax.swing.JOptionPane;
 
 /**
  *
@@ -55,34 +52,8 @@ public class PerifericaTestView extends javax.swing.JDialog {
         }
     }
 
-    public PrincipalView getParet() {
+    public PrincipalView getParentView() {
         return parent;
-    }
-
-    public void GuardarPrueba(Prueba prueba) {
-        int option;
-        try {
-            if (parent.getPacienteActual().getPeriferica() != null) {
-                option = JOptionPane.showConfirmDialog(this, "¿Desea sobreescribir la prueba realizada?", "Advertencia", JOptionPane.YES_NO_OPTION);
-                switch (option) {
-                    case 0: {
-                        parent.getPacienteActual().setPeriferica(prueba);
-                        parent.getRegistro().SaveObject("datos.bin");
-                        parent.Modificar_Tabla();
-                    }
-                    break;
-                    case 1:
-                        break;
-                }
-            } else {
-                parent.getPacienteActual().setPeriferica(prueba);
-                parent.getRegistro().SaveObject("datos.bin");
-                parent.Modificar_Tabla();
-            }
-        } catch (Exception e) {
-            ErrorDialog err = new ErrorDialog(parent, true, e.getMessage());
-            err.setVisible(true);
-        }
     }
 
     /** This method is called from within the constructor to

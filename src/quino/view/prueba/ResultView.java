@@ -15,6 +15,7 @@ import quino.util.Grafica;
 import quino.clases.model.Prueba;
 import quino.clases.model.Resultado;
 import java.util.ArrayList;
+import java.util.List;
 import javax.swing.ImageIcon;
 import javax.swing.event.TreeSelectionEvent;
 import javax.swing.event.TreeSelectionListener;
@@ -22,6 +23,7 @@ import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.DefaultTreeModel;
 import javax.swing.tree.TreeSelectionModel;
 import quino.clases.config.IConfiguracion;
+import quino.util.QuinoTools;
 import quino.view.main.ErrorDialog;
 import quino.view.main.PrincipalView;
 
@@ -32,29 +34,30 @@ import quino.view.main.PrincipalView;
 public class ResultView extends javax.swing.JDialog {
 
     PrincipalView parent;
-    Prueba prueba;
-    private ArrayList<Resultado> resultados;
 
-    /** Creates new form ResultView */
-    public ResultView(PrincipalView parent, boolean modal, Prueba prueba) {
+    public ResultView() {
+    }
+
+    public ResultView(PrincipalView parent, boolean modal) {
         super(parent, modal);
+
+        this.parent = parent;
         initComponents();
         setLocationRelativeTo(null);
-        this.prueba = prueba;
-        this.parent = parent;
+
         try {
-            if (prueba != null) {
-                resultados = prueba.getResultados();
+            List<Resultado> resultados = parent.getPrueba().getResultados();
+            if (parent.getPrueba() != null) {
                 t_ensayos1.setText(String.valueOf(resultados.size()));
-                t_errores1.setText(String.valueOf(prueba.cantErrores()));
-                t_denpromedio1.setText(String.valueOf(prueba.densidadPromedio()));
-                t_trespg1.setText(String.valueOf(prueba.tiempoRespuestaPromedio()));
+                t_errores1.setText(String.valueOf(parent.getPrueba().cantErrores()));
+                t_denpromedio1.setText(String.valueOf(parent.getPrueba().densidadPromedio()));
+                t_trespg1.setText(String.valueOf(parent.getPrueba().tiempoRespuestaPromedio()));
                 t_densayo.setText(String.valueOf(IConfiguracion.TIEMPO_DURACION));
                 t_interestimulo.setText(String.valueOf(IConfiguracion.TIEMPO_DURACION));
             } else {
                 throw new Exception("Al paciente seleccionado no se le ha realizado ninguna prueba");
             }
-            this.Arbol(resultados);
+            this.Arbol((ArrayList<Resultado>) resultados);
             PintarPastel();
         } catch (Exception e) {
             ErrorDialog err = new ErrorDialog(parent, true, e.getMessage());
@@ -83,7 +86,7 @@ public class ResultView extends javax.swing.JDialog {
                 int cantidad = (resultados.get(pos).getCantPuntos() * 100) / densidad;
                 int velocidad = resultados.get(pos).getVelocidadMovimiento();
                 ImageIcon direccion = CambiarDireccion(resultados.get(pos).getDireccion(), resultados.get(pos).getPanelEstimulo());
-                String panel = PanelMov(resultados.get(pos).getPanelEstimulo());
+                String panel = QuinoTools.getPanelMovimiento(parent.getPrueba(), resultados.get(pos).getPanelEstimulo());
                 int tiempo_res = resultados.get(pos).getTiempoRespuesta();
                 ImageIcon resultado = CambiarError(resultados.get(pos).isError());
                 ImageIcon key = CambiarKey(resultados.get(pos).getKey(), resultados.get(pos).isControl());
@@ -195,44 +198,10 @@ public class ResultView extends javax.swing.JDialog {
         }
     }
 
-    public String PanelMov(int panel) {
-        if (prueba.isFoveal()) {
-            switch (panel) {
-                case 1:
-                    return "Superior Izquierdo";
-                case 2:
-                    return "Superior";
-                case 3:
-                    return "Superior Derecho";
-                case 4:
-                    return "Derecho";
-                case 5:
-                    return "Izquierdo";
-                case 6:
-                    return "Inferior Izquierdo";
-                case 7:
-                    return "Inferior";
-                case 8:
-                    return "Inferior Derecho";
-                default:
-                    return "Ninguno";
-            }
-        } else {
-            switch (panel) {
-                case 1:
-                    return "Panel Izquierdo";
-                case 2:
-                    return "Panel Derecho";
-                default:
-                    return "Ninguno";
-            }
-        }
-    }
-
     public void PintarPastel() {
         //int aciertos = prueba.getResultados().size()-prueba.cant_Errores();
-        int errores = prueba.cantErrores();
-        int perrores = (errores * 100) / prueba.getResultados().size();
+        int errores = parent.getPrueba().cantErrores();
+        int perrores = (errores * 100) / parent.getPrueba().getResultados().size();
         int paciertos = 100 - perrores;
         String laciertos = String.valueOf(paciertos) + "%" + " " + "Aciertos";
         String lerrores = String.valueOf(perrores) + "%" + " " + "Errores";
@@ -805,7 +774,7 @@ public class ResultView extends javax.swing.JDialog {
         java.awt.EventQueue.invokeLater(new Runnable() {
 
             public void run() {
-                ResultView dialog = new ResultView(new PrincipalView(), true, new Prueba());
+                ResultView dialog = new ResultView();
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
 
                     @Override

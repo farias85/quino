@@ -693,9 +693,9 @@ public class PrincipalView extends javax.swing.JFrame {
 
     private void jMenuItem9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem9ActionPerformed
         // TODO add your handling code here:
-        Prueba p = pacienteActual.getPeriferica();
-        if (p != null) {
-            ResultView resultado = new ResultView(this, true, p);
+        prueba = pacienteActual.getPeriferica();
+        if (prueba != null) {
+            ResultView resultado = new ResultView(this, true);
             resultado.setVisible(true);
         } else {
             ErrorDialog err = new ErrorDialog(this, true,
@@ -812,9 +812,9 @@ public class PrincipalView extends javax.swing.JFrame {
 
     private void jMenuItem14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem14ActionPerformed
         // TODO add your handling code here:
-        Prueba p = pacienteActual.getFoveal();
-        if (p != null) {
-            ResultView resultado = new ResultView(this, true, p);
+        prueba = pacienteActual.getFoveal();
+        if (prueba != null) {
+            ResultView resultado = new ResultView(this, true);
             resultado.setVisible(true);
         } else {
             ErrorDialog err = new ErrorDialog(this, true,

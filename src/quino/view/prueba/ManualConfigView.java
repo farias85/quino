@@ -572,11 +572,13 @@ public class ManualConfigView extends javax.swing.JDialog {
             densidad = Integer.parseInt(jTextField2.getText());
             ensayos = Integer.parseInt(jTextField1.getText());
             if (fobeal) {
-                resto = densidad % 8;
+                /*resto = densidad % 8;
                 cantidad = ((densidad / 8) * porciento) / 100;
                 parent.setConf(new Configuracion(tiempo_movimiento,
                         densidad / 8, cantidad, direccion, asincronico, control));
-                parent.getConf().setResto(resto);
+                parent.getConf().setResto(resto);*/
+                parent.setConf(new Configuracion(tiempo_movimiento, densidad,
+                        cantidad, direccion, asincronico, control));
                 parent.setPrueba(new Prueba(ensayos));
                 parent.getPrueba().setFoveal(true);
                 FovealTestView t = new FovealTestView(parent, true, false);

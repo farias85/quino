@@ -10,8 +10,9 @@
  */
 package quino.view.paciente;
 
-import quino.clases.config.IConfiguracion;
+import quino.clases.config.IConfigApp;
 import quino.clases.model.Paciente;
+import quino.util.QuinoTools;
 import quino.view.main.ErrorDialog;
 import quino.view.main.PrincipalView;
 
@@ -62,6 +63,8 @@ public class NuevoPacienteView extends javax.swing.JDialog {
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         escolaridad = new javax.swing.JTextField();
+        escuelaEdit = new javax.swing.JTextField();
+        jLabel9 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Nuevo Pciente");
@@ -108,8 +111,8 @@ public class NuevoPacienteView extends javax.swing.JDialog {
         jLabel5.setFont(new java.awt.Font("Tahoma", 1, 12));
         jLabel5.setText("Sexo");
 
-        sexo.setFont(new java.awt.Font("Tahoma", 1, 12));
-        sexo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Masculino", "Femenino", " " }));
+        sexo.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        sexo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Masculino", "Femenino" }));
 
         jLabel6.setFont(new java.awt.Font("Tahoma", 1, 12));
         jLabel6.setText("Introduzca los datos del nuevo Paciente");
@@ -126,6 +129,11 @@ public class NuevoPacienteView extends javax.swing.JDialog {
 
         escolaridad.setFont(new java.awt.Font("Tahoma", 0, 12));
 
+        escuelaEdit.setFont(new java.awt.Font("Tahoma", 0, 12));
+
+        jLabel9.setFont(new java.awt.Font("Tahoma", 1, 12));
+        jLabel9.setText("Escuela");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -134,21 +142,6 @@ public class NuevoPacienteView extends javax.swing.JDialog {
                 .addContainerGap(115, Short.MAX_VALUE)
                 .addComponent(jLabel6)
                 .addGap(98, 98, 98))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(72, 72, 72)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jLabel1)
-                        .addComponent(jLabel3))
-                    .addComponent(jLabel2)
-                    .addComponent(jLabel8))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(nombre, javax.swing.GroupLayout.PREFERRED_SIZE, 248, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(historia, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(CI, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(escolaridad, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(17, 17, 17))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(280, Short.MAX_VALUE)
                 .addComponent(jButton1)
@@ -163,48 +156,61 @@ public class NuevoPacienteView extends javax.swing.JDialog {
                 .addGap(172, 172, 172)
                 .addComponent(jLabel7)
                 .addContainerGap(180, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(164, 164, 164)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel5)
-                    .addComponent(jLabel4))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(37, 37, 37)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel1)
+                    .addComponent(jLabel2)
+                    .addComponent(jLabel3)
+                    .addComponent(jLabel8)
+                    .addComponent(jLabel4)
+                    .addComponent(jLabel5)
+                    .addComponent(jLabel9))
+                .addGap(47, 47, 47)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(sexo, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(nombre, javax.swing.GroupLayout.DEFAULT_SIZE, 248, Short.MAX_VALUE)
+                    .addComponent(historia, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(CI, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(escolaridad, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(edad, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(sexo, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(161, Short.MAX_VALUE))
+                    .addComponent(escuelaEdit))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel6)
-                .addGap(48, 48, 48)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel1)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(historia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel2))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(nombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(historia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel2))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(CI, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(nombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel1))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(CI, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel3))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(escolaridad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel8))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(edad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel4))
+                    .addComponent(escuelaEdit, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel9))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel4)
+                    .addComponent(edad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(14, 14, 14)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
                     .addComponent(sexo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 21, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 16, Short.MAX_VALUE)
                 .addComponent(jLabel7)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 235, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -228,17 +234,19 @@ public class NuevoPacienteView extends javax.swing.JDialog {
         // TODO add your handling code here:
         try {
             if (historia.getText().isEmpty() || nombre.getText().isEmpty() || escolaridad.getText().isEmpty() || ficha.getText().isEmpty()
-                    || CI.getText().isEmpty() || edad.getText().isEmpty()) {
+                    || CI.getText().isEmpty() || edad.getText().isEmpty() || escuelaEdit.getText().isEmpty() ){
                 throw new Exception("Existen datos del Paciente en blanco");
             }
+            
             String hist = historia.getText();
             String nomb = nombre.getText();
             String sex = String.valueOf(sexo.getSelectedItem());
             String esc = escolaridad.getText();
             String fich = ficha.getText();
+            String escuela = escuelaEdit.getText();
             long ci;
             int age;
-            ci = IsCi(CI.getText());
+            ci = QuinoTools.checkCI(CI.getText());
 
             try {
                 age = Integer.parseInt(edad.getText());
@@ -246,13 +254,13 @@ public class NuevoPacienteView extends javax.swing.JDialog {
                 throw new Exception("La edad debe ser un número");
             }
 
-            Paciente p = new Paciente(nomb, age, sex, esc, hist, ci, fich, null, null);
+            Paciente p = new Paciente(nomb, age, sex, esc, hist, ci, fich, null, null, escuela);
 
             if (!parent.getRegistro().nuevoPaciente(p)) {
                 throw new Exception("Ya existe un paciente con la misma historia clinica o carné de identidad");
             }
 
-            parent.getRegistro().salvarRegistro(IConfiguracion.REGISTRO_FILE_NAME);
+            parent.getRegistro().salvarRegistro(IConfigApp.REGISTRO_FILE_NAME);
             parent.Modificar_Tabla();
 
             //parent.ActivarPractica();
@@ -265,59 +273,6 @@ public class NuevoPacienteView extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
-    public boolean Numero(String valor) {
-
-        if (valor.length() != 0) {
-            for (int i = 0; i < valor.length(); i++) {
-                int ASCII = (int) valor.charAt(i);
-                if (ASCII < 48 || ASCII > 57) {
-                    return false;
-                }
-            }
-
-            return true;
-        } else {
-            return false;
-        }
-
-    }
-
-    public long IsCi(String ci) throws Exception {
-        int[] DaysByMonths = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
-
-        if (Numero(ci)) //Si todos sus elementos son números
-        {
-            if (ci.length() == 11) //Si contiene 11 dígitos
-            {
-
-                int day = new Integer(String.valueOf(ci.charAt(4)) + String.valueOf(ci.charAt(5))).intValue();
-                int month = new Integer(String.valueOf(ci.charAt(2)) + String.valueOf(ci.charAt(3))).intValue();
-                int year = new Integer(String.valueOf(ci.charAt(0)) + String.valueOf(ci.charAt(1))).intValue();
-
-                if (month >= 1 && month <= 12) //Si el mes está comprendido entre 1 y 12
-                {
-                    if (day >= 1 && day <= DaysByMonths[month - 1]) //Si el mes específico contiene la cantidad de dias necesarios
-                    {
-                        return Long.parseLong(ci);
-                    } else {
-                        throw new Exception("Error en la cantidad de dias, debe estar en el rango [01-" + DaysByMonths[month - 1] + "]");
-                    }
-                } else {
-                    throw new Exception("Error en el mes, debe estar en el rango [01-12]");
-                }
-
-
-            } else {
-                throw new Exception("El carnet debe contener 11 dígitos");
-            }
-
-        } else {
-            throw new Exception("El carnet debe contener solamante números");
-        }
-    }
 
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -339,6 +294,7 @@ public class NuevoPacienteView extends javax.swing.JDialog {
     private javax.swing.JTextField CI;
     private javax.swing.JTextField edad;
     private javax.swing.JTextField escolaridad;
+    private javax.swing.JTextField escuelaEdit;
     private javax.swing.JTextArea ficha;
     private javax.swing.JTextField historia;
     private javax.swing.JButton jButton1;
@@ -351,6 +307,7 @@ public class NuevoPacienteView extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField nombre;
     private javax.swing.JComboBox sexo;

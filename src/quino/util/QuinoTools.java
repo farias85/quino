@@ -4,9 +4,24 @@
  */
 package quino.util;
 
+import java.awt.Dimension;
+import java.awt.Toolkit;
+import java.beans.XMLDecoder;
+import java.beans.XMLEncoder;
+import java.io.BufferedInputStream;
+import java.io.BufferedOutputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JDialog;
 import javax.swing.JOptionPane;
-import quino.clases.config.IConfiguracion;
+import org.apache.poi.hssf.usermodel.HSSFWorkbook;
+import quino.clases.config.ConfigApp;
+import quino.clases.config.IConfigApp;
 import quino.clases.model.Prueba;
 import quino.view.main.ErrorDialog;
 import quino.view.main.PrincipalView;
@@ -26,7 +41,7 @@ public class QuinoTools {
      * @return El ancho de la celda
      */
     public static int getColumnWidthSize(int strlength) {
-        return (int)(strlength * 2600 / 9);
+        return (int) (strlength * 2600 / 9);
     }
 
     public static String getPanelMovimiento(Prueba prueba, int panel) {
@@ -82,7 +97,7 @@ public class QuinoTools {
                         } else {
                             principalView.getPacienteActual().setPeriferica(prueba);
                         }
-                        principalView.getRegistro().salvarRegistro(IConfiguracion.REGISTRO_FILE_NAME);
+                        principalView.getRegistro().salvarRegistro(IConfigApp.REGISTRO_FILE_NAME);
                         principalView.Modificar_Tabla();
                     }
                     break;
@@ -95,12 +110,145 @@ public class QuinoTools {
                 } else {
                     principalView.getPacienteActual().setPeriferica(prueba);
                 }
-                principalView.getRegistro().salvarRegistro(IConfiguracion.REGISTRO_FILE_NAME);
+                principalView.getRegistro().salvarRegistro(IConfigApp.REGISTRO_FILE_NAME);
                 principalView.Modificar_Tabla();
             }
         } catch (Exception e) {
             ErrorDialog err = new ErrorDialog(principalView, true, "No se ha podido guardar la prueba");
             err.setVisible(true);
         }
+    }
+
+    private static boolean isNumero(String valor) {
+
+        if (valor.length() != 0) {
+            for (int i = 0; i < valor.length(); i++) {
+                int ASCII = (int) valor.charAt(i);
+                if (ASCII < 48 || ASCII > 57) {
+                    return false;
+                }
+            }
+
+            return true;
+        } else {
+            return false;
+        }
+
+    }
+
+    public static long checkCI(String ci) throws Exception {
+        int[] DaysByMonths = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
+
+        if (isNumero(ci)) //Si todos sus elementos son números
+        {
+            if (ci.length() == 11) //Si contiene 11 dígitos
+            {
+                int day = new Integer(String.valueOf(ci.charAt(4)) + String.valueOf(ci.charAt(5))).intValue();
+                int month = new Integer(String.valueOf(ci.charAt(2)) + String.valueOf(ci.charAt(3))).intValue();
+                //int year = new Integer(String.valueOf(ci.charAt(0)) + String.valueOf(ci.charAt(1))).intValue();
+
+                if (month >= 1 && month <= 12) //Si el mes está comprendido entre 1 y 12
+                {
+                    if (day >= 1 && day <= DaysByMonths[month - 1]) //Si el mes específico contiene la cantidad de dias necesarios
+                    {
+                        return Long.parseLong(ci);
+                    } else {
+                        throw new Exception("Error en la cantidad de dias, debe estar en el rango [01-" + DaysByMonths[month - 1] + "]");
+                    }
+                } else {
+                    throw new Exception("Error en el mes, debe estar en el rango [01-12]");
+                }
+            } else {
+                throw new Exception("El carnet debe contener 11 dígitos");
+            }
+        } else {
+            throw new Exception("El carnet debe contener solamante números");
+        }
+    }
+
+    public static void salvarLibroExcel(String path, HSSFWorkbook book) {
+        FileOutputStream archivoSalida = null;
+        try {
+            File objFile = new File(path);
+            archivoSalida = new FileOutputStream(objFile);
+            book.write(archivoSalida);
+            archivoSalida.close();
+        } catch (Exception ex) {
+            Logger.getLogger(QuinoTools.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    public static void salvarConfiguracion() {
+        try {
+            ConfigApp impl = new ConfigApp(ConfigApp.CANT_ENSAYOS, ConfigApp.TIEMPO_DURACION,
+                    ConfigApp.PC_EN_ESPERA, ConfigApp.PC_PREPARADO, ConfigApp.PC_ESPERANDO_RESPUESTA);
+            XMLEncoder e = new XMLEncoder(new BufferedOutputStream(new FileOutputStream(IConfigApp.CONFIG_FILE_NAME)));
+            e.writeObject(impl);
+            e.close();
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(ConfigApp.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    public static void cargarConfiguracion() {
+        try {
+            XMLDecoder d = new XMLDecoder(new BufferedInputStream(new FileInputStream(IConfigApp.CONFIG_FILE_NAME)));
+            ConfigApp impl = (ConfigApp) (d.readObject());
+            d.close();
+
+            ConfigApp.CANT_ENSAYOS = impl.getCantEnsayos();
+            ConfigApp.TIEMPO_DURACION = impl.getTiempoDuracion();
+
+            ConfigApp.PC_EN_ESPERA = impl.getPcEnEspera();
+            ConfigApp.PC_PREPARADO = impl.getPcPreparado();
+            ConfigApp.PC_ESPERANDO_RESPUESTA = impl.getPcEsperandoRespuesta();
+
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(QuinoTools.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    /**
+     * Devuelve el valor del porciento de tiempo que se utiliza en una tarea
+     * a partir del tiempo de duración total IConfiguracion.TIEMPO_DURACION
+     * @param porcentaje Porcentaje asignado en IConfiguracion para la
+     * tarea en cuestión, por ejemplo: IConfiguracion.PC_EN_ESPERA
+     * @return El valor del porciento respecto al tiempo de duración
+     */
+    public static int porcientoDuracion(double porcentaje) {
+        return (int) (porcentaje * ConfigApp.TIEMPO_DURACION / 100);
+    }
+
+    /**
+     * Devuelve el valor del porciento de tiempo que se utiliza en una tarea
+     * a partir del tiempo de duración total tiempoDuracion
+     * @param porcentaje Valor del procentaje
+     * @return El valor del porciento respecto al tiempo de duración
+     */
+    public static double porcientoDuracion(double porcentaje, double tiempoDuracion) {
+        return (porcentaje * tiempoDuracion / 100);
+    }
+
+    public static double getDistancia(Punto p1, Punto p2) {
+        double varx = Math.pow((p2.getX() - p1.getX()), 2);
+        double vary = Math.pow((p2.getY() - p1.getY()), 2);
+        int res = Toolkit.getDefaultToolkit().getScreenResolution();
+        double distancia = (Math.sqrt(varx + vary) / res) * 2.5;
+        return distancia;
+    }
+
+    public static double getAngulo(Punto p1, Punto p2) {
+        double distancia = getDistancia(p1, p2);
+        double aRad = Math.atan2(distancia, 60);
+        double angulo = Math.toDegrees(aRad);
+        return Math.rint(angulo * 100) / 100;
+    }
+
+    public static double getAngulo(Punto p2) {
+        Dimension d = Toolkit.getDefaultToolkit().getScreenSize();
+        double x = d.getWidth() / 2;
+        double y = d.getHeight() / 2;
+        Punto p1 = new Punto(x, y);
+        return getAngulo(p1, p2);
     }
 }

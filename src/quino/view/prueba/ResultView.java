@@ -12,7 +12,6 @@ package quino.view.prueba;
 
 import quino.util.Grafica;
 
-import quino.clases.model.Prueba;
 import quino.clases.model.Resultado;
 import java.util.ArrayList;
 import java.util.List;
@@ -22,14 +21,15 @@ import javax.swing.event.TreeSelectionListener;
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.DefaultTreeModel;
 import javax.swing.tree.TreeSelectionModel;
-import quino.clases.config.IConfiguracion;
+import quino.clases.config.ConfigApp;
+import quino.clases.config.IConfigApp;
 import quino.util.QuinoTools;
 import quino.view.main.ErrorDialog;
 import quino.view.main.PrincipalView;
 
 /**
  *
- * @author Davisito
+ * @author Felipao
  */
 public class ResultView extends javax.swing.JDialog {
 
@@ -38,7 +38,7 @@ public class ResultView extends javax.swing.JDialog {
     public ResultView() {
     }
 
-    public ResultView(PrincipalView parent, boolean modal) {
+    public ResultView(PrincipalView parent, boolean modal, boolean foveal) {
         super(parent, modal);
 
         this.parent = parent;
@@ -52,8 +52,11 @@ public class ResultView extends javax.swing.JDialog {
                 t_errores1.setText(String.valueOf(parent.getPrueba().cantErrores()));
                 t_denpromedio1.setText(String.valueOf(parent.getPrueba().densidadPromedio()));
                 t_trespg1.setText(String.valueOf(parent.getPrueba().tiempoRespuestaPromedio()));
-                t_densayo.setText(String.valueOf(IConfiguracion.TIEMPO_DURACION));
-                t_interestimulo.setText(String.valueOf(IConfiguracion.TIEMPO_DURACION));
+                t_densayo.setText(String.valueOf(ConfigApp.TIEMPO_DURACION));
+                //t_interestimulo.setText(String.valueOf(ConfigApp.TIEMPO_DURACION));
+
+                String strPrueba = foveal ? "Foveal" : "Periférica";
+                tipoLabel.setText(strPrueba);
             } else {
                 throw new Exception("Al paciente seleccionado no se le ha realizado ninguna prueba");
             }
@@ -81,40 +84,42 @@ public class ResultView extends javax.swing.JDialog {
 
             public void valueChanged(TreeSelectionEvent e) {
                 DefaultMutableTreeNode node = (DefaultMutableTreeNode) (e.getPath().getLastPathComponent());
-                int pos = node.getParent().getIndex(node);
-                int densidad = resultados.get(pos).getDensidad();
-                int cantidad = (resultados.get(pos).getCantPuntos() * 100) / densidad;
-                int velocidad = resultados.get(pos).getVelocidadMovimiento();
-                ImageIcon direccion = CambiarDireccion(resultados.get(pos).getDireccion(), resultados.get(pos).getPanelEstimulo());
-                String panel = QuinoTools.getPanelMovimiento(parent.getPrueba(), resultados.get(pos).getPanelEstimulo());
-                int tiempo_res = resultados.get(pos).getTiempoRespuesta();
-                ImageIcon resultado = CambiarError(resultados.get(pos).isError());
-                ImageIcon key = CambiarKey(resultados.get(pos).getKey(), resultados.get(pos).isControl());
-                String descripcion = resultados.get(pos).getDescripcion();
-                double vel = resultados.get(pos).getVelocidad();
-                double angulo = resultados.get(pos).getAngulo();
+                if (node.getParent() != null) {
+                    int pos = node.getParent().getIndex(node);
+                    int densidad = resultados.get(pos).getDensidad();
+                    int cantidad = (resultados.get(pos).getCantPuntos() * 100) / densidad;
+                    int velocidad = resultados.get(pos).getVelocidadMovimiento();
+                    ImageIcon direccion = CambiarDireccion(resultados.get(pos).getDireccion(), resultados.get(pos).getPanelEstimulo());
+                    String panel = QuinoTools.getPanelMovimiento(parent.getPrueba(), resultados.get(pos).getPanelEstimulo());
+                    int tiempo_res = resultados.get(pos).getTiempoRespuesta();
+                    ImageIcon resultado = CambiarError(resultados.get(pos).isError());
+                    ImageIcon key = CambiarKey(resultados.get(pos).getKey(), resultados.get(pos).isControl());
+                    String descripcion = resultados.get(pos).getDescripcion();
+                    double vel = resultados.get(pos).getVelocidad();
+                    double angulo = resultados.get(pos).getAngulo();
 
-                t_densidad1.setText(String.valueOf(densidad));
-                t_cantidad1.setText(String.valueOf(cantidad) + "%");
-                t_vmov1.setText(String.valueOf(velocidad));
-                t_direccion1.setIcon(direccion);
-                t_pestimulo1.setText(panel);
-                b_keypressed.setIcon(key);
-                e_desc.setText(descripcion);
-                t_velocidad.setText(Double.toString(vel) + " " + "cm/ms");
-                t_angulo.setText(Double.toString(angulo) + "º");
+                    t_densidad1.setText(String.valueOf(densidad));
+                    t_cantidad1.setText(String.valueOf(cantidad) + "%");
+                    t_vmov1.setText(String.valueOf(velocidad));
+                    t_direccion1.setIcon(direccion);
+                    t_pestimulo1.setText(panel);
+                    b_keypressed.setIcon(key);
+                    e_desc.setText(descripcion);
+                    t_velocidad.setText(Double.toString(vel) + " " + "cm/mls");
+                    t_angulo.setText(Double.toString(angulo) + "º");
 
-                if (tiempo_res == 0) {
-                    t_trespuesta1.setText("N/R");
-                } else {
-                    t_trespuesta1.setText(String.valueOf(tiempo_res));
-                }
-                t_resultado1.setIcon(resultado);
-                if (resultados.get(pos).getPanelEstimulo() == 0) {
-                    t_cantidad1.setText("-");
-                    t_vmov1.setText(String.valueOf("-"));
-                    t_velocidad.setText("-");
-                    t_angulo.setText("-");
+                    if (tiempo_res == 0) {
+                        t_trespuesta1.setText("N/R");
+                    } else {
+                        t_trespuesta1.setText(String.valueOf(tiempo_res));
+                    }
+                    t_resultado1.setIcon(resultado);
+                    if (resultados.get(pos).getPanelEstimulo() == 0) {
+                        t_cantidad1.setText("-");
+                        t_vmov1.setText(String.valueOf("-"));
+                        t_velocidad.setText("-");
+                        t_angulo.setText("-");
+                    }
                 }
             }
         });
@@ -126,34 +131,34 @@ public class ResultView extends javax.swing.JDialog {
         }
         switch (pos) {
             case 0: {
-                return new ImageIcon(getClass().getResource(IConfiguracion.RESOURCES_LOCATION + "asincronico.gif"));
+                return new ImageIcon(getClass().getResource(IConfigApp.RESOURCES_LOCATION + "asincronico.gif"));
             }
             case 1: {
-                return new ImageIcon(getClass().getResource(IConfiguracion.RESOURCES_LOCATION + "direccion1.gif"));
+                return new ImageIcon(getClass().getResource(IConfigApp.RESOURCES_LOCATION + "direccion1.gif"));
             }
             case 2: {
-                return new ImageIcon(getClass().getResource(IConfiguracion.RESOURCES_LOCATION + "direccion2.gif"));
+                return new ImageIcon(getClass().getResource(IConfigApp.RESOURCES_LOCATION + "direccion2.gif"));
             }
             case 3: {
-                return new ImageIcon(getClass().getResource(IConfiguracion.RESOURCES_LOCATION + "direccion3.gif"));
+                return new ImageIcon(getClass().getResource(IConfigApp.RESOURCES_LOCATION + "direccion3.gif"));
             }
             case 4: {
-                return new ImageIcon(getClass().getResource(IConfiguracion.RESOURCES_LOCATION + "direccion4.gif"));
+                return new ImageIcon(getClass().getResource(IConfigApp.RESOURCES_LOCATION + "direccion4.gif"));
             }
             case 5: {
-                return new ImageIcon(getClass().getResource(IConfiguracion.RESOURCES_LOCATION + "direccion5.gif"));
+                return new ImageIcon(getClass().getResource(IConfigApp.RESOURCES_LOCATION + "direccion5.gif"));
             }
             case 6: {
-                return new ImageIcon(getClass().getResource(IConfiguracion.RESOURCES_LOCATION + "direccion6.gif"));
+                return new ImageIcon(getClass().getResource(IConfigApp.RESOURCES_LOCATION + "direccion6.gif"));
             }
             case 7: {
-                return new ImageIcon(getClass().getResource(IConfiguracion.RESOURCES_LOCATION + "direccion7.gif"));
+                return new ImageIcon(getClass().getResource(IConfigApp.RESOURCES_LOCATION + "direccion7.gif"));
             }
             case 8: {
-                return new ImageIcon(getClass().getResource(IConfiguracion.RESOURCES_LOCATION + "direccion8.gif"));
+                return new ImageIcon(getClass().getResource(IConfigApp.RESOURCES_LOCATION + "direccion8.gif"));
             }
         }
-        return new ImageIcon(getClass().getResource(IConfiguracion.RESOURCES_LOCATION + "error.gif"));
+        return new ImageIcon(getClass().getResource(IConfigApp.RESOURCES_LOCATION + "error.gif"));
     }
 
     public ImageIcon CambiarKey(int key, boolean control) {
@@ -162,39 +167,39 @@ public class ResultView extends javax.swing.JDialog {
         }
         switch (key) {
             case 104: {
-                return new ImageIcon(getClass().getResource(IConfiguracion.RESOURCES_LOCATION + "direccion1.gif"));
+                return new ImageIcon(getClass().getResource(IConfigApp.RESOURCES_LOCATION + "direccion1.gif"));
             }
             case 98: {
-                return new ImageIcon(getClass().getResource(IConfiguracion.RESOURCES_LOCATION + "direccion2.gif"));
+                return new ImageIcon(getClass().getResource(IConfigApp.RESOURCES_LOCATION + "direccion2.gif"));
             }
             case 102: {
-                return new ImageIcon(getClass().getResource(IConfiguracion.RESOURCES_LOCATION + "direccion3.gif"));
+                return new ImageIcon(getClass().getResource(IConfigApp.RESOURCES_LOCATION + "direccion3.gif"));
             }
             case 100: {
-                return new ImageIcon(getClass().getResource(IConfiguracion.RESOURCES_LOCATION + "direccion4.gif"));
+                return new ImageIcon(getClass().getResource(IConfigApp.RESOURCES_LOCATION + "direccion4.gif"));
             }
             case 105: {
-                return new ImageIcon(getClass().getResource(IConfiguracion.RESOURCES_LOCATION + "direccion5.gif"));
+                return new ImageIcon(getClass().getResource(IConfigApp.RESOURCES_LOCATION + "direccion5.gif"));
             }
             case 103: {
-                return new ImageIcon(getClass().getResource(IConfiguracion.RESOURCES_LOCATION + "direccion6.gif"));
+                return new ImageIcon(getClass().getResource(IConfigApp.RESOURCES_LOCATION + "direccion6.gif"));
             }
             case 99: {
-                return new ImageIcon(getClass().getResource(IConfiguracion.RESOURCES_LOCATION + "direccion7.gif"));
+                return new ImageIcon(getClass().getResource(IConfigApp.RESOURCES_LOCATION + "direccion7.gif"));
             }
             case 97: {
-                return new ImageIcon(getClass().getResource(IConfiguracion.RESOURCES_LOCATION + "direccion8.gif"));
+                return new ImageIcon(getClass().getResource(IConfigApp.RESOURCES_LOCATION + "direccion8.gif"));
             }
         }
-        return new ImageIcon(getClass().getResource(IConfiguracion.RESOURCES_LOCATION + "error.gif"));
+        return new ImageIcon(getClass().getResource(IConfigApp.RESOURCES_LOCATION + "error.gif"));
     }
 
     public ImageIcon CambiarError(boolean error) {
         if (error) {
 
-            return new ImageIcon(getClass().getResource(IConfiguracion.RESOURCES_LOCATION + "error.gif"));
+            return new ImageIcon(getClass().getResource(IConfigApp.RESOURCES_LOCATION + "error.gif"));
         } else {
-            return new ImageIcon(getClass().getResource(IConfiguracion.RESOURCES_LOCATION + "exito.gif"));
+            return new ImageIcon(getClass().getResource(IConfigApp.RESOURCES_LOCATION + "exito.gif"));
         }
     }
 
@@ -241,6 +246,8 @@ public class ResultView extends javax.swing.JDialog {
         t_errores1 = new javax.swing.JTextField();
         t_denpromedio1 = new javax.swing.JTextField();
         t_trespg1 = new javax.swing.JTextField();
+        jLabel13 = new javax.swing.JLabel();
+        tipoLabel = new javax.swing.JTextField();
         jPanel7 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTree1 = new javax.swing.JTree();
@@ -322,6 +329,14 @@ public class ResultView extends javax.swing.JDialog {
         t_trespg1.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         t_trespg1.setBorder(null);
 
+        jLabel13.setFont(new java.awt.Font("Tahoma", 1, 12));
+        jLabel13.setText("Tipo de Prueba");
+
+        tipoLabel.setEditable(false);
+        tipoLabel.setFont(new java.awt.Font("Tahoma", 1, 12));
+        tipoLabel.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        tipoLabel.setBorder(null);
+
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
         jPanel5Layout.setHorizontalGroup(
@@ -332,41 +347,57 @@ public class ResultView extends javax.swing.JDialog {
                         .addGap(64, 64, 64)
                         .addComponent(jLabel6))
                     .addGroup(jPanel5Layout.createSequentialGroup()
-                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addContainerGap()
+                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel10)
                             .addComponent(jLabel9)
                             .addComponent(jLabel8)
-                            .addComponent(jLabel7)
-                            .addComponent(jLabel10))
+                            .addComponent(jLabel7))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(t_ensayos1, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE)
-                            .addComponent(t_errores1, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE)
-                            .addComponent(t_denpromedio1, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE)
-                            .addComponent(t_trespg1, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE))))
+                            .addComponent(t_ensayos1, javax.swing.GroupLayout.DEFAULT_SIZE, 50, Short.MAX_VALUE)
+                            .addComponent(t_errores1, javax.swing.GroupLayout.DEFAULT_SIZE, 50, Short.MAX_VALUE)
+                            .addComponent(t_denpromedio1, javax.swing.GroupLayout.DEFAULT_SIZE, 50, Short.MAX_VALUE)
+                            .addComponent(t_trespg1, javax.swing.GroupLayout.DEFAULT_SIZE, 50, Short.MAX_VALUE)))
+                    .addGroup(jPanel5Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jLabel13)))
                 .addContainerGap())
+            .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
+                    .addContainerGap(116, Short.MAX_VALUE)
+                    .addComponent(tipoLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap()))
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel5Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel7)
-                    .addComponent(t_ensayos1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(t_ensayos1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel7))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel8)
-                    .addComponent(t_errores1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(t_errores1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel8))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel9)
-                    .addComponent(t_denpromedio1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(t_denpromedio1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel9))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel10)
                     .addComponent(t_trespg1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(48, 48, 48)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel13)
+                .addGap(27, 27, 27)
                 .addComponent(jLabel6)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel5Layout.createSequentialGroup()
+                    .addGap(95, 95, 95)
+                    .addComponent(tipoLabel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(27, Short.MAX_VALUE)))
         );
 
         jPanel7.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Parámetros por Ensayos", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 14))); // NOI18N
@@ -381,7 +412,7 @@ public class ResultView extends javax.swing.JDialog {
         jLabel28.setText("Panel de Estímulo:");
 
         jLabel24.setFont(new java.awt.Font("Tahoma", 1, 12));
-        jLabel24.setText("Tiempo de Movimiento:");
+        jLabel24.setText("Tiempo de Desplazamiento");
 
         t_trespuesta1.setEditable(false);
         t_trespuesta1.setFont(new java.awt.Font("Tahoma", 1, 12));
@@ -406,9 +437,14 @@ public class ResultView extends javax.swing.JDialog {
         jLabel32.setText("Resultado:");
 
         t_vmov1.setEditable(false);
-        t_vmov1.setFont(new java.awt.Font("Tahoma", 1, 12));
+        t_vmov1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         t_vmov1.setHorizontalAlignment(javax.swing.JTextField.LEFT);
         t_vmov1.setBorder(null);
+        t_vmov1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                t_vmov1ActionPerformed(evt);
+            }
+        });
 
         jLabel33.setFont(new java.awt.Font("Tahoma", 1, 12));
         jLabel33.setText("Densidad de Puntos:");
@@ -448,10 +484,10 @@ public class ResultView extends javax.swing.JDialog {
 
         e_desc.setBackground(new java.awt.Color(240, 240, 240));
         e_desc.setEditable(false);
-        e_desc.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        e_desc.setFont(new java.awt.Font("Tahoma", 1, 12));
         e_desc.setBorder(null);
 
-        jLabel25.setFont(new java.awt.Font("Tahoma", 1, 12));
+        jLabel25.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel25.setText("Velocidad de Movimiento:");
 
         jLabel26.setFont(new java.awt.Font("Tahoma", 1, 12));
@@ -463,7 +499,7 @@ public class ResultView extends javax.swing.JDialog {
         t_velocidad.setBorder(null);
 
         t_angulo.setEditable(false);
-        t_angulo.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        t_angulo.setFont(new java.awt.Font("Tahoma", 1, 12));
         t_angulo.setHorizontalAlignment(javax.swing.JTextField.LEFT);
         t_angulo.setBorder(null);
 
@@ -479,35 +515,39 @@ public class ResultView extends javax.swing.JDialog {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel7Layout.createSequentialGroup()
-                                .addGap(19, 19, 19)
-                                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jLabel30)
-                                    .addComponent(jLabel32)
-                                    .addComponent(jLabel28))
+                                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(jPanel7Layout.createSequentialGroup()
+                                        .addGap(19, 19, 19)
+                                        .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                            .addComponent(jLabel30)
+                                            .addComponent(jLabel32)))
+                                    .addGroup(jPanel7Layout.createSequentialGroup()
+                                        .addGap(18, 18, 18)
+                                        .addComponent(jLabel28)))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(t_resultado1, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(t_trespuesta1, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(t_pestimulo1, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel7Layout.createSequentialGroup()
-                                .addGap(28, 28, 28)
+                                .addGap(18, 18, 18)
                                 .addComponent(jLabel35)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGap(14, 14, 14)
                                 .addComponent(e_desc, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(jPanel7Layout.createSequentialGroup()
-                        .addGap(52, 52, 52)
                         .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(jLabel31)
-                                .addComponent(jLabel33)
-                                .addComponent(jLabel24)
-                                .addComponent(jLabel25)
-                                .addComponent(jLabel26)
-                                .addComponent(jLabel29))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel7Layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(t_direccion1, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(53, 53, 53)))
+                            .addGroup(jPanel7Layout.createSequentialGroup()
+                                .addGap(52, 52, 52)
+                                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel29)
+                                    .addComponent(jLabel25)
+                                    .addComponent(jLabel26)
+                                    .addComponent(jLabel24)
+                                    .addComponent(jLabel31)
+                                    .addComponent(jLabel33)))
+                            .addGroup(jPanel7Layout.createSequentialGroup()
+                                .addGap(104, 104, 104)
+                                .addComponent(t_direccion1, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel7Layout.createSequentialGroup()
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -533,36 +573,36 @@ public class ResultView extends javax.swing.JDialog {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel7Layout.createSequentialGroup()
                         .addContainerGap()
                         .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel33)
-                            .addComponent(t_densidad1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel31)
-                            .addComponent(t_cantidad1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(t_densidad1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel33))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel24)
-                            .addComponent(t_vmov1, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(t_cantidad1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel31))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel25)
-                            .addComponent(t_velocidad, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(t_vmov1, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel24))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(t_velocidad, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel25))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel26)
                             .addComponent(t_angulo, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel29)
-                            .addComponent(jLabel34))
+                            .addComponent(jLabel34)
+                            .addComponent(jLabel29))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(t_direccion1, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(b_keypressed, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(b_keypressed, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(t_direccion1, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel28)
-                            .addComponent(t_pestimulo1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(t_pestimulo1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel28))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel30)
@@ -607,13 +647,13 @@ public class ResultView extends javax.swing.JDialog {
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel12)
-                            .addComponent(jLabel11))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(t_densayo, javax.swing.GroupLayout.DEFAULT_SIZE, 66, Short.MAX_VALUE)
-                            .addComponent(t_interestimulo, javax.swing.GroupLayout.DEFAULT_SIZE, 66, Short.MAX_VALUE))))
+                            .addComponent(jLabel11)
+                            .addComponent(jLabel12))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(t_densayo, javax.swing.GroupLayout.DEFAULT_SIZE, 76, Short.MAX_VALUE)
+                            .addComponent(t_interestimulo, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 76, Short.MAX_VALUE))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, 625, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
@@ -627,8 +667,8 @@ public class ResultView extends javax.swing.JDialog {
                         .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(26, 26, 26)
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel12)
-                            .addComponent(t_densayo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(t_densayo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel12))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel11)
@@ -703,23 +743,24 @@ public class ResultView extends javax.swing.JDialog {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(223, 223, 223)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                        .addComponent(jButton1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(Pastel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(Pastel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(239, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addContainerGap(605, Short.MAX_VALUE)
+                .addComponent(jButton1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(25, 25, 25))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addComponent(Pastel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 142, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(157, Short.MAX_VALUE))
+                .addGap(21, 21, 21))
         );
 
         jTabbedPane1.addTab("Gráficos", jPanel2);
@@ -767,6 +808,10 @@ public class ResultView extends javax.swing.JDialog {
         dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
 
+    private void t_vmov1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_t_vmov1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_t_vmov1ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -796,6 +841,7 @@ public class ResultView extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel24;
     private javax.swing.JLabel jLabel25;
     private javax.swing.JLabel jLabel26;
@@ -834,5 +880,6 @@ public class ResultView extends javax.swing.JDialog {
     private javax.swing.JTextField t_trespuesta1;
     private javax.swing.JTextField t_velocidad;
     private javax.swing.JTextField t_vmov1;
+    private javax.swing.JTextField tipoLabel;
     // End of variables declaration//GEN-END:variables
 }

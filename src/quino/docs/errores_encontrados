@@ -34,3 +34,14 @@ Errores:
         se muestra la pantalla de resultado sin resultados. No debería abrirse
         esta pantalla sino mostrar un mensaje de q no existen pruebas de tal
         tipo
+     10-Existian diferencias en el flujo de trabajo del eliminar paciente
+        en el botón de la barra de herramientas respecto a la opción de eliminar
+        del menú secundario (Click derecho). El primero te pedía confirmación
+        y el segundo no.
+     11-En la ventana ResultView, en el arbol de ensayos para una prueba,
+        explota cuando selecciono la raiz del arbol, por un mal chequeo de
+        node.getParent(), linea 87.
+     12-El combobos de sexo en las ventanas de modificar paciente y nuevo
+        paciente, admitía un valor vacío para seleccionar
+     13-Cuando se abre un dialogo de guardar o de abrir no se controla si el
+        usuario da escape, explota el programa, NullPointerException

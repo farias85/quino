@@ -19,12 +19,13 @@ public class Paciente {
     private String ficha;
     private Prueba periferica;
     private Prueba foveal;
+    private String escuela;
 
     public Paciente() {
     }
 
     public Paciente(String nombre, int edad, String sexo, String escolaridad, String historia, long ci, 
-            String ficha, Prueba periferica, Prueba foveal) {
+            String ficha, Prueba periferica, Prueba foveal, String escuela) {
         this.nombre = nombre;
         this.edad = edad;
         this.sexo = sexo;
@@ -34,6 +35,7 @@ public class Paciente {
         this.ficha = ficha;
         this.periferica = periferica;
         this.foveal = foveal;
+        this.escuela = escuela;
     }
 
     public long getCi() {
@@ -106,5 +108,13 @@ public class Paciente {
 
     public void setPeriferica(Prueba periferica) {
         this.periferica = periferica;
+    }
+
+    public String getEscuela() {
+        return escuela;
+    }
+
+    public void setEscuela(String escuela) {
+        this.escuela = escuela;
     }
 }

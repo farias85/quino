@@ -7,7 +7,7 @@ package quino.clases.model;
 import quino.util.Aleatorio;
 import quino.util.Punto;
 import java.awt.Toolkit;
-import quino.clases.config.Configuracion;
+import quino.clases.config.ConfigPrueba;
 
 /**
  *
@@ -15,7 +15,7 @@ import quino.clases.config.Configuracion;
  */
 public class Ensayo {
 
-    private Configuracion configuracion;
+    private ConfigPrueba configuracion;
     private int panelEstimulo;
     private int tiempoRespuesta;
     private boolean error;
@@ -25,7 +25,7 @@ public class Ensayo {
     public Ensayo() {
     }
 
-    public Ensayo(Configuracion configuracion) {
+    public Ensayo(ConfigPrueba configuracion) {
         error = false;
         Aleatorio al = new Aleatorio();
         panelEstimulo = al.nextInt(0, 3);
@@ -33,7 +33,7 @@ public class Ensayo {
         tiempoRespuesta = 0;
     }
 
-    public Ensayo(Configuracion configuracion, int panelEstimulo, int tiempoRespuesta, boolean error, int key, String descripcion) {
+    public Ensayo(ConfigPrueba configuracion, int panelEstimulo, int tiempoRespuesta, boolean error, int key, String descripcion) {
         this.configuracion = configuracion;
         this.panelEstimulo = panelEstimulo;
         this.tiempoRespuesta = tiempoRespuesta;
@@ -42,26 +42,11 @@ public class Ensayo {
         this.descripcion = descripcion;
     }
 
-    public double getDistancia(Punto p1, Punto p2) {
-        double varx = Math.pow((p2.getX() - p1.getX()), 2);
-        double vary = Math.pow((p2.getY() - p1.getY()), 2);
-        int res = Toolkit.getDefaultToolkit().getScreenResolution();
-        double distancia = (Math.sqrt(varx + vary) / res) * 2.5;
-        return distancia;
-    }
-
-    public double getAngulo(Punto p1, Punto p2) {
-        double distancia = getDistancia(p1, p2);
-        double aRad = Math.atan2(distancia, 60);
-        double angulo = Math.toDegrees(aRad);
-        return Math.rint(angulo * 100) / 100;
-    }
-
-    public Configuracion getConfiguracion() {
+    public ConfigPrueba getConfiguracion() {
         return configuracion;
     }
 
-    public void setConfiguracion(Configuracion configuracion) {
+    public void setConfiguracion(ConfigPrueba configuracion) {
         this.configuracion = configuracion;
     }
 

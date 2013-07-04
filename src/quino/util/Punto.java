@@ -10,12 +10,25 @@ import java.util.Random;
 
 /**
  *
- * @author davisito
+ * @author Felipao
  */
 public class Punto {
 
     private int x;
     private int y;
+
+    /**
+     * Ángulo respecto al centro de la pantalla
+     */
+    private double angulo = 0;
+
+    public double getAngulo() {
+        return angulo;
+    }
+
+    public void setAngulo(double angulo) {
+        this.angulo = angulo;
+    }
 
     public Punto(int largo, int alto) {
         Random ran = new Random();
@@ -29,6 +42,9 @@ public class Punto {
     }
 
     public void Mover(int direccion) {
+        Punto actual = new Punto(this.getX(), this.getY());
+        double anguloActual = QuinoTools.getAngulo(actual);
+
         switch (direccion) {
             case 1: {
                 this.y -= 2;
@@ -67,13 +83,10 @@ public class Punto {
             }
             break;
         }
-    }
 
-    /*public void mov_Asincronico() {
-        Aleatorio ran = new Aleatorio();
-        int dir = ran.nextInt(1, 8);
-        Mover(dir);
-    }*/
+        double anguloDespues = QuinoTools.getAngulo(this);
+        angulo = Math.abs(anguloActual - anguloDespues);
+    }
 
     public double getX() {
         return x;
@@ -92,12 +105,7 @@ public class Punto {
     }
 
     public void Pintar(Graphics g) {
-        // Image image = new BufferedImage(canvas.getWidth(), canvas.getHeight(), BufferedImage.TYPE_INT_ARGB);
-
         g.setColor(Color.WHITE);
-        //int ax = (int)x;
-        //int ay = (int)y;
         g.fillOval(x, y, 4, 4);
-        //  canvas.getGraphics().drawImage(image, 0,0, canvas);
     }
 }

@@ -11,7 +11,7 @@
 package quino.view.prueba;
 
 import quino.view.main.*;
-import quino.clases.config.ConfiguracionAutomatica;
+import quino.clases.config.ConfigPruebaAuto;
 import quino.clases.model.Prueba;
 
 /**
@@ -179,7 +179,7 @@ public class AutoConfigView extends javax.swing.JDialog {
         try {
             control = jCheckBox1.isSelected();
             int cant_ensayos = Integer.parseInt(jTextField1.getText());
-            parent.setConf(new ConfiguracionAutomatica(control));
+            parent.setConf(new ConfigPruebaAuto(control));
             parent.setPrueba(new Prueba(cant_ensayos));
 
             if (fobeal) {

@@ -7,7 +7,7 @@ package quino.util.timer;
 import quino.util.QuinoJPanel;
 import quino.util.CentralJPanel;
 import quino.util.Punto;
-import quino.clases.config.Configuracion;
+import quino.clases.config.ConfigPrueba;
 import quino.clases.model.Prueba;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -37,7 +37,7 @@ public class FovealTimer extends AbstractQuinoTimer {
     private FovealTestView test;
     private KeyListener keyPress;
 
-    public FovealTimer(Prueba prueba, Configuracion configuracion, QuinoJPanel panel1,
+    public FovealTimer(Prueba prueba, ConfigPrueba configuracion, QuinoJPanel panel1,
             QuinoJPanel panel2, QuinoJPanel panel3, QuinoJPanel panel4, QuinoJPanel panel5,
             QuinoJPanel panel6, QuinoJPanel panel7, QuinoJPanel panel8, CentralJPanel panel9,
             FovealTestView test, boolean practica) {
@@ -157,7 +157,7 @@ public class FovealTimer extends AbstractQuinoTimer {
             if (!practica) {
                 QuinoTools.salvarPruebaEnRegistro(test.getParentView(), test, prueba);
             }
-            ResultView res = new ResultView(test.getParentView(), true);
+            ResultView res = new ResultView(test.getParentView(), true, true);
             test.setVisible(false);
             res.setVisible(true);
         }
@@ -207,43 +207,37 @@ public class FovealTimer extends AbstractQuinoTimer {
 
     @Override
     protected double buscarAngulo() {
-        Punto p1 = null;
-        Punto p2 = null;
+        double angulo = 0;
 
         if (panelEstimulo > 0) {
             switch (panelEstimulo) {
                 case 1:
-                    p2 = panel1.MidPunto(true);
+                    angulo = panel1.buscarAngulo();
                     break;
                 case 2:
-                    p2 = panel2.MidPunto(true);
+                    angulo = panel2.buscarAngulo();
                     break;
                 case 3:
-                    p2 = panel3.MidPunto(true);
+                    angulo = panel3.buscarAngulo();
                     break;
                 case 4:
-                    p2 = panel4.MidPunto(true);
+                    angulo = panel4.buscarAngulo();
                     break;
                 case 5:
-                    p2 = panel5.MidPunto(true);
+                    angulo = panel5.buscarAngulo();
                     break;
                 case 6:
-                    p2 = panel6.MidPunto(true);
+                    angulo = panel6.buscarAngulo();
                     break;
                 case 7:
-                    p2 = panel7.MidPunto(true);
+                    angulo = panel7.buscarAngulo();
                     break;
                 case 8:
-                    p2 = panel8.MidPunto(true);
+                    angulo = panel8.buscarAngulo();
                     break;
             }
 
-            Dimension d = Toolkit.getDefaultToolkit().getScreenSize();
-            double x = d.getWidth() / 2;
-            double y = d.getHeight() / 2;
-            p1 = new Punto(x, y);
-
-            return ensayo.getAngulo(p1, p2);
+            return angulo;
         }
 
         return 0;
@@ -275,13 +269,13 @@ public class FovealTimer extends AbstractQuinoTimer {
 
     @Override
     protected void panelsRellenar() {
-        panel1.Rellenar(configuracion.getDensidad(), configuracion.getCantidad());
-        panel2.Rellenar(configuracion.getDensidad(), configuracion.getCantidad());
-        panel3.Rellenar(configuracion.getDensidad(), configuracion.getCantidad());
-        panel4.Rellenar(configuracion.getDensidad(), configuracion.getCantidad());
-        panel5.Rellenar(configuracion.getDensidad(), configuracion.getCantidad());
-        panel6.Rellenar(configuracion.getDensidad(), configuracion.getCantidad());
-        panel7.Rellenar(configuracion.getDensidad(), configuracion.getCantidad());
-        panel8.Rellenar(configuracion.getDensidad(), configuracion.getCantidad());
+        panel1.rellenar(configuracion.getDensidad(), configuracion.getCantidad());
+        panel2.rellenar(configuracion.getDensidad(), configuracion.getCantidad());
+        panel3.rellenar(configuracion.getDensidad(), configuracion.getCantidad());
+        panel4.rellenar(configuracion.getDensidad(), configuracion.getCantidad());
+        panel5.rellenar(configuracion.getDensidad(), configuracion.getCantidad());
+        panel6.rellenar(configuracion.getDensidad(), configuracion.getCantidad());
+        panel7.rellenar(configuracion.getDensidad(), configuracion.getCantidad());
+        panel8.rellenar(configuracion.getDensidad(), configuracion.getCantidad());
     }
 }

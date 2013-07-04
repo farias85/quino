@@ -9,17 +9,8 @@ package quino.clases.config;
  *
  * @author Administrador
  */
-public interface IConfiguracion {
-    public int CANT_ENSAYOS = 2;
-    public int TIEMPO_DURACION = 3000;
-    //public int TIEMPO_ESTIMULO = 1600;
-    
-    public int PC_EN_ESPERA = 30;
-    public int PC_PREPARADO = 40;
-    public int PC_ESPERANDO_RESPUESTA = 30;
-
+public interface IConfigApp {
     public String RESOURCES_LOCATION = "/quino/view/main/icons/";
-
     public String REGISTRO_FILE_NAME = "quino.config/registro.xml";
     public String CONFIG_FILE_NAME = "quino.config/configuracion.xml";
 }

@@ -35,3 +35,11 @@ Tareas Realizadas
         q tienen repetido el numero de historia clinica o el carnet de identidad.
         La carga sigue su curso normalmente, sin adicionar aquellos q estan
         repetidos, pero sin el cambio brusco de una excepcion.
+     12- Se ha agregado el atributo de Escuela a los datos de los pacientes,
+        tanto en la clase, como en la parte visual.
+     13-Arreglado el error 10, ambos procedimientos piden confirmación.
+     14-Solucion al error 11
+     15-En la ventana de resultado ya se puede observar el tipo de prueba
+        realizada
+     16-Solucion error 12
+     17-Nueva ventana de la configuracion avanzada

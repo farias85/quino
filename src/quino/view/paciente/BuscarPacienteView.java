@@ -10,7 +10,7 @@
  */
 package quino.view.paciente;
 
-import quino.clases.config.IConfiguracion;
+import quino.clases.config.IConfigApp;
 import quino.view.main.TipoPruebaView;
 import quino.clases.model.Paciente;
 import quino.view.main.ErrorDialog;
@@ -327,7 +327,7 @@ public class BuscarPacienteView extends javax.swing.JDialog {
             ErrorDialog er = new ErrorDialog(parent, true, "Cambos realizados exitosamente");
             er.setVisible(true);
             parent.Modificar_Tabla();
-            parent.getRegistro().salvarRegistro(IConfiguracion.REGISTRO_FILE_NAME);
+            parent.getRegistro().salvarRegistro(IConfigApp.REGISTRO_FILE_NAME);
         } catch (Exception e) {
             ErrorDialog err = new ErrorDialog(parent, true, e.getMessage());
             err.setVisible(true);
@@ -445,7 +445,7 @@ public class BuscarPacienteView extends javax.swing.JDialog {
             jTextField5.setEditable(false);
 
             parent.Modificar_Tabla();
-            parent.getRegistro().salvarRegistro(IConfiguracion.REGISTRO_FILE_NAME);
+            parent.getRegistro().salvarRegistro(IConfigApp.REGISTRO_FILE_NAME);
 
         } catch (Exception e) {
             ErrorDialog err = new ErrorDialog(parent, true, e.getMessage());

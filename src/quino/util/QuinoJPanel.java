@@ -27,7 +27,7 @@ public class QuinoJPanel extends JPanel {
         this.cantidad = cantidad;
         this.densidad = densidad;
     }
-    
+
     @Override
     public void paint(Graphics g) {
         super.paint(g);
@@ -68,7 +68,7 @@ public class QuinoJPanel extends JPanel {
         puntos.clear();
     }
 
-    public void Rellenar(int densidad, int cantidad) {
+    public void rellenar(int densidad, int cantidad) {
         this.cantidad = cantidad;
         this.densidad = densidad;
         puntos = new ArrayList<Punto>();
@@ -93,5 +93,17 @@ public class QuinoJPanel extends JPanel {
             return puntos.get(0);
         }
         return new Punto(1, 1);
+    }
+
+    public double buscarAngulo() {
+        int puntosMovidos = 0;
+        double sumatoriaAngulos = 0;
+        for (int i = 0; i < puntos.size(); i++) {
+            if (puntos.get(i).getAngulo() != 0) {
+                puntosMovidos++;
+                sumatoriaAngulos += puntos.get(i).getAngulo();
+            }
+        }
+        return sumatoriaAngulos;
     }
 }

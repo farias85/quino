@@ -12,6 +12,7 @@ import quino.util.QuinoJPanel;
 import quino.clases.config.*;
 import java.awt.event.KeyEvent;
 import java.util.TimerTask;
+import quino.util.QuinoTools;
 
 /**
  *
@@ -20,7 +21,7 @@ import java.util.TimerTask;
 public abstract class AbstractQuinoTimer extends TimerTask {
 
     protected Prueba prueba;
-    protected Configuracion configuracion;
+    protected ConfigPrueba configuracion;
     protected Ensayo ensayo;
     protected int tiempoTranscurrido = 0;
     protected int numEnsayo = 0;
@@ -31,13 +32,13 @@ public abstract class AbstractQuinoTimer extends TimerTask {
     protected boolean puedeTeclear = false;
     protected boolean inOut = true;
 
-    public AbstractQuinoTimer(Prueba prueba, Configuracion configuracion) {
+    public AbstractQuinoTimer(Prueba prueba, ConfigPrueba configuracion) {
         this.prueba = prueba;
         this.configuracion = configuracion;
 
-        enEspera = porcientoDuracion(IConfiguracion.PC_EN_ESPERA);
-        preparado = porcientoDuracion(IConfiguracion.PC_PREPARADO);
-        esperandoRespuesta = porcientoDuracion(IConfiguracion.PC_ESPERANDO_RESPUESTA);
+        enEspera = QuinoTools.porcientoDuracion(ConfigApp.PC_EN_ESPERA);
+        preparado = QuinoTools.porcientoDuracion(ConfigApp.PC_PREPARADO);
+        esperandoRespuesta = QuinoTools.porcientoDuracion(ConfigApp.PC_ESPERANDO_RESPUESTA);
     }
 
     /**
@@ -142,17 +143,6 @@ public abstract class AbstractQuinoTimer extends TimerTask {
         }
         tiempoTranscurrido = 0;
         return false;
-    }
-
-    /**
-     * Devuelve el valor del porciento de tiempo que se utiliza en una tarea
-     * a partir del tiempo de duración total IConfiguracion.TIEMPO_DURACION
-     * @param porcentaje Porcentaje asignado en IConfiguracion para la
-     * tarea en cuestión, por ejemplo: IConfiguracion.PC_EN_ESPERA
-     * @return El valor del porciento respecto al tiempo de duración
-     */
-    private int porcientoDuracion(int porcentaje) {
-        return (int) (porcentaje * IConfiguracion.TIEMPO_DURACION / 100);
     }
 
     /**
@@ -262,11 +252,11 @@ public abstract class AbstractQuinoTimer extends TimerTask {
      */
     protected void inicializarEnsayo(int cantPaneles) {
 
-        if (configuracion instanceof ConfiguracionAutomatica) {
+        if (configuracion instanceof ConfigPruebaAuto) {
             boolean controlarMovimiento = configuracion.isControl();
-            configuracion = new ConfiguracionAutomatica(controlarMovimiento);
+            configuracion = new ConfigPruebaAuto(controlarMovimiento);
             configuracion.setDensidad(configuracion.getDensidad() / 8);
-            ((ConfiguracionAutomatica) configuracion).Re_Cantidad();
+            ((ConfigPruebaAuto) configuracion).Re_Cantidad();
         }
 
         ensayo = new Ensayo(configuracion);

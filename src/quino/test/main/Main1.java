@@ -4,6 +4,7 @@
  */
 package quino.test.main;
 
+import quino.clases.config.ConfigApp;
 import java.beans.XMLDecoder;
 import java.beans.XMLEncoder;
 import java.io.BufferedInputStream;
@@ -19,11 +20,12 @@ import java.util.TimerTask;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.naming.spi.DirStateFactory.Result;
-import quino.clases.config.IConfiguracion;
+import quino.clases.config.IConfigApp;
 import quino.clases.model.Paciente;
 import quino.clases.model.Prueba;
 import quino.clases.model.Registro;
 import quino.clases.model.Resultado;
+import quino.util.QuinoTools;
 
 /**
  *
@@ -51,7 +53,7 @@ public class Main1 {
             Registro registro = new Registro(ll);*/
 
             //registro.Nuevo(paciente);
-            TinyBean tbean = new TinyBean("tbean", 12121);
+            /*TinyBean tbean = new TinyBean("tbean", 12121);
             Staff staff = new Staff("felipon-pon");
             List<Staff> ls = new ArrayList<Staff>();
             ls.add(staff);
@@ -59,23 +61,27 @@ public class Main1 {
             Staff staff2 = new Staff("fel", 45);
             ls.add(staff2);
             
-            TestBean bean = new TestBean("xxxx", 111, 2, tbean, ls);
+            TestBean bean = new TestBean("xxxx", 111, 2, tbean, ls);*/
+
+            /*ConfigApp impl = new ConfigApp(ConfigApp.CANT_ENSAYOS,
+            ConfigApp.TIEMPO_DURACION, ConfigApp.PC_EN_ESPERA,
+            ConfigApp.PC_PREPARADO, ConfigApp.PC_ESPERANDO_RESPUESTA);
 
             XMLEncoder e = new XMLEncoder(
-                    new BufferedOutputStream(
-                    new FileOutputStream("registro.xml")));
+            new BufferedOutputStream(
+            new FileOutputStream(IConfigApp.CONFIG_FILE_NAME)));
 
-            e.writeObject(bean);
-            e.close();
+            e.writeObject(impl);
+            e.close();*/
 
 
-            XMLDecoder d = new XMLDecoder(
-                    new BufferedInputStream(
-                    new FileInputStream("registro.xml")));
+            /*XMLDecoder d = new XMLDecoder(
+            new BufferedInputStream(
+            new FileInputStream("registro.xml")));
             TestBean result = (TestBean) (d.readObject());
             d.close();
 
-            System.out.println(result);
+            System.out.println(result);*/
 
             /*XMLEncoder encoder = new XMLEncoder(new BufferedOutputStream(
             new FileOutputStream("registro.xml")));
@@ -92,6 +98,14 @@ public class Main1 {
             } catch (Exception e) {
             System.out.println(e.getMessage());
             }*/
+
+            //QuinoTools.salvarConfiguracion();
+            int con1 = ConfigApp.CANT_ENSAYOS;
+
+            QuinoTools.cargarConfiguracion();
+
+            int con = ConfigApp.CANT_ENSAYOS;
+            double a = con /2;
 
         } catch (Exception ex) {
             Logger.getLogger(Main1.class.getName()).log(Level.SEVERE, null, ex);

@@ -11,7 +11,7 @@
 package quino.view.prueba;
 
 import quino.view.main.*;
-import quino.clases.config.Configuracion;
+import quino.clases.config.ConfigPrueba;
 import quino.clases.model.Prueba;
 //import clases.prueba.Ensayo;
 
@@ -577,7 +577,7 @@ public class ManualConfigView extends javax.swing.JDialog {
                 parent.setConf(new Configuracion(tiempo_movimiento,
                         densidad / 8, cantidad, direccion, asincronico, control));
                 parent.getConf().setResto(resto);*/
-                parent.setConf(new Configuracion(tiempo_movimiento, densidad,
+                parent.setConf(new ConfigPrueba(tiempo_movimiento, densidad,
                         cantidad, direccion, asincronico, control));
                 parent.setPrueba(new Prueba(ensayos));
                 parent.getPrueba().setFoveal(true);
@@ -586,7 +586,7 @@ public class ManualConfigView extends javax.swing.JDialog {
                 setVisible(false);
                 dispose();
             } else {
-                parent.setConf(new Configuracion(tiempo_movimiento, densidad,
+                parent.setConf(new ConfigPrueba(tiempo_movimiento, densidad,
                         cantidad, direccion, asincronico, control));
                 parent.setPrueba(new Prueba(ensayos));
                 parent.getPrueba().setFoveal(false);

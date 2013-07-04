@@ -5,16 +5,19 @@
    <void method="add">
     <object class="quino.clases.model.Paciente">
      <void property="ci">
-      <long>85051100307</long>
+      <long>85052200307</long>
      </void>
      <void property="edad">
-      <int>12</int>
+      <int>3</int>
      </void>
      <void property="escolaridad">
-      <string>12</string>
+      <string>3</string>
+     </void>
+     <void property="escuela">
+      <string>Amiguitos de Francisco</string>
      </void>
      <void property="ficha">
-      <string>sad</string>
+      <string>sd</string>
      </void>
      <void property="foveal">
       <object class="quino.clases.model.Prueba">
@@ -29,28 +32,25 @@
          <void method="add">
           <object class="quino.clases.model.Resultado">
            <void property="angulo">
-            <double>22.73</double>
-           </void>
-           <void property="asincronico">
-            <boolean>true</boolean>
+            <double>0.08000000000000185</double>
            </void>
            <void property="cantPuntos">
-            <int>138</int>
+            <int>4</int>
            </void>
            <void property="densidad">
-            <int>600</int>
+            <int>20</int>
            </void>
-           <void property="descripcion">
-            <string>Omisión</string>
-           </void>
-           <void property="error">
-            <boolean>true</boolean>
-           </void>
-           <void property="panelEstimulo">
+           <void property="direccion">
             <int>1</int>
            </void>
-           <void property="velocidad">
-            <double>0.002</double>
+           <void property="key">
+            <int>32</int>
+           </void>
+           <void property="panelEstimulo">
+            <int>2</int>
+           </void>
+           <void property="tiempoRespuesta">
+            <int>221</int>
            </void>
            <void property="velocidadMovimiento">
             <int>60</int>
@@ -60,31 +60,28 @@
          <void method="add">
           <object class="quino.clases.model.Resultado">
            <void property="angulo">
-            <double>19.78</double>
-           </void>
-           <void property="asincronico">
-            <boolean>true</boolean>
+            <double>0.10000000000000497</double>
            </void>
            <void property="cantPuntos">
-            <int>138</int>
+            <int>4</int>
            </void>
            <void property="densidad">
-            <int>600</int>
+            <int>20</int>
            </void>
-           <void property="descripcion">
-            <string>Omisión</string>
+           <void property="direccion">
+            <int>1</int>
            </void>
-           <void property="error">
-            <boolean>true</boolean>
+           <void property="key">
+            <int>32</int>
            </void>
            <void property="numEnsayo">
             <int>1</int>
            </void>
            <void property="panelEstimulo">
-            <int>2</int>
+            <int>6</int>
            </void>
-           <void property="velocidad">
-            <double>0.002</double>
+           <void property="tiempoRespuesta">
+            <int>422</int>
            </void>
            <void property="velocidadMovimiento">
             <int>60</int>
@@ -94,31 +91,28 @@
          <void method="add">
           <object class="quino.clases.model.Resultado">
            <void property="angulo">
-            <double>20.31</double>
-           </void>
-           <void property="asincronico">
-            <boolean>true</boolean>
+            <double>0.0799999999999983</double>
            </void>
            <void property="cantPuntos">
-            <int>138</int>
+            <int>4</int>
            </void>
            <void property="densidad">
-            <int>600</int>
+            <int>20</int>
            </void>
-           <void property="descripcion">
-            <string>Omisión</string>
+           <void property="direccion">
+            <int>1</int>
            </void>
-           <void property="error">
-            <boolean>true</boolean>
+           <void property="key">
+            <int>32</int>
            </void>
            <void property="numEnsayo">
             <int>2</int>
            </void>
            <void property="panelEstimulo">
-            <int>7</int>
+            <int>1</int>
            </void>
-           <void property="velocidad">
-            <double>0.002</double>
+           <void property="tiempoRespuesta">
+            <int>529</int>
            </void>
            <void property="velocidadMovimiento">
             <int>60</int>
@@ -128,31 +122,28 @@
          <void method="add">
           <object class="quino.clases.model.Resultado">
            <void property="angulo">
-            <double>20.83</double>
-           </void>
-           <void property="asincronico">
-            <boolean>true</boolean>
+            <double>0.08000000000000185</double>
            </void>
            <void property="cantPuntos">
-            <int>138</int>
+            <int>4</int>
            </void>
            <void property="densidad">
-            <int>600</int>
+            <int>20</int>
            </void>
-           <void property="descripcion">
-            <string>Omisión</string>
+           <void property="direccion">
+            <int>1</int>
            </void>
-           <void property="error">
-            <boolean>true</boolean>
+           <void property="key">
+            <int>32</int>
            </void>
            <void property="numEnsayo">
             <int>3</int>
            </void>
            <void property="panelEstimulo">
-            <int>5</int>
+            <int>8</int>
            </void>
-           <void property="velocidad">
-            <double>0.002</double>
+           <void property="tiempoRespuesta">
+            <int>458</int>
            </void>
            <void property="velocidadMovimiento">
             <int>60</int>
@@ -164,100 +155,170 @@
       </object>
      </void>
      <void property="historia">
-      <string>12</string>
+      <string>34</string>
      </void>
      <void property="nombre">
-      <string>sd</string>
+      <string>Frank Sanabria Macias</string>
      </void>
      <void property="periferica">
       <object class="quino.clases.model.Prueba">
        <void property="cantEnsayos">
-        <int>4</int>
+        <int>5</int>
        </void>
        <void property="resultados">
         <object class="java.util.ArrayList">
          <void method="add">
           <object class="quino.clases.model.Resultado">
            <void property="angulo">
-            <double>17.69</double>
+            <double>20.32</double>
            </void>
            <void property="cantPuntos">
-            <int>138</int>
+            <int>59</int>
            </void>
            <void property="densidad">
-            <int>600</int>
+            <int>237</int>
            </void>
-           <void property="descripcion">
-            <string>Omisión</string>
+           <void property="direccion">
+            <int>6</int>
            </void>
-           <void property="error">
-            <boolean>true</boolean>
+           <void property="key">
+            <int>32</int>
            </void>
            <void property="panelEstimulo">
             <int>2</int>
            </void>
+           <void property="tiempoRespuesta">
+            <int>568</int>
+           </void>
            <void property="velocidad">
-            <double>0.002</double>
+            <double>0.001</double>
            </void>
            <void property="velocidadMovimiento">
-            <int>60</int>
+            <int>161</int>
            </void>
           </object>
          </void>
          <void method="add">
           <object class="quino.clases.model.Resultado">
+           <void property="angulo">
+            <double>15.03</double>
+           </void>
            <void property="cantPuntos">
-            <int>138</int>
+            <int>58</int>
            </void>
            <void property="densidad">
-            <int>600</int>
+            <int>200</int>
+           </void>
+           <void property="direccion">
+            <int>2</int>
+           </void>
+           <void property="key">
+            <int>32</int>
            </void>
            <void property="numEnsayo">
             <int>1</int>
            </void>
+           <void property="panelEstimulo">
+            <int>1</int>
+           </void>
+           <void property="tiempoRespuesta">
+            <int>361</int>
+           </void>
            <void property="velocidad">
-            <double>0.002</double>
+            <double>0.001</double>
            </void>
            <void property="velocidadMovimiento">
-            <int>60</int>
+            <int>198</int>
            </void>
           </object>
          </void>
          <void method="add">
           <object class="quino.clases.model.Resultado">
            <void property="cantPuntos">
-            <int>138</int>
+            <int>10</int>
            </void>
            <void property="densidad">
-            <int>600</int>
+            <int>75</int>
+           </void>
+           <void property="direccion">
+            <int>1</int>
            </void>
            <void property="numEnsayo">
             <int>2</int>
            </void>
            <void property="velocidad">
-            <double>0.002</double>
+            <double>0.001</double>
            </void>
            <void property="velocidadMovimiento">
-            <int>60</int>
+            <int>90</int>
            </void>
           </object>
          </void>
          <void method="add">
           <object class="quino.clases.model.Resultado">
+           <void property="angulo">
+            <double>17.14</double>
+           </void>
            <void property="cantPuntos">
-            <int>138</int>
+            <int>43</int>
            </void>
            <void property="densidad">
-            <int>600</int>
+            <int>62</int>
+           </void>
+           <void property="direccion">
+            <int>3</int>
+           </void>
+           <void property="key">
+            <int>32</int>
            </void>
            <void property="numEnsayo">
             <int>3</int>
+           </void>
+           <void property="panelEstimulo">
+            <int>1</int>
+           </void>
+           <void property="tiempoRespuesta">
+            <int>463</int>
+           </void>
+           <void property="velocidad">
+            <double>0.001</double>
+           </void>
+           <void property="velocidadMovimiento">
+            <int>194</int>
+           </void>
+          </object>
+         </void>
+         <void method="add">
+          <object class="quino.clases.model.Resultado">
+           <void property="angulo">
+            <double>19.81</double>
+           </void>
+           <void property="cantPuntos">
+            <int>10</int>
+           </void>
+           <void property="densidad">
+            <int>150</int>
+           </void>
+           <void property="direccion">
+            <int>1</int>
+           </void>
+           <void property="key">
+            <int>32</int>
+           </void>
+           <void property="numEnsayo">
+            <int>4</int>
+           </void>
+           <void property="panelEstimulo">
+            <int>2</int>
+           </void>
+           <void property="tiempoRespuesta">
+            <int>537</int>
            </void>
            <void property="velocidad">
             <double>0.002</double>
            </void>
            <void property="velocidadMovimiento">
-            <int>60</int>
+            <int>61</int>
            </void>
           </object>
          </void>
@@ -273,21 +334,24 @@
    <void method="add">
     <object class="quino.clases.model.Paciente">
      <void property="ci">
-      <long>85052200307</long>
+      <long>85051100307</long>
      </void>
      <void property="edad">
-      <int>3</int>
+      <int>4</int>
      </void>
      <void property="escolaridad">
-      <string>3</string>
+      <string>5</string>
+     </void>
+     <void property="escuela">
+      <string>Amiguitos de Felipe</string>
      </void>
      <void property="ficha">
-      <string>sd</string>
+      <string>esta es la ficha</string>
      </void>
      <void property="foveal">
       <object class="quino.clases.model.Prueba">
        <void property="cantEnsayos">
-        <int>9</int>
+        <int>4</int>
        </void>
        <void property="foveal">
         <boolean>true</boolean>
@@ -297,273 +361,262 @@
          <void method="add">
           <object class="quino.clases.model.Resultado">
            <void property="angulo">
-            <double>21.53</double>
+            <double>19.6</double>
            </void>
            <void property="cantPuntos">
-            <int>14</int>
+            <int>138</int>
            </void>
            <void property="densidad">
-            <int>175</int>
-           </void>
-           <void property="descripcion">
-            <string>Omisión</string>
+            <int>600</int>
            </void>
            <void property="direccion">
-            <int>5</int>
-           </void>
-           <void property="error">
-            <boolean>true</boolean>
-           </void>
-           <void property="panelEstimulo">
-            <int>5</int>
-           </void>
-           <void property="velocidad">
-            <double>0.001</double>
-           </void>
-           <void property="velocidadMovimiento">
-            <int>107</int>
-           </void>
-          </object>
-         </void>
-         <void method="add">
-          <object class="quino.clases.model.Resultado">
-           <void property="angulo">
-            <double>17.76</double>
-           </void>
-           <void property="asincronico">
-            <boolean>true</boolean>
-           </void>
-           <void property="cantPuntos">
-            <int>58</int>
-           </void>
-           <void property="densidad">
-            <int>162</int>
-           </void>
-           <void property="key">
-            <int>32</int>
-           </void>
-           <void property="numEnsayo">
             <int>1</int>
            </void>
-           <void property="panelEstimulo">
-            <int>4</int>
-           </void>
-           <void property="tiempoRespuesta">
-            <int>383</int>
-           </void>
-           <void property="velocidad">
-            <double>0.001</double>
-           </void>
-           <void property="velocidadMovimiento">
-            <int>96</int>
-           </void>
-          </object>
-         </void>
-         <void method="add">
-          <object class="quino.clases.model.Resultado">
-           <void property="angulo">
-            <double>20.26</double>
-           </void>
-           <void property="cantPuntos">
-            <int>8</int>
-           </void>
-           <void property="densidad">
-            <int>50</int>
-           </void>
-           <void property="direccion">
-            <int>2</int>
-           </void>
            <void property="key">
             <int>32</int>
            </void>
-           <void property="numEnsayo">
-            <int>2</int>
-           </void>
            <void property="panelEstimulo">
-            <int>7</int>
-           </void>
-           <void property="tiempoRespuesta">
-            <int>431</int>
-           </void>
-           <void property="velocidad">
-            <double>0.001</double>
-           </void>
-           <void property="velocidadMovimiento">
-            <int>183</int>
-           </void>
-          </object>
-         </void>
-         <void method="add">
-          <object class="quino.clases.model.Resultado">
-           <void property="cantPuntos">
-            <int>18</int>
-           </void>
-           <void property="densidad">
-            <int>200</int>
-           </void>
-           <void property="direccion">
-            <int>3</int>
-           </void>
-           <void property="numEnsayo">
-            <int>3</int>
-           </void>
-           <void property="velocidad">
-            <double>0.001</double>
-           </void>
-           <void property="velocidadMovimiento">
-            <int>91</int>
-           </void>
-          </object>
-         </void>
-         <void method="add">
-          <object class="quino.clases.model.Resultado">
-           <void property="angulo">
-            <double>22.06</double>
-           </void>
-           <void property="cantPuntos">
-            <int>75</int>
-           </void>
-           <void property="densidad">
-            <int>112</int>
-           </void>
-           <void property="direccion">
-            <int>7</int>
-           </void>
-           <void property="key">
-            <int>32</int>
-           </void>
-           <void property="numEnsayo">
-            <int>4</int>
-           </void>
-           <void property="panelEstimulo">
-            <int>2</int>
-           </void>
-           <void property="tiempoRespuesta">
-            <int>503</int>
-           </void>
-           <void property="velocidad">
-            <double>0.001</double>
-           </void>
-           <void property="velocidadMovimiento">
-            <int>145</int>
-           </void>
-          </object>
-         </void>
-         <void method="add">
-          <object class="quino.clases.model.Resultado">
-           <void property="angulo">
-            <double>22.59</double>
-           </void>
-           <void property="cantPuntos">
-            <int>99</int>
-           </void>
-           <void property="densidad">
-            <int>225</int>
-           </void>
-           <void property="direccion">
-            <int>7</int>
-           </void>
-           <void property="key">
-            <int>32</int>
-           </void>
-           <void property="numEnsayo">
-            <int>5</int>
-           </void>
-           <void property="panelEstimulo">
-            <int>1</int>
-           </void>
-           <void property="tiempoRespuesta">
-            <int>637</int>
-           </void>
-           <void property="velocidad">
-            <double>0.001</double>
-           </void>
-           <void property="velocidadMovimiento">
-            <int>180</int>
-           </void>
-          </object>
-         </void>
-         <void method="add">
-          <object class="quino.clases.model.Resultado">
-           <void property="angulo">
-            <double>19.91</double>
-           </void>
-           <void property="cantPuntos">
-            <int>12</int>
-           </void>
-           <void property="densidad">
-            <int>150</int>
-           </void>
-           <void property="descripcion">
-            <string>Omisión</string>
-           </void>
-           <void property="direccion">
-            <int>8</int>
-           </void>
-           <void property="error">
-            <boolean>true</boolean>
-           </void>
-           <void property="numEnsayo">
             <int>6</int>
            </void>
-           <void property="panelEstimulo">
-            <int>1</int>
+           <void property="tiempoRespuesta">
+            <int>587</int>
            </void>
            <void property="velocidad">
             <double>0.002</double>
            </void>
            <void property="velocidadMovimiento">
-            <int>53</int>
+            <int>60</int>
            </void>
           </object>
          </void>
          <void method="add">
           <object class="quino.clases.model.Resultado">
            <void property="angulo">
-            <double>21.27</double>
+            <double>20.91</double>
            </void>
            <void property="cantPuntos">
-            <int>108</int>
+            <int>138</int>
            </void>
            <void property="densidad">
-            <int>200</int>
+            <int>600</int>
            </void>
            <void property="direccion">
-            <int>2</int>
+            <int>1</int>
            </void>
            <void property="key">
             <int>32</int>
            </void>
            <void property="numEnsayo">
-            <int>7</int>
+            <int>1</int>
            </void>
            <void property="panelEstimulo">
-            <int>7</int>
+            <int>8</int>
            </void>
            <void property="tiempoRespuesta">
-            <int>420</int>
+            <int>543</int>
            </void>
            <void property="velocidad">
-            <double>0.001</double>
+            <double>0.002</double>
            </void>
            <void property="velocidadMovimiento">
-            <int>72</int>
+            <int>60</int>
+           </void>
+          </object>
+         </void>
+         <void method="add">
+          <object class="quino.clases.model.Resultado">
+           <void property="angulo">
+            <double>18.32</double>
+           </void>
+           <void property="cantPuntos">
+            <int>138</int>
+           </void>
+           <void property="densidad">
+            <int>600</int>
+           </void>
+           <void property="direccion">
+            <int>1</int>
+           </void>
+           <void property="key">
+            <int>32</int>
+           </void>
+           <void property="numEnsayo">
+            <int>2</int>
+           </void>
+           <void property="panelEstimulo">
+            <int>4</int>
+           </void>
+           <void property="tiempoRespuesta">
+            <int>553</int>
+           </void>
+           <void property="velocidad">
+            <double>0.002</double>
+           </void>
+           <void property="velocidadMovimiento">
+            <int>60</int>
            </void>
           </object>
          </void>
          <void method="add">
           <object class="quino.clases.model.Resultado">
            <void property="cantPuntos">
-            <int>67</int>
+            <int>138</int>
            </void>
            <void property="densidad">
-            <int>187</int>
+            <int>600</int>
            </void>
            <void property="direccion">
-            <int>7</int>
+            <int>1</int>
            </void>
            <void property="numEnsayo">
-            <int>8</int>
+            <int>3</int>
+           </void>
+           <void property="velocidad">
+            <double>0.002</double>
+           </void>
+           <void property="velocidadMovimiento">
+            <int>60</int>
+           </void>
+          </object>
+         </void>
+        </object>
+       </void>
+      </object>
+     </void>
+     <void property="historia">
+      <string>8505</string>
+     </void>
+     <void property="nombre">
+      <string>Felipe Rodriguez Arias</string>
+     </void>
+     <void property="periferica">
+      <object class="quino.clases.model.Prueba">
+       <void property="cantEnsayos">
+        <int>5</int>
+       </void>
+       <void property="resultados">
+        <object class="java.util.ArrayList">
+         <void method="add">
+          <object class="quino.clases.model.Resultado">
+           <void property="angulo">
+            <double>15.1</double>
+           </void>
+           <void property="asincronico">
+            <boolean>true</boolean>
+           </void>
+           <void property="cantPuntos">
+            <int>3</int>
+           </void>
+           <void property="densidad">
+            <int>25</int>
+           </void>
+           <void property="key">
+            <int>32</int>
+           </void>
+           <void property="panelEstimulo">
+            <int>1</int>
+           </void>
+           <void property="tiempoRespuesta">
+            <int>1148</int>
+           </void>
+           <void property="velocidad">
+            <double>0.001</double>
+           </void>
+           <void property="velocidadMovimiento">
+            <int>126</int>
+           </void>
+          </object>
+         </void>
+         <void method="add">
+          <object class="quino.clases.model.Resultado">
+           <void property="cantPuntos">
+            <int>43</int>
+           </void>
+           <void property="densidad">
+            <int>100</int>
+           </void>
+           <void property="descripcion">
+            <string>No hubo Estímulo</string>
+           </void>
+           <void property="direccion">
+            <int>6</int>
+           </void>
+           <void property="error">
+            <boolean>true</boolean>
+           </void>
+           <void property="key">
+            <int>32</int>
+           </void>
+           <void property="numEnsayo">
+            <int>1</int>
+           </void>
+           <void property="velocidad">
+            <double>0.001</double>
+           </void>
+           <void property="velocidadMovimiento">
+            <int>149</int>
+           </void>
+          </object>
+         </void>
+         <void method="add">
+          <object class="quino.clases.model.Resultado">
+           <void property="angulo">
+            <double>13.26</double>
+           </void>
+           <void property="asincronico">
+            <boolean>true</boolean>
+           </void>
+           <void property="cantPuntos">
+            <int>4</int>
+           </void>
+           <void property="densidad">
+            <int>25</int>
+           </void>
+           <void property="key">
+            <int>32</int>
+           </void>
+           <void property="numEnsayo">
+            <int>2</int>
+           </void>
+           <void property="panelEstimulo">
+            <int>1</int>
+           </void>
+           <void property="tiempoRespuesta">
+            <int>779</int>
+           </void>
+           <void property="velocidad">
+            <double>0.002</double>
+           </void>
+           <void property="velocidadMovimiento">
+            <int>62</int>
+           </void>
+          </object>
+         </void>
+         <void method="add">
+          <object class="quino.clases.model.Resultado">
+           <void property="angulo">
+            <double>10.57</double>
+           </void>
+           <void property="cantPuntos">
+            <int>28</int>
+           </void>
+           <void property="densidad">
+            <int>150</int>
+           </void>
+           <void property="direccion">
+            <int>6</int>
+           </void>
+           <void property="key">
+            <int>32</int>
+           </void>
+           <void property="numEnsayo">
+            <int>3</int>
+           </void>
+           <void property="panelEstimulo">
+            <int>2</int>
+           </void>
+           <void property="tiempoRespuesta">
+            <int>589</int>
            </void>
            <void property="velocidad">
             <double>0.001</double>
@@ -573,15 +626,43 @@
            </void>
           </object>
          </void>
+         <void method="add">
+          <object class="quino.clases.model.Resultado">
+           <void property="angulo">
+            <double>20.03</double>
+           </void>
+           <void property="cantPuntos">
+            <int>177</int>
+           </void>
+           <void property="densidad">
+            <int>237</int>
+           </void>
+           <void property="direccion">
+            <int>8</int>
+           </void>
+           <void property="key">
+            <int>32</int>
+           </void>
+           <void property="numEnsayo">
+            <int>4</int>
+           </void>
+           <void property="panelEstimulo">
+            <int>2</int>
+           </void>
+           <void property="tiempoRespuesta">
+            <int>693</int>
+           </void>
+           <void property="velocidad">
+            <double>0.002</double>
+           </void>
+           <void property="velocidadMovimiento">
+            <int>68</int>
+           </void>
+          </object>
+         </void>
         </object>
        </void>
       </object>
-     </void>
-     <void property="historia">
-      <string>34</string>
-     </void>
-     <void property="nombre">
-      <string>erwe</string>
      </void>
      <void property="sexo">
       <string>Masculino</string>

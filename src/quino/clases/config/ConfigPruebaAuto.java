@@ -10,9 +10,9 @@ import quino.util.Aleatorio;
  *
  * @author davisito
  */
-public class ConfiguracionAutomatica extends Configuracion {
+public class ConfigPruebaAuto extends ConfigPrueba {
 
-    public ConfiguracionAutomatica(boolean control) {
+    public ConfigPruebaAuto(boolean control) {
         Aleatorio r = new Aleatorio();
         Aleatorio ran = new Aleatorio();
         int x = ran.nextInt(1, 19);

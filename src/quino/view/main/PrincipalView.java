@@ -17,9 +17,9 @@ import javax.swing.event.ListSelectionEvent;
 import quino.view.prueba.ManualConfigView;
 import quino.view.prueba.AutoConfigView;
 import quino.clases.model.Registro;
-import quino.clases.config.Configuracion;
-import quino.clases.config.ConfiguracionAutomatica;
-import quino.clases.config.IConfiguracion;
+import quino.clases.config.ConfigPrueba;
+import quino.clases.config.ConfigPruebaAuto;
+import quino.clases.config.IConfigApp;
 import quino.clases.model.Prueba;
 import java.io.IOException;
 import javax.swing.ListSelectionModel;
@@ -35,7 +35,12 @@ import quino.view.prueba.PerifericaTestView;
 import java.io.File;
 import javax.swing.filechooser.*;
 import javax.swing.JFileChooser;
+import org.apache.poi.hssf.usermodel.HSSFWorkbook;
+import quino.clases.config.ConfigApp;
+import quino.util.QuinoTools;
 import quino.util.ScreenSplash;
+import quino.util.report.InformeExcel;
+import quino.util.report.InformeParametrosXEnsayo;
 import quino.view.prueba.FovealTestView;
 
 /**
@@ -45,18 +50,16 @@ import quino.view.prueba.FovealTestView;
 public class PrincipalView extends javax.swing.JFrame {
     //public clases.prueba.Tester tester;
 
-    private Configuracion conf;
+    private ConfigPrueba conf;
     private Prueba prueba;
     private Registro registro;
     private Paciente pacienteActual;
 
-    /*private int sel_paciente;
-    private int respuesta;*/
-    public Configuracion getConf() {
+    public ConfigPrueba getConf() {
         return conf;
     }
 
-    public void setConf(Configuracion conf) {
+    public void setConf(ConfigPrueba conf) {
         this.conf = conf;
     }
 
@@ -88,7 +91,8 @@ public class PrincipalView extends javax.swing.JFrame {
         jMenuItem17.setEnabled(false);
         try {
             registro = new Registro();
-            registro = Registro.cargarRegistro(IConfiguracion.REGISTRO_FILE_NAME);
+            registro = Registro.cargarRegistro(IConfigApp.REGISTRO_FILE_NAME);
+            QuinoTools.cargarConfiguracion();
 
             Modificar_Tabla();
             if (registro.getPacientes().size() == 0) {
@@ -149,6 +153,7 @@ public class PrincipalView extends javax.swing.JFrame {
                 }
             }
         });
+
         b_add.setToolTipText("Registrar nuevo Paciente");
         b_del.setToolTipText("Eliminar el Paciente seleccionado");
         b_busc.setToolTipText("Buscar un Paciente");
@@ -179,6 +184,7 @@ public class PrincipalView extends javax.swing.JFrame {
                 return celdasNoEditables[columna];
             }
         };
+
         tm.addColumn("Historia Clínica");
         tm.addColumn("Nombre y Apellidos");
         tm.addColumn("Carné de Identidad");
@@ -226,6 +232,28 @@ public class PrincipalView extends javax.swing.JFrame {
         jMenuItem16.setEnabled(true);
     }
 
+    private void eliminarPaciente() {
+        ConfirmDialog confirmDialog = new ConfirmDialog(this, true);
+        confirmDialog.setVisible(true);
+
+        int respuesta = confirmDialog.getReturnStatus();
+
+        if (respuesta == 1) {
+            try {
+                String hist = pacienteActual.getHistoria();
+                registro.eliminarXHistoria(hist);
+
+                Modificar_Tabla();
+                registro.salvarRegistro(IConfigApp.REGISTRO_FILE_NAME);
+            } catch (Exception e) {
+                ErrorDialog err = new ErrorDialog(this, true, e.getMessage());
+                err.setVisible(true);
+            }
+        } else {
+            Modificar_Tabla();
+        }
+    }
+
     /** This method is called from within the constructor to
      * initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is
@@ -259,6 +287,7 @@ public class PrincipalView extends javax.swing.JFrame {
         jMenu6 = new javax.swing.JMenu();
         jMenuItem11 = new javax.swing.JMenuItem();
         jMenuItem12 = new javax.swing.JMenuItem();
+        jMenuItem3 = new javax.swing.JMenuItem();
         jSeparator1 = new javax.swing.JSeparator();
         jMenuItem13 = new javax.swing.JMenuItem();
         jMenu8 = new javax.swing.JMenu();
@@ -488,7 +517,7 @@ public class PrincipalView extends javax.swing.JFrame {
 
         jMenu6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/quino/view/main/icons/add-folder-to-archive.png"))); // NOI18N
         jMenu6.setText("Archivo");
-        jMenu6.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jMenu6.setFont(new java.awt.Font("Tahoma", 0, 12));
         jMenu6.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenu6ActionPerformed(evt);
@@ -497,7 +526,7 @@ public class PrincipalView extends javax.swing.JFrame {
 
         jMenuItem11.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jMenuItem11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/quino/view/main/icons/package-upgrade.png"))); // NOI18N
-        jMenuItem11.setText("Cargar base de datos");
+        jMenuItem11.setText("Cargar base de datos ");
         jMenuItem11.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem11ActionPerformed(evt);
@@ -507,18 +536,28 @@ public class PrincipalView extends javax.swing.JFrame {
 
         jMenuItem12.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jMenuItem12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/quino/view/main/icons/package-downgrade.png"))); // NOI18N
-        jMenuItem12.setText("Exportar base de datos");
+        jMenuItem12.setText("Exportar base de datos ");
         jMenuItem12.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem12ActionPerformed(evt);
             }
         });
         jMenu6.add(jMenuItem12);
+
+        jMenuItem3.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jMenuItem3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/quino/view/main/icons/view-sort-ascending.png"))); // NOI18N
+        jMenuItem3.setText("Exportar informe");
+        jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem3ActionPerformed(evt);
+            }
+        });
+        jMenu6.add(jMenuItem3);
         jMenu6.add(jSeparator1);
 
-        jMenuItem13.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jMenuItem13.setFont(new java.awt.Font("Tahoma", 0, 12));
         jMenuItem13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/quino/view/main/icons/system-shutdown-restart-panel.png"))); // NOI18N
-        jMenuItem13.setText("Cerrar");
+        jMenuItem13.setText("Salir");
         jMenuItem13.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem13ActionPerformed(evt);
@@ -530,9 +569,9 @@ public class PrincipalView extends javax.swing.JFrame {
 
         jMenu8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/quino/view/main/icons/view-list-details-symbolic.png"))); // NOI18N
         jMenu8.setText("Entrenamiento");
-        jMenu8.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jMenu8.setFont(new java.awt.Font("Tahoma", 0, 12));
 
-        jMenuItem18.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jMenuItem18.setFont(new java.awt.Font("Tahoma", 0, 12));
         jMenuItem18.setIcon(new javax.swing.ImageIcon(getClass().getResource("/quino/view/main/icons/package-installed-updated.png"))); // NOI18N
         jMenuItem18.setText("Foveal");
         jMenuItem18.addActionListener(new java.awt.event.ActionListener() {
@@ -542,7 +581,7 @@ public class PrincipalView extends javax.swing.JFrame {
         });
         jMenu8.add(jMenuItem18);
 
-        jMenuItem19.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jMenuItem19.setFont(new java.awt.Font("Tahoma", 0, 12));
         jMenuItem19.setIcon(new javax.swing.ImageIcon(getClass().getResource("/quino/view/main/icons/package-broken.png"))); // NOI18N
         jMenuItem19.setText("Periférica");
         jMenuItem19.addActionListener(new java.awt.event.ActionListener() {
@@ -556,9 +595,9 @@ public class PrincipalView extends javax.swing.JFrame {
 
         jMenu2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/quino/view/main/icons/view-list-icons.png"))); // NOI18N
         jMenu2.setText("Prueba");
-        jMenu2.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jMenu2.setFont(new java.awt.Font("Tahoma", 0, 12));
 
-        jMenuItem16.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jMenuItem16.setFont(new java.awt.Font("Tahoma", 0, 12));
         jMenuItem16.setIcon(new javax.swing.ImageIcon(getClass().getResource("/quino/view/main/icons/stock_properties.png"))); // NOI18N
         jMenuItem16.setText("Configuración Manual");
         jMenuItem16.addActionListener(new java.awt.event.ActionListener() {
@@ -568,7 +607,7 @@ public class PrincipalView extends javax.swing.JFrame {
         });
         jMenu2.add(jMenuItem16);
 
-        jMenuItem17.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jMenuItem17.setFont(new java.awt.Font("Tahoma", 0, 12));
         jMenuItem17.setIcon(new javax.swing.ImageIcon(getClass().getResource("/quino/view/main/icons/stock_print-setup.png"))); // NOI18N
         jMenuItem17.setText("Configuración Automática");
         jMenuItem17.addActionListener(new java.awt.event.ActionListener() {
@@ -582,9 +621,9 @@ public class PrincipalView extends javax.swing.JFrame {
 
         jMenu4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/quino/view/main/icons/tools-check-spelling.png"))); // NOI18N
         jMenu4.setText("Paciente ");
-        jMenu4.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jMenu4.setFont(new java.awt.Font("Tahoma", 0, 12));
 
-        jMenuItem4.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jMenuItem4.setFont(new java.awt.Font("Tahoma", 0, 12));
         jMenuItem4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/quino/view/main/icons/stock_new-bcard.png"))); // NOI18N
         jMenuItem4.setText("Nuevo");
         jMenuItem4.addActionListener(new java.awt.event.ActionListener() {
@@ -594,7 +633,7 @@ public class PrincipalView extends javax.swing.JFrame {
         });
         jMenu4.add(jMenuItem4);
 
-        jMenuItem5.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jMenuItem5.setFont(new java.awt.Font("Tahoma", 0, 12));
         jMenuItem5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/quino/view/main/icons/stock_zoom-in.png"))); // NOI18N
         jMenuItem5.setText("Buscar");
         jMenuItem5.addActionListener(new java.awt.event.ActionListener() {
@@ -608,9 +647,9 @@ public class PrincipalView extends javax.swing.JFrame {
 
         jMenu1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/quino/view/main/icons/window_nofullscreen.png"))); // NOI18N
         jMenu1.setText("Herramientas");
-        jMenu1.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jMenu1.setFont(new java.awt.Font("Tahoma", 0, 12));
 
-        jMenuItem10.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jMenuItem10.setFont(new java.awt.Font("Tahoma", 0, 12));
         jMenuItem10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/quino/view/main/icons/stock_fullscreen.png"))); // NOI18N
         jMenuItem10.setText("Configuración Avanzada");
         jMenuItem10.setName(""); // NOI18N
@@ -661,17 +700,7 @@ public class PrincipalView extends javax.swing.JFrame {
 
     private void jMenuItem8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem8ActionPerformed
         // TODO add your handling code here:
-        try {
-            String hist = pacienteActual.getHistoria();
-            registro.eliminarXHistoria(hist);
-            ErrorDialog err = new ErrorDialog(this, true, "El paciente ha sido eliminado satisfactoriamente");
-            err.setVisible(true);
-            Modificar_Tabla();
-            registro.salvarRegistro(IConfiguracion.REGISTRO_FILE_NAME);
-        } catch (Exception e) {
-            ErrorDialog err = new ErrorDialog(this, true, e.getMessage());
-            err.setVisible(true);
-        }
+        eliminarPaciente();
     }//GEN-LAST:event_jMenuItem8ActionPerformed
 
     private void jMenuItem7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem7ActionPerformed
@@ -695,7 +724,7 @@ public class PrincipalView extends javax.swing.JFrame {
         // TODO add your handling code here:
         prueba = pacienteActual.getPeriferica();
         if (prueba != null) {
-            ResultView resultado = new ResultView(this, true);
+            ResultView resultado = new ResultView(this, true, false);
             resultado.setVisible(true);
         } else {
             ErrorDialog err = new ErrorDialog(this, true,
@@ -707,21 +736,22 @@ public class PrincipalView extends javax.swing.JFrame {
     private void jMenuItem12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem12ActionPerformed
         // TODO add your handling code here:
         try {
-
             FileNameExtensionFilter filter = new FileNameExtensionFilter("Archivos de base de datos(*.tls)", "tls");
             jFileChooser1.addChoosableFileFilter(filter);
-            jFileChooser1.setDialogTitle("Exportar Base");
+            jFileChooser1.setDialogTitle("Exportar base de datos");
             jFileChooser1.setDialogType(JFileChooser.SAVE_DIALOG);
             jFileChooser1.showSaveDialog(this);
             File selectPlaced = jFileChooser1.getSelectedFile();
-            String extension = selectPlaced.getPath().substring(selectPlaced.getPath().length() - ".tls".length(), selectPlaced.getPath().length());
+            if (selectPlaced != null) {
+                String extension = selectPlaced.getPath().substring(selectPlaced.getPath().length()
+                        - ".tls".length(), selectPlaced.getPath().length());
 
-            if (extension.equals(".tls")) {
-                registro.salvarRegistro(selectPlaced.getPath());
-            } else {
-                registro.salvarRegistro(selectPlaced.getPath() + "." + filter.getExtensions()[0]);
+                if (extension.equals(".tls")) {
+                    registro.salvarRegistro(selectPlaced.getPath());
+                } else {
+                    registro.salvarRegistro(selectPlaced.getPath() + "." + filter.getExtensions()[0]);
+                }
             }
-
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(PrincipalView.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IOException ex) {
@@ -738,7 +768,7 @@ public class PrincipalView extends javax.swing.JFrame {
         // TODO add your handling code here:
         FileNameExtensionFilter filter = new FileNameExtensionFilter("Archivos de base de datos (*.tls)", "tls");
         jFileChooser1.addChoosableFileFilter(filter);
-        jFileChooser1.setDialogTitle("Importar Base");
+        jFileChooser1.setDialogTitle("Importar base de datos");
         jFileChooser1.setDialogType(JFileChooser.OPEN_DIALOG);
         int status = jFileChooser1.showOpenDialog(this);
 
@@ -748,7 +778,7 @@ public class PrincipalView extends javax.swing.JFrame {
                 Registro base = Registro.cargarRegistro(selectedFile.getPath());
                 registro.importarRegistro(base);
                 Modificar_Tabla();
-                registro.salvarRegistro(IConfiguracion.REGISTRO_FILE_NAME);
+                registro.salvarRegistro(IConfigApp.REGISTRO_FILE_NAME);
             } catch (Exception ex) {
                 ErrorDialog e = new ErrorDialog(this, true, ex.getMessage());
                 e.setVisible(true);
@@ -788,33 +818,14 @@ public class PrincipalView extends javax.swing.JFrame {
 
     private void b_delActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b_delActionPerformed
         // TODO add your handling code here:
-        ConfirmDialog confirmDialog = new ConfirmDialog(this, true);
-        confirmDialog.setVisible(true);
-
-        int respuesta = confirmDialog.getReturnStatus();
-
-        if (respuesta == 1) {
-            try {
-                String hist = pacienteActual.getHistoria();
-                registro.eliminarXHistoria(hist);
-
-                Modificar_Tabla();
-                registro.salvarRegistro(IConfiguracion.REGISTRO_FILE_NAME);
-            } catch (Exception e) {
-                ErrorDialog err = new ErrorDialog(this, true, e.getMessage());
-                err.setVisible(true);
-            }
-        } else {
-            Modificar_Tabla();
-        }
-
+        eliminarPaciente();
     }//GEN-LAST:event_b_delActionPerformed
 
     private void jMenuItem14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem14ActionPerformed
         // TODO add your handling code here:
         prueba = pacienteActual.getFoveal();
         if (prueba != null) {
-            ResultView resultado = new ResultView(this, true);
+            ResultView resultado = new ResultView(this, true, true);
             resultado.setVisible(true);
         } else {
             ErrorDialog err = new ErrorDialog(this, true,
@@ -837,16 +848,16 @@ public class PrincipalView extends javax.swing.JFrame {
 
     private void jMenuItem18ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem18ActionPerformed
         // TODO add your handling code here:
-        conf = new ConfiguracionAutomatica(false);
-        prueba = new Prueba(IConfiguracion.CANT_ENSAYOS);
+        conf = new ConfigPruebaAuto(false);
+        prueba = new Prueba(ConfigApp.CANT_ENSAYOS);
         FovealTestView t = new FovealTestView(this, true, true);
         t.setVisible(true);
     }//GEN-LAST:event_jMenuItem18ActionPerformed
 
     private void jMenuItem19ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem19ActionPerformed
         // TODO add your handling code here:
-        conf = new ConfiguracionAutomatica(false);
-        prueba = new Prueba(IConfiguracion.CANT_ENSAYOS);
+        conf = new ConfigPruebaAuto(false);
+        prueba = new Prueba(ConfigApp.CANT_ENSAYOS);
         PerifericaTestView t = new PerifericaTestView(this, true, true);
         t.setVisible(true);
     }//GEN-LAST:event_jMenuItem19ActionPerformed
@@ -874,6 +885,25 @@ public class PrincipalView extends javax.swing.JFrame {
         this.setVisible(false);
         this.dispose();
     }//GEN-LAST:event_jMenuItem13ActionPerformed
+
+    private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
+        // TODO add your handling code here:
+
+        FileNameExtensionFilter filter = new FileNameExtensionFilter("Archivos Excel(*.xls)", "xls");
+        jFileChooser1.addChoosableFileFilter(filter);
+        jFileChooser1.setDialogTitle("Exportar informe de datos xls");
+        jFileChooser1.setDialogType(JFileChooser.SAVE_DIALOG);
+        jFileChooser1.showSaveDialog(this);
+        File selectPlaced = jFileChooser1.getSelectedFile();
+
+        HSSFWorkbook book = new HSSFWorkbook();
+        InformeExcel excel = new InformeParametrosXEnsayo(book);
+        excel.getInformeExcel();
+
+        if (selectPlaced != null) {
+            QuinoTools.salvarLibroExcel(selectPlaced.getPath() + "." + filter.getExtensions()[0], book);
+        }
+    }//GEN-LAST:event_jMenuItem3ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -916,6 +946,7 @@ public class PrincipalView extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem18;
     private javax.swing.JMenuItem jMenuItem19;
     private javax.swing.JMenuItem jMenuItem2;
+    private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem jMenuItem5;
     private javax.swing.JMenuItem jMenuItem6;

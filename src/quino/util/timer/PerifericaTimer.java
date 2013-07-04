@@ -7,7 +7,7 @@ package quino.util.timer;
 import quino.util.QuinoJPanel;
 import quino.util.CentralJPanel;
 import quino.util.Punto;
-import quino.clases.config.Configuracion;
+import quino.clases.config.ConfigPrueba;
 import quino.clases.model.Prueba;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -31,7 +31,7 @@ public class PerifericaTimer extends AbstractQuinoTimer {
     private PerifericaTestView test;
     private KeyListener keyPress;
 
-    public PerifericaTimer(Prueba prueba, Configuracion configuracion,
+    public PerifericaTimer(Prueba prueba, ConfigPrueba configuracion,
             QuinoJPanel panel1, QuinoJPanel panel2, CentralJPanel panel3,
             PerifericaTestView test, boolean practica) {
         super(prueba, configuracion);
@@ -143,7 +143,7 @@ public class PerifericaTimer extends AbstractQuinoTimer {
             if (!practica) {
                 QuinoTools.salvarPruebaEnRegistro(test.getParentView(), test, prueba);
             }
-            ResultView res = new ResultView(test.getParentView(), true);
+            ResultView res = new ResultView(test.getParentView(), true, false);
             test.setVisible(false);
             res.setVisible(true);
         }
@@ -163,8 +163,8 @@ public class PerifericaTimer extends AbstractQuinoTimer {
 
     @Override
     protected void panelsRellenar() {
-        panel1.Rellenar(configuracion.getDensidad(), configuracion.getCantidad());
-        panel2.Rellenar(configuracion.getDensidad(), configuracion.getCantidad());
+        panel1.rellenar(configuracion.getDensidad(), configuracion.getCantidad());
+        panel2.rellenar(configuracion.getDensidad(), configuracion.getCantidad());
     }
 
     @Override
@@ -201,7 +201,7 @@ public class PerifericaTimer extends AbstractQuinoTimer {
             double x = d.getWidth() / 2;
             double y = d.getHeight() / 2;
             p1 = new Punto(x, y);
-            angulo = ensayo.getAngulo(p1, p2);
+            angulo = QuinoTools.getAngulo(p1, p2);
         }
 
         return angulo;

@@ -4,7 +4,6 @@
  */
 package quino.test.main;
 
-import java.awt.Color;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -17,8 +16,7 @@ import org.apache.poi.hssf.usermodel.HSSFFont;
 import org.apache.poi.hssf.usermodel.HSSFRow;
 import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
-import org.apache.poi.ss.usermodel.CellStyle;
-import quino.clases.config.IConfigApp;
+import quino.clases.config.ConfigApp;
 import quino.clases.model.Paciente;
 import quino.clases.model.Prueba;
 import quino.clases.model.Registro;
@@ -33,7 +31,7 @@ public class Main2 {
 
     public static void main(String[] args) {
         try {
-            Registro registro = Registro.cargarRegistro(IConfigApp.REGISTRO_FILE_NAME);
+            Registro registro = Registro.cargarRegistro(ConfigApp.REGISTRO_FILE_NAME);
             String heads[] = {"Sujeto", "Ensayo", "Densidad de puntos", "% de puntos", "Velocidad del movimiento", "Panel de estímulo", "Tiempo de respuesta"};
 
             HSSFWorkbook book = new HSSFWorkbook();

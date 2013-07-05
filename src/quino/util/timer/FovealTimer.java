@@ -165,41 +165,44 @@ public class FovealTimer extends AbstractQuinoTimer {
 
     @Override
     protected void moverPuntos() {
+        double desplazamientX = test.getLocation().getX();
+        double desplazamientoY = test.getLocation().getY();
+
         switch (panelEstimulo) {
             case 0: {
                 panelsRepaint();
             }
             break;
             case 1: {
-                moverPuntoYRepintar(panel1);
+                moverPuntoYRepintar(panel1, desplazamientX, desplazamientoY);
             }
             break;
             case 2: {
-                moverPuntoYRepintar(panel2);
+                moverPuntoYRepintar(panel2, desplazamientX, desplazamientoY);
             }
             break;
             case 3: {
-                moverPuntoYRepintar(panel3);
+                moverPuntoYRepintar(panel3, desplazamientX, desplazamientoY);
             }
             break;
             case 4: {
-                moverPuntoYRepintar(panel4);
+                moverPuntoYRepintar(panel4, desplazamientX, desplazamientoY);
             }
             break;
             case 5: {
-                moverPuntoYRepintar(panel5);
+                moverPuntoYRepintar(panel5, desplazamientX, desplazamientoY);
             }
             break;
             case 6: {
-                moverPuntoYRepintar(panel6);
+                moverPuntoYRepintar(panel6, desplazamientX, desplazamientoY);
             }
             break;
             case 7: {
-                moverPuntoYRepintar(panel7);
+                moverPuntoYRepintar(panel7, desplazamientX, desplazamientoY);
             }
             break;
             case 8: {
-                moverPuntoYRepintar(panel8);
+                moverPuntoYRepintar(panel8, desplazamientX, desplazamientoY);
             }
             break;
         }
@@ -212,28 +215,28 @@ public class FovealTimer extends AbstractQuinoTimer {
         if (panelEstimulo > 0) {
             switch (panelEstimulo) {
                 case 1:
-                    angulo = panel1.buscarAngulo();
+                    angulo = panel1.promedioAngulo();
                     break;
                 case 2:
-                    angulo = panel2.buscarAngulo();
+                    angulo = panel2.promedioAngulo();
                     break;
                 case 3:
-                    angulo = panel3.buscarAngulo();
+                    angulo = panel3.promedioAngulo();
                     break;
                 case 4:
-                    angulo = panel4.buscarAngulo();
+                    angulo = panel4.promedioAngulo();
                     break;
                 case 5:
-                    angulo = panel5.buscarAngulo();
+                    angulo = panel5.promedioAngulo();
                     break;
                 case 6:
-                    angulo = panel6.buscarAngulo();
+                    angulo = panel6.promedioAngulo();
                     break;
                 case 7:
-                    angulo = panel7.buscarAngulo();
+                    angulo = panel7.promedioAngulo();
                     break;
                 case 8:
-                    angulo = panel8.buscarAngulo();
+                    angulo = panel8.promedioAngulo();
                     break;
             }
 

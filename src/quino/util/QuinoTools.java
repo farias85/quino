@@ -14,14 +14,12 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
-import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JDialog;
 import javax.swing.JOptionPane;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import quino.clases.config.ConfigApp;
-import quino.clases.config.IConfigApp;
 import quino.clases.model.Prueba;
 import quino.view.main.ErrorDialog;
 import quino.view.main.PrincipalView;
@@ -97,8 +95,8 @@ public class QuinoTools {
                         } else {
                             principalView.getPacienteActual().setPeriferica(prueba);
                         }
-                        principalView.getRegistro().salvarRegistro(IConfigApp.REGISTRO_FILE_NAME);
-                        principalView.Modificar_Tabla();
+                        principalView.getRegistro().salvarRegistro(ConfigApp.REGISTRO_FILE_NAME);
+                        principalView.modificarTableModel();
                     }
                     break;
                     case 1:
@@ -110,8 +108,8 @@ public class QuinoTools {
                 } else {
                     principalView.getPacienteActual().setPeriferica(prueba);
                 }
-                principalView.getRegistro().salvarRegistro(IConfigApp.REGISTRO_FILE_NAME);
-                principalView.Modificar_Tabla();
+                principalView.getRegistro().salvarRegistro(ConfigApp.REGISTRO_FILE_NAME);
+                principalView.modificarTableModel();
             }
         } catch (Exception e) {
             ErrorDialog err = new ErrorDialog(principalView, true, "No se ha podido guardar la prueba");
@@ -182,7 +180,7 @@ public class QuinoTools {
         try {
             ConfigApp impl = new ConfigApp(ConfigApp.CANT_ENSAYOS, ConfigApp.TIEMPO_DURACION,
                     ConfigApp.PC_EN_ESPERA, ConfigApp.PC_PREPARADO, ConfigApp.PC_ESPERANDO_RESPUESTA);
-            XMLEncoder e = new XMLEncoder(new BufferedOutputStream(new FileOutputStream(IConfigApp.CONFIG_FILE_NAME)));
+            XMLEncoder e = new XMLEncoder(new BufferedOutputStream(new FileOutputStream(ConfigApp.CONFIG_FILE_NAME)));
             e.writeObject(impl);
             e.close();
         } catch (FileNotFoundException ex) {
@@ -192,7 +190,7 @@ public class QuinoTools {
 
     public static void cargarConfiguracion() {
         try {
-            XMLDecoder d = new XMLDecoder(new BufferedInputStream(new FileInputStream(IConfigApp.CONFIG_FILE_NAME)));
+            XMLDecoder d = new XMLDecoder(new BufferedInputStream(new FileInputStream(ConfigApp.CONFIG_FILE_NAME)));
             ConfigApp impl = (ConfigApp) (d.readObject());
             d.close();
 
@@ -226,7 +224,8 @@ public class QuinoTools {
      * @return El valor del porciento respecto al tiempo de duración
      */
     public static double porcientoDuracion(double porcentaje, double tiempoDuracion) {
-        return (porcentaje * tiempoDuracion / 100);
+        //return Double.parseDouble(ConfigApp.DECIMAL_FORMAT.format(porcentaje * tiempoDuracion / 100));
+        return Math.rint((porcentaje * tiempoDuracion / 100) * 100) / 100;
     }
 
     public static double getDistancia(Punto p1, Punto p2) {
@@ -245,10 +244,28 @@ public class QuinoTools {
     }
 
     public static double getAngulo(Punto p2) {
+        Punto p1 = getCentroPantalla();
+        return getAngulo(p1, p2);
+    }
+
+    public static double getAngulo(Punto p2, double desplazamientX, double desplazamientoY) {
+        Punto p1 = getCentroPantalla();
+        p2 = new Punto(p2.getX() + desplazamientX, p2.getY() + desplazamientoY);
+        return getAngulo(p1, p2);
+    }
+
+    private static Punto getCentroPantalla(){
         Dimension d = Toolkit.getDefaultToolkit().getScreenSize();
         double x = d.getWidth() / 2;
         double y = d.getHeight() / 2;
-        Punto p1 = new Punto(x, y);
-        return getAngulo(p1, p2);
+        return new Punto(x, y);
+    }
+
+    public static double getVelocidad(double tiempoMovimiento) {
+        double distancia = (4.00 / Toolkit.getDefaultToolkit().getScreenResolution()) * 2.5;
+        double velocidad = distancia / tiempoMovimiento;
+        velocidad = Math.rint(velocidad * 100000) / 100000;
+        //velocidad = Double.parseDouble(ConfigApp.DECIMAL_FORMAT.format(velocidad));
+        return velocidad;
     }
 }

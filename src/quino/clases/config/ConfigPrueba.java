@@ -4,36 +4,24 @@
  */
 package quino.clases.config;
 
-import java.awt.Toolkit;
-
 /**
  *
- * @author davisito
+ * @author Felipao
  */
 public class ConfigPrueba {
 
-    protected int tiempo_movimiento;
+    protected double tiempoMovimiento;
     protected int densidad;
     protected int cantidad;
     protected int direccion;
     protected boolean asincronico;
-    protected int resto;
     protected boolean control;
-    protected double velocidad;
 
-    public int getResto() {
-        return resto;
-    }
-
-    public void setResto(int resto) {
-        this.resto = resto;
-    }
-
-    public ConfigPrueba(int tiempo_movimiento, int densidad, int cantidad, int direccion, boolean asin, boolean control) throws Exception {
-        if (tiempo_movimiento < 50 || tiempo_movimiento > 200) {
+    public ConfigPrueba(double tiempoMovimiento, int densidad, int cantidad, int direccion, boolean asin, boolean control) throws Exception {
+        if (tiempoMovimiento < 50 || tiempoMovimiento > 200) {
             throw new Exception("El tiempo de movimiento debe ser mayor que 50 y menor que 200");
         } else {
-            this.tiempo_movimiento = tiempo_movimiento;
+            this.tiempoMovimiento = tiempoMovimiento;
         }
         this.densidad = densidad;
         this.cantidad = cantidad;
@@ -45,22 +33,6 @@ public class ConfigPrueba {
     public ConfigPrueba() {
     }
 
-    public int getCantidad() {
-        return cantidad;
-    }
-
-    public int getDensidad() {
-        return densidad;
-    }
-
-    public int getDireccion() {
-        return direccion;
-    }
-    
-    public int getTiempo_movimiento() {
-        return tiempo_movimiento;
-    }
-
     public boolean isAsincronico() {
         return asincronico;
     }
@@ -69,26 +41,43 @@ public class ConfigPrueba {
         this.asincronico = asincronico;
     }
 
-    public void setDensidad(int densidad) {
-        this.densidad = densidad;
+    public int getCantidad() {
+        return cantidad;
+    }
+
+    public void setCantidad(int cantidad) {
+        this.cantidad = cantidad;
     }
 
     public boolean isControl() {
         return control;
     }
 
-    public double CalcularVelocidad() {
-        double distancia = (4.00 / Toolkit.getDefaultToolkit().getScreenResolution()) * 2.5;
-        this.velocidad = distancia / tiempo_movimiento;
-        this.velocidad = Math.round(velocidad * 1000) / 1000;
-        return velocidad;
+    public void setControl(boolean control) {
+        this.control = control;
     }
 
-    public double getVelocidad() {
-        return velocidad;
+    public int getDensidad() {
+        return densidad;
     }
 
-    public void setCantidad(int cantidad) {
-        this.cantidad = cantidad;
+    public void setDensidad(int densidad) {
+        this.densidad = densidad;
+    }
+
+    public int getDireccion() {
+        return direccion;
+    }
+
+    public void setDireccion(int direccion) {
+        this.direccion = direccion;
+    }
+
+    public double getTiempoMovimiento() {
+        return tiempoMovimiento;
+    }
+
+    public void setTiempoMovimiento(double tiempoMovimiento) {
+        this.tiempoMovimiento = tiempoMovimiento;
     }
 }

@@ -13,6 +13,7 @@ package quino.view.prueba;
 import quino.view.main.*;
 import quino.clases.config.ConfigPrueba;
 import quino.clases.model.Prueba;
+import quino.util.QuinoTools;
 //import clases.prueba.Ensayo;
 
 /**
@@ -123,12 +124,22 @@ public class ManualConfigView extends javax.swing.JDialog {
                 jTextField2ActionPerformed(evt);
             }
         });
+        jTextField2.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextField2KeyReleased(evt);
+            }
+        });
 
         jTextField3.setFont(new java.awt.Font("Tahoma", 1, 12));
         jTextField3.setText("23");
         jTextField3.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
                 jTextField3FocusLost(evt);
+            }
+        });
+        jTextField3.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextField3KeyReleased(evt);
             }
         });
 
@@ -298,7 +309,7 @@ public class ManualConfigView extends javax.swing.JDialog {
         jPanel2.setFont(new java.awt.Font("Tahoma", 1, 12));
 
         jRadioButton1.setFont(new java.awt.Font("Tahoma", 1, 12));
-        jRadioButton1.setText("Paracentral");
+        jRadioButton1.setText("Foveal");
         jRadioButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jRadioButton1ActionPerformed(evt);
@@ -320,7 +331,7 @@ public class ManualConfigView extends javax.swing.JDialog {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addGap(118, 118, 118)
                 .addComponent(jRadioButton1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 56, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 88, Short.MAX_VALUE)
                 .addComponent(jRadioButton2)
                 .addGap(101, 101, 101))
         );
@@ -366,12 +377,12 @@ public class ManualConfigView extends javax.swing.JDialog {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jLabel4)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(jTextField4, javax.swing.GroupLayout.DEFAULT_SIZE, 74, Short.MAX_VALUE))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel5)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 55, Short.MAX_VALUE))
+                                .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 55, Short.MAX_VALUE))))
                     .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
@@ -563,20 +574,19 @@ public class ManualConfigView extends javax.swing.JDialog {
             if (jTextField1.getText().isEmpty() || jTextField2.getText().isEmpty() || jTextField3.getText().isEmpty()) {
                 throw new Exception("No puede dejar datos en blanco");
             }
+            if (!asincronico && direccion == 0) {
+                throw new Exception("Seleccione algún control de dirección");
+            }
             int dens = Integer.parseInt(jTextField2.getText());
             int porciento = Integer.parseInt(jTextField3.getText());
             cantidad = (porciento * dens) / 100;
             control = jCheckBox1.isSelected();
-            int resto;
+
             tiempo_movimiento = Integer.parseInt(jTextField5.getText());
             densidad = Integer.parseInt(jTextField2.getText());
             ensayos = Integer.parseInt(jTextField1.getText());
+
             if (fobeal) {
-                /*resto = densidad % 8;
-                cantidad = ((densidad / 8) * porciento) / 100;
-                parent.setConf(new Configuracion(tiempo_movimiento,
-                        densidad / 8, cantidad, direccion, asincronico, control));
-                parent.getConf().setResto(resto);*/
                 parent.setConf(new ConfigPrueba(tiempo_movimiento, densidad,
                         cantidad, direccion, asincronico, control));
                 parent.setPrueba(new Prueba(ensayos));
@@ -602,6 +612,16 @@ public class ManualConfigView extends javax.swing.JDialog {
 
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    private void verPorciento() {
+        try {
+            int dens = Integer.parseInt(jTextField2.getText());
+            int porciento = Integer.parseInt(jTextField3.getText());
+            double cant = QuinoTools.porcientoDuracion(porciento, dens);
+            jTextField4.setText(Double.toString(cant));
+        } catch (Exception e) {
+        }
+    }
+
     private void jTextField3FocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextField3FocusLost
         // TODO add your handling code here:
         try {
@@ -614,10 +634,6 @@ public class ManualConfigView extends javax.swing.JDialog {
             if (Integer.parseInt(jTextField2.getText()) == 0) {
                 throw new Exception("La Densidad no puede ser cero");
             }
-            int dens = Integer.parseInt(jTextField2.getText());
-            int porciento = Integer.parseInt(jTextField3.getText());
-            int cant = (porciento * dens) / 100;
-            jTextField4.setText(Integer.toString(cant));
         } catch (Exception e) {
             ErrorDialog er = new ErrorDialog(parent, true, e.getMessage());
             er.setVisible(true);
@@ -649,6 +665,16 @@ public class ManualConfigView extends javax.swing.JDialog {
             jToggleButton1.setEnabled(true);
         }
     }//GEN-LAST:event_jCheckBox1StateChanged
+
+    private void jTextField3KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField3KeyReleased
+        // TODO add your handling code here:
+        verPorciento();
+    }//GEN-LAST:event_jTextField3KeyReleased
+
+    private void jTextField2KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField2KeyReleased
+        // TODO add your handling code here:
+        verPorciento();
+    }//GEN-LAST:event_jTextField2KeyReleased
 
     /**
      * @param args the command line arguments

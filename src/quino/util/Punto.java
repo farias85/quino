@@ -6,6 +6,7 @@ package quino.util;
 
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.Point;
 import java.util.Random;
 
 /**
@@ -16,19 +17,6 @@ public class Punto {
 
     private int x;
     private int y;
-
-    /**
-     * Ángulo respecto al centro de la pantalla
-     */
-    private double angulo = 0;
-
-    public double getAngulo() {
-        return angulo;
-    }
-
-    public void setAngulo(double angulo) {
-        this.angulo = angulo;
-    }
 
     public Punto(int largo, int alto) {
         Random ran = new Random();
@@ -41,10 +29,7 @@ public class Punto {
         this.y = (int) y;
     }
 
-    public void Mover(int direccion) {
-        Punto actual = new Punto(this.getX(), this.getY());
-        double anguloActual = QuinoTools.getAngulo(actual);
-
+    public void mover(int direccion) {
         switch (direccion) {
             case 1: {
                 this.y -= 2;
@@ -83,9 +68,6 @@ public class Punto {
             }
             break;
         }
-
-        double anguloDespues = QuinoTools.getAngulo(this);
-        angulo = Math.abs(anguloActual - anguloDespues);
     }
 
     public double getX() {
@@ -107,5 +89,17 @@ public class Punto {
     public void Pintar(Graphics g) {
         g.setColor(Color.WHITE);
         g.fillOval(x, y, 4, 4);
+    }
+    /**
+     * Ángulo respecto al centro de la pantalla
+     */
+    private double angulo = 0;
+
+    public double getAngulo() {
+        return angulo;
+    }
+
+    public void setAngulo(double angulo) {
+        this.angulo = angulo;
     }
 }

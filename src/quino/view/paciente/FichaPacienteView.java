@@ -10,7 +10,7 @@
  */
 package quino.view.paciente;
 
-import quino.clases.config.IConfigApp;
+import quino.clases.config.ConfigApp;
 import quino.view.main.ErrorDialog;
 import quino.view.main.PrincipalView;
 
@@ -166,9 +166,9 @@ public class FichaPacienteView extends javax.swing.JDialog {
         // TODO add your handling code here:
         parent.getPacienteActual().setFicha(jTextArea1.getText());
         jTextArea1.setEditable(false);
-        parent.Modificar_Tabla();
+        parent.modificarTableModel();
         try {
-            parent.getRegistro().salvarRegistro(IConfigApp.REGISTRO_FILE_NAME);
+            parent.getRegistro().salvarRegistro(ConfigApp.REGISTRO_FILE_NAME);
         } catch (Exception e) {
             ErrorDialog err = new ErrorDialog(parent, true, e.getMessage());
             err.setVisible(true);

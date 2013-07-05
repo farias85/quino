@@ -4,11 +4,18 @@
  */
 package quino.clases.config;
 
+import java.text.DecimalFormat;
+
 /**
  *
  * @author farias
  */
 public class ConfigApp {
+
+    public static final String RESOURCES_LOCATION = "/quino/view/main/icons/";
+    public static final String REGISTRO_FILE_NAME = "quino.config/registro.xml";
+    public static final String CONFIG_FILE_NAME = "quino.config/configuracion.xml";
+    public static final DecimalFormat DECIMAL_FORMAT = new DecimalFormat("###,##");
 
     public static int CANT_ENSAYOS = 3;
     public static double TIEMPO_DURACION = 6000;

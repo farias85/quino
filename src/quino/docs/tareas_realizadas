@@ -43,3 +43,10 @@ Tareas Realizadas
         realizada
      16-Solucion error 12
      17-Nueva ventana de la configuracion avanzada
+     18-Nueva implementacion de calculo del angulo, anteriormente no se contaba
+        con el desplazamiento de los puntos respecto a los bordes de la pantalla
+        Los valores del punto en el panel estaban determinados por su posición
+        x, y respecto al panel, por lo q al calcular el angulo del punto
+        x=3, y=4 de los paneles 1 y 8 da el mismo angulo y en realidad puede ser
+        así pq la esquina superior izquierda del panel 1 está mucho mas alejada
+        q la esquina superior del panel 8 respecto al centro.

@@ -12,10 +12,11 @@ import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 
 import javax.swing.JPanel;
+import quino.clases.config.ConfigApp;
 
 /**
  *
- * @author Casa
+ * @author Felipao
  */
 public class QuinoJPanel extends JPanel {
 
@@ -38,20 +39,46 @@ public class QuinoJPanel extends JPanel {
         }
     }
 
-    public void moverEnDireccion(int direccion) {
+    public void moverEnDireccion(int direccion, double desplazamientX, double desplazamientoY) {
         for (int i = 0; i < cantidad; i++) {
             Aleatorio dir = new Aleatorio();
             int pos = dir.nextInt(0, puntos.size() - 1);
-            puntos.get(pos).Mover(direccion);
+
+            Punto p1 = new Punto(puntos.get(pos).getX(), puntos.get(pos).getY());
+            puntos.get(pos).mover(direccion);
+            Punto p2 = puntos.get(pos);
+            actualizarAnguloPuntos(p1, p2, desplazamientX, desplazamientoY);
         }
     }
 
-    public void moverAsincronico() {
+    public void actualizarAnguloPuntos(Punto p1, Punto p2, double desplazamientX, double desplazamientoY) {
+        desplazamientX += this.getLocation().getX();
+        desplazamientoY += this.getLocation().getY();
+        
+        Punto antes = new Punto(p1.getX() + desplazamientX, p1.getY() + desplazamientoY);
+        double anguloAntes = QuinoTools.getAngulo(antes);
+
+        Punto despues = new Punto(p2.getX() + desplazamientX, p2.getY() + desplazamientoY);
+        double anguloDespues = QuinoTools.getAngulo(despues);
+
+        p2.setAngulo((anguloAntes + anguloDespues) / 2);
+
+        //Muy pequeño el valor de la diferencia debido a q los
+        //puntos solo se desplazan dos pixeles en cada movimiento
+        //angulo = Math.abs(anguloActual - anguloDespues);
+        //angulo = (anguloActual + anguloDespues) / 2;
+    }
+
+    public void moverAsincronico(double desplazamientX, double desplazamientoY) {
         for (int i = 0; i < cantidad; i++) {
             Aleatorio dir = new Aleatorio();
             int x = dir.nextInt(1, 8);
             int pos = dir.nextInt(0, puntos.size() - 1);
-            puntos.get(pos).Mover(x);
+
+            Punto p1 = new Punto(puntos.get(pos).getX(), puntos.get(pos).getY());
+            puntos.get(pos).mover(x);
+            Punto p2 = puntos.get(pos);
+            actualizarAnguloPuntos(p1, p2, desplazamientX, desplazamientoY);
         }
     }
 
@@ -82,28 +109,29 @@ public class QuinoJPanel extends JPanel {
         //NO SE Q SE HACE ACÁ
         //VER ESTO
 
-        /*if (fob) {
-        return puntos.get(cantidad / 4);
+        if (fob) {
+            return puntos.get(cantidad / 4);
         } else {
-        return puntos.get(cantidad / 2);
-        }*/
+            return puntos.get(cantidad / 2);
+        }
 
         //ESTO LO PUSE YO DE EJEMPLO PQ LO ANTERIOR EXPLOTA Y NO SE LO Q ES
-        if (puntos.size() > 0) {
-            return puntos.get(0);
+        /*if (puntos.size() > 0) {
+        return puntos.get(0);
         }
-        return new Punto(1, 1);
+        return new Punto(1, 1);*/
     }
 
-    public double buscarAngulo() {
+    public double promedioAngulo() {
         int puntosMovidos = 0;
         double sumatoriaAngulos = 0;
+
         for (int i = 0; i < puntos.size(); i++) {
             if (puntos.get(i).getAngulo() != 0) {
                 puntosMovidos++;
                 sumatoriaAngulos += puntos.get(i).getAngulo();
             }
         }
-        return sumatoriaAngulos;
+        return Double.parseDouble(ConfigApp.DECIMAL_FORMAT.format(sumatoriaAngulos / puntosMovidos));
     }
 }

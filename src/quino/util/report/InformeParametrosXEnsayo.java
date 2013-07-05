@@ -12,7 +12,7 @@ import org.apache.poi.hssf.usermodel.HSSFCell;
 import org.apache.poi.hssf.usermodel.HSSFRow;
 import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
-import quino.clases.config.IConfigApp;
+import quino.clases.config.ConfigApp;
 import quino.clases.model.Paciente;
 import quino.clases.model.Prueba;
 import quino.clases.model.Registro;
@@ -67,7 +67,7 @@ public class InformeParametrosXEnsayo extends InformeExcel {
 
     protected void getCuerpo(HSSFSheet sheet, boolean foveal) {
         try {
-            Registro registro = Registro.cargarRegistro(IConfigApp.REGISTRO_FILE_NAME);
+            Registro registro = Registro.cargarRegistro(ConfigApp.REGISTRO_FILE_NAME);
 
             rowCount++;
             List<Paciente> pacientes = registro.getPacientes();

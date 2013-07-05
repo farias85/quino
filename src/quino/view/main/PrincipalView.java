@@ -10,6 +10,9 @@
  */
 package quino.view.main;
 
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import javax.swing.UnsupportedLookAndFeelException;
 import quino.clases.model.Paciente;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -19,7 +22,6 @@ import quino.view.prueba.AutoConfigView;
 import quino.clases.model.Registro;
 import quino.clases.config.ConfigPrueba;
 import quino.clases.config.ConfigPruebaAuto;
-import quino.clases.config.IConfigApp;
 import quino.clases.model.Prueba;
 import java.io.IOException;
 import javax.swing.ListSelectionModel;
@@ -35,8 +37,12 @@ import quino.view.prueba.PerifericaTestView;
 import java.io.File;
 import javax.swing.filechooser.*;
 import javax.swing.JFileChooser;
+import javax.swing.JPopupMenu;
+import javax.swing.JTable;
+import javax.swing.UIManager;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import quino.clases.config.ConfigApp;
+import quino.util.QuinoTableModel;
 import quino.util.QuinoTools;
 import quino.util.ScreenSplash;
 import quino.util.report.InformeExcel;
@@ -85,16 +91,24 @@ public class PrincipalView extends javax.swing.JFrame {
 
     /** Creates new form PrincipalView */
     public PrincipalView() {
+        try {
+            UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+        } catch (Exception ex) {
+            Logger.getLogger(PrincipalView.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
         initComponents();
         this.setLocationRelativeTo(null);
         jMenuItem16.setEnabled(false);
         jMenuItem17.setEnabled(false);
+
         try {
             registro = new Registro();
-            registro = Registro.cargarRegistro(IConfigApp.REGISTRO_FILE_NAME);
+            registro = Registro.cargarRegistro(ConfigApp.REGISTRO_FILE_NAME);
             QuinoTools.cargarConfiguracion();
 
-            Modificar_Tabla();
+            modificarTableModel();
+
             if (registro.getPacientes().size() == 0) {
                 b_busc.setEnabled(false);
                 b_del.setEnabled(false);
@@ -118,41 +132,23 @@ public class PrincipalView extends javax.swing.JFrame {
 
         jMenu5.add(jMenuItem1);
         jMenu5.add(jMenuItem2);
+
         jTable1.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
 
             public void valueChanged(ListSelectionEvent e) {
                 ListSelectionModel lsm = (ListSelectionModel) e.getSource();
                 if (lsm.isSelectionEmpty()) {
-                    jMenu5.setEnabled(false);
-                    jMenuItem6.setEnabled(false);
-                    jMenuItem7.setEnabled(false);
-                    jMenuItem8.setEnabled(false);
-                    jMenuItem9.setEnabled(false);
-                    b_del.setEnabled(false);
-                    b_fich.setEnabled(false);
-                    b_mod.setEnabled(false);
-                    b_prueba.setEnabled(false);
-                    jMenuItem16.setEnabled(false);
-                    jMenuItem17.setEnabled(false);
-
+                    habilitarComponentes(false);
                 } else {
-                    jMenu5.setEnabled(true);
-                    jMenuItem6.setEnabled(true);
-                    jMenuItem7.setEnabled(true);
-                    jMenuItem8.setEnabled(true);
-                    jMenuItem9.setEnabled(true);
-                    b_del.setEnabled(true);
-                    b_fich.setEnabled(true);
-                    b_mod.setEnabled(true);
-                    b_prueba.setEnabled(true);
-                    jMenuItem16.setEnabled(true);
-                    jMenuItem17.setEnabled(true);
+                    habilitarComponentes(true);
                     int sel_paciente = lsm.getMinSelectionIndex();
                     pacienteActual = registro.getPacientes().get(sel_paciente);
                     jTable1.setComponentPopupMenu(menu);
                 }
             }
         });
+
+        jTable1.setAutoCreateRowSorter(true);
 
         b_add.setToolTipText("Registrar nuevo Paciente");
         b_del.setToolTipText("Eliminar el Paciente seleccionado");
@@ -162,42 +158,22 @@ public class PrincipalView extends javax.swing.JFrame {
         b_prueba.setToolTipText("Realizar Prueba al Paciente seleccionado");
     }
 
-    /*public int getSel_paciente() {
-    return sel_paciente;
-    }*/
-    public void Modificar_Tabla() {
-        DefaultTableModel tm = new DefaultTableModel() {
-            //para que las celdas no se puedan editar
-
-            boolean[] celdasNoEditables = {false, false, false, false, false, false};
-            Class[] types = new Class[]{
-                java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.String.class, java.lang.String.class
-            };
-
-            @Override
-            public Class<?> getColumnClass(int columnIndex) {
-                return types[columnIndex];
-            }
-
-            @Override
-            public boolean isCellEditable(int fila, int columna) {
-                return celdasNoEditables[columna];
-            }
-        };
-
-        tm.addColumn("Historia Clínica");
-        tm.addColumn("Nombre y Apellidos");
-        tm.addColumn("Carné de Identidad");
-        tm.addColumn("Edad");
-        tm.addColumn("Escolaridad");
-        tm.addColumn("Sexo");
-
-        for (int i = 0; i < registro.getPacientes().size(); i++) {
-            Object[] fila = {registro.getPacientes().get(i).getHistoria(), registro.getPacientes().get(i).getNombre(),
-                registro.getPacientes().get(i).getCi(), registro.getPacientes().get(i).getEdad(),
-                registro.getPacientes().get(i).getEscolaridad(), registro.getPacientes().get(i).getSexo()};
-            tm.addRow(fila);
-        }
+    private void habilitarComponentes(boolean habilitar) {
+        jMenu5.setEnabled(habilitar);
+        jMenuItem6.setEnabled(habilitar);
+        jMenuItem7.setEnabled(habilitar);
+        jMenuItem8.setEnabled(habilitar);
+        jMenuItem9.setEnabled(habilitar);
+        b_del.setEnabled(habilitar);
+        b_fich.setEnabled(habilitar);
+        b_mod.setEnabled(habilitar);
+        b_prueba.setEnabled(habilitar);
+        jMenuItem16.setEnabled(habilitar);
+        jMenuItem17.setEnabled(habilitar);
+    }
+    
+    public final void modificarTableModel() {
+        DefaultTableModel tm = new QuinoTableModel(registro);
 
         if (registro.getPacientes().size() == 0) {
             b_busc.setEnabled(false);
@@ -207,9 +183,6 @@ public class PrincipalView extends javax.swing.JFrame {
 
         jTable1.setModel(tm);
         jTable1.getTableHeader().setFont(new java.awt.Font("Tahoma", 1, 12));
-
-        //jTable1.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
-        //jTable1.setCellSelectionEnabled(false);
 
         jTable1.getColumnModel().getColumn(0).setPreferredWidth(40);
         jTable1.getColumnModel().getColumn(1).setPreferredWidth(250);
@@ -243,14 +216,14 @@ public class PrincipalView extends javax.swing.JFrame {
                 String hist = pacienteActual.getHistoria();
                 registro.eliminarXHistoria(hist);
 
-                Modificar_Tabla();
-                registro.salvarRegistro(IConfigApp.REGISTRO_FILE_NAME);
+                modificarTableModel();
+                registro.salvarRegistro(ConfigApp.REGISTRO_FILE_NAME);
             } catch (Exception e) {
                 ErrorDialog err = new ErrorDialog(this, true, e.getMessage());
                 err.setVisible(true);
             }
         } else {
-            Modificar_Tabla();
+            modificarTableModel();
         }
     }
 
@@ -365,7 +338,7 @@ public class PrincipalView extends javax.swing.JFrame {
         Resultados.add(jMenuItem9);
 
         jMenuItem14.setFont(new java.awt.Font("Tahoma", 1, 12));
-        jMenuItem14.setText("Prueba Fobeal");
+        jMenuItem14.setText("Prueba Foveal");
         jMenuItem14.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem14ActionPerformed(evt);
@@ -777,8 +750,8 @@ public class PrincipalView extends javax.swing.JFrame {
             try {
                 Registro base = Registro.cargarRegistro(selectedFile.getPath());
                 registro.importarRegistro(base);
-                Modificar_Tabla();
-                registro.salvarRegistro(IConfigApp.REGISTRO_FILE_NAME);
+                modificarTableModel();
+                registro.salvarRegistro(ConfigApp.REGISTRO_FILE_NAME);
             } catch (Exception ex) {
                 ErrorDialog e = new ErrorDialog(this, true, ex.getMessage());
                 e.setVisible(true);

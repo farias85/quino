@@ -10,7 +10,7 @@ package quino.clases.model;
  */
 public class Resultado {
 
-    private int velocidadMovimiento;
+    private double velocidadMovimiento;
     private int tiempoRespuesta;
     private int direccion;
     private int densidad;
@@ -28,7 +28,7 @@ public class Resultado {
     public Resultado() {
     }
 
-    public Resultado(int velocidadMovimiento, int tiempoRespuesta, int direccion,
+    public Resultado(double velocidadMovimiento, int tiempoRespuesta, int direccion,
             int densidad, int cantPuntos, boolean error, int numEnsayo, int panelEstimulo,
             boolean asincronico, String descripcion, int key, boolean control,
             double velocidad, double angulo) {
@@ -153,11 +153,11 @@ public class Resultado {
         this.velocidad = velocidad;
     }
 
-    public int getVelocidadMovimiento() {
+    public double getVelocidadMovimiento() {
         return velocidadMovimiento;
     }
 
-    public void setVelocidadMovimiento(int velocidadMovimiento) {
+    public void setVelocidadMovimiento(double velocidadMovimiento) {
         this.velocidadMovimiento = velocidadMovimiento;
     }
 }

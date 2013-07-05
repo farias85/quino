@@ -169,17 +169,20 @@ public class PerifericaTimer extends AbstractQuinoTimer {
 
     @Override
     protected void moverPuntos() {
+        double desplazamientX = test.getLocation().getX();
+        double desplazamientoY = test.getLocation().getY();
+
         switch (panelEstimulo) {
             case 0: {
                 panelsRepaint();
             }
             break;
             case 1: {
-                moverPuntoYRepintar(panel1);
+                moverPuntoYRepintar(panel1, desplazamientX, desplazamientoY);
             }
             break;
             case 2: {
-                moverPuntoYRepintar(panel2);
+                moverPuntoYRepintar(panel2, desplazamientX, desplazamientoY);
             }
             break;
         }

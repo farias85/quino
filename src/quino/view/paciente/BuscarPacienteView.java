@@ -10,9 +10,8 @@
  */
 package quino.view.paciente;
 
-import quino.clases.config.IConfigApp;
+import quino.clases.config.ConfigApp;
 import quino.view.main.TipoPruebaView;
-import quino.clases.model.Paciente;
 import quino.view.main.ErrorDialog;
 import quino.view.main.PrincipalView;
 
@@ -75,8 +74,9 @@ public class BuscarPacienteView extends javax.swing.JDialog {
         setIconImages(null);
         setResizable(false);
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 12));
-        jLabel1.setText("Introduca el número de la Historia Clínica del Paciente");
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel1.setText("Introduzca el número de la Historia Clínica del Paciente");
+        jLabel1.setToolTipText("");
 
         jButton1.setFont(new java.awt.Font("Tahoma", 1, 12));
         jButton1.setText("Cerrar");
@@ -89,7 +89,7 @@ public class BuscarPacienteView extends javax.swing.JDialog {
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 12));
         jLabel2.setText("Historia Clínica");
 
-        historia.setFont(new java.awt.Font("Tahoma", 0, 12));
+        historia.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
 
         jButton2.setFont(new java.awt.Font("Tahoma", 1, 12));
         jButton2.setText("Buscar");
@@ -100,34 +100,34 @@ public class BuscarPacienteView extends javax.swing.JDialog {
         });
 
         CI.setEditable(false);
-        CI.setFont(new java.awt.Font("Tahoma", 1, 12));
+        CI.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         CI.setBorder(null);
 
         nombre.setEditable(false);
-        nombre.setFont(new java.awt.Font("Tahoma", 1, 12));
+        nombre.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         nombre.setBorder(null);
 
         edad.setEditable(false);
-        edad.setFont(new java.awt.Font("Tahoma", 1, 12));
+        edad.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         edad.setBorder(null);
 
-        jLabel3.setFont(new java.awt.Font("Tahoma", 1, 12));
+        jLabel3.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel3.setText("Nombre y Apellidos");
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 12));
         jLabel4.setText("Carné de Identidad");
 
-        jLabel5.setFont(new java.awt.Font("Tahoma", 1, 12));
+        jLabel5.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel5.setText("Edad");
 
-        jLabel6.setFont(new java.awt.Font("Tahoma", 1, 12));
+        jLabel6.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel6.setText("Sexo");
 
         jTextField5.setEditable(false);
-        jTextField5.setFont(new java.awt.Font("Tahoma", 1, 12));
+        jTextField5.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jTextField5.setBorder(null);
 
-        sexo.setFont(new java.awt.Font("Tahoma", 1, 12));
+        sexo.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         sexo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Masculino", "Femenino" }));
         sexo.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
@@ -167,7 +167,7 @@ public class BuscarPacienteView extends javax.swing.JDialog {
             }
         });
 
-        cambios.setFont(new java.awt.Font("Tahoma", 1, 12));
+        cambios.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         cambios.setText("Guardar Cambios");
         cambios.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -176,10 +176,10 @@ public class BuscarPacienteView extends javax.swing.JDialog {
         });
 
         escolaridad.setEditable(false);
-        escolaridad.setFont(new java.awt.Font("Tahoma", 1, 12));
+        escolaridad.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         escolaridad.setBorder(null);
 
-        jLabel7.setFont(new java.awt.Font("Tahoma", 1, 12));
+        jLabel7.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel7.setText("Escolaridad");
 
         prueba.setFont(new java.awt.Font("Tahoma", 1, 12));
@@ -198,34 +198,8 @@ public class BuscarPacienteView extends javax.swing.JDialog {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(31, 31, 31)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel3)
-                            .addComponent(jLabel4)
-                            .addComponent(jLabel7))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(escolaridad, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(CI, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(nombre, javax.swing.GroupLayout.PREFERRED_SIZE, 263, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(layout.createSequentialGroup()
                         .addGap(58, 58, 58)
                         .addComponent(jLabel1))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(109, 109, 109)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel5)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(edad, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel6)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(cambios)
-                                    .addComponent(sexo, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(eliminar)
@@ -247,8 +221,28 @@ public class BuscarPacienteView extends javax.swing.JDialog {
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel2)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(historia, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addContainerGap(18, Short.MAX_VALUE))
+                                .addComponent(historia, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(31, 31, 31)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel3)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jLabel7)
+                                .addComponent(jLabel4)
+                                .addComponent(jLabel5)
+                                .addComponent(jLabel6)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(sexo, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(edad, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(escolaridad, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(CI, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(nombre, javax.swing.GroupLayout.PREFERRED_SIZE, 263, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(cambios))))
+                .addContainerGap(46, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -271,18 +265,18 @@ public class BuscarPacienteView extends javax.swing.JDialog {
                     .addComponent(jLabel4))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel7)
-                    .addComponent(escolaridad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(escolaridad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel7))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(edad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel5))
+                    .addComponent(jLabel5)
+                    .addComponent(edad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel6)
                     .addComponent(sexo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(11, 11, 11)
                 .addComponent(cambios)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -321,13 +315,11 @@ public class BuscarPacienteView extends javax.swing.JDialog {
             parent.getPacienteActual().setCi(ci);
             parent.getPacienteActual().setFicha(fich);
 
-            //Paciente p = new Paciente(nombre1, edad1, sexo1, esco, hist, ci, fich);
-            //parent.getRegistro().Modificar(pos, p);
-
             ErrorDialog er = new ErrorDialog(parent, true, "Cambos realizados exitosamente");
             er.setVisible(true);
-            parent.Modificar_Tabla();
-            parent.getRegistro().salvarRegistro(IConfigApp.REGISTRO_FILE_NAME);
+            
+            parent.modificarTableModel();
+            parent.getRegistro().salvarRegistro(ConfigApp.REGISTRO_FILE_NAME);
         } catch (Exception e) {
             ErrorDialog err = new ErrorDialog(parent, true, e.getMessage());
             err.setVisible(true);
@@ -444,8 +436,8 @@ public class BuscarPacienteView extends javax.swing.JDialog {
             edad.setEditable(false);
             jTextField5.setEditable(false);
 
-            parent.Modificar_Tabla();
-            parent.getRegistro().salvarRegistro(IConfigApp.REGISTRO_FILE_NAME);
+            parent.modificarTableModel();
+            parent.getRegistro().salvarRegistro(ConfigApp.REGISTRO_FILE_NAME);
 
         } catch (Exception e) {
             ErrorDialog err = new ErrorDialog(parent, true, e.getMessage());

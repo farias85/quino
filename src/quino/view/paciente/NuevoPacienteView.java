@@ -10,7 +10,7 @@
  */
 package quino.view.paciente;
 
-import quino.clases.config.IConfigApp;
+import quino.clases.config.ConfigApp;
 import quino.clases.model.Paciente;
 import quino.util.QuinoTools;
 import quino.view.main.ErrorDialog;
@@ -260,8 +260,8 @@ public class NuevoPacienteView extends javax.swing.JDialog {
                 throw new Exception("Ya existe un paciente con la misma historia clinica o carné de identidad");
             }
 
-            parent.getRegistro().salvarRegistro(IConfigApp.REGISTRO_FILE_NAME);
-            parent.Modificar_Tabla();
+            parent.getRegistro().salvarRegistro(ConfigApp.REGISTRO_FILE_NAME);
+            parent.modificarTableModel();
 
             //parent.ActivarPractica();
             

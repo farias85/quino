@@ -10,8 +10,7 @@
  */
 package quino.view.paciente;
 
-import quino.clases.config.IConfigApp;
-import quino.clases.model.Paciente;
+import quino.clases.config.ConfigApp;
 import quino.view.main.ErrorDialog;
 import quino.view.main.PrincipalView;
 
@@ -247,8 +246,8 @@ public class ModificarPacienteView extends javax.swing.JDialog {
             parent.getPacienteActual().setFicha(fich);
             parent.getPacienteActual().setEscuela(jTextField6.getText());
             
-            parent.Modificar_Tabla();
-            parent.getRegistro().salvarRegistro(IConfigApp.REGISTRO_FILE_NAME);
+            parent.modificarTableModel();
+            parent.getRegistro().salvarRegistro(ConfigApp.REGISTRO_FILE_NAME);
 
             setVisible(false);
             dispose();

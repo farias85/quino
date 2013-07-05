@@ -4,6 +4,7 @@
  */
 package quino.util.timer;
 
+import java.awt.Point;
 import quino.clases.model.Prueba;
 import quino.clases.model.Ensayo;
 import quino.clases.model.Resultado;
@@ -166,11 +167,11 @@ public abstract class AbstractQuinoTimer extends TimerTask {
      * Mueve los puntos de un jpanel segun la configuración determinada
      * @param quinoJPanel El jpanel en el q se moverán los puntos
      */
-    protected void moverPuntoYRepintar(QuinoJPanel quinoJPanel) {
+    protected void moverPuntoYRepintar(QuinoJPanel quinoJPanel, double desplazamientX, double desplazamientoY) {
         if (configuracion.isAsincronico()) {
-            quinoJPanel.moverAsincronico();
+            quinoJPanel.moverAsincronico(desplazamientX, desplazamientoY);
         } else {
-            quinoJPanel.moverEnDireccion(configuracion.getDireccion());
+            quinoJPanel.moverEnDireccion(configuracion.getDireccion(), desplazamientX, desplazamientoY);
         }
         quinoJPanel.repaint();
     }
@@ -290,7 +291,7 @@ public abstract class AbstractQuinoTimer extends TimerTask {
     protected void obtenerResultado(){
 
         int cantidad = configuracion.getCantidad();
-        int tiempoMovimiento = configuracion.getTiempo_movimiento();
+        double tiempoMovimiento = configuracion.getTiempoMovimiento();
         int tiempoRespuesta = ensayo.getTiempoRespuesta();
         int direccion = configuracion.getDireccion();
         int densidad = configuracion.getDensidad();
@@ -298,7 +299,7 @@ public abstract class AbstractQuinoTimer extends TimerTask {
         boolean asincronico = configuracion.isAsincronico();
         String descrip = ensayo.getDescripcion();
         int key = ensayo.getKey();
-        double velocidad = configuracion.CalcularVelocidad();
+        double velocidad = QuinoTools.getVelocidad(tiempoMovimiento);
         double angulo = buscarAngulo();
 
         Resultado result = new Resultado(tiempoMovimiento, tiempoRespuesta, direccion,

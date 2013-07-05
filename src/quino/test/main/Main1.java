@@ -20,7 +20,6 @@ import java.util.TimerTask;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.naming.spi.DirStateFactory.Result;
-import quino.clases.config.IConfigApp;
 import quino.clases.model.Paciente;
 import quino.clases.model.Prueba;
 import quino.clases.model.Registro;

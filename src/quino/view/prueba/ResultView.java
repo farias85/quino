@@ -22,7 +22,6 @@ import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.DefaultTreeModel;
 import javax.swing.tree.TreeSelectionModel;
 import quino.clases.config.ConfigApp;
-import quino.clases.config.IConfigApp;
 import quino.util.QuinoTools;
 import quino.view.main.ErrorDialog;
 import quino.view.main.PrincipalView;
@@ -88,7 +87,7 @@ public class ResultView extends javax.swing.JDialog {
                     int pos = node.getParent().getIndex(node);
                     int densidad = resultados.get(pos).getDensidad();
                     int cantidad = (resultados.get(pos).getCantPuntos() * 100) / densidad;
-                    int velocidad = resultados.get(pos).getVelocidadMovimiento();
+                    double velocidad = resultados.get(pos).getVelocidadMovimiento();
                     ImageIcon direccion = CambiarDireccion(resultados.get(pos).getDireccion(), resultados.get(pos).getPanelEstimulo());
                     String panel = QuinoTools.getPanelMovimiento(parent.getPrueba(), resultados.get(pos).getPanelEstimulo());
                     int tiempo_res = resultados.get(pos).getTiempoRespuesta();
@@ -131,34 +130,34 @@ public class ResultView extends javax.swing.JDialog {
         }
         switch (pos) {
             case 0: {
-                return new ImageIcon(getClass().getResource(IConfigApp.RESOURCES_LOCATION + "asincronico.gif"));
+                return new ImageIcon(getClass().getResource(ConfigApp.RESOURCES_LOCATION + "asincronico.gif"));
             }
             case 1: {
-                return new ImageIcon(getClass().getResource(IConfigApp.RESOURCES_LOCATION + "direccion1.gif"));
+                return new ImageIcon(getClass().getResource(ConfigApp.RESOURCES_LOCATION + "direccion1.gif"));
             }
             case 2: {
-                return new ImageIcon(getClass().getResource(IConfigApp.RESOURCES_LOCATION + "direccion2.gif"));
+                return new ImageIcon(getClass().getResource(ConfigApp.RESOURCES_LOCATION + "direccion2.gif"));
             }
             case 3: {
-                return new ImageIcon(getClass().getResource(IConfigApp.RESOURCES_LOCATION + "direccion3.gif"));
+                return new ImageIcon(getClass().getResource(ConfigApp.RESOURCES_LOCATION + "direccion3.gif"));
             }
             case 4: {
-                return new ImageIcon(getClass().getResource(IConfigApp.RESOURCES_LOCATION + "direccion4.gif"));
+                return new ImageIcon(getClass().getResource(ConfigApp.RESOURCES_LOCATION + "direccion4.gif"));
             }
             case 5: {
-                return new ImageIcon(getClass().getResource(IConfigApp.RESOURCES_LOCATION + "direccion5.gif"));
+                return new ImageIcon(getClass().getResource(ConfigApp.RESOURCES_LOCATION + "direccion5.gif"));
             }
             case 6: {
-                return new ImageIcon(getClass().getResource(IConfigApp.RESOURCES_LOCATION + "direccion6.gif"));
+                return new ImageIcon(getClass().getResource(ConfigApp.RESOURCES_LOCATION + "direccion6.gif"));
             }
             case 7: {
-                return new ImageIcon(getClass().getResource(IConfigApp.RESOURCES_LOCATION + "direccion7.gif"));
+                return new ImageIcon(getClass().getResource(ConfigApp.RESOURCES_LOCATION + "direccion7.gif"));
             }
             case 8: {
-                return new ImageIcon(getClass().getResource(IConfigApp.RESOURCES_LOCATION + "direccion8.gif"));
+                return new ImageIcon(getClass().getResource(ConfigApp.RESOURCES_LOCATION + "direccion8.gif"));
             }
         }
-        return new ImageIcon(getClass().getResource(IConfigApp.RESOURCES_LOCATION + "error.gif"));
+        return new ImageIcon(getClass().getResource(ConfigApp.RESOURCES_LOCATION + "error.gif"));
     }
 
     public ImageIcon CambiarKey(int key, boolean control) {
@@ -167,39 +166,39 @@ public class ResultView extends javax.swing.JDialog {
         }
         switch (key) {
             case 104: {
-                return new ImageIcon(getClass().getResource(IConfigApp.RESOURCES_LOCATION + "direccion1.gif"));
+                return new ImageIcon(getClass().getResource(ConfigApp.RESOURCES_LOCATION + "direccion1.gif"));
             }
             case 98: {
-                return new ImageIcon(getClass().getResource(IConfigApp.RESOURCES_LOCATION + "direccion2.gif"));
+                return new ImageIcon(getClass().getResource(ConfigApp.RESOURCES_LOCATION + "direccion2.gif"));
             }
             case 102: {
-                return new ImageIcon(getClass().getResource(IConfigApp.RESOURCES_LOCATION + "direccion3.gif"));
+                return new ImageIcon(getClass().getResource(ConfigApp.RESOURCES_LOCATION + "direccion3.gif"));
             }
             case 100: {
-                return new ImageIcon(getClass().getResource(IConfigApp.RESOURCES_LOCATION + "direccion4.gif"));
+                return new ImageIcon(getClass().getResource(ConfigApp.RESOURCES_LOCATION + "direccion4.gif"));
             }
             case 105: {
-                return new ImageIcon(getClass().getResource(IConfigApp.RESOURCES_LOCATION + "direccion5.gif"));
+                return new ImageIcon(getClass().getResource(ConfigApp.RESOURCES_LOCATION + "direccion5.gif"));
             }
             case 103: {
-                return new ImageIcon(getClass().getResource(IConfigApp.RESOURCES_LOCATION + "direccion6.gif"));
+                return new ImageIcon(getClass().getResource(ConfigApp.RESOURCES_LOCATION + "direccion6.gif"));
             }
             case 99: {
-                return new ImageIcon(getClass().getResource(IConfigApp.RESOURCES_LOCATION + "direccion7.gif"));
+                return new ImageIcon(getClass().getResource(ConfigApp.RESOURCES_LOCATION + "direccion7.gif"));
             }
             case 97: {
-                return new ImageIcon(getClass().getResource(IConfigApp.RESOURCES_LOCATION + "direccion8.gif"));
+                return new ImageIcon(getClass().getResource(ConfigApp.RESOURCES_LOCATION + "direccion8.gif"));
             }
         }
-        return new ImageIcon(getClass().getResource(IConfigApp.RESOURCES_LOCATION + "error.gif"));
+        return new ImageIcon(getClass().getResource(ConfigApp.RESOURCES_LOCATION + "error.gif"));
     }
 
     public ImageIcon CambiarError(boolean error) {
         if (error) {
 
-            return new ImageIcon(getClass().getResource(IConfigApp.RESOURCES_LOCATION + "error.gif"));
+            return new ImageIcon(getClass().getResource(ConfigApp.RESOURCES_LOCATION + "error.gif"));
         } else {
-            return new ImageIcon(getClass().getResource(IConfigApp.RESOURCES_LOCATION + "exito.gif"));
+            return new ImageIcon(getClass().getResource(ConfigApp.RESOURCES_LOCATION + "exito.gif"));
         }
     }
 
@@ -437,7 +436,7 @@ public class ResultView extends javax.swing.JDialog {
         jLabel32.setText("Resultado:");
 
         t_vmov1.setEditable(false);
-        t_vmov1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        t_vmov1.setFont(new java.awt.Font("Tahoma", 1, 12));
         t_vmov1.setHorizontalAlignment(javax.swing.JTextField.LEFT);
         t_vmov1.setBorder(null);
         t_vmov1.addActionListener(new java.awt.event.ActionListener() {
@@ -487,14 +486,14 @@ public class ResultView extends javax.swing.JDialog {
         e_desc.setFont(new java.awt.Font("Tahoma", 1, 12));
         e_desc.setBorder(null);
 
-        jLabel25.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel25.setFont(new java.awt.Font("Tahoma", 1, 12));
         jLabel25.setText("Velocidad de Movimiento:");
 
-        jLabel26.setFont(new java.awt.Font("Tahoma", 1, 12));
-        jLabel26.setText("Ángulo de Despazamiento:");
+        jLabel26.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel26.setText("Ángulo:");
 
         t_velocidad.setEditable(false);
-        t_velocidad.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        t_velocidad.setFont(new java.awt.Font("Tahoma", 1, 12));
         t_velocidad.setHorizontalAlignment(javax.swing.JTextField.LEFT);
         t_velocidad.setBorder(null);
 
@@ -622,7 +621,7 @@ public class ResultView extends javax.swing.JDialog {
                 .addContainerGap())
         );
 
-        jLabel11.setFont(new java.awt.Font("Tahoma", 1, 12));
+        jLabel11.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel11.setText("Tiempo Interestímulo:");
 
         jLabel12.setFont(new java.awt.Font("Tahoma", 1, 12));

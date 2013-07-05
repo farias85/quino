@@ -32,7 +32,7 @@ public class ConfigPruebaAuto extends ConfigPrueba {
             this.asincronico = false;
             this.direccion = ran.nextInt(1, 8);
         }
-        tiempo_movimiento = ran.nextInt(50, 200);
+        tiempoMovimiento = ran.nextInt(50, 200);
     }
 
     public void Re_Cantidad() {

@@ -5,8 +5,6 @@
 package quino.clases.model;
 
 import quino.util.Aleatorio;
-import quino.util.Punto;
-import java.awt.Toolkit;
 import quino.clases.config.ConfigPrueba;
 
 /**

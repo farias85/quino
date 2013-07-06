@@ -9,9 +9,12 @@ import java.beans.XMLEncoder;
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.LinkedList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -64,24 +67,25 @@ public class Registro {
         }
     }
 
-    public void salvarRegistro(String path) throws IOException, ClassNotFoundException {
-        
-        XMLEncoder e = new XMLEncoder(
-                new BufferedOutputStream(
-                new FileOutputStream(path)));
-
-        e.writeObject(this);
-        e.close();
+    public void salvarRegistro(String path){
+        try {
+            XMLEncoder e = new XMLEncoder(new BufferedOutputStream(new FileOutputStream(path)));
+            e.writeObject(this);
+            e.close();
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(Registro.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
-    public static Registro cargarRegistro(String path) throws IOException, ClassNotFoundException {
-        
-        XMLDecoder d = new XMLDecoder(
-                new BufferedInputStream(
-                new FileInputStream(path)));
-        Registro result = (Registro) (d.readObject());
-        d.close();
-
+    public static Registro cargarRegistro(String path) {
+        Registro result = null;
+        try {
+            XMLDecoder d = new XMLDecoder(new BufferedInputStream(new FileInputStream(path)));
+            result = (Registro) (d.readObject());
+            d.close();
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(Registro.class.getName()).log(Level.SEVERE, null, ex);
+        }
         return result;
     }
 

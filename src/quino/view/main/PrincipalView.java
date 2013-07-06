@@ -42,7 +42,8 @@ import quino.clases.config.ConfigApp;
 import quino.util.QuinoTableModel;
 import quino.util.QuinoTools;
 import quino.util.ScreenSplash;
-import quino.util.report.InformeExcel;
+import quino.util.report.AbstractInformeExcel;
+import quino.util.report.InformeCampoVisual;
 import quino.util.report.InformeParametrosXEnsayo;
 import quino.view.prueba.FovealTestView;
 
@@ -168,7 +169,7 @@ public class PrincipalView extends javax.swing.JFrame {
         jMenuItem16.setEnabled(habilitar);
         jMenuItem17.setEnabled(habilitar);
     }
-    
+
     public final void modificarTableModel() {
         DefaultTableModel tm = new QuinoTableModel(registro);
 
@@ -716,28 +717,21 @@ public class PrincipalView extends javax.swing.JFrame {
 
     private void jMenuItem12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem12ActionPerformed
         // TODO add your handling code here:
-        try {
-            FileNameExtensionFilter filter = new FileNameExtensionFilter("Archivos de base de datos(*.tls)", "tls");
-            jFileChooser1.addChoosableFileFilter(filter);
-            jFileChooser1.setDialogTitle("Exportar base de datos");
-            jFileChooser1.setDialogType(JFileChooser.SAVE_DIALOG);
-            jFileChooser1.showSaveDialog(this);
-            File selectPlaced = jFileChooser1.getSelectedFile();
-            if (selectPlaced != null) {
-                String extension = selectPlaced.getPath().substring(selectPlaced.getPath().length()
-                        - ".tls".length(), selectPlaced.getPath().length());
+        FileNameExtensionFilter filter = new FileNameExtensionFilter("Archivos de base de datos(*.tls)", "tls");
+        jFileChooser1.addChoosableFileFilter(filter);
+        jFileChooser1.setDialogTitle("Exportar base de datos");
+        jFileChooser1.setDialogType(JFileChooser.SAVE_DIALOG);
+        jFileChooser1.showSaveDialog(this);
+        File selectPlaced = jFileChooser1.getSelectedFile();
+        if (selectPlaced != null) {
+            String extension = selectPlaced.getPath().substring(selectPlaced.getPath().length()
+                    - ".tls".length(), selectPlaced.getPath().length());
 
-                if (extension.equals(".tls")) {
-                    registro.salvarRegistro(selectPlaced.getPath());
-                } else {
-                    registro.salvarRegistro(selectPlaced.getPath() + "." + filter.getExtensions()[0]);
-                }
+            if (extension.equals(".tls")) {
+                registro.salvarRegistro(selectPlaced.getPath());
+            } else {
+                registro.salvarRegistro(selectPlaced.getPath() + "." + filter.getExtensions()[0]);
             }
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(PrincipalView.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (IOException ex) {
-            ErrorDialog err = new ErrorDialog(this, true, ex.getMessage());
-            err.setVisible(true);
         }
     }//GEN-LAST:event_jMenuItem12ActionPerformed
 
@@ -830,7 +824,7 @@ public class PrincipalView extends javax.swing.JFrame {
     private void jMenuItem18ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem18ActionPerformed
         // TODO add your handling code here:
         conf = new ConfigPruebaAuto(false);
-        prueba = new Prueba(ConfigApp.CANT_ENSAYOS);
+        prueba = new Prueba(ConfigApp.CANT_ENSAYOS, true);
         FovealTestView t = new FovealTestView(this, true, true);
         t.setVisible(true);
     }//GEN-LAST:event_jMenuItem18ActionPerformed
@@ -838,7 +832,7 @@ public class PrincipalView extends javax.swing.JFrame {
     private void jMenuItem19ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem19ActionPerformed
         // TODO add your handling code here:
         conf = new ConfigPruebaAuto(false);
-        prueba = new Prueba(ConfigApp.CANT_ENSAYOS);
+        prueba = new Prueba(ConfigApp.CANT_ENSAYOS, false);
         PerifericaTestView t = new PerifericaTestView(this, true, true);
         t.setVisible(true);
     }//GEN-LAST:event_jMenuItem19ActionPerformed
@@ -878,8 +872,10 @@ public class PrincipalView extends javax.swing.JFrame {
         File selectPlaced = jFileChooser1.getSelectedFile();
 
         HSSFWorkbook book = new HSSFWorkbook();
-        InformeExcel excel = new InformeParametrosXEnsayo(book);
-        excel.getInformeExcel();
+        AbstractInformeExcel excel1 = new InformeParametrosXEnsayo(book);
+        AbstractInformeExcel excel2 = new InformeCampoVisual(book);
+        excel1.getInformeExcel();
+        excel2.getInformeExcel();
 
         if (selectPlaced != null) {
             QuinoTools.salvarLibroExcel(selectPlaced.getPath() + "." + filter.getExtensions()[0], book);

@@ -23,9 +23,10 @@ public class Prueba {
     public Prueba() {
     }
     
-    public Prueba(int cantEnsayos) {
+    public Prueba(int cantEnsayos, boolean foveal) {
         this.cantEnsayos = cantEnsayos;
         resultados = new ArrayList<Resultado>();
+        this.foveal = foveal;
     }
 
     public Prueba(int cantEnsayos, ArrayList<Resultado> resultados, Date fecha, boolean foveal) {

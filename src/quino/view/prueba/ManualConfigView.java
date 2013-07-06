@@ -29,7 +29,7 @@ public class ManualConfigView extends javax.swing.JDialog {
     private int direccion;
     private boolean asincronico;
     private int ensayos;
-    private boolean fobeal = true;
+    private boolean foveal = true;
     boolean control;
 
     /** Creates new form ManualConfigView */
@@ -586,10 +586,10 @@ public class ManualConfigView extends javax.swing.JDialog {
             densidad = Integer.parseInt(jTextField2.getText());
             ensayos = Integer.parseInt(jTextField1.getText());
 
-            if (fobeal) {
+            if (foveal) {
                 parent.setConf(new ConfigPrueba(tiempo_movimiento, densidad,
                         cantidad, direccion, asincronico, control));
-                parent.setPrueba(new Prueba(ensayos));
+                parent.setPrueba(new Prueba(ensayos, foveal));
                 parent.getPrueba().setFoveal(true);
                 FovealTestView t = new FovealTestView(parent, true, false);
                 t.setVisible(true);
@@ -598,7 +598,7 @@ public class ManualConfigView extends javax.swing.JDialog {
             } else {
                 parent.setConf(new ConfigPrueba(tiempo_movimiento, densidad,
                         cantidad, direccion, asincronico, control));
-                parent.setPrueba(new Prueba(ensayos));
+                parent.setPrueba(new Prueba(ensayos, foveal));
                 parent.getPrueba().setFoveal(false);
                 PerifericaTestView t = new PerifericaTestView(parent, true, false);
                 t.setVisible(true);
@@ -642,13 +642,13 @@ public class ManualConfigView extends javax.swing.JDialog {
 
     private void jRadioButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton1ActionPerformed
         // TODO add your handling code here:
-        fobeal = true;
+        foveal = true;
         jRadioButton2.setSelected(false);
     }//GEN-LAST:event_jRadioButton1ActionPerformed
 
     private void jRadioButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton2ActionPerformed
         // TODO add your handling code here:
-        fobeal = false;
+        foveal = false;
         jRadioButton1.setSelected(false);
     }//GEN-LAST:event_jRadioButton2ActionPerformed
 

@@ -10,13 +10,17 @@ import org.apache.poi.hssf.usermodel.HSSFFont;
 import org.apache.poi.hssf.usermodel.HSSFRow;
 import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
+import quino.clases.config.ConfigApp;
+import quino.clases.model.Registro;
+import quino.util.QuinoTools;
 
 /**
  *
  * @author farias
  */
-public abstract class InformeExcel {
+public abstract class AbstractInformeExcel {
 
+    protected Registro registro = Registro.cargarRegistro(ConfigApp.REGISTRO_FILE_NAME);
     protected HSSFWorkbook book;
     protected int rowCount;
     private HSSFFont fontTitulo;
@@ -26,8 +30,8 @@ public abstract class InformeExcel {
     private HSSFCellStyle styleDato;
     private HSSFFont fontDatoError;
     private HSSFCellStyle styleDatoError;
-    
-    public InformeExcel(HSSFWorkbook book) {
+
+    public AbstractInformeExcel(HSSFWorkbook book) {
         this.book = book;
 
         fontTitulo = book.createFont();
@@ -48,7 +52,7 @@ public abstract class InformeExcel {
         styleCabecera.setWrapText(true);
         styleCabecera.setAlignment(HSSFCellStyle.ALIGN_CENTER);
         styleCabecera.setFont(fontCabecera);
-        
+
         styleDato = book.createCellStyle();
         styleDato.setWrapText(true);
         styleDato.setAlignment(HSSFCellStyle.ALIGN_CENTER);
@@ -67,9 +71,27 @@ public abstract class InformeExcel {
 
     public abstract void getInformeExcel();
 
-    protected abstract void getTitulo(HSSFSheet sheet, String titulo);
+    protected void getTitulo(HSSFSheet sheet, String titulo) {
+        HSSFRow rowTitle1 = sheet.createRow(rowCount++);
+        HSSFCell cellTitle1 = rowTitle1.createCell(4);
+        cellTitle1.setCellStyle(getStyleTitulo());
+        cellTitle1.setCellValue(titulo);
+    }
 
     protected abstract void getEncabezado(HSSFSheet sheet);
+
+    protected void crearEncabezado(HSSFSheet sheet, String heads[]) {
+        HSSFRow rowHead1 = sheet.createRow(rowCount++);
+
+        for (int i = 0; i < heads.length; i++) {
+            sheet.setColumnWidth(i, QuinoTools.getColumnWidthSize(20));
+
+            HSSFCell cellHead1 = rowHead1.createCell(i);
+            cellHead1.setCellType(HSSFCell.CELL_TYPE_STRING);
+            cellHead1.setCellStyle(getStyleCabecera());
+            cellHead1.setCellValue(heads[i]);
+        }
+    }
 
     protected abstract void getCuerpo(HSSFSheet sheet, boolean foveal);
 

@@ -21,7 +21,7 @@ import quino.clases.model.Prueba;
 public class AutoConfigView extends javax.swing.JDialog {
 
     private PrincipalView parent;
-    private boolean fobeal = true;
+    private boolean foveal = true;
     private boolean control;
 
     /** Creates new form AutoConfigView */
@@ -180,9 +180,9 @@ public class AutoConfigView extends javax.swing.JDialog {
             control = jCheckBox1.isSelected();
             int cant_ensayos = Integer.parseInt(jTextField1.getText());
             parent.setConf(new ConfigPruebaAuto(control));
-            parent.setPrueba(new Prueba(cant_ensayos));
+            parent.setPrueba(new Prueba(cant_ensayos, foveal));
 
-            if (fobeal) {
+            if (foveal) {
                 parent.getConf().setDensidad((parent.getConf().getDensidad() / 8));
                 parent.getPrueba().setFoveal(true);
                 FovealTestView t = new FovealTestView(parent, true, false);
@@ -215,12 +215,12 @@ public class AutoConfigView extends javax.swing.JDialog {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jRadioButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton1ActionPerformed
-        fobeal = true;
+        foveal = true;
         jRadioButton2.setSelected(false);
     }//GEN-LAST:event_jRadioButton1ActionPerformed
 
     private void jRadioButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton2ActionPerformed
-        fobeal = false;
+        foveal = false;
         jRadioButton1.setSelected(false);
     }//GEN-LAST:event_jRadioButton2ActionPerformed
 

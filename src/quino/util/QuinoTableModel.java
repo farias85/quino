@@ -41,7 +41,7 @@ public class QuinoTableModel extends DefaultTableModel {
         addColumn("Sexo");
 
         for (int i = 0; i < registro.getPacientes().size(); i++) {
-            Object[] fila = {i + 1,
+            Object[] fila = {i + 1, 
                 registro.getPacientes().get(i).getHistoria(),
                 registro.getPacientes().get(i).getNombre(),
                 registro.getPacientes().get(i).getCi(),

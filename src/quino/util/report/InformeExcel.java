@@ -19,14 +19,58 @@ public abstract class InformeExcel {
 
     protected HSSFWorkbook book;
     protected int rowCount;
-
+    private HSSFFont fontTitulo;
+    private HSSFCellStyle styleTitulo;
+    private HSSFFont fontCabecera;
+    private HSSFCellStyle styleCabecera;
+    private HSSFCellStyle styleDato;
+    private HSSFFont fontDatoError;
+    private HSSFCellStyle styleDatoError;
+    
     public InformeExcel(HSSFWorkbook book) {
         this.book = book;
+
+        fontTitulo = book.createFont();
+        fontTitulo.setFontHeightInPoints((short) 11);
+        fontTitulo.setFontName(HSSFFont.FONT_ARIAL);
+        fontTitulo.setBoldweight(HSSFFont.BOLDWEIGHT_BOLD);
+
+        styleTitulo = book.createCellStyle();
+        styleTitulo.setFont(fontTitulo);
+
+        fontCabecera = book.createFont();
+        fontCabecera.setFontHeightInPoints((short) 9);
+        fontCabecera.setFontName(HSSFFont.FONT_ARIAL);
+        fontCabecera.setBoldweight(HSSFFont.BOLDWEIGHT_BOLD);
+        fontCabecera.setItalic(true);
+
+        styleCabecera = book.createCellStyle();
+        styleCabecera.setWrapText(true);
+        styleCabecera.setAlignment(HSSFCellStyle.ALIGN_CENTER);
+        styleCabecera.setFont(fontCabecera);
+        
+        styleDato = book.createCellStyle();
+        styleDato.setWrapText(true);
+        styleDato.setAlignment(HSSFCellStyle.ALIGN_CENTER);
+
+        fontDatoError = book.createFont();
+        fontDatoError.setFontHeightInPoints((short) 9);
+        fontDatoError.setColor(HSSFFont.COLOR_RED);
+        fontDatoError.setFontName(HSSFFont.FONT_ARIAL);
+        fontDatoError.setItalic(true);
+
+        styleDatoError = book.createCellStyle();
+        styleDatoError.setWrapText(true);
+        styleDatoError.setAlignment(HSSFCellStyle.ALIGN_CENTER);
+        styleDatoError.setFont(fontDatoError);
     }
 
     public abstract void getInformeExcel();
+
     protected abstract void getTitulo(HSSFSheet sheet, String titulo);
+
     protected abstract void getEncabezado(HSSFSheet sheet);
+
     protected abstract void getCuerpo(HSSFSheet sheet, boolean foveal);
 
     protected HSSFCell getCelda(HSSFRow row, int numRow, int cellType, boolean error) {
@@ -49,57 +93,30 @@ public abstract class InformeExcel {
     }
 
     protected HSSFFont getFontTitulo() {
-        HSSFFont fontTitulo = book.createFont();
-        fontTitulo.setFontHeightInPoints((short) 11);
-        fontTitulo.setFontName(HSSFFont.FONT_ARIAL);
-        fontTitulo.setBoldweight(HSSFFont.BOLDWEIGHT_BOLD);
         return fontTitulo;
     }
 
     protected HSSFCellStyle getStyleTitulo() {
-        HSSFCellStyle styleTitulo = book.createCellStyle();
-        styleTitulo.setFont(getFontTitulo());
         return styleTitulo;
     }
 
     protected HSSFFont getFontCabecera() {
-        HSSFFont fontCabecera = book.createFont();
-        fontCabecera.setFontHeightInPoints((short) 9);
-        fontCabecera.setFontName(HSSFFont.FONT_ARIAL);
-        fontCabecera.setBoldweight(HSSFFont.BOLDWEIGHT_BOLD);
-        fontCabecera.setItalic(true);
         return fontCabecera;
     }
 
     protected HSSFCellStyle getStyleCabecera() {
-        HSSFCellStyle styleCabecera = book.createCellStyle();
-        styleCabecera.setWrapText(true);
-        styleCabecera.setAlignment(HSSFCellStyle.ALIGN_CENTER);
-        styleCabecera.setFont(getFontCabecera());
         return styleCabecera;
     }
 
     protected HSSFCellStyle getStyleDato() {
-        HSSFCellStyle styleDato = book.createCellStyle();
-        styleDato.setWrapText(true);
-        styleDato.setAlignment(HSSFCellStyle.ALIGN_CENTER);
         return styleDato;
     }
 
     protected HSSFFont getFontDatoError() {
-        HSSFFont fontDatoError = book.createFont();
-        fontDatoError.setFontHeightInPoints((short) 9);
-        fontDatoError.setColor(HSSFFont.COLOR_RED);
-        fontDatoError.setFontName(HSSFFont.FONT_ARIAL);
-        fontDatoError.setItalic(true);
         return fontDatoError;
     }
 
     protected HSSFCellStyle getStyleDatoError() {
-        HSSFCellStyle styleDatoError = book.createCellStyle();
-        styleDatoError.setWrapText(true);
-        styleDatoError.setAlignment(HSSFCellStyle.ALIGN_CENTER);
-        styleDatoError.setFont(getFontDatoError());
         return styleDatoError;
     }
 }

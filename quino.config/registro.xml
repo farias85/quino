@@ -966,6 +966,3717 @@
      </void>
     </object>
    </void>
+   <void method="add">
+    <object class="quino.clases.model.Paciente">
+     <void property="ci">
+      <long>85051100701</long>
+     </void>
+     <void property="edad">
+      <int>28</int>
+     </void>
+     <void property="escolaridad">
+      <string>4to</string>
+     </void>
+     <void property="escuela">
+      <string>Amigos de todos</string>
+     </void>
+     <void property="ficha">
+      <string>Ficha</string>
+     </void>
+     <void property="foveal">
+      <object class="quino.clases.model.Prueba" id="Prueba0">
+       <void property="cantEnsayos">
+        <int>3</int>
+       </void>
+       <void property="resultados">
+        <object class="java.util.ArrayList">
+         <void method="add">
+          <object class="quino.clases.model.Resultado">
+           <void property="angulo">
+            <double>9.2</double>
+           </void>
+           <void property="cantPuntos">
+            <int>21</int>
+           </void>
+           <void property="control">
+            <boolean>true</boolean>
+           </void>
+           <void property="densidad">
+            <int>500</int>
+           </void>
+           <void property="descripcion">
+            <string>Descrip</string>
+           </void>
+           <void property="direccion">
+            <int>2</int>
+           </void>
+           <void property="error">
+            <boolean>true</boolean>
+           </void>
+           <void property="key">
+            <int>32</int>
+           </void>
+           <void property="panelEstimulo">
+            <int>2</int>
+           </void>
+           <void property="tiempoRespuesta">
+            <int>650</int>
+           </void>
+           <void property="velocidad">
+            <double>0.022</double>
+           </void>
+           <void property="velocidadMovimiento">
+            <double>0.141</double>
+           </void>
+          </object>
+         </void>
+         <void method="add">
+          <object class="quino.clases.model.Resultado">
+           <void property="angulo">
+            <double>9.2</double>
+           </void>
+           <void property="cantPuntos">
+            <int>21</int>
+           </void>
+           <void property="control">
+            <boolean>true</boolean>
+           </void>
+           <void property="densidad">
+            <int>500</int>
+           </void>
+           <void property="descripcion">
+            <string>Descrip</string>
+           </void>
+           <void property="direccion">
+            <int>2</int>
+           </void>
+           <void property="error">
+            <boolean>true</boolean>
+           </void>
+           <void property="key">
+            <int>32</int>
+           </void>
+           <void property="numEnsayo">
+            <int>1</int>
+           </void>
+           <void property="panelEstimulo">
+            <int>2</int>
+           </void>
+           <void property="tiempoRespuesta">
+            <int>650</int>
+           </void>
+           <void property="velocidad">
+            <double>0.022</double>
+           </void>
+           <void property="velocidadMovimiento">
+            <double>0.141</double>
+           </void>
+          </object>
+         </void>
+         <void method="add">
+          <object class="quino.clases.model.Resultado">
+           <void property="angulo">
+            <double>9.2</double>
+           </void>
+           <void property="cantPuntos">
+            <int>21</int>
+           </void>
+           <void property="control">
+            <boolean>true</boolean>
+           </void>
+           <void property="densidad">
+            <int>500</int>
+           </void>
+           <void property="descripcion">
+            <string>Descrip</string>
+           </void>
+           <void property="direccion">
+            <int>2</int>
+           </void>
+           <void property="error">
+            <boolean>true</boolean>
+           </void>
+           <void property="key">
+            <int>32</int>
+           </void>
+           <void property="numEnsayo">
+            <int>2</int>
+           </void>
+           <void property="panelEstimulo">
+            <int>2</int>
+           </void>
+           <void property="tiempoRespuesta">
+            <int>650</int>
+           </void>
+           <void property="velocidad">
+            <double>0.022</double>
+           </void>
+           <void property="velocidadMovimiento">
+            <double>0.141</double>
+           </void>
+          </object>
+         </void>
+        </object>
+       </void>
+      </object>
+     </void>
+     <void property="historia">
+      <string>14520</string>
+     </void>
+     <void property="nombre">
+      <string>Ernestico0 Acabalo Todo</string>
+     </void>
+     <void property="periferica">
+      <object class="quino.clases.model.Prueba" id="Prueba1">
+       <void property="cantEnsayos">
+        <int>4</int>
+       </void>
+       <void property="resultados">
+        <object class="java.util.ArrayList">
+         <void method="add">
+          <object class="quino.clases.model.Resultado">
+           <void property="angulo">
+            <double>9.2</double>
+           </void>
+           <void property="cantPuntos">
+            <int>21</int>
+           </void>
+           <void property="control">
+            <boolean>true</boolean>
+           </void>
+           <void property="densidad">
+            <int>500</int>
+           </void>
+           <void property="descripcion">
+            <string>Descrip</string>
+           </void>
+           <void property="direccion">
+            <int>2</int>
+           </void>
+           <void property="error">
+            <boolean>true</boolean>
+           </void>
+           <void property="key">
+            <int>32</int>
+           </void>
+           <void property="panelEstimulo">
+            <int>2</int>
+           </void>
+           <void property="tiempoRespuesta">
+            <int>650</int>
+           </void>
+           <void property="velocidad">
+            <double>0.022</double>
+           </void>
+           <void property="velocidadMovimiento">
+            <double>0.141</double>
+           </void>
+          </object>
+         </void>
+         <void method="add">
+          <object class="quino.clases.model.Resultado">
+           <void property="angulo">
+            <double>9.2</double>
+           </void>
+           <void property="cantPuntos">
+            <int>21</int>
+           </void>
+           <void property="control">
+            <boolean>true</boolean>
+           </void>
+           <void property="densidad">
+            <int>500</int>
+           </void>
+           <void property="descripcion">
+            <string>Descrip</string>
+           </void>
+           <void property="direccion">
+            <int>2</int>
+           </void>
+           <void property="error">
+            <boolean>true</boolean>
+           </void>
+           <void property="key">
+            <int>32</int>
+           </void>
+           <void property="numEnsayo">
+            <int>1</int>
+           </void>
+           <void property="panelEstimulo">
+            <int>2</int>
+           </void>
+           <void property="tiempoRespuesta">
+            <int>650</int>
+           </void>
+           <void property="velocidad">
+            <double>0.022</double>
+           </void>
+           <void property="velocidadMovimiento">
+            <double>0.141</double>
+           </void>
+          </object>
+         </void>
+         <void method="add">
+          <object class="quino.clases.model.Resultado">
+           <void property="angulo">
+            <double>9.2</double>
+           </void>
+           <void property="cantPuntos">
+            <int>21</int>
+           </void>
+           <void property="control">
+            <boolean>true</boolean>
+           </void>
+           <void property="densidad">
+            <int>500</int>
+           </void>
+           <void property="descripcion">
+            <string>Descrip</string>
+           </void>
+           <void property="direccion">
+            <int>2</int>
+           </void>
+           <void property="error">
+            <boolean>true</boolean>
+           </void>
+           <void property="key">
+            <int>32</int>
+           </void>
+           <void property="numEnsayo">
+            <int>2</int>
+           </void>
+           <void property="panelEstimulo">
+            <int>2</int>
+           </void>
+           <void property="tiempoRespuesta">
+            <int>650</int>
+           </void>
+           <void property="velocidad">
+            <double>0.022</double>
+           </void>
+           <void property="velocidadMovimiento">
+            <double>0.141</double>
+           </void>
+          </object>
+         </void>
+         <void method="add">
+          <object class="quino.clases.model.Resultado">
+           <void property="angulo">
+            <double>9.2</double>
+           </void>
+           <void property="cantPuntos">
+            <int>21</int>
+           </void>
+           <void property="control">
+            <boolean>true</boolean>
+           </void>
+           <void property="densidad">
+            <int>500</int>
+           </void>
+           <void property="descripcion">
+            <string>Descrip</string>
+           </void>
+           <void property="direccion">
+            <int>2</int>
+           </void>
+           <void property="error">
+            <boolean>true</boolean>
+           </void>
+           <void property="key">
+            <int>32</int>
+           </void>
+           <void property="numEnsayo">
+            <int>3</int>
+           </void>
+           <void property="panelEstimulo">
+            <int>2</int>
+           </void>
+           <void property="tiempoRespuesta">
+            <int>650</int>
+           </void>
+           <void property="velocidad">
+            <double>0.022</double>
+           </void>
+           <void property="velocidadMovimiento">
+            <double>0.141</double>
+           </void>
+          </object>
+         </void>
+        </object>
+       </void>
+      </object>
+     </void>
+     <void property="sexo">
+      <string>Masculino</string>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="quino.clases.model.Paciente">
+     <void property="ci">
+      <long>85051100702</long>
+     </void>
+     <void property="edad">
+      <int>28</int>
+     </void>
+     <void property="escolaridad">
+      <string>4to</string>
+     </void>
+     <void property="escuela">
+      <string>Amigos de todos</string>
+     </void>
+     <void property="ficha">
+      <string>Ficha</string>
+     </void>
+     <void property="foveal">
+      <object idref="Prueba0"/>
+     </void>
+     <void property="historia">
+      <string>14521</string>
+     </void>
+     <void property="nombre">
+      <string>Ernestico1 Acabalo Todo</string>
+     </void>
+     <void property="periferica">
+      <object idref="Prueba1"/>
+     </void>
+     <void property="sexo">
+      <string>Masculino</string>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="quino.clases.model.Paciente">
+     <void property="ci">
+      <long>85051100703</long>
+     </void>
+     <void property="edad">
+      <int>28</int>
+     </void>
+     <void property="escolaridad">
+      <string>4to</string>
+     </void>
+     <void property="escuela">
+      <string>Amigos de todos</string>
+     </void>
+     <void property="ficha">
+      <string>Ficha</string>
+     </void>
+     <void property="foveal">
+      <object idref="Prueba0"/>
+     </void>
+     <void property="historia">
+      <string>14522</string>
+     </void>
+     <void property="nombre">
+      <string>Ernestico2 Acabalo Todo</string>
+     </void>
+     <void property="periferica">
+      <object idref="Prueba1"/>
+     </void>
+     <void property="sexo">
+      <string>Masculino</string>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="quino.clases.model.Paciente">
+     <void property="ci">
+      <long>85051100704</long>
+     </void>
+     <void property="edad">
+      <int>28</int>
+     </void>
+     <void property="escolaridad">
+      <string>4to</string>
+     </void>
+     <void property="escuela">
+      <string>Amigos de todos</string>
+     </void>
+     <void property="ficha">
+      <string>Ficha</string>
+     </void>
+     <void property="foveal">
+      <object idref="Prueba0"/>
+     </void>
+     <void property="historia">
+      <string>14523</string>
+     </void>
+     <void property="nombre">
+      <string>Ernestico3 Acabalo Todo</string>
+     </void>
+     <void property="periferica">
+      <object idref="Prueba1"/>
+     </void>
+     <void property="sexo">
+      <string>Masculino</string>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="quino.clases.model.Paciente">
+     <void property="ci">
+      <long>85051100705</long>
+     </void>
+     <void property="edad">
+      <int>28</int>
+     </void>
+     <void property="escolaridad">
+      <string>4to</string>
+     </void>
+     <void property="escuela">
+      <string>Amigos de todos</string>
+     </void>
+     <void property="ficha">
+      <string>Ficha</string>
+     </void>
+     <void property="foveal">
+      <object idref="Prueba0"/>
+     </void>
+     <void property="historia">
+      <string>14524</string>
+     </void>
+     <void property="nombre">
+      <string>Ernestico4 Acabalo Todo</string>
+     </void>
+     <void property="periferica">
+      <object idref="Prueba1"/>
+     </void>
+     <void property="sexo">
+      <string>Masculino</string>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="quino.clases.model.Paciente">
+     <void property="ci">
+      <long>85051100706</long>
+     </void>
+     <void property="edad">
+      <int>28</int>
+     </void>
+     <void property="escolaridad">
+      <string>4to</string>
+     </void>
+     <void property="escuela">
+      <string>Amigos de todos</string>
+     </void>
+     <void property="ficha">
+      <string>Ficha</string>
+     </void>
+     <void property="foveal">
+      <object idref="Prueba0"/>
+     </void>
+     <void property="historia">
+      <string>14525</string>
+     </void>
+     <void property="nombre">
+      <string>Ernestico5 Acabalo Todo</string>
+     </void>
+     <void property="periferica">
+      <object idref="Prueba1"/>
+     </void>
+     <void property="sexo">
+      <string>Masculino</string>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="quino.clases.model.Paciente">
+     <void property="ci">
+      <long>85051100707</long>
+     </void>
+     <void property="edad">
+      <int>28</int>
+     </void>
+     <void property="escolaridad">
+      <string>4to</string>
+     </void>
+     <void property="escuela">
+      <string>Amigos de todos</string>
+     </void>
+     <void property="ficha">
+      <string>Ficha</string>
+     </void>
+     <void property="foveal">
+      <object idref="Prueba0"/>
+     </void>
+     <void property="historia">
+      <string>14526</string>
+     </void>
+     <void property="nombre">
+      <string>Ernestico6 Acabalo Todo</string>
+     </void>
+     <void property="periferica">
+      <object idref="Prueba1"/>
+     </void>
+     <void property="sexo">
+      <string>Masculino</string>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="quino.clases.model.Paciente">
+     <void property="ci">
+      <long>85051100708</long>
+     </void>
+     <void property="edad">
+      <int>28</int>
+     </void>
+     <void property="escolaridad">
+      <string>4to</string>
+     </void>
+     <void property="escuela">
+      <string>Amigos de todos</string>
+     </void>
+     <void property="ficha">
+      <string>Ficha</string>
+     </void>
+     <void property="foveal">
+      <object idref="Prueba0"/>
+     </void>
+     <void property="historia">
+      <string>14527</string>
+     </void>
+     <void property="nombre">
+      <string>Ernestico7 Acabalo Todo</string>
+     </void>
+     <void property="periferica">
+      <object idref="Prueba1"/>
+     </void>
+     <void property="sexo">
+      <string>Masculino</string>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="quino.clases.model.Paciente">
+     <void property="ci">
+      <long>85051100709</long>
+     </void>
+     <void property="edad">
+      <int>28</int>
+     </void>
+     <void property="escolaridad">
+      <string>4to</string>
+     </void>
+     <void property="escuela">
+      <string>Amigos de todos</string>
+     </void>
+     <void property="ficha">
+      <string>Ficha</string>
+     </void>
+     <void property="foveal">
+      <object idref="Prueba0"/>
+     </void>
+     <void property="historia">
+      <string>14528</string>
+     </void>
+     <void property="nombre">
+      <string>Ernestico8 Acabalo Todo</string>
+     </void>
+     <void property="periferica">
+      <object idref="Prueba1"/>
+     </void>
+     <void property="sexo">
+      <string>Masculino</string>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="quino.clases.model.Paciente">
+     <void property="ci">
+      <long>85051100710</long>
+     </void>
+     <void property="edad">
+      <int>28</int>
+     </void>
+     <void property="escolaridad">
+      <string>4to</string>
+     </void>
+     <void property="escuela">
+      <string>Amigos de todos</string>
+     </void>
+     <void property="ficha">
+      <string>Ficha</string>
+     </void>
+     <void property="foveal">
+      <object idref="Prueba0"/>
+     </void>
+     <void property="historia">
+      <string>14529</string>
+     </void>
+     <void property="nombre">
+      <string>Ernestico9 Acabalo Todo</string>
+     </void>
+     <void property="periferica">
+      <object idref="Prueba1"/>
+     </void>
+     <void property="sexo">
+      <string>Masculino</string>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="quino.clases.model.Paciente">
+     <void property="ci">
+      <long>85051100711</long>
+     </void>
+     <void property="edad">
+      <int>28</int>
+     </void>
+     <void property="escolaridad">
+      <string>4to</string>
+     </void>
+     <void property="escuela">
+      <string>Amigos de todos</string>
+     </void>
+     <void property="ficha">
+      <string>Ficha</string>
+     </void>
+     <void property="foveal">
+      <object idref="Prueba0"/>
+     </void>
+     <void property="historia">
+      <string>145210</string>
+     </void>
+     <void property="nombre">
+      <string>Ernestico10 Acabalo Todo</string>
+     </void>
+     <void property="periferica">
+      <object idref="Prueba1"/>
+     </void>
+     <void property="sexo">
+      <string>Masculino</string>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="quino.clases.model.Paciente">
+     <void property="ci">
+      <long>85051100712</long>
+     </void>
+     <void property="edad">
+      <int>28</int>
+     </void>
+     <void property="escolaridad">
+      <string>4to</string>
+     </void>
+     <void property="escuela">
+      <string>Amigos de todos</string>
+     </void>
+     <void property="ficha">
+      <string>Ficha</string>
+     </void>
+     <void property="foveal">
+      <object idref="Prueba0"/>
+     </void>
+     <void property="historia">
+      <string>145211</string>
+     </void>
+     <void property="nombre">
+      <string>Ernestico11 Acabalo Todo</string>
+     </void>
+     <void property="periferica">
+      <object idref="Prueba1"/>
+     </void>
+     <void property="sexo">
+      <string>Masculino</string>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="quino.clases.model.Paciente">
+     <void property="ci">
+      <long>85051100713</long>
+     </void>
+     <void property="edad">
+      <int>28</int>
+     </void>
+     <void property="escolaridad">
+      <string>4to</string>
+     </void>
+     <void property="escuela">
+      <string>Amigos de todos</string>
+     </void>
+     <void property="ficha">
+      <string>Ficha</string>
+     </void>
+     <void property="foveal">
+      <object idref="Prueba0"/>
+     </void>
+     <void property="historia">
+      <string>145212</string>
+     </void>
+     <void property="nombre">
+      <string>Ernestico12 Acabalo Todo</string>
+     </void>
+     <void property="periferica">
+      <object idref="Prueba1"/>
+     </void>
+     <void property="sexo">
+      <string>Masculino</string>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="quino.clases.model.Paciente">
+     <void property="ci">
+      <long>85051100714</long>
+     </void>
+     <void property="edad">
+      <int>28</int>
+     </void>
+     <void property="escolaridad">
+      <string>4to</string>
+     </void>
+     <void property="escuela">
+      <string>Amigos de todos</string>
+     </void>
+     <void property="ficha">
+      <string>Ficha</string>
+     </void>
+     <void property="foveal">
+      <object idref="Prueba0"/>
+     </void>
+     <void property="historia">
+      <string>145213</string>
+     </void>
+     <void property="nombre">
+      <string>Ernestico13 Acabalo Todo</string>
+     </void>
+     <void property="periferica">
+      <object idref="Prueba1"/>
+     </void>
+     <void property="sexo">
+      <string>Masculino</string>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="quino.clases.model.Paciente">
+     <void property="ci">
+      <long>85051100715</long>
+     </void>
+     <void property="edad">
+      <int>28</int>
+     </void>
+     <void property="escolaridad">
+      <string>4to</string>
+     </void>
+     <void property="escuela">
+      <string>Amigos de todos</string>
+     </void>
+     <void property="ficha">
+      <string>Ficha</string>
+     </void>
+     <void property="foveal">
+      <object idref="Prueba0"/>
+     </void>
+     <void property="historia">
+      <string>145214</string>
+     </void>
+     <void property="nombre">
+      <string>Ernestico14 Acabalo Todo</string>
+     </void>
+     <void property="periferica">
+      <object idref="Prueba1"/>
+     </void>
+     <void property="sexo">
+      <string>Masculino</string>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="quino.clases.model.Paciente">
+     <void property="ci">
+      <long>85051100716</long>
+     </void>
+     <void property="edad">
+      <int>28</int>
+     </void>
+     <void property="escolaridad">
+      <string>4to</string>
+     </void>
+     <void property="escuela">
+      <string>Amigos de todos</string>
+     </void>
+     <void property="ficha">
+      <string>Ficha</string>
+     </void>
+     <void property="foveal">
+      <object idref="Prueba0"/>
+     </void>
+     <void property="historia">
+      <string>145215</string>
+     </void>
+     <void property="nombre">
+      <string>Ernestico15 Acabalo Todo</string>
+     </void>
+     <void property="periferica">
+      <object idref="Prueba1"/>
+     </void>
+     <void property="sexo">
+      <string>Masculino</string>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="quino.clases.model.Paciente">
+     <void property="ci">
+      <long>85051100717</long>
+     </void>
+     <void property="edad">
+      <int>28</int>
+     </void>
+     <void property="escolaridad">
+      <string>4to</string>
+     </void>
+     <void property="escuela">
+      <string>Amigos de todos</string>
+     </void>
+     <void property="ficha">
+      <string>Ficha</string>
+     </void>
+     <void property="foveal">
+      <object idref="Prueba0"/>
+     </void>
+     <void property="historia">
+      <string>145216</string>
+     </void>
+     <void property="nombre">
+      <string>Ernestico16 Acabalo Todo</string>
+     </void>
+     <void property="periferica">
+      <object idref="Prueba1"/>
+     </void>
+     <void property="sexo">
+      <string>Masculino</string>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="quino.clases.model.Paciente">
+     <void property="ci">
+      <long>85051100718</long>
+     </void>
+     <void property="edad">
+      <int>28</int>
+     </void>
+     <void property="escolaridad">
+      <string>4to</string>
+     </void>
+     <void property="escuela">
+      <string>Amigos de todos</string>
+     </void>
+     <void property="ficha">
+      <string>Ficha</string>
+     </void>
+     <void property="foveal">
+      <object idref="Prueba0"/>
+     </void>
+     <void property="historia">
+      <string>145217</string>
+     </void>
+     <void property="nombre">
+      <string>Ernestico17 Acabalo Todo</string>
+     </void>
+     <void property="periferica">
+      <object idref="Prueba1"/>
+     </void>
+     <void property="sexo">
+      <string>Masculino</string>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="quino.clases.model.Paciente">
+     <void property="ci">
+      <long>85051100719</long>
+     </void>
+     <void property="edad">
+      <int>28</int>
+     </void>
+     <void property="escolaridad">
+      <string>4to</string>
+     </void>
+     <void property="escuela">
+      <string>Amigos de todos</string>
+     </void>
+     <void property="ficha">
+      <string>Ficha</string>
+     </void>
+     <void property="foveal">
+      <object idref="Prueba0"/>
+     </void>
+     <void property="historia">
+      <string>145218</string>
+     </void>
+     <void property="nombre">
+      <string>Ernestico18 Acabalo Todo</string>
+     </void>
+     <void property="periferica">
+      <object idref="Prueba1"/>
+     </void>
+     <void property="sexo">
+      <string>Masculino</string>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="quino.clases.model.Paciente">
+     <void property="ci">
+      <long>85051100720</long>
+     </void>
+     <void property="edad">
+      <int>28</int>
+     </void>
+     <void property="escolaridad">
+      <string>4to</string>
+     </void>
+     <void property="escuela">
+      <string>Amigos de todos</string>
+     </void>
+     <void property="ficha">
+      <string>Ficha</string>
+     </void>
+     <void property="foveal">
+      <object idref="Prueba0"/>
+     </void>
+     <void property="historia">
+      <string>145219</string>
+     </void>
+     <void property="nombre">
+      <string>Ernestico19 Acabalo Todo</string>
+     </void>
+     <void property="periferica">
+      <object idref="Prueba1"/>
+     </void>
+     <void property="sexo">
+      <string>Masculino</string>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="quino.clases.model.Paciente">
+     <void property="ci">
+      <long>85051100721</long>
+     </void>
+     <void property="edad">
+      <int>28</int>
+     </void>
+     <void property="escolaridad">
+      <string>4to</string>
+     </void>
+     <void property="escuela">
+      <string>Amigos de todos</string>
+     </void>
+     <void property="ficha">
+      <string>Ficha</string>
+     </void>
+     <void property="foveal">
+      <object idref="Prueba0"/>
+     </void>
+     <void property="historia">
+      <string>145220</string>
+     </void>
+     <void property="nombre">
+      <string>Ernestico20 Acabalo Todo</string>
+     </void>
+     <void property="periferica">
+      <object idref="Prueba1"/>
+     </void>
+     <void property="sexo">
+      <string>Masculino</string>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="quino.clases.model.Paciente">
+     <void property="ci">
+      <long>85051100722</long>
+     </void>
+     <void property="edad">
+      <int>28</int>
+     </void>
+     <void property="escolaridad">
+      <string>4to</string>
+     </void>
+     <void property="escuela">
+      <string>Amigos de todos</string>
+     </void>
+     <void property="ficha">
+      <string>Ficha</string>
+     </void>
+     <void property="foveal">
+      <object idref="Prueba0"/>
+     </void>
+     <void property="historia">
+      <string>145221</string>
+     </void>
+     <void property="nombre">
+      <string>Ernestico21 Acabalo Todo</string>
+     </void>
+     <void property="periferica">
+      <object idref="Prueba1"/>
+     </void>
+     <void property="sexo">
+      <string>Masculino</string>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="quino.clases.model.Paciente">
+     <void property="ci">
+      <long>85051100723</long>
+     </void>
+     <void property="edad">
+      <int>28</int>
+     </void>
+     <void property="escolaridad">
+      <string>4to</string>
+     </void>
+     <void property="escuela">
+      <string>Amigos de todos</string>
+     </void>
+     <void property="ficha">
+      <string>Ficha</string>
+     </void>
+     <void property="foveal">
+      <object idref="Prueba0"/>
+     </void>
+     <void property="historia">
+      <string>145222</string>
+     </void>
+     <void property="nombre">
+      <string>Ernestico22 Acabalo Todo</string>
+     </void>
+     <void property="periferica">
+      <object idref="Prueba1"/>
+     </void>
+     <void property="sexo">
+      <string>Masculino</string>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="quino.clases.model.Paciente">
+     <void property="ci">
+      <long>85051100724</long>
+     </void>
+     <void property="edad">
+      <int>28</int>
+     </void>
+     <void property="escolaridad">
+      <string>4to</string>
+     </void>
+     <void property="escuela">
+      <string>Amigos de todos</string>
+     </void>
+     <void property="ficha">
+      <string>Ficha</string>
+     </void>
+     <void property="foveal">
+      <object idref="Prueba0"/>
+     </void>
+     <void property="historia">
+      <string>145223</string>
+     </void>
+     <void property="nombre">
+      <string>Ernestico23 Acabalo Todo</string>
+     </void>
+     <void property="periferica">
+      <object idref="Prueba1"/>
+     </void>
+     <void property="sexo">
+      <string>Masculino</string>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="quino.clases.model.Paciente">
+     <void property="ci">
+      <long>85051100725</long>
+     </void>
+     <void property="edad">
+      <int>28</int>
+     </void>
+     <void property="escolaridad">
+      <string>4to</string>
+     </void>
+     <void property="escuela">
+      <string>Amigos de todos</string>
+     </void>
+     <void property="ficha">
+      <string>Ficha</string>
+     </void>
+     <void property="foveal">
+      <object idref="Prueba0"/>
+     </void>
+     <void property="historia">
+      <string>145224</string>
+     </void>
+     <void property="nombre">
+      <string>Ernestico24 Acabalo Todo</string>
+     </void>
+     <void property="periferica">
+      <object idref="Prueba1"/>
+     </void>
+     <void property="sexo">
+      <string>Masculino</string>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="quino.clases.model.Paciente">
+     <void property="ci">
+      <long>85051100726</long>
+     </void>
+     <void property="edad">
+      <int>28</int>
+     </void>
+     <void property="escolaridad">
+      <string>4to</string>
+     </void>
+     <void property="escuela">
+      <string>Amigos de todos</string>
+     </void>
+     <void property="ficha">
+      <string>Ficha</string>
+     </void>
+     <void property="foveal">
+      <object idref="Prueba0"/>
+     </void>
+     <void property="historia">
+      <string>145225</string>
+     </void>
+     <void property="nombre">
+      <string>Ernestico25 Acabalo Todo</string>
+     </void>
+     <void property="periferica">
+      <object idref="Prueba1"/>
+     </void>
+     <void property="sexo">
+      <string>Masculino</string>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="quino.clases.model.Paciente">
+     <void property="ci">
+      <long>85051100727</long>
+     </void>
+     <void property="edad">
+      <int>28</int>
+     </void>
+     <void property="escolaridad">
+      <string>4to</string>
+     </void>
+     <void property="escuela">
+      <string>Amigos de todos</string>
+     </void>
+     <void property="ficha">
+      <string>Ficha</string>
+     </void>
+     <void property="foveal">
+      <object idref="Prueba0"/>
+     </void>
+     <void property="historia">
+      <string>145226</string>
+     </void>
+     <void property="nombre">
+      <string>Ernestico26 Acabalo Todo</string>
+     </void>
+     <void property="periferica">
+      <object idref="Prueba1"/>
+     </void>
+     <void property="sexo">
+      <string>Masculino</string>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="quino.clases.model.Paciente">
+     <void property="ci">
+      <long>85051100728</long>
+     </void>
+     <void property="edad">
+      <int>28</int>
+     </void>
+     <void property="escolaridad">
+      <string>4to</string>
+     </void>
+     <void property="escuela">
+      <string>Amigos de todos</string>
+     </void>
+     <void property="ficha">
+      <string>Ficha</string>
+     </void>
+     <void property="foveal">
+      <object idref="Prueba0"/>
+     </void>
+     <void property="historia">
+      <string>145227</string>
+     </void>
+     <void property="nombre">
+      <string>Ernestico27 Acabalo Todo</string>
+     </void>
+     <void property="periferica">
+      <object idref="Prueba1"/>
+     </void>
+     <void property="sexo">
+      <string>Masculino</string>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="quino.clases.model.Paciente">
+     <void property="ci">
+      <long>85051100729</long>
+     </void>
+     <void property="edad">
+      <int>28</int>
+     </void>
+     <void property="escolaridad">
+      <string>4to</string>
+     </void>
+     <void property="escuela">
+      <string>Amigos de todos</string>
+     </void>
+     <void property="ficha">
+      <string>Ficha</string>
+     </void>
+     <void property="foveal">
+      <object idref="Prueba0"/>
+     </void>
+     <void property="historia">
+      <string>145228</string>
+     </void>
+     <void property="nombre">
+      <string>Ernestico28 Acabalo Todo</string>
+     </void>
+     <void property="periferica">
+      <object idref="Prueba1"/>
+     </void>
+     <void property="sexo">
+      <string>Masculino</string>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="quino.clases.model.Paciente">
+     <void property="ci">
+      <long>85051100730</long>
+     </void>
+     <void property="edad">
+      <int>28</int>
+     </void>
+     <void property="escolaridad">
+      <string>4to</string>
+     </void>
+     <void property="escuela">
+      <string>Amigos de todos</string>
+     </void>
+     <void property="ficha">
+      <string>Ficha</string>
+     </void>
+     <void property="foveal">
+      <object idref="Prueba0"/>
+     </void>
+     <void property="historia">
+      <string>145229</string>
+     </void>
+     <void property="nombre">
+      <string>Ernestico29 Acabalo Todo</string>
+     </void>
+     <void property="periferica">
+      <object idref="Prueba1"/>
+     </void>
+     <void property="sexo">
+      <string>Masculino</string>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="quino.clases.model.Paciente">
+     <void property="ci">
+      <long>85051100731</long>
+     </void>
+     <void property="edad">
+      <int>28</int>
+     </void>
+     <void property="escolaridad">
+      <string>4to</string>
+     </void>
+     <void property="escuela">
+      <string>Amigos de todos</string>
+     </void>
+     <void property="ficha">
+      <string>Ficha</string>
+     </void>
+     <void property="foveal">
+      <object idref="Prueba0"/>
+     </void>
+     <void property="historia">
+      <string>145230</string>
+     </void>
+     <void property="nombre">
+      <string>Ernestico30 Acabalo Todo</string>
+     </void>
+     <void property="periferica">
+      <object idref="Prueba1"/>
+     </void>
+     <void property="sexo">
+      <string>Masculino</string>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="quino.clases.model.Paciente">
+     <void property="ci">
+      <long>85051100732</long>
+     </void>
+     <void property="edad">
+      <int>28</int>
+     </void>
+     <void property="escolaridad">
+      <string>4to</string>
+     </void>
+     <void property="escuela">
+      <string>Amigos de todos</string>
+     </void>
+     <void property="ficha">
+      <string>Ficha</string>
+     </void>
+     <void property="foveal">
+      <object idref="Prueba0"/>
+     </void>
+     <void property="historia">
+      <string>5555</string>
+     </void>
+     <void property="nombre">
+      <string>Ernestico31 Acabalo Todo</string>
+     </void>
+     <void property="periferica">
+      <object idref="Prueba1"/>
+     </void>
+     <void property="sexo">
+      <string>Masculino</string>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="quino.clases.model.Paciente">
+     <void property="ci">
+      <long>85051100733</long>
+     </void>
+     <void property="edad">
+      <int>28</int>
+     </void>
+     <void property="escolaridad">
+      <string>4to</string>
+     </void>
+     <void property="escuela">
+      <string>Amigos de todos</string>
+     </void>
+     <void property="ficha">
+      <string>Ficha</string>
+     </void>
+     <void property="foveal">
+      <object idref="Prueba0"/>
+     </void>
+     <void property="historia">
+      <string>145232</string>
+     </void>
+     <void property="nombre">
+      <string>Ernestico32 Acabalo Todo</string>
+     </void>
+     <void property="periferica">
+      <object idref="Prueba1"/>
+     </void>
+     <void property="sexo">
+      <string>Masculino</string>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="quino.clases.model.Paciente">
+     <void property="ci">
+      <long>85051100734</long>
+     </void>
+     <void property="edad">
+      <int>28</int>
+     </void>
+     <void property="escolaridad">
+      <string>4to</string>
+     </void>
+     <void property="escuela">
+      <string>Amigos de todos</string>
+     </void>
+     <void property="ficha">
+      <string>Ficha</string>
+     </void>
+     <void property="foveal">
+      <object idref="Prueba0"/>
+     </void>
+     <void property="historia">
+      <string>145233</string>
+     </void>
+     <void property="nombre">
+      <string>Ernestico33 Acabalo Todo</string>
+     </void>
+     <void property="periferica">
+      <object idref="Prueba1"/>
+     </void>
+     <void property="sexo">
+      <string>Masculino</string>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="quino.clases.model.Paciente">
+     <void property="ci">
+      <long>85051100735</long>
+     </void>
+     <void property="edad">
+      <int>28</int>
+     </void>
+     <void property="escolaridad">
+      <string>4to</string>
+     </void>
+     <void property="escuela">
+      <string>Amigos de todos</string>
+     </void>
+     <void property="ficha">
+      <string>Ficha</string>
+     </void>
+     <void property="foveal">
+      <object idref="Prueba0"/>
+     </void>
+     <void property="historia">
+      <string>145234</string>
+     </void>
+     <void property="nombre">
+      <string>Ernestico34 Acabalo Todo</string>
+     </void>
+     <void property="periferica">
+      <object idref="Prueba1"/>
+     </void>
+     <void property="sexo">
+      <string>Masculino</string>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="quino.clases.model.Paciente">
+     <void property="ci">
+      <long>85051100736</long>
+     </void>
+     <void property="edad">
+      <int>28</int>
+     </void>
+     <void property="escolaridad">
+      <string>4to</string>
+     </void>
+     <void property="escuela">
+      <string>Amigos de todos</string>
+     </void>
+     <void property="ficha">
+      <string>Ficha</string>
+     </void>
+     <void property="foveal">
+      <object idref="Prueba0"/>
+     </void>
+     <void property="historia">
+      <string>145235</string>
+     </void>
+     <void property="nombre">
+      <string>Ernestico35 Acabalo Todo</string>
+     </void>
+     <void property="periferica">
+      <object idref="Prueba1"/>
+     </void>
+     <void property="sexo">
+      <string>Masculino</string>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="quino.clases.model.Paciente">
+     <void property="ci">
+      <long>85051100737</long>
+     </void>
+     <void property="edad">
+      <int>28</int>
+     </void>
+     <void property="escolaridad">
+      <string>4to</string>
+     </void>
+     <void property="escuela">
+      <string>Amigos de todos</string>
+     </void>
+     <void property="ficha">
+      <string>Ficha</string>
+     </void>
+     <void property="foveal">
+      <object idref="Prueba0"/>
+     </void>
+     <void property="historia">
+      <string>145236</string>
+     </void>
+     <void property="nombre">
+      <string>Ernestico36 Acabalo Todo</string>
+     </void>
+     <void property="periferica">
+      <object idref="Prueba1"/>
+     </void>
+     <void property="sexo">
+      <string>Masculino</string>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="quino.clases.model.Paciente">
+     <void property="ci">
+      <long>85051100738</long>
+     </void>
+     <void property="edad">
+      <int>28</int>
+     </void>
+     <void property="escolaridad">
+      <string>4to</string>
+     </void>
+     <void property="escuela">
+      <string>Amigos de todos</string>
+     </void>
+     <void property="ficha">
+      <string>Ficha</string>
+     </void>
+     <void property="foveal">
+      <object idref="Prueba0"/>
+     </void>
+     <void property="historia">
+      <string>145237</string>
+     </void>
+     <void property="nombre">
+      <string>Ernestico37 Acabalo Todo</string>
+     </void>
+     <void property="periferica">
+      <object idref="Prueba1"/>
+     </void>
+     <void property="sexo">
+      <string>Masculino</string>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="quino.clases.model.Paciente">
+     <void property="ci">
+      <long>85051100739</long>
+     </void>
+     <void property="edad">
+      <int>28</int>
+     </void>
+     <void property="escolaridad">
+      <string>4to</string>
+     </void>
+     <void property="escuela">
+      <string>Amigos de todos</string>
+     </void>
+     <void property="ficha">
+      <string>Ficha</string>
+     </void>
+     <void property="foveal">
+      <object idref="Prueba0"/>
+     </void>
+     <void property="historia">
+      <string>145238</string>
+     </void>
+     <void property="nombre">
+      <string>Ernestico38 Acabalo Todo</string>
+     </void>
+     <void property="periferica">
+      <object idref="Prueba1"/>
+     </void>
+     <void property="sexo">
+      <string>Masculino</string>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="quino.clases.model.Paciente">
+     <void property="ci">
+      <long>85051100740</long>
+     </void>
+     <void property="edad">
+      <int>28</int>
+     </void>
+     <void property="escolaridad">
+      <string>4to</string>
+     </void>
+     <void property="escuela">
+      <string>Amigos de todos</string>
+     </void>
+     <void property="ficha">
+      <string>Ficha</string>
+     </void>
+     <void property="foveal">
+      <object idref="Prueba0"/>
+     </void>
+     <void property="historia">
+      <string>145239</string>
+     </void>
+     <void property="nombre">
+      <string>Ernestico39 Acabalo Todo</string>
+     </void>
+     <void property="periferica">
+      <object idref="Prueba1"/>
+     </void>
+     <void property="sexo">
+      <string>Masculino</string>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="quino.clases.model.Paciente">
+     <void property="ci">
+      <long>85051100741</long>
+     </void>
+     <void property="edad">
+      <int>28</int>
+     </void>
+     <void property="escolaridad">
+      <string>4to</string>
+     </void>
+     <void property="escuela">
+      <string>Amigos de todos</string>
+     </void>
+     <void property="ficha">
+      <string>Ficha</string>
+     </void>
+     <void property="foveal">
+      <object idref="Prueba0"/>
+     </void>
+     <void property="historia">
+      <string>145240</string>
+     </void>
+     <void property="nombre">
+      <string>Ernestico40 Acabalo Todo</string>
+     </void>
+     <void property="periferica">
+      <object idref="Prueba1"/>
+     </void>
+     <void property="sexo">
+      <string>Masculino</string>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="quino.clases.model.Paciente">
+     <void property="ci">
+      <long>85051100742</long>
+     </void>
+     <void property="edad">
+      <int>28</int>
+     </void>
+     <void property="escolaridad">
+      <string>4to</string>
+     </void>
+     <void property="escuela">
+      <string>Amigos de todos</string>
+     </void>
+     <void property="ficha">
+      <string>Ficha</string>
+     </void>
+     <void property="foveal">
+      <object idref="Prueba0"/>
+     </void>
+     <void property="historia">
+      <string>145241</string>
+     </void>
+     <void property="nombre">
+      <string>Ernestico41 Acabalo Todo</string>
+     </void>
+     <void property="periferica">
+      <object idref="Prueba1"/>
+     </void>
+     <void property="sexo">
+      <string>Masculino</string>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="quino.clases.model.Paciente">
+     <void property="ci">
+      <long>85051100743</long>
+     </void>
+     <void property="edad">
+      <int>28</int>
+     </void>
+     <void property="escolaridad">
+      <string>4to</string>
+     </void>
+     <void property="escuela">
+      <string>Amigos de todos</string>
+     </void>
+     <void property="ficha">
+      <string>Ficha</string>
+     </void>
+     <void property="foveal">
+      <object idref="Prueba0"/>
+     </void>
+     <void property="historia">
+      <string>145242</string>
+     </void>
+     <void property="nombre">
+      <string>Ernestico42 Acabalo Todo</string>
+     </void>
+     <void property="periferica">
+      <object idref="Prueba1"/>
+     </void>
+     <void property="sexo">
+      <string>Masculino</string>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="quino.clases.model.Paciente">
+     <void property="ci">
+      <long>85051100744</long>
+     </void>
+     <void property="edad">
+      <int>28</int>
+     </void>
+     <void property="escolaridad">
+      <string>4to</string>
+     </void>
+     <void property="escuela">
+      <string>Amigos de todos</string>
+     </void>
+     <void property="ficha">
+      <string>Ficha</string>
+     </void>
+     <void property="foveal">
+      <object idref="Prueba0"/>
+     </void>
+     <void property="historia">
+      <string>145243</string>
+     </void>
+     <void property="nombre">
+      <string>Ernestico43 Acabalo Todo</string>
+     </void>
+     <void property="periferica">
+      <object idref="Prueba1"/>
+     </void>
+     <void property="sexo">
+      <string>Masculino</string>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="quino.clases.model.Paciente">
+     <void property="ci">
+      <long>85051100745</long>
+     </void>
+     <void property="edad">
+      <int>28</int>
+     </void>
+     <void property="escolaridad">
+      <string>4to</string>
+     </void>
+     <void property="escuela">
+      <string>Amigos de todos</string>
+     </void>
+     <void property="ficha">
+      <string>Ficha</string>
+     </void>
+     <void property="foveal">
+      <object idref="Prueba0"/>
+     </void>
+     <void property="historia">
+      <string>145244</string>
+     </void>
+     <void property="nombre">
+      <string>Ernestico44 Acabalo Todo</string>
+     </void>
+     <void property="periferica">
+      <object idref="Prueba1"/>
+     </void>
+     <void property="sexo">
+      <string>Masculino</string>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="quino.clases.model.Paciente">
+     <void property="ci">
+      <long>85051100746</long>
+     </void>
+     <void property="edad">
+      <int>28</int>
+     </void>
+     <void property="escolaridad">
+      <string>4to</string>
+     </void>
+     <void property="escuela">
+      <string>Amigos de todos</string>
+     </void>
+     <void property="ficha">
+      <string>Ficha</string>
+     </void>
+     <void property="foveal">
+      <object idref="Prueba0"/>
+     </void>
+     <void property="historia">
+      <string>145245</string>
+     </void>
+     <void property="nombre">
+      <string>Ernestico45 Acabalo Todo</string>
+     </void>
+     <void property="periferica">
+      <object idref="Prueba1"/>
+     </void>
+     <void property="sexo">
+      <string>Masculino</string>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="quino.clases.model.Paciente">
+     <void property="ci">
+      <long>85051100747</long>
+     </void>
+     <void property="edad">
+      <int>28</int>
+     </void>
+     <void property="escolaridad">
+      <string>4to</string>
+     </void>
+     <void property="escuela">
+      <string>Amigos de todos</string>
+     </void>
+     <void property="ficha">
+      <string>Ficha</string>
+     </void>
+     <void property="foveal">
+      <object idref="Prueba0"/>
+     </void>
+     <void property="historia">
+      <string>145246</string>
+     </void>
+     <void property="nombre">
+      <string>Ernestico46 Acabalo Todo</string>
+     </void>
+     <void property="periferica">
+      <object idref="Prueba1"/>
+     </void>
+     <void property="sexo">
+      <string>Masculino</string>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="quino.clases.model.Paciente">
+     <void property="ci">
+      <long>85051100748</long>
+     </void>
+     <void property="edad">
+      <int>28</int>
+     </void>
+     <void property="escolaridad">
+      <string>4to</string>
+     </void>
+     <void property="escuela">
+      <string>Amigos de todos</string>
+     </void>
+     <void property="ficha">
+      <string>Ficha</string>
+     </void>
+     <void property="foveal">
+      <object idref="Prueba0"/>
+     </void>
+     <void property="historia">
+      <string>145247</string>
+     </void>
+     <void property="nombre">
+      <string>Ernestico47 Acabalo Todo</string>
+     </void>
+     <void property="periferica">
+      <object idref="Prueba1"/>
+     </void>
+     <void property="sexo">
+      <string>Masculino</string>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="quino.clases.model.Paciente">
+     <void property="ci">
+      <long>85051100749</long>
+     </void>
+     <void property="edad">
+      <int>28</int>
+     </void>
+     <void property="escolaridad">
+      <string>4to</string>
+     </void>
+     <void property="escuela">
+      <string>Amigos de todos</string>
+     </void>
+     <void property="ficha">
+      <string>Ficha</string>
+     </void>
+     <void property="foveal">
+      <object idref="Prueba0"/>
+     </void>
+     <void property="historia">
+      <string>145248</string>
+     </void>
+     <void property="nombre">
+      <string>Ernestico48 Acabalo Todo</string>
+     </void>
+     <void property="periferica">
+      <object idref="Prueba1"/>
+     </void>
+     <void property="sexo">
+      <string>Masculino</string>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="quino.clases.model.Paciente">
+     <void property="ci">
+      <long>85051100750</long>
+     </void>
+     <void property="edad">
+      <int>28</int>
+     </void>
+     <void property="escolaridad">
+      <string>4to</string>
+     </void>
+     <void property="escuela">
+      <string>Amigos de todos</string>
+     </void>
+     <void property="ficha">
+      <string>Ficha</string>
+     </void>
+     <void property="foveal">
+      <object idref="Prueba0"/>
+     </void>
+     <void property="historia">
+      <string>145249</string>
+     </void>
+     <void property="nombre">
+      <string>Ernestico49 Acabalo Todo</string>
+     </void>
+     <void property="periferica">
+      <object idref="Prueba1"/>
+     </void>
+     <void property="sexo">
+      <string>Masculino</string>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="quino.clases.model.Paciente">
+     <void property="ci">
+      <long>85051100751</long>
+     </void>
+     <void property="edad">
+      <int>28</int>
+     </void>
+     <void property="escolaridad">
+      <string>4to</string>
+     </void>
+     <void property="escuela">
+      <string>Amigos de todos</string>
+     </void>
+     <void property="ficha">
+      <string>Ficha</string>
+     </void>
+     <void property="foveal">
+      <object idref="Prueba0"/>
+     </void>
+     <void property="historia">
+      <string>145250</string>
+     </void>
+     <void property="nombre">
+      <string>Ernestico50 Acabalo Todo</string>
+     </void>
+     <void property="periferica">
+      <object idref="Prueba1"/>
+     </void>
+     <void property="sexo">
+      <string>Masculino</string>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="quino.clases.model.Paciente">
+     <void property="ci">
+      <long>85051100752</long>
+     </void>
+     <void property="edad">
+      <int>28</int>
+     </void>
+     <void property="escolaridad">
+      <string>4to</string>
+     </void>
+     <void property="escuela">
+      <string>Amigos de todos</string>
+     </void>
+     <void property="ficha">
+      <string>Ficha</string>
+     </void>
+     <void property="foveal">
+      <object idref="Prueba0"/>
+     </void>
+     <void property="historia">
+      <string>145251</string>
+     </void>
+     <void property="nombre">
+      <string>Ernestico51 Acabalo Todo</string>
+     </void>
+     <void property="periferica">
+      <object idref="Prueba1"/>
+     </void>
+     <void property="sexo">
+      <string>Masculino</string>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="quino.clases.model.Paciente">
+     <void property="ci">
+      <long>85051100753</long>
+     </void>
+     <void property="edad">
+      <int>28</int>
+     </void>
+     <void property="escolaridad">
+      <string>4to</string>
+     </void>
+     <void property="escuela">
+      <string>Amigos de todos</string>
+     </void>
+     <void property="ficha">
+      <string>Ficha</string>
+     </void>
+     <void property="foveal">
+      <object idref="Prueba0"/>
+     </void>
+     <void property="historia">
+      <string>145252</string>
+     </void>
+     <void property="nombre">
+      <string>Ernestico52 Acabalo Todo</string>
+     </void>
+     <void property="periferica">
+      <object idref="Prueba1"/>
+     </void>
+     <void property="sexo">
+      <string>Masculino</string>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="quino.clases.model.Paciente">
+     <void property="ci">
+      <long>85051100754</long>
+     </void>
+     <void property="edad">
+      <int>28</int>
+     </void>
+     <void property="escolaridad">
+      <string>4to</string>
+     </void>
+     <void property="escuela">
+      <string>Amigos de todos</string>
+     </void>
+     <void property="ficha">
+      <string>Ficha</string>
+     </void>
+     <void property="foveal">
+      <object idref="Prueba0"/>
+     </void>
+     <void property="historia">
+      <string>145253</string>
+     </void>
+     <void property="nombre">
+      <string>Ernestico53 Acabalo Todo</string>
+     </void>
+     <void property="periferica">
+      <object idref="Prueba1"/>
+     </void>
+     <void property="sexo">
+      <string>Masculino</string>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="quino.clases.model.Paciente">
+     <void property="ci">
+      <long>85051100755</long>
+     </void>
+     <void property="edad">
+      <int>28</int>
+     </void>
+     <void property="escolaridad">
+      <string>4to</string>
+     </void>
+     <void property="escuela">
+      <string>Amigos de todos</string>
+     </void>
+     <void property="ficha">
+      <string>Ficha</string>
+     </void>
+     <void property="foveal">
+      <object idref="Prueba0"/>
+     </void>
+     <void property="historia">
+      <string>145254</string>
+     </void>
+     <void property="nombre">
+      <string>Ernestico54 Acabalo Todo</string>
+     </void>
+     <void property="periferica">
+      <object idref="Prueba1"/>
+     </void>
+     <void property="sexo">
+      <string>Masculino</string>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="quino.clases.model.Paciente">
+     <void property="ci">
+      <long>85051100756</long>
+     </void>
+     <void property="edad">
+      <int>28</int>
+     </void>
+     <void property="escolaridad">
+      <string>4to</string>
+     </void>
+     <void property="escuela">
+      <string>Amigos de todos</string>
+     </void>
+     <void property="ficha">
+      <string>Ficha</string>
+     </void>
+     <void property="foveal">
+      <object idref="Prueba0"/>
+     </void>
+     <void property="historia">
+      <string>145255</string>
+     </void>
+     <void property="nombre">
+      <string>Ernestico55 Acabalo Todo</string>
+     </void>
+     <void property="periferica">
+      <object idref="Prueba1"/>
+     </void>
+     <void property="sexo">
+      <string>Masculino</string>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="quino.clases.model.Paciente">
+     <void property="ci">
+      <long>85051100757</long>
+     </void>
+     <void property="edad">
+      <int>28</int>
+     </void>
+     <void property="escolaridad">
+      <string>4to</string>
+     </void>
+     <void property="escuela">
+      <string>Amigos de todos</string>
+     </void>
+     <void property="ficha">
+      <string>Ficha</string>
+     </void>
+     <void property="foveal">
+      <object idref="Prueba0"/>
+     </void>
+     <void property="historia">
+      <string>145256</string>
+     </void>
+     <void property="nombre">
+      <string>Ernestico56 Acabalo Todo</string>
+     </void>
+     <void property="periferica">
+      <object idref="Prueba1"/>
+     </void>
+     <void property="sexo">
+      <string>Masculino</string>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="quino.clases.model.Paciente">
+     <void property="ci">
+      <long>85051100758</long>
+     </void>
+     <void property="edad">
+      <int>28</int>
+     </void>
+     <void property="escolaridad">
+      <string>4to</string>
+     </void>
+     <void property="escuela">
+      <string>Amigos de todos</string>
+     </void>
+     <void property="ficha">
+      <string>Ficha</string>
+     </void>
+     <void property="foveal">
+      <object idref="Prueba0"/>
+     </void>
+     <void property="historia">
+      <string>145257</string>
+     </void>
+     <void property="nombre">
+      <string>Ernestico57 Acabalo Todo</string>
+     </void>
+     <void property="periferica">
+      <object idref="Prueba1"/>
+     </void>
+     <void property="sexo">
+      <string>Masculino</string>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="quino.clases.model.Paciente">
+     <void property="ci">
+      <long>85051100759</long>
+     </void>
+     <void property="edad">
+      <int>28</int>
+     </void>
+     <void property="escolaridad">
+      <string>4to</string>
+     </void>
+     <void property="escuela">
+      <string>Amigos de todos</string>
+     </void>
+     <void property="ficha">
+      <string>Ficha</string>
+     </void>
+     <void property="foveal">
+      <object idref="Prueba0"/>
+     </void>
+     <void property="historia">
+      <string>145258</string>
+     </void>
+     <void property="nombre">
+      <string>Ernestico58 Acabalo Todo</string>
+     </void>
+     <void property="periferica">
+      <object idref="Prueba1"/>
+     </void>
+     <void property="sexo">
+      <string>Masculino</string>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="quino.clases.model.Paciente">
+     <void property="ci">
+      <long>85051100760</long>
+     </void>
+     <void property="edad">
+      <int>28</int>
+     </void>
+     <void property="escolaridad">
+      <string>4to</string>
+     </void>
+     <void property="escuela">
+      <string>Amigos de todos</string>
+     </void>
+     <void property="ficha">
+      <string>Ficha</string>
+     </void>
+     <void property="foveal">
+      <object idref="Prueba0"/>
+     </void>
+     <void property="historia">
+      <string>145259</string>
+     </void>
+     <void property="nombre">
+      <string>Ernestico59 Acabalo Todo</string>
+     </void>
+     <void property="periferica">
+      <object idref="Prueba1"/>
+     </void>
+     <void property="sexo">
+      <string>Masculino</string>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="quino.clases.model.Paciente">
+     <void property="ci">
+      <long>85051100761</long>
+     </void>
+     <void property="edad">
+      <int>28</int>
+     </void>
+     <void property="escolaridad">
+      <string>4to</string>
+     </void>
+     <void property="escuela">
+      <string>Amigos de todos</string>
+     </void>
+     <void property="ficha">
+      <string>Ficha</string>
+     </void>
+     <void property="foveal">
+      <object idref="Prueba0"/>
+     </void>
+     <void property="historia">
+      <string>145260</string>
+     </void>
+     <void property="nombre">
+      <string>Ernestico60 Acabalo Todo</string>
+     </void>
+     <void property="periferica">
+      <object idref="Prueba1"/>
+     </void>
+     <void property="sexo">
+      <string>Masculino</string>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="quino.clases.model.Paciente">
+     <void property="ci">
+      <long>85051100762</long>
+     </void>
+     <void property="edad">
+      <int>28</int>
+     </void>
+     <void property="escolaridad">
+      <string>4to</string>
+     </void>
+     <void property="escuela">
+      <string>Amigos de todos</string>
+     </void>
+     <void property="ficha">
+      <string>Ficha</string>
+     </void>
+     <void property="foveal">
+      <object idref="Prueba0"/>
+     </void>
+     <void property="historia">
+      <string>145261</string>
+     </void>
+     <void property="nombre">
+      <string>Ernestico61 Acabalo Todo</string>
+     </void>
+     <void property="periferica">
+      <object idref="Prueba1"/>
+     </void>
+     <void property="sexo">
+      <string>Masculino</string>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="quino.clases.model.Paciente">
+     <void property="ci">
+      <long>85051100763</long>
+     </void>
+     <void property="edad">
+      <int>28</int>
+     </void>
+     <void property="escolaridad">
+      <string>4to</string>
+     </void>
+     <void property="escuela">
+      <string>Amigos de todos</string>
+     </void>
+     <void property="ficha">
+      <string>Ficha</string>
+     </void>
+     <void property="foveal">
+      <object idref="Prueba0"/>
+     </void>
+     <void property="historia">
+      <string>145262</string>
+     </void>
+     <void property="nombre">
+      <string>Ernestico62 Acabalo Todo</string>
+     </void>
+     <void property="periferica">
+      <object idref="Prueba1"/>
+     </void>
+     <void property="sexo">
+      <string>Masculino</string>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="quino.clases.model.Paciente">
+     <void property="ci">
+      <long>85051100764</long>
+     </void>
+     <void property="edad">
+      <int>28</int>
+     </void>
+     <void property="escolaridad">
+      <string>4to</string>
+     </void>
+     <void property="escuela">
+      <string>Amigos de todos</string>
+     </void>
+     <void property="ficha">
+      <string>Ficha</string>
+     </void>
+     <void property="foveal">
+      <object idref="Prueba0"/>
+     </void>
+     <void property="historia">
+      <string>145263</string>
+     </void>
+     <void property="nombre">
+      <string>Ernestico63 Acabalo Todo</string>
+     </void>
+     <void property="periferica">
+      <object idref="Prueba1"/>
+     </void>
+     <void property="sexo">
+      <string>Masculino</string>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="quino.clases.model.Paciente">
+     <void property="ci">
+      <long>85051100765</long>
+     </void>
+     <void property="edad">
+      <int>28</int>
+     </void>
+     <void property="escolaridad">
+      <string>4to</string>
+     </void>
+     <void property="escuela">
+      <string>Amigos de todos</string>
+     </void>
+     <void property="ficha">
+      <string>Ficha</string>
+     </void>
+     <void property="foveal">
+      <object idref="Prueba0"/>
+     </void>
+     <void property="historia">
+      <string>145264</string>
+     </void>
+     <void property="nombre">
+      <string>Ernestico64 Acabalo Todo</string>
+     </void>
+     <void property="periferica">
+      <object idref="Prueba1"/>
+     </void>
+     <void property="sexo">
+      <string>Masculino</string>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="quino.clases.model.Paciente">
+     <void property="ci">
+      <long>85051100766</long>
+     </void>
+     <void property="edad">
+      <int>28</int>
+     </void>
+     <void property="escolaridad">
+      <string>4to</string>
+     </void>
+     <void property="escuela">
+      <string>Amigos de todos</string>
+     </void>
+     <void property="ficha">
+      <string>Ficha</string>
+     </void>
+     <void property="foveal">
+      <object idref="Prueba0"/>
+     </void>
+     <void property="historia">
+      <string>145265</string>
+     </void>
+     <void property="nombre">
+      <string>Ernestico65 Acabalo Todo</string>
+     </void>
+     <void property="periferica">
+      <object idref="Prueba1"/>
+     </void>
+     <void property="sexo">
+      <string>Masculino</string>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="quino.clases.model.Paciente">
+     <void property="ci">
+      <long>85051100767</long>
+     </void>
+     <void property="edad">
+      <int>28</int>
+     </void>
+     <void property="escolaridad">
+      <string>4to</string>
+     </void>
+     <void property="escuela">
+      <string>Amigos de todos</string>
+     </void>
+     <void property="ficha">
+      <string>Ficha</string>
+     </void>
+     <void property="foveal">
+      <object idref="Prueba0"/>
+     </void>
+     <void property="historia">
+      <string>145266</string>
+     </void>
+     <void property="nombre">
+      <string>Ernestico66 Acabalo Todo</string>
+     </void>
+     <void property="periferica">
+      <object idref="Prueba1"/>
+     </void>
+     <void property="sexo">
+      <string>Masculino</string>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="quino.clases.model.Paciente">
+     <void property="ci">
+      <long>85051100768</long>
+     </void>
+     <void property="edad">
+      <int>28</int>
+     </void>
+     <void property="escolaridad">
+      <string>4to</string>
+     </void>
+     <void property="escuela">
+      <string>Amigos de todos</string>
+     </void>
+     <void property="ficha">
+      <string>Ficha</string>
+     </void>
+     <void property="foveal">
+      <object idref="Prueba0"/>
+     </void>
+     <void property="historia">
+      <string>145267</string>
+     </void>
+     <void property="nombre">
+      <string>Ernestico67 Acabalo Todo</string>
+     </void>
+     <void property="periferica">
+      <object idref="Prueba1"/>
+     </void>
+     <void property="sexo">
+      <string>Masculino</string>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="quino.clases.model.Paciente">
+     <void property="ci">
+      <long>85051100769</long>
+     </void>
+     <void property="edad">
+      <int>28</int>
+     </void>
+     <void property="escolaridad">
+      <string>4to</string>
+     </void>
+     <void property="escuela">
+      <string>Amigos de todos</string>
+     </void>
+     <void property="ficha">
+      <string>Ficha</string>
+     </void>
+     <void property="foveal">
+      <object idref="Prueba0"/>
+     </void>
+     <void property="historia">
+      <string>145268</string>
+     </void>
+     <void property="nombre">
+      <string>Ernestico68 Acabalo Todo</string>
+     </void>
+     <void property="periferica">
+      <object idref="Prueba1"/>
+     </void>
+     <void property="sexo">
+      <string>Masculino</string>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="quino.clases.model.Paciente">
+     <void property="ci">
+      <long>85051100770</long>
+     </void>
+     <void property="edad">
+      <int>28</int>
+     </void>
+     <void property="escolaridad">
+      <string>4to</string>
+     </void>
+     <void property="escuela">
+      <string>Amigos de todos</string>
+     </void>
+     <void property="ficha">
+      <string>Ficha</string>
+     </void>
+     <void property="foveal">
+      <object idref="Prueba0"/>
+     </void>
+     <void property="historia">
+      <string>145269</string>
+     </void>
+     <void property="nombre">
+      <string>Ernestico69 Acabalo Todo</string>
+     </void>
+     <void property="periferica">
+      <object idref="Prueba1"/>
+     </void>
+     <void property="sexo">
+      <string>Masculino</string>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="quino.clases.model.Paciente">
+     <void property="ci">
+      <long>85051100771</long>
+     </void>
+     <void property="edad">
+      <int>28</int>
+     </void>
+     <void property="escolaridad">
+      <string>4to</string>
+     </void>
+     <void property="escuela">
+      <string>Amigos de todos</string>
+     </void>
+     <void property="ficha">
+      <string>Ficha</string>
+     </void>
+     <void property="foveal">
+      <object idref="Prueba0"/>
+     </void>
+     <void property="historia">
+      <string>145270</string>
+     </void>
+     <void property="nombre">
+      <string>Ernestico70 Acabalo Todo</string>
+     </void>
+     <void property="periferica">
+      <object idref="Prueba1"/>
+     </void>
+     <void property="sexo">
+      <string>Masculino</string>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="quino.clases.model.Paciente">
+     <void property="ci">
+      <long>85051100772</long>
+     </void>
+     <void property="edad">
+      <int>28</int>
+     </void>
+     <void property="escolaridad">
+      <string>4to</string>
+     </void>
+     <void property="escuela">
+      <string>Amigos de todos</string>
+     </void>
+     <void property="ficha">
+      <string>Ficha</string>
+     </void>
+     <void property="foveal">
+      <object idref="Prueba0"/>
+     </void>
+     <void property="historia">
+      <string>145271</string>
+     </void>
+     <void property="nombre">
+      <string>Ernestico71 Acabalo Todo</string>
+     </void>
+     <void property="periferica">
+      <object idref="Prueba1"/>
+     </void>
+     <void property="sexo">
+      <string>Masculino</string>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="quino.clases.model.Paciente">
+     <void property="ci">
+      <long>85051100773</long>
+     </void>
+     <void property="edad">
+      <int>28</int>
+     </void>
+     <void property="escolaridad">
+      <string>4to</string>
+     </void>
+     <void property="escuela">
+      <string>Amigos de todos</string>
+     </void>
+     <void property="ficha">
+      <string>Ficha</string>
+     </void>
+     <void property="foveal">
+      <object idref="Prueba0"/>
+     </void>
+     <void property="historia">
+      <string>145272</string>
+     </void>
+     <void property="nombre">
+      <string>Ernestico72 Acabalo Todo</string>
+     </void>
+     <void property="periferica">
+      <object idref="Prueba1"/>
+     </void>
+     <void property="sexo">
+      <string>Masculino</string>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="quino.clases.model.Paciente">
+     <void property="ci">
+      <long>85051100774</long>
+     </void>
+     <void property="edad">
+      <int>28</int>
+     </void>
+     <void property="escolaridad">
+      <string>4to</string>
+     </void>
+     <void property="escuela">
+      <string>Amigos de todos</string>
+     </void>
+     <void property="ficha">
+      <string>Ficha</string>
+     </void>
+     <void property="foveal">
+      <object idref="Prueba0"/>
+     </void>
+     <void property="historia">
+      <string>145273</string>
+     </void>
+     <void property="nombre">
+      <string>Ernestico73 Acabalo Todo</string>
+     </void>
+     <void property="periferica">
+      <object idref="Prueba1"/>
+     </void>
+     <void property="sexo">
+      <string>Masculino</string>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="quino.clases.model.Paciente">
+     <void property="ci">
+      <long>85051100775</long>
+     </void>
+     <void property="edad">
+      <int>28</int>
+     </void>
+     <void property="escolaridad">
+      <string>4to</string>
+     </void>
+     <void property="escuela">
+      <string>Amigos de todos</string>
+     </void>
+     <void property="ficha">
+      <string>Ficha</string>
+     </void>
+     <void property="foveal">
+      <object idref="Prueba0"/>
+     </void>
+     <void property="historia">
+      <string>145274</string>
+     </void>
+     <void property="nombre">
+      <string>Ernestico74 Acabalo Todo</string>
+     </void>
+     <void property="periferica">
+      <object idref="Prueba1"/>
+     </void>
+     <void property="sexo">
+      <string>Masculino</string>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="quino.clases.model.Paciente">
+     <void property="ci">
+      <long>85051100776</long>
+     </void>
+     <void property="edad">
+      <int>28</int>
+     </void>
+     <void property="escolaridad">
+      <string>4to</string>
+     </void>
+     <void property="escuela">
+      <string>Amigos de todos</string>
+     </void>
+     <void property="ficha">
+      <string>Ficha</string>
+     </void>
+     <void property="foveal">
+      <object idref="Prueba0"/>
+     </void>
+     <void property="historia">
+      <string>145275</string>
+     </void>
+     <void property="nombre">
+      <string>Ernestico75 Acabalo Todo</string>
+     </void>
+     <void property="periferica">
+      <object idref="Prueba1"/>
+     </void>
+     <void property="sexo">
+      <string>Masculino</string>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="quino.clases.model.Paciente">
+     <void property="ci">
+      <long>85051100777</long>
+     </void>
+     <void property="edad">
+      <int>28</int>
+     </void>
+     <void property="escolaridad">
+      <string>4to</string>
+     </void>
+     <void property="escuela">
+      <string>Amigos de todos</string>
+     </void>
+     <void property="ficha">
+      <string>Ficha</string>
+     </void>
+     <void property="foveal">
+      <object idref="Prueba0"/>
+     </void>
+     <void property="historia">
+      <string>145276</string>
+     </void>
+     <void property="nombre">
+      <string>Ernestico76 Acabalo Todo</string>
+     </void>
+     <void property="periferica">
+      <object idref="Prueba1"/>
+     </void>
+     <void property="sexo">
+      <string>Masculino</string>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="quino.clases.model.Paciente">
+     <void property="ci">
+      <long>85051100778</long>
+     </void>
+     <void property="edad">
+      <int>28</int>
+     </void>
+     <void property="escolaridad">
+      <string>4to</string>
+     </void>
+     <void property="escuela">
+      <string>Amigos de todos</string>
+     </void>
+     <void property="ficha">
+      <string>Ficha</string>
+     </void>
+     <void property="foveal">
+      <object idref="Prueba0"/>
+     </void>
+     <void property="historia">
+      <string>145277</string>
+     </void>
+     <void property="nombre">
+      <string>Ernestico77 Acabalo Todo</string>
+     </void>
+     <void property="periferica">
+      <object idref="Prueba1"/>
+     </void>
+     <void property="sexo">
+      <string>Masculino</string>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="quino.clases.model.Paciente">
+     <void property="ci">
+      <long>85051100779</long>
+     </void>
+     <void property="edad">
+      <int>28</int>
+     </void>
+     <void property="escolaridad">
+      <string>4to</string>
+     </void>
+     <void property="escuela">
+      <string>Amigos de todos</string>
+     </void>
+     <void property="ficha">
+      <string>Ficha</string>
+     </void>
+     <void property="foveal">
+      <object idref="Prueba0"/>
+     </void>
+     <void property="historia">
+      <string>145278</string>
+     </void>
+     <void property="nombre">
+      <string>Ernestico78 Acabalo Todo</string>
+     </void>
+     <void property="periferica">
+      <object idref="Prueba1"/>
+     </void>
+     <void property="sexo">
+      <string>Masculino</string>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="quino.clases.model.Paciente">
+     <void property="ci">
+      <long>85051100780</long>
+     </void>
+     <void property="edad">
+      <int>28</int>
+     </void>
+     <void property="escolaridad">
+      <string>4to</string>
+     </void>
+     <void property="escuela">
+      <string>Amigos de todos</string>
+     </void>
+     <void property="ficha">
+      <string>Ficha</string>
+     </void>
+     <void property="foveal">
+      <object idref="Prueba0"/>
+     </void>
+     <void property="historia">
+      <string>145279</string>
+     </void>
+     <void property="nombre">
+      <string>Ernestico79 Acabalo Todo</string>
+     </void>
+     <void property="periferica">
+      <object idref="Prueba1"/>
+     </void>
+     <void property="sexo">
+      <string>Masculino</string>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="quino.clases.model.Paciente">
+     <void property="ci">
+      <long>85051100781</long>
+     </void>
+     <void property="edad">
+      <int>28</int>
+     </void>
+     <void property="escolaridad">
+      <string>4to</string>
+     </void>
+     <void property="escuela">
+      <string>Amigos de todos</string>
+     </void>
+     <void property="ficha">
+      <string>Ficha</string>
+     </void>
+     <void property="foveal">
+      <object idref="Prueba0"/>
+     </void>
+     <void property="historia">
+      <string>145280</string>
+     </void>
+     <void property="nombre">
+      <string>Ernestico80 Acabalo Todo</string>
+     </void>
+     <void property="periferica">
+      <object idref="Prueba1"/>
+     </void>
+     <void property="sexo">
+      <string>Masculino</string>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="quino.clases.model.Paciente">
+     <void property="ci">
+      <long>85051100782</long>
+     </void>
+     <void property="edad">
+      <int>28</int>
+     </void>
+     <void property="escolaridad">
+      <string>4to</string>
+     </void>
+     <void property="escuela">
+      <string>Amigos de todos</string>
+     </void>
+     <void property="ficha">
+      <string>Ficha</string>
+     </void>
+     <void property="foveal">
+      <object idref="Prueba0"/>
+     </void>
+     <void property="historia">
+      <string>145281</string>
+     </void>
+     <void property="nombre">
+      <string>Ernestico81 Acabalo Todo</string>
+     </void>
+     <void property="periferica">
+      <object idref="Prueba1"/>
+     </void>
+     <void property="sexo">
+      <string>Masculino</string>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="quino.clases.model.Paciente">
+     <void property="ci">
+      <long>85051100783</long>
+     </void>
+     <void property="edad">
+      <int>28</int>
+     </void>
+     <void property="escolaridad">
+      <string>4to</string>
+     </void>
+     <void property="escuela">
+      <string>Amigos de todos</string>
+     </void>
+     <void property="ficha">
+      <string>Ficha</string>
+     </void>
+     <void property="foveal">
+      <object idref="Prueba0"/>
+     </void>
+     <void property="historia">
+      <string>145282</string>
+     </void>
+     <void property="nombre">
+      <string>Ernestico82 Acabalo Todo</string>
+     </void>
+     <void property="periferica">
+      <object idref="Prueba1"/>
+     </void>
+     <void property="sexo">
+      <string>Masculino</string>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="quino.clases.model.Paciente">
+     <void property="ci">
+      <long>85051100784</long>
+     </void>
+     <void property="edad">
+      <int>28</int>
+     </void>
+     <void property="escolaridad">
+      <string>4to</string>
+     </void>
+     <void property="escuela">
+      <string>Amigos de todos</string>
+     </void>
+     <void property="ficha">
+      <string>Ficha</string>
+     </void>
+     <void property="foveal">
+      <object idref="Prueba0"/>
+     </void>
+     <void property="historia">
+      <string>145283</string>
+     </void>
+     <void property="nombre">
+      <string>Ernestico83 Acabalo Todo</string>
+     </void>
+     <void property="periferica">
+      <object idref="Prueba1"/>
+     </void>
+     <void property="sexo">
+      <string>Masculino</string>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="quino.clases.model.Paciente">
+     <void property="ci">
+      <long>85051100785</long>
+     </void>
+     <void property="edad">
+      <int>28</int>
+     </void>
+     <void property="escolaridad">
+      <string>4to</string>
+     </void>
+     <void property="escuela">
+      <string>Amigos de todos</string>
+     </void>
+     <void property="ficha">
+      <string>Ficha</string>
+     </void>
+     <void property="foveal">
+      <object idref="Prueba0"/>
+     </void>
+     <void property="historia">
+      <string>145284</string>
+     </void>
+     <void property="nombre">
+      <string>Ernestico84 Acabalo Todo</string>
+     </void>
+     <void property="periferica">
+      <object idref="Prueba1"/>
+     </void>
+     <void property="sexo">
+      <string>Masculino</string>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="quino.clases.model.Paciente">
+     <void property="ci">
+      <long>85051100786</long>
+     </void>
+     <void property="edad">
+      <int>28</int>
+     </void>
+     <void property="escolaridad">
+      <string>4to</string>
+     </void>
+     <void property="escuela">
+      <string>Amigos de todos</string>
+     </void>
+     <void property="ficha">
+      <string>Ficha</string>
+     </void>
+     <void property="foveal">
+      <object idref="Prueba0"/>
+     </void>
+     <void property="historia">
+      <string>145285</string>
+     </void>
+     <void property="nombre">
+      <string>Ernestico85 Acabalo Todo</string>
+     </void>
+     <void property="periferica">
+      <object idref="Prueba1"/>
+     </void>
+     <void property="sexo">
+      <string>Masculino</string>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="quino.clases.model.Paciente">
+     <void property="ci">
+      <long>85051100787</long>
+     </void>
+     <void property="edad">
+      <int>28</int>
+     </void>
+     <void property="escolaridad">
+      <string>4to</string>
+     </void>
+     <void property="escuela">
+      <string>Amigos de todos</string>
+     </void>
+     <void property="ficha">
+      <string>Ficha</string>
+     </void>
+     <void property="foveal">
+      <object idref="Prueba0"/>
+     </void>
+     <void property="historia">
+      <string>145286</string>
+     </void>
+     <void property="nombre">
+      <string>Ernestico86 Acabalo Todo</string>
+     </void>
+     <void property="periferica">
+      <object idref="Prueba1"/>
+     </void>
+     <void property="sexo">
+      <string>Masculino</string>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="quino.clases.model.Paciente">
+     <void property="ci">
+      <long>85051100788</long>
+     </void>
+     <void property="edad">
+      <int>28</int>
+     </void>
+     <void property="escolaridad">
+      <string>4to</string>
+     </void>
+     <void property="escuela">
+      <string>Amigos de todos</string>
+     </void>
+     <void property="ficha">
+      <string>Ficha</string>
+     </void>
+     <void property="foveal">
+      <object idref="Prueba0"/>
+     </void>
+     <void property="historia">
+      <string>145287</string>
+     </void>
+     <void property="nombre">
+      <string>Ernestico87 Acabalo Todo</string>
+     </void>
+     <void property="periferica">
+      <object idref="Prueba1"/>
+     </void>
+     <void property="sexo">
+      <string>Masculino</string>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="quino.clases.model.Paciente">
+     <void property="ci">
+      <long>85051100789</long>
+     </void>
+     <void property="edad">
+      <int>28</int>
+     </void>
+     <void property="escolaridad">
+      <string>4to</string>
+     </void>
+     <void property="escuela">
+      <string>Amigos de todos</string>
+     </void>
+     <void property="ficha">
+      <string>Ficha</string>
+     </void>
+     <void property="foveal">
+      <object idref="Prueba0"/>
+     </void>
+     <void property="historia">
+      <string>145288</string>
+     </void>
+     <void property="nombre">
+      <string>Ernestico88 Acabalo Todo</string>
+     </void>
+     <void property="periferica">
+      <object idref="Prueba1"/>
+     </void>
+     <void property="sexo">
+      <string>Masculino</string>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="quino.clases.model.Paciente">
+     <void property="ci">
+      <long>85051100790</long>
+     </void>
+     <void property="edad">
+      <int>28</int>
+     </void>
+     <void property="escolaridad">
+      <string>4to</string>
+     </void>
+     <void property="escuela">
+      <string>Amigos de todos</string>
+     </void>
+     <void property="ficha">
+      <string>Ficha</string>
+     </void>
+     <void property="foveal">
+      <object idref="Prueba0"/>
+     </void>
+     <void property="historia">
+      <string>145289</string>
+     </void>
+     <void property="nombre">
+      <string>Ernestico89 Acabalo Todo</string>
+     </void>
+     <void property="periferica">
+      <object idref="Prueba1"/>
+     </void>
+     <void property="sexo">
+      <string>Masculino</string>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="quino.clases.model.Paciente">
+     <void property="ci">
+      <long>85051100791</long>
+     </void>
+     <void property="edad">
+      <int>28</int>
+     </void>
+     <void property="escolaridad">
+      <string>4to</string>
+     </void>
+     <void property="escuela">
+      <string>Amigos de todos</string>
+     </void>
+     <void property="ficha">
+      <string>Ficha</string>
+     </void>
+     <void property="foveal">
+      <object idref="Prueba0"/>
+     </void>
+     <void property="historia">
+      <string>145290</string>
+     </void>
+     <void property="nombre">
+      <string>Ernestico90 Acabalo Todo</string>
+     </void>
+     <void property="periferica">
+      <object idref="Prueba1"/>
+     </void>
+     <void property="sexo">
+      <string>Masculino</string>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="quino.clases.model.Paciente">
+     <void property="ci">
+      <long>85051100792</long>
+     </void>
+     <void property="edad">
+      <int>28</int>
+     </void>
+     <void property="escolaridad">
+      <string>4to</string>
+     </void>
+     <void property="escuela">
+      <string>Amigos de todos</string>
+     </void>
+     <void property="ficha">
+      <string>Ficha</string>
+     </void>
+     <void property="foveal">
+      <object idref="Prueba0"/>
+     </void>
+     <void property="historia">
+      <string>145291</string>
+     </void>
+     <void property="nombre">
+      <string>Ernestico91 Acabalo Todo</string>
+     </void>
+     <void property="periferica">
+      <object idref="Prueba1"/>
+     </void>
+     <void property="sexo">
+      <string>Masculino</string>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="quino.clases.model.Paciente">
+     <void property="ci">
+      <long>85051100793</long>
+     </void>
+     <void property="edad">
+      <int>28</int>
+     </void>
+     <void property="escolaridad">
+      <string>4to</string>
+     </void>
+     <void property="escuela">
+      <string>Amigos de todos</string>
+     </void>
+     <void property="ficha">
+      <string>Ficha</string>
+     </void>
+     <void property="foveal">
+      <object idref="Prueba0"/>
+     </void>
+     <void property="historia">
+      <string>145292</string>
+     </void>
+     <void property="nombre">
+      <string>Ernestico92 Acabalo Todo</string>
+     </void>
+     <void property="periferica">
+      <object idref="Prueba1"/>
+     </void>
+     <void property="sexo">
+      <string>Masculino</string>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="quino.clases.model.Paciente">
+     <void property="ci">
+      <long>85051100794</long>
+     </void>
+     <void property="edad">
+      <int>28</int>
+     </void>
+     <void property="escolaridad">
+      <string>4to</string>
+     </void>
+     <void property="escuela">
+      <string>Amigos de todos</string>
+     </void>
+     <void property="ficha">
+      <string>Ficha</string>
+     </void>
+     <void property="foveal">
+      <object idref="Prueba0"/>
+     </void>
+     <void property="historia">
+      <string>145293</string>
+     </void>
+     <void property="nombre">
+      <string>Ernestico93 Acabalo Todo</string>
+     </void>
+     <void property="periferica">
+      <object idref="Prueba1"/>
+     </void>
+     <void property="sexo">
+      <string>Masculino</string>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="quino.clases.model.Paciente">
+     <void property="ci">
+      <long>85051100795</long>
+     </void>
+     <void property="edad">
+      <int>28</int>
+     </void>
+     <void property="escolaridad">
+      <string>4to</string>
+     </void>
+     <void property="escuela">
+      <string>Amigos de todos</string>
+     </void>
+     <void property="ficha">
+      <string>Ficha</string>
+     </void>
+     <void property="foveal">
+      <object idref="Prueba0"/>
+     </void>
+     <void property="historia">
+      <string>145294</string>
+     </void>
+     <void property="nombre">
+      <string>Ernestico94 Acabalo Todo</string>
+     </void>
+     <void property="periferica">
+      <object idref="Prueba1"/>
+     </void>
+     <void property="sexo">
+      <string>Masculino</string>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="quino.clases.model.Paciente">
+     <void property="ci">
+      <long>85051100796</long>
+     </void>
+     <void property="edad">
+      <int>28</int>
+     </void>
+     <void property="escolaridad">
+      <string>4to</string>
+     </void>
+     <void property="escuela">
+      <string>Amigos de todos</string>
+     </void>
+     <void property="ficha">
+      <string>Ficha</string>
+     </void>
+     <void property="foveal">
+      <object idref="Prueba0"/>
+     </void>
+     <void property="historia">
+      <string>145295</string>
+     </void>
+     <void property="nombre">
+      <string>Ernestico95 Acabalo Todo</string>
+     </void>
+     <void property="periferica">
+      <object idref="Prueba1"/>
+     </void>
+     <void property="sexo">
+      <string>Masculino</string>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="quino.clases.model.Paciente">
+     <void property="ci">
+      <long>85051100797</long>
+     </void>
+     <void property="edad">
+      <int>28</int>
+     </void>
+     <void property="escolaridad">
+      <string>4to</string>
+     </void>
+     <void property="escuela">
+      <string>Amigos de todos</string>
+     </void>
+     <void property="ficha">
+      <string>Ficha</string>
+     </void>
+     <void property="foveal">
+      <object idref="Prueba0"/>
+     </void>
+     <void property="historia">
+      <string>145296</string>
+     </void>
+     <void property="nombre">
+      <string>Ernestico96 Acabalo Todo</string>
+     </void>
+     <void property="periferica">
+      <object idref="Prueba1"/>
+     </void>
+     <void property="sexo">
+      <string>Masculino</string>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="quino.clases.model.Paciente">
+     <void property="ci">
+      <long>85051100798</long>
+     </void>
+     <void property="edad">
+      <int>28</int>
+     </void>
+     <void property="escolaridad">
+      <string>4to</string>
+     </void>
+     <void property="escuela">
+      <string>Amigos de todos</string>
+     </void>
+     <void property="ficha">
+      <string>Ficha</string>
+     </void>
+     <void property="foveal">
+      <object idref="Prueba0"/>
+     </void>
+     <void property="historia">
+      <string>145297</string>
+     </void>
+     <void property="nombre">
+      <string>Ernestico97 Acabalo Todo</string>
+     </void>
+     <void property="periferica">
+      <object idref="Prueba1"/>
+     </void>
+     <void property="sexo">
+      <string>Masculino</string>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="quino.clases.model.Paciente">
+     <void property="ci">
+      <long>85051100799</long>
+     </void>
+     <void property="edad">
+      <int>28</int>
+     </void>
+     <void property="escolaridad">
+      <string>4to</string>
+     </void>
+     <void property="escuela">
+      <string>Amigos de todos</string>
+     </void>
+     <void property="ficha">
+      <string>Ficha</string>
+     </void>
+     <void property="foveal">
+      <object idref="Prueba0"/>
+     </void>
+     <void property="historia">
+      <string>145298</string>
+     </void>
+     <void property="nombre">
+      <string>Ernestico98 Acabalo Todo</string>
+     </void>
+     <void property="periferica">
+      <object idref="Prueba1"/>
+     </void>
+     <void property="sexo">
+      <string>Masculino</string>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="quino.clases.model.Paciente">
+     <void property="ci">
+      <long>85051100800</long>
+     </void>
+     <void property="edad">
+      <int>28</int>
+     </void>
+     <void property="escolaridad">
+      <string>4to</string>
+     </void>
+     <void property="escuela">
+      <string>Amigos de todos</string>
+     </void>
+     <void property="ficha">
+      <string>Ficha</string>
+     </void>
+     <void property="foveal">
+      <object idref="Prueba0"/>
+     </void>
+     <void property="historia">
+      <string>145299</string>
+     </void>
+     <void property="nombre">
+      <string>Ernestico99 Acabalo Todo</string>
+     </void>
+     <void property="periferica">
+      <object idref="Prueba1"/>
+     </void>
+     <void property="sexo">
+      <string>Masculino</string>
+     </void>
+    </object>
+   </void>
   </void>
  </object>
 </java>

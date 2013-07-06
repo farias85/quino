@@ -10,9 +10,7 @@
  */
 package quino.view.main;
 
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-import javax.swing.UnsupportedLookAndFeelException;
+import java.awt.Color;
 import quino.clases.model.Paciente;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -37,9 +35,8 @@ import quino.view.prueba.PerifericaTestView;
 import java.io.File;
 import javax.swing.filechooser.*;
 import javax.swing.JFileChooser;
-import javax.swing.JPopupMenu;
-import javax.swing.JTable;
 import javax.swing.UIManager;
+import javax.swing.table.DefaultTableCellRenderer;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import quino.clases.config.ConfigApp;
 import quino.util.QuinoTableModel;
@@ -182,14 +179,25 @@ public class PrincipalView extends javax.swing.JFrame {
         }
 
         jTable1.setModel(tm);
-        jTable1.getTableHeader().setFont(new java.awt.Font("Tahoma", 1, 12));
+        jTable1.getTableHeader().setFont(new java.awt.Font("Tahoma", 1, 11));
+        jTable1.setGridColor(Color.BLUE);
 
-        jTable1.getColumnModel().getColumn(0).setPreferredWidth(40);
-        jTable1.getColumnModel().getColumn(1).setPreferredWidth(250);
-        jTable1.getColumnModel().getColumn(2).setPreferredWidth(70);
-        jTable1.getColumnModel().getColumn(3).setPreferredWidth(20);
-        jTable1.getColumnModel().getColumn(4).setPreferredWidth(80);
-        jTable1.getColumnModel().getColumn(5).setPreferredWidth(30);
+        DefaultTableCellRenderer tcr = new DefaultTableCellRenderer();
+        tcr.setHorizontalAlignment(0);
+
+        jTable1.getColumnModel().getColumn(0).setCellRenderer(tcr);
+        jTable1.getColumnModel().getColumn(0).setPreferredWidth(2);
+        jTable1.getColumnModel().getColumn(1).setCellRenderer(tcr);
+        jTable1.getColumnModel().getColumn(1).setPreferredWidth(40);
+        jTable1.getColumnModel().getColumn(2).setPreferredWidth(250);
+        jTable1.getColumnModel().getColumn(3).setCellRenderer(tcr);
+        jTable1.getColumnModel().getColumn(3).setPreferredWidth(70);
+        jTable1.getColumnModel().getColumn(4).setCellRenderer(tcr);
+        jTable1.getColumnModel().getColumn(4).setPreferredWidth(20);
+        jTable1.getColumnModel().getColumn(5).setCellRenderer(tcr);
+        jTable1.getColumnModel().getColumn(5).setPreferredWidth(80);
+        jTable1.getColumnModel().getColumn(6).setCellRenderer(tcr);
+        jTable1.getColumnModel().getColumn(6).setPreferredWidth(30);
     }
 
     public boolean itemSelected() {

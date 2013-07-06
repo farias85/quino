@@ -22,14 +22,17 @@ public class QuinoTableModel extends DefaultTableModel {
     public void setRegistro(Registro registro) {
         this.registro = registro;
     }
-    boolean[] celdasNoEditables = {false, false, false, false, false, false};
+    boolean[] celdasNoEditables = {false, false, false, false, false, false, false};
     Class[] types = new Class[]{
-        java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.String.class, java.lang.String.class
+        java.lang.Integer.class,
+        java.lang.String.class, java.lang.String.class, java.lang.Integer.class,
+        java.lang.Integer.class, java.lang.String.class, java.lang.String.class
     };
 
     public QuinoTableModel(Registro registro) {
         super();
-        
+
+        addColumn("#");
         addColumn("Historia Clínica");
         addColumn("Nombre y Apellidos");
         addColumn("Carné de Identidad");
@@ -38,9 +41,13 @@ public class QuinoTableModel extends DefaultTableModel {
         addColumn("Sexo");
 
         for (int i = 0; i < registro.getPacientes().size(); i++) {
-            Object[] fila = {registro.getPacientes().get(i).getHistoria(), registro.getPacientes().get(i).getNombre(),
-                registro.getPacientes().get(i).getCi(), registro.getPacientes().get(i).getEdad(),
-                registro.getPacientes().get(i).getEscolaridad(), registro.getPacientes().get(i).getSexo()};
+            Object[] fila = {i + 1,
+                registro.getPacientes().get(i).getHistoria(),
+                registro.getPacientes().get(i).getNombre(),
+                registro.getPacientes().get(i).getCi(),
+                registro.getPacientes().get(i).getEdad(),
+                registro.getPacientes().get(i).getEscolaridad(),
+                registro.getPacientes().get(i).getSexo()};
             addRow(fila);
         }
     }

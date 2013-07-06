@@ -177,8 +177,17 @@ public class AutoConfigView extends javax.swing.JDialog {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         try {
+            if (jTextField1.getText().isEmpty()) {
+                throw new Exception("El valor de la cantidad de ensayos debe ser un número entero.");
+            }
+            int cant_ensayos = 0;
+            try {
+                cant_ensayos = Integer.parseInt(jTextField1.getText());
+            } catch (Exception e) {
+                throw new Exception("El valor de la cantidad de ensayos debe ser un número entero.");
+            }
+            
             control = jCheckBox1.isSelected();
-            int cant_ensayos = Integer.parseInt(jTextField1.getText());
             parent.setConf(new ConfigPruebaAuto(control));
             parent.setPrueba(new Prueba(cant_ensayos, foveal));
 
@@ -197,7 +206,6 @@ public class AutoConfigView extends javax.swing.JDialog {
                 dispose();
             }
         } catch (Exception e) {
-            //String msg = "El valor de la cantidad de esnsayos debe ser un número entero, verifíquelo";
             ErrorDialog er = new ErrorDialog(parent, true, e.getMessage());
             er.setVisible(true);
         }

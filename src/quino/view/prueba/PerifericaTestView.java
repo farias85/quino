@@ -38,7 +38,7 @@ public class PerifericaTestView extends javax.swing.JDialog {
 
         getContentPane().setBackground(Color.BLACK);
 
-        TimerTask task = new PerifericaTimer(parent.getPrueba(), parent.getConf(),
+        TimerTask task = new PerifericaTimer(parent.getPrueba(), 
                 (QuinoJPanel) jPanel1, (QuinoJPanel) jPanel2,
                 (CentralJPanel) jPanel3, this, practica);
 

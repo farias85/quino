@@ -4,6 +4,8 @@
  */
 package quino.test.main;
 
+import java.text.DateFormat;
+import java.util.Date;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import quino.util.QuinoTools;
 import quino.util.report.AbstractInformeExcel;
@@ -16,12 +18,16 @@ import quino.util.report.InformeParametrosXEnsayo;
 public class Main3 {
 
     public static void main(String[] args) {
-        HSSFWorkbook book = new HSSFWorkbook();
+        DateFormat df = DateFormat.getDateInstance(DateFormat.FULL);
+        Date fecha =  new Date();
+        System.out.println(df.format(fecha));
+
+        /*HSSFWorkbook book = new HSSFWorkbook();
         
         AbstractInformeExcel excel = new InformeParametrosXEnsayo(book);
         excel.getInformeExcel();
 
-        QuinoTools.salvarLibroExcel("C:/book1.xls", book);
+        QuinoTools.salvarLibroExcel("C:/book1.xls", book);*/
 
 
         /*jTable1.addMouseListener(new MouseAdapter() {

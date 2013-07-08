@@ -4,14 +4,13 @@
  */
 package quino.util.timer;
 
-import java.awt.Point;
 import quino.clases.model.Prueba;
 import quino.clases.model.Ensayo;
 import quino.clases.model.Resultado;
-import quino.util.Aleatorio;
 import quino.util.QuinoJPanel;
 import quino.clases.config.*;
 import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.util.TimerTask;
 import quino.util.QuinoTools;
 
@@ -22,21 +21,23 @@ import quino.util.QuinoTools;
 public abstract class AbstractQuinoTimer extends TimerTask {
 
     protected Prueba prueba;
-    protected ConfigPrueba configuracion;
     protected Ensayo ensayo;
+    protected Resultado resultado;
     protected int tiempoTranscurrido = 0;
     protected int numEnsayo = 0;
-    protected int panelEstimulo;
     protected int enEspera;
     protected int preparado;
     protected int esperandoRespuesta;
     protected boolean puedeTeclear = false;
     protected boolean inOut = true;
+    protected boolean practica;
+    protected KeyListener keyPress;
 
-    public AbstractQuinoTimer(Prueba prueba, ConfigPrueba configuracion) {
+    public AbstractQuinoTimer(Prueba prueba) {
         this.prueba = prueba;
-        this.configuracion = configuracion;
-
+        this.ensayo = prueba.getEnsayos().get(numEnsayo);
+        this.resultado = new Resultado();
+        
         enEspera = QuinoTools.porcientoDuracion(ConfigApp.PC_EN_ESPERA);
         preparado = QuinoTools.porcientoDuracion(ConfigApp.PC_PREPARADO);
         esperandoRespuesta = QuinoTools.porcientoDuracion(ConfigApp.PC_ESPERANDO_RESPUESTA);
@@ -81,7 +82,7 @@ public abstract class AbstractQuinoTimer extends TimerTask {
      * Limpia el dibujo de los paneles que no son los centrales.
      * Se debe configurar en la clase hija
      */
-    protected void panelsClear(){
+    protected void panelsClear() {
     }
 
     /**
@@ -168,10 +169,10 @@ public abstract class AbstractQuinoTimer extends TimerTask {
      * @param quinoJPanel El jpanel en el q se moverán los puntos
      */
     protected void moverPuntoYRepintar(QuinoJPanel quinoJPanel, double desplazamientX, double desplazamientoY) {
-        if (configuracion.isAsincronico()) {
+        if (ensayo.getConfiguracion().isAsincronico()) {
             quinoJPanel.moverAsincronico(desplazamientX, desplazamientoY);
         } else {
-            quinoJPanel.moverEnDireccion(configuracion.getDireccion(), desplazamientX, desplazamientoY);
+            quinoJPanel.moverEnDireccion(ensayo.getConfiguracion().getDireccion(), desplazamientX, desplazamientoY);
         }
         quinoJPanel.repaint();
     }
@@ -180,70 +181,20 @@ public abstract class AbstractQuinoTimer extends TimerTask {
      * Controla el resultado de la interacción con el teclado en el ensayo
      */
     protected void controlarEnsayo() {
-        if (configuracion.isControl() && panelEstimulo > 0) {
-            switch (configuracion.getDireccion()) { //
-                case 1: {
-                    if (ensayo.getKey() != 104 && !ensayo.isError()) {
-                        ensayo.setError(true);
-                        ensayo.setDescripcion("Las direcciones no coinciden");
-                    }
-                }
-                break;
-                case 2: {
-                    if (ensayo.getKey() != 98 && !ensayo.isError()) {
-                        ensayo.setError(true);
-                        ensayo.setDescripcion("Las direcciones no coinciden");
-                    }
-                }
-                break;
-                case 3: {
-                    if (ensayo.getKey() != 102 && !ensayo.isError()) {
-                        ensayo.setError(true);
-                        ensayo.setDescripcion("Las direcciones no coinciden");
-                    }
-                }
-                break;
-                case 4: {
-                    if (ensayo.getKey() != 100 && !ensayo.isError()) {
-                        ensayo.setError(true);
-                        ensayo.setDescripcion("Las direcciones no coinciden");
-                    }
-                }
-                break;
-                case 5: {
-                    if (ensayo.getKey() != 105 && !ensayo.isError()) {
-                        ensayo.setError(true);
-                        ensayo.setDescripcion("Las direcciones no coinciden");
-                    }
-                }
-                break;
-                case 6: {
-                    if (ensayo.getKey() != 103 && !ensayo.isError()) {
-                        ensayo.setError(true);
-                        ensayo.setDescripcion("Las direcciones no coinciden");
-                    }
-                }
-                break;
-                case 7: {
-                    if (ensayo.getKey() != 99 && !ensayo.isError()) {
-                        ensayo.setError(true);
-                        ensayo.setDescripcion("Las direcciones no coinciden");
-                    }
-                }
-                break;
-                case 8: {
-                    if (ensayo.getKey() != 97 && !ensayo.isError()) {
-                        ensayo.setError(true);
-                        ensayo.setDescripcion("Las direcciones no coinciden");
-                    }
-                }
-                break;
+        if (ensayo.getConfiguracion().isControl()
+                && ensayo.getPanelEstimulo() > 0) {
+            int keyEsperada = ensayo.getConfiguracion().getKey();
+            if (keyEsperada != resultado.getKey()) {
+                resultado.setError(true);
+                resultado.setDescripcion("Las direcciones no coinciden");
             }
-        } else if (panelEstimulo == 0) {
-            ensayo.setError(true);
-            ensayo.setDescripcion("No hubo Estímulo");
+        } else if (ensayo.getPanelEstimulo() == 0) {
+            resultado.setError(true);
+            resultado.setDescripcion("No hubo Estímulo");
+        } else if (ensayo.getConfiguracion().getKey() != resultado.getKey()) {
+            resultado.setError(true);
+            resultado.setDescripcion("No se ha presionado la barra espaciadora");
         }
-
     }
 
     /**
@@ -252,17 +203,8 @@ public abstract class AbstractQuinoTimer extends TimerTask {
      * panel central.
      */
     protected void inicializarEnsayo(int cantPaneles) {
-
-        if (configuracion instanceof ConfigPruebaAuto) {
-            boolean controlarMovimiento = configuracion.isControl();
-            configuracion = new ConfigPruebaAuto(controlarMovimiento);
-            configuracion.setDensidad(configuracion.getDensidad() / 8);
-            ((ConfigPruebaAuto) configuracion).Re_Cantidad();
-        }
-
-        ensayo = new Ensayo(configuracion);
-        Aleatorio al = new Aleatorio();
-        panelEstimulo = al.nextInt(0, cantPaneles);
+        ensayo = prueba.getEnsayos().get(numEnsayo);
+        resultado = new Resultado();
     }
 
     /**
@@ -274,10 +216,10 @@ public abstract class AbstractQuinoTimer extends TimerTask {
         int k = e.getKeyCode();
         System.out.println("tecla presionada: " + k);
 
-        ensayo.setKey(k);
+        resultado.setKey(k);
 
-        if (panelEstimulo > 0) {
-            ensayo.setTiempoRespuesta(tiempoTranscurrido - (enEspera + preparado + 1));
+        if (ensayo.getPanelEstimulo() > 0) {
+            resultado.setTiempoRespuesta(tiempoTranscurrido - (enEspera + preparado + 1));
         }
 
         controlarEnsayo();
@@ -288,24 +230,9 @@ public abstract class AbstractQuinoTimer extends TimerTask {
      * Obtiene los resultado finales de cada ensayo y se lo asigna a la
      * prueba en cuestión
      */
-    protected void obtenerResultado(){
-
-        int cantidad = configuracion.getCantidad();
-        double tiempoMovimiento = configuracion.getTiempoMovimiento();
-        int tiempoRespuesta = ensayo.getTiempoRespuesta();
-        int direccion = configuracion.getDireccion();
-        int densidad = configuracion.getDensidad();
-        boolean error = ensayo.isError();
-        boolean asincronico = configuracion.isAsincronico();
-        String descrip = ensayo.getDescripcion();
-        int key = ensayo.getKey();
-        double velocidad = QuinoTools.getVelocidad(tiempoMovimiento);
-        double angulo = buscarAngulo();
-
-        Resultado result = new Resultado(tiempoMovimiento, tiempoRespuesta, direccion,
-                densidad, cantidad, error, numEnsayo, panelEstimulo, asincronico,
-                descrip, key, configuracion.isControl(), velocidad, angulo);
-
-        prueba.getResultados().add(result);
+    protected void obtenerResultado() {
+        resultado.setVelocidad(QuinoTools.getVelocidad(ensayo.getConfiguracion().getTiempoMovimiento()));
+        resultado.setAngulo(buscarAngulo());
+        ensayo.setResultado(resultado);
     }
 }

@@ -4,72 +4,47 @@
  */
 package quino.clases.model;
 
-import quino.util.Aleatorio;
-import quino.clases.config.ConfigPrueba;
+import quino.clases.config.ConfigEnsayo;
 
 /**
- *
- * @author Felipao
+ * Representa cada ensayo dentro de una prueba.
+ * @author Felipe Rodriguez Arias
  */
 public class Ensayo {
 
-    private ConfigPrueba configuracion;
+    /**
+     * Configuracion de la prueba a la q pertenece
+     */
+    private ConfigEnsayo configuracion;
+    /**
+     * Panel de estimulo en el q se produjo el movimiento
+     */
     private int panelEstimulo;
-    private int tiempoRespuesta;
-    private boolean error;
-    private int key;
-    private String descripcion;
+    /**
+     * El resultado del ensayo
+     */
+    private Resultado resultado;
 
     public Ensayo() {
     }
 
-    public Ensayo(ConfigPrueba configuracion) {
-        error = false;
-        Aleatorio al = new Aleatorio();
-        panelEstimulo = al.nextInt(0, 3);
-        this.configuracion = configuracion;
-        tiempoRespuesta = 0;
-    }
-
-    public Ensayo(ConfigPrueba configuracion, int panelEstimulo, int tiempoRespuesta, boolean error, int key, String descripcion) {
+    public Ensayo(ConfigEnsayo configuracion, int panelEstimulo) {
         this.configuracion = configuracion;
         this.panelEstimulo = panelEstimulo;
-        this.tiempoRespuesta = tiempoRespuesta;
-        this.error = error;
-        this.key = key;
-        this.descripcion = descripcion;
     }
 
-    public ConfigPrueba getConfiguracion() {
+    public Ensayo(ConfigEnsayo configuracion, int panelEstimulo, Resultado resultado) {
+        this.configuracion = configuracion;
+        this.panelEstimulo = panelEstimulo;
+        this.resultado = resultado;
+    }
+
+    public ConfigEnsayo getConfiguracion() {
         return configuracion;
     }
 
-    public void setConfiguracion(ConfigPrueba configuracion) {
+    public void setConfiguracion(ConfigEnsayo configuracion) {
         this.configuracion = configuracion;
-    }
-
-    public String getDescripcion() {
-        return descripcion;
-    }
-
-    public void setDescripcion(String descripcion) {
-        this.descripcion = descripcion;
-    }
-
-    public boolean isError() {
-        return error;
-    }
-
-    public void setError(boolean error) {
-        this.error = error;
-    }
-
-    public int getKey() {
-        return key;
-    }
-
-    public void setKey(int key) {
-        this.key = key;
     }
 
     public int getPanelEstimulo() {
@@ -80,11 +55,11 @@ public class Ensayo {
         this.panelEstimulo = panelEstimulo;
     }
 
-    public int getTiempoRespuesta() {
-        return tiempoRespuesta;
+    public Resultado getResultado() {
+        return resultado;
     }
 
-    public void setTiempoRespuesta(int tiempoRespuesta) {
-        this.tiempoRespuesta = tiempoRespuesta;
+    public void setResultado(Resultado resultado) {
+        this.resultado = resultado;
     }
 }

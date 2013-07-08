@@ -8,61 +8,110 @@ import java.util.ArrayList;
 
 
 import java.util.Date;
+import quino.clases.config.ConfigEnsayo;
+import quino.clases.config.ConfigEnsayoAuto;
+import quino.util.Aleatorio;
 
 /**
- *
- * @author Felipao
+ * Representa una prueba a efectuar. Es una clase abstracta pq cada vez q se
+ * crea una prueba es de tipo Foveal o Periferica. Se hace para quitarse el
+ * atributo booleano isFoveal y obligar al desarrollador a determinar mediante
+ * un tipo especifico, la prueba q quiere realizar
+ * @author Felipe Rodriguez Arias
  */
-public class Prueba {
+public abstract class Prueba {
 
+    /**
+     * Cantidad de ensayos de la prueba a ejcutarse
+     */
     private int cantEnsayos;
-    private ArrayList<Resultado> resultados;
+    /**
+     * Fecha de en que se ejecutó la prueba
+     */
     private Date fecha;
-    private boolean foveal;
+    /**
+     * Lista de los ensayos de la prueba y su configuracion
+     */
+    private ArrayList<Ensayo> ensayos;
 
     public Prueba() {
     }
-    
-    public Prueba(int cantEnsayos, boolean foveal) {
+
+    /**
+     * En este contructor se crea la prueba y ademas la configuración para cada
+     * ensayo. Si la configuracion es automatica se establece una configuracion
+     * diferente en cada prueba, si la configuración es estandar todos los
+     * ensayos tienen la misma configuración
+     * @param cantEnsayos Cantidad de ensayos de la prueba
+     * @param configEnsayo Configuración del ensayo
+     */
+    public Prueba(int cantEnsayos, ConfigEnsayo configEnsayo) {
         this.cantEnsayos = cantEnsayos;
-        resultados = new ArrayList<Resultado>();
-        this.foveal = foveal;
+        fecha = new Date();
+        ensayos = new ArrayList<Ensayo>();
+
+        for (int i = 0; i < cantEnsayos; i++) {
+            if (configEnsayo instanceof ConfigEnsayoAuto) {
+                configEnsayo = new ConfigEnsayoAuto(configEnsayo.isControl());
+            }
+            int panelEstimulo = -1;
+            Aleatorio random = new Aleatorio();
+            if (this instanceof PruebaFoveal) {
+                panelEstimulo = random.nextInt(0, 8);
+            }
+            if (this instanceof PruebaPeriferica) {
+                panelEstimulo = random.nextInt(0, 2);
+            }
+            Ensayo ensayo = new Ensayo(configEnsayo, panelEstimulo);
+            ensayos.add(ensayo);
+        }
     }
 
-    public Prueba(int cantEnsayos, ArrayList<Resultado> resultados, Date fecha, boolean foveal) {
+    public Prueba(int cantEnsayos, Date fecha, ArrayList<Ensayo> ensayos) {
         this.cantEnsayos = cantEnsayos;
-        this.resultados = resultados;
         this.fecha = fecha;
-        this.foveal = foveal;
+        this.ensayos = ensayos;
     }
 
+    /**
+     * Devuelve la cantidad de errores de la prueba
+     * @return Cantidad de errores en esta prueba
+     */
     public int cantErrores() {
         int count = 0;
-        for (int i = 0; i < resultados.size(); i++) {
-            if (resultados.get(i).isError()) {
+        for (int i = 0; i < ensayos.size(); i++) {
+            if (ensayos.get(i).getResultado().isError()) {
                 count++;
             }
         }
         return count;
     }
 
+    /**
+     * Devuelve el promedio de la densidad de esta prueba
+     * @return Promedio de la densidad de cada ensayo
+     */
     public int densidadPromedio() {
         int sum = 0;
         int prom = 0;
-        for (int i = 0; i < resultados.size(); i++) {
-            sum = sum + resultados.get(i).getDensidad();
+        for (int i = 0; i < ensayos.size(); i++) {
+            sum = sum + ensayos.get(i).getConfiguracion().getDensidad();
         }
-        prom = sum / resultados.size();
+        prom = sum / ensayos.size();
         return prom;
     }
 
+    /**
+     * Devuelve el tiempo de respuesta promedio de los ensayos de esta prueba
+     * @return Tiempo de respuesta promedio
+     */
     public int tiempoRespuestaPromedio() {
         int sum = 0;
         int prom = 0;
         int cont = 0;
-        for (int i = 0; i < resultados.size(); i++) {
-            if (resultados.get(i).getTiempoRespuesta() != 0) {
-                sum = sum + resultados.get(i).getTiempoRespuesta();
+        for (int i = 0; i < ensayos.size(); i++) {
+            if (ensayos.get(i).getResultado().getTiempoRespuesta() != 0) {
+                sum = sum + ensayos.get(i).getResultado().getTiempoRespuesta();
                 cont++;
             }
         }
@@ -88,19 +137,11 @@ public class Prueba {
         this.fecha = fecha;
     }
 
-    public boolean isFoveal() {
-        return foveal;
+    public ArrayList<Ensayo> getEnsayos() {
+        return ensayos;
     }
 
-    public void setFoveal(boolean foveal) {
-        this.foveal = foveal;
-    }
-
-    public ArrayList<Resultado> getResultados() {
-        return resultados;
-    }
-
-    public void setResultados(ArrayList<Resultado> resultados) {
-        this.resultados = resultados;
+    public void setEnsayos(ArrayList<Ensayo> ensayos) {
+        this.ensayos = ensayos;
     }
 }

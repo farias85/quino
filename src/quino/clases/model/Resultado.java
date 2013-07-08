@@ -5,46 +5,45 @@
 package quino.clases.model;
 
 /**
- *
- * @author Felipao
+ * Representa el resultado final luego de la ejecución de un ensayo
+ * @author Felipe Rodriguez Arias
  */
 public class Resultado {
 
-    private double velocidadMovimiento;
+    /**
+     * Tiempo de respuesta a la acción del movimiento
+     */
     private int tiempoRespuesta;
-    private int direccion;
-    private int densidad;
-    private int cantPuntos;
+    /**
+     * True si el resultado del ensayo es un error
+     */
     private boolean error;
-    private int numEnsayo;
-    private int panelEstimulo;
-    private boolean asincronico;
-    private String descripcion;
+    /**
+     * La descripción del resultado o del error
+     */
+    private String descripcion = "";
+    /**
+     * La tecla presionada luego del ensayo
+     */
     private int key;
-    private boolean control;
+    /**
+     * Velocidad del movimiento de los puntos
+     */
     private double velocidad;
+    /**
+     * El angulo promedio de movimiento de los puntos
+     */
     private double angulo;
 
     public Resultado() {
     }
 
-    public Resultado(double velocidadMovimiento, int tiempoRespuesta, int direccion,
-            int densidad, int cantPuntos, boolean error, int numEnsayo, int panelEstimulo,
-            boolean asincronico, String descripcion, int key, boolean control,
-            double velocidad, double angulo) {
-
-        this.velocidadMovimiento = velocidadMovimiento;
+    public Resultado(int tiempoRespuesta, boolean error, String descripcion,
+            int key, double velocidad, double angulo) {
         this.tiempoRespuesta = tiempoRespuesta;
-        this.direccion = direccion;
-        this.densidad = densidad;
-        this.cantPuntos = cantPuntos;
         this.error = error;
-        this.numEnsayo = numEnsayo;
-        this.panelEstimulo = panelEstimulo;
-        this.asincronico = asincronico;
         this.descripcion = descripcion;
         this.key = key;
-        this.control = control;
         this.velocidad = velocidad;
         this.angulo = angulo;
     }
@@ -57,52 +56,12 @@ public class Resultado {
         this.angulo = angulo;
     }
 
-    public boolean isAsincronico() {
-        return asincronico;
-    }
-
-    public void setAsincronico(boolean asincronico) {
-        this.asincronico = asincronico;
-    }
-
-    public int getCantPuntos() {
-        return cantPuntos;
-    }
-
-    public void setCantPuntos(int cantPuntos) {
-        this.cantPuntos = cantPuntos;
-    }
-
-    public boolean isControl() {
-        return control;
-    }
-
-    public void setControl(boolean control) {
-        this.control = control;
-    }
-
-    public int getDensidad() {
-        return densidad;
-    }
-
-    public void setDensidad(int densidad) {
-        this.densidad = densidad;
-    }
-
     public String getDescripcion() {
         return descripcion;
     }
 
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
-    }
-
-    public int getDireccion() {
-        return direccion;
-    }
-
-    public void setDireccion(int direccion) {
-        this.direccion = direccion;
     }
 
     public boolean isError() {
@@ -121,22 +80,6 @@ public class Resultado {
         this.key = key;
     }
 
-    public int getNumEnsayo() {
-        return numEnsayo;
-    }
-
-    public void setNumEnsayo(int numEnsayo) {
-        this.numEnsayo = numEnsayo;
-    }
-
-    public int getPanelEstimulo() {
-        return panelEstimulo;
-    }
-
-    public void setPanelEstimulo(int panelEstimulo) {
-        this.panelEstimulo = panelEstimulo;
-    }
-
     public int getTiempoRespuesta() {
         return tiempoRespuesta;
     }
@@ -151,13 +94,5 @@ public class Resultado {
 
     public void setVelocidad(double velocidad) {
         this.velocidad = velocidad;
-    }
-
-    public double getVelocidadMovimiento() {
-        return velocidadMovimiento;
-    }
-
-    public void setVelocidadMovimiento(double velocidadMovimiento) {
-        this.velocidadMovimiento = velocidadMovimiento;
     }
 }

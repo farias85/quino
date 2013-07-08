@@ -7,7 +7,7 @@ package quino.util.timer;
 import quino.util.QuinoJPanel;
 import quino.util.CentralJPanel;
 import quino.util.Punto;
-import quino.clases.config.ConfigPrueba;
+import quino.clases.config.ConfigEnsayo;
 import quino.clases.model.Prueba;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -27,14 +27,12 @@ public class PerifericaTimer extends AbstractQuinoTimer {
     private QuinoJPanel panel1;
     private QuinoJPanel panel2;
     private CentralJPanel panel3;
-    private boolean practica;
     private PerifericaTestView test;
-    private KeyListener keyPress;
 
-    public PerifericaTimer(Prueba prueba, ConfigPrueba configuracion,
+    public PerifericaTimer(Prueba prueba, 
             QuinoJPanel panel1, QuinoJPanel panel2, CentralJPanel panel3,
             PerifericaTestView test, boolean practica) {
-        super(prueba, configuracion);
+        super(prueba);
 
         this.panel1 = panel1;
         this.panel2 = panel2;
@@ -132,9 +130,9 @@ public class PerifericaTimer extends AbstractQuinoTimer {
         System.out.println("terminado " + tiempoTranscurrido);
         test.removeKeyListener(keyPress);
 
-        if (ensayo.getKey() == 0 && panelEstimulo > 0) {
-            ensayo.setError(true);
-            ensayo.setDescripcion("Omisión");
+        if (resultado.getKey() == 0 && ensayo.getPanelEstimulo() > 0) {
+            resultado.setError(true);
+            resultado.setDescripcion("Omisión");
         }
 
         obtenerResultado();
@@ -163,8 +161,8 @@ public class PerifericaTimer extends AbstractQuinoTimer {
 
     @Override
     protected void panelsRellenar() {
-        panel1.rellenar(configuracion.getDensidad(), configuracion.getCantidad());
-        panel2.rellenar(configuracion.getDensidad(), configuracion.getCantidad());
+        panel1.rellenar(ensayo.getConfiguracion().getDensidad(), ensayo.getConfiguracion().getCantidad());
+        panel2.rellenar(ensayo.getConfiguracion().getDensidad(), ensayo.getConfiguracion().getCantidad());
     }
 
     @Override
@@ -172,7 +170,7 @@ public class PerifericaTimer extends AbstractQuinoTimer {
         double desplazamientX = test.getLocation().getX();
         double desplazamientoY = test.getLocation().getY();
 
-        switch (panelEstimulo) {
+        switch (ensayo.getPanelEstimulo()) {
             case 0: {
                 panelsRepaint();
             }
@@ -194,8 +192,8 @@ public class PerifericaTimer extends AbstractQuinoTimer {
         Punto p2 = null;
         double angulo = 0;
         
-        if (panelEstimulo > 0) {
-            if (panelEstimulo == 1) {
+        if (ensayo.getPanelEstimulo() > 0) {
+            if (ensayo.getPanelEstimulo() == 1) {
                 p2 = panel1.MidPunto(false);
             } else {
                 p2 = panel2.MidPunto(false);

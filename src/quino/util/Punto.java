@@ -6,7 +6,6 @@ package quino.util;
 
 import java.awt.Color;
 import java.awt.Graphics;
-import java.awt.Point;
 import java.util.Random;
 
 /**
@@ -15,13 +14,29 @@ import java.util.Random;
  */
 public class Punto {
 
+    /**
+     * La cordenada x del punto
+     */
     private int x;
+    /**
+     * La cordenada y del punto
+     */
     private int y;
+    /**
+     * Ángulo respecto al centro de la pantalla
+     */
+    private double angulo = 0;
 
+    /**
+     * Constructor para valores enteros de cordenada de punto. El punto se crea
+     * con valores Random
+     * @param largo Limite superior de valores de x
+     * @param alto Limite superior de valores de y
+     */
     public Punto(int largo, int alto) {
-        Random ran = new Random();
-        this.x = ran.nextInt(largo);
-        this.y = ran.nextInt(alto);
+        Random random = new Random();
+        this.x = random.nextInt(largo);
+        this.y = random.nextInt(alto);
     }
 
     public Punto(double x, double y) {
@@ -90,10 +105,6 @@ public class Punto {
         g.setColor(Color.WHITE);
         g.fillOval(x, y, 4, 4);
     }
-    /**
-     * Ángulo respecto al centro de la pantalla
-     */
-    private double angulo = 0;
 
     public double getAngulo() {
         return angulo;

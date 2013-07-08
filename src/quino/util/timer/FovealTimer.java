@@ -6,12 +6,8 @@ package quino.util.timer;
 
 import quino.util.QuinoJPanel;
 import quino.util.CentralJPanel;
-import quino.util.Punto;
-import quino.clases.config.ConfigPrueba;
 import quino.clases.model.Prueba;
 import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.Toolkit;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import quino.util.QuinoTools;
@@ -33,15 +29,13 @@ public class FovealTimer extends AbstractQuinoTimer {
     private QuinoJPanel panel7;
     private QuinoJPanel panel8;
     private CentralJPanel panel9;
-    private boolean practica;
     private FovealTestView test;
-    private KeyListener keyPress;
 
-    public FovealTimer(Prueba prueba, ConfigPrueba configuracion, QuinoJPanel panel1,
+    public FovealTimer(Prueba prueba, QuinoJPanel panel1,
             QuinoJPanel panel2, QuinoJPanel panel3, QuinoJPanel panel4, QuinoJPanel panel5,
             QuinoJPanel panel6, QuinoJPanel panel7, QuinoJPanel panel8, CentralJPanel panel9,
             FovealTestView test, boolean practica) {
-        super(prueba, configuracion);
+        super(prueba);
 
         this.panel1 = panel1;
         this.panel2 = panel2;
@@ -146,9 +140,9 @@ public class FovealTimer extends AbstractQuinoTimer {
         System.out.println("terminado " + tiempoTranscurrido);
         test.removeKeyListener(keyPress);
 
-        if (ensayo.getKey() == 0 && panelEstimulo > 0) {
-            ensayo.setError(true);
-            ensayo.setDescripcion("Omisión");
+        if (resultado.getKey() == 0 && ensayo.getPanelEstimulo() > 0) {
+            resultado.setError(true);
+            resultado.setDescripcion("Omisión");
         }
 
         obtenerResultado();
@@ -168,7 +162,7 @@ public class FovealTimer extends AbstractQuinoTimer {
         double desplazamientX = test.getLocation().getX();
         double desplazamientoY = test.getLocation().getY();
 
-        switch (panelEstimulo) {
+        switch (ensayo.getPanelEstimulo()) {
             case 0: {
                 panelsRepaint();
             }
@@ -212,8 +206,8 @@ public class FovealTimer extends AbstractQuinoTimer {
     protected double buscarAngulo() {
         double angulo = 0;
 
-        if (panelEstimulo > 0) {
-            switch (panelEstimulo) {
+        if (ensayo.getPanelEstimulo() > 0) {
+            switch (ensayo.getPanelEstimulo()) {
                 case 1:
                     angulo = panel1.promedioAngulo();
                     break;
@@ -272,13 +266,13 @@ public class FovealTimer extends AbstractQuinoTimer {
 
     @Override
     protected void panelsRellenar() {
-        panel1.rellenar(configuracion.getDensidad(), configuracion.getCantidad());
-        panel2.rellenar(configuracion.getDensidad(), configuracion.getCantidad());
-        panel3.rellenar(configuracion.getDensidad(), configuracion.getCantidad());
-        panel4.rellenar(configuracion.getDensidad(), configuracion.getCantidad());
-        panel5.rellenar(configuracion.getDensidad(), configuracion.getCantidad());
-        panel6.rellenar(configuracion.getDensidad(), configuracion.getCantidad());
-        panel7.rellenar(configuracion.getDensidad(), configuracion.getCantidad());
-        panel8.rellenar(configuracion.getDensidad(), configuracion.getCantidad());
+        panel1.rellenar(ensayo.getConfiguracion().getDensidad(), ensayo.getConfiguracion().getCantidad());
+        panel2.rellenar(ensayo.getConfiguracion().getDensidad(), ensayo.getConfiguracion().getCantidad());
+        panel3.rellenar(ensayo.getConfiguracion().getDensidad(), ensayo.getConfiguracion().getCantidad());
+        panel4.rellenar(ensayo.getConfiguracion().getDensidad(), ensayo.getConfiguracion().getCantidad());
+        panel5.rellenar(ensayo.getConfiguracion().getDensidad(), ensayo.getConfiguracion().getCantidad());
+        panel6.rellenar(ensayo.getConfiguracion().getDensidad(), ensayo.getConfiguracion().getCantidad());
+        panel7.rellenar(ensayo.getConfiguracion().getDensidad(), ensayo.getConfiguracion().getCantidad());
+        panel8.rellenar(ensayo.getConfiguracion().getDensidad(), ensayo.getConfiguracion().getCantidad());
     }
 }

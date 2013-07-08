@@ -30,7 +30,7 @@ import quino.util.QuinoTools;
 public class Main2 {
 
     public static void main(String[] args) {
-        try {
+        /*try {
             Registro registro = Registro.cargarRegistro(ConfigApp.REGISTRO_FILE_NAME);
             String heads[] = {"Sujeto", "Ensayo", "Densidad de puntos", "% de puntos", "Velocidad del movimiento", "Panel de estímulo", "Tiempo de respuesta"};
 
@@ -245,9 +245,7 @@ public class Main2 {
 
         } catch (IOException ex) {
             Logger.getLogger(Main2.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(Main2.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        } */
 
     }
 

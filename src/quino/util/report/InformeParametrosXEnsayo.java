@@ -4,20 +4,17 @@
  */
 package quino.util.report;
 
-import java.io.IOException;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import org.apache.poi.hssf.usermodel.HSSFCell;
 import org.apache.poi.hssf.usermodel.HSSFRow;
 import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
-import quino.clases.config.ConfigApp;
 import quino.clases.model.Paciente;
 import quino.clases.model.Prueba;
-import quino.clases.model.Registro;
+import quino.clases.model.Ensayo;
 import quino.clases.model.Resultado;
 import quino.util.QuinoTools;
+import quino.clases.config.ConfigEnsayo;
 
 /**
  *
@@ -60,10 +57,12 @@ public class InformeParametrosXEnsayo extends AbstractInformeExcel {
             Prueba pruebaX = foveal ? pacientes.get(i).getFoveal() : pacientes.get(i).getPeriferica();
 
             if (pruebaX != null) {
-                List<Resultado> resultados = pruebaX.getResultados();
+                List<Ensayo> ensayos = pruebaX.getEnsayos();
 
-                for (int j = 0; j < resultados.size(); j++) {
-                    Resultado resultadoActual = resultados.get(j);
+                for (int j = 0; j < ensayos.size(); j++) {
+                    Ensayo ensayoActual = ensayos.get(j);
+                    Resultado resultadoActual = ensayos.get(j).getResultado();
+                    ConfigEnsayo configEnsayoActual = ensayos.get(j).getConfiguracion();
 
                     HSSFRow row = sheet.createRow(rowCount);
                     HSSFCell celda = null;
@@ -77,16 +76,16 @@ public class InformeParametrosXEnsayo extends AbstractInformeExcel {
                     celda.setCellValue(j + 1);
 
                     celda = getCelda(row, 2, HSSFCell.CELL_TYPE_NUMERIC, false);
-                    celda.setCellValue(resultadoActual.getDensidad());
+                    celda.setCellValue(configEnsayoActual.getDensidad());
 
                     celda = getCelda(row, 3, HSSFCell.CELL_TYPE_NUMERIC, false);
-                    celda.setCellValue(resultadoActual.getCantPuntos());
+                    celda.setCellValue(configEnsayoActual.getCantidad());
 
                     celda = getCelda(row, 4, HSSFCell.CELL_TYPE_NUMERIC, false);
-                    celda.setCellValue(resultadoActual.getVelocidadMovimiento());
+                    celda.setCellValue(configEnsayoActual.getTiempoMovimiento());
 
                     celda = getCelda(row, 5, HSSFCell.CELL_TYPE_STRING, false);
-                    celda.setCellValue(QuinoTools.getPanelMovimiento(pruebaX, resultadoActual.getPanelEstimulo()));
+                    celda.setCellValue(QuinoTools.getPanelMovimiento(pruebaX, ensayoActual.getPanelEstimulo()));
 
                     if (resultadoActual.getTiempoRespuesta() == 0) {
                         celda = getCelda(row, 6, HSSFCell.CELL_TYPE_STRING, true);

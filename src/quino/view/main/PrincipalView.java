@@ -43,7 +43,7 @@ import quino.clases.model.PruebaFoveal;
 import quino.clases.model.PruebaPeriferica;
 import quino.util.QuinoTableModel;
 import quino.util.QuinoTools;
-import quino.util.ScreenSplash;
+import quino.util.QuinoSplash;
 import quino.util.report.AbstractInformeExcel;
 import quino.util.report.InformeCampoVisual;
 import quino.util.report.InformeParametrosXEnsayo;
@@ -199,9 +199,9 @@ public class PrincipalView extends javax.swing.JFrame {
         jTable1.getColumnModel().getColumn(4).setCellRenderer(tcr);
         jTable1.getColumnModel().getColumn(4).setPreferredWidth(20);
         jTable1.getColumnModel().getColumn(5).setCellRenderer(tcr);
-        jTable1.getColumnModel().getColumn(5).setPreferredWidth(80);
+        jTable1.getColumnModel().getColumn(5).setPreferredWidth(30);
         jTable1.getColumnModel().getColumn(6).setCellRenderer(tcr);
-        jTable1.getColumnModel().getColumn(6).setPreferredWidth(30);
+        jTable1.getColumnModel().getColumn(6).setPreferredWidth(80);
     }
 
     public boolean itemSelected() {
@@ -914,7 +914,7 @@ public class PrincipalView extends javax.swing.JFrame {
      */
     public static void main(String args[]) {
 
-        new ScreenSplash().animar();
+        new QuinoSplash().animar();
 
         java.awt.EventQueue.invokeLater(new Runnable() {
 

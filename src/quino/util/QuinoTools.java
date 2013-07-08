@@ -27,8 +27,9 @@ import quino.view.main.ErrorDialog;
 import quino.view.main.PrincipalView;
 
 /**
- *
- * @author farias
+ * Todos los métodos de esta clase son estáticos. Se definen acá métodos de
+ * utilidad en el trabajo en toda la aplicación
+ * @author Felipe Rodriguez Arias
  */
 public class QuinoTools {
 
@@ -83,6 +84,12 @@ public class QuinoTools {
         return key;
     }
 
+    /**
+     * Devuelve el nombre del panel en el que ha ocurrido el movimiento
+     * @param prueba El tipo de prueba efectuada
+     * @param panel El número del panel donde se efectuó el movimiento
+     * @return El nombre del panel
+     */
     public static String getPanelMovimiento(Prueba prueba, int panel) {
         if (prueba instanceof PruebaFoveal) {
             switch (panel) {
@@ -117,6 +124,14 @@ public class QuinoTools {
         }
     }
 
+    /**
+     * Salva una prueba en el registro. Luego de la realización de una prueba
+     * si existía en el registro del paciente una prueba igual q la q se realizó
+     * se pregunta si se desea sobre escrbir la antigua prueba.
+     * @param principalView Ventana Principal
+     * @param testView Ventana de la Prueba (Fovela o Periférica)
+     * @param prueba Tipo de prueba realizada
+     */
     public static void salvarPruebaEnRegistro(PrincipalView principalView, JDialog testView, Prueba prueba) {
         int option = -1;
 
@@ -158,6 +173,12 @@ public class QuinoTools {
         }
     }
 
+    /**
+     * Dado una cadena de caracteres, devuelve true si cada valor del String es
+     * un número
+     * @param valor Cadena de caracteres del suppuesto número
+     * @return True si es un numero, false en caso contrario.
+     */
     private static boolean isNumero(String valor) {
 
         if (valor.length() != 0) {
@@ -175,6 +196,12 @@ public class QuinoTools {
 
     }
 
+    /**
+     * Chequea si el carnet de identidad de un paciente es válido
+     * @param ci Cadena de caracteres del CI del paciente
+     * @return El carnét de identidad formateado a long
+     * @throws Exception lanza excepción en caso de no ser válido el carné
+     */
     public static long checkCI(String ci) throws Exception {
         int[] DaysByMonths = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
 
@@ -205,6 +232,11 @@ public class QuinoTools {
         }
     }
 
+    /**
+     * Salva un libro excel en la dirección dada.
+     * @param path Dirección para guardar el archivo
+     * @param book Libro excel a guardar
+     */
     public static void salvarLibroExcel(String path, HSSFWorkbook book) {
         FileOutputStream archivoSalida = null;
         try {
@@ -217,6 +249,9 @@ public class QuinoTools {
         }
     }
 
+    /**
+     * salva la configuración de la aplicación
+     */
     public static void salvarConfiguracion() {
         try {
             ConfigApp impl = new ConfigApp(ConfigApp.CANT_ENSAYOS, ConfigApp.TIEMPO_DURACION,
@@ -229,6 +264,9 @@ public class QuinoTools {
         }
     }
 
+    /**
+     * Carga la configuración de la aplicación
+     */
     public static void cargarConfiguracion() {
         try {
             XMLDecoder d = new XMLDecoder(new BufferedInputStream(new FileInputStream(ConfigApp.CONFIG_FILE_NAME)));
@@ -269,6 +307,12 @@ public class QuinoTools {
         return Math.rint((porcentaje * tiempoDuracion / 100) * 100) / 100;
     }
 
+    /**
+     * Calcula la distancia desde el punto p1 a punto p2
+     * @param p1 Punto de inicio
+     * @param p2 Punto de fin
+     * @return Distancia entre ambos puntos
+     */
     public static double getDistancia(Punto p1, Punto p2) {
         double varx = Math.pow((p2.getX() - p1.getX()), 2);
         double vary = Math.pow((p2.getY() - p1.getY()), 2);
@@ -277,6 +321,13 @@ public class QuinoTools {
         return distancia;
     }
 
+    /**
+     * Calcula el angulo P1-PA-P2, donde PA es vértices del ángulo y P1 y P2 los
+     * extremos. PA representa la posición del paciente frente a la pantalla
+     * @param p1 Punto 1 de inicio del movimiento
+     * @param p2 Punto 2 de fin
+     * @return El ángulo en el vértice PA
+     */
     public static double getAngulo(Punto p1, Punto p2) {
         double distancia = getDistancia(p1, p2);
         double aRad = Math.atan2(distancia, 60);
@@ -284,24 +335,50 @@ public class QuinoTools {
         return Math.rint(angulo * 100) / 100;
     }
 
+    /**
+     * Calcula el angulo P1-PA-P2, donde PA es vértices del ángulo y P1 y P2 los
+     * extremos. PA representa la posición del paciente frente a la pantalla y P1
+     * es el centro de la pantalla
+     * @param p2 Punto de la pantalla
+     * @return El ángulo en el vértice PA
+     */
     public static double getAngulo(Punto p2) {
         Punto p1 = getCentroPantalla();
         return getAngulo(p1, p2);
     }
 
+    /**
+     * Calcula el angulo P1-PA-P2, donde PA es vértices del ángulo y P1 y P2 los
+     * extremos. PA representa la posición del paciente frente a la pantalla y P1
+     * es el centro de la pantalla
+     * @param p2 Punto de la pantalla
+     * @param desplazamientX El desplazamiento en el eje X respecto al borde lateral izquierdo de la pantalla
+     * @param desplazamientoY El desplazamiento en el eje Y respecto al borde superior de la pantalla
+     * @return El ángulo en el vértice PA
+     */
     public static double getAngulo(Punto p2, double desplazamientX, double desplazamientoY) {
         Punto p1 = getCentroPantalla();
         p2 = new Punto(p2.getX() + desplazamientX, p2.getY() + desplazamientoY);
         return getAngulo(p1, p2);
     }
 
-    private static Punto getCentroPantalla() {
+    /**
+     * Devuelve las cordenadas del centro de la pantalla
+     * @return El Punto(X,Y) del centro de la pantalla
+     */
+    public static Punto getCentroPantalla() {
         Dimension d = Toolkit.getDefaultToolkit().getScreenSize();
         double x = d.getWidth() / 2;
         double y = d.getHeight() / 2;
         return new Punto(x, y);
     }
 
+    /**
+     * Calcula la velocidad de traslación de los puntos
+     * @param tiempoMovimiento El tiempo de movimiento, debe ser un valor entre
+     *  y 200
+     * @return
+     */
     public static double getVelocidad(double tiempoMovimiento) {
         double distancia = (4.00 / Toolkit.getDefaultToolkit().getScreenResolution()) * 2.5;
         double velocidad = distancia / tiempoMovimiento;

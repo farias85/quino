@@ -58,7 +58,7 @@ public class QuinoJPanel extends JPanel {
      * @param desplazamientX El desplazamiento en el eje X respecto al borde lateral izquierdo de la pantalla
      * @param desplazamientoY El desplazamiento en el eje Y respecto al borde superior de la pantalla
      */
-    public void moverEnDireccion(int direccion, double desplazamientX, double desplazamientoY) {
+    public void moverEnDireccion(int direccion) {
         for (int i = 0; i < cantidad; i++) {
             Aleatorio dir = new Aleatorio();
             int pos = dir.nextInt(0, puntos.size() - 1);
@@ -66,7 +66,7 @@ public class QuinoJPanel extends JPanel {
             Punto p1 = new Punto(puntos.get(pos).getX(), puntos.get(pos).getY());
             puntos.get(pos).mover(direccion);
             Punto p2 = puntos.get(pos);
-            actualizarAnguloPuntos(p1, p2, desplazamientX, desplazamientoY);
+            actualizarAnguloPuntos(p1, p2);
         }
     }
 
@@ -77,9 +77,9 @@ public class QuinoJPanel extends JPanel {
      * @param desplazamientX El desplazamiento en el eje X respecto al borde lateral izquierdo de la pantalla
      * @param desplazamientoY El desplazamiento en el eje Y respecto al borde superior de la pantalla
      */
-    public void actualizarAnguloPuntos(Punto p1, Punto p2, double desplazamientX, double desplazamientoY) {
-        desplazamientX += this.getLocation().getX();
-        desplazamientoY += this.getLocation().getY();
+    public void actualizarAnguloPuntos(Punto p1, Punto p2) {
+        double desplazamientX = getLocationOnScreen().getX();
+        double desplazamientoY = getLocationOnScreen().getY();
 
         Punto antes = new Punto(p1.getX() + desplazamientX, p1.getY() + desplazamientoY);
         double anguloAntes = QuinoTools.getAngulo(antes);
@@ -100,7 +100,7 @@ public class QuinoJPanel extends JPanel {
      * @param desplazamientX El desplazamiento en el eje X respecto al borde lateral izquierdo de la pantalla
      * @param desplazamientoY El desplazamiento en el eje Y respecto al borde superior de la pantalla
      */
-    public void moverAsincronico(double desplazamientX, double desplazamientoY) {
+    public void moverAsincronico() {
         for (int i = 0; i < cantidad; i++) {
             Aleatorio dir = new Aleatorio();
             int x = dir.nextInt(1, 8);
@@ -109,7 +109,7 @@ public class QuinoJPanel extends JPanel {
             Punto p1 = new Punto(puntos.get(pos).getX(), puntos.get(pos).getY());
             puntos.get(pos).mover(x);
             Punto p2 = puntos.get(pos);
-            actualizarAnguloPuntos(p1, p2, desplazamientX, desplazamientoY);
+            actualizarAnguloPuntos(p1, p2);
         }
     }
 
@@ -145,21 +145,6 @@ public class QuinoJPanel extends JPanel {
         for (int i = 0; i < this.densidad; i++) {
             Punto p = new Punto(this.getWidth(), this.getHeight());
             puntos.add(p);
-        }
-    }
-
-    /**
-     * Hay q eliminar este metodo
-     * @param fob
-     * @return
-     * @deprecated No utilizar
-     */
-    @Deprecated
-    public Punto MidPunto(boolean fob) {
-        if (fob) {
-            return puntos.get(cantidad / 4);
-        } else {
-            return puntos.get(cantidad / 2);
         }
     }
 

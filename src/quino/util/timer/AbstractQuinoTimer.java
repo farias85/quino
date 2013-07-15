@@ -168,11 +168,11 @@ public abstract class AbstractQuinoTimer extends TimerTask {
      * Mueve los puntos de un jpanel segun la configuración determinada
      * @param quinoJPanel El jpanel en el q se moverán los puntos
      */
-    protected void moverPuntoYRepintar(QuinoJPanel quinoJPanel, double desplazamientX, double desplazamientoY) {
+    protected void moverPuntoYRepintar(QuinoJPanel quinoJPanel) {
         if (ensayo.getConfiguracion().isAsincronico()) {
-            quinoJPanel.moverAsincronico(desplazamientX, desplazamientoY);
+            quinoJPanel.moverAsincronico();
         } else {
-            quinoJPanel.moverEnDireccion(ensayo.getConfiguracion().getDireccion(), desplazamientX, desplazamientoY);
+            quinoJPanel.moverEnDireccion(ensayo.getConfiguracion().getDireccion());
         }
         quinoJPanel.repaint();
     }

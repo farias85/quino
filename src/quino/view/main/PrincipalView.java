@@ -156,7 +156,9 @@ public class PrincipalView extends javax.swing.JFrame {
         b_fich.setToolTipText("Mostrar la Ficha del Paciente seleccionado");
         b_mod.setToolTipText("Modificar el Paciente seleccionado");
         b_prueba.setToolTipText("Realizar Prueba al Paciente seleccionado");
-        jMenuItem4.setText("Prueba Foveal");
+
+        jMenuItem4.setText("Prueba Forma A ");
+        jMenuItem9.setText("Prueba Forma B ");
     }
 
     private void habilitarComponentes(boolean habilitar) {
@@ -343,7 +345,7 @@ public class PrincipalView extends javax.swing.JFrame {
         Resultados.setFont(new java.awt.Font("Tahoma", 1, 12));
 
         jMenuItem9.setFont(new java.awt.Font("Tahoma", 1, 12));
-        jMenuItem9.setText("Prueba Periférica");
+        jMenuItem9.setText("Prueba Forma B");
         jMenuItem9.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem9ActionPerformed(evt);
@@ -352,7 +354,7 @@ public class PrincipalView extends javax.swing.JFrame {
         Resultados.add(jMenuItem9);
 
         jMenuItem14.setFont(new java.awt.Font("Tahoma", 1, 12));
-        jMenuItem14.setText("Prueba Foveal");
+        jMenuItem14.setText("Prueba Forma A");
         jMenuItem14.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem14ActionPerformed(evt);
@@ -558,9 +560,9 @@ public class PrincipalView extends javax.swing.JFrame {
         jMenu8.setText("Entrenamiento");
         jMenu8.setFont(new java.awt.Font("Tahoma", 0, 12));
 
-        jMenuItem18.setFont(new java.awt.Font("Tahoma", 0, 12));
+        jMenuItem18.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jMenuItem18.setIcon(new javax.swing.ImageIcon(getClass().getResource("/quino/view/main/icons/package-installed-updated.png"))); // NOI18N
-        jMenuItem18.setText("Foveal");
+        jMenuItem18.setText("Forma A");
         jMenuItem18.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem18ActionPerformed(evt);
@@ -568,9 +570,9 @@ public class PrincipalView extends javax.swing.JFrame {
         });
         jMenu8.add(jMenuItem18);
 
-        jMenuItem19.setFont(new java.awt.Font("Tahoma", 0, 12));
+        jMenuItem19.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jMenuItem19.setIcon(new javax.swing.ImageIcon(getClass().getResource("/quino/view/main/icons/package-broken.png"))); // NOI18N
-        jMenuItem19.setText("Periférica");
+        jMenuItem19.setText("Forma B");
         jMenuItem19.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem19ActionPerformed(evt);
@@ -634,7 +636,7 @@ public class PrincipalView extends javax.swing.JFrame {
 
         jMenu1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/quino/view/main/icons/window_nofullscreen.png"))); // NOI18N
         jMenu1.setText("Herramientas");
-        jMenu1.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jMenu1.setFont(new java.awt.Font("Tahoma", 0, 12));
 
         jMenuItem10.setFont(new java.awt.Font("Tahoma", 0, 12));
         jMenuItem10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/quino/view/main/icons/stock_fullscreen.png"))); // NOI18N
@@ -651,9 +653,9 @@ public class PrincipalView extends javax.swing.JFrame {
 
         jMenu3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/quino/view/main/icons/gtk-about.png"))); // NOI18N
         jMenu3.setText("Ayuda");
-        jMenu3.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jMenu3.setFont(new java.awt.Font("Tahoma", 0, 12));
 
-        jMenuItem15.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jMenuItem15.setFont(new java.awt.Font("Tahoma", 0, 12));
         jMenuItem15.setIcon(new javax.swing.ImageIcon(getClass().getResource("/quino/view/main/icons/gtk-info.png"))); // NOI18N
         jMenuItem15.setText("Acerca de...");
         jMenuItem15.addActionListener(new java.awt.event.ActionListener() {

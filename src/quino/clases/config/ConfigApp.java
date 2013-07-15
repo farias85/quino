@@ -38,7 +38,7 @@ public class ConfigApp {
      * Cantaidad de ensayos de prueba para el entrenamiento, su valor puede
      * cambiar si al cargar la configuración existe otro nuevo valor
      */
-    public static int CANT_ENSAYOS = 3;
+    public static int CANT_ENSAYOS = 1;
 
     /**
      * Tiempo de duración general de un ensayo en una prueba

@@ -5,6 +5,7 @@
 package quino.util;
 
 import java.awt.Dimension;
+import java.awt.Point;
 import java.awt.Toolkit;
 import java.beans.XMLDecoder;
 import java.beans.XMLEncoder;
@@ -314,11 +315,15 @@ public class QuinoTools {
      * @return Distancia entre ambos puntos
      */
     public static double getDistancia(Punto p1, Punto p2) {
-        double varx = Math.pow((p2.getX() - p1.getX()), 2);
-        double vary = Math.pow((p2.getY() - p1.getY()), 2);
-        int res = Toolkit.getDefaultToolkit().getScreenResolution();
-        double distancia = (Math.sqrt(varx + vary) / res) * 2.5;
-        return distancia;
+        Point pt1 = new Point((int) p1.getX(), (int) p1.getY());
+        Point pt2 = new Point((int) p2.getX(), (int) p2.getY());
+        
+        //Resolución en puntos x pulgada
+        int resolucion = Toolkit.getDefaultToolkit().getScreenResolution();
+        //Una pulgada tiene 2.54 cm, la distancia se da en cm
+        double dst = pt1.distance(pt2) / resolucion * 2.54;
+        
+        return dst;
     }
 
     /**
@@ -330,9 +335,12 @@ public class QuinoTools {
      */
     public static double getAngulo(Punto p1, Punto p2) {
         double distancia = getDistancia(p1, p2);
-        double aRad = Math.atan2(distancia, 60);
-        double angulo = Math.toDegrees(aRad);
-        return Math.rint(angulo * 100) / 100;
+        //60cm de separación del paciente y la pantalla mirando al punto central
+        //tangente = seno / coseno; cateto opuesto / cateto adyacente
+        double anguloRad = Math.atan(distancia / 60);
+        double anguloGrados = Math.toDegrees(anguloRad);
+
+        return Math.rint(anguloGrados * 100) / 100;
     }
 
     /**
@@ -367,7 +375,7 @@ public class QuinoTools {
      * @return El Punto(X,Y) del centro de la pantalla
      */
     public static Punto getCentroPantalla() {
-        Dimension d = Toolkit.getDefaultToolkit().getScreenSize();
+        Dimension d = Toolkit.getDefaultToolkit().getScreenSize();        
         double x = d.getWidth() / 2;
         double y = d.getHeight() / 2;
         return new Punto(x, y);

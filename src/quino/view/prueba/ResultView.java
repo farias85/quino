@@ -59,7 +59,7 @@ public class ResultView extends javax.swing.JDialog {
                 DateFormat df = DateFormat.getDateInstance(DateFormat.FULL);
                 fechaLabel.setText(df.format(parent.getPrueba().getFecha()));
 
-                String strPrueba = foveal ? "Foveal" : "Periférica";
+                String strPrueba = foveal ? "Forma A" : "Forma B";
                 tipoLabel.setText(strPrueba);
             } else {
                 throw new Exception("Al paciente seleccionado no se le ha realizado ninguna prueba");

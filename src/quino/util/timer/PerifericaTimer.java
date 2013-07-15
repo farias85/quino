@@ -7,7 +7,6 @@ package quino.util.timer;
 import quino.util.QuinoJPanel;
 import quino.util.CentralJPanel;
 import quino.util.Punto;
-import quino.clases.config.ConfigEnsayo;
 import quino.clases.model.Prueba;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -29,7 +28,7 @@ public class PerifericaTimer extends AbstractQuinoTimer {
     private CentralJPanel panel3;
     private PerifericaTestView test;
 
-    public PerifericaTimer(Prueba prueba, 
+    public PerifericaTimer(Prueba prueba,
             QuinoJPanel panel1, QuinoJPanel panel2, CentralJPanel panel3,
             PerifericaTestView test, boolean practica) {
         super(prueba);
@@ -167,20 +166,17 @@ public class PerifericaTimer extends AbstractQuinoTimer {
 
     @Override
     protected void moverPuntos() {
-        double desplazamientX = test.getLocation().getX();
-        double desplazamientoY = test.getLocation().getY();
-
         switch (ensayo.getPanelEstimulo()) {
             case 0: {
                 panelsRepaint();
             }
             break;
             case 1: {
-                moverPuntoYRepintar(panel1, desplazamientX, desplazamientoY);
+                moverPuntoYRepintar(panel1);
             }
             break;
             case 2: {
-                moverPuntoYRepintar(panel2, desplazamientX, desplazamientoY);
+                moverPuntoYRepintar(panel2);
             }
             break;
         }
@@ -188,23 +184,16 @@ public class PerifericaTimer extends AbstractQuinoTimer {
 
     @Override
     protected double buscarAngulo() {
-        Punto p1 = null;
-        Punto p2 = null;
         double angulo = 0;
-        
+
         if (ensayo.getPanelEstimulo() > 0) {
             if (ensayo.getPanelEstimulo() == 1) {
-                p2 = panel1.MidPunto(false);
+                angulo = panel1.promedioAngulo();
             } else {
-                p2 = panel2.MidPunto(false);
+                angulo = panel2.promedioAngulo();
             }
-            Dimension d = Toolkit.getDefaultToolkit().getScreenSize();
-            double x = d.getWidth() / 2;
-            double y = d.getHeight() / 2;
-            p1 = new Punto(x, y);
-            angulo = QuinoTools.getAngulo(p1, p2);
+            return angulo;
         }
-
-        return angulo;
+        return 0;
     }
 }

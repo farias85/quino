@@ -10,6 +10,7 @@
  */
 package quino.view.prueba;
 
+import java.text.DateFormat;
 import quino.util.Grafica;
 
 import quino.clases.model.Resultado;
@@ -25,6 +26,8 @@ import quino.clases.config.ConfigApp;
 import quino.util.QuinoTools;
 import quino.view.main.ErrorDialog;
 import quino.view.main.PrincipalView;
+import quino.clases.model.Ensayo;
+import quino.clases.config.ConfigEnsayo;
 
 /**
  *
@@ -45,21 +48,23 @@ public class ResultView extends javax.swing.JDialog {
         setLocationRelativeTo(null);
 
         try {
-            List<Resultado> resultados = parent.getPrueba().getResultados();
+            List<Ensayo> ensayos = parent.getPrueba().getEnsayos();
             if (parent.getPrueba() != null) {
-                t_ensayos1.setText(String.valueOf(resultados.size()));
+                t_ensayos1.setText(String.valueOf(ensayos.size()));
                 t_errores1.setText(String.valueOf(parent.getPrueba().cantErrores()));
                 t_denpromedio1.setText(String.valueOf(parent.getPrueba().densidadPromedio()));
                 t_trespg1.setText(String.valueOf(parent.getPrueba().tiempoRespuestaPromedio()));
                 t_densayo.setText(String.valueOf(ConfigApp.TIEMPO_DURACION));
-                //t_interestimulo.setText(String.valueOf(ConfigApp.TIEMPO_DURACION));
+
+                DateFormat df = DateFormat.getDateInstance(DateFormat.FULL);
+                fechaLabel.setText(df.format(parent.getPrueba().getFecha()));
 
                 String strPrueba = foveal ? "Foveal" : "Periférica";
                 tipoLabel.setText(strPrueba);
             } else {
                 throw new Exception("Al paciente seleccionado no se le ha realizado ninguna prueba");
             }
-            this.Arbol((ArrayList<Resultado>) resultados);
+            this.Arbol((ArrayList<Ensayo>) ensayos);
             PintarPastel();
         } catch (Exception e) {
             ErrorDialog err = new ErrorDialog(parent, true, e.getMessage());
@@ -69,11 +74,11 @@ public class ResultView extends javax.swing.JDialog {
         }
     }
 
-    public void Arbol(final ArrayList<Resultado> resultados) {
+    public void Arbol(final ArrayList<Ensayo> ensayos) {
         DefaultMutableTreeNode root = new DefaultMutableTreeNode("Ensayos");
         DefaultTreeModel tm = new DefaultTreeModel(root);
-        for (int i = 0; i < resultados.size(); i++) {
-            String nombre = "Ensayo" + " " + "#" + String.valueOf(resultados.get(i).getNumEnsayo());
+        for (int i = 0; i < ensayos.size(); i++) {
+            String nombre = "Ensayo" + " " + "#" + String.valueOf(i);
             DefaultMutableTreeNode nodo = new DefaultMutableTreeNode(nombre);
             tm.insertNodeInto(nodo, root, i);
         }
@@ -85,24 +90,31 @@ public class ResultView extends javax.swing.JDialog {
                 DefaultMutableTreeNode node = (DefaultMutableTreeNode) (e.getPath().getLastPathComponent());
                 if (node.getParent() != null) {
                     int pos = node.getParent().getIndex(node);
-                    int densidad = resultados.get(pos).getDensidad();
-                    int cantidad = (resultados.get(pos).getCantPuntos() * 100) / densidad;
-                    double velocidad = resultados.get(pos).getVelocidadMovimiento();
-                    ImageIcon direccion = CambiarDireccion(resultados.get(pos).getDireccion(), resultados.get(pos).getPanelEstimulo());
-                    String panel = QuinoTools.getPanelMovimiento(parent.getPrueba(), resultados.get(pos).getPanelEstimulo());
-                    int tiempo_res = resultados.get(pos).getTiempoRespuesta();
-                    ImageIcon resultado = CambiarError(resultados.get(pos).isError());
-                    ImageIcon key = CambiarKey(resultados.get(pos).getKey(), resultados.get(pos).isControl());
-                    String descripcion = resultados.get(pos).getDescripcion();
-                    double vel = resultados.get(pos).getVelocidad();
-                    double angulo = resultados.get(pos).getAngulo();
+                    Ensayo ensayo = ensayos.get(pos);
+                    ConfigEnsayo configEnsayo = ensayo.getConfiguracion();
+                    Resultado resultado = ensayo.getResultado();
+
+                    int densidad = configEnsayo.getDensidad();
+                    int cantidad = (configEnsayo.getCantidad() * 100) / densidad;
+                    double velocidad = configEnsayo.getTiempoMovimiento();
+
+                    ImageIcon dirIcon = CambiarDireccion(configEnsayo.getDireccion(),
+                            ensayo.getPanelEstimulo());
+                    String panel = QuinoTools.getPanelMovimiento(parent.getPrueba(), ensayo.getPanelEstimulo());
+                    int tiempo_res = resultado.getTiempoRespuesta();
+
+                    ImageIcon resultIcon = CambiarError(resultado.isError());
+                    ImageIcon keyIcon = CambiarKey(resultado.getKey(), configEnsayo.isControl());
+                    String descripcion = resultado.getDescripcion();
+                    double vel = resultado.getVelocidad();
+                    double angulo = resultado.getAngulo();
 
                     t_densidad1.setText(String.valueOf(densidad));
                     t_cantidad1.setText(String.valueOf(cantidad) + "%");
                     t_vmov1.setText(String.valueOf(velocidad));
-                    t_direccion1.setIcon(direccion);
+                    t_direccion1.setIcon(dirIcon);
                     t_pestimulo1.setText(panel);
-                    b_keypressed.setIcon(key);
+                    b_keypressed.setIcon(keyIcon);
                     e_desc.setText(descripcion);
                     t_velocidad.setText(Double.toString(vel) + " " + "cm/mls");
                     t_angulo.setText(Double.toString(angulo) + "º");
@@ -112,8 +124,8 @@ public class ResultView extends javax.swing.JDialog {
                     } else {
                         t_trespuesta1.setText(String.valueOf(tiempo_res));
                     }
-                    t_resultado1.setIcon(resultado);
-                    if (resultados.get(pos).getPanelEstimulo() == 0) {
+                    t_resultado1.setIcon(resultIcon);
+                    if (ensayo.getPanelEstimulo() == 0) {
                         t_cantidad1.setText("-");
                         t_vmov1.setText(String.valueOf("-"));
                         t_velocidad.setText("-");
@@ -205,7 +217,7 @@ public class ResultView extends javax.swing.JDialog {
     public void PintarPastel() {
         //int aciertos = prueba.getResultados().size()-prueba.cant_Errores();
         int errores = parent.getPrueba().cantErrores();
-        int perrores = (errores * 100) / parent.getPrueba().getResultados().size();
+        int perrores = (errores * 100) / parent.getPrueba().getEnsayos().size();
         int paciertos = 100 - perrores;
         String laciertos = String.valueOf(paciertos) + "%" + " " + "Aciertos";
         String lerrores = String.valueOf(perrores) + "%" + " " + "Errores";
@@ -247,6 +259,8 @@ public class ResultView extends javax.swing.JDialog {
         t_trespg1 = new javax.swing.JTextField();
         jLabel13 = new javax.swing.JLabel();
         tipoLabel = new javax.swing.JTextField();
+        jLabel14 = new javax.swing.JLabel();
+        fechaLabel = new javax.swing.JTextField();
         jPanel7 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTree1 = new javax.swing.JTree();
@@ -305,7 +319,7 @@ public class ResultView extends javax.swing.JDialog {
         jLabel9.setFont(new java.awt.Font("Tahoma", 1, 12));
         jLabel9.setText("Densidad Promedio:");
 
-        jLabel10.setFont(new java.awt.Font("Tahoma", 1, 12));
+        jLabel10.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel10.setText("Tiempo de Respuesta:");
 
         t_ensayos1.setEditable(false);
@@ -328,13 +342,26 @@ public class ResultView extends javax.swing.JDialog {
         t_trespg1.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         t_trespg1.setBorder(null);
 
-        jLabel13.setFont(new java.awt.Font("Tahoma", 1, 12));
+        jLabel13.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel13.setText("Tipo de Prueba");
 
         tipoLabel.setEditable(false);
-        tipoLabel.setFont(new java.awt.Font("Tahoma", 1, 12));
+        tipoLabel.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         tipoLabel.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         tipoLabel.setBorder(null);
+
+        jLabel14.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel14.setText("Fecha:");
+
+        fechaLabel.setEditable(false);
+        fechaLabel.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        fechaLabel.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        fechaLabel.setBorder(null);
+        fechaLabel.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                fechaLabelActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
@@ -360,7 +387,13 @@ public class ResultView extends javax.swing.JDialog {
                             .addComponent(t_trespg1, javax.swing.GroupLayout.DEFAULT_SIZE, 50, Short.MAX_VALUE)))
                     .addGroup(jPanel5Layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jLabel13)))
+                        .addComponent(jLabel13))
+                    .addGroup(jPanel5Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jLabel14))
+                    .addGroup(jPanel5Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(fechaLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 189, Short.MAX_VALUE)))
                 .addContainerGap())
             .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
@@ -389,14 +422,18 @@ public class ResultView extends javax.swing.JDialog {
                     .addComponent(t_trespg1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel13)
-                .addGap(27, 27, 27)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel14)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel6)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(fechaLabel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(29, 29, 29))
             .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel5Layout.createSequentialGroup()
                     .addGap(95, 95, 95)
                     .addComponent(tipoLabel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(27, Short.MAX_VALUE)))
+                    .addContainerGap(77, Short.MAX_VALUE)))
         );
 
         jPanel7.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Parámetros por Ensayos", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 14))); // NOI18N
@@ -489,7 +526,7 @@ public class ResultView extends javax.swing.JDialog {
         jLabel25.setFont(new java.awt.Font("Tahoma", 1, 12));
         jLabel25.setText("Velocidad de Movimiento:");
 
-        jLabel26.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel26.setFont(new java.awt.Font("Tahoma", 1, 12));
         jLabel26.setText("Ángulo:");
 
         t_velocidad.setEditable(false);
@@ -624,7 +661,7 @@ public class ResultView extends javax.swing.JDialog {
         jLabel11.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel11.setText("Tiempo Interestímulo:");
 
-        jLabel12.setFont(new java.awt.Font("Tahoma", 1, 12));
+        jLabel12.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel12.setText("Duración de Ensayo:");
 
         t_densayo.setEditable(false);
@@ -644,15 +681,15 @@ public class ResultView extends javax.swing.JDialog {
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel11)
                             .addComponent(jLabel12))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(t_densayo, javax.swing.GroupLayout.DEFAULT_SIZE, 76, Short.MAX_VALUE)
-                            .addComponent(t_interestimulo, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 76, Short.MAX_VALUE))))
+                            .addComponent(t_densayo, javax.swing.GroupLayout.DEFAULT_SIZE, 80, Short.MAX_VALUE)
+                            .addComponent(t_interestimulo, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 80, Short.MAX_VALUE)))
+                    .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, 625, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
@@ -663,8 +700,8 @@ public class ResultView extends javax.swing.JDialog {
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(26, 26, 26)
+                        .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(49, 49, 49)
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(t_densayo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel12))
@@ -755,7 +792,7 @@ public class ResultView extends javax.swing.JDialog {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addComponent(Pastel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 142, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 149, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -811,6 +848,10 @@ public class ResultView extends javax.swing.JDialog {
         // TODO add your handling code here:
     }//GEN-LAST:event_t_vmov1ActionPerformed
 
+    private void fechaLabelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fechaLabelActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_fechaLabelActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -834,6 +875,7 @@ public class ResultView extends javax.swing.JDialog {
     private javax.swing.JPanel Pastel;
     private javax.swing.JButton b_keypressed;
     private javax.swing.JTextField e_desc;
+    private javax.swing.JTextField fechaLabel;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
@@ -841,6 +883,7 @@ public class ResultView extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel24;
     private javax.swing.JLabel jLabel25;
     private javax.swing.JLabel jLabel26;

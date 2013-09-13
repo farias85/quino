@@ -8,7 +8,6 @@ import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.SplashScreen;
-import quino.view.main.PrincipalView;
 
 /**
  *
@@ -49,7 +48,7 @@ public final class ScreenSplash {
                 //se actualiza todo
                 splash.update();
                 try {
-                    Thread.sleep(321);
+                    Thread.sleep(/*321*/2);
                 } catch (InterruptedException e) {
                 }
             }

@@ -6,26 +6,68 @@
 package quino.clases.model;
 
 /**
- *
+ * Representa al paciente al cual se le realizan las pruebas
  * @author Felipao
  */
 public class Paciente {
+
+    /**
+     * Nombre completo del paciente
+     */
     private String nombre;
+
+    /**
+     * Edad del paciente
+     */
     private int edad;
+
+    /**
+     * Sexo del paciente
+     */
     private String sexo;
+
+    /**
+     * Escolaridad del paciente. Se refiere al nivel académico obtenido.
+     */
     private String escolaridad;
+
+    /**
+     * Identificador de historia clinica.
+     */
     private String historia;
+
+    /**
+     * Carné de identidad del paciente
+     */
     private long  ci;
+
+    /**
+     * Ficha del paciente, en ella se plasma el seguimiento del paciente
+     * o alguna descripción que se quiera apuntar
+     */
     private String ficha;
-    private Prueba periferica;
-    private Prueba foveal;
+
+    /*
+     * Prueba periférica realizada al paciente.
+     */
+    private PruebaPeriferica periferica;
+
+    /**
+     * Prueba foveal realizada al paciente
+     */
+    private PruebaFoveal foveal;
+
+    /**
+     * Nombre de la escuela del paciente.
+     */
     private String escuela;
 
     public Paciente() {
     }
 
-    public Paciente(String nombre, int edad, String sexo, String escolaridad, String historia, long ci, 
-            String ficha, Prueba periferica, Prueba foveal, String escuela) {
+    public Paciente(String nombre, int edad, String sexo, String escolaridad, 
+            String historia, long ci, String ficha, PruebaPeriferica periferica,
+            PruebaFoveal foveal, String escuela) {
         this.nombre = nombre;
         this.edad = edad;
         this.sexo = sexo;
@@ -94,19 +136,19 @@ public class Paciente {
         this.sexo = sexo;
     }
 
-    public Prueba getFoveal() {
+    public PruebaFoveal getFoveal() {
         return foveal;
     }
 
-    public void setFoveal(Prueba foveal) {
+    public void setFoveal(PruebaFoveal foveal) {
         this.foveal = foveal;
     }
 
-    public Prueba getPeriferica() {
+    public PruebaPeriferica getPeriferica() {
         return periferica;
     }
 
-    public void setPeriferica(Prueba periferica) {
+    public void setPeriferica(PruebaPeriferica periferica) {
         this.periferica = periferica;
     }
 

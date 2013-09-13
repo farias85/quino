@@ -38,7 +38,7 @@ public class FovealTestView extends javax.swing.JDialog {
 
         getContentPane().setBackground(Color.BLACK);
 
-        TimerTask task = new FovealTimer(parent.getPrueba(), parent.getConf(),
+        TimerTask task = new FovealTimer(parent.getPrueba(), 
                 (QuinoJPanel) jPanel1,
                 (QuinoJPanel) jPanel2, (QuinoJPanel) jPanel3,
                 (QuinoJPanel) jPanel4, (QuinoJPanel) jPanel5,

@@ -11,8 +11,9 @@
 package quino.view.prueba;
 
 import quino.view.main.*;
-import quino.clases.config.ConfigPrueba;
-import quino.clases.model.Prueba;
+import quino.clases.config.ConfigEnsayo;
+import quino.clases.model.PruebaFoveal;
+import quino.clases.model.PruebaPeriferica;
 import quino.util.QuinoTools;
 //import clases.prueba.Ensayo;
 
@@ -587,19 +588,17 @@ public class ManualConfigView extends javax.swing.JDialog {
             ensayos = Integer.parseInt(jTextField1.getText());
 
             if (foveal) {
-                parent.setConf(new ConfigPrueba(tiempo_movimiento, densidad,
+                parent.setConf(new ConfigEnsayo(tiempo_movimiento, densidad,
                         cantidad, direccion, asincronico, control));
-                parent.setPrueba(new Prueba(ensayos, foveal));
-                parent.getPrueba().setFoveal(true);
+                parent.setPrueba(new PruebaFoveal(ensayos, parent.getConf()));
                 FovealTestView t = new FovealTestView(parent, true, false);
                 t.setVisible(true);
                 setVisible(false);
                 dispose();
             } else {
-                parent.setConf(new ConfigPrueba(tiempo_movimiento, densidad,
+                parent.setConf(new ConfigEnsayo(tiempo_movimiento, densidad,
                         cantidad, direccion, asincronico, control));
-                parent.setPrueba(new Prueba(ensayos, foveal));
-                parent.getPrueba().setFoveal(false);
+                parent.setPrueba(new PruebaPeriferica(ensayos, parent.getConf()));
                 PerifericaTestView t = new PerifericaTestView(parent, true, false);
                 t.setVisible(true);
                 setVisible(false);
@@ -616,7 +615,7 @@ public class ManualConfigView extends javax.swing.JDialog {
         try {
             int dens = Integer.parseInt(jTextField2.getText());
             int porciento = Integer.parseInt(jTextField3.getText());
-            double cant = QuinoTools.porcientoDuracion(porciento, dens);
+            double cant = QuinoTools.porciento(porciento, dens);
             jTextField4.setText(Double.toString(cant));
         } catch (Exception e) {
         }

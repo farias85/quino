@@ -55,9 +55,9 @@ public class AvanzadaConfigView extends javax.swing.JDialog {
                 double preparado = Double.parseDouble(jTextField3.getText());
                 double esperandoRespuesta = Double.parseDouble(jTextField4.getText());
 
-                jLabel3.setText(String.valueOf(QuinoTools.porcientoDuracion(enEspera, tiempoDuracion)) + " mls");
-                jLabel6.setText(String.valueOf(QuinoTools.porcientoDuracion(preparado, tiempoDuracion)) + " mls");
-                jLabel7.setText(String.valueOf(QuinoTools.porcientoDuracion(esperandoRespuesta, tiempoDuracion)) + " mls");
+                jLabel3.setText(String.valueOf(QuinoTools.porciento(enEspera, tiempoDuracion)) + " mls");
+                jLabel6.setText(String.valueOf(QuinoTools.porciento(preparado, tiempoDuracion)) + " mls");
+                jLabel7.setText(String.valueOf(QuinoTools.porciento(esperandoRespuesta, tiempoDuracion)) + " mls");
             }
         } catch (Exception e) {
         }

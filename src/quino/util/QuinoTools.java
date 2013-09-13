@@ -21,6 +21,8 @@ import javax.swing.JOptionPane;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import quino.clases.config.ConfigApp;
 import quino.clases.model.Prueba;
+import quino.clases.model.PruebaFoveal;
+import quino.clases.model.PruebaPeriferica;
 import quino.view.main.ErrorDialog;
 import quino.view.main.PrincipalView;
 
@@ -42,8 +44,47 @@ public class QuinoTools {
         return (int) (strlength * 2600 / 9);
     }
 
+    /**
+     * Devuelve el codigo ascii de la tecla presionada. Especificamente las
+     * teclas del num lock con las cuales se controla el movimiento
+     * @param direccion Ladireccion del movimiento
+     * @return El codigo ascci de la tecla presionada
+     */
+    public static int getKeyDireccion(int direccion) {
+        int key = -1;
+        switch (direccion) {
+            case 1:
+                key = 104;
+                break;
+            case 2:
+                key = 98;
+                break;
+            case 3:
+                key = 102;
+                break;
+            case 4:
+                key = 100;
+                break;
+            case 5:
+                key = 105;
+                break;
+            case 6:
+                key = 103;
+                break;
+            case 7:
+                key = 99;
+                break;
+            case 8:
+                key = 97;
+                break;
+            default:
+                key = -1;
+        }
+        return key;
+    }
+
     public static String getPanelMovimiento(Prueba prueba, int panel) {
-        if (prueba.isFoveal()) {
+        if (prueba instanceof PruebaFoveal) {
             switch (panel) {
                 case 1:
                     return "Superior Izquierdo";
@@ -79,9 +120,9 @@ public class QuinoTools {
     public static void salvarPruebaEnRegistro(PrincipalView principalView, JDialog testView, Prueba prueba) {
         int option = -1;
 
-        Prueba pruebaActual = prueba.isFoveal() ? principalView.getPacienteActual().getFoveal()
+        Prueba pruebaActual = prueba instanceof PruebaFoveal ? principalView.getPacienteActual().getFoveal()
                 : principalView.getPacienteActual().getPeriferica();
-        String nombrePrueba = prueba.isFoveal() ? "Foveal" : "Periférica";
+        String nombrePrueba = prueba instanceof PruebaFoveal ? "Foveal" : "Periférica";
 
         try {
             if (pruebaActual != null) {
@@ -90,10 +131,10 @@ public class QuinoTools {
                         + "¿Desea sobreescribir la prueba realizada?", "Advertencia", JOptionPane.YES_NO_OPTION);
                 switch (option) {
                     case 0: {
-                        if (prueba.isFoveal()) {
-                            principalView.getPacienteActual().setFoveal(prueba);
+                        if (prueba instanceof PruebaFoveal) {
+                            principalView.getPacienteActual().setFoveal((PruebaFoveal) prueba);
                         } else {
-                            principalView.getPacienteActual().setPeriferica(prueba);
+                            principalView.getPacienteActual().setPeriferica((PruebaPeriferica) prueba);
                         }
                         principalView.getRegistro().salvarRegistro(ConfigApp.REGISTRO_FILE_NAME);
                         principalView.modificarTableModel();
@@ -103,10 +144,10 @@ public class QuinoTools {
                         break;
                 }
             } else {
-                if (prueba.isFoveal()) {
-                    principalView.getPacienteActual().setFoveal(prueba);
+                if (prueba instanceof PruebaFoveal) {
+                    principalView.getPacienteActual().setFoveal((PruebaFoveal) prueba);
                 } else {
-                    principalView.getPacienteActual().setPeriferica(prueba);
+                    principalView.getPacienteActual().setPeriferica((PruebaPeriferica) prueba);
                 }
                 principalView.getRegistro().salvarRegistro(ConfigApp.REGISTRO_FILE_NAME);
                 principalView.modificarTableModel();
@@ -223,7 +264,7 @@ public class QuinoTools {
      * @param porcentaje Valor del procentaje
      * @return El valor del porciento respecto al tiempo de duración
      */
-    public static double porcientoDuracion(double porcentaje, double tiempoDuracion) {
+    public static double porciento(double porcentaje, double tiempoDuracion) {
         //return Double.parseDouble(ConfigApp.DECIMAL_FORMAT.format(porcentaje * tiempoDuracion / 100));
         return Math.rint((porcentaje * tiempoDuracion / 100) * 100) / 100;
     }
@@ -254,7 +295,7 @@ public class QuinoTools {
         return getAngulo(p1, p2);
     }
 
-    private static Punto getCentroPantalla(){
+    private static Punto getCentroPantalla() {
         Dimension d = Toolkit.getDefaultToolkit().getScreenSize();
         double x = d.getWidth() / 2;
         double y = d.getHeight() / 2;

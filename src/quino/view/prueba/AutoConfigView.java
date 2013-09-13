@@ -11,8 +11,9 @@
 package quino.view.prueba;
 
 import quino.view.main.*;
-import quino.clases.config.ConfigPruebaAuto;
-import quino.clases.model.Prueba;
+import quino.clases.config.ConfigEnsayoAuto;
+import quino.clases.model.PruebaFoveal;
+import quino.clases.model.PruebaPeriferica;
 
 /**
  *
@@ -188,18 +189,20 @@ public class AutoConfigView extends javax.swing.JDialog {
             }
             
             control = jCheckBox1.isSelected();
-            parent.setConf(new ConfigPruebaAuto(control));
-            parent.setPrueba(new Prueba(cant_ensayos, foveal));
+            parent.setConf(new ConfigEnsayoAuto(control));
 
             if (foveal) {
                 parent.getConf().setDensidad((parent.getConf().getDensidad() / 8));
-                parent.getPrueba().setFoveal(true);
+                parent.setPrueba(new PruebaFoveal(cant_ensayos, parent.getConf()));
+                
                 FovealTestView t = new FovealTestView(parent, true, false);
                 t.setVisible(true);
                 setVisible(false);
                 dispose();
             } else {
-                parent.getPrueba().setFoveal(false);
+                parent.getConf().setDensidad((parent.getConf().getDensidad() / 8));
+                parent.setPrueba(new PruebaPeriferica(cant_ensayos, parent.getConf()));
+                
                 PerifericaTestView test = new PerifericaTestView(parent, true, false);
                 test.setVisible(true);
                 setVisible(false);

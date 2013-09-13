@@ -4,12 +4,13 @@
  */
 package quino.test.main;
 
-import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import quino.clases.config.ConfigApp;
+import quino.clases.config.ConfigEnsayoAuto;
 import quino.clases.model.Paciente;
-import quino.clases.model.Prueba;
+import quino.clases.model.PruebaFoveal;
+import quino.clases.model.PruebaPeriferica;
 import quino.clases.model.Registro;
 import quino.clases.model.Resultado;
 import quino.util.Aleatorio;
@@ -28,31 +29,24 @@ public class MainData {
 
             for (int i = 0; i < 100; i++) {
 
-                Prueba foveal = new Prueba(random.nextInt(5, 9), true);
+                PruebaFoveal foveal = new PruebaFoveal(random.nextInt(5, 9),
+                        new ConfigEnsayoAuto(false));
                 for (int j = 0; j < foveal.getCantEnsayos(); j++) {
                     boolean error = j % 3 == 0 ? true : false;
-                    boolean asincronico = j % 4 == 0 ? true : false;
-                    Resultado results = new Resultado(random.nextInt(0, 3),
-                            random.nextInt(300, 620), random.nextInt(0, 8), random.nextInt(20, 500),
-                            random.nextInt(10, 100), error, j, random.nextInt(1, 8),
-                            asincronico, "Descrip", 32, false, random.nextDouble(),
+                    Resultado results = new Resultado(random.nextInt(300, 620),
+                            error, "Descrip", 32, random.nextDouble(),
                             random.nextInt(5, 15));
-
-                    foveal.getResultados().add(results);
+                    foveal.getEnsayos().get(j).setResultado(results);
                 }
 
-                Prueba periferica = new Prueba(random.nextInt(2, 8), false);
+                PruebaPeriferica periferica = new PruebaPeriferica(random.nextInt(2, 8),
+                        new ConfigEnsayoAuto(false));
                 for (int j = 0; j < periferica.getCantEnsayos(); j++) {
                     boolean error = j % 2 == 0 ? true : false;
-                    boolean asincronico = j % 3 == 0 ? true : false;
-
-                    Resultado results = new Resultado(random.nextInt(0, 3),
-                            random.nextInt(300, 620), random.nextInt(0, 8), random.nextInt(20, 500),
-                            random.nextInt(10, 100), error, j, random.nextInt(1, 8),
-                            asincronico, "Descrip", 32, false, random.nextDouble(),
+                   Resultado results = new Resultado(random.nextInt(300, 620),
+                            error, "Descrip", 32, random.nextDouble(),
                             random.nextInt(5, 15));
-
-                    periferica.getResultados().add(results);
+                    periferica.getEnsayos().get(j).setResultado(results);
                 }
 
                 String anno = String.valueOf(random.nextInt(10, 99));
@@ -77,17 +71,12 @@ public class MainData {
                         sexo, escolaridad, historia, ci, "Ficha",
                         periferica, foveal, "Amigos de todos");
 
-                paciente.setPeriferica(periferica);
-                paciente.setFoveal(foveal);
-
                 registro.nuevoPaciente(paciente);
             }
 
             registro.salvarRegistro(ConfigApp.REGISTRO_FILE_NAME);
 
-        } catch (IOException ex) {
-            Logger.getLogger(MainData.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (ClassNotFoundException ex) {
+        } catch (Exception ex) {
             Logger.getLogger(MainData.class.getName()).log(Level.SEVERE, null, ex);
         }
     }

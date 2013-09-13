@@ -7,7 +7,10 @@ package quino.util.timer;
 import quino.util.QuinoJPanel;
 import quino.util.CentralJPanel;
 import quino.util.Punto;
+<<<<<<< HEAD
 import quino.clases.config.ConfigEnsayo;
+=======
+>>>>>>> b4b1a9087c50544423bd17c82b4fe43f6dfcf7e4
 import quino.clases.model.Prueba;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -29,7 +32,11 @@ public class PerifericaTimer extends AbstractQuinoTimer {
     private CentralJPanel panel3;
     private PerifericaTestView test;
 
+<<<<<<< HEAD
     public PerifericaTimer(Prueba prueba, 
+=======
+    public PerifericaTimer(Prueba prueba,
+>>>>>>> b4b1a9087c50544423bd17c82b4fe43f6dfcf7e4
             QuinoJPanel panel1, QuinoJPanel panel2, CentralJPanel panel3,
             PerifericaTestView test, boolean practica) {
         super(prueba);
@@ -167,20 +174,23 @@ public class PerifericaTimer extends AbstractQuinoTimer {
 
     @Override
     protected void moverPuntos() {
+<<<<<<< HEAD
         double desplazamientX = test.getLocation().getX();
         double desplazamientoY = test.getLocation().getY();
 
+=======
+>>>>>>> b4b1a9087c50544423bd17c82b4fe43f6dfcf7e4
         switch (ensayo.getPanelEstimulo()) {
             case 0: {
                 panelsRepaint();
             }
             break;
             case 1: {
-                moverPuntoYRepintar(panel1, desplazamientX, desplazamientoY);
+                moverPuntoYRepintar(panel1);
             }
             break;
             case 2: {
-                moverPuntoYRepintar(panel2, desplazamientX, desplazamientoY);
+                moverPuntoYRepintar(panel2);
             }
             break;
         }
@@ -188,23 +198,23 @@ public class PerifericaTimer extends AbstractQuinoTimer {
 
     @Override
     protected double buscarAngulo() {
-        Punto p1 = null;
-        Punto p2 = null;
         double angulo = 0;
+<<<<<<< HEAD
         
         if (ensayo.getPanelEstimulo() > 0) {
             if (ensayo.getPanelEstimulo() == 1) {
                 p2 = panel1.MidPunto(false);
-            } else {
-                p2 = panel2.MidPunto(false);
-            }
-            Dimension d = Toolkit.getDefaultToolkit().getScreenSize();
-            double x = d.getWidth() / 2;
-            double y = d.getHeight() / 2;
-            p1 = new Punto(x, y);
-            angulo = QuinoTools.getAngulo(p1, p2);
-        }
+=======
 
-        return angulo;
+        if (ensayo.getPanelEstimulo() > 0) {
+            if (ensayo.getPanelEstimulo() == 1) {
+                angulo = panel1.promedioAngulo();
+>>>>>>> b4b1a9087c50544423bd17c82b4fe43f6dfcf7e4
+            } else {
+                angulo = panel2.promedioAngulo();
+            }
+            return angulo;
+        }
+        return 0;
     }
 }

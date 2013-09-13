@@ -9,8 +9,8 @@ import java.awt.Graphics;
 import java.util.Random;
 
 /**
- *
- * @author Felipao
+ * Representa un punto de cada panel
+ * @author Felipe Rodriguez Arias
  */
 public class Punto {
 
@@ -39,11 +39,21 @@ public class Punto {
         this.y = random.nextInt(alto);
     }
 
+    /**
+     * Constructor para valores enteros de cordenada de punto. El punto se crea
+     * exactamente con los valores de los parametros
+     * @param x
+     * @param y
+     */
     public Punto(double x, double y) {
         this.x = (int) x;
         this.y = (int) y;
     }
 
+    /**
+     * Mueve un punto de una posición a otra en dependencia de la direción
+     * @param direccion La dirección a mover el punto
+     */
     public void mover(int direccion) {
         switch (direccion) {
             case 1: {

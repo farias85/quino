@@ -43,7 +43,7 @@ import quino.clases.model.PruebaFoveal;
 import quino.clases.model.PruebaPeriferica;
 import quino.util.QuinoTableModel;
 import quino.util.QuinoTools;
-import quino.util.ScreenSplash;
+import quino.util.QuinoSplash;
 import quino.util.report.AbstractInformeExcel;
 import quino.util.report.InformeCampoVisual;
 import quino.util.report.InformeParametrosXEnsayo;
@@ -158,7 +158,13 @@ public class PrincipalView extends javax.swing.JFrame {
         b_fich.setToolTipText("Mostrar la Ficha del Paciente seleccionado");
         b_mod.setToolTipText("Modificar el Paciente seleccionado");
         b_prueba.setToolTipText("Realizar Prueba al Paciente seleccionado");
+<<<<<<< HEAD
         jMenuItem4.setText("Prueba Foveal");
+=======
+
+        jMenuItem4.setText("Prueba Forma A ");
+        jMenuItem9.setText("Prueba Forma B ");
+>>>>>>> b4b1a9087c50544423bd17c82b4fe43f6dfcf7e4
     }
 
     private void habilitarComponentes(boolean habilitar) {
@@ -201,9 +207,9 @@ public class PrincipalView extends javax.swing.JFrame {
         jTable1.getColumnModel().getColumn(4).setCellRenderer(tcr);
         jTable1.getColumnModel().getColumn(4).setPreferredWidth(20);
         jTable1.getColumnModel().getColumn(5).setCellRenderer(tcr);
-        jTable1.getColumnModel().getColumn(5).setPreferredWidth(80);
+        jTable1.getColumnModel().getColumn(5).setPreferredWidth(30);
         jTable1.getColumnModel().getColumn(6).setCellRenderer(tcr);
-        jTable1.getColumnModel().getColumn(6).setPreferredWidth(30);
+        jTable1.getColumnModel().getColumn(6).setPreferredWidth(80);
     }
 
     public boolean itemSelected() {
@@ -560,11 +566,10 @@ public class PrincipalView extends javax.swing.JFrame {
 
         jMenu8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/quino/view/main/icons/view-list-details-symbolic.png"))); // NOI18N
         jMenu8.setText("Entrenamiento");
-        jMenu8.setFont(new java.awt.Font("Tahoma", 0, 12));
 
         jMenuItem18.setFont(new java.awt.Font("Tahoma", 0, 12));
         jMenuItem18.setIcon(new javax.swing.ImageIcon(getClass().getResource("/quino/view/main/icons/package-installed-updated.png"))); // NOI18N
-        jMenuItem18.setText("Foveal");
+        jMenuItem18.setText("Forma A");
         jMenuItem18.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem18ActionPerformed(evt);
@@ -574,7 +579,7 @@ public class PrincipalView extends javax.swing.JFrame {
 
         jMenuItem19.setFont(new java.awt.Font("Tahoma", 0, 12));
         jMenuItem19.setIcon(new javax.swing.ImageIcon(getClass().getResource("/quino/view/main/icons/package-broken.png"))); // NOI18N
-        jMenuItem19.setText("Periférica");
+        jMenuItem19.setText("Forma B");
         jMenuItem19.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem19ActionPerformed(evt);
@@ -632,7 +637,7 @@ public class PrincipalView extends javax.swing.JFrame {
         jMenu4.setText("Paciente   ");
         jMenu4.setFont(new java.awt.Font("Tahoma", 0, 12));
 
-        jMenuItem4.setFont(new java.awt.Font("Tahoma", 0, 12));
+        jMenuItem4.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jMenuItem4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/quino/view/main/icons/stock_new-bcard.png"))); // NOI18N
         jMenuItem4.setText("Nuevo");
         jMenuItem4.addActionListener(new java.awt.event.ActionListener() {
@@ -931,6 +936,7 @@ public class PrincipalView extends javax.swing.JFrame {
         aboutJDialog.setVisible(true);
     }//GEN-LAST:event_jMenuItem15ActionPerformed
 
+<<<<<<< HEAD
     private void jMenuItem20ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem20ActionPerformed
         // TODO add your handling code here:
         conf = new ConfigEnsayoAuto(false);
@@ -945,12 +951,14 @@ public class PrincipalView extends javax.swing.JFrame {
         etv.setVisible(true);
     }//GEN-LAST:event_jMenuItem21ActionPerformed
 
+=======
+>>>>>>> b4b1a9087c50544423bd17c82b4fe43f6dfcf7e4
     /**
      * @param args the command line arguments
      */
     public static void main(String args[]) {
 
-        new ScreenSplash().animar();
+        new QuinoSplash().animar();
 
         java.awt.EventQueue.invokeLater(new Runnable() {
 

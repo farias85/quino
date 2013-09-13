@@ -12,16 +12,25 @@ import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 
 import javax.swing.JPanel;
-import quino.clases.config.ConfigApp;
 
 /**
+ * Representa al panel donde se pintan los puntos
+ * @author Felipe Rodriguez Arias
  *
- * @author Felipao
  */
 public class QuinoJPanel extends JPanel {
 
+    /**
+     * Lista de puntos q serán dibujados en el panel
+     */
     private ArrayList<Punto> puntos = new ArrayList<Punto>();
+    /**
+     * Cantidad de puntos a mover respecto a la densidad
+     */
     private int cantidad;
+    /**
+     * Densidad de puntos que se dibujaran
+     */
     private int densidad;
 
     public QuinoJPanel(int densidad, int cantidad) {
@@ -29,6 +38,10 @@ public class QuinoJPanel extends JPanel {
         this.densidad = densidad;
     }
 
+    /**
+     * Método para pintar el panel
+     * @param g Objeto Graphics de la super clase
+     */
     @Override
     public void paint(Graphics g) {
         super.paint(g);
@@ -39,7 +52,13 @@ public class QuinoJPanel extends JPanel {
         }
     }
 
-    public void moverEnDireccion(int direccion, double desplazamientX, double desplazamientoY) {
+    /**
+     * Mueve en una direccion la cantidad de puntos asignada en la creación del jpanel
+     * @param direccion La direccion del movimiento
+     * @param desplazamientX El desplazamiento en el eje X respecto al borde lateral izquierdo de la pantalla
+     * @param desplazamientoY El desplazamiento en el eje Y respecto al borde superior de la pantalla
+     */
+    public void moverEnDireccion(int direccion) {
         for (int i = 0; i < cantidad; i++) {
             Aleatorio dir = new Aleatorio();
             int pos = dir.nextInt(0, puntos.size() - 1);
@@ -47,14 +66,21 @@ public class QuinoJPanel extends JPanel {
             Punto p1 = new Punto(puntos.get(pos).getX(), puntos.get(pos).getY());
             puntos.get(pos).mover(direccion);
             Punto p2 = puntos.get(pos);
-            actualizarAnguloPuntos(p1, p2, desplazamientX, desplazamientoY);
+            actualizarAnguloPuntos(p1, p2);
         }
     }
 
-    public void actualizarAnguloPuntos(Punto p1, Punto p2, double desplazamientX, double desplazamientoY) {
-        desplazamientX += this.getLocation().getX();
-        desplazamientoY += this.getLocation().getY();
-        
+    /**
+     * Actualiza el angulo desplazado en cada punto q se ha movido
+     * @param p1 Punto inicial o de partida
+     * @param p2 Punto de llegada o final
+     * @param desplazamientX El desplazamiento en el eje X respecto al borde lateral izquierdo de la pantalla
+     * @param desplazamientoY El desplazamiento en el eje Y respecto al borde superior de la pantalla
+     */
+    public void actualizarAnguloPuntos(Punto p1, Punto p2) {
+        double desplazamientX = getLocationOnScreen().getX();
+        double desplazamientoY = getLocationOnScreen().getY();
+
         Punto antes = new Punto(p1.getX() + desplazamientX, p1.getY() + desplazamientoY);
         double anguloAntes = QuinoTools.getAngulo(antes);
 
@@ -69,7 +95,12 @@ public class QuinoJPanel extends JPanel {
         //angulo = (anguloActual + anguloDespues) / 2;
     }
 
-    public void moverAsincronico(double desplazamientX, double desplazamientoY) {
+    /**
+     * Mueve asincronicamente los puntos del jpanel
+     * @param desplazamientX El desplazamiento en el eje X respecto al borde lateral izquierdo de la pantalla
+     * @param desplazamientoY El desplazamiento en el eje Y respecto al borde superior de la pantalla
+     */
+    public void moverAsincronico() {
         for (int i = 0; i < cantidad; i++) {
             Aleatorio dir = new Aleatorio();
             int x = dir.nextInt(1, 8);
@@ -78,10 +109,14 @@ public class QuinoJPanel extends JPanel {
             Punto p1 = new Punto(puntos.get(pos).getX(), puntos.get(pos).getY());
             puntos.get(pos).mover(x);
             Punto p2 = puntos.get(pos);
-            actualizarAnguloPuntos(p1, p2, desplazamientX, desplazamientoY);
+            actualizarAnguloPuntos(p1, p2);
         }
     }
 
+    /**
+     * Actualiza el contenido del panel a travez del método paint
+     * @param g
+     */
     @Override
     public void update(Graphics g) {
         super.update(g);
@@ -91,10 +126,18 @@ public class QuinoJPanel extends JPanel {
         g.drawImage(image, 0, 0, this);
     }
 
+    /**
+     * Limpia el panel
+     */
     public void clear() {
         puntos.clear();
     }
 
+    /**
+     * Reconfigura la cantidad y densidad de puntos a dibujar en el panel
+     * @param densidad Densidad de puntos
+     * @param cantidad Cantidad de puntos a mover
+     */
     public void rellenar(int densidad, int cantidad) {
         this.cantidad = cantidad;
         this.densidad = densidad;
@@ -105,23 +148,10 @@ public class QuinoJPanel extends JPanel {
         }
     }
 
-    public Punto MidPunto(boolean fob) {
-        //NO SE Q SE HACE ACÁ
-        //VER ESTO
-
-        if (fob) {
-            return puntos.get(cantidad / 4);
-        } else {
-            return puntos.get(cantidad / 2);
-        }
-
-        //ESTO LO PUSE YO DE EJEMPLO PQ LO ANTERIOR EXPLOTA Y NO SE LO Q ES
-        /*if (puntos.size() > 0) {
-        return puntos.get(0);
-        }
-        return new Punto(1, 1);*/
-    }
-
+    /**
+     * Calcula el promedio de los angulos de los puntos q se movieron
+     * @return El promedio de los angulos de los puntos
+     */
     public double promedioAngulo() {
         int puntosMovidos = 0;
         double sumatoriaAngulos = 0;
@@ -132,6 +162,6 @@ public class QuinoJPanel extends JPanel {
                 sumatoriaAngulos += puntos.get(i).getAngulo();
             }
         }
-        return Double.parseDouble(ConfigApp.DECIMAL_FORMAT.format(sumatoriaAngulos / puntosMovidos));
+        return Math.rint((sumatoriaAngulos / puntosMovidos) * 100) / 100;
     }
 }

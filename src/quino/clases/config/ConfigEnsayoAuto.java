@@ -33,7 +33,11 @@ public class ConfigEnsayoAuto extends ConfigEnsayo {
     public ConfigEnsayoAuto(boolean control) {
 
         Aleatorio random = new Aleatorio();
+<<<<<<< HEAD
         densidad = random.nextInt(300, 1500);
+=======
+        densidad = random.nextInt(50, 1500);
+>>>>>>> b4b1a9087c50544423bd17c82b4fe43f6dfcf7e4
         direccion = random.nextInt(0, 8);
 
         int porciento = random.nextInt(5, 80);

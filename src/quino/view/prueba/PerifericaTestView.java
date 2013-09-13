@@ -35,6 +35,7 @@ public class PerifericaTestView extends javax.swing.JDialog {
         this.parent = parent;
         initComponents();
         setLocationRelativeTo(null);
+        setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
 
         getContentPane().setBackground(Color.BLACK);
 

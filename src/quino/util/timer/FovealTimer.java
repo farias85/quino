@@ -159,8 +159,6 @@ public class FovealTimer extends AbstractQuinoTimer {
 
     @Override
     protected void moverPuntos() {
-        double desplazamientX = test.getLocation().getX();
-        double desplazamientoY = test.getLocation().getY();
 
         switch (ensayo.getPanelEstimulo()) {
             case 0: {
@@ -168,35 +166,35 @@ public class FovealTimer extends AbstractQuinoTimer {
             }
             break;
             case 1: {
-                moverPuntoYRepintar(panel1, desplazamientX, desplazamientoY);
+                moverPuntoYRepintar(panel1);
             }
             break;
             case 2: {
-                moverPuntoYRepintar(panel2, desplazamientX, desplazamientoY);
+                moverPuntoYRepintar(panel2);
             }
             break;
             case 3: {
-                moverPuntoYRepintar(panel3, desplazamientX, desplazamientoY);
+                moverPuntoYRepintar(panel3);
             }
             break;
             case 4: {
-                moverPuntoYRepintar(panel4, desplazamientX, desplazamientoY);
+                moverPuntoYRepintar(panel4);
             }
             break;
             case 5: {
-                moverPuntoYRepintar(panel5, desplazamientX, desplazamientoY);
+                moverPuntoYRepintar(panel5);
             }
             break;
             case 6: {
-                moverPuntoYRepintar(panel6, desplazamientX, desplazamientoY);
+                moverPuntoYRepintar(panel6);
             }
             break;
             case 7: {
-                moverPuntoYRepintar(panel7, desplazamientX, desplazamientoY);
+                moverPuntoYRepintar(panel7);
             }
             break;
             case 8: {
-                moverPuntoYRepintar(panel8, desplazamientX, desplazamientoY);
+                moverPuntoYRepintar(panel8);
             }
             break;
         }

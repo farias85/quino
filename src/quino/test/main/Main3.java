@@ -10,7 +10,6 @@ import java.util.Date;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import quino.clases.model.Segment2D;
 import quino.clases.model.Segment2DGuia;
-import quino.clases.edition2nd.old.Segment2DOld;
 import quino.util.Aleatorio;
 import quino.util.QuinoTools;
 import quino.util.report.AbstractInformeExcel;

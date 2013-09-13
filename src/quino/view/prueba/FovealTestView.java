@@ -36,14 +36,11 @@ public class FovealTestView extends javax.swing.JDialog {
         initComponents();
         setLocationRelativeTo(null);
         setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
-        
+
         getContentPane().setBackground(Color.BLACK);
 
-<<<<<<< HEAD
-        TimerTask task = new FovealTimer(parent.getPrueba(), 
-=======
+
         TimerTask task = new FovealTimer(parent.getPrueba(),
->>>>>>> b4b1a9087c50544423bd17c82b4fe43f6dfcf7e4
                 (QuinoJPanel) jPanel1,
                 (QuinoJPanel) jPanel2, (QuinoJPanel) jPanel3,
                 (QuinoJPanel) jPanel4, (QuinoJPanel) jPanel5,
@@ -60,17 +57,17 @@ public class FovealTestView extends javax.swing.JDialog {
     }
 
     private void juntarPaneles() {
-        jPanel1.setLocation((int)jPanel1.getLocation().getX() + 6, (int)jPanel1.getLocation().getY() + 6);
-        jPanel4.setLocation((int)jPanel4.getLocation().getX() + 6, (int)jPanel4.getLocation().getY());
-        jPanel6.setLocation((int)jPanel6.getLocation().getX() + 6, (int)jPanel6.getLocation().getY() - 6);
+        jPanel1.setLocation((int) jPanel1.getLocation().getX() + 6, (int) jPanel1.getLocation().getY() + 6);
+        jPanel4.setLocation((int) jPanel4.getLocation().getX() + 6, (int) jPanel4.getLocation().getY());
+        jPanel6.setLocation((int) jPanel6.getLocation().getX() + 6, (int) jPanel6.getLocation().getY() - 6);
 
-        jPanel3.setLocation((int)jPanel3.getLocation().getX() - 6, (int)jPanel3.getLocation().getY() + 6);
-        jPanel5.setLocation((int)jPanel5.getLocation().getX() - 6, (int)jPanel5.getLocation().getY());
-        jPanel8.setLocation((int)jPanel8.getLocation().getX() - 6, (int)jPanel8.getLocation().getY() - 6);
+        jPanel3.setLocation((int) jPanel3.getLocation().getX() - 6, (int) jPanel3.getLocation().getY() + 6);
+        jPanel5.setLocation((int) jPanel5.getLocation().getX() - 6, (int) jPanel5.getLocation().getY());
+        jPanel8.setLocation((int) jPanel8.getLocation().getX() - 6, (int) jPanel8.getLocation().getY() - 6);
 
-        
-        jPanel2.setLocation((int)jPanel2.getLocation().getX(), (int)jPanel2.getLocation().getY() + 6);
-        jPanel7.setLocation((int)jPanel7.getLocation().getX(), (int)jPanel7.getLocation().getY() - 6);
+
+        jPanel2.setLocation((int) jPanel2.getLocation().getX(), (int) jPanel2.getLocation().getY() + 6);
+        jPanel7.setLocation((int) jPanel7.getLocation().getX(), (int) jPanel7.getLocation().getY() - 6);
     }
 
     @SuppressWarnings("unchecked")

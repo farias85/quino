@@ -4,15 +4,12 @@
  */
 package quino.test.main;
 
-<<<<<<< HEAD
 import java.awt.Point;
-=======
->>>>>>> b4b1a9087c50544423bd17c82b4fe43f6dfcf7e4
 import java.text.DateFormat;
 import java.util.Date;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
-import quino.clases.edition2nd.Segment2D;
-import quino.clases.edition2nd.Segment2DGuia;
+import quino.clases.model.Segment2D;
+import quino.clases.model.Segment2DGuia;
 import quino.clases.edition2nd.old.Segment2DOld;
 import quino.util.Aleatorio;
 import quino.util.QuinoTools;
@@ -26,15 +23,10 @@ import quino.util.report.InformeParametrosXEnsayo;
 public class Main3 {
 
     public static void main(String[] args) {
-<<<<<<< HEAD
+
         /*DateFormat df = DateFormat.getDateInstance(DateFormat.FULL);
         Date fecha =  new Date();
         System.out.println(df.format(fecha));*/
-=======
-        DateFormat df = DateFormat.getDateInstance(DateFormat.FULL);
-        Date fecha =  new Date();
-        System.out.println(df.format(fecha));
->>>>>>> b4b1a9087c50544423bd17c82b4fe43f6dfcf7e4
 
         /*HSSFWorkbook book = new HSSFWorkbook();
         

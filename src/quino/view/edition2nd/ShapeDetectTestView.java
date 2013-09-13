@@ -18,7 +18,7 @@ import quino.util.timer.PerifericaTimer;
 import java.awt.Color;
 import java.util.Timer;
 import java.util.TimerTask;
-import quino.clases.edition2nd.ShapeJPanel;
+import quino.clases.model.ShapeJPanel;
 import quino.util.timer.ShapeTimer;
 
 /**
@@ -68,8 +68,8 @@ public class ShapeDetectTestView extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new quino.clases.edition2nd.ShapeJPanel(parent.getConf().getDensidad(), parent.getConf().getCantidad());
-        jPanel2 = new quino.clases.edition2nd.ShapeJPanel(parent.getConf().getDensidad(), parent.getConf().getCantidad());
+        jPanel1 = new quino.clases.model.ShapeJPanel(parent.getConf().getDensidad(), parent.getConf().getCantidad());
+        jPanel2 = new quino.clases.model.ShapeJPanel(parent.getConf().getDensidad(), parent.getConf().getCantidad());
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setIconImage(null);

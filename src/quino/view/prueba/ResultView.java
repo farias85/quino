@@ -55,12 +55,6 @@ public class ResultView extends javax.swing.JDialog {
                 t_denpromedio1.setText(String.valueOf(parent.getPrueba().densidadPromedio()));
                 t_trespg1.setText(String.valueOf(parent.getPrueba().tiempoRespuestaPromedio()));
                 t_densayo.setText(String.valueOf(ConfigApp.TIEMPO_DURACION));
-<<<<<<< HEAD
-
-                DateFormat df = DateFormat.getDateInstance(DateFormat.FULL);
-                fechaLabel.setText(df.format(parent.getPrueba().getFecha()));
-=======
->>>>>>> b4b1a9087c50544423bd17c82b4fe43f6dfcf7e4
 
                 DateFormat df = DateFormat.getDateInstance(DateFormat.FULL);
                 fechaLabel.setText(df.format(parent.getPrueba().getFecha()));

@@ -158,13 +158,9 @@ public class PrincipalView extends javax.swing.JFrame {
         b_fich.setToolTipText("Mostrar la Ficha del Paciente seleccionado");
         b_mod.setToolTipText("Modificar el Paciente seleccionado");
         b_prueba.setToolTipText("Realizar Prueba al Paciente seleccionado");
-<<<<<<< HEAD
-        jMenuItem4.setText("Prueba Foveal");
-=======
-
         jMenuItem4.setText("Prueba Forma A ");
         jMenuItem9.setText("Prueba Forma B ");
->>>>>>> b4b1a9087c50544423bd17c82b4fe43f6dfcf7e4
+
     }
 
     private void habilitarComponentes(boolean habilitar) {
@@ -936,7 +932,7 @@ public class PrincipalView extends javax.swing.JFrame {
         aboutJDialog.setVisible(true);
     }//GEN-LAST:event_jMenuItem15ActionPerformed
 
-<<<<<<< HEAD
+
     private void jMenuItem20ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem20ActionPerformed
         // TODO add your handling code here:
         conf = new ConfigEnsayoAuto(false);
@@ -951,8 +947,7 @@ public class PrincipalView extends javax.swing.JFrame {
         etv.setVisible(true);
     }//GEN-LAST:event_jMenuItem21ActionPerformed
 
-=======
->>>>>>> b4b1a9087c50544423bd17c82b4fe43f6dfcf7e4
+
     /**
      * @param args the command line arguments
      */

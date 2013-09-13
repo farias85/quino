@@ -6,7 +6,7 @@ package quino.util.timer;
 
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
-import quino.clases.edition2nd.ShapeJPanel;
+import quino.clases.model.ShapeJPanel;
 import quino.clases.model.Prueba;
 import quino.util.Aleatorio;
 import quino.view.edition2nd.ShapeDetectTestView;

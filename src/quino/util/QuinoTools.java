@@ -85,15 +85,12 @@ public class QuinoTools {
         return key;
     }
 
-<<<<<<< HEAD
-=======
     /**
      * Devuelve el nombre del panel en el que ha ocurrido el movimiento
      * @param prueba El tipo de prueba efectuada
      * @param panel El número del panel donde se efectuó el movimiento
      * @return El nombre del panel
      */
->>>>>>> b4b1a9087c50544423bd17c82b4fe43f6dfcf7e4
     public static String getPanelMovimiento(Prueba prueba, int panel) {
         if (prueba instanceof PruebaFoveal) {
             switch (panel) {
@@ -320,12 +317,12 @@ public class QuinoTools {
     public static double getDistancia(Punto p1, Punto p2) {
         Point pt1 = new Point((int) p1.getX(), (int) p1.getY());
         Point pt2 = new Point((int) p2.getX(), (int) p2.getY());
-        
+
         //Resolución en puntos x pulgada
         int resolucion = Toolkit.getDefaultToolkit().getScreenResolution();
         //Una pulgada tiene 2.54 cm, la distancia se da en cm
         double dst = pt1.distance(pt2) / resolucion * 2.54;
-        
+
         return dst;
     }
 
@@ -373,17 +370,12 @@ public class QuinoTools {
         return getAngulo(p1, p2);
     }
 
-<<<<<<< HEAD
-    private static Punto getCentroPantalla() {
-        Dimension d = Toolkit.getDefaultToolkit().getScreenSize();
-=======
     /**
      * Devuelve las cordenadas del centro de la pantalla
      * @return El Punto(X,Y) del centro de la pantalla
      */
     public static Punto getCentroPantalla() {
-        Dimension d = Toolkit.getDefaultToolkit().getScreenSize();        
->>>>>>> b4b1a9087c50544423bd17c82b4fe43f6dfcf7e4
+        Dimension d = Toolkit.getDefaultToolkit().getScreenSize();
         double x = d.getWidth() / 2;
         double y = d.getHeight() / 2;
         return new Punto(x, y);

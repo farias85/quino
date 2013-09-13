@@ -51,11 +51,8 @@ public class MainData {
                         new ConfigEnsayoAuto(false));
                 for (int j = 0; j < periferica.getCantEnsayos(); j++) {
                     boolean error = j % 2 == 0 ? true : false;
-<<<<<<< HEAD
-                   Resultado results = new Resultado(random.nextInt(300, 620),
-=======
+
                     Resultado results = new Resultado(random.nextInt(300, 620),
->>>>>>> b4b1a9087c50544423bd17c82b4fe43f6dfcf7e4
                             error, "Descrip", 32, random.nextDouble(),
                             random.nextInt(5, 15));
                     periferica.getEnsayos().get(j).setResultado(results);
@@ -85,11 +82,7 @@ public class MainData {
 
                 Paciente paciente = new Paciente(nombreCompleto, random.nextInt(5, 50),
                         sexo, escolaridad, historia, ci, "Ficha",
-<<<<<<< HEAD
-                        periferica, foveal, "Amigos de todos");
-=======
                         periferica, foveal, escuela);
->>>>>>> b4b1a9087c50544423bd17c82b4fe43f6dfcf7e4
 
                 registro.nuevoPaciente(paciente);
             }

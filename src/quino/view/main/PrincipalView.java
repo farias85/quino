@@ -345,7 +345,7 @@ public class PrincipalView extends javax.swing.JFrame {
         Resultados.setFont(new java.awt.Font("Tahoma", 1, 12));
 
         jMenuItem9.setFont(new java.awt.Font("Tahoma", 1, 12));
-        jMenuItem9.setText("Prueba Forma B");
+        jMenuItem9.setText("Prueba Periférica");
         jMenuItem9.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem9ActionPerformed(evt);
@@ -354,7 +354,7 @@ public class PrincipalView extends javax.swing.JFrame {
         Resultados.add(jMenuItem9);
 
         jMenuItem14.setFont(new java.awt.Font("Tahoma", 1, 12));
-        jMenuItem14.setText("Prueba Forma A");
+        jMenuItem14.setText("Prueba Fobeal");
         jMenuItem14.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem14ActionPerformed(evt);
@@ -533,7 +533,7 @@ public class PrincipalView extends javax.swing.JFrame {
         });
         jMenu6.add(jMenuItem12);
 
-        jMenuItem3.setFont(new java.awt.Font("Tahoma", 0, 12));
+        jMenuItem3.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jMenuItem3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/quino/view/main/icons/view-sort-ascending.png"))); // NOI18N
         jMenuItem3.setText("Exportar informe");
         jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
@@ -558,9 +558,8 @@ public class PrincipalView extends javax.swing.JFrame {
 
         jMenu8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/quino/view/main/icons/view-list-details-symbolic.png"))); // NOI18N
         jMenu8.setText("Entrenamiento");
-        jMenu8.setFont(new java.awt.Font("Tahoma", 0, 12));
 
-        jMenuItem18.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jMenuItem18.setFont(new java.awt.Font("Tahoma", 0, 12));
         jMenuItem18.setIcon(new javax.swing.ImageIcon(getClass().getResource("/quino/view/main/icons/package-installed-updated.png"))); // NOI18N
         jMenuItem18.setText("Forma A");
         jMenuItem18.addActionListener(new java.awt.event.ActionListener() {
@@ -570,7 +569,7 @@ public class PrincipalView extends javax.swing.JFrame {
         });
         jMenu8.add(jMenuItem18);
 
-        jMenuItem19.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jMenuItem19.setFont(new java.awt.Font("Tahoma", 0, 12));
         jMenuItem19.setIcon(new javax.swing.ImageIcon(getClass().getResource("/quino/view/main/icons/package-broken.png"))); // NOI18N
         jMenuItem19.setText("Forma B");
         jMenuItem19.addActionListener(new java.awt.event.ActionListener() {
@@ -612,7 +611,7 @@ public class PrincipalView extends javax.swing.JFrame {
         jMenu4.setText("Paciente   ");
         jMenu4.setFont(new java.awt.Font("Tahoma", 0, 12));
 
-        jMenuItem4.setFont(new java.awt.Font("Tahoma", 0, 12));
+        jMenuItem4.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jMenuItem4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/quino/view/main/icons/stock_new-bcard.png"))); // NOI18N
         jMenuItem4.setText("Nuevo");
         jMenuItem4.addActionListener(new java.awt.event.ActionListener() {

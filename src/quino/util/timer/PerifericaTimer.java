@@ -6,12 +6,8 @@ package quino.util.timer;
 
 import quino.util.QuinoJPanel;
 import quino.util.CentralJPanel;
-import quino.util.Punto;
-import quino.clases.config.ConfigEnsayo;
 import quino.clases.model.Prueba;
 import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.Toolkit;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import quino.util.QuinoTools;
@@ -32,13 +28,12 @@ public class PerifericaTimer extends AbstractQuinoTimer {
     public PerifericaTimer(Prueba prueba,
             QuinoJPanel panel1, QuinoJPanel panel2, CentralJPanel panel3,
             PerifericaTestView test, boolean practica) {
-        super(prueba);
+        super(prueba, practica);
 
         this.panel1 = panel1;
         this.panel2 = panel2;
         this.panel3 = panel3;
         this.test = test;
-        this.practica = practica;
     }
 
     /**
@@ -88,7 +83,7 @@ public class PerifericaTimer extends AbstractQuinoTimer {
             inOut = false;
             System.out.println("ejecutando el movimiento " + tiempoTranscurrido);
 
-            inicializarEnsayo(2);
+            inicializarEnsayo();
             moverPuntos();
         }
     }
@@ -167,7 +162,7 @@ public class PerifericaTimer extends AbstractQuinoTimer {
 
     @Override
     protected void moverPuntos() {
-        double desplazamientoY = test.getLocation().getY();
+        //double desplazamientoY = test.getLocation().getY();
         switch (ensayo.getPanelEstimulo()) {
             case 0: {
                 panelsRepaint();

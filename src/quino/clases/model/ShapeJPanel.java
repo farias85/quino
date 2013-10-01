@@ -68,9 +68,9 @@ public class ShapeJPanel extends JPanel {
         this.densidad = densidad;
         segmentos = new ArrayList<Segment2D>();
 
-        int densidadOthers = (int) QuinoTools.porciento(60, densidad);
-        int densidadShape = (int) QuinoTools.porciento(40, densidad);
-        int tolerancia = 30;
+        int densidadOthers = (int) QuinoTools.porciento(90, densidad);
+        int densidadShape = (int) QuinoTools.porciento(10, densidad);
+        int tolerancia = 2;
 
         Aleatorio random = new Aleatorio();
         int numero = random.nextInt(1, 4);

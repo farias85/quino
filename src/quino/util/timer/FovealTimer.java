@@ -35,7 +35,7 @@ public class FovealTimer extends AbstractQuinoTimer {
             QuinoJPanel panel2, QuinoJPanel panel3, QuinoJPanel panel4, QuinoJPanel panel5,
             QuinoJPanel panel6, QuinoJPanel panel7, QuinoJPanel panel8, CentralJPanel panel9,
             FovealTestView test, boolean practica) {
-        super(prueba);
+        super(prueba, practica);
 
         this.panel1 = panel1;
         this.panel2 = panel2;
@@ -46,8 +46,7 @@ public class FovealTimer extends AbstractQuinoTimer {
         this.panel7 = panel7;
         this.panel8 = panel8;
         this.panel9 = panel9;
-
-        this.practica = practica;
+        
         this.test = test;
     }
 
@@ -98,7 +97,7 @@ public class FovealTimer extends AbstractQuinoTimer {
             inOut = false;
             System.out.println("ejecutando el movimiento " + tiempoTranscurrido);
 
-            inicializarEnsayo(8);
+            inicializarEnsayo();
             moverPuntos();
         }
     }

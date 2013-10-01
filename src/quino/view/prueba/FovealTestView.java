@@ -49,7 +49,7 @@ public class FovealTestView extends javax.swing.JDialog {
                 this, practica);
 
         Timer ti = new Timer();
-        ti.scheduleAtFixedRate(task, 0, 1);
+        ti.scheduleAtFixedRate(task, 0, 100000000);
     }
 
     public PrincipalView getParentView() {

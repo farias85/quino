@@ -4,12 +4,9 @@
  */
 package quino.clases.model;
 
-import com.sun.imageio.plugins.common.BogusColorSpace;
 import java.awt.Color;
 import java.awt.Graphics;
-import java.awt.Image;
 import java.awt.Point;
-import java.awt.color.ColorSpace;
 import quino.util.Aleatorio;
 
 /**

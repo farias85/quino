@@ -13,7 +13,7 @@ import quino.util.Aleatorio;
  */
 public class ShapeCircle extends AbstractShape {
 
-    private int radio = 150;
+    private int radio = 110;
 
     public ShapeCircle(int densidad, int tolerancia, int pcDimension) {
         super(densidad, tolerancia, pcDimension);

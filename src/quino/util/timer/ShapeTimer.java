@@ -8,8 +8,9 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import quino.clases.model.ShapeJPanel;
 import quino.clases.model.Prueba;
-import quino.util.Aleatorio;
-import quino.view.edition2nd.ShapeDetectTestView;
+import quino.util.QuinoTools;
+import quino.view.prueba.ResultView;
+import quino.view.prueba2nd.ShapeDetectTestView;
 
 /**
  *
@@ -24,12 +25,11 @@ public class ShapeTimer extends AbstractQuinoTimer {
     public ShapeTimer(Prueba prueba,
             ShapeJPanel panel1, ShapeJPanel panel2,
             ShapeDetectTestView test, boolean practica) {
-        super(prueba);
+        super(prueba, practica);
 
         this.panel1 = panel1;
         this.panel2 = panel2;
         this.test = test;
-        this.practica = practica;
     }
 
     @Override
@@ -63,6 +63,7 @@ public class ShapeTimer extends AbstractQuinoTimer {
 
             panelsClear();
             panelsRepaint();
+            inicializarEnsayo();
         }
     }
 
@@ -96,7 +97,24 @@ public class ShapeTimer extends AbstractQuinoTimer {
 
                 public void keyPressed(KeyEvent e) {
                     if (puedeTeclear) {
-                        capturarEventoTeclado(e);
+                        int k = e.getKeyCode();
+                        System.out.println("tecla presionada: " + k);
+
+                        resultado.setKey(k);
+
+                        if (ensayo.getPanelEstimulo() > 0) {
+                            resultado.setTiempoRespuesta(tiempoTranscurrido - (enEspera + 1));
+                        }
+
+                        if (ensayo.getPanelEstimulo() == 0) {
+                            resultado.setError(true);
+                            resultado.setDescripcion("No hubo estímulo");
+                        } else if (ensayo.getConfiguracion().getKey() != resultado.getKey()) {
+                            resultado.setError(true);
+                            resultado.setDescripcion("No se ha presionado la tecla esperada");
+                        }
+
+                        puedeTeclear = false;
                     }
                 }
 
@@ -112,8 +130,23 @@ public class ShapeTimer extends AbstractQuinoTimer {
 
     @Override
     protected void execTerminado() {
-        //throw new UnsupportedOperationException("Not supported yet.");
+        System.out.println("terminado " + tiempoTranscurrido);
+        test.removeKeyListener(keyPress);
+
+        if (resultado.getKey() == 0 && ensayo.getPanelEstimulo() > 0) {
+            resultado.setError(true);
+            resultado.setDescripcion("Omisión");
+        }
+
+        ensayo.setResultado(resultado);
+
         if (cancelarTarea()) {
+            if (!practica) {
+                QuinoTools.salvarPruebaEnRegistro(test.getParentView(), test, prueba);
+            }
+            ResultView res = new ResultView(test.getParentView(), true, false);
+            test.setVisible(false);
+            res.setVisible(true);
         }
     }
 
@@ -131,23 +164,19 @@ public class ShapeTimer extends AbstractQuinoTimer {
 
     @Override
     protected void panelsRellenar() {
-        Aleatorio random = new Aleatorio();
-        int mostrar = random.nextInt(2, 4);
-        if (mostrar % 2 == 0) {
-            int seleccionarPanel = random.nextInt(1, 2);
-            if (seleccionarPanel == 1) {
+        switch (ensayo.getPanelEstimulo()) {
+            case 0:
+                panel1.rellenar(ensayo.getConfiguracion().getDensidad(), ensayo.getConfiguracion().getCantidad());
+                panel2.rellenar(ensayo.getConfiguracion().getDensidad(), ensayo.getConfiguracion().getCantidad());
+                break;
+            case 1:
                 panel1.rellenarShape(ensayo.getConfiguracion().getDensidad(), ensayo.getConfiguracion().getCantidad());
                 panel2.rellenar(ensayo.getConfiguracion().getDensidad(), ensayo.getConfiguracion().getCantidad());
-            } else {
+                break;
+            case 2:
                 panel1.rellenar(ensayo.getConfiguracion().getDensidad(), ensayo.getConfiguracion().getCantidad());
                 panel2.rellenarShape(ensayo.getConfiguracion().getDensidad(), ensayo.getConfiguracion().getCantidad());
-            }
-        } else {
-            panel1.rellenar(ensayo.getConfiguracion().getDensidad(), ensayo.getConfiguracion().getCantidad());
-            panel2.rellenar(ensayo.getConfiguracion().getDensidad(), ensayo.getConfiguracion().getCantidad());
+                break;
         }
-
-        //Eliminar esto
-        panel2.rellenarShape(ensayo.getConfiguracion().getDensidad(), ensayo.getConfiguracion().getCantidad());
     }
 }

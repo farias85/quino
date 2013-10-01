@@ -33,8 +33,9 @@ public abstract class AbstractQuinoTimer extends TimerTask {
     protected boolean practica;
     protected KeyListener keyPress;
 
-    public AbstractQuinoTimer(Prueba prueba) {
+    public AbstractQuinoTimer(Prueba prueba, boolean practica) {
         this.prueba = prueba;
+        this.practica = practica;
         this.ensayo = prueba.getEnsayos().get(numEnsayo);
         this.resultado = new Resultado();
         
@@ -202,7 +203,7 @@ public abstract class AbstractQuinoTimer extends TimerTask {
      * @param cantPaneles Cantidad de paneles de cada ensayo sin contar el
      * panel central.
      */
-    protected void inicializarEnsayo(int cantPaneles) {
+    protected void inicializarEnsayo() {
         ensayo = prueba.getEnsayos().get(numEnsayo);
         resultado = new Resultado();
     }

@@ -41,15 +41,17 @@ import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import quino.clases.config.ConfigApp;
 import quino.clases.model.PruebaFoveal;
 import quino.clases.model.PruebaPeriferica;
+import quino.clases.model.PruebaShape;
 import quino.util.QuinoTableModel;
 import quino.util.QuinoTools;
 import quino.util.QuinoSplash;
 import quino.util.report.AbstractInformeExcel;
 import quino.util.report.InformeCampoVisual;
 import quino.util.report.InformeParametrosXEnsayo;
-import quino.view.edition2nd.EnrejadoTestView;
-import quino.view.edition2nd.ShapeDetectTestView;
+import quino.view.prueba2nd.EnrejadoTestView;
+import quino.view.prueba2nd.ShapeDetectTestView;
 import quino.view.prueba.FovealTestView;
+import quino.view.prueba2nd.GaborTestView;
 
 /**
  *
@@ -284,6 +286,7 @@ public class PrincipalView extends javax.swing.JFrame {
         jMenuItem19 = new javax.swing.JMenuItem();
         jMenuItem20 = new javax.swing.JMenuItem();
         jMenuItem21 = new javax.swing.JMenuItem();
+        jMenuItem22 = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
         jMenuItem16 = new javax.swing.JMenuItem();
         jMenuItem17 = new javax.swing.JMenuItem();
@@ -372,7 +375,7 @@ public class PrincipalView extends javax.swing.JFrame {
         setIconImages(null);
         setResizable(false);
 
-        jTable1.setFont(new java.awt.Font("Tahoma", 0, 12));
+        jTable1.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jTable1.getTableHeader().setFont(new java.awt.Font("Tahoma", 1, 12));
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -583,7 +586,7 @@ public class PrincipalView extends javax.swing.JFrame {
         });
         jMenu8.add(jMenuItem19);
 
-        jMenuItem20.setFont(new java.awt.Font("Tahoma", 0, 12));
+        jMenuItem20.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jMenuItem20.setText("Detección de Forma");
         jMenuItem20.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -592,14 +595,22 @@ public class PrincipalView extends javax.swing.JFrame {
         });
         jMenu8.add(jMenuItem20);
 
-        jMenuItem21.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        jMenuItem21.setText("Enrejado");
+        jMenuItem21.setText("Enrejado Test");
         jMenuItem21.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem21ActionPerformed(evt);
+                jMenuItem21ActionPerformed1(evt);
             }
         });
         jMenu8.add(jMenuItem21);
+
+        jMenuItem22.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jMenuItem22.setText("Gabor");
+        jMenuItem22.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem22ActionPerformed(evt);
+            }
+        });
+        jMenu8.add(jMenuItem22);
 
         jMenuBar1.add(jMenu8);
 
@@ -633,7 +644,7 @@ public class PrincipalView extends javax.swing.JFrame {
         jMenu4.setText("Paciente   ");
         jMenu4.setFont(new java.awt.Font("Tahoma", 0, 12));
 
-        jMenuItem4.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jMenuItem4.setFont(new java.awt.Font("Tahoma", 0, 12));
         jMenuItem4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/quino/view/main/icons/stock_new-bcard.png"))); // NOI18N
         jMenuItem4.setText("Nuevo");
         jMenuItem4.addActionListener(new java.awt.event.ActionListener() {
@@ -932,21 +943,33 @@ public class PrincipalView extends javax.swing.JFrame {
         aboutJDialog.setVisible(true);
     }//GEN-LAST:event_jMenuItem15ActionPerformed
 
-
     private void jMenuItem20ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem20ActionPerformed
         // TODO add your handling code here:
         conf = new ConfigEnsayoAuto(false);
-        prueba = new PruebaPeriferica(ConfigApp.CANT_ENSAYOS, conf);
+        prueba = new PruebaShape(ConfigApp.CANT_ENSAYOS, conf);
         ShapeDetectTestView sdtv = new ShapeDetectTestView(this, true, true);
         sdtv.setVisible(true);
     }//GEN-LAST:event_jMenuItem20ActionPerformed
 
     private void jMenuItem21ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem21ActionPerformed
         // TODO add your handling code here:
-        EnrejadoTestView etv = new EnrejadoTestView(this, true);
-        etv.setVisible(true);
     }//GEN-LAST:event_jMenuItem21ActionPerformed
 
+    private void jMenuItem21ActionPerformed1(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem21ActionPerformed1
+        // TODO add your handling code here:
+        conf = new ConfigEnsayoAuto(false);
+        prueba = new PruebaPeriferica(ConfigApp.CANT_ENSAYOS, conf);
+        EnrejadoTestView etv = new EnrejadoTestView(this, true, true);
+        etv.setVisible(true);
+    }//GEN-LAST:event_jMenuItem21ActionPerformed1
+
+    private void jMenuItem22ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem22ActionPerformed
+        // TODO add your handling code here:
+        conf = new ConfigEnsayoAuto(false);
+        prueba = new PruebaPeriferica(ConfigApp.CANT_ENSAYOS, conf);
+        GaborTestView gtv = new GaborTestView(this, true, true);
+        gtv.setVisible(true);
+    }//GEN-LAST:event_jMenuItem22ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -993,6 +1016,7 @@ public class PrincipalView extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem20;
     private javax.swing.JMenuItem jMenuItem21;
+    private javax.swing.JMenuItem jMenuItem22;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem jMenuItem5;

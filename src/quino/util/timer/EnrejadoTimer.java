@@ -30,10 +30,11 @@ public class EnrejadoTimer extends AbstractSinusoideTimer {
         this.test = test;
         this.jPanel = jPanel;
 
-        fs = 90;
-        fspa_cpi_x = 6;
-        fspa_cpi_y = 1.0;        
-
+        fs = 10;
+        ppi = 80;
+        fspa_cpi_x = 5;
+        fspa_cpi_y = 1.0;
+        
         fspa_cpp_x = fspa_cpi_x / ppi;
         fspa_cpp_y = fspa_cpi_y / ppi;
 
@@ -103,7 +104,7 @@ public class EnrejadoTimer extends AbstractSinusoideTimer {
         }
 
         runMatrix();
-        //tiempoTranscurrido += 500;
+        tiempoTranscurrido += 200;
     }
 
     @Override
@@ -145,6 +146,6 @@ public class EnrejadoTimer extends AbstractSinusoideTimer {
         jPanel.getGraphics().drawImage(image, 0, 0, jPanel);
 
         System.out.println(count + " enrejado");
-        count++;
+        count--;
     }
 }

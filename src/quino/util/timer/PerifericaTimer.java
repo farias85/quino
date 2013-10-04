@@ -4,8 +4,8 @@
  */
 package quino.util.timer;
 
-import quino.util.QuinoJPanel;
-import quino.util.CentralJPanel;
+import quino.util.JPanelQuino;
+import quino.util.JPanelCentral;
 import quino.util.test.Prueba;
 import java.awt.Color;
 import java.awt.event.KeyEvent;
@@ -18,15 +18,15 @@ import quino.view.test.ResultView;
  *
  * @author Felipao
  */
-public class PerifericaTimer extends AbstractQuinoTimer {
+public class PerifericaTimer extends AbstractFormaABTimer {
 
-    private QuinoJPanel panel1;
-    private QuinoJPanel panel2;
-    private CentralJPanel panel3;
+    private JPanelQuino panel1;
+    private JPanelQuino panel2;
+    private JPanelCentral panel3;
     private PerifericaTestView test;
 
     public PerifericaTimer(Prueba prueba,
-            QuinoJPanel panel1, QuinoJPanel panel2, CentralJPanel panel3,
+            JPanelQuino panel1, JPanelQuino panel2, JPanelCentral panel3,
             PerifericaTestView test, boolean practica) {
         super(prueba, practica);
 
@@ -156,8 +156,8 @@ public class PerifericaTimer extends AbstractQuinoTimer {
 
     @Override
     protected void panelsRellenar() {
-        panel1.rellenar(ensayo.getConfiguracion().getDensidad(), ensayo.getConfiguracion().getCantidad());
-        panel2.rellenar(ensayo.getConfiguracion().getDensidad(), ensayo.getConfiguracion().getCantidad());
+        panel1.rellenar(configEnsayo.getDensidad(), configEnsayo.getCantidad());
+        panel2.rellenar(configEnsayo.getDensidad(), configEnsayo.getCantidad());
     }
 
     @Override

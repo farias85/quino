@@ -10,21 +10,23 @@
  */
 package quino.view.test;
 
-import quino.util.CentralJPanel;
-import quino.util.QuinoJPanel;
+import quino.util.JPanelCentral;
+import quino.util.JPanelQuino;
 import quino.util.timer.FovealTimer;
 import java.awt.Color;
 import java.util.Timer;
 import java.util.TimerTask;
+import quino.clases.config.ConfigEnsayoFormaAB;
 import quino.view.main.PrincipalView;
 
 /**
  *
- * @author Davisito
+ * @author Felipe Rodriguez Arias
  */
 public class FovealTestView extends javax.swing.JDialog {
 
     private PrincipalView parent;
+    private ConfigEnsayoFormaAB conf;
 
     public FovealTestView() {
     }
@@ -32,24 +34,29 @@ public class FovealTestView extends javax.swing.JDialog {
     public FovealTestView(PrincipalView parent, boolean modal, boolean practica) {
         super(parent, modal);
 
+        if (parent.getConf() instanceof ConfigEnsayoFormaAB) {
+            conf = ((ConfigEnsayoFormaAB) parent.getConf());
+        } else {
+            System.err.println("La configuracion no es de tipo ConfigEnsayoFormaAB en la clase FovealTestView");
+        }
+
         this.parent = parent;
         initComponents();
+
         setLocationRelativeTo(null);
         setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
-
         getContentPane().setBackground(Color.BLACK);
 
-
         TimerTask task = new FovealTimer(parent.getPrueba(),
-                (QuinoJPanel) jPanel1,
-                (QuinoJPanel) jPanel2, (QuinoJPanel) jPanel3,
-                (QuinoJPanel) jPanel4, (QuinoJPanel) jPanel5,
-                (QuinoJPanel) jPanel6, (QuinoJPanel) jPanel7,
-                (QuinoJPanel) jPanel8, (CentralJPanel) jPanel9,
+                (JPanelQuino) jPanel1,
+                (JPanelQuino) jPanel2, (JPanelQuino) jPanel3,
+                (JPanelQuino) jPanel4, (JPanelQuino) jPanel5,
+                (JPanelQuino) jPanel6, (JPanelQuino) jPanel7,
+                (JPanelQuino) jPanel8, (JPanelCentral) jPanel9,
                 this, practica);
 
         Timer ti = new Timer();
-        ti.scheduleAtFixedRate(task, 0, 100000000);
+        ti.scheduleAtFixedRate(task, 0, 1);
     }
 
     public PrincipalView getParentView() {
@@ -65,7 +72,6 @@ public class FovealTestView extends javax.swing.JDialog {
         jPanel5.setLocation((int) jPanel5.getLocation().getX() - 6, (int) jPanel5.getLocation().getY());
         jPanel8.setLocation((int) jPanel8.getLocation().getX() - 6, (int) jPanel8.getLocation().getY() - 6);
 
-
         jPanel2.setLocation((int) jPanel2.getLocation().getX(), (int) jPanel2.getLocation().getY() + 6);
         jPanel7.setLocation((int) jPanel7.getLocation().getX(), (int) jPanel7.getLocation().getY() - 6);
     }
@@ -74,15 +80,15 @@ public class FovealTestView extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel9 = new quino.util.CentralJPanel(Color.RED);
-        jPanel2 = new quino.util.QuinoJPanel(parent.getConf().getDensidad(), parent.getConf().getCantidad());
-        jPanel7 = new quino.util.QuinoJPanel(parent.getConf().getDensidad(), parent.getConf().getCantidad());
-        jPanel4 = new quino.util.QuinoJPanel(parent.getConf().getDensidad(), parent.getConf().getCantidad());
-        jPanel5 = new quino.util.QuinoJPanel(parent.getConf().getDensidad(), parent.getConf().getCantidad());
-        jPanel1 = new quino.util.QuinoJPanel(parent.getConf().getDensidad(), parent.getConf().getCantidad());
-        jPanel6 = new quino.util.QuinoJPanel(parent.getConf().getDensidad(), parent.getConf().getCantidad());
-        jPanel8 = new quino.util.QuinoJPanel(parent.getConf().getDensidad(), parent.getConf().getCantidad());
-        jPanel3 = new quino.util.QuinoJPanel(parent.getConf().getDensidad(), parent.getConf().getCantidad());
+        jPanel9 = new quino.util.JPanelCentral(Color.RED);
+        jPanel2 = new quino.util.JPanelQuino(conf.getDensidad(), conf.getCantidad());
+        jPanel7 = new quino.util.JPanelQuino(conf.getDensidad(), conf.getCantidad());
+        jPanel4 = new quino.util.JPanelQuino(conf.getDensidad(), conf.getCantidad());
+        jPanel5 = new quino.util.JPanelQuino(conf.getDensidad(), conf.getCantidad());
+        jPanel1 = new quino.util.JPanelQuino(conf.getDensidad(), conf.getCantidad());
+        jPanel6 = new quino.util.JPanelQuino(conf.getDensidad(), conf.getCantidad());
+        jPanel8 = new quino.util.JPanelQuino(conf.getDensidad(), conf.getCantidad());
+        jPanel3 = new quino.util.JPanelQuino(conf.getDensidad(), conf.getCantidad());
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));

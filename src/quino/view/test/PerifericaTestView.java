@@ -11,12 +11,13 @@
 package quino.view.test;
 
 import quino.view.main.*;
-import quino.util.QuinoJPanel;
-import quino.util.CentralJPanel;
+import quino.util.JPanelQuino;
+import quino.util.JPanelCentral;
 import quino.util.timer.PerifericaTimer;
 import java.awt.Color;
 import java.util.Timer;
 import java.util.TimerTask;
+import quino.clases.config.ConfigEnsayoFormaAB;
 
 /**
  *
@@ -25,6 +26,7 @@ import java.util.TimerTask;
 public class PerifericaTestView extends javax.swing.JDialog {
     
     private PrincipalView parent;
+    private ConfigEnsayoFormaAB conf;
 
     public PerifericaTestView() {
     }
@@ -32,16 +34,22 @@ public class PerifericaTestView extends javax.swing.JDialog {
     public PerifericaTestView(PrincipalView parent, boolean modal, boolean practica) {
         super(parent, modal);
 
+        if (parent.getConf() instanceof ConfigEnsayoFormaAB) {
+            conf = ((ConfigEnsayoFormaAB) parent.getConf());
+        } else {
+            System.err.println("La configuracion no es de tipo ConfigEnsayoFormaAB en la clase PerifericaTestView");
+        }
+        
         this.parent = parent;
         initComponents();
+
         setLocationRelativeTo(null);
         setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
-
         getContentPane().setBackground(Color.BLACK);
 
         TimerTask task = new PerifericaTimer(parent.getPrueba(), 
-                (QuinoJPanel) jPanel1, (QuinoJPanel) jPanel2,
-                (CentralJPanel) jPanel3, this, practica);
+                (JPanelQuino) jPanel1, (JPanelQuino) jPanel2,
+                (JPanelCentral) jPanel3, this, practica);
 
         Timer ti = new Timer();
 
@@ -66,9 +74,9 @@ public class PerifericaTestView extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new quino.util.QuinoJPanel(parent.getConf().getDensidad(), parent.getConf().getCantidad());
-        jPanel2 = new quino.util.QuinoJPanel(parent.getConf().getDensidad(), parent.getConf().getCantidad());
-        jPanel3 = new quino.util.CentralJPanel(Color.RED);
+        jPanel1 = new quino.util.JPanelQuino(conf.getDensidad(), conf.getCantidad());
+        jPanel2 = new quino.util.JPanelQuino(conf.getDensidad(), conf.getCantidad());
+        jPanel3 = new quino.util.JPanelCentral(Color.RED);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setIconImage(null);

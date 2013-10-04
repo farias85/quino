@@ -12,25 +12,26 @@ import quino.util.QuinoTools;
  * Los valores de inicio de prueba se diseñan automaticamente.
  * @author Felipe Rodriguez Arias
  */
-public class ConfigEnsayoAuto extends ConfigEnsayo {
+public class ConfigEnsayoFormaABAuto extends ConfigEnsayoFormaAB {
 
-    public ConfigEnsayoAuto() {
-        super();
-    }
-
-    public ConfigEnsayoAuto(double tiempoMovimiento, int densidad, int cantidad,
+    public ConfigEnsayoFormaABAuto(double tiempoMovimiento, int densidad, int cantidad,
             int direccion, boolean asincronico, boolean control) {
         super(tiempoMovimiento, densidad, cantidad, direccion, asincronico, control);
     }
 
-    public ConfigEnsayoAuto(double tiempoMovimiento, int densidad, int cantidad,
+    public ConfigEnsayoFormaABAuto(double tiempoMovimiento, int densidad, int cantidad,
             int direccion, boolean asincronico, boolean control, int key)
             throws Exception {
         super(tiempoMovimiento, densidad, cantidad, direccion, asincronico,
                 control, key);
     }
 
-    public ConfigEnsayoAuto(boolean control) {
+    public ConfigEnsayoFormaABAuto() {
+        super();
+    }
+
+    public ConfigEnsayoFormaABAuto(boolean control) {
+    super(0, 0, 0, 0, false, control);
 
         Aleatorio random = new Aleatorio();
         densidad = random.nextInt(250, 1500);

@@ -10,25 +10,35 @@
  */
 package quino.view.test;
 
+import quino.clases.config.ConfigEnsayoFormaAB;
 import quino.view.main.*;
-import quino.clases.config.ConfigEnsayoAuto;
+import quino.clases.config.ConfigEnsayoFormaABAuto;
 import quino.util.test.PruebaFoveal;
 import quino.util.test.PruebaPeriferica;
 
 /**
  *
- * @author Davisito
+ * @author Felipe Rodriguez Arias
  */
 public class AutoConfigView extends javax.swing.JDialog {
 
     private PrincipalView parent;
+    private ConfigEnsayoFormaAB conf;
     private boolean foveal = true;
     private boolean control;
 
     /** Creates new form AutoConfigView */
     public AutoConfigView(PrincipalView parent, boolean modal) {
         super(parent, modal);
+
+        if (parent.getConf() instanceof ConfigEnsayoFormaAB) {
+            conf = ((ConfigEnsayoFormaAB) parent.getConf());
+        } else {
+            System.err.println("La configuracion no es de tipo ConfigEnsayoFormaAB en la clase AutoConfigView");
+        }
+
         initComponents();
+        
         this.parent = parent;
         setLocationRelativeTo(null);
         jRadioButton1.setSelected(true);
@@ -187,22 +197,22 @@ public class AutoConfigView extends javax.swing.JDialog {
             } catch (Exception e) {
                 throw new Exception("El valor de la cantidad de ensayos debe ser un número entero.");
             }
-            
+
             control = jCheckBox1.isSelected();
-            parent.setConf(new ConfigEnsayoAuto(control));
+            parent.setConf(new ConfigEnsayoFormaABAuto(control));
 
             if (foveal) {
-                parent.getConf().setDensidad((parent.getConf().getDensidad() / 8));
-                parent.setPrueba(new PruebaFoveal(cant_ensayos, parent.getConf()));
-                
+                conf.setDensidad(conf.getDensidad() / 8);
+                parent.setPrueba(new PruebaFoveal(conf, cant_ensayos));
+
                 FovealTestView t = new FovealTestView(parent, true, false);
                 t.setVisible(true);
                 setVisible(false);
                 dispose();
             } else {
-                parent.getConf().setDensidad((parent.getConf().getDensidad() / 8));
-                parent.setPrueba(new PruebaPeriferica(cant_ensayos, parent.getConf()));
-                
+                conf.setDensidad((conf.getDensidad() / 8));
+                parent.setPrueba(new PruebaPeriferica(conf, cant_ensayos));
+
                 PerifericaTestView test = new PerifericaTestView(parent, true, false);
                 test.setVisible(true);
                 setVisible(false);

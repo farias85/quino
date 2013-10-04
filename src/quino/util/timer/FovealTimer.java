@@ -4,8 +4,8 @@
  */
 package quino.util.timer;
 
-import quino.util.QuinoJPanel;
-import quino.util.CentralJPanel;
+import quino.util.JPanelQuino;
+import quino.util.JPanelCentral;
 import quino.util.test.Prueba;
 import java.awt.Color;
 import java.awt.event.KeyEvent;
@@ -18,22 +18,22 @@ import quino.view.test.ResultView;
  *
  * @author Felipao
  */
-public class FovealTimer extends AbstractQuinoTimer {
+public class FovealTimer extends AbstractFormaABTimer {
 
-    private QuinoJPanel panel1;
-    private QuinoJPanel panel2;
-    private QuinoJPanel panel3;
-    private QuinoJPanel panel4;
-    private QuinoJPanel panel5;
-    private QuinoJPanel panel6;
-    private QuinoJPanel panel7;
-    private QuinoJPanel panel8;
-    private CentralJPanel panel9;
+    private JPanelQuino panel1;
+    private JPanelQuino panel2;
+    private JPanelQuino panel3;
+    private JPanelQuino panel4;
+    private JPanelQuino panel5;
+    private JPanelQuino panel6;
+    private JPanelQuino panel7;
+    private JPanelQuino panel8;
+    private JPanelCentral panel9;
     private FovealTestView test;
 
-    public FovealTimer(Prueba prueba, QuinoJPanel panel1,
-            QuinoJPanel panel2, QuinoJPanel panel3, QuinoJPanel panel4, QuinoJPanel panel5,
-            QuinoJPanel panel6, QuinoJPanel panel7, QuinoJPanel panel8, CentralJPanel panel9,
+    public FovealTimer(Prueba prueba, JPanelQuino panel1,
+            JPanelQuino panel2, JPanelQuino panel3, JPanelQuino panel4, JPanelQuino panel5,
+            JPanelQuino panel6, JPanelQuino panel7, JPanelQuino panel8, JPanelCentral panel9,
             FovealTestView test, boolean practica) {
         super(prueba, practica);
 
@@ -263,13 +263,13 @@ public class FovealTimer extends AbstractQuinoTimer {
 
     @Override
     protected void panelsRellenar() {
-        panel1.rellenar(ensayo.getConfiguracion().getDensidad(), ensayo.getConfiguracion().getCantidad());
-        panel2.rellenar(ensayo.getConfiguracion().getDensidad(), ensayo.getConfiguracion().getCantidad());
-        panel3.rellenar(ensayo.getConfiguracion().getDensidad(), ensayo.getConfiguracion().getCantidad());
-        panel4.rellenar(ensayo.getConfiguracion().getDensidad(), ensayo.getConfiguracion().getCantidad());
-        panel5.rellenar(ensayo.getConfiguracion().getDensidad(), ensayo.getConfiguracion().getCantidad());
-        panel6.rellenar(ensayo.getConfiguracion().getDensidad(), ensayo.getConfiguracion().getCantidad());
-        panel7.rellenar(ensayo.getConfiguracion().getDensidad(), ensayo.getConfiguracion().getCantidad());
-        panel8.rellenar(ensayo.getConfiguracion().getDensidad(), ensayo.getConfiguracion().getCantidad());
+        panel1.rellenar(configEnsayo.getDensidad(), configEnsayo.getCantidad());
+        panel2.rellenar(configEnsayo.getDensidad(), configEnsayo.getCantidad());
+        panel3.rellenar(configEnsayo.getDensidad(), configEnsayo.getCantidad());
+        panel4.rellenar(configEnsayo.getDensidad(), configEnsayo.getCantidad());
+        panel5.rellenar(configEnsayo.getDensidad(), configEnsayo.getCantidad());
+        panel6.rellenar(configEnsayo.getDensidad(), configEnsayo.getCantidad());
+        panel7.rellenar(configEnsayo.getDensidad(), configEnsayo.getCantidad());
+        panel8.rellenar(configEnsayo.getDensidad(), configEnsayo.getCantidad());
     }
 }

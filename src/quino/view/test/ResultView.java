@@ -27,7 +27,8 @@ import quino.util.QuinoTools;
 import quino.view.main.ErrorDialog;
 import quino.view.main.PrincipalView;
 import quino.clases.model.Ensayo;
-import quino.clases.config.ConfigEnsayo;
+import quino.clases.config.ConfigEnsayoFormaAB;
+import quino.util.test.PruebaFormaAB;
 
 /**
  *
@@ -52,7 +53,9 @@ public class ResultView extends javax.swing.JDialog {
             if (parent.getPrueba() != null) {
                 t_ensayos1.setText(String.valueOf(ensayos.size()));
                 t_errores1.setText(String.valueOf(parent.getPrueba().cantErrores()));
-                t_denpromedio1.setText(String.valueOf(parent.getPrueba().densidadPromedio()));
+                if (parent.getPrueba() instanceof PruebaFormaAB) {
+                    t_denpromedio1.setText(String.valueOf(((PruebaFormaAB) parent.getPrueba()).densidadPromedio()));
+                }
                 t_trespg1.setText(String.valueOf(parent.getPrueba().tiempoRespuestaPromedio()));
                 t_densayo.setText(String.valueOf(ConfigApp.TIEMPO_DURACION));
 
@@ -91,45 +94,50 @@ public class ResultView extends javax.swing.JDialog {
                 if (node.getParent() != null) {
                     int pos = node.getParent().getIndex(node);
                     Ensayo ensayo = ensayos.get(pos);
-                    ConfigEnsayo configEnsayo = ensayo.getConfiguracion();
-                    Resultado resultado = ensayo.getResultado();
 
-                    int densidad = configEnsayo.getDensidad();
-                    int cantidad = (configEnsayo.getCantidad() * 100) / densidad;
-                    double velocidad = configEnsayo.getTiempoMovimiento();
+                    ConfigEnsayoFormaAB configEnsayo = null;
+                    if (ensayo.getConfiguracion() instanceof ConfigEnsayoFormaAB) {
+                        configEnsayo = ((ConfigEnsayoFormaAB) ensayo.getConfiguracion());
 
-                    ImageIcon dirIcon = CambiarDireccion(configEnsayo.getDireccion(),
-                            ensayo.getPanelEstimulo());
-                    String panel = QuinoTools.getPanelMovimiento(parent.getPrueba(), ensayo.getPanelEstimulo());
-                    int tiempo_res = resultado.getTiempoRespuesta();
+                        Resultado resultado = ensayo.getResultado();
 
-                    ImageIcon resultIcon = CambiarError(resultado.isError());
-                    ImageIcon keyIcon = CambiarKey(resultado.getKey(), configEnsayo.isControl());
-                    String descripcion = resultado.getDescripcion();
-                    double vel = resultado.getVelocidad();
-                    double angulo = resultado.getAngulo();
+                        int densidad = configEnsayo.getDensidad();
+                        int cantidad = (configEnsayo.getCantidad() * 100) / densidad;
+                        double velocidad = configEnsayo.getTiempoMovimiento();
 
-                    t_densidad1.setText(String.valueOf(densidad));
-                    t_cantidad1.setText(String.valueOf(cantidad) + "%");
-                    t_vmov1.setText(String.valueOf(velocidad));
-                    t_direccion1.setIcon(dirIcon);
-                    t_pestimulo1.setText(panel);
-                    b_keypressed.setIcon(keyIcon);
-                    e_desc.setText(descripcion);
-                    t_velocidad.setText(Double.toString(vel) + " " + "cm/mls");
-                    t_angulo.setText(Double.toString(angulo) + "º");
+                        ImageIcon dirIcon = CambiarDireccion(configEnsayo.getDireccion(),
+                                ensayo.getPanelEstimulo());
+                        String panel = QuinoTools.getPanelMovimiento(parent.getPrueba(), ensayo.getPanelEstimulo());
+                        int tiempo_res = resultado.getTiempoRespuesta();
 
-                    if (tiempo_res == 0) {
-                        t_trespuesta1.setText("N/R");
-                    } else {
-                        t_trespuesta1.setText(String.valueOf(tiempo_res));
-                    }
-                    t_resultado1.setIcon(resultIcon);
-                    if (ensayo.getPanelEstimulo() == 0) {
-                        t_cantidad1.setText("-");
-                        t_vmov1.setText(String.valueOf("-"));
-                        t_velocidad.setText("-");
-                        t_angulo.setText("-");
+                        ImageIcon resultIcon = CambiarError(resultado.isError());
+                        ImageIcon keyIcon = CambiarKey(resultado.getKey(), configEnsayo.isControl());
+                        String descripcion = resultado.getDescripcion();
+                        double vel = resultado.getVelocidad();
+                        double angulo = resultado.getAngulo();
+
+                        t_densidad1.setText(String.valueOf(densidad));
+                        t_cantidad1.setText(String.valueOf(cantidad) + "%");
+                        t_vmov1.setText(String.valueOf(velocidad));
+                        t_direccion1.setIcon(dirIcon);
+                        t_pestimulo1.setText(panel);
+                        b_keypressed.setIcon(keyIcon);
+                        e_desc.setText(descripcion);
+                        t_velocidad.setText(Double.toString(vel) + " " + "cm/mls");
+                        t_angulo.setText(Double.toString(angulo) + "º");
+
+                        if (tiempo_res == 0) {
+                            t_trespuesta1.setText("N/R");
+                        } else {
+                            t_trespuesta1.setText(String.valueOf(tiempo_res));
+                        }
+                        t_resultado1.setIcon(resultIcon);
+                        if (ensayo.getPanelEstimulo() == 0) {
+                            t_cantidad1.setText("-");
+                            t_vmov1.setText(String.valueOf("-"));
+                            t_velocidad.setText("-");
+                            t_angulo.setText("-");
+                        }
                     }
                 }
             }

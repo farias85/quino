@@ -7,7 +7,7 @@ package quino.testing.main;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import quino.clases.config.ConfigApp;
-import quino.clases.config.ConfigEnsayoAuto;
+import quino.clases.config.ConfigEnsayoFormaABAuto;
 import quino.clases.model.Paciente;
 import quino.util.test.PruebaFoveal;
 import quino.util.test.PruebaPeriferica;
@@ -37,9 +37,8 @@ public class MainData {
 
             for (int i = 0; i < 50; i++) {
 
-                PruebaFoveal foveal = new PruebaFoveal(random.nextInt(5, 9),
-                        new ConfigEnsayoAuto(false));
-                for (int j = 0; j < foveal.getCantEnsayos(); j++) {
+                PruebaFoveal foveal = new PruebaFoveal(new ConfigEnsayoFormaABAuto(false), random.nextInt(5, 9));
+                for (int j = 0; j < foveal.getEnsayos().size(); j++) {
                     boolean error = j % 3 == 0 ? true : false;
                     Resultado results = new Resultado(random.nextInt(300, 620),
                             error, "Descrip", 32, random.nextDouble(),
@@ -47,9 +46,8 @@ public class MainData {
                     foveal.getEnsayos().get(j).setResultado(results);
                 }
 
-                PruebaPeriferica periferica = new PruebaPeriferica(random.nextInt(2, 8),
-                        new ConfigEnsayoAuto(false));
-                for (int j = 0; j < periferica.getCantEnsayos(); j++) {
+                PruebaPeriferica periferica = new PruebaPeriferica(new ConfigEnsayoFormaABAuto(false), random.nextInt(2, 8));
+                for (int j = 0; j < periferica.getEnsayos().size(); j++) {
                     boolean error = j % 2 == 0 ? true : false;
 
                     Resultado results = new Resultado(random.nextInt(300, 620),

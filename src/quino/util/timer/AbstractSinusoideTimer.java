@@ -31,6 +31,4 @@ public abstract class AbstractSinusoideTimer extends AbstractNoMoveTimer {
 
         ppi = Toolkit.getDefaultToolkit().getScreenResolution() / 3;
     }
-
-
 }

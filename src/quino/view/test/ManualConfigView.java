@@ -11,7 +11,7 @@
 package quino.view.test;
 
 import quino.view.main.*;
-import quino.clases.config.ConfigEnsayo;
+import quino.clases.config.ConfigEnsayoFormaAB;
 import quino.util.test.PruebaFoveal;
 import quino.util.test.PruebaPeriferica;
 import quino.util.QuinoTools;
@@ -588,17 +588,17 @@ public class ManualConfigView extends javax.swing.JDialog {
             ensayos = Integer.parseInt(jTextField1.getText());
 
             if (foveal) {
-                parent.setConf(new ConfigEnsayo(tiempo_movimiento, densidad,
+                parent.setConf(new ConfigEnsayoFormaAB(tiempo_movimiento, densidad,
                         cantidad, direccion, asincronico, control));
-                parent.setPrueba(new PruebaFoveal(ensayos, parent.getConf()));
+                parent.setPrueba(new PruebaFoveal(((ConfigEnsayoFormaAB)parent.getConf()), ensayos));
                 FovealTestView t = new FovealTestView(parent, true, false);
                 t.setVisible(true);
                 setVisible(false);
                 dispose();
             } else {
-                parent.setConf(new ConfigEnsayo(tiempo_movimiento, densidad,
+                parent.setConf(new ConfigEnsayoFormaAB(tiempo_movimiento, densidad,
                         cantidad, direccion, asincronico, control));
-                parent.setPrueba(new PruebaPeriferica(ensayos, parent.getConf()));
+                parent.setPrueba(new PruebaPeriferica(((ConfigEnsayoFormaAB)parent.getConf()), ensayos));
                 PerifericaTestView t = new PerifericaTestView(parent, true, false);
                 t.setVisible(true);
                 setVisible(false);

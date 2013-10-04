@@ -7,9 +7,7 @@ package quino.util.timer;
 import quino.util.test.Prueba;
 import quino.clases.model.Ensayo;
 import quino.clases.model.Resultado;
-import quino.util.QuinoJPanel;
 import quino.clases.config.*;
-import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.util.TimerTask;
 import quino.util.QuinoTools;
@@ -38,7 +36,7 @@ public abstract class AbstractQuinoTimer extends TimerTask {
         this.practica = practica;
         this.ensayo = prueba.getEnsayos().get(numEnsayo);
         this.resultado = new Resultado();
-        
+
         enEspera = QuinoTools.porcientoDuracion(ConfigApp.PC_EN_ESPERA);
         preparado = QuinoTools.porcientoDuracion(ConfigApp.PC_PREPARADO);
         esperandoRespuesta = QuinoTools.porcientoDuracion(ConfigApp.PC_ESPERANDO_RESPUESTA);
@@ -140,7 +138,7 @@ public abstract class AbstractQuinoTimer extends TimerTask {
      */
     protected boolean cancelarTarea() {
         numEnsayo++;
-        if (numEnsayo == prueba.getCantEnsayos()) {
+        if (numEnsayo == prueba.getEnsayos().size()) {
             cancel();
             return true;
         }
@@ -166,74 +164,14 @@ public abstract class AbstractQuinoTimer extends TimerTask {
     }
 
     /**
-     * Mueve los puntos de un jpanel segun la configuración determinada
-     * @param quinoJPanel El jpanel en el q se moverán los puntos
-     */
-    protected void moverPuntoYRepintar(QuinoJPanel quinoJPanel) {
-        if (ensayo.getConfiguracion().isAsincronico()) {
-            quinoJPanel.moverAsincronico();
-        } else {
-            quinoJPanel.moverEnDireccion(ensayo.getConfiguracion().getDireccion());
-        }
-        quinoJPanel.repaint();
-    }
-
-    /**
-     * Controla el resultado de la interacción con el teclado en el ensayo
-     */
-    protected void controlarEnsayo() {
-        if (ensayo.getConfiguracion().isControl()
-                && ensayo.getPanelEstimulo() > 0) {
-            int keyEsperada = ensayo.getConfiguracion().getKey();
-            if (keyEsperada != resultado.getKey()) {
-                resultado.setError(true);
-                resultado.setDescripcion("Las direcciones no coinciden");
-            }
-        } else if (ensayo.getPanelEstimulo() == 0) {
-            resultado.setError(true);
-            resultado.setDescripcion("No hubo Estímulo");
-        } else if (ensayo.getConfiguracion().getKey() != resultado.getKey()) {
-            resultado.setError(true);
-            resultado.setDescripcion("No se ha presionado la barra espaciadora");
-        }
-    }
-
-    /**
      * Define los parametros de inicio para los ensayos
      * @param cantPaneles Cantidad de paneles de cada ensayo sin contar el
      * panel central.
      */
     protected void inicializarEnsayo() {
-        ensayo = prueba.getEnsayos().get(numEnsayo);
-        resultado = new Resultado();
-    }
-
-    /**
-     * Captura el evento del teclado y define el tiempo de respuesta para
-     * el ensayo
-     * @param e El evento del teclado
-     */
-    protected void capturarEventoTeclado(KeyEvent e) {
-        int k = e.getKeyCode();
-        System.out.println("tecla presionada: " + k);
-
-        resultado.setKey(k);
-
-        if (ensayo.getPanelEstimulo() > 0) {
-            resultado.setTiempoRespuesta(tiempoTranscurrido - (enEspera + preparado + 1));
+        if (numEnsayo <= prueba.getEnsayos().size() - 1) {
+            ensayo = prueba.getEnsayos().get(numEnsayo);
+            resultado = new Resultado();
         }
-
-        controlarEnsayo();
-        puedeTeclear = false;
-    }
-
-    /**
-     * Obtiene los resultado finales de cada ensayo y se lo asigna a la
-     * prueba en cuestión
-     */
-    protected void obtenerResultado() {
-        resultado.setVelocidad(QuinoTools.getVelocidad(ensayo.getConfiguracion().getTiempoMovimiento()));
-        resultado.setAngulo(buscarAngulo());
-        ensayo.setResultado(resultado);
     }
 }

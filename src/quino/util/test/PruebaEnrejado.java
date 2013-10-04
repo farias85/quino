@@ -6,21 +6,23 @@ package quino.util.test;
 
 import java.util.ArrayList;
 import java.util.Date;
-import quino.clases.config.ConfigEnsayo;
+import quino.clases.config.ConfigEnsayoEnrejado;
 import quino.clases.model.Ensayo;
 
 /**
  *
  * @author farias
  */
-public class PruebaEnrejado extends Prueba {
+public class PruebaEnrejado extends PruebaSingleEnsayo {
 
-    public PruebaEnrejado(int cantEnsayos, Date fecha, ArrayList<Ensayo> ensayos) {
-        super(cantEnsayos, fecha, ensayos);
+    public PruebaEnrejado(ConfigEnsayoEnrejado configEnsayo) {
+        super();
+        Ensayo ensayo = new Ensayo(configEnsayo, 0);
+        ensayos.add(ensayo);
     }
 
-    public PruebaEnrejado(int cantEnsayos, ConfigEnsayo configEnsayo) {
-        super(cantEnsayos, configEnsayo);
+    public PruebaEnrejado(Date fecha, ArrayList<Ensayo> ensayos) {
+        super(fecha, ensayos);
     }
 
     public PruebaEnrejado() {

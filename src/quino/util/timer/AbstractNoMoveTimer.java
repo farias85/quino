@@ -41,30 +41,12 @@ public abstract class AbstractNoMoveTimer extends AbstractQuinoTimer {
     }
 
     @Override
-    protected void execEnEspera() {
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
-
-    //No se ejecuta
-    @Override
-    protected void execPreparado() {
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
-
-    //No se ejecuta
-    @Override
     protected void execEjecutandoMovimiento() {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 
     @Override
-    protected void execEsperandoRespuesta() {
+    protected void execPreparado() {
         throw new UnsupportedOperationException("Not supported yet.");
     }
-
-    @Override
-    protected void execTerminado() {
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
-
 }

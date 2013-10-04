@@ -24,7 +24,7 @@ import quino.view.test2nd.GaborTestView;
  * @author farias
  */
 public class GaborTimer extends AbstractSinusoideTimer {
-
+    
     private Point centro;
     private double contrat = 0.99;
     //central stimulus
@@ -34,13 +34,12 @@ public class GaborTimer extends AbstractSinusoideTimer {
     private double fspa_cpi_x_per = 0;             //spatial frequency in x, cicles / inch
     private double fspa_cpi_y_per = 1.0;           //spatial frequency in y, cicles / inch
     private double ftemp_per = 2;                  //temporal frequency in cicles / seconds (Hz)
-    private int radio1 = 80;                       //internal radious
-    private int radio2 = 200;                      //external radious
+    private int radio1 = 75;                       //internal radious
+    private int radio2 = 180;                      //external radious
     private double fspa_cpp_x_per;                 //spatial frequency in x,cicles / pixels
     private double fspa_cpp_y_per;                 //spatial frequency in x,cicles / pixels
     private byte intensidadMedia = (byte) 128;
     private byte intensidadMax;
-
     private GaborTestView test;
 
     public GaborTimer(Prueba prueba, boolean practica, JPanel jPanel, GaborTestView test) {
@@ -48,11 +47,14 @@ public class GaborTimer extends AbstractSinusoideTimer {
 
         this.test = test;
         this.jPanel = jPanel;
-        
-        mtx = new Mat(470, 460, CvType.CV_8SC1, new Scalar(255));
+        mtx = new Mat(470, 460, CvType.CV_8SC1, new Scalar(0));
+
+        fs = 90;
+        fspa_cpi_x = 1;                //spatial frequency in x, cicles / inch
+        fspa_cpi_y = 0.0;               //spatial frequency in y, cicles / inch
+        //ppi = 26;
         centro = new Point(mtx.width() / 2, mtx.height() / 2);
 
-        fs = 60;
         fspa_cpp_x = fspa_cpi_x / ppi;
         fspa_cpp_y = fspa_cpi_y / ppi;
         fspa_cpp_x_per = fspa_cpi_x_per / ppi;
@@ -119,7 +121,7 @@ public class GaborTimer extends AbstractSinusoideTimer {
         }
 
         runMatrix();
-        tiempoTranscurrido += 500;
+        tiempoTranscurrido += 100;
     }
 
     @Override
@@ -145,9 +147,11 @@ public class GaborTimer extends AbstractSinusoideTimer {
     }
 
     private void runMatrix() {
+
         for (int i = 0; i < mtx.cols(); i++) {
             double periodo = i / fs;
-            
+
+            //I1 = Imax* exp(- (( x - x0).^2 + (y - y0).^2) / (2*(gaussianStdpix).^2) );
             for (int j = 0; j < mtx.rows(); j++) {
                 Point point = new Point(i, j);
 

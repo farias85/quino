@@ -14,7 +14,8 @@ import quino.view.main.*;
 import java.awt.Color;
 import java.util.Timer;
 import java.util.TimerTask;
-import quino.clases.model.ShapeJPanel;
+import quino.clases.config.ConfigEnsayoShapeDetect;
+import quino.util.JPanelShape;
 import quino.util.timer.ShapeTimer;
 
 /**
@@ -24,6 +25,7 @@ import quino.util.timer.ShapeTimer;
 public class ShapeDetectTestView extends javax.swing.JDialog {
 
     private PrincipalView parent;
+    private ConfigEnsayoShapeDetect conf;
 
     public ShapeDetectTestView() {
     }
@@ -32,13 +34,19 @@ public class ShapeDetectTestView extends javax.swing.JDialog {
         super(parent, modal);
 
         this.parent = parent;
+        if (parent.getConf() instanceof ConfigEnsayoShapeDetect) {
+            conf = ((ConfigEnsayoShapeDetect) parent.getConf());
+        } else {
+            System.err.println("La configuracion no es de tipo ConfigEnsayoFormaAB en la clase ShapeDetectTestView");
+        }
+
         initComponents();
         setLocationRelativeTo(null);
 
         getContentPane().setBackground(Color.BLACK);
 
         TimerTask task = new ShapeTimer(parent.getPrueba(),
-                (ShapeJPanel) jPanel1, (ShapeJPanel) jPanel2,
+                (JPanelShape) jPanel1, (JPanelShape) jPanel2,
                 this, practica);
 
         Timer ti = new Timer();
@@ -58,8 +66,8 @@ public class ShapeDetectTestView extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new quino.clases.model.ShapeJPanel(parent.getConf().getDensidad(), parent.getConf().getCantidad());
-        jPanel2 = new quino.clases.model.ShapeJPanel(parent.getConf().getDensidad(), parent.getConf().getCantidad());
+        jPanel1 = new quino.util.JPanelShape(conf.getDensidad());
+        jPanel2 = new quino.util.JPanelShape(conf.getDensidad());
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setIconImage(null);

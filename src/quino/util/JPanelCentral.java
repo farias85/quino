@@ -9,17 +9,16 @@ import java.awt.Graphics;
 import javax.swing.JPanel;
 import java.awt.Image;
 import java.awt.image.BufferedImage;
-import javax.swing.ImageIcon;
 
 /**
  * Representa al panel del centro de las vistas de prueba foveal y periférica
  * @author Felipe Rodriguez Arias
  */
-public class CentralJPanel extends JPanel {
+public class JPanelCentral extends JPanel {
 
     private Color color;
 
-    public CentralJPanel(Color color) {
+    public JPanelCentral(Color color) {
         this.color = color;
     }
 

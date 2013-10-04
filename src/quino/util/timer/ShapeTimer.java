@@ -6,7 +6,8 @@ package quino.util.timer;
 
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
-import quino.clases.model.ShapeJPanel;
+import quino.clases.config.ConfigEnsayoShapeDetect;
+import quino.util.JPanelShape;
 import quino.util.test.Prueba;
 import quino.util.QuinoTools;
 import quino.view.test.ResultView;
@@ -18,18 +19,25 @@ import quino.view.test2nd.ShapeDetectTestView;
  */
 public class ShapeTimer extends AbstractNoMoveTimer {
 
-    private ShapeJPanel panel1;
-    private ShapeJPanel panel2;
+    private JPanelShape panel1;
+    private JPanelShape panel2;
     private ShapeDetectTestView test;
+    private ConfigEnsayoShapeDetect configEnsayo;
 
     public ShapeTimer(Prueba prueba,
-            ShapeJPanel panel1, ShapeJPanel panel2,
+            JPanelShape panel1, JPanelShape panel2,
             ShapeDetectTestView test, boolean practica) {
         super(prueba, practica);
 
         this.panel1 = panel1;
         this.panel2 = panel2;
         this.test = test;
+
+        if (ensayo.getConfiguracion() instanceof ConfigEnsayoShapeDetect) {
+            this.configEnsayo = ((ConfigEnsayoShapeDetect) ensayo.getConfiguracion());
+        } else {
+            System.err.println("El ensayo no es de tipo ConfigEnsayoShapeDetect en la clase ShapeTimer");
+        }
     }
 
     @Override
@@ -133,16 +141,16 @@ public class ShapeTimer extends AbstractNoMoveTimer {
     protected void panelsRellenar() {
         switch (ensayo.getPanelEstimulo()) {
             case 0:
-                panel1.rellenar(ensayo.getConfiguracion().getDensidad(), ensayo.getConfiguracion().getCantidad());
-                panel2.rellenar(ensayo.getConfiguracion().getDensidad(), ensayo.getConfiguracion().getCantidad());
+                panel1.rellenar(configEnsayo.getDensidad());
+                panel2.rellenar(configEnsayo.getDensidad());
                 break;
             case 1:
-                panel1.rellenarShape(ensayo.getConfiguracion().getDensidad(), ensayo.getConfiguracion().getCantidad());
-                panel2.rellenar(ensayo.getConfiguracion().getDensidad(), ensayo.getConfiguracion().getCantidad());
+                panel1.rellenarShape(configEnsayo.getDensidad(), configEnsayo.getPcShape(), configEnsayo.getTolerancia());
+                panel2.rellenar(configEnsayo.getDensidad());
                 break;
             case 2:
-                panel1.rellenar(ensayo.getConfiguracion().getDensidad(), ensayo.getConfiguracion().getCantidad());
-                panel2.rellenarShape(ensayo.getConfiguracion().getDensidad(), ensayo.getConfiguracion().getCantidad());
+                panel1.rellenar(configEnsayo.getDensidad());
+                panel2.rellenarShape(configEnsayo.getDensidad(), configEnsayo.getPcShape(), configEnsayo.getTolerancia());
                 break;
         }
     }

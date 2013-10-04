@@ -2,7 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package quino.clases.model;
+package quino.util;
 
 import quino.util.*;
 import java.awt.Color;
@@ -14,20 +14,25 @@ import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 
 import javax.swing.JPanel;
+import quino.clases.model.AbstractShape;
+import quino.clases.model.Segment2D;
+import quino.clases.model.ShapeCircle;
+import quino.clases.model.ShapeRectangle;
+import quino.clases.model.ShapeSquare;
+import quino.clases.model.ShapeTriangle;
 
 /**
  *
  * @author Felipao
  */
-public class ShapeJPanel extends JPanel {
+public class JPanelShape extends JPanel {
 
     private ArrayList<Segment2D> segmentos = new ArrayList<Segment2D>();
-    private int cantidad;
+    
     private int densidad;
     private AbstractShape shape;
 
-    public ShapeJPanel(int densidad, int cantidad) {
-        this.cantidad = cantidad;
+    public JPanelShape(int densidad) {
         this.densidad = densidad;
     }
 
@@ -55,22 +60,19 @@ public class ShapeJPanel extends JPanel {
         segmentos.clear();
     }
 
-    public void rellenar(int densidad, int cantidad) {
-        this.cantidad = cantidad;
+    public void rellenar(int densidad) {
         this.densidad = densidad;
         segmentos = new ArrayList<Segment2D>();
 
         rellenarRandom(densidad);
     }
 
-    public void rellenarShape(int densidad, int cantidad) {
-        this.cantidad = cantidad;
+    public void rellenarShape(int densidad, double pcShape, int tolerancia) {
         this.densidad = densidad;
         segmentos = new ArrayList<Segment2D>();
 
         int densidadOthers = (int) QuinoTools.porciento(90, densidad);
         int densidadShape = (int) QuinoTools.porciento(10, densidad);
-        int tolerancia = 2;
 
         Aleatorio random = new Aleatorio();
         int numero = random.nextInt(1, 4);
@@ -112,14 +114,6 @@ public class ShapeJPanel extends JPanel {
                 shape = new ShapeCircle(densidadParcial, tolerancia, pcDimension);
                 break;
         }
-    }
-
-    public int getCantidad() {
-        return cantidad;
-    }
-
-    public void setCantidad(int cantidad) {
-        this.cantidad = cantidad;
     }
 
     public int getDensidad() {

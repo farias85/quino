@@ -18,7 +18,7 @@ import javax.swing.JPanel;
  * @author Felipe Rodriguez Arias
  *
  */
-public class QuinoJPanel extends JPanel {
+public class JPanelQuino extends JPanel {
 
     /**
      * Lista de puntos q serán dibujados en el panel
@@ -33,7 +33,7 @@ public class QuinoJPanel extends JPanel {
      */
     private int densidad;
 
-    public QuinoJPanel(int densidad, int cantidad) {
+    public JPanelQuino(int densidad, int cantidad) {
         this.cantidad = cantidad;
         this.densidad = densidad;
     }

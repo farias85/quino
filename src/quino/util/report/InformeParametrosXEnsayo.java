@@ -14,7 +14,7 @@ import quino.util.test.Prueba;
 import quino.clases.model.Ensayo;
 import quino.clases.model.Resultado;
 import quino.util.QuinoTools;
-import quino.clases.config.ConfigEnsayo;
+import quino.clases.config.ConfigEnsayoFormaAB;
 
 /**
  *
@@ -62,7 +62,11 @@ public class InformeParametrosXEnsayo extends AbstractInformeExcel {
                 for (int j = 0; j < ensayos.size(); j++) {
                     Ensayo ensayoActual = ensayos.get(j);
                     Resultado resultadoActual = ensayos.get(j).getResultado();
-                    ConfigEnsayo configEnsayoActual = ensayos.get(j).getConfiguracion();
+
+                    ConfigEnsayoFormaAB configEnsayoActual = null;
+                    if (ensayos.get(j).getConfiguracion() instanceof ConfigEnsayoFormaAB) {
+                        configEnsayoActual = ((ConfigEnsayoFormaAB)ensayos.get(j).getConfiguracion());
+                    }
 
                     HSSFRow row = sheet.createRow(rowCount);
                     HSSFCell celda = null;

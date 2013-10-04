@@ -7,21 +7,21 @@ package quino.util.test;
 
 import java.util.ArrayList;
 import java.util.Date;
-import quino.clases.config.ConfigEnsayo;
+import quino.clases.config.ConfigEnsayoFormaAB;
 import quino.clases.model.Ensayo;
 
 /**
  * Representa una prueba de tipo Foveal
  * @author Felipe Rodriguez Arias
  */
-public class PruebaFoveal extends Prueba{
+public class PruebaFoveal extends PruebaFormaAB{
 
-    public PruebaFoveal(int cantEnsayos, Date fecha, ArrayList<Ensayo> ensayos) {
-        super(cantEnsayos, fecha, ensayos);
+    public PruebaFoveal(Date fecha, ArrayList<Ensayo> ensayos) {
+        super(fecha, ensayos);
     }
 
-    public PruebaFoveal(int cantEnsayos, ConfigEnsayo configEnsayo) {
-        super(cantEnsayos, configEnsayo);
+    public PruebaFoveal(ConfigEnsayoFormaAB configEnsayo, int cantEnsayos) {
+        super(configEnsayo, cantEnsayos);
     }
 
     public PruebaFoveal() {

@@ -8,7 +8,7 @@
  *
  * Created on 25-sep-2010, 11:37:23
  */
-package quino.view.prueba;
+package quino.view.test;
 
 import java.text.DateFormat;
 import quino.util.Grafica;

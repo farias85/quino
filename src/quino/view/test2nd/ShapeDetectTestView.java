@@ -8,49 +8,41 @@
  *
  * Created on 14-ago-2010, 19:30:39
  */
-package quino.view.prueba;
+package quino.view.test2nd;
 
 import quino.view.main.*;
-import quino.util.QuinoJPanel;
-import quino.util.CentralJPanel;
-import quino.util.timer.PerifericaTimer;
 import java.awt.Color;
 import java.util.Timer;
 import java.util.TimerTask;
+import quino.clases.model.ShapeJPanel;
+import quino.util.timer.ShapeTimer;
 
 /**
  *
  * @author Casa
  */
-public class PerifericaTestView extends javax.swing.JDialog {
-    
+public class ShapeDetectTestView extends javax.swing.JDialog {
+
     private PrincipalView parent;
 
-    public PerifericaTestView() {
+    public ShapeDetectTestView() {
     }
 
-    public PerifericaTestView(PrincipalView parent, boolean modal, boolean practica) {
+    public ShapeDetectTestView(PrincipalView parent, boolean modal, boolean practica) {
         super(parent, modal);
 
         this.parent = parent;
         initComponents();
         setLocationRelativeTo(null);
-        setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
 
         getContentPane().setBackground(Color.BLACK);
 
-        TimerTask task = new PerifericaTimer(parent.getPrueba(), 
-                (QuinoJPanel) jPanel1, (QuinoJPanel) jPanel2,
-                (CentralJPanel) jPanel3, this, practica);
+        TimerTask task = new ShapeTimer(parent.getPrueba(),
+                (ShapeJPanel) jPanel1, (ShapeJPanel) jPanel2,
+                this, practica);
 
         Timer ti = new Timer();
-
-        try {
-            ti.scheduleAtFixedRate(task, 0, 1);
-        } catch (Exception e) {
-            ErrorDialog er = new ErrorDialog(parent, true, e.getMessage());
-            er.setVisible(true);
-        }
+        ti.scheduleAtFixedRate(task, 0, 1);
     }
 
     public PrincipalView getParentView() {
@@ -66,9 +58,8 @@ public class PerifericaTestView extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new quino.util.QuinoJPanel(parent.getConf().getDensidad(), parent.getConf().getCantidad());
-        jPanel2 = new quino.util.QuinoJPanel(parent.getConf().getDensidad(), parent.getConf().getCantidad());
-        jPanel3 = new quino.util.CentralJPanel(Color.RED);
+        jPanel1 = new quino.clases.model.ShapeJPanel(parent.getConf().getDensidad(), parent.getConf().getCantidad());
+        jPanel2 = new quino.clases.model.ShapeJPanel(parent.getConf().getDensidad(), parent.getConf().getCantidad());
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setIconImage(null);
@@ -81,7 +72,7 @@ public class PerifericaTestView extends javax.swing.JDialog {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 440, Short.MAX_VALUE)
+            .addGap(0, 497, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -94,24 +85,11 @@ public class PerifericaTestView extends javax.swing.JDialog {
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 440, Short.MAX_VALUE)
+            .addGap(0, 491, Short.MAX_VALUE)
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 691, Short.MAX_VALUE)
-        );
-
-        jPanel3.setBackground(new java.awt.Color(0, 0, 0));
-
-        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 114, Short.MAX_VALUE)
-        );
-        jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 691, Short.MAX_VALUE)
+            .addGap(0, 702, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -120,16 +98,15 @@ public class PerifericaTestView extends javax.swing.JDialog {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
@@ -142,7 +119,7 @@ public class PerifericaTestView extends javax.swing.JDialog {
         java.awt.EventQueue.invokeLater(new Runnable() {
 
             public void run() {
-                PerifericaTestView dialog = new PerifericaTestView();
+                ShapeDetectTestView dialog = new ShapeDetectTestView();
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
 
                     @Override
@@ -157,6 +134,5 @@ public class PerifericaTestView extends javax.swing.JDialog {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel3;
     // End of variables declaration//GEN-END:variables
 }

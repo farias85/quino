@@ -3,27 +3,28 @@
  * and open the template in the editor.
  */
 
-package quino.clases.model;
+package quino.util.test;
 
 import java.util.ArrayList;
 import java.util.Date;
 import quino.clases.config.ConfigEnsayo;
+import quino.clases.model.Ensayo;
 
 /**
- * Representa una prueba de tipo Periférica
+ * Representa una prueba de tipo Foveal
  * @author Felipe Rodriguez Arias
  */
-public class PruebaPeriferica extends Prueba{
+public class PruebaFoveal extends Prueba{
 
-    public PruebaPeriferica(int cantEnsayos, Date fecha, ArrayList<Ensayo> ensayos) {
+    public PruebaFoveal(int cantEnsayos, Date fecha, ArrayList<Ensayo> ensayos) {
         super(cantEnsayos, fecha, ensayos);
     }
 
-    public PruebaPeriferica(int cantEnsayos, ConfigEnsayo configEnsayo) {
+    public PruebaFoveal(int cantEnsayos, ConfigEnsayo configEnsayo) {
         super(cantEnsayos, configEnsayo);
     }
 
-    public PruebaPeriferica() {
+    public PruebaFoveal() {
         super();
     }
 }

@@ -2,15 +2,15 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package quino.test.main;
+package quino.testing.main;
 
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import quino.clases.config.ConfigApp;
 import quino.clases.config.ConfigEnsayoAuto;
 import quino.clases.model.Paciente;
-import quino.clases.model.PruebaFoveal;
-import quino.clases.model.PruebaPeriferica;
+import quino.util.test.PruebaFoveal;
+import quino.util.test.PruebaPeriferica;
 import quino.clases.model.Registro;
 import quino.clases.model.Resultado;
 import quino.util.Aleatorio;

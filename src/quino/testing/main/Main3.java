@@ -2,7 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package quino.test.main;
+package quino.testing.main;
 
 import java.awt.Point;
 import java.text.DateFormat;

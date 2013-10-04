@@ -8,7 +8,7 @@
  *
  * Created on 07-nov-2010, 15:27:47
  */
-package quino.view.prueba;
+package quino.view.test;
 
 import quino.util.CentralJPanel;
 import quino.util.QuinoJPanel;

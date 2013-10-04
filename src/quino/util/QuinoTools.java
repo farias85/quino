@@ -7,6 +7,7 @@ package quino.util;
 import java.awt.Dimension;
 import java.awt.Point;
 import java.awt.Toolkit;
+import java.awt.image.BufferedImage;
 import java.beans.XMLDecoder;
 import java.beans.XMLEncoder;
 import java.io.BufferedInputStream;
@@ -20,10 +21,11 @@ import java.util.logging.Logger;
 import javax.swing.JDialog;
 import javax.swing.JOptionPane;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
+import org.opencv.core.Mat;
 import quino.clases.config.ConfigApp;
-import quino.clases.model.Prueba;
-import quino.clases.model.PruebaFoveal;
-import quino.clases.model.PruebaPeriferica;
+import quino.util.test.Prueba;
+import quino.util.test.PruebaFoveal;
+import quino.util.test.PruebaPeriferica;
 import quino.view.main.ErrorDialog;
 import quino.view.main.PrincipalView;
 
@@ -393,5 +395,39 @@ public class QuinoTools {
         velocidad = Math.rint(velocidad * 100000) / 100000;
         //velocidad = Double.parseDouble(ConfigApp.DECIMAL_FORMAT.format(velocidad));
         return velocidad;
+    }
+
+    /**
+     * Convierte una matrix de tipo Mat de opencv a BufferedImage para mostrar por pantalla
+     * @param matrix Matrix de la imagen generada con opencv
+     * @return La representación de la imagen en el tipo BufferedImage
+     */
+     public static BufferedImage matToBufferedImage(Mat matrix) {
+        int cols = matrix.cols();
+        int rows = matrix.rows();
+        int elemSize = (int) matrix.elemSize();
+        byte[] data = new byte[cols * rows * elemSize];
+        int type;
+        matrix.get(0, 0, data);
+        switch (matrix.channels()) {
+            case 1:
+                type = BufferedImage.TYPE_BYTE_GRAY;
+                break;
+            case 3:
+                type = BufferedImage.TYPE_3BYTE_BGR;
+                // bgr to rgb
+                byte b;
+                for (int i = 0; i < data.length; i = i + 3) {
+                    b = data[i];
+                    data[i] = data[i + 2];
+                    data[i + 2] = b;
+                }
+                break;
+            default:
+                return null;
+        }
+        BufferedImage image2 = new BufferedImage(cols, rows, type);
+        image2.getRaster().setDataElements(0, 0, cols, rows, data);
+        return image2;
     }
 }

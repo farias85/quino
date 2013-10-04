@@ -8,7 +8,7 @@
  *
  * Created on 15-jul-2013, 11:34:48
  */
-package quino.test.main;
+package quino.testing.main;
 
 import java.awt.Point;
 

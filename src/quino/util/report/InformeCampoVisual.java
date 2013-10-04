@@ -10,8 +10,8 @@ import org.apache.poi.hssf.usermodel.HSSFRow;
 import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import quino.clases.model.Paciente;
-import quino.clases.model.Prueba;
-import quino.clases.model.PruebaFoveal;
+import quino.util.test.Prueba;
+import quino.util.test.PruebaFoveal;
 import quino.util.QuinoTools;
 import quino.clases.model.Ensayo;
 

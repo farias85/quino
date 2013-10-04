@@ -4,60 +4,55 @@
  */
 package quino.util.timer;
 
+import java.awt.Image;
 import java.awt.Point;
+import java.awt.Toolkit;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.awt.geom.Line2D;
-import java.io.ByteArrayInputStream;
-import java.io.InputStream;
-import java.util.TimerTask;
-import javax.imageio.ImageIO;
-import javax.swing.ImageIcon;
-import javax.swing.JLabel;
+import javax.swing.JPanel;
 import org.opencv.core.CvType;
 import org.opencv.core.Mat;
-import org.opencv.core.MatOfByte;
 import org.opencv.core.Scalar;
-import org.opencv.highgui.Highgui;
+import quino.util.test.Prueba;
+import quino.util.QuinoTools;
+import quino.view.test.ResultView;
+import quino.view.test2nd.GaborTestView;
 
 /**
  *
  * @author farias
  */
-public class GaborTimer extends TimerTask {
+public class GaborTimer extends AbstractSinusoideTimer {
 
-    private int count = 0;
-    private JLabel jLabel1;
-    //Image Matrix
-    private Mat mtx = new Mat(470, 460, CvType.CV_32SC1, new Scalar(0));
     private Point centro;
-    //Inputs parameters
-    private int fs = 60;                  // sampling frequency in frames / s
-    //int nms = 500;                      // test duration miliseconds
-    //double nf = nms * fs / 1000;        //number of frames
     private double contrat = 0.99;
     //central stimulus
-    private double fspa_cpi_x = -1;                //spatial frequency in x, cicles / inch
-    private double fspa_cpi_y = 0.0;               //spatial frequency in y, cicles / inch
     private double ftemp = 2;                      //temporal frequency in cicles / seconds (Hz)
     private double gaussianStdpix = 40;           //gaussian standar deviation [pixel]
     //periferal stimulis
     private double fspa_cpi_x_per = 0;             //spatial frequency in x, cicles / inch
     private double fspa_cpi_y_per = 1.0;           //spatial frequency in y, cicles / inch
     private double ftemp_per = 2;                  //temporal frequency in cicles / seconds (Hz)
-    private int radio1 = 70;                       //internal radious
-    private int radio2 = 150;                      //external radious
-    private int ppi = 26;                          //screen pixels x inch
-    private double fspa_cpp_x;                     //spatial frequency in x,cicles / pixels
-    private double fspa_cpp_y;                     //spatial frequency in x,cicles / pixels
+    private int radio1 = 80;                       //internal radious
+    private int radio2 = 200;                      //external radious
     private double fspa_cpp_x_per;                 //spatial frequency in x,cicles / pixels
     private double fspa_cpp_y_per;                 //spatial frequency in x,cicles / pixels
     private byte intensidadMedia = (byte) 128;
     private byte intensidadMax;
 
-    public GaborTimer(JLabel jlabel1) {
-        this.jLabel1 = jlabel1;
+    private GaborTestView test;
 
+    public GaborTimer(Prueba prueba, boolean practica, JPanel jPanel, GaborTestView test) {
+        super(prueba, practica);
+
+        this.test = test;
+        this.jPanel = jPanel;
+        
+        mtx = new Mat(470, 460, CvType.CV_8SC1, new Scalar(255));
         centro = new Point(mtx.width() / 2, mtx.height() / 2);
 
+        fs = 60;
         fspa_cpp_x = fspa_cpi_x / ppi;
         fspa_cpp_y = fspa_cpi_y / ppi;
         fspa_cpp_x_per = fspa_cpi_x_per / ppi;
@@ -67,12 +62,92 @@ public class GaborTimer extends TimerTask {
     }
 
     @Override
-    public void run() {
+    protected void execEnEspera() {
+        if (inOut) {
+            inOut = false;
+            System.out.println("en espera " + tiempoTranscurrido);
 
+            inicializarEnsayo();
+        }
+    }
+
+    @Override
+    protected void execEsperandoRespuesta() {
+        if (!inOut) {
+            inOut = true;
+            System.out.println("preparado " + tiempoTranscurrido);
+
+            System.out.println("esperando respuesta " + tiempoTranscurrido);
+            inOut = true;
+
+            keyPress = new KeyListener() {
+
+                public void keyTyped(KeyEvent e) {
+                    //throw new UnsupportedOperationException("Not supported yet.");
+                }
+
+                public void keyPressed(KeyEvent e) {
+                    if (puedeTeclear) {
+                        int k = e.getKeyCode();
+                        System.out.println("tecla presionada: " + k);
+
+                        resultado.setKey(k);
+
+                        if (ensayo.getPanelEstimulo() > 0) {
+                            resultado.setTiempoRespuesta(tiempoTranscurrido - (enEspera + 1));
+                        }
+
+                        if (ensayo.getPanelEstimulo() == 0) {
+                            resultado.setError(true);
+                            resultado.setDescripcion("No hubo estímulo");
+                        } else if (ensayo.getConfiguracion().getKey() != resultado.getKey()) {
+                            resultado.setError(true);
+                            resultado.setDescripcion("Dirección incorrecta");
+                        }
+
+                        puedeTeclear = false;
+                    }
+                }
+
+                public void keyReleased(KeyEvent e) {
+                    //throw new UnsupportedOperationException("Not supported yet.");
+                }
+            };
+
+            test.addKeyListener(keyPress);
+            puedeTeclear = true;
+        }
+
+        runMatrix();
+        tiempoTranscurrido += 500;
+    }
+
+    @Override
+    protected void execTerminado() {
+        System.out.println("terminado " + tiempoTranscurrido);
+        test.removeKeyListener(keyPress);
+
+        if (resultado.getKey() == 0 && ensayo.getPanelEstimulo() > 0) {
+            resultado.setError(true);
+            resultado.setDescripcion("Omisión");
+        }
+
+        ensayo.setResultado(resultado);
+
+        if (cancelarTarea()) {
+            if (!practica) {
+                QuinoTools.salvarPruebaEnRegistro(test.getParentView(), test, prueba);
+            }
+            ResultView res = new ResultView(test.getParentView(), true, false);
+            test.setVisible(false);
+            res.setVisible(true);
+        }
+    }
+
+    private void runMatrix() {
         for (int i = 0; i < mtx.cols(); i++) {
             double periodo = i / fs;
-
-            //I1 = Imax* exp(- (( x - x0).^2 + (y - y0).^2) / (2*(gaussianStdpix).^2) );
+            
             for (int j = 0; j < mtx.rows(); j++) {
                 Point point = new Point(i, j);
 
@@ -94,17 +169,8 @@ public class GaborTimer extends TimerTask {
             }
         }
 
-        MatOfByte matOfByte = new MatOfByte();
-        Highgui.imencode(".jpg", mtx, matOfByte);
-
-        byte[] byteArray = matOfByte.toArray();
-
-        try {
-            InputStream in = new ByteArrayInputStream(byteArray);
-            jLabel1.setIcon(new ImageIcon(ImageIO.read(in)));
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        Image image = QuinoTools.matToBufferedImage(mtx);
+        jPanel.getGraphics().drawImage(image, 0, 0, jPanel);
 
         System.out.println(count + " esto es una prueba");
         count++;

@@ -4,30 +4,32 @@
  */
 
 /*
- * PerifericaTestView.java
+ * GaborTestView.java
  *
- * Created on 14-ago-2010, 19:30:39
+ * Created on 01-oct-2013, 15:20:35
  */
-package quino.view.prueba2nd;
+
+package quino.view.test2nd;
 
 import java.awt.Color;
 import java.util.Timer;
 import java.util.TimerTask;
-import quino.util.timer.EnrejadoTimer;
-import quino.view.main.*;
+import quino.util.timer.GaborTimer;
+import quino.view.main.PrincipalView;
 
 /**
  *
- * @author Casa
+ * @author farias
  */
-public class EnrejadoTestView extends javax.swing.JDialog {
+public class GaborTestView extends javax.swing.JDialog {
 
     private PrincipalView parent;
 
-    public EnrejadoTestView() {
+    public GaborTestView() {
     }
 
-    public EnrejadoTestView(PrincipalView parent, boolean modal, boolean practica) {
+    /** Creates new form GaborTestView */
+    public GaborTestView(PrincipalView parent, boolean modal, boolean practica) {
         super(parent, modal);
 
         this.parent = parent;
@@ -36,8 +38,9 @@ public class EnrejadoTestView extends javax.swing.JDialog {
 
         System.loadLibrary("opencv_java245");
         getContentPane().setBackground(Color.BLACK);
+        jPanel1.setBackground(Color.BLACK);
 
-        TimerTask task = new EnrejadoTimer(jLabel1);
+        TimerTask task = new GaborTimer(parent.getPrueba(), practica, jPanel1, this);
         Timer ti = new Timer();
         ti.scheduleAtFixedRate(task, 0, 1);
     }
@@ -55,44 +58,50 @@ public class EnrejadoTestView extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
+        jPanel1 = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setBackground(new java.awt.Color(0, 0, 0));
-        setIconImage(null);
-        setIconImages(null);
         setResizable(false);
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 652, Short.MAX_VALUE)
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 474, Short.MAX_VALUE)
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(146, 146, 146)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 751, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(109, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(267, Short.MAX_VALUE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(111, 111, 111))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(60, 60, 60)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 547, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(106, Short.MAX_VALUE))
+                .addGap(112, 112, 112)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(117, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     /**
-     * @param args the command line arguments
-     */
+    * @param args the command line arguments
+    */
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(new Runnable() {
-
             public void run() {
-                EnrejadoTestView dialog = new EnrejadoTestView();
+                GaborTestView dialog = new GaborTestView();
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
-
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {
                         System.exit(0);
@@ -102,7 +111,9 @@ public class EnrejadoTestView extends javax.swing.JDialog {
             }
         });
     }
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
+
 }

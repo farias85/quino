@@ -7,16 +7,16 @@ package quino.util.timer;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import quino.clases.model.ShapeJPanel;
-import quino.clases.model.Prueba;
+import quino.util.test.Prueba;
 import quino.util.QuinoTools;
-import quino.view.prueba.ResultView;
-import quino.view.prueba2nd.ShapeDetectTestView;
+import quino.view.test.ResultView;
+import quino.view.test2nd.ShapeDetectTestView;
 
 /**
  *
  * @author Administrador
  */
-public class ShapeTimer extends AbstractQuinoTimer {
+public class ShapeTimer extends AbstractNoMoveTimer {
 
     private ShapeJPanel panel1;
     private ShapeJPanel panel2;
@@ -33,29 +33,6 @@ public class ShapeTimer extends AbstractQuinoTimer {
     }
 
     @Override
-    public void run() {
-        tiempoTranscurrido++;
-        switch (estadoEnsayo()) {
-            case EN_ESPERA:
-                execEnEspera();
-                break;
-            case PREPARADO:
-                execEsperandoRespuesta();
-                break;
-            case EJECUTANDO_MOVIMIENTO:
-                execEsperandoRespuesta();
-                break;
-            case ESPERANDO_RESPUESTA:
-                execEsperandoRespuesta();
-                break;
-            case TERMINADO:
-                execTerminado();
-                break;
-            default:
-        }
-    }
-
-    @Override
     protected void execEnEspera() {
         if (inOut) {
             inOut = false;
@@ -65,16 +42,6 @@ public class ShapeTimer extends AbstractQuinoTimer {
             panelsRepaint();
             inicializarEnsayo();
         }
-    }
-
-    @Override
-    protected void execPreparado() {
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
-
-    @Override
-    protected void execEjecutandoMovimiento() {
-        throw new UnsupportedOperationException("Not supported yet.");
     }
 
     @Override
@@ -111,7 +78,7 @@ public class ShapeTimer extends AbstractQuinoTimer {
                             resultado.setDescripcion("No hubo estímulo");
                         } else if (ensayo.getConfiguracion().getKey() != resultado.getKey()) {
                             resultado.setError(true);
-                            resultado.setDescripcion("No se ha presionado la tecla esperada");
+                            resultado.setDescripcion("Dirección incorrecta");
                         }
 
                         puedeTeclear = false;

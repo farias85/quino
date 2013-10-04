@@ -2,7 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package quino.clases.model;
+package quino.util.test;
 
 import java.util.ArrayList;
 
@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import quino.clases.config.ConfigEnsayo;
 import quino.clases.config.ConfigEnsayoAuto;
+import quino.clases.model.Ensayo;
 import quino.util.Aleatorio;
 
 /**
@@ -50,37 +51,44 @@ public abstract class Prueba {
         fecha = new Date();
         ensayos = new ArrayList<Ensayo>();
 
-        for (int i = 0; i < cantEnsayos; i++) {
-            if (configEnsayo instanceof ConfigEnsayoAuto) {
-                configEnsayo = new ConfigEnsayoAuto(configEnsayo.isControl());
-            }
-            int panelEstimulo = -1;
-            Aleatorio random = new Aleatorio();
-            if (this instanceof PruebaFoveal) {
-                panelEstimulo = random.nextInt(0, 8);
-            }
-            if (this instanceof PruebaPeriferica) {
-                panelEstimulo = random.nextInt(0, 2);
-            }
-
-            if (this instanceof PruebaShape) {
-                panelEstimulo = random.nextInt(0, 2);
-                switch (panelEstimulo) {
-                    case 0:
-                        configEnsayo.setKey(0); //ninguna tecla
-                        break;
-                    case 1:
-                        configEnsayo.setKey(37);//tecla de la flecha izquierda
-                        break;
-                    case 2:
-                        configEnsayo.setKey(39);//tecla de la flecha derecha
-                        break;
-                }
-            }
-
-            Ensayo ensayo = new Ensayo(configEnsayo, panelEstimulo);
-
+        if (this instanceof PruebaEnrejado) {
+            Ensayo ensayo = new Ensayo(configEnsayo, 0);
             ensayos.add(ensayo);
+        } else {
+            for (int i = 0; i < cantEnsayos; i++) {
+                if (configEnsayo instanceof ConfigEnsayoAuto) {
+                    configEnsayo = new ConfigEnsayoAuto(configEnsayo.isControl());
+                }
+
+                int panelEstimulo = -1;
+                Aleatorio random = new Aleatorio();
+                if (this instanceof PruebaFoveal) {
+                    panelEstimulo = random.nextInt(0, 8);
+                }
+
+                if (this instanceof PruebaPeriferica) {
+                    panelEstimulo = random.nextInt(0, 2);
+                }
+
+                if (this instanceof PruebaShape) {
+                    panelEstimulo = random.nextInt(0, 2);
+                    switch (panelEstimulo) {
+                        case 0:
+                            configEnsayo.setKey(0); //ninguna tecla
+                            break;
+                        case 1:
+                            configEnsayo.setKey(37);//tecla de la flecha izquierda
+                            break;
+                        case 2:
+                            configEnsayo.setKey(39);//tecla de la flecha derecha
+                            break;
+                    }
+                }
+
+                Ensayo ensayo = new Ensayo(configEnsayo, panelEstimulo);
+
+                ensayos.add(ensayo);
+            }
         }
     }
 

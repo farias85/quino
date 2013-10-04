@@ -3,27 +3,28 @@
  * and open the template in the editor.
  */
 
-package quino.clases.model;
+package quino.util.test;
 
 import java.util.ArrayList;
 import java.util.Date;
 import quino.clases.config.ConfigEnsayo;
+import quino.clases.model.Ensayo;
 
 /**
  *
  * @author farias
  */
-public class PruebaShape extends Prueba{
+public class PruebaGabor extends Prueba{
 
-    public PruebaShape(int cantEnsayos, Date fecha, ArrayList<Ensayo> ensayos) {
+    public PruebaGabor(int cantEnsayos, Date fecha, ArrayList<Ensayo> ensayos) {
         super(cantEnsayos, fecha, ensayos);
     }
 
-    public PruebaShape(int cantEnsayos, ConfigEnsayo configEnsayo) {
+    public PruebaGabor(int cantEnsayos, ConfigEnsayo configEnsayo) {
         super(cantEnsayos, configEnsayo);
     }
 
-    public PruebaShape() {
+    public PruebaGabor() {
         super();
     }
 }

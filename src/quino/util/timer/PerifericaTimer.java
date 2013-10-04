@@ -6,13 +6,13 @@ package quino.util.timer;
 
 import quino.util.QuinoJPanel;
 import quino.util.CentralJPanel;
-import quino.clases.model.Prueba;
+import quino.util.test.Prueba;
 import java.awt.Color;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import quino.util.QuinoTools;
-import quino.view.prueba.PerifericaTestView;
-import quino.view.prueba.ResultView;
+import quino.view.test.PerifericaTestView;
+import quino.view.test.ResultView;
 
 /**
  *

@@ -2,7 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package quino.test.main;
+package quino.testing.main;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -18,7 +18,7 @@ import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import quino.clases.config.ConfigApp;
 import quino.clases.model.Paciente;
-import quino.clases.model.Prueba;
+import quino.util.test.Prueba;
 import quino.clases.model.Registro;
 import quino.clases.model.Resultado;
 import quino.util.QuinoTools;

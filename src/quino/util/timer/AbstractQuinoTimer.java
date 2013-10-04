@@ -4,7 +4,7 @@
  */
 package quino.util.timer;
 
-import quino.clases.model.Prueba;
+import quino.util.test.Prueba;
 import quino.clases.model.Ensayo;
 import quino.clases.model.Resultado;
 import quino.util.QuinoJPanel;

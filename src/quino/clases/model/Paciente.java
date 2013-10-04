@@ -5,6 +5,9 @@
 
 package quino.clases.model;
 
+import quino.util.test.PruebaPeriferica;
+import quino.util.test.PruebaFoveal;
+
 /**
  * Representa al paciente al cual se le realizan las pruebas
  * @author Felipao

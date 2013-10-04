@@ -12,8 +12,8 @@ package quino.view.main;
 
 import quino.view.main.ErrorDialog;
 import quino.view.main.PrincipalView;
-import quino.view.prueba.AutoConfigView;
-import quino.view.prueba.ManualConfigView;
+import quino.view.test.AutoConfigView;
+import quino.view.test.ManualConfigView;
 
 /**
  *

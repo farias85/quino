@@ -8,12 +8,12 @@
  *
  * Created on 25-jul-2010, 16:30:43
  */
-package quino.view.prueba;
+package quino.view.test;
 
 import quino.view.main.*;
 import quino.clases.config.ConfigEnsayo;
-import quino.clases.model.PruebaFoveal;
-import quino.clases.model.PruebaPeriferica;
+import quino.util.test.PruebaFoveal;
+import quino.util.test.PruebaPeriferica;
 import quino.util.QuinoTools;
 //import clases.prueba.Ensayo;
 

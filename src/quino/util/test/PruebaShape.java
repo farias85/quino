@@ -24,23 +24,25 @@ public class PruebaShape extends PruebaMultiEnsayo {
     public PruebaShape(ConfigEnsayoShapeDetect configEnsayo, int cantEnsayos) {
         super(cantEnsayos);
 
-        Aleatorio random = new Aleatorio();
-        int panelEstimulo = random.nextInt(0, 2);
+        for (int i = 0; i < cantEnsayos; i++) {
+            Aleatorio random = new Aleatorio();
+            int panelEstimulo = random.nextInt(0, 2);
 
-        switch (panelEstimulo) {
-            case 0:
-                configEnsayo.setKey(0); //ninguna tecla
-                break;
-            case 1:
-                configEnsayo.setKey(37);//tecla de la flecha izquierda
-                break;
-            case 2:
-                configEnsayo.setKey(39);//tecla de la flecha derecha
-                break;
+            switch (panelEstimulo) {
+                case 0:
+                    configEnsayo.setKey(0); //ninguna tecla
+                    break;
+                case 1:
+                    configEnsayo.setKey(37);//tecla de la flecha izquierda
+                    break;
+                case 2:
+                    configEnsayo.setKey(39);//tecla de la flecha derecha
+                    break;
+            }
+
+            Ensayo ensayo = new Ensayo(configEnsayo, panelEstimulo);
+            ensayos.add(ensayo);
         }
-
-        Ensayo ensayo = new Ensayo(configEnsayo, panelEstimulo);
-        ensayos.add(ensayo);
     }
 
     /**

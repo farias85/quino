@@ -28,7 +28,6 @@ import quino.clases.model.ShapeTriangle;
 public class JPanelShape extends JPanel {
 
     private ArrayList<Segment2D> segmentos = new ArrayList<Segment2D>();
-    
     private int densidad;
     private AbstractShape shape;
 
@@ -71,8 +70,15 @@ public class JPanelShape extends JPanel {
         this.densidad = densidad;
         segmentos = new ArrayList<Segment2D>();
 
-        int densidadOthers = (int) QuinoTools.porciento(90, densidad);
-        int densidadShape = (int) QuinoTools.porciento(10, densidad);
+        if (tolerancia > 20) {
+            tolerancia = 20;
+        }
+        
+        pcShape = pcShape > 100 || pcShape < 0 ? 10 : pcShape;
+        double pcOthers = 100 - pcShape;
+
+        int densidadOthers = (int) QuinoTools.porciento(pcOthers, densidad);
+        int densidadShape = (int) QuinoTools.porciento(pcShape, densidad);
 
         Aleatorio random = new Aleatorio();
         int numero = random.nextInt(1, 4);

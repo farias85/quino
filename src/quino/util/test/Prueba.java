@@ -8,11 +8,7 @@ import java.util.ArrayList;
 
 
 import java.util.Date;
-import quino.clases.config.ConfigEnsayo;
-import quino.clases.config.ConfigEnsayoFormaAB;
-import quino.clases.config.ConfigEnsayoFormaABAuto;
 import quino.clases.model.Ensayo;
-import quino.util.Aleatorio;
 
 /**
  * Representa una prueba a efectuar. Es una clase abstracta pq cada vez q se

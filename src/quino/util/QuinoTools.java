@@ -24,8 +24,11 @@ import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.opencv.core.Mat;
 import quino.clases.config.ConfigApp;
 import quino.util.test.Prueba;
+import quino.util.test.PruebaEnrejado;
 import quino.util.test.PruebaFoveal;
+import quino.util.test.PruebaGabor;
 import quino.util.test.PruebaPeriferica;
+import quino.util.test.PruebaShape;
 import quino.view.main.ErrorDialog;
 import quino.view.main.PrincipalView;
 
@@ -138,42 +141,61 @@ public class QuinoTools {
     public static void salvarPruebaEnRegistro(PrincipalView principalView, JDialog testView, Prueba prueba) {
         int option = -1;
 
-        Prueba pruebaActual = prueba instanceof PruebaFoveal ? principalView.getPacienteActual().getFoveal()
-                : principalView.getPacienteActual().getPeriferica();
-        String nombrePrueba = prueba instanceof PruebaFoveal ? "Foveal" : "Periférica";
+        /*Prueba pruebaActual = prueba instanceof PruebaFoveal ? principalView.getPacienteActual().getFoveal()
+        : principalView.getPacienteActual().getPeriferica();*/
+        //String nombrePrueba = prueba instanceof PruebaFoveal ? "Foveal" : "Periférica";
+
+        Prueba pruebaPaciente = null;
+        if (prueba instanceof PruebaFoveal) {
+            pruebaPaciente = principalView.getPacienteActual().getFoveal();
+        } else if (prueba instanceof PruebaPeriferica) {
+            pruebaPaciente = principalView.getPacienteActual().getPeriferica();
+        } else if (prueba instanceof PruebaShape) {
+            pruebaPaciente = principalView.getPacienteActual().getForma();
+        } else if (prueba instanceof PruebaGabor) {
+            pruebaPaciente = principalView.getPacienteActual().getGabor();
+        } else if (prueba instanceof PruebaEnrejado) {
+            pruebaPaciente = principalView.getPacienteActual().getEnrejado();
+        }
 
         try {
-            if (pruebaActual != null) {
+            if (pruebaPaciente != null) {
                 option = JOptionPane.showConfirmDialog(testView, "El(La) paciente " + principalView.getPacienteActual().getNombre() + "\n"
-                        + "tiene registrado(a) una prueba de tipo " + nombrePrueba + "\n"
+                        + "tiene registrado(a) una prueba de tipo " + pruebaPaciente.toString() + "\n"
                         + "¿Desea sobreescribir la prueba realizada?", "Advertencia", JOptionPane.YES_NO_OPTION);
                 switch (option) {
                     case 0: {
-                        if (prueba instanceof PruebaFoveal) {
-                            principalView.getPacienteActual().setFoveal((PruebaFoveal) prueba);
-                        } else {
-                            principalView.getPacienteActual().setPeriferica((PruebaPeriferica) prueba);
-                        }
-                        principalView.getRegistro().salvarRegistro(ConfigApp.REGISTRO_FILE_NAME);
-                        principalView.modificarTableModel();
+                        actualizarPruebaDePaciente(principalView, prueba);
                     }
                     break;
                     case 1:
                         break;
                 }
             } else {
-                if (prueba instanceof PruebaFoveal) {
-                    principalView.getPacienteActual().setFoveal((PruebaFoveal) prueba);
-                } else {
-                    principalView.getPacienteActual().setPeriferica((PruebaPeriferica) prueba);
-                }
-                principalView.getRegistro().salvarRegistro(ConfigApp.REGISTRO_FILE_NAME);
-                principalView.modificarTableModel();
+                actualizarPruebaDePaciente(principalView, prueba);
             }
         } catch (Exception e) {
             ErrorDialog err = new ErrorDialog(principalView, true, "No se ha podido guardar la prueba");
             err.setVisible(true);
         }
+    }
+
+    private static void actualizarPruebaDePaciente(PrincipalView principalView, Prueba prueba) {
+
+        if (prueba instanceof PruebaFoveal) {
+            principalView.getPacienteActual().setFoveal((PruebaFoveal) prueba);
+        } else if (prueba instanceof PruebaPeriferica) {
+            principalView.getPacienteActual().setPeriferica((PruebaPeriferica) prueba);
+        } else if (prueba instanceof PruebaShape) {
+            principalView.getPacienteActual().setForma((PruebaShape) prueba);
+        } else if (prueba instanceof PruebaGabor) {
+            principalView.getPacienteActual().setGabor((PruebaGabor) prueba);
+        } else if (prueba instanceof PruebaEnrejado) {
+            principalView.getPacienteActual().setEnrejado((PruebaEnrejado) prueba);
+        }
+
+        principalView.getRegistro().salvarRegistro(ConfigApp.REGISTRO_FILE_NAME);
+        principalView.modificarTableModel();
     }
 
     /**
@@ -402,7 +424,7 @@ public class QuinoTools {
      * @param matrix Matrix de la imagen generada con opencv
      * @return La representación de la imagen en el tipo BufferedImage
      */
-     public static BufferedImage matToBufferedImage(Mat matrix) {
+    public static BufferedImage matToBufferedImage(Mat matrix) {
         int cols = matrix.cols();
         int rows = matrix.rows();
         int elemSize = (int) matrix.elemSize();

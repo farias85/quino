@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import quino.clases.config.ConfigEnsayo;
 import quino.clases.config.ConfigEnsayoShapeDetect;
+import quino.clases.config.ConfigEnsayoShapeDetectAuto;
 import quino.clases.model.Ensayo;
 import quino.util.Aleatorio;
 
@@ -25,22 +26,12 @@ public class PruebaShape extends PruebaMultiEnsayo {
         super(cantEnsayos);
 
         for (int i = 0; i < cantEnsayos; i++) {
-            Aleatorio random = new Aleatorio();
-            int panelEstimulo = random.nextInt(0, 2);
 
-            switch (panelEstimulo) {
-                case 0:
-                    configEnsayo.setKey(0); //ninguna tecla
-                    break;
-                case 1:
-                    configEnsayo.setKey(37);//tecla de la flecha izquierda
-                    break;
-                case 2:
-                    configEnsayo.setKey(39);//tecla de la flecha derecha
-                    break;
+            if (configEnsayo instanceof ConfigEnsayoShapeDetectAuto) {
+                configEnsayo = new ConfigEnsayoShapeDetectAuto();
             }
 
-            Ensayo ensayo = new Ensayo(configEnsayo, panelEstimulo);
+            Ensayo ensayo = new Ensayo(configEnsayo);
             ensayos.add(ensayo);
         }
     }
@@ -64,5 +55,10 @@ public class PruebaShape extends PruebaMultiEnsayo {
 
     public PruebaShape() {
         super();
+    }
+
+    @Override
+    public String toString() {
+        return "Detección de Forma";
     }
 }

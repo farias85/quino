@@ -89,7 +89,7 @@ public class InformeParametrosXEnsayo extends AbstractInformeExcel {
                     celda.setCellValue(configEnsayoActual.getTiempoMovimiento());
 
                     celda = getCelda(row, 5, HSSFCell.CELL_TYPE_STRING, false);
-                    celda.setCellValue(QuinoTools.getPanelMovimiento(pruebaX, ensayoActual.getPanelEstimulo()));
+                    celda.setCellValue(QuinoTools.getPanelMovimiento(pruebaX, ensayoActual.getConfiguracion().getPanelEstimulo()));
 
                     if (resultadoActual.getTiempoRespuesta() == 0) {
                         celda = getCelda(row, 6, HSSFCell.CELL_TYPE_STRING, true);

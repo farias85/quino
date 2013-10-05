@@ -46,10 +46,6 @@ public class EnrejadoTimer extends AbstractSinusoideTimer {
         if (inOut) {
             inOut = false;
             System.out.println("en espera " + tiempoTranscurrido);
-
-            //panelsClear();
-            //panelsRepaint();
-            inicializarEnsayo();
         }
     }
 
@@ -78,11 +74,11 @@ public class EnrejadoTimer extends AbstractSinusoideTimer {
 
                         resultado.setKey(k);
 
-                        if (ensayo.getPanelEstimulo() > 0) {
+                        if (ensayo.getConfiguracion().getPanelEstimulo() > 0) {
                             resultado.setTiempoRespuesta(tiempoTranscurrido - (enEspera + 1));
                         }
 
-                        if (ensayo.getPanelEstimulo() == 0) {
+                        if (ensayo.getConfiguracion().getPanelEstimulo() == 0) {
                             resultado.setError(true);
                             resultado.setDescripcion("No hubo estímulo");
                         } else if (ensayo.getConfiguracion().getKey() != resultado.getKey()) {
@@ -112,7 +108,7 @@ public class EnrejadoTimer extends AbstractSinusoideTimer {
         System.out.println("terminado " + tiempoTranscurrido);
         test.removeKeyListener(keyPress);
 
-        if (resultado.getKey() == 0 && ensayo.getPanelEstimulo() > 0) {
+        if (resultado.getKey() == 0 && ensayo.getConfiguracion().getPanelEstimulo() > 0) {
             resultado.setError(true);
             resultado.setDescripcion("Omisión");
         }
@@ -123,7 +119,7 @@ public class EnrejadoTimer extends AbstractSinusoideTimer {
             if (!practica) {
                 QuinoTools.salvarPruebaEnRegistro(test.getParentView(), test, prueba);
             }
-            ResultView res = new ResultView(test.getParentView(), true, false);
+            ResultView res = new ResultView(test.getParentView(), true);
             test.setVisible(false);
             res.setVisible(true);
         }

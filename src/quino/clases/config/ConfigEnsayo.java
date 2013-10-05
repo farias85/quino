@@ -6,7 +6,7 @@ package quino.clases.config;
 
 /**
  *
- * @author farias
+ * @author Felipe Rodriguez Arias
  */
 public abstract class ConfigEnsayo {
 
@@ -15,11 +15,17 @@ public abstract class ConfigEnsayo {
      */
     protected int key;
 
+    /**
+     * Panel de estimulo en el q se produjo el movimiento
+     */
+    protected int panelEstimulo;
+
     public ConfigEnsayo() {
     }
 
-    public ConfigEnsayo(int key) {
+    public ConfigEnsayo(int key, int panelEstimulo) {
         this.key = key;
+        this.panelEstimulo = panelEstimulo;
     }
 
     public int getKey() {
@@ -28,5 +34,13 @@ public abstract class ConfigEnsayo {
 
     public void setKey(int key) {
         this.key = key;
+    }
+
+    public int getPanelEstimulo() {
+        return panelEstimulo;
+    }
+
+    public void setPanelEstimulo(int panelEstimulo) {
+        this.panelEstimulo = panelEstimulo;
     }
 }

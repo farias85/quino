@@ -23,12 +23,15 @@ import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.DefaultTreeModel;
 import javax.swing.tree.TreeSelectionModel;
 import quino.clases.config.ConfigApp;
+import quino.clases.config.ConfigEnsayo;
 import quino.util.QuinoTools;
 import quino.view.main.ErrorDialog;
 import quino.view.main.PrincipalView;
 import quino.clases.model.Ensayo;
 import quino.clases.config.ConfigEnsayoFormaAB;
+import quino.clases.config.ConfigEnsayoShapeDetect;
 import quino.util.test.PruebaFormaAB;
+import quino.util.test.PruebaShape;
 
 /**
  *
@@ -41,7 +44,7 @@ public class ResultView extends javax.swing.JDialog {
     public ResultView() {
     }
 
-    public ResultView(PrincipalView parent, boolean modal, boolean foveal) {
+    public ResultView(PrincipalView parent, boolean modal) {
         super(parent, modal);
 
         this.parent = parent;
@@ -53,17 +56,26 @@ public class ResultView extends javax.swing.JDialog {
             if (parent.getPrueba() != null) {
                 t_ensayos1.setText(String.valueOf(ensayos.size()));
                 t_errores1.setText(String.valueOf(parent.getPrueba().cantErrores()));
+
                 if (parent.getPrueba() instanceof PruebaFormaAB) {
                     t_denpromedio1.setText(String.valueOf(((PruebaFormaAB) parent.getPrueba()).densidadPromedio()));
+                } else if (parent.getPrueba() instanceof PruebaShape) {
+                    t_denpromedio1.setText(String.valueOf(((PruebaShape) parent.getPrueba()).densidadPromedio()));
+                    jLabel31.setText("% de Rectas:");
+                    jLabel24.setText("Tolerancia:");
+                    jLabel25.setVisible(false);
+                    jLabel29.setVisible(false);
+                    jLabel34.setVisible(false);
+                    jLabel11.setVisible(false);
                 }
+
                 t_trespg1.setText(String.valueOf(parent.getPrueba().tiempoRespuestaPromedio()));
                 t_densayo.setText(String.valueOf(ConfigApp.TIEMPO_DURACION));
 
                 DateFormat df = DateFormat.getDateInstance(DateFormat.FULL);
                 fechaLabel.setText(df.format(parent.getPrueba().getFecha()));
 
-                String strPrueba = foveal ? "Forma A" : "Forma B";
-                tipoLabel.setText(strPrueba);
+                tipoLabel.setText(parent.getPrueba().toString());
             } else {
                 throw new Exception("Al paciente seleccionado no se le ha realizado ninguna prueba");
             }
@@ -77,7 +89,7 @@ public class ResultView extends javax.swing.JDialog {
         }
     }
 
-    public void Arbol(final ArrayList<Ensayo> ensayos) {
+    private void Arbol(final ArrayList<Ensayo> ensayos) {
         DefaultMutableTreeNode root = new DefaultMutableTreeNode("Ensayos");
         DefaultTreeModel tm = new DefaultTreeModel(root);
         for (int i = 0; i < ensayos.size(); i++) {
@@ -94,57 +106,94 @@ public class ResultView extends javax.swing.JDialog {
                 if (node.getParent() != null) {
                     int pos = node.getParent().getIndex(node);
                     Ensayo ensayo = ensayos.get(pos);
+                    ConfigEnsayo configEnsayo = ensayo.getConfiguracion();
 
-                    ConfigEnsayoFormaAB configEnsayo = null;
-                    if (ensayo.getConfiguracion() instanceof ConfigEnsayoFormaAB) {
-                        configEnsayo = ((ConfigEnsayoFormaAB) ensayo.getConfiguracion());
-
-                        Resultado resultado = ensayo.getResultado();
-
-                        int densidad = configEnsayo.getDensidad();
-                        int cantidad = (configEnsayo.getCantidad() * 100) / densidad;
-                        double velocidad = configEnsayo.getTiempoMovimiento();
-
-                        ImageIcon dirIcon = CambiarDireccion(configEnsayo.getDireccion(),
-                                ensayo.getPanelEstimulo());
-                        String panel = QuinoTools.getPanelMovimiento(parent.getPrueba(), ensayo.getPanelEstimulo());
-                        int tiempo_res = resultado.getTiempoRespuesta();
-
-                        ImageIcon resultIcon = CambiarError(resultado.isError());
-                        ImageIcon keyIcon = CambiarKey(resultado.getKey(), configEnsayo.isControl());
-                        String descripcion = resultado.getDescripcion();
-                        double vel = resultado.getVelocidad();
-                        double angulo = resultado.getAngulo();
-
-                        t_densidad1.setText(String.valueOf(densidad));
-                        t_cantidad1.setText(String.valueOf(cantidad) + "%");
-                        t_vmov1.setText(String.valueOf(velocidad));
-                        t_direccion1.setIcon(dirIcon);
-                        t_pestimulo1.setText(panel);
-                        b_keypressed.setIcon(keyIcon);
-                        e_desc.setText(descripcion);
-                        t_velocidad.setText(Double.toString(vel) + " " + "cm/mls");
-                        t_angulo.setText(Double.toString(angulo) + "º");
-
-                        if (tiempo_res == 0) {
-                            t_trespuesta1.setText("N/R");
-                        } else {
-                            t_trespuesta1.setText(String.valueOf(tiempo_res));
-                        }
-                        t_resultado1.setIcon(resultIcon);
-                        if (ensayo.getPanelEstimulo() == 0) {
-                            t_cantidad1.setText("-");
-                            t_vmov1.setText(String.valueOf("-"));
-                            t_velocidad.setText("-");
-                            t_angulo.setText("-");
-                        }
+                    if (configEnsayo instanceof ConfigEnsayoFormaAB) {
+                        mostrarDatosFormaAB(ensayo);
+                    } else if (configEnsayo instanceof ConfigEnsayoShapeDetect) {
+                        mostrarDatosDeteccionForma(ensayo);
                     }
                 }
             }
         });
     }
 
-    public ImageIcon CambiarDireccion(int pos, int panel) {
+    private void mostrarDatosDeteccionForma(Ensayo ensayo) {
+        ConfigEnsayoShapeDetect configEnsayo = ((ConfigEnsayoShapeDetect) ensayo.getConfiguracion());
+        Resultado resultado = ensayo.getResultado();
+
+        jLabel31.setText("% de Rectas:");
+        jLabel24.setText("Tolerancia:");
+        jLabel25.setVisible(false);
+        jLabel29.setVisible(false);
+        jLabel34.setVisible(false);
+        jLabel11.setVisible(false);
+
+        t_densidad1.setText(String.valueOf(configEnsayo.getDensidad()));
+        t_cantidad1.setText(String.valueOf(configEnsayo.getPcShape()));
+        t_angulo.setText(String.valueOf(resultado.getAngulo()));
+        t_vmov1.setText(String.valueOf(configEnsayo.getTolerancia()));
+        t_pestimulo1.setText(ensayo.getConfiguracion().getPanelEstimulo() == 0 ? "-" : configEnsayo.getKey() == 37 ? "Panel Izquierdo" : "Panel Derecho");
+        t_trespuesta1.setText(resultado.getTiempoRespuesta() == 0 ? "N/R" : String.valueOf(resultado.getTiempoRespuesta()));
+
+        ImageIcon resultIcon = CambiarError(resultado.isError());
+        t_resultado1.setIcon(resultIcon);
+
+        e_desc.setText(resultado.getDescripcion());
+
+        if (ensayo.getConfiguracion().getPanelEstimulo() == 0) {
+            t_cantidad1.setText("-");
+            t_vmov1.setText(String.valueOf("-"));
+            t_velocidad.setText("-");
+            t_angulo.setText("-");
+        }
+    }
+
+    private void mostrarDatosFormaAB(Ensayo ensayo) {
+
+        ConfigEnsayoFormaAB configEnsayo = ((ConfigEnsayoFormaAB) ensayo.getConfiguracion());
+        Resultado resultado = ensayo.getResultado();
+
+        int densidad = configEnsayo.getDensidad();
+        int cantidad = (configEnsayo.getCantidad() * 100) / densidad;
+        double velocidad = configEnsayo.getTiempoMovimiento();
+
+        ImageIcon dirIcon = CambiarDireccion(configEnsayo.getDireccion(),
+                ensayo.getConfiguracion().getPanelEstimulo());
+        String panel = QuinoTools.getPanelMovimiento(parent.getPrueba(), ensayo.getConfiguracion().getPanelEstimulo());
+        int tiempo_res = resultado.getTiempoRespuesta();
+
+        ImageIcon resultIcon = CambiarError(resultado.isError());
+        ImageIcon keyIcon = CambiarKey(resultado.getKey(), configEnsayo.isControl());
+        String descripcion = resultado.getDescripcion();
+        double vel = resultado.getVelocidad();
+        double angulo = resultado.getAngulo();
+
+        t_densidad1.setText(String.valueOf(densidad));
+        t_cantidad1.setText(String.valueOf(cantidad) + "%");
+        t_vmov1.setText(String.valueOf(velocidad));
+        t_direccion1.setIcon(dirIcon);
+        t_pestimulo1.setText(panel);
+        b_keypressed.setIcon(keyIcon);
+        e_desc.setText(descripcion);
+        t_velocidad.setText(Double.toString(vel) + " " + "cm/mls");
+        t_angulo.setText(Double.toString(angulo) + "º");
+
+        if (tiempo_res == 0) {
+            t_trespuesta1.setText("N/R");
+        } else {
+            t_trespuesta1.setText(String.valueOf(tiempo_res));
+        }
+        t_resultado1.setIcon(resultIcon);
+        if (ensayo.getConfiguracion().getPanelEstimulo() == 0) {
+            t_cantidad1.setText("-");
+            t_vmov1.setText(String.valueOf("-"));
+            t_velocidad.setText("-");
+            t_angulo.setText("-");
+        }
+    }
+
+    private ImageIcon CambiarDireccion(int pos, int panel) {
         if (panel == 0) {
             pos = -1;
         }
@@ -180,7 +229,7 @@ public class ResultView extends javax.swing.JDialog {
         return new ImageIcon(getClass().getResource(ConfigApp.RESOURCES_LOCATION + "error.gif"));
     }
 
-    public ImageIcon CambiarKey(int key, boolean control) {
+    private ImageIcon CambiarKey(int key, boolean control) {
         if (!control || key == 0) {
             key = -1;
         }
@@ -213,7 +262,7 @@ public class ResultView extends javax.swing.JDialog {
         return new ImageIcon(getClass().getResource(ConfigApp.RESOURCES_LOCATION + "error.gif"));
     }
 
-    public ImageIcon CambiarError(boolean error) {
+    private ImageIcon CambiarError(boolean error) {
         if (error) {
 
             return new ImageIcon(getClass().getResource(ConfigApp.RESOURCES_LOCATION + "error.gif"));
@@ -222,7 +271,7 @@ public class ResultView extends javax.swing.JDialog {
         }
     }
 
-    public void PintarPastel() {
+    private void PintarPastel() {
         //int aciertos = prueba.getResultados().size()-prueba.cant_Errores();
         int errores = parent.getPrueba().cantErrores();
         int perrores = (errores * 100) / parent.getPrueba().getEnsayos().size();
@@ -341,7 +390,7 @@ public class ResultView extends javax.swing.JDialog {
         t_errores1.setBorder(null);
 
         t_denpromedio1.setEditable(false);
-        t_denpromedio1.setFont(new java.awt.Font("Tahoma", 1, 12));
+        t_denpromedio1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         t_denpromedio1.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         t_denpromedio1.setBorder(null);
 
@@ -351,18 +400,18 @@ public class ResultView extends javax.swing.JDialog {
         t_trespg1.setBorder(null);
 
         jLabel13.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jLabel13.setText("Tipo de Prueba");
+        jLabel13.setText("Prueba");
 
         tipoLabel.setEditable(false);
         tipoLabel.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         tipoLabel.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         tipoLabel.setBorder(null);
 
-        jLabel14.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel14.setFont(new java.awt.Font("Tahoma", 1, 12));
         jLabel14.setText("Fecha:");
 
         fechaLabel.setEditable(false);
-        fechaLabel.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        fechaLabel.setFont(new java.awt.Font("Tahoma", 1, 12));
         fechaLabel.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         fechaLabel.setBorder(null);
         fechaLabel.addActionListener(new java.awt.event.ActionListener() {
@@ -389,25 +438,22 @@ public class ResultView extends javax.swing.JDialog {
                             .addComponent(jLabel7))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(t_ensayos1, javax.swing.GroupLayout.DEFAULT_SIZE, 50, Short.MAX_VALUE)
-                            .addComponent(t_errores1, javax.swing.GroupLayout.DEFAULT_SIZE, 50, Short.MAX_VALUE)
-                            .addComponent(t_denpromedio1, javax.swing.GroupLayout.DEFAULT_SIZE, 50, Short.MAX_VALUE)
-                            .addComponent(t_trespg1, javax.swing.GroupLayout.DEFAULT_SIZE, 50, Short.MAX_VALUE)))
+                            .addComponent(t_ensayos1, javax.swing.GroupLayout.DEFAULT_SIZE, 60, Short.MAX_VALUE)
+                            .addComponent(t_errores1, javax.swing.GroupLayout.DEFAULT_SIZE, 60, Short.MAX_VALUE)
+                            .addComponent(t_denpromedio1, javax.swing.GroupLayout.DEFAULT_SIZE, 60, Short.MAX_VALUE)
+                            .addComponent(t_trespg1, javax.swing.GroupLayout.DEFAULT_SIZE, 60, Short.MAX_VALUE)))
                     .addGroup(jPanel5Layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jLabel13))
+                        .addComponent(jLabel13)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(tipoLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 152, Short.MAX_VALUE))
                     .addGroup(jPanel5Layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(jLabel14))
                     .addGroup(jPanel5Layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(fechaLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 189, Short.MAX_VALUE)))
+                        .addComponent(fechaLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 199, Short.MAX_VALUE)))
                 .addContainerGap())
-            .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
-                    .addContainerGap(116, Short.MAX_VALUE)
-                    .addComponent(tipoLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap()))
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -429,7 +475,9 @@ public class ResultView extends javax.swing.JDialog {
                     .addComponent(jLabel10)
                     .addComponent(t_trespg1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel13)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel13)
+                    .addComponent(tipoLabel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel14)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -437,11 +485,6 @@ public class ResultView extends javax.swing.JDialog {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(fechaLabel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(29, 29, 29))
-            .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel5Layout.createSequentialGroup()
-                    .addGap(95, 95, 95)
-                    .addComponent(tipoLabel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(77, Short.MAX_VALUE)))
         );
 
         jPanel7.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Parámetros por Ensayos", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 14))); // NOI18N
@@ -452,36 +495,36 @@ public class ResultView extends javax.swing.JDialog {
         jTree1.setModel(new javax.swing.tree.DefaultTreeModel(treeNode1));
         jScrollPane2.setViewportView(jTree1);
 
-        jLabel28.setFont(new java.awt.Font("Tahoma", 1, 12));
+        jLabel28.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel28.setText("Panel de Estímulo:");
 
-        jLabel24.setFont(new java.awt.Font("Tahoma", 1, 12));
+        jLabel24.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel24.setText("Tiempo de Desplazamiento");
 
         t_trespuesta1.setEditable(false);
-        t_trespuesta1.setFont(new java.awt.Font("Tahoma", 1, 12));
+        t_trespuesta1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         t_trespuesta1.setHorizontalAlignment(javax.swing.JTextField.LEFT);
         t_trespuesta1.setBorder(null);
 
-        jLabel29.setFont(new java.awt.Font("Tahoma", 1, 12));
+        jLabel29.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel29.setText("Dirección de Movimiento:");
 
-        jLabel30.setFont(new java.awt.Font("Tahoma", 1, 12));
+        jLabel30.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel30.setText("Tiempo de Respuesta:");
 
-        jLabel31.setFont(new java.awt.Font("Tahoma", 1, 12));
+        jLabel31.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel31.setText("% de Puntos:");
 
         t_cantidad1.setEditable(false);
-        t_cantidad1.setFont(new java.awt.Font("Tahoma", 1, 12));
+        t_cantidad1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         t_cantidad1.setHorizontalAlignment(javax.swing.JTextField.LEFT);
         t_cantidad1.setBorder(null);
 
-        jLabel32.setFont(new java.awt.Font("Tahoma", 1, 12));
+        jLabel32.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel32.setText("Resultado:");
 
         t_vmov1.setEditable(false);
-        t_vmov1.setFont(new java.awt.Font("Tahoma", 1, 12));
+        t_vmov1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         t_vmov1.setHorizontalAlignment(javax.swing.JTextField.LEFT);
         t_vmov1.setBorder(null);
         t_vmov1.addActionListener(new java.awt.event.ActionListener() {
@@ -490,11 +533,11 @@ public class ResultView extends javax.swing.JDialog {
             }
         });
 
-        jLabel33.setFont(new java.awt.Font("Tahoma", 1, 12));
+        jLabel33.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel33.setText("Densidad de Puntos:");
 
         t_pestimulo1.setEditable(false);
-        t_pestimulo1.setFont(new java.awt.Font("Tahoma", 1, 12));
+        t_pestimulo1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         t_pestimulo1.setHorizontalAlignment(javax.swing.JTextField.LEFT);
         t_pestimulo1.setBorder(null);
 
@@ -504,7 +547,6 @@ public class ResultView extends javax.swing.JDialog {
         t_densidad1.setBorder(null);
 
         t_direccion1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/quino/view/main/icons/vacio.gif"))); // NOI18N
-        t_direccion1.setBorder(null);
 
         t_resultado1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/quino/view/main/icons/vacio.gif"))); // NOI18N
         t_resultado1.setBorder(null);
@@ -514,10 +556,10 @@ public class ResultView extends javax.swing.JDialog {
             }
         });
 
-        jLabel34.setFont(new java.awt.Font("Tahoma", 1, 12));
+        jLabel34.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel34.setText("Dirección Presionada:");
 
-        jLabel35.setFont(new java.awt.Font("Tahoma", 1, 12));
+        jLabel35.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel35.setText("Descripción del Error:");
 
         b_keypressed.setIcon(new javax.swing.ImageIcon(getClass().getResource("/quino/view/main/icons/vacio.gif"))); // NOI18N
@@ -528,13 +570,13 @@ public class ResultView extends javax.swing.JDialog {
 
         e_desc.setBackground(new java.awt.Color(240, 240, 240));
         e_desc.setEditable(false);
-        e_desc.setFont(new java.awt.Font("Tahoma", 1, 12));
+        e_desc.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         e_desc.setBorder(null);
 
-        jLabel25.setFont(new java.awt.Font("Tahoma", 1, 12));
+        jLabel25.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel25.setText("Velocidad de Movimiento:");
 
-        jLabel26.setFont(new java.awt.Font("Tahoma", 1, 12));
+        jLabel26.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel26.setText("Ángulo:");
 
         t_velocidad.setEditable(false);
@@ -543,7 +585,7 @@ public class ResultView extends javax.swing.JDialog {
         t_velocidad.setBorder(null);
 
         t_angulo.setEditable(false);
-        t_angulo.setFont(new java.awt.Font("Tahoma", 1, 12));
+        t_angulo.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         t_angulo.setHorizontalAlignment(javax.swing.JTextField.LEFT);
         t_angulo.setBorder(null);
 
@@ -669,7 +711,7 @@ public class ResultView extends javax.swing.JDialog {
         jLabel11.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel11.setText("Tiempo Interestímulo:");
 
-        jLabel12.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel12.setFont(new java.awt.Font("Tahoma", 1, 12));
         jLabel12.setText("Duración de Ensayo:");
 
         t_densayo.setEditable(false);
@@ -695,8 +737,8 @@ public class ResultView extends javax.swing.JDialog {
                             .addComponent(jLabel12))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(t_densayo, javax.swing.GroupLayout.DEFAULT_SIZE, 80, Short.MAX_VALUE)
-                            .addComponent(t_interestimulo, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 80, Short.MAX_VALUE)))
+                            .addComponent(t_densayo, javax.swing.GroupLayout.DEFAULT_SIZE, 86, Short.MAX_VALUE)
+                            .addComponent(t_interestimulo, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 86, Short.MAX_VALUE)))
                     .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, 625, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -749,7 +791,7 @@ public class ResultView extends javax.swing.JDialog {
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(22, Short.MAX_VALUE))
+                .addContainerGap(29, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Resultados", jPanel1);

@@ -19,7 +19,6 @@ public abstract class AbstractNoMoveTimer extends AbstractQuinoTimer {
 
     @Override
     public void run() {
-        tiempoTranscurrido++;
         switch (estadoEnsayo()) {
             case EN_ESPERA:
                 execEnEspera();
@@ -38,6 +37,7 @@ public abstract class AbstractNoMoveTimer extends AbstractQuinoTimer {
                 break;
             default:
         }
+        tiempoTranscurrido++;
     }
 
     @Override

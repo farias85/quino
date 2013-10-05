@@ -17,7 +17,7 @@ public class PruebaEnrejado extends PruebaSingleEnsayo {
 
     public PruebaEnrejado(ConfigEnsayoEnrejado configEnsayo) {
         super();
-        Ensayo ensayo = new Ensayo(configEnsayo, 0);
+        Ensayo ensayo = new Ensayo(configEnsayo);
         ensayos.add(ensayo);
     }
 
@@ -27,5 +27,10 @@ public class PruebaEnrejado extends PruebaSingleEnsayo {
 
     public PruebaEnrejado() {
         super();
+    }
+
+    @Override
+    public String toString() {
+        return "Enrejado";
     }
 }

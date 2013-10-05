@@ -10,7 +10,6 @@ import quino.clases.config.ConfigEnsayo;
 import quino.clases.config.ConfigEnsayoFormaAB;
 import quino.clases.config.ConfigEnsayoFormaABAuto;
 import quino.clases.model.Ensayo;
-import quino.util.Aleatorio;
 
 /**
  *
@@ -22,23 +21,12 @@ public abstract class PruebaFormaAB extends PruebaMultiEnsayo {
         super(cantEnsayos);
 
         for (int i = 0; i < cantEnsayos; i++) {
-            
+
             if (configEnsayo instanceof ConfigEnsayoFormaABAuto) {
-                configEnsayo = new ConfigEnsayoFormaABAuto(configEnsayo.isControl());
+                configEnsayo = new ConfigEnsayoFormaABAuto(configEnsayo.isControl(), configEnsayo.getPanelEstimulo());
             }
 
-            int panelEstimulo = -1;
-            Aleatorio random = new Aleatorio();
-
-            if (this instanceof PruebaFoveal) {
-                panelEstimulo = random.nextInt(0, 8);
-            }
-
-            if (this instanceof PruebaPeriferica) {
-                panelEstimulo = random.nextInt(0, 2);
-            }
-
-            Ensayo ensayo = new Ensayo(configEnsayo, panelEstimulo);
+            Ensayo ensayo = new Ensayo(configEnsayo);
             ensayos.add(ensayo);
         }
     }
@@ -53,7 +41,7 @@ public abstract class PruebaFormaAB extends PruebaMultiEnsayo {
         for (int i = 0; i < ensayos.size(); i++) {
             ConfigEnsayo ce = ensayos.get(i).getConfiguracion();
             if (ce instanceof ConfigEnsayoFormaAB || ce instanceof ConfigEnsayoFormaABAuto) {
-                sum = sum + ((ConfigEnsayoFormaAB)ensayos.get(i).getConfiguracion()).getDensidad();
+                sum = sum + ((ConfigEnsayoFormaAB) ensayos.get(i).getConfiguracion()).getDensidad();
             }
         }
         prom = sum / ensayos.size();

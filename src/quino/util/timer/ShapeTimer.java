@@ -45,10 +45,6 @@ public class ShapeTimer extends AbstractNoMoveTimer {
         if (inOut) {
             inOut = false;
             System.out.println("en espera " + tiempoTranscurrido);
-
-            panelsClear();
-            panelsRepaint();
-            inicializarEnsayo();
         }
     }
 
@@ -57,12 +53,18 @@ public class ShapeTimer extends AbstractNoMoveTimer {
         if (!inOut) {
             inOut = true;
             System.out.println("preparado " + tiempoTranscurrido);
-
+            
+            panelsClear();
             panelsRellenar();
             panelsRepaint();
 
             System.out.println("esperando respuesta " + tiempoTranscurrido);
             inOut = true;
+
+            System.err.println("resultado.getKey(): " + resultado.getKey());
+            System.err.println("ensayo.getConfiguracion().getKey(): " + ensayo.getConfiguracion().getKey());
+            System.err.println("ENSAYO:" + numEnsayo);
+            System.err.println("KEY: " + prueba.getEnsayos().get(numEnsayo).getConfiguracion().getKey());
 
             keyPress = new KeyListener() {
 
@@ -77,16 +79,19 @@ public class ShapeTimer extends AbstractNoMoveTimer {
 
                         resultado.setKey(k);
 
-                        if (ensayo.getPanelEstimulo() > 0) {
+                        if (ensayo.getConfiguracion().getPanelEstimulo() > 0) {
                             resultado.setTiempoRespuesta(tiempoTranscurrido - (enEspera + 1));
                         }
 
-                        if (ensayo.getPanelEstimulo() == 0) {
+                        if (ensayo.getConfiguracion().getPanelEstimulo() == 0) {
                             resultado.setError(true);
                             resultado.setDescripcion("No hubo estímulo");
                         } else if (ensayo.getConfiguracion().getKey() != resultado.getKey()) {
                             resultado.setError(true);
                             resultado.setDescripcion("Dirección incorrecta");
+
+                            System.err.println("resultado.getKey(): " + resultado.getKey());
+                            System.err.println("ensayo.getConfiguracion().getKey(): " + ensayo.getConfiguracion().getKey());
                         }
 
                         puedeTeclear = false;
@@ -108,7 +113,7 @@ public class ShapeTimer extends AbstractNoMoveTimer {
         System.out.println("terminado " + tiempoTranscurrido);
         test.removeKeyListener(keyPress);
 
-        if (resultado.getKey() == 0 && ensayo.getPanelEstimulo() > 0) {
+        if (resultado.getKey() == 0 && ensayo.getConfiguracion().getPanelEstimulo() > 0) {
             resultado.setError(true);
             resultado.setDescripcion("Omisión");
         }
@@ -119,7 +124,7 @@ public class ShapeTimer extends AbstractNoMoveTimer {
             if (!practica) {
                 QuinoTools.salvarPruebaEnRegistro(test.getParentView(), test, prueba);
             }
-            ResultView res = new ResultView(test.getParentView(), true, false);
+            ResultView res = new ResultView(test.getParentView(), true);
             test.setVisible(false);
             res.setVisible(true);
         }
@@ -139,18 +144,18 @@ public class ShapeTimer extends AbstractNoMoveTimer {
 
     @Override
     protected void panelsRellenar() {
-        switch (ensayo.getPanelEstimulo()) {
+        switch (ensayo.getConfiguracion().getPanelEstimulo()) {
             case 0:
                 panel1.rellenar(configEnsayo.getDensidad());
                 panel2.rellenar(configEnsayo.getDensidad());
                 break;
             case 1:
-                panel1.rellenarShape(configEnsayo.getDensidad(), configEnsayo.getPcShape(), configEnsayo.getTolerancia());
+                panel1.rellenarShape(configEnsayo.getDensidad(), configEnsayo.getPcShape(), configEnsayo.getTolerancia(), configEnsayo.getNumFigura());
                 panel2.rellenar(configEnsayo.getDensidad());
                 break;
             case 2:
                 panel1.rellenar(configEnsayo.getDensidad());
-                panel2.rellenarShape(configEnsayo.getDensidad(), configEnsayo.getPcShape(), configEnsayo.getTolerancia());
+                panel2.rellenarShape(configEnsayo.getDensidad(), configEnsayo.getPcShape(), configEnsayo.getTolerancia(), configEnsayo.getNumFigura());
                 break;
         }
     }

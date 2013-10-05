@@ -42,6 +42,7 @@ import quino.clases.config.ConfigEnsayo;
 import quino.clases.config.ConfigEnsayoEnrejadoAuto;
 import quino.clases.config.ConfigEnsayoGaborAuto;
 import quino.clases.config.ConfigEnsayoShapeDetectAuto;
+import quino.util.Aleatorio;
 import quino.util.test.PruebaFoveal;
 import quino.util.test.PruebaPeriferica;
 import quino.util.test.PruebaShape;
@@ -57,6 +58,7 @@ import quino.view.test2nd.EnrejadoTestView;
 import quino.view.test2nd.ShapeDetectTestView;
 import quino.view.test.FovealTestView;
 import quino.view.test2nd.GaborTestView;
+import quino.view.test2nd.ShapeDetectManualConfigView;
 
 /**
  *
@@ -68,6 +70,7 @@ public class PrincipalView extends javax.swing.JFrame {
     private Prueba prueba;
     private Registro registro;
     private Paciente pacienteActual;
+    private Aleatorio random;
 
     public ConfigEnsayo getConf() {
         return conf;
@@ -388,7 +391,7 @@ public class PrincipalView extends javax.swing.JFrame {
         setIconImages(null);
         setResizable(false);
 
-        jTable1.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jTable1.setFont(new java.awt.Font("Tahoma", 0, 12));
         jTable1.getTableHeader().setFont(new java.awt.Font("Tahoma", 1, 12));
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -598,8 +601,6 @@ public class PrincipalView extends javax.swing.JFrame {
         });
         jMenu8.add(jMenuItem19);
 
-        jMenuItem20.setIcon(new javax.swing.ImageIcon(getClass().getResource("/quino/view/main/icons/package-downgrade.png"))); // NOI18N
-        jMenuItem20.setText("Detección de Forma");
         jMenuItem20.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem20ActionPerformed(evt);
@@ -608,7 +609,6 @@ public class PrincipalView extends javax.swing.JFrame {
         jMenu8.add(jMenuItem20);
 
         jMenuItem21.setIcon(new javax.swing.ImageIcon(getClass().getResource("/quino/view/main/icons/package-upgrade.png"))); // NOI18N
-        jMenuItem21.setText("Enrejado de Rejas");
         jMenuItem21.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem21ActionPerformed(evt);
@@ -631,7 +631,7 @@ public class PrincipalView extends javax.swing.JFrame {
         jMenu2.setText("Prueba");
         jMenu2.setFont(new java.awt.Font("Tahoma", 0, 12));
 
-        jMenuItem16.setFont(new java.awt.Font("Tahoma", 0, 12));
+        jMenuItem16.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jMenuItem16.setIcon(new javax.swing.ImageIcon(getClass().getResource("/quino/view/main/icons/stock_properties.png"))); // NOI18N
         jMenuItem16.setText("Configuración Manual");
         jMenuItem16.addActionListener(new java.awt.event.ActionListener() {
@@ -654,16 +654,29 @@ public class PrincipalView extends javax.swing.JFrame {
         jMenu7.setText("Forma A, B");
 
         jMenuItem23.setText("Configuración Manual");
+        jMenuItem23.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem23ActionPerformed(evt);
+            }
+        });
         jMenu7.add(jMenuItem23);
 
         jMenuItem24.setText("Configuración Automática");
+        jMenuItem24.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem24ActionPerformed(evt);
+            }
+        });
         jMenu7.add(jMenuItem24);
 
         jMenu2.add(jMenu7);
 
-        jMenu11.setText("Detección de Forma");
-
         jMenuItem27.setText("Configuración Manual");
+        jMenuItem27.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem27ActionPerformed(evt);
+            }
+        });
         jMenu11.add(jMenuItem27);
 
         jMenu2.add(jMenu11);
@@ -688,7 +701,7 @@ public class PrincipalView extends javax.swing.JFrame {
         jMenu4.setText("Paciente   ");
         jMenu4.setFont(new java.awt.Font("Tahoma", 0, 12));
 
-        jMenuItem4.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jMenuItem4.setFont(new java.awt.Font("Tahoma", 0, 12));
         jMenuItem4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/quino/view/main/icons/stock_new-bcard.png"))); // NOI18N
         jMenuItem4.setText("Nuevo Paciente");
         jMenuItem4.addActionListener(new java.awt.event.ActionListener() {
@@ -805,7 +818,7 @@ public class PrincipalView extends javax.swing.JFrame {
         // TODO add your handling code here:
         prueba = pacienteActual.getPeriferica();
         if (prueba != null) {
-            ResultView resultado = new ResultView(this, true, false);
+            ResultView resultado = new ResultView(this, true);
             resultado.setVisible(true);
         } else {
             ErrorDialog err = new ErrorDialog(this, true,
@@ -899,7 +912,7 @@ public class PrincipalView extends javax.swing.JFrame {
         // TODO add your handling code here:
         prueba = pacienteActual.getFoveal();
         if (prueba != null) {
-            ResultView resultado = new ResultView(this, true, true);
+            ResultView resultado = new ResultView(this, true);
             resultado.setVisible(true);
         } else {
             ErrorDialog err = new ErrorDialog(this, true,
@@ -922,16 +935,16 @@ public class PrincipalView extends javax.swing.JFrame {
 
     private void jMenuItem18ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem18ActionPerformed
         // TODO add your handling code here:
-        conf = new ConfigEnsayoFormaABAuto(false);
-        prueba = new PruebaFoveal((ConfigEnsayoFormaABAuto)conf, ConfigApp.CANT_ENSAYOS);
+        conf = new ConfigEnsayoFormaABAuto(false, random.nextInt(0, 8));
+        prueba = new PruebaFoveal((ConfigEnsayoFormaABAuto) conf, ConfigApp.CANT_ENSAYOS);
         FovealTestView t = new FovealTestView(this, true, true);
         t.setVisible(true);
     }//GEN-LAST:event_jMenuItem18ActionPerformed
 
     private void jMenuItem19ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem19ActionPerformed
         // TODO add your handling code here:
-        conf = new ConfigEnsayoFormaABAuto(false);
-        prueba = new PruebaPeriferica((ConfigEnsayoFormaABAuto)conf, ConfigApp.CANT_ENSAYOS);
+        conf = new ConfigEnsayoFormaABAuto(false, random.nextInt(0, 2));
+        prueba = new PruebaPeriferica((ConfigEnsayoFormaABAuto) conf, ConfigApp.CANT_ENSAYOS);
         PerifericaTestView t = new PerifericaTestView(this, true, true);
         t.setVisible(true);
     }//GEN-LAST:event_jMenuItem19ActionPerformed
@@ -944,6 +957,7 @@ public class PrincipalView extends javax.swing.JFrame {
 
     private void jMenuItem17ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem17ActionPerformed
         // TODO add your handling code here:
+        conf = new ConfigEnsayoFormaABAuto();
         AutoConfigView c = new AutoConfigView(this, true);
         c.setVisible(true);
     }//GEN-LAST:event_jMenuItem17ActionPerformed
@@ -990,7 +1004,7 @@ public class PrincipalView extends javax.swing.JFrame {
     private void jMenuItem20ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem20ActionPerformed
         // TODO add your handling code here:
         conf = new ConfigEnsayoShapeDetectAuto();
-        prueba = new PruebaShape((ConfigEnsayoShapeDetectAuto)conf, ConfigApp.CANT_ENSAYOS);
+        prueba = new PruebaShape((ConfigEnsayoShapeDetectAuto) conf, ConfigApp.CANT_ENSAYOS);
         ShapeDetectTestView sdtv = new ShapeDetectTestView(this, true, true);
         sdtv.setVisible(true);
     }//GEN-LAST:event_jMenuItem20ActionPerformed
@@ -998,7 +1012,7 @@ public class PrincipalView extends javax.swing.JFrame {
     private void jMenuItem21ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem21ActionPerformed
         // TODO add your handling code here:
         conf = new ConfigEnsayoEnrejadoAuto();
-        prueba = new PruebaEnrejado((ConfigEnsayoEnrejadoAuto)conf);
+        prueba = new PruebaEnrejado((ConfigEnsayoEnrejadoAuto) conf);
         EnrejadoTestView etv = new EnrejadoTestView(this, true, true);
         etv.setVisible(true);
     }//GEN-LAST:event_jMenuItem21ActionPerformed
@@ -1010,10 +1024,29 @@ public class PrincipalView extends javax.swing.JFrame {
     private void jMenuItem22ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem22ActionPerformed
         // TODO add your handling code here:
         conf = new ConfigEnsayoGaborAuto();
-        prueba = new PruebaGabor((ConfigEnsayoGaborAuto)conf);
+        prueba = new PruebaGabor((ConfigEnsayoGaborAuto) conf);
         GaborTestView gtv = new GaborTestView(this, true, true);
         gtv.setVisible(true);
     }//GEN-LAST:event_jMenuItem22ActionPerformed
+
+    private void jMenuItem23ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem23ActionPerformed
+        // TODO add your handling code here:
+        ManualConfigView c = new ManualConfigView(this, true);
+        c.setVisible(true);
+    }//GEN-LAST:event_jMenuItem23ActionPerformed
+
+    private void jMenuItem24ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem24ActionPerformed
+        // TODO add your handling code here:
+        conf = new ConfigEnsayoFormaABAuto();
+        AutoConfigView c = new AutoConfigView(this, true);
+        c.setVisible(true);
+    }//GEN-LAST:event_jMenuItem24ActionPerformed
+
+    private void jMenuItem27ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem27ActionPerformed
+        // TODO add your handling code here:
+        ShapeDetectManualConfigView c = new ShapeDetectManualConfigView(this, true);
+        c.setVisible(true);
+    }//GEN-LAST:event_jMenuItem27ActionPerformed
 
     /**
      * @param args the command line arguments

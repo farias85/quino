@@ -15,23 +15,23 @@ import quino.util.QuinoTools;
 public class ConfigEnsayoFormaABAuto extends ConfigEnsayoFormaAB {
 
     public ConfigEnsayoFormaABAuto(double tiempoMovimiento, int densidad, int cantidad,
-            int direccion, boolean asincronico, boolean control) {
-        super(tiempoMovimiento, densidad, cantidad, direccion, asincronico, control);
+            int direccion, boolean asincronico, boolean control, int panelEstimulo) {
+        super(tiempoMovimiento, densidad, cantidad, direccion, asincronico, control, panelEstimulo);
     }
 
     public ConfigEnsayoFormaABAuto(double tiempoMovimiento, int densidad, int cantidad,
-            int direccion, boolean asincronico, boolean control, int key)
+            int direccion, boolean asincronico, boolean control, int key, int panelEstimulo)
             throws Exception {
         super(tiempoMovimiento, densidad, cantidad, direccion, asincronico,
-                control, key);
+                control, key, panelEstimulo);
     }
 
     public ConfigEnsayoFormaABAuto() {
         super();
     }
 
-    public ConfigEnsayoFormaABAuto(boolean control) {
-    super(0, 0, 0, 0, false, control);
+    public ConfigEnsayoFormaABAuto(boolean control, int panelEstimulo) {
+        super(0, 0, 0, 0, false, control, 0);
 
         Aleatorio random = new Aleatorio();
         densidad = random.nextInt(250, 1500);
@@ -51,6 +51,8 @@ public class ConfigEnsayoFormaABAuto extends ConfigEnsayoFormaAB {
 
         tiempoMovimiento = random.nextInt(50, 200);
         this.key = control ? QuinoTools.getKeyDireccion(direccion) : 32;
+
+        this.panelEstimulo = panelEstimulo;
     }
 
     /**

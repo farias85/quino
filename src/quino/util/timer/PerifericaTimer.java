@@ -82,8 +82,7 @@ public class PerifericaTimer extends AbstractFormaABTimer {
         if (inOut) {
             inOut = false;
             System.out.println("ejecutando el movimiento " + tiempoTranscurrido);
-
-            inicializarEnsayo();
+            
             moverPuntos();
         }
     }
@@ -125,7 +124,7 @@ public class PerifericaTimer extends AbstractFormaABTimer {
         System.out.println("terminado " + tiempoTranscurrido);
         test.removeKeyListener(keyPress);
 
-        if (resultado.getKey() == 0 && ensayo.getPanelEstimulo() > 0) {
+        if (resultado.getKey() == 0 && ensayo.getConfiguracion().getPanelEstimulo() > 0) {
             resultado.setError(true);
             resultado.setDescripcion("Omisión");
         }
@@ -136,7 +135,7 @@ public class PerifericaTimer extends AbstractFormaABTimer {
             if (!practica) {
                 QuinoTools.salvarPruebaEnRegistro(test.getParentView(), test, prueba);
             }
-            ResultView res = new ResultView(test.getParentView(), true, false);
+            ResultView res = new ResultView(test.getParentView(), true);
             test.setVisible(false);
             res.setVisible(true);
         }
@@ -163,7 +162,7 @@ public class PerifericaTimer extends AbstractFormaABTimer {
     @Override
     protected void moverPuntos() {
         //double desplazamientoY = test.getLocation().getY();
-        switch (ensayo.getPanelEstimulo()) {
+        switch (ensayo.getConfiguracion().getPanelEstimulo()) {
             case 0: {
                 panelsRepaint();
             }
@@ -182,8 +181,8 @@ public class PerifericaTimer extends AbstractFormaABTimer {
     @Override
     protected double buscarAngulo() {
         double angulo = 0;
-        if (ensayo.getPanelEstimulo() > 0) {
-            if (ensayo.getPanelEstimulo() == 1) {
+        if (ensayo.getConfiguracion().getPanelEstimulo() > 0) {
+            if (ensayo.getConfiguracion().getPanelEstimulo() == 1) {
                 angulo = panel1.promedioAngulo();
             } else {
                 angulo = panel2.promedioAngulo();

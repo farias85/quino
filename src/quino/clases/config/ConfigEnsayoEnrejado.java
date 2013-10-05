@@ -10,7 +10,7 @@ package quino.clases.config;
  */
 public class ConfigEnsayoEnrejado extends ConfigEnsayo {
 
-    public ConfigEnsayoEnrejado(int key) {
-        super(key);
+    public ConfigEnsayoEnrejado(int key, int panelEstimulo) {
+        super(key, panelEstimulo);
     }
 }

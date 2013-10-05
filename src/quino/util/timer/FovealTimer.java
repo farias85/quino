@@ -46,7 +46,7 @@ public class FovealTimer extends AbstractFormaABTimer {
         this.panel7 = panel7;
         this.panel8 = panel8;
         this.panel9 = panel9;
-        
+
         this.test = test;
     }
 
@@ -96,8 +96,7 @@ public class FovealTimer extends AbstractFormaABTimer {
         if (inOut) {
             inOut = false;
             System.out.println("ejecutando el movimiento " + tiempoTranscurrido);
-
-            inicializarEnsayo();
+            
             moverPuntos();
         }
     }
@@ -139,7 +138,7 @@ public class FovealTimer extends AbstractFormaABTimer {
         System.out.println("terminado " + tiempoTranscurrido);
         test.removeKeyListener(keyPress);
 
-        if (resultado.getKey() == 0 && ensayo.getPanelEstimulo() > 0) {
+        if (resultado.getKey() == 0 && ensayo.getConfiguracion().getPanelEstimulo() > 0) {
             resultado.setError(true);
             resultado.setDescripcion("Omisión");
         }
@@ -150,7 +149,7 @@ public class FovealTimer extends AbstractFormaABTimer {
             if (!practica) {
                 QuinoTools.salvarPruebaEnRegistro(test.getParentView(), test, prueba);
             }
-            ResultView res = new ResultView(test.getParentView(), true, true);
+            ResultView res = new ResultView(test.getParentView(), true);
             test.setVisible(false);
             res.setVisible(true);
         }
@@ -159,7 +158,7 @@ public class FovealTimer extends AbstractFormaABTimer {
     @Override
     protected void moverPuntos() {
 
-        switch (ensayo.getPanelEstimulo()) {
+        switch (ensayo.getConfiguracion().getPanelEstimulo()) {
             case 0: {
                 panelsRepaint();
             }
@@ -203,8 +202,8 @@ public class FovealTimer extends AbstractFormaABTimer {
     protected double buscarAngulo() {
         double angulo = 0;
 
-        if (ensayo.getPanelEstimulo() > 0) {
-            switch (ensayo.getPanelEstimulo()) {
+        if (ensayo.getConfiguracion().getPanelEstimulo() > 0) {
+            switch (ensayo.getConfiguracion().getPanelEstimulo()) {
                 case 1:
                     angulo = panel1.promedioAngulo();
                     break;

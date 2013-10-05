@@ -66,7 +66,7 @@ public class JPanelShape extends JPanel {
         rellenarRandom(densidad);
     }
 
-    public void rellenarShape(int densidad, double pcShape, int tolerancia) {
+    public void rellenarShape(int densidad, double pcShape, int tolerancia, int numeroFigura) {
         this.densidad = densidad;
         segmentos = new ArrayList<Segment2D>();
 
@@ -80,10 +80,7 @@ public class JPanelShape extends JPanel {
         int densidadOthers = (int) QuinoTools.porciento(pcOthers, densidad);
         int densidadShape = (int) QuinoTools.porciento(pcShape, densidad);
 
-        Aleatorio random = new Aleatorio();
-        int numero = random.nextInt(1, 4);
-
-        seleccionarFigura(numero, densidadShape, tolerancia, 1);
+        seleccionarFigura(numeroFigura, densidadShape, tolerancia, 1);
         segmentos = shape.getSegmentos();
 
         rellenarRandom(densidadOthers);

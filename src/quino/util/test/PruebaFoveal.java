@@ -27,4 +27,9 @@ public class PruebaFoveal extends PruebaFormaAB{
     public PruebaFoveal() {
         super();
     }
+
+    @Override
+    public String toString() {
+        return "Forma A";
+    }
 }

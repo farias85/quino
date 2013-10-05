@@ -43,8 +43,8 @@ public class ConfigEnsayoFormaAB extends ConfigEnsayo {
     }
 
     public ConfigEnsayoFormaAB(double tiempoMovimiento, int densidad, int cantidad,
-            int direccion, boolean asincronico, boolean control) {
-        super(control ? QuinoTools.getKeyDireccion(direccion) : 32);
+            int direccion, boolean asincronico, boolean control, int panelEstimulo) {
+        super(control ? QuinoTools.getKeyDireccion(direccion) : 32, panelEstimulo);
         
         this.tiempoMovimiento = tiempoMovimiento;
         this.densidad = densidad;
@@ -70,9 +70,9 @@ public class ConfigEnsayoFormaAB extends ConfigEnsayo {
      * @throws Exception
      */
     public ConfigEnsayoFormaAB(double tiempoMovimiento, int densidad, int cantidad,
-            int direccion, boolean asincronico, boolean control, int key)
+            int direccion, boolean asincronico, boolean control, int key, int panelEstimulo)
             throws Exception {
-        super(key);
+        super(key, panelEstimulo);
 
         if (tiempoMovimiento < 50 || tiempoMovimiento > 200) {
             throw new Exception("El tiempo de movimiento debe ser mayor que 50 y menor que 200");

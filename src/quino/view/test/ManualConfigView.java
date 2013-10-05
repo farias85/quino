@@ -12,6 +12,7 @@ package quino.view.test;
 
 import quino.view.main.*;
 import quino.clases.config.ConfigEnsayoFormaAB;
+import quino.util.Aleatorio;
 import quino.util.test.PruebaFoveal;
 import quino.util.test.PruebaPeriferica;
 import quino.util.QuinoTools;
@@ -31,7 +32,8 @@ public class ManualConfigView extends javax.swing.JDialog {
     private boolean asincronico;
     private int ensayos;
     private boolean foveal = true;
-    boolean control;
+    private boolean control;
+    private Aleatorio random = new Aleatorio();
 
     /** Creates new form ManualConfigView */
     @SuppressWarnings("empty-statement")
@@ -589,7 +591,7 @@ public class ManualConfigView extends javax.swing.JDialog {
 
             if (foveal) {
                 parent.setConf(new ConfigEnsayoFormaAB(tiempo_movimiento, densidad,
-                        cantidad, direccion, asincronico, control));
+                        cantidad, direccion, asincronico, control, random.nextInt(0, 8)));
                 parent.setPrueba(new PruebaFoveal(((ConfigEnsayoFormaAB)parent.getConf()), ensayos));
                 FovealTestView t = new FovealTestView(parent, true, false);
                 t.setVisible(true);
@@ -597,7 +599,7 @@ public class ManualConfigView extends javax.swing.JDialog {
                 dispose();
             } else {
                 parent.setConf(new ConfigEnsayoFormaAB(tiempo_movimiento, densidad,
-                        cantidad, direccion, asincronico, control));
+                        cantidad, direccion, asincronico, control, random.nextInt(0, 2)));
                 parent.setPrueba(new PruebaPeriferica(((ConfigEnsayoFormaAB)parent.getConf()), ensayos));
                 PerifericaTestView t = new PerifericaTestView(parent, true, false);
                 t.setVisible(true);

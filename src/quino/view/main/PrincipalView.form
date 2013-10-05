@@ -238,7 +238,6 @@
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                   <Image iconType="3" name="/quino/view/main/icons/package-upgrade.png"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="Enrejado de Rejas"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuItem21ActionPerformed"/>
@@ -305,23 +304,29 @@
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Configuraci&#xf3;n Manual"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuItem23ActionPerformed"/>
+                  </Events>
                 </MenuItem>
                 <MenuItem class="javax.swing.JMenuItem" name="jMenuItem24">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Configuraci&#xf3;n Autom&#xe1;tica"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuItem24ActionPerformed"/>
+                  </Events>
                 </MenuItem>
               </SubComponents>
             </Menu>
             <Menu class="javax.swing.JMenu" name="jMenu11">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Detecci&#xf3;n de Forma"/>
-              </Properties>
               <SubComponents>
                 <MenuItem class="javax.swing.JMenuItem" name="jMenuItem27">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Configuraci&#xf3;n Manual"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuItem27ActionPerformed"/>
+                  </Events>
                 </MenuItem>
               </SubComponents>
             </Menu>

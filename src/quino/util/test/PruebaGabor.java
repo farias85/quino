@@ -17,7 +17,7 @@ public class PruebaGabor extends PruebaSingleEnsayo {
 
     public PruebaGabor(ConfigEnsayoGabor configEnsayo) {
         super();
-        Ensayo ensayo = new Ensayo(configEnsayo, 0);
+        Ensayo ensayo = new Ensayo(configEnsayo);
         ensayos.add(ensayo);
     }
 
@@ -27,5 +27,10 @@ public class PruebaGabor extends PruebaSingleEnsayo {
 
     public PruebaGabor() {
         super();
+    }
+
+    @Override
+    public String toString() {
+        return "Campana de Gabor";
     }
 }

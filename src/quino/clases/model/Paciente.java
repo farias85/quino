@@ -2,11 +2,13 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package quino.clases.model;
 
+import quino.util.test.PruebaEnrejado;
 import quino.util.test.PruebaPeriferica;
 import quino.util.test.PruebaFoveal;
+import quino.util.test.PruebaGabor;
+import quino.util.test.PruebaShape;
 
 /**
  * Representa al paciente al cual se le realizan las pruebas
@@ -18,32 +20,26 @@ public class Paciente {
      * Nombre completo del paciente
      */
     private String nombre;
-
     /**
      * Edad del paciente
      */
     private int edad;
-
     /**
      * Sexo del paciente
      */
     private String sexo;
-
     /**
      * Escolaridad del paciente. Se refiere al nivel académico obtenido.
      */
     private String escolaridad;
-
     /**
      * Identificador de historia clinica.
      */
     private String historia;
-
     /**
      * Carné de identidad del paciente
      */
-    private long  ci;
-
+    private long ci;
     /**
      * Ficha del paciente, en ella se plasma el seguimiento del paciente
      * o alguna descripción que se quiera apuntar
@@ -54,12 +50,22 @@ public class Paciente {
      * Prueba periférica realizada al paciente.
      */
     private PruebaPeriferica periferica;
-
     /**
      * Prueba foveal realizada al paciente
      */
     private PruebaFoveal foveal;
-
+    /**
+     * Prueba de detección de forma realizada al paciente
+     */
+    private PruebaShape forma;
+    /**
+     * Prueba de campana de gabor realizada al paciente
+     */
+    private PruebaGabor gabor;
+    /**
+     * Prueba enrejado realizada al paciente
+     */
+    private PruebaEnrejado enrejado;
     /**
      * Nombre de la escuela del paciente.
      */
@@ -68,7 +74,7 @@ public class Paciente {
     public Paciente() {
     }
 
-    public Paciente(String nombre, int edad, String sexo, String escolaridad, 
+    public Paciente(String nombre, int edad, String sexo, String escolaridad,
             String historia, long ci, String ficha, PruebaPeriferica periferica,
             PruebaFoveal foveal, String escuela) {
         this.nombre = nombre;
@@ -161,5 +167,29 @@ public class Paciente {
 
     public void setEscuela(String escuela) {
         this.escuela = escuela;
+    }
+
+    public PruebaEnrejado getEnrejado() {
+        return enrejado;
+    }
+
+    public void setEnrejado(PruebaEnrejado enrejado) {
+        this.enrejado = enrejado;
+    }
+
+    public PruebaShape getForma() {
+        return forma;
+    }
+
+    public void setForma(PruebaShape forma) {
+        this.forma = forma;
+    }
+
+    public PruebaGabor getGabor() {
+        return gabor;
+    }
+
+    public void setGabor(PruebaGabor gabor) {
+        this.gabor = gabor;
     }
 }

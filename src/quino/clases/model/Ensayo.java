@@ -17,10 +17,6 @@ public class Ensayo {
      */
     private ConfigEnsayo configuracion;
     /**
-     * Panel de estimulo en el q se produjo el movimiento
-     */
-    private int panelEstimulo;
-    /**
      * El resultado del ensayo
      */
     private Resultado resultado;
@@ -28,14 +24,13 @@ public class Ensayo {
     public Ensayo() {
     }
 
-    public Ensayo(ConfigEnsayo configuracion, int panelEstimulo) {
+    public Ensayo(ConfigEnsayo configuracion) {
         this.configuracion = configuracion;
-        this.panelEstimulo = panelEstimulo;
+        resultado = new Resultado();
     }
 
-    public Ensayo(ConfigEnsayo configuracion, int panelEstimulo, Resultado resultado) {
+    public Ensayo(ConfigEnsayo configuracion, Resultado resultado) {
         this.configuracion = configuracion;
-        this.panelEstimulo = panelEstimulo;
         this.resultado = resultado;
     }
 
@@ -45,14 +40,6 @@ public class Ensayo {
 
     public void setConfiguracion(ConfigEnsayo configuracion) {
         this.configuracion = configuracion;
-    }
-
-    public int getPanelEstimulo() {
-        return panelEstimulo;
-    }
-
-    public void setPanelEstimulo(int panelEstimulo) {
-        this.panelEstimulo = panelEstimulo;
     }
 
     public Resultado getResultado() {

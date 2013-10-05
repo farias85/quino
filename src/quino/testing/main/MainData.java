@@ -37,7 +37,7 @@ public class MainData {
 
             for (int i = 0; i < 50; i++) {
 
-                PruebaFoveal foveal = new PruebaFoveal(new ConfigEnsayoFormaABAuto(false), random.nextInt(5, 9));
+                PruebaFoveal foveal = new PruebaFoveal(new ConfigEnsayoFormaABAuto(false, random.nextInt(0, 8)), random.nextInt(5, 9));
                 for (int j = 0; j < foveal.getEnsayos().size(); j++) {
                     boolean error = j % 3 == 0 ? true : false;
                     Resultado results = new Resultado(random.nextInt(300, 620),
@@ -46,7 +46,7 @@ public class MainData {
                     foveal.getEnsayos().get(j).setResultado(results);
                 }
 
-                PruebaPeriferica periferica = new PruebaPeriferica(new ConfigEnsayoFormaABAuto(false), random.nextInt(2, 8));
+                PruebaPeriferica periferica = new PruebaPeriferica(new ConfigEnsayoFormaABAuto(false, random.nextInt(0, 2)), random.nextInt(2, 8));
                 for (int j = 0; j < periferica.getEnsayos().size(); j++) {
                     boolean error = j % 2 == 0 ? true : false;
 

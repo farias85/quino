@@ -26,4 +26,9 @@ public class PruebaPeriferica extends PruebaFormaAB {
     public PruebaPeriferica(ConfigEnsayoFormaAB configEnsayo, int cantEnsayos) {
         super(configEnsayo, cantEnsayos);
     }
+
+    @Override
+    public String toString() {
+        return "Forma B";
+    }
 }

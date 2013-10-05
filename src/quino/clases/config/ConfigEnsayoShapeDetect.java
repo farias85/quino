@@ -4,6 +4,8 @@
  */
 package quino.clases.config;
 
+import quino.util.Aleatorio;
+
 /**
  *
  * @author farias
@@ -26,11 +28,35 @@ public class ConfigEnsayoShapeDetect extends ConfigEnsayo {
      */
     protected double pcShape;
 
-    public ConfigEnsayoShapeDetect(int key, int densidad, int tolerancia, double pcShape) {
-        super(key);
+    /**
+     * El numero de la figura, 1. Cuadrado, 2. Rectangulo, 3. Triangulo, 4. Circulo
+     */
+    protected int numFigura;
+
+    public ConfigEnsayoShapeDetect() {
+        super();
+    }
+
+    public ConfigEnsayoShapeDetect(int densidad, int tolerancia, double pcShape, int numFigura) {
+        super(0, 0);
         this.densidad = densidad;
         this.tolerancia = tolerancia;
         this.pcShape = pcShape;
+        this.numFigura = numFigura;
+
+        Aleatorio random = new Aleatorio();
+        panelEstimulo = random.nextInt(0, 2);
+        switch (panelEstimulo) {
+            case 0:
+                key = 0; //ninguna tecla
+                break;
+            case 1:
+                key = 37;//tecla de la flecha izquierda
+                break;
+            case 2:
+                key = 39;//tecla de la flecha derecha
+                break;
+        }
     }
 
     public int getDensidad() {
@@ -55,5 +81,13 @@ public class ConfigEnsayoShapeDetect extends ConfigEnsayo {
 
     public void setTolerancia(int tolerancia) {
         this.tolerancia = tolerancia;
+    }
+
+    public int getNumFigura() {
+        return numFigura;
+    }
+
+    public void setNumFigura(int numFigura) {
+        this.numFigura = numFigura;
     }
 }

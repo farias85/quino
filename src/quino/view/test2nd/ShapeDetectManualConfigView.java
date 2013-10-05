@@ -10,12 +10,11 @@
  */
 package quino.view.test2nd;
 
-import quino.view.test.*;
 import quino.view.main.*;
-import quino.clases.config.ConfigEnsayoFormaAB;
-import quino.util.test.PruebaFoveal;
-import quino.util.test.PruebaPeriferica;
+import quino.clases.config.ConfigEnsayoShapeDetect;
+import quino.util.Aleatorio;
 import quino.util.QuinoTools;
+import quino.util.test.PruebaShape;
 //import clases.prueba.Ensayo;
 
 /**
@@ -25,14 +24,7 @@ import quino.util.QuinoTools;
 public class ShapeDetectManualConfigView extends javax.swing.JDialog {
 
     private PrincipalView parent;
-    private int tiempo_movimiento;
-    private int densidad;
-    private int cantidad;
-    private int direccion;
-    private boolean asincronico;
-    private int ensayos;
-    private boolean foveal = true;
-    boolean control;
+    private Aleatorio random = new Aleatorio();
 
     /** Creates new form ManualConfigView */
     @SuppressWarnings("empty-statement")
@@ -41,6 +33,7 @@ public class ShapeDetectManualConfigView extends javax.swing.JDialog {
         this.parent = parent;
         initComponents();
         this.setLocationRelativeTo(null);
+        verPorciento();
     }
 
     /** This method is called from within the constructor to
@@ -91,7 +84,7 @@ public class ShapeDetectManualConfigView extends javax.swing.JDialog {
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 12));
         jLabel1.setText("Cantidad de Ensayos");
 
-        jTextField1.setFont(new java.awt.Font("Tahoma", 1, 12));
+        jTextField1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jTextField1.setText("4");
         jTextField1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -100,12 +93,12 @@ public class ShapeDetectManualConfigView extends javax.swing.JDialog {
         });
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jLabel2.setText("Densidad de Puntos");
+        jLabel2.setText("Densidad");
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jLabel3.setText("Puntos a Mover");
+        jLabel3.setText("% Forma");
 
-        jTextField2.setFont(new java.awt.Font("Tahoma", 1, 12));
+        jTextField2.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jTextField2.setText("600");
         jTextField2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -119,7 +112,7 @@ public class ShapeDetectManualConfigView extends javax.swing.JDialog {
         });
 
         jTextField3.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jTextField3.setText("23");
+        jTextField3.setText("9");
         jTextField3.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
                 jTextField3FocusLost(evt);
@@ -135,14 +128,14 @@ public class ShapeDetectManualConfigView extends javax.swing.JDialog {
         jLabel4.setText("%");
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jLabel5.setText("Tiempo de Movimiento");
+        jLabel5.setText("Tolerancia");
 
         jTextField4.setEditable(false);
         jTextField4.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jTextField4.setText("0000");
 
         jTextField5.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jTextField5.setText("60");
+        jTextField5.setText("1");
 
         jLabel6.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel6.setText("Configuración Manual Detección de Forma");
@@ -153,40 +146,38 @@ public class ShapeDetectManualConfigView extends javax.swing.JDialog {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(jLabel2)
-                    .addComponent(jLabel1))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel1)
+                    .addComponent(jLabel2))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addComponent(jTextField2)
                             .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(27, 27, 27)
+                        .addGap(32, 32, 32)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel5)
+                            .addComponent(jLabel3))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel5)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(42, 42, 42)
-                                .addComponent(jLabel3)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel4)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jTextField4, javax.swing.GroupLayout.DEFAULT_SIZE, 44, Short.MAX_VALUE)))
+                                .addComponent(jLabel4)))
+                        .addGap(22, 22, 22)
+                        .addComponent(jTextField4, javax.swing.GroupLayout.DEFAULT_SIZE, 79, Short.MAX_VALUE)
                         .addContainerGap())
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(jButton1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 41, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 40, Short.MAX_VALUE)
                         .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(106, 106, 106))))
             .addGroup(layout.createSequentialGroup()
                 .addGap(71, 71, 71)
                 .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 340, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(69, Short.MAX_VALUE))
+                .addContainerGap(68, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -201,24 +192,24 @@ public class ShapeDetectManualConfigView extends javax.swing.JDialog {
                             .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel2)
-                            .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel2)))
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(layout.createSequentialGroup()
                             .addGap(39, 39, 39)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(jLabel3)
                                 .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jLabel4)
-                                .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(jLabel4)))
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel5)
-                            .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel5))))
                 .addGap(41, 41, 41)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(21, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jButton1.getAccessibleContext().setAccessibleName("b_Comenzar");
@@ -248,37 +239,33 @@ public class ShapeDetectManualConfigView extends javax.swing.JDialog {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         try {
-            if (jTextField1.getText().isEmpty() || jTextField2.getText().isEmpty() || jTextField3.getText().isEmpty()) {
+            if (jTextField1.getText().isEmpty() || jTextField2.getText().isEmpty()
+                    || jTextField3.getText().isEmpty() || jTextField5.getText().isEmpty()) {
                 throw new Exception("No puede dejar datos en blanco");
             }
-            if (!asincronico && direccion == 0) {
-                throw new Exception("Seleccione algún control de dirección");
-            }
-            int dens = Integer.parseInt(jTextField2.getText());
-            int porciento = Integer.parseInt(jTextField3.getText());
-            cantidad = (porciento * dens) / 100;
 
-            tiempo_movimiento = Integer.parseInt(jTextField5.getText());
-            densidad = Integer.parseInt(jTextField2.getText());
-            ensayos = Integer.parseInt(jTextField1.getText());
+            int cantEnsayos, densidad, porciento, tolerancia;
 
-            if (foveal) {
-                parent.setConf(new ConfigEnsayoFormaAB(tiempo_movimiento, densidad,
-                        cantidad, direccion, asincronico, control));
-                parent.setPrueba(new PruebaFoveal((ConfigEnsayoFormaAB)parent.getConf(), ensayos));
-                FovealTestView t = new FovealTestView(parent, true, false);
-                t.setVisible(true);
-                setVisible(false);
-                dispose();
-            } else {
-                parent.setConf(new ConfigEnsayoFormaAB(tiempo_movimiento, densidad,
-                        cantidad, direccion, asincronico, control));
-                parent.setPrueba(new PruebaPeriferica((ConfigEnsayoFormaAB)parent.getConf(), ensayos));
-                PerifericaTestView t = new PerifericaTestView(parent, true, false);
-                t.setVisible(true);
-                setVisible(false);
-                dispose();
+            try {
+                cantEnsayos = Integer.parseInt(jTextField1.getText());
+                densidad = Integer.parseInt(jTextField2.getText());
+                porciento = Integer.parseInt(jTextField3.getText());
+                tolerancia = Integer.parseInt(jTextField5.getText());
+            } catch (Exception exception) {
+                throw new Exception("Los valores de los datos del formulario deben ser números enteros");
             }
+            
+            int numFigura = random.nextInt(1, 4);
+            ConfigEnsayoShapeDetect cesd = new ConfigEnsayoShapeDetect(densidad, tolerancia, porciento, numFigura);
+            parent.setConf(cesd);
+            parent.setPrueba(new PruebaShape((ConfigEnsayoShapeDetect) parent.getConf(), cantEnsayos));
+
+            ShapeDetectTestView sdtv = new ShapeDetectTestView(parent, true, false);
+            sdtv.setVisible(true);
+            setVisible(false);
+            dispose();
+
+
         } catch (Exception e) {
             ErrorDialog err = new ErrorDialog(parent, true, e.getMessage());
             err.setVisible(true);

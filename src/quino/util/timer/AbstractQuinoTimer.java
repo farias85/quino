@@ -109,7 +109,6 @@ public abstract class AbstractQuinoTimer extends TimerTask {
 
     @Override
     public void run() {
-        tiempoTranscurrido++;
         switch (estadoEnsayo()) {
             case EN_ESPERA:
                 execEnEspera();
@@ -128,6 +127,7 @@ public abstract class AbstractQuinoTimer extends TimerTask {
                 break;
             default:
         }
+        tiempoTranscurrido++;
     }
 
     /**
@@ -137,11 +137,15 @@ public abstract class AbstractQuinoTimer extends TimerTask {
      * la tarea pues no han transcurrido los ensayos necesarios
      */
     protected boolean cancelarTarea() {
-        numEnsayo++;
-        if (numEnsayo == prueba.getEnsayos().size()) {
+        if (numEnsayo == prueba.getEnsayos().size() - 1) {
             cancel();
             return true;
+        } else {
+            numEnsayo++;
+            ensayo = prueba.getEnsayos().get(numEnsayo);
+            resultado = new Resultado();
         }
+        
         tiempoTranscurrido = 0;
         return false;
     }
@@ -161,17 +165,5 @@ public abstract class AbstractQuinoTimer extends TimerTask {
             return EstadoEnsayo.ESPERANDO_RESPUESTA;
         }
         return EstadoEnsayo.TERMINADO;
-    }
-
-    /**
-     * Define los parametros de inicio para los ensayos
-     * @param cantPaneles Cantidad de paneles de cada ensayo sin contar el
-     * panel central.
-     */
-    protected void inicializarEnsayo() {
-        if (numEnsayo <= prueba.getEnsayos().size() - 1) {
-            ensayo = prueba.getEnsayos().get(numEnsayo);
-            resultado = new Resultado();
-        }
     }
 }

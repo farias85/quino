@@ -24,7 +24,7 @@ import quino.view.test2nd.GaborTestView;
  * @author farias
  */
 public class GaborTimer extends AbstractSinusoideTimer {
-    
+
     private Point centro;
     private double contrat = 0.99;
     //central stimulus
@@ -68,8 +68,6 @@ public class GaborTimer extends AbstractSinusoideTimer {
         if (inOut) {
             inOut = false;
             System.out.println("en espera " + tiempoTranscurrido);
-
-            inicializarEnsayo();
         }
     }
 
@@ -95,11 +93,11 @@ public class GaborTimer extends AbstractSinusoideTimer {
 
                         resultado.setKey(k);
 
-                        if (ensayo.getPanelEstimulo() > 0) {
+                        if (ensayo.getConfiguracion().getPanelEstimulo() > 0) {
                             resultado.setTiempoRespuesta(tiempoTranscurrido - (enEspera + 1));
                         }
 
-                        if (ensayo.getPanelEstimulo() == 0) {
+                        if (ensayo.getConfiguracion().getPanelEstimulo() == 0) {
                             resultado.setError(true);
                             resultado.setDescripcion("No hubo estímulo");
                         } else if (ensayo.getConfiguracion().getKey() != resultado.getKey()) {
@@ -129,7 +127,7 @@ public class GaborTimer extends AbstractSinusoideTimer {
         System.out.println("terminado " + tiempoTranscurrido);
         test.removeKeyListener(keyPress);
 
-        if (resultado.getKey() == 0 && ensayo.getPanelEstimulo() > 0) {
+        if (resultado.getKey() == 0 && ensayo.getConfiguracion().getPanelEstimulo() > 0) {
             resultado.setError(true);
             resultado.setDescripcion("Omisión");
         }
@@ -140,7 +138,7 @@ public class GaborTimer extends AbstractSinusoideTimer {
             if (!practica) {
                 QuinoTools.salvarPruebaEnRegistro(test.getParentView(), test, prueba);
             }
-            ResultView res = new ResultView(test.getParentView(), true, false);
+            ResultView res = new ResultView(test.getParentView(), true);
             test.setVisible(false);
             res.setVisible(true);
         }

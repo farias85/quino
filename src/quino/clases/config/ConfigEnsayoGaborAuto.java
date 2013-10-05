@@ -10,11 +10,11 @@ package quino.clases.config;
  */
 public class ConfigEnsayoGaborAuto extends ConfigEnsayoGabor {
 
-    public ConfigEnsayoGaborAuto(int key) {
-        super(key);
+    public ConfigEnsayoGaborAuto(int key, int panelEstimulo) {
+        super(key, panelEstimulo);
     }
 
     public ConfigEnsayoGaborAuto() {
-        super(0);
+        super(0, 0);
     }
 }

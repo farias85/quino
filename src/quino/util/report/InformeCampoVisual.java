@@ -69,8 +69,8 @@ public class InformeCampoVisual extends AbstractInformeExcel {
                         celda.setCellValue(pacienteAcutal.getNombre());
                     }
 
-                    if (ensayoActual.getPanelEstimulo() != 0) {
-                        celda = getCelda(row, ensayoActual.getPanelEstimulo(), HSSFCell.CELL_TYPE_STRING, false);
+                    if (ensayoActual.getConfiguracion().getPanelEstimulo() != 0) {
+                        celda = getCelda(row, ensayoActual.getConfiguracion().getPanelEstimulo(), HSSFCell.CELL_TYPE_STRING, false);
                         celda.setCellValue("X");
                     }
                     rowCount++;

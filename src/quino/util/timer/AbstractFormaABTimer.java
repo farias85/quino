@@ -46,13 +46,13 @@ public abstract class AbstractFormaABTimer extends AbstractQuinoTimer {
      */
     protected void controlarEnsayo() {
         if (configEnsayo.isControl()
-                && ensayo.getPanelEstimulo() > 0) {
+                && ensayo.getConfiguracion().getPanelEstimulo() > 0) {
             int keyEsperada = ensayo.getConfiguracion().getKey();
             if (keyEsperada != resultado.getKey()) {
                 resultado.setError(true);
                 resultado.setDescripcion("Las direcciones no coinciden");
             }
-        } else if (ensayo.getPanelEstimulo() == 0) {
+        } else if (ensayo.getConfiguracion().getPanelEstimulo() == 0) {
             resultado.setError(true);
             resultado.setDescripcion("No hubo Estímulo");
         } else if (ensayo.getConfiguracion().getKey() != resultado.getKey()) {
@@ -72,7 +72,7 @@ public abstract class AbstractFormaABTimer extends AbstractQuinoTimer {
 
         resultado.setKey(k);
 
-        if (ensayo.getPanelEstimulo() > 0) {
+        if (ensayo.getConfiguracion().getPanelEstimulo() > 0) {
             resultado.setTiempoRespuesta(tiempoTranscurrido - (enEspera + preparado + 1));
         }
 

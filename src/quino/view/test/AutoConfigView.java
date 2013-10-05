@@ -13,6 +13,7 @@ package quino.view.test;
 import quino.clases.config.ConfigEnsayoFormaAB;
 import quino.view.main.*;
 import quino.clases.config.ConfigEnsayoFormaABAuto;
+import quino.util.Aleatorio;
 import quino.util.test.PruebaFoveal;
 import quino.util.test.PruebaPeriferica;
 
@@ -26,6 +27,7 @@ public class AutoConfigView extends javax.swing.JDialog {
     private ConfigEnsayoFormaAB conf;
     private boolean foveal = true;
     private boolean control;
+    private Aleatorio random = new Aleatorio();
 
     /** Creates new form AutoConfigView */
     public AutoConfigView(PrincipalView parent, boolean modal) {
@@ -38,7 +40,7 @@ public class AutoConfigView extends javax.swing.JDialog {
         }
 
         initComponents();
-        
+
         this.parent = parent;
         setLocationRelativeTo(null);
         jRadioButton1.setSelected(true);
@@ -199,9 +201,9 @@ public class AutoConfigView extends javax.swing.JDialog {
             }
 
             control = jCheckBox1.isSelected();
-            parent.setConf(new ConfigEnsayoFormaABAuto(control));
 
             if (foveal) {
+                parent.setConf(new ConfigEnsayoFormaABAuto(control, random.nextInt(0, 8)));
                 conf.setDensidad(conf.getDensidad() / 8);
                 parent.setPrueba(new PruebaFoveal(conf, cant_ensayos));
 
@@ -210,6 +212,7 @@ public class AutoConfigView extends javax.swing.JDialog {
                 setVisible(false);
                 dispose();
             } else {
+                parent.setConf(new ConfigEnsayoFormaABAuto(control, random.nextInt(0, 2)));
                 conf.setDensidad((conf.getDensidad() / 8));
                 parent.setPrueba(new PruebaPeriferica(conf, cant_ensayos));
 

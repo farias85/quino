@@ -12,12 +12,12 @@ import quino.util.Aleatorio;
  */
 public class ConfigEnsayoShapeDetectAuto extends ConfigEnsayoShapeDetect {
 
-    public ConfigEnsayoShapeDetectAuto(int key, int densidad, int tolerancia, double pcShape, int numFigura) {
-        super(densidad, tolerancia, pcShape, numFigura);
+    public ConfigEnsayoShapeDetectAuto(int key, int panelEstimulo, int densidad, int tolerancia, double pcShape, int numFigura) {
+        super(key, panelEstimulo, densidad, tolerancia, pcShape, numFigura);
     }
 
     public ConfigEnsayoShapeDetectAuto() {
-        super(0, 0, 0, 0);
+        super();
 
         Aleatorio random = new Aleatorio();
         densidad = random.nextInt(1000, 1500);

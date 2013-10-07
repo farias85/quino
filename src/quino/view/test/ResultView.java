@@ -63,7 +63,7 @@ public class ResultView extends javax.swing.JDialog {
                     t_denpromedio1.setText(String.valueOf(((PruebaShape) parent.getPrueba()).densidadPromedio()));
                     jLabel31.setText("% de Rectas:");
                     jLabel24.setText("Tolerancia:");
-                    jLabel25.setVisible(false);
+                    jLabel25.setText("Figura");
                     jLabel29.setVisible(false);
                     jLabel34.setVisible(false);
                     jLabel11.setVisible(false);
@@ -124,7 +124,7 @@ public class ResultView extends javax.swing.JDialog {
 
         jLabel31.setText("% de Rectas:");
         jLabel24.setText("Tolerancia:");
-        jLabel25.setVisible(false);
+        jLabel25.setText("Figura");
         jLabel29.setVisible(false);
         jLabel34.setVisible(false);
         jLabel11.setVisible(false);
@@ -135,6 +135,7 @@ public class ResultView extends javax.swing.JDialog {
         t_vmov1.setText(String.valueOf(configEnsayo.getTolerancia()));
         t_pestimulo1.setText(ensayo.getConfiguracion().getPanelEstimulo() == 0 ? "-" : configEnsayo.getKey() == 37 ? "Panel Izquierdo" : "Panel Derecho");
         t_trespuesta1.setText(resultado.getTiempoRespuesta() == 0 ? "N/R" : String.valueOf(resultado.getTiempoRespuesta()));
+        t_velocidad.setText(QuinoTools.getNombreFigura(configEnsayo.getNumFigura()));
 
         ImageIcon resultIcon = CambiarError(resultado.isError());
         t_resultado1.setIcon(resultIcon);

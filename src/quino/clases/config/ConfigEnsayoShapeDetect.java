@@ -16,18 +16,15 @@ public class ConfigEnsayoShapeDetect extends ConfigEnsayo {
      * Densidad de rectas a representar en la prueba
      */
     protected int densidad;
-
     /**
      * Tolerancia respecto a la guia q define un trazo o lado de una figura.
      * tolerancia = 0, las rectas alrededor de la guia se pintan justamente sobre la guia
      */
     protected int tolerancia;
-
     /**
      * Por ciento de la densidad de rectas q se utilizaran para pintar la forma
      */
     protected double pcShape;
-
     /**
      * El numero de la figura, 1. Cuadrado, 2. Rectangulo, 3. Triangulo, 4. Circulo
      */
@@ -37,15 +34,32 @@ public class ConfigEnsayoShapeDetect extends ConfigEnsayo {
         super();
     }
 
+    public ConfigEnsayoShapeDetect(int key, int panelEstimulo, int densidad, int tolerancia, double pcShape, int numFigura) {
+        super(key, panelEstimulo);
+        this.densidad = densidad;
+        this.tolerancia = tolerancia;
+        this.pcShape = pcShape;
+        this.numFigura = numFigura;
+    }
+
     public ConfigEnsayoShapeDetect(int densidad, int tolerancia, double pcShape, int numFigura) {
         super(0, 0);
         this.densidad = densidad;
         this.tolerancia = tolerancia;
         this.pcShape = pcShape;
         this.numFigura = numFigura;
+    }
+
+    public ConfigEnsayoShapeDetect(int densidad, int tolerancia, double pcShape) {
+        super(0, 0);
+        this.densidad = densidad;
+        this.tolerancia = tolerancia;
+        this.pcShape = pcShape;
 
         Aleatorio random = new Aleatorio();
+        numFigura = random.nextInt(1, 4);
         panelEstimulo = random.nextInt(0, 2);
+
         switch (panelEstimulo) {
             case 0:
                 key = 0; //ninguna tecla

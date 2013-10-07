@@ -8,12 +8,14 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import quino.clases.config.ConfigApp;
 import quino.clases.config.ConfigEnsayoFormaABAuto;
+import quino.clases.config.ConfigEnsayoShapeDetectAuto;
 import quino.clases.model.Paciente;
 import quino.util.test.PruebaFoveal;
 import quino.util.test.PruebaPeriferica;
 import quino.clases.model.Registro;
 import quino.clases.model.Resultado;
 import quino.util.Aleatorio;
+import quino.util.test.PruebaShape;
 
 /**
  * Clase ejecutable para la generación de datos de prueba
@@ -35,16 +37,16 @@ public class MainData {
             Aleatorio random = new Aleatorio();
             Registro registro = new Registro();
 
-            for (int i = 0; i < 50; i++) {
+            for (int i = 0; i < 1; i++) {
 
-                PruebaFoveal foveal = new PruebaFoveal(new ConfigEnsayoFormaABAuto(false, random.nextInt(0, 8)), random.nextInt(5, 9));
+                /*PruebaFoveal foveal = new PruebaFoveal(new ConfigEnsayoFormaABAuto(false, random.nextInt(0, 8)), random.nextInt(5, 9));
                 for (int j = 0; j < foveal.getEnsayos().size(); j++) {
                     boolean error = j % 3 == 0 ? true : false;
                     Resultado results = new Resultado(random.nextInt(300, 620),
                             error, "Descrip", 32, random.nextDouble(),
                             random.nextInt(5, 15));
                     foveal.getEnsayos().get(j).setResultado(results);
-                }
+                }*/
 
                 PruebaPeriferica periferica = new PruebaPeriferica(new ConfigEnsayoFormaABAuto(false, random.nextInt(0, 2)), random.nextInt(2, 8));
                 for (int j = 0; j < periferica.getEnsayos().size(); j++) {
@@ -54,6 +56,15 @@ public class MainData {
                             error, "Descrip", 32, random.nextDouble(),
                             random.nextInt(5, 15));
                     periferica.getEnsayos().get(j).setResultado(results);
+                }
+
+                PruebaShape pruebaShape = new PruebaShape(new ConfigEnsayoShapeDetectAuto(), random.nextInt(2, 3));
+                for (int j = 0; j < pruebaShape.getEnsayos().size(); j++) {
+                    boolean error = j % 3 == 0 ? true : false;
+                    Resultado results = new Resultado(random.nextInt(300, 620),
+                            error, "Descrip", 32, random.nextDouble(),
+                            random.nextInt(5, 15));
+                    pruebaShape.getEnsayos().get(j).setResultado(results);
                 }
 
                 String anno = String.valueOf(random.nextInt(10, 99));
@@ -78,9 +89,14 @@ public class MainData {
                 String sexo = random.nextInt(0, 100) % 2 == 0 ? "Masculino" : "Femenino";
                 String escolaridad = String.valueOf(random.nextInt(4, 6)) + "to";
 
+                /*Paciente paciente = new Paciente(nombreCompleto, random.nextInt(5, 50),
+                        sexo, escolaridad, historia, ci, "Ficha",
+                        periferica, foveal, escuela, pruebaShape, null, null);*/
+
                 Paciente paciente = new Paciente(nombreCompleto, random.nextInt(5, 50),
                         sexo, escolaridad, historia, ci, "Ficha",
-                        periferica, foveal, escuela);
+                        null, null, escuela, pruebaShape, null, null);
+
 
                 registro.nuevoPaciente(paciente);
             }

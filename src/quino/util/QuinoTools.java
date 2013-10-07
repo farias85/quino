@@ -452,4 +452,23 @@ public class QuinoTools {
         image2.getRaster().setDataElements(0, 0, cols, rows, data);
         return image2;
     }
+
+    public static String getNombreFigura(int numFigura) {
+        String nombre = "";
+        switch (numFigura) {
+            case 1:
+                nombre = "Cuadrado";
+                break;
+            case 2:
+                nombre = "Rectángulo";
+                break;
+            case 3:
+                nombre = "Triangulo";
+                break;
+            case 4:
+                nombre = "Círculo";
+                break;
+        }
+        return nombre;
+    }
 }

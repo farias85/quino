@@ -45,6 +45,9 @@ public class ShapeTimer extends AbstractNoMoveTimer {
         if (inOut) {
             inOut = false;
             System.out.println("en espera " + tiempoTranscurrido);
+
+            panelsClear();
+            panelsRepaint();
         }
     }
 
@@ -54,17 +57,11 @@ public class ShapeTimer extends AbstractNoMoveTimer {
             inOut = true;
             System.out.println("preparado " + tiempoTranscurrido);
             
-            panelsClear();
             panelsRellenar();
             panelsRepaint();
 
             System.out.println("esperando respuesta " + tiempoTranscurrido);
             inOut = true;
-
-            System.err.println("resultado.getKey(): " + resultado.getKey());
-            System.err.println("ensayo.getConfiguracion().getKey(): " + ensayo.getConfiguracion().getKey());
-            System.err.println("ENSAYO:" + numEnsayo);
-            System.err.println("KEY: " + prueba.getEnsayos().get(numEnsayo).getConfiguracion().getKey());
 
             keyPress = new KeyListener() {
 
@@ -89,9 +86,6 @@ public class ShapeTimer extends AbstractNoMoveTimer {
                         } else if (ensayo.getConfiguracion().getKey() != resultado.getKey()) {
                             resultado.setError(true);
                             resultado.setDescripcion("Dirección incorrecta");
-
-                            System.err.println("resultado.getKey(): " + resultado.getKey());
-                            System.err.println("ensayo.getConfiguracion().getKey(): " + ensayo.getConfiguracion().getKey());
                         }
 
                         puedeTeclear = false;

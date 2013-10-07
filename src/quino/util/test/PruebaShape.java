@@ -10,7 +10,6 @@ import quino.clases.config.ConfigEnsayo;
 import quino.clases.config.ConfigEnsayoShapeDetect;
 import quino.clases.config.ConfigEnsayoShapeDetectAuto;
 import quino.clases.model.Ensayo;
-import quino.util.Aleatorio;
 
 /**
  *
@@ -29,6 +28,8 @@ public class PruebaShape extends PruebaMultiEnsayo {
 
             if (configEnsayo instanceof ConfigEnsayoShapeDetectAuto) {
                 configEnsayo = new ConfigEnsayoShapeDetectAuto();
+            } else {
+                configEnsayo = new ConfigEnsayoShapeDetect(configEnsayo.getDensidad(), configEnsayo.getTolerancia(), configEnsayo.getPcShape());
             }
 
             Ensayo ensayo = new Ensayo(configEnsayo);

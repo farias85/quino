@@ -76,7 +76,8 @@ public class Paciente {
 
     public Paciente(String nombre, int edad, String sexo, String escolaridad,
             String historia, long ci, String ficha, PruebaPeriferica periferica,
-            PruebaFoveal foveal, String escuela) {
+            PruebaFoveal foveal, String escuela, PruebaShape forma, PruebaGabor gabor,
+            PruebaEnrejado enrejado) {
         this.nombre = nombre;
         this.edad = edad;
         this.sexo = sexo;

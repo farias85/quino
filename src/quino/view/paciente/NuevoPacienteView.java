@@ -234,10 +234,10 @@ public class NuevoPacienteView extends javax.swing.JDialog {
         // TODO add your handling code here:
         try {
             if (historia.getText().isEmpty() || nombre.getText().isEmpty() || escolaridad.getText().isEmpty() || ficha.getText().isEmpty()
-                    || CI.getText().isEmpty() || edad.getText().isEmpty() || escuelaEdit.getText().isEmpty() ){
+                    || CI.getText().isEmpty() || edad.getText().isEmpty() || escuelaEdit.getText().isEmpty()) {
                 throw new Exception("Existen datos del Paciente en blanco");
             }
-            
+
             String hist = historia.getText();
             String nomb = nombre.getText();
             String sex = String.valueOf(sexo.getSelectedItem());
@@ -254,7 +254,7 @@ public class NuevoPacienteView extends javax.swing.JDialog {
                 throw new Exception("La edad debe ser un número");
             }
 
-            Paciente p = new Paciente(nomb, age, sex, esc, hist, ci, fich, null, null, escuela);
+            Paciente p = new Paciente(nomb, age, sex, esc, hist, ci, fich, null, null, escuela, null, null, null);
 
             if (!parent.getRegistro().nuevoPaciente(p)) {
                 throw new Exception("Ya existe un paciente con la misma historia clinica o carné de identidad");
@@ -264,7 +264,7 @@ public class NuevoPacienteView extends javax.swing.JDialog {
             parent.modificarTableModel();
 
             //parent.ActivarPractica();
-            
+
             setVisible(false);
             dispose();
         } catch (Exception e) {
@@ -272,7 +272,6 @@ public class NuevoPacienteView extends javax.swing.JDialog {
             err.setVisible(true);
         }
     }//GEN-LAST:event_jButton1ActionPerformed
-
 
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(new Runnable() {

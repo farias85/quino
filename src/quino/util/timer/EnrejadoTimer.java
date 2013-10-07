@@ -11,6 +11,7 @@ import javax.swing.JPanel;
 import org.opencv.core.CvType;
 import org.opencv.core.Mat;
 import org.opencv.core.Scalar;
+import quino.clases.config.ConfigEnsayoEnrejado;
 import quino.util.test.Prueba;
 import quino.util.QuinoTools;
 import quino.view.test.ResultView;
@@ -23,22 +24,20 @@ import quino.view.test2nd.EnrejadoTestView;
 public class EnrejadoTimer extends AbstractSinusoideTimer {
 
     private EnrejadoTestView test;
+    private ConfigEnsayoEnrejado configEnsayo;
 
     public EnrejadoTimer(Prueba prueba, boolean practica, JPanel jPanel, EnrejadoTestView test) {
         super(prueba, practica);
 
         this.test = test;
         this.jPanel = jPanel;
-
-        fs = 10;
-        ppi = 80;
-        fspa_cpi_x = 5;
-        fspa_cpi_y = 1.0;
-        
-        fspa_cpp_x = fspa_cpi_x / ppi;
-        fspa_cpp_y = fspa_cpi_y / ppi;
-
         mtx = new Mat(470, 660, CvType.CV_8SC1, new Scalar(255));
+
+        if (ensayo.getConfiguracion() instanceof ConfigEnsayoEnrejado) {
+            this.configEnsayo = ((ConfigEnsayoEnrejado) ensayo.getConfiguracion());
+        } else {
+            System.err.println("El ensayo no es de tipo ConfigEnsayoEnrejado en la clase EnrejadoTimer");
+        }
     }
 
     @Override
@@ -100,7 +99,7 @@ public class EnrejadoTimer extends AbstractSinusoideTimer {
         }
 
         runMatrix();
-        tiempoTranscurrido += 200;
+        tiempoTranscurrido += 100;
     }
 
     @Override
@@ -127,12 +126,12 @@ public class EnrejadoTimer extends AbstractSinusoideTimer {
 
     private void runMatrix() {
         for (int i = 0; i < mtx.cols(); i++) {
-            double periodo = i / fs;
+            double periodo = i / configEnsayo.getFs();
 
             for (int j = 0; j < mtx.rows(); j++) {
                 double intensidad = 128 + 40.8
-                        * Math.cos(2.0 * Math.PI * (fspa_cpp_x * (i + count)
-                        + fspa_cpp_y * (j + count) + periodo));
+                        * Math.cos(2.0 * Math.PI * (configEnsayo.getFspa_cpp_x() * (i + count)
+                        + configEnsayo.getFspa_cpp_y() * (j + count) + periodo));
 
                 mtx.put(j, i, (byte) intensidad);
             }

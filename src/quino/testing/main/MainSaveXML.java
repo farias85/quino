@@ -22,7 +22,11 @@ import quino.util.test.PruebaShape;
 public class MainSaveXML {
 
     public static void main(String[] args) {
-        try {
+
+        Aleatorio a = new Aleatorio();
+        System.out.println(a.nextFloat());
+
+        /*try {
             Aleatorio random = new Aleatorio();
             PruebaShape pruebaShape = new PruebaShape(new ConfigEnsayoShapeDetectAuto(), random.nextInt(2, 3));
             for (int j = 0; j < pruebaShape.getEnsayos().size(); j++) {
@@ -38,6 +42,6 @@ public class MainSaveXML {
             e.close();
         } catch (FileNotFoundException ex) {
             Logger.getLogger(PruebaShape.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        }*/
     }
 }

@@ -229,9 +229,6 @@
               </Events>
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="jMenuItem20">
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuItem20ActionPerformed"/>
-              </Events>
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="jMenuItem21">
               <Properties>
@@ -248,7 +245,6 @@
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                   <Image iconType="3" name="/quino/view/main/icons/view-list-icons.png"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="Gabor"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuItem22ActionPerformed"/>
@@ -275,10 +271,9 @@
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                   <Image iconType="3" name="/quino/view/main/icons/stock_properties.png"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="Configuraci&#xf3;n Manual"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuItem16ActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuItem16ActionPerformed1"/>
               </Events>
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="jMenuItem17">
@@ -297,12 +292,12 @@
             </MenuItem>
             <Menu class="javax.swing.JMenu" name="jMenu7">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Forma A, B"/>
+                <Property name="text" type="java.lang.String" value="Configuraci&#xf3;n Manual"/>
               </Properties>
               <SubComponents>
                 <MenuItem class="javax.swing.JMenuItem" name="jMenuItem23">
                   <Properties>
-                    <Property name="text" type="java.lang.String" value="Configuraci&#xf3;n Manual"/>
+                    <Property name="text" type="java.lang.String" value="Forma A,B"/>
                   </Properties>
                   <Events>
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuItem23ActionPerformed"/>
@@ -310,46 +305,20 @@
                 </MenuItem>
                 <MenuItem class="javax.swing.JMenuItem" name="jMenuItem24">
                   <Properties>
-                    <Property name="text" type="java.lang.String" value="Configuraci&#xf3;n Autom&#xe1;tica"/>
+                    <Property name="text" type="java.lang.String" value="Detecci&#xf3;n Forma"/>
                   </Properties>
                   <Events>
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuItem24ActionPerformed"/>
                   </Events>
                 </MenuItem>
-              </SubComponents>
-            </Menu>
-            <Menu class="javax.swing.JMenu" name="jMenu11">
-              <SubComponents>
-                <MenuItem class="javax.swing.JMenuItem" name="jMenuItem27">
-                  <Properties>
-                    <Property name="text" type="java.lang.String" value="Configuraci&#xf3;n Manual"/>
-                  </Properties>
-                  <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuItem27ActionPerformed"/>
-                  </Events>
-                </MenuItem>
-              </SubComponents>
-            </Menu>
-            <Menu class="javax.swing.JMenu" name="jMenu9">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Enrejado"/>
-              </Properties>
-              <SubComponents>
                 <MenuItem class="javax.swing.JMenuItem" name="jMenuItem25">
                   <Properties>
-                    <Property name="text" type="java.lang.String" value="Configuraci&#xf3;n Manual"/>
+                    <Property name="text" type="java.lang.String" value="Enrejado"/>
                   </Properties>
                 </MenuItem>
-              </SubComponents>
-            </Menu>
-            <Menu class="javax.swing.JMenu" name="jMenu10">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Gabor"/>
-              </Properties>
-              <SubComponents>
                 <MenuItem class="javax.swing.JMenuItem" name="jMenuItem26">
                   <Properties>
-                    <Property name="text" type="java.lang.String" value="Configuraci&#xf3;n Manual"/>
+                    <Property name="text" type="java.lang.String" value="Gabor"/>
                   </Properties>
                 </MenuItem>
               </SubComponents>

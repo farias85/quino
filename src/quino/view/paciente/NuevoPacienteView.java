@@ -254,7 +254,7 @@ public class NuevoPacienteView extends javax.swing.JDialog {
                 throw new Exception("La edad debe ser un número");
             }
 
-            Paciente p = new Paciente(nomb, age, sex, esc, hist, ci, fich, null, null, escuela, null, null, null);
+            Paciente p = new Paciente(nomb, age, sex, esc, hist, ci, fich, escuela);
 
             if (!parent.getRegistro().nuevoPaciente(p)) {
                 throw new Exception("Ya existe un paciente con la misma historia clinica o carné de identidad");

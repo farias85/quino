@@ -15,6 +15,6 @@ public class ConfigEnsayoEnrejadoAuto extends ConfigEnsayoEnrejado {
     }
 
     public ConfigEnsayoEnrejadoAuto() {
-        super(0, 0);
+        super();
     }
 }

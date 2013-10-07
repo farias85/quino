@@ -15,6 +15,6 @@ public class ConfigEnsayoGaborAuto extends ConfigEnsayoGabor {
     }
 
     public ConfigEnsayoGaborAuto() {
-        super(0, 0);
+        super();
     }
 }

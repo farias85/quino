@@ -6,7 +6,6 @@ package quino.util.timer;
 
 import java.awt.Image;
 import java.awt.Point;
-import java.awt.Toolkit;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.geom.Line2D;
@@ -14,6 +13,7 @@ import javax.swing.JPanel;
 import org.opencv.core.CvType;
 import org.opencv.core.Mat;
 import org.opencv.core.Scalar;
+import quino.clases.config.ConfigEnsayoGabor;
 import quino.util.test.Prueba;
 import quino.util.QuinoTools;
 import quino.view.test.ResultView;
@@ -25,22 +25,8 @@ import quino.view.test2nd.GaborTestView;
  */
 public class GaborTimer extends AbstractSinusoideTimer {
 
-    private Point centro;
-    private double contrat = 0.99;
-    //central stimulus
-    private double ftemp = 2;                      //temporal frequency in cicles / seconds (Hz)
-    private double gaussianStdpix = 40;           //gaussian standar deviation [pixel]
-    //periferal stimulis
-    private double fspa_cpi_x_per = 0;             //spatial frequency in x, cicles / inch
-    private double fspa_cpi_y_per = 1.0;           //spatial frequency in y, cicles / inch
-    private double ftemp_per = 2;                  //temporal frequency in cicles / seconds (Hz)
-    private int radio1 = 75;                       //internal radious
-    private int radio2 = 180;                      //external radious
-    private double fspa_cpp_x_per;                 //spatial frequency in x,cicles / pixels
-    private double fspa_cpp_y_per;                 //spatial frequency in x,cicles / pixels
-    private byte intensidadMedia = (byte) 128;
-    private byte intensidadMax;
     private GaborTestView test;
+    private ConfigEnsayoGabor configEnsayo;
 
     public GaborTimer(Prueba prueba, boolean practica, JPanel jPanel, GaborTestView test) {
         super(prueba, practica);
@@ -49,18 +35,13 @@ public class GaborTimer extends AbstractSinusoideTimer {
         this.jPanel = jPanel;
         mtx = new Mat(470, 460, CvType.CV_8SC1, new Scalar(0));
 
-        fs = 90;
-        fspa_cpi_x = 1;                //spatial frequency in x, cicles / inch
-        fspa_cpi_y = 0.0;               //spatial frequency in y, cicles / inch
-        //ppi = 26;
-        centro = new Point(mtx.width() / 2, mtx.height() / 2);
+        if (ensayo.getConfiguracion() instanceof ConfigEnsayoGabor) {
+            this.configEnsayo = ((ConfigEnsayoGabor) ensayo.getConfiguracion());
+        } else {
+            System.err.println("El ensayo no es de tipo ConfigEnsayoGabor en la clase GaborTimer");
+        }
 
-        fspa_cpp_x = fspa_cpi_x / ppi;
-        fspa_cpp_y = fspa_cpi_y / ppi;
-        fspa_cpp_x_per = fspa_cpi_x_per / ppi;
-        fspa_cpp_y_per = fspa_cpi_y_per / ppi;
-
-        intensidadMax = (byte) (contrat * intensidadMedia);
+        configEnsayo.setCentro(new Point(mtx.width() / 2, mtx.height() / 2));
     }
 
     @Override
@@ -147,24 +128,25 @@ public class GaborTimer extends AbstractSinusoideTimer {
     private void runMatrix() {
 
         for (int i = 0; i < mtx.cols(); i++) {
-            double periodo = i / fs;
+            double periodo = i / configEnsayo.getFs();
 
             //I1 = Imax* exp(- (( x - x0).^2 + (y - y0).^2) / (2*(gaussianStdpix).^2) );
             for (int j = 0; j < mtx.rows(); j++) {
                 Point point = new Point(i, j);
 
-                double distancia = Line2D.ptSegDist(point.x, point.y, point.x, point.y, centro.x, centro.y);
+                double distancia = Line2D.ptSegDist(point.x, point.y, point.x, point.y, configEnsayo.getCentro().x, configEnsayo.getCentro().y);
 
-                if (distancia < radio2) {
+                if (distancia < configEnsayo.getRadio2()) {
                     double intensidad1 = 0;
-                    intensidad1 = Math.pow(i - centro.x, 2) + Math.pow(j - centro.y, 2);
-                    intensidad1 /= 2 * Math.pow(gaussianStdpix, 2);
-                    intensidad1 = intensidadMax * Math.exp(-intensidad1);
-                    intensidad1 *= Math.cos(2.0 * Math.PI * (fspa_cpp_x * (i + count)
-                            + fspa_cpp_y * (j + count) + periodo * ftemp));
+                    intensidad1 = Math.pow(i - configEnsayo.getCentro().x, 2) + Math.pow(j - configEnsayo.getCentro().y, 2);
+                    intensidad1 /= 2 * Math.pow(configEnsayo.getGaussianStdpix(), 2);
+                    intensidad1 = configEnsayo.getIntensidadMax() * Math.exp(-intensidad1);
+                    intensidad1 *= Math.cos(2.0 * Math.PI * (configEnsayo.getFspa_cpp_x() * (i + count)
+                            + configEnsayo.getFspa_cpp_y() * (j + count) + periodo * configEnsayo.getFtemp()));
 
-                    double intensidad2 = intensidadMedia + intensidadMax * Math.cos(2.0 * Math.PI * (fspa_cpp_x_per * (i + count)
-                            + fspa_cpp_y_per * (j + count) + periodo * ftemp_per));
+                    double intensidad2 = configEnsayo.getIntensidadMedia() + configEnsayo.getIntensidadMax()
+                            * Math.cos(2.0 * Math.PI * (configEnsayo.getFspa_cpp_x_per() * (i + count)
+                            + configEnsayo.getFspa_cpp_y_per() * (j + count) + periodo * configEnsayo.getFtemp_per()));
 
                     mtx.put(j, i, gaborLocation(point) ? (byte) intensidad1 : (byte) intensidad2);
                 }
@@ -179,7 +161,7 @@ public class GaborTimer extends AbstractSinusoideTimer {
     }
 
     private boolean gaborLocation(Point point) {
-        double distancia = Line2D.ptSegDist(point.x, point.y, point.x, point.y, centro.x, centro.y);
-        return !(distancia > radio1 && distancia < radio2);
+        double distancia = Line2D.ptSegDist(point.x, point.y, point.x, point.y, configEnsayo.getCentro().x, configEnsayo.getCentro().y);
+        return !(distancia > configEnsayo.getRadio1() && distancia < configEnsayo.getRadio2());
     }
 }

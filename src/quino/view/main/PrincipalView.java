@@ -300,11 +300,7 @@ public class PrincipalView extends javax.swing.JFrame {
         jMenu7 = new javax.swing.JMenu();
         jMenuItem23 = new javax.swing.JMenuItem();
         jMenuItem24 = new javax.swing.JMenuItem();
-        jMenu11 = new javax.swing.JMenu();
-        jMenuItem27 = new javax.swing.JMenuItem();
-        jMenu9 = new javax.swing.JMenu();
         jMenuItem25 = new javax.swing.JMenuItem();
-        jMenu10 = new javax.swing.JMenu();
         jMenuItem26 = new javax.swing.JMenuItem();
         jMenu4 = new javax.swing.JMenu();
         jMenuItem4 = new javax.swing.JMenuItem();
@@ -600,12 +596,6 @@ public class PrincipalView extends javax.swing.JFrame {
             }
         });
         jMenu8.add(jMenuItem19);
-
-        jMenuItem20.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem20ActionPerformed(evt);
-            }
-        });
         jMenu8.add(jMenuItem20);
 
         jMenuItem21.setIcon(new javax.swing.ImageIcon(getClass().getResource("/quino/view/main/icons/package-upgrade.png"))); // NOI18N
@@ -617,7 +607,6 @@ public class PrincipalView extends javax.swing.JFrame {
         jMenu8.add(jMenuItem21);
 
         jMenuItem22.setIcon(new javax.swing.ImageIcon(getClass().getResource("/quino/view/main/icons/view-list-icons.png"))); // NOI18N
-        jMenuItem22.setText("Gabor");
         jMenuItem22.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem22ActionPerformed(evt);
@@ -631,17 +620,16 @@ public class PrincipalView extends javax.swing.JFrame {
         jMenu2.setText("Prueba");
         jMenu2.setFont(new java.awt.Font("Tahoma", 0, 12));
 
-        jMenuItem16.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jMenuItem16.setFont(new java.awt.Font("Tahoma", 0, 12));
         jMenuItem16.setIcon(new javax.swing.ImageIcon(getClass().getResource("/quino/view/main/icons/stock_properties.png"))); // NOI18N
-        jMenuItem16.setText("Configuración Manual");
         jMenuItem16.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem16ActionPerformed(evt);
+                jMenuItem16ActionPerformed1(evt);
             }
         });
         jMenu2.add(jMenuItem16);
 
-        jMenuItem17.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jMenuItem17.setFont(new java.awt.Font("Tahoma", 0, 12));
         jMenuItem17.setIcon(new javax.swing.ImageIcon(getClass().getResource("/quino/view/main/icons/stock_print-setup.png"))); // NOI18N
         jMenuItem17.setText("Configuración Automática");
         jMenuItem17.addActionListener(new java.awt.event.ActionListener() {
@@ -651,9 +639,9 @@ public class PrincipalView extends javax.swing.JFrame {
         });
         jMenu2.add(jMenuItem17);
 
-        jMenu7.setText("Forma A, B");
+        jMenu7.setText("Configuración Manual");
 
-        jMenuItem23.setText("Configuración Manual");
+        jMenuItem23.setText("Forma A,B");
         jMenuItem23.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem23ActionPerformed(evt);
@@ -661,7 +649,7 @@ public class PrincipalView extends javax.swing.JFrame {
         });
         jMenu7.add(jMenuItem23);
 
-        jMenuItem24.setText("Configuración Automática");
+        jMenuItem24.setText("Detección Forma");
         jMenuItem24.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem24ActionPerformed(evt);
@@ -669,31 +657,13 @@ public class PrincipalView extends javax.swing.JFrame {
         });
         jMenu7.add(jMenuItem24);
 
+        jMenuItem25.setText("Enrejado");
+        jMenu7.add(jMenuItem25);
+
+        jMenuItem26.setText("Gabor");
+        jMenu7.add(jMenuItem26);
+
         jMenu2.add(jMenu7);
-
-        jMenuItem27.setText("Configuración Manual");
-        jMenuItem27.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem27ActionPerformed(evt);
-            }
-        });
-        jMenu11.add(jMenuItem27);
-
-        jMenu2.add(jMenu11);
-
-        jMenu9.setText("Enrejado");
-
-        jMenuItem25.setText("Configuración Manual");
-        jMenu9.add(jMenuItem25);
-
-        jMenu2.add(jMenu9);
-
-        jMenu10.setText("Gabor");
-
-        jMenuItem26.setText("Configuración Manual");
-        jMenu10.add(jMenuItem26);
-
-        jMenu2.add(jMenu10);
 
         jMenuBar1.add(jMenu2);
 
@@ -1029,6 +999,12 @@ public class PrincipalView extends javax.swing.JFrame {
         gtv.setVisible(true);
     }//GEN-LAST:event_jMenuItem22ActionPerformed
 
+    private void jMenuItem16ActionPerformed1(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem16ActionPerformed1
+        // TODO add your handling code here:
+        ManualConfigView c = new ManualConfigView(this, true);
+        c.setVisible(true);
+    }//GEN-LAST:event_jMenuItem16ActionPerformed1
+
     private void jMenuItem23ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem23ActionPerformed
         // TODO add your handling code here:
         ManualConfigView c = new ManualConfigView(this, true);
@@ -1037,16 +1013,9 @@ public class PrincipalView extends javax.swing.JFrame {
 
     private void jMenuItem24ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem24ActionPerformed
         // TODO add your handling code here:
-        conf = new ConfigEnsayoFormaABAuto();
-        AutoConfigView c = new AutoConfigView(this, true);
-        c.setVisible(true);
-    }//GEN-LAST:event_jMenuItem24ActionPerformed
-
-    private void jMenuItem27ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem27ActionPerformed
-        // TODO add your handling code here:
         ShapeDetectManualConfigView c = new ShapeDetectManualConfigView(this, true);
         c.setVisible(true);
-    }//GEN-LAST:event_jMenuItem27ActionPerformed
+    }//GEN-LAST:event_jMenuItem24ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -1072,8 +1041,6 @@ public class PrincipalView extends javax.swing.JFrame {
     private javax.swing.JButton b_prueba;
     private javax.swing.JFileChooser jFileChooser1;
     private javax.swing.JMenu jMenu1;
-    private javax.swing.JMenu jMenu10;
-    private javax.swing.JMenu jMenu11;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenu jMenu4;
@@ -1081,7 +1048,6 @@ public class PrincipalView extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu6;
     private javax.swing.JMenu jMenu7;
     private javax.swing.JMenu jMenu8;
-    private javax.swing.JMenu jMenu9;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem10;
@@ -1102,7 +1068,6 @@ public class PrincipalView extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem24;
     private javax.swing.JMenuItem jMenuItem25;
     private javax.swing.JMenuItem jMenuItem26;
-    private javax.swing.JMenuItem jMenuItem27;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem jMenuItem5;

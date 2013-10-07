@@ -45,7 +45,10 @@ public class Paciente {
      * o alguna descripción que se quiera apuntar
      */
     private String ficha;
-
+    /**
+     * Nombre de la escuela del paciente.
+     */
+    private String escuela;
     /*
      * Prueba periférica realizada al paciente.
      */
@@ -66,17 +69,13 @@ public class Paciente {
      * Prueba enrejado realizada al paciente
      */
     private PruebaEnrejado enrejado;
-    /**
-     * Nombre de la escuela del paciente.
-     */
-    private String escuela;
 
     public Paciente() {
     }
 
     public Paciente(String nombre, int edad, String sexo, String escolaridad,
-            String historia, long ci, String ficha, PruebaPeriferica periferica,
-            PruebaFoveal foveal, String escuela, PruebaShape forma, PruebaGabor gabor,
+            String historia, long ci, String ficha, String escuela, PruebaPeriferica periferica,
+            PruebaFoveal foveal, PruebaShape forma, PruebaGabor gabor,
             PruebaEnrejado enrejado) {
         this.nombre = nombre;
         this.edad = edad;
@@ -85,8 +84,22 @@ public class Paciente {
         this.historia = historia;
         this.ci = ci;
         this.ficha = ficha;
+        this.escuela = escuela;
         this.periferica = periferica;
         this.foveal = foveal;
+        this.forma = forma;
+        this.gabor = gabor;
+        this.enrejado = enrejado;
+    }
+
+    public Paciente(String nombre, int edad, String sexo, String escolaridad, String historia, long ci, String ficha, String escuela) {
+        this.nombre = nombre;
+        this.edad = edad;
+        this.sexo = sexo;
+        this.escolaridad = escolaridad;
+        this.historia = historia;
+        this.ci = ci;
+        this.ficha = ficha;
         this.escuela = escuela;
     }
 

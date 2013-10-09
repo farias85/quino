@@ -11,7 +11,7 @@ import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import quino.clases.model.Paciente;
 import quino.util.test.Prueba;
-import quino.util.test.PruebaFoveal;
+import quino.util.test.PruebaFormaA;
 import quino.util.QuinoTools;
 import quino.clases.model.Ensayo;
 
@@ -40,7 +40,7 @@ public class InformeCampoVisual extends AbstractInformeExcel {
         String[] heads = new String[9];
         heads[0] = "Nombre";
         for (int i = 1; i < heads.length; i++) {
-            heads[i] = QuinoTools.getPanelMovimiento(new PruebaFoveal(), i);
+            heads[i] = QuinoTools.getPanelMovimiento(new PruebaFormaA(), i);
         }
         crearEncabezado(sheet, heads);
     }

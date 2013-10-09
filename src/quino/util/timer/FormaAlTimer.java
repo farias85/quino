@@ -11,14 +11,14 @@ import java.awt.Color;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import quino.util.QuinoTools;
-import quino.view.test.FovealTestView;
+import quino.view.test.FormaATestView;
 import quino.view.test.ResultView;
 
 /**
  *
  * @author Felipao
  */
-public class FovealTimer extends AbstractFormaABTimer {
+public class FormaAlTimer extends AbstractFormaABTimer {
 
     private JPanelQuino panel1;
     private JPanelQuino panel2;
@@ -29,12 +29,12 @@ public class FovealTimer extends AbstractFormaABTimer {
     private JPanelQuino panel7;
     private JPanelQuino panel8;
     private JPanelCentral panel9;
-    private FovealTestView test;
+    private FormaATestView test;
 
-    public FovealTimer(Prueba prueba, JPanelQuino panel1,
+    public FormaAlTimer(Prueba prueba, JPanelQuino panel1,
             JPanelQuino panel2, JPanelQuino panel3, JPanelQuino panel4, JPanelQuino panel5,
             JPanelQuino panel6, JPanelQuino panel7, JPanelQuino panel8, JPanelCentral panel9,
-            FovealTestView test, boolean practica) {
+            FormaATestView test, boolean practica) {
         super(prueba, practica);
 
         this.panel1 = panel1;
@@ -58,7 +58,7 @@ public class FovealTimer extends AbstractFormaABTimer {
     protected void execEnEspera() {
         if (inOut) {
             inOut = false;
-            System.out.println("en espera " + tiempoTranscurrido);
+            System.out.println("en espera " + getTiempoTranscurrido());
 
             panel9.setColor(Color.BLACK);
             panel9.repaint();
@@ -77,7 +77,7 @@ public class FovealTimer extends AbstractFormaABTimer {
     protected void execPreparado() {
         if (!inOut) {
             inOut = true;
-            System.out.println("preparado " + tiempoTranscurrido);
+            System.out.println("preparado " + getTiempoTranscurrido());
 
             panel9.setColor(Color.GREEN);
             panel9.repaint();
@@ -95,7 +95,7 @@ public class FovealTimer extends AbstractFormaABTimer {
     protected void execEjecutandoMovimiento() {
         if (inOut) {
             inOut = false;
-            System.out.println("ejecutando el movimiento " + tiempoTranscurrido);
+            System.out.println("ejecutando el movimiento " + getTiempoTranscurrido());
             
             moverPuntos();
         }
@@ -109,7 +109,7 @@ public class FovealTimer extends AbstractFormaABTimer {
     protected void execEsperandoRespuesta() {
         if (!inOut) {
             inOut = true;
-            System.out.println("esperando respuesta " + tiempoTranscurrido);
+            System.out.println("esperando respuesta " + getTiempoTranscurrido());
 
             keyPress = new KeyListener() {
 
@@ -135,7 +135,7 @@ public class FovealTimer extends AbstractFormaABTimer {
 
     @Override
     protected void execTerminado() {
-        System.out.println("terminado " + tiempoTranscurrido);
+        System.out.println("terminado " + getTiempoTranscurrido());
         test.removeKeyListener(keyPress);
 
         if (resultado.getKey() == 0 && ensayo.getConfiguracion().getPanelEstimulo() > 0) {

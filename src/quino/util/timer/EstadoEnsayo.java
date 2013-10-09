@@ -10,5 +10,5 @@ package quino.util.timer;
  * @author Felipao
  */
 public enum EstadoEnsayo {
-    EN_ESPERA, PREPARADO, EJECUTANDO_MOVIMIENTO, ESPERANDO_RESPUESTA, TERMINADO
+    EN_ESPERA, PREPARADO, ESPERANDO_RESPUESTA, TERMINADO
 }

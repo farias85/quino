@@ -24,5 +24,19 @@ public class ConfigEnsayoShapeDetectAuto extends ConfigEnsayoShapeDetect {
         tolerancia = random.nextInt(0, 1);
         pcShape = random.nextInt(20, 21);
         numFigura = random.nextInt(1, 4);
+
+        panelEstimulo = random.nextInt(0, 2);
+
+        switch (panelEstimulo) {
+            case 0:
+                key = 0; //ninguna tecla
+                break;
+            case 1:
+                key = 37;//tecla de la flecha izquierda
+                break;
+            case 2:
+                key = 39;//tecla de la flecha derecha
+                break;
+        }
     }
 }

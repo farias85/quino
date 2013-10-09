@@ -5,8 +5,8 @@
 package quino.clases.model;
 
 import quino.util.test.PruebaEnrejado;
-import quino.util.test.PruebaPeriferica;
-import quino.util.test.PruebaFoveal;
+import quino.util.test.PruebaFormaB;
+import quino.util.test.PruebaFormaA;
 import quino.util.test.PruebaGabor;
 import quino.util.test.PruebaShape;
 
@@ -52,11 +52,11 @@ public class Paciente {
     /*
      * Prueba periférica realizada al paciente.
      */
-    private PruebaPeriferica periferica;
+    private PruebaFormaB periferica;
     /**
      * Prueba foveal realizada al paciente
      */
-    private PruebaFoveal foveal;
+    private PruebaFormaA foveal;
     /**
      * Prueba de detección de forma realizada al paciente
      */
@@ -74,8 +74,8 @@ public class Paciente {
     }
 
     public Paciente(String nombre, int edad, String sexo, String escolaridad,
-            String historia, long ci, String ficha, String escuela, PruebaPeriferica periferica,
-            PruebaFoveal foveal, PruebaShape forma, PruebaGabor gabor,
+            String historia, long ci, String ficha, String escuela, PruebaFormaB periferica,
+            PruebaFormaA foveal, PruebaShape forma, PruebaGabor gabor,
             PruebaEnrejado enrejado) {
         this.nombre = nombre;
         this.edad = edad;
@@ -159,19 +159,19 @@ public class Paciente {
         this.sexo = sexo;
     }
 
-    public PruebaFoveal getFoveal() {
+    public PruebaFormaA getFoveal() {
         return foveal;
     }
 
-    public void setFoveal(PruebaFoveal foveal) {
+    public void setFoveal(PruebaFormaA foveal) {
         this.foveal = foveal;
     }
 
-    public PruebaPeriferica getPeriferica() {
+    public PruebaFormaB getPeriferica() {
         return periferica;
     }
 
-    public void setPeriferica(PruebaPeriferica periferica) {
+    public void setPeriferica(PruebaFormaB periferica) {
         this.periferica = periferica;
     }
 

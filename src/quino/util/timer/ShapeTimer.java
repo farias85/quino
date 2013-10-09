@@ -32,19 +32,19 @@ public class ShapeTimer extends AbstractNoMoveTimer {
         this.panel1 = panel1;
         this.panel2 = panel2;
         this.test = test;
-
-        if (ensayo.getConfiguracion() instanceof ConfigEnsayoShapeDetect) {
-            this.configEnsayo = ((ConfigEnsayoShapeDetect) ensayo.getConfiguracion());
-        } else {
-            System.err.println("El ensayo no es de tipo ConfigEnsayoShapeDetect en la clase ShapeTimer");
-        }
     }
 
     @Override
     protected void execEnEspera() {
         if (inOut) {
             inOut = false;
-            System.out.println("en espera " + tiempoTranscurrido);
+            System.out.println("en espera " + getTiempoTranscurrido());
+
+            if (ensayo.getConfiguracion() instanceof ConfigEnsayoShapeDetect) {
+                this.configEnsayo = ((ConfigEnsayoShapeDetect) ensayo.getConfiguracion());
+            } else {
+                System.err.println("El ensayo no es de tipo ConfigEnsayoShapeDetect en la clase ShapeTimer");
+            }
 
             panelsClear();
             panelsRepaint();
@@ -55,13 +55,10 @@ public class ShapeTimer extends AbstractNoMoveTimer {
     protected void execEsperandoRespuesta() {
         if (!inOut) {
             inOut = true;
-            System.out.println("preparado " + tiempoTranscurrido);
-            
+            System.out.println("preparado " + getTiempoTranscurrido());
+
             panelsRellenar();
             panelsRepaint();
-
-            System.out.println("esperando respuesta " + tiempoTranscurrido);
-            inOut = true;
 
             keyPress = new KeyListener() {
 
@@ -77,7 +74,7 @@ public class ShapeTimer extends AbstractNoMoveTimer {
                         resultado.setKey(k);
 
                         if (ensayo.getConfiguracion().getPanelEstimulo() > 0) {
-                            resultado.setTiempoRespuesta(tiempoTranscurrido - (enEspera + 1));
+                            resultado.setTiempoRespuesta((int) (getTiempoTranscurrido() - (enEspera + 1)));
                         }
 
                         if (ensayo.getConfiguracion().getPanelEstimulo() == 0) {
@@ -104,7 +101,7 @@ public class ShapeTimer extends AbstractNoMoveTimer {
 
     @Override
     protected void execTerminado() {
-        System.out.println("terminado " + tiempoTranscurrido);
+        System.out.println("terminado " + getTiempoTranscurrido());
         test.removeKeyListener(keyPress);
 
         if (resultado.getKey() == 0 && ensayo.getConfiguracion().getPanelEstimulo() > 0) {

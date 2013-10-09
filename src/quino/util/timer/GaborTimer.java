@@ -48,7 +48,7 @@ public class GaborTimer extends AbstractSinusoideTimer {
     protected void execEnEspera() {
         if (inOut) {
             inOut = false;
-            System.out.println("en espera " + tiempoTranscurrido);
+            System.out.println("en espera " + getTiempoTranscurrido());
         }
     }
 
@@ -56,10 +56,7 @@ public class GaborTimer extends AbstractSinusoideTimer {
     protected void execEsperandoRespuesta() {
         if (!inOut) {
             inOut = true;
-            System.out.println("preparado " + tiempoTranscurrido);
-
-            System.out.println("esperando respuesta " + tiempoTranscurrido);
-            inOut = true;
+            System.out.println("preparado " + getTiempoTranscurrido());
 
             keyPress = new KeyListener() {
 
@@ -75,7 +72,7 @@ public class GaborTimer extends AbstractSinusoideTimer {
                         resultado.setKey(k);
 
                         if (ensayo.getConfiguracion().getPanelEstimulo() > 0) {
-                            resultado.setTiempoRespuesta(tiempoTranscurrido - (enEspera + 1));
+                            resultado.setTiempoRespuesta((int) (getTiempoTranscurrido() - (enEspera + 1)));
                         }
 
                         if (ensayo.getConfiguracion().getPanelEstimulo() == 0) {
@@ -100,12 +97,12 @@ public class GaborTimer extends AbstractSinusoideTimer {
         }
 
         runMatrix();
-        tiempoTranscurrido += 100;
+        //tiempoTranscurrido += 100;
     }
 
     @Override
     protected void execTerminado() {
-        System.out.println("terminado " + tiempoTranscurrido);
+        System.out.println("terminado " + getTiempoTranscurrido());
         test.removeKeyListener(keyPress);
 
         if (resultado.getKey() == 0 && ensayo.getConfiguracion().getPanelEstimulo() > 0) {

@@ -26,12 +26,7 @@ public class ConfigEnsayoGabor extends ConfigEnsayoSinusoide {
     private double fspa_cpp_x_per;                 //spatial frequency in x,cicles / pixels
     private double fspa_cpp_y_per;                 //spatial frequency in x,cicles / pixels
     private byte intensidadMedia = (byte) 128;
-    private byte intensidadMax;
-
-
-    public ConfigEnsayoGabor(int key, int panelEstimulo) {
-        super(key, panelEstimulo);
-    }
+    private byte intensidadMax;    
 
     public ConfigEnsayoGabor() {
         super();
@@ -51,8 +46,11 @@ public class ConfigEnsayoGabor extends ConfigEnsayoSinusoide {
         intensidadMax = (byte) (contrat * intensidadMedia);
     }
 
-    public ConfigEnsayoGabor(int key, int panelEstimulo, int fs, double fspa_cpi_x, double fspa_cpi_y, int ppi, double fspa_cpp_x, double fspa_cpp_y) {
-        super(key, panelEstimulo, fs, fspa_cpi_x, fspa_cpi_y, ppi, fspa_cpp_x, fspa_cpp_y);
+    public ConfigEnsayoGabor(int key, int panelEstimulo, int fs, double fspa_cpi_x, 
+            double fspa_cpi_y, int ppi, double fspa_cpp_x, double fspa_cpp_y,
+            boolean sentidoUpLeft, int direccion, boolean onMove) {
+        super(key, panelEstimulo, fs, fspa_cpi_x, fspa_cpi_y, ppi, fspa_cpp_x, 
+                fspa_cpp_y, sentidoUpLeft, direccion, onMove);
     }
 
     public Point getCentro() {

@@ -11,23 +11,23 @@ import java.awt.Color;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import quino.util.QuinoTools;
-import quino.view.test.PerifericaTestView;
+import quino.view.test.FormaBTestView;
 import quino.view.test.ResultView;
 
 /**
  *
  * @author Felipao
  */
-public class PerifericaTimer extends AbstractFormaABTimer {
+public class FormaBTimer extends AbstractFormaABTimer {
 
     private JPanelQuino panel1;
     private JPanelQuino panel2;
     private JPanelCentral panel3;
-    private PerifericaTestView test;
+    private FormaBTestView test;
 
-    public PerifericaTimer(Prueba prueba,
+    public FormaBTimer(Prueba prueba,
             JPanelQuino panel1, JPanelQuino panel2, JPanelCentral panel3,
-            PerifericaTestView test, boolean practica) {
+            FormaBTestView test, boolean practica) {
         super(prueba, practica);
 
         this.panel1 = panel1;
@@ -44,7 +44,7 @@ public class PerifericaTimer extends AbstractFormaABTimer {
     protected void execEnEspera() {
         if (inOut) {
             inOut = false;
-            System.out.println("en espera " + tiempoTranscurrido);
+            System.out.println("en espera " + getTiempoTranscurrido());
 
             panel3.setColor(Color.BLACK);
             panel3.repaint();
@@ -63,7 +63,7 @@ public class PerifericaTimer extends AbstractFormaABTimer {
     protected void execPreparado() {
         if (!inOut) {
             inOut = true;
-            System.out.println("preparado " + tiempoTranscurrido);
+            System.out.println("preparado " + getTiempoTranscurrido());
 
             panel3.setColor(Color.GREEN);
             panel3.repaint();
@@ -81,8 +81,8 @@ public class PerifericaTimer extends AbstractFormaABTimer {
     protected void execEjecutandoMovimiento() {
         if (inOut) {
             inOut = false;
-            System.out.println("ejecutando el movimiento " + tiempoTranscurrido);
-            
+            System.out.println("ejecutando el movimiento " + getTiempoTranscurrido());
+
             moverPuntos();
         }
     }
@@ -94,7 +94,7 @@ public class PerifericaTimer extends AbstractFormaABTimer {
     @Override
     protected void execEsperandoRespuesta() {
         if (!inOut) {
-            System.out.println("esperando respuesta " + tiempoTranscurrido);
+            System.out.println("esperando respuesta " + getTiempoTranscurrido());
             inOut = true;
 
             keyPress = new KeyListener() {
@@ -121,7 +121,7 @@ public class PerifericaTimer extends AbstractFormaABTimer {
 
     @Override
     protected void execTerminado() {
-        System.out.println("terminado " + tiempoTranscurrido);
+        System.out.println("terminado " + getTiempoTranscurrido());
         test.removeKeyListener(keyPress);
 
         if (resultado.getKey() == 0 && ensayo.getConfiguracion().getPanelEstimulo() > 0) {

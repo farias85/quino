@@ -11,8 +11,8 @@ import quino.clases.config.ConfigEnsayoEnrejadoAuto;
 import quino.clases.config.ConfigEnsayoFormaABAuto;
 import quino.clases.config.ConfigEnsayoShapeDetectAuto;
 import quino.clases.model.Paciente;
-import quino.util.test.PruebaFoveal;
-import quino.util.test.PruebaPeriferica;
+import quino.util.test.PruebaFormaA;
+import quino.util.test.PruebaFormaB;
 import quino.clases.model.Registro;
 import quino.clases.model.Resultado;
 import quino.util.Aleatorio;
@@ -41,7 +41,7 @@ public class MainData {
 
             for (int i = 0; i < 20; i++) {
 
-                PruebaFoveal foveal = new PruebaFoveal(new ConfigEnsayoFormaABAuto(false, random.nextInt(0, 8)), random.nextInt(5, 9));
+                PruebaFormaA foveal = new PruebaFormaA(new ConfigEnsayoFormaABAuto(false, random.nextInt(0, 8)), random.nextInt(5, 9));
                 for (int j = 0; j < foveal.getEnsayos().size(); j++) {
                     boolean error = j % 3 == 0 ? true : false;
                     Resultado results = new Resultado(random.nextInt(300, 620),
@@ -50,7 +50,7 @@ public class MainData {
                     foveal.getEnsayos().get(j).setResultado(results);
                 }
 
-                PruebaPeriferica periferica = new PruebaPeriferica(new ConfigEnsayoFormaABAuto(false, random.nextInt(0, 2)), random.nextInt(2, 8));
+                PruebaFormaB periferica = new PruebaFormaB(new ConfigEnsayoFormaABAuto(false, random.nextInt(0, 2)), random.nextInt(2, 8));
                 for (int j = 0; j < periferica.getEnsayos().size(); j++) {
                     boolean error = j % 2 == 0 ? true : false;
 
@@ -69,12 +69,14 @@ public class MainData {
                     pruebaShape.getEnsayos().get(j).setResultado(results);
                 }
 
-                PruebaEnrejado pruebaEnrejado = new PruebaEnrejado(new ConfigEnsayoEnrejadoAuto());
-                boolean error = false;
-                Resultado results = new Resultado(random.nextInt(300, 620),
-                        error, "Descrip", 32, random.nextDouble(),
-                        random.nextInt(5, 15));
-                pruebaEnrejado.getEnsayos().get(0).setResultado(results);
+                PruebaEnrejado pruebaEnrejado = new PruebaEnrejado(new ConfigEnsayoEnrejadoAuto(), 3);
+                for (int j = 0; j < pruebaEnrejado.getEnsayos().size(); j++) {
+                    boolean error = j % 3 == 0 ? true : false;
+                    Resultado results = new Resultado(random.nextInt(300, 620),
+                            error, "Descrip", 32, random.nextDouble(),
+                            random.nextInt(5, 15));
+                    pruebaEnrejado.getEnsayos().get(j).setResultado(results);
+                }
 
                 String anno = String.valueOf(random.nextInt(10, 99));
                 String mes = String.valueOf(random.nextInt(1, 12));

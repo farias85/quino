@@ -13,17 +13,17 @@ import quino.clases.model.Ensayo;
  * Representa una prueba de tipo Periférica
  * @author Felipe Rodriguez Arias
  */
-public class PruebaPeriferica extends PruebaFormaAB {
+public class PruebaFormaB extends PruebaFormaAB {
 
-    public PruebaPeriferica(Date fecha, ArrayList<Ensayo> ensayos) {
+    public PruebaFormaB(Date fecha, ArrayList<Ensayo> ensayos) {
         super(fecha, ensayos);
     }
 
-    public PruebaPeriferica() {
+    public PruebaFormaB() {
         super();
     }
 
-    public PruebaPeriferica(ConfigEnsayoFormaAB configEnsayo, int cantEnsayos) {
+    public PruebaFormaB(ConfigEnsayoFormaAB configEnsayo, int cantEnsayos) {
         super(configEnsayo, cantEnsayos);
     }
 

@@ -21,7 +21,7 @@ public abstract class AbstractQuinoTimer extends TimerTask {
     protected Prueba prueba;
     protected Ensayo ensayo;
     protected Resultado resultado;
-    protected int tiempoTranscurrido = 0;
+    //protected int tiempoTranscurrido = 0;
     protected int numEnsayo = 0;
     protected int enEspera;
     protected int preparado;
@@ -30,6 +30,8 @@ public abstract class AbstractQuinoTimer extends TimerTask {
     protected boolean inOut = true;
     protected boolean practica;
     protected KeyListener keyPress;
+    protected boolean movEjecutado = false;
+    protected long startTime = 0;
 
     public AbstractQuinoTimer(Prueba prueba, boolean practica) {
         this.prueba = prueba;
@@ -107,6 +109,29 @@ public abstract class AbstractQuinoTimer extends TimerTask {
         return 0;
     }
 
+    /**
+     * Devuelve el estado asociado al valor de tiempoTranscurrido
+     * @return El nombre del estado
+     */
+    protected EstadoEnsayo estadoEnsayo() {
+        if (startTime == 0) {
+            startTime = System.currentTimeMillis();
+        }
+        long elapsedTime = getTiempoTranscurrido();
+        if (elapsedTime <= enEspera) {
+            return EstadoEnsayo.EN_ESPERA;
+        } else if (elapsedTime <= enEspera + preparado) {
+            return EstadoEnsayo.PREPARADO;
+        } else if (elapsedTime < enEspera + preparado + esperandoRespuesta - 1) {
+            return EstadoEnsayo.ESPERANDO_RESPUESTA;
+        }
+        return EstadoEnsayo.TERMINADO;
+    }
+
+    protected long getTiempoTranscurrido() {
+        return System.currentTimeMillis() - startTime;
+    }
+
     @Override
     public void run() {
         switch (estadoEnsayo()) {
@@ -116,18 +141,22 @@ public abstract class AbstractQuinoTimer extends TimerTask {
             case PREPARADO:
                 execPreparado();
                 break;
-            case EJECUTANDO_MOVIMIENTO:
-                execEjecutandoMovimiento();
-                break;
-            case ESPERANDO_RESPUESTA:
+            case ESPERANDO_RESPUESTA: {
+                if (!movEjecutado) {
+                    execEjecutandoMovimiento();
+                    movEjecutado = true;
+                }
                 execEsperandoRespuesta();
-                break;
-            case TERMINADO:
+            }
+            break;
+            case TERMINADO: {
                 execTerminado();
-                break;
+                movEjecutado = false;
+                startTime = 0;
+            }
+            break;
             default:
         }
-        tiempoTranscurrido++;
     }
 
     /**
@@ -145,25 +174,6 @@ public abstract class AbstractQuinoTimer extends TimerTask {
             ensayo = prueba.getEnsayos().get(numEnsayo);
             resultado = new Resultado();
         }
-        
-        tiempoTranscurrido = 0;
         return false;
-    }
-
-    /**
-     * Devuelve el estado asociado al valor de tiempoTranscurrido
-     * @return El nombre del estado
-     */
-    protected EstadoEnsayo estadoEnsayo() {
-        if (tiempoTranscurrido <= enEspera) {
-            return EstadoEnsayo.EN_ESPERA;
-        } else if (tiempoTranscurrido <= enEspera + preparado) {
-            return EstadoEnsayo.PREPARADO;
-        } else if (tiempoTranscurrido == enEspera + preparado + 1) {
-            return EstadoEnsayo.EJECUTANDO_MOVIMIENTO;
-        } else if (tiempoTranscurrido < enEspera + preparado + esperandoRespuesta - 1) {
-            return EstadoEnsayo.ESPERANDO_RESPUESTA;
-        }
-        return EstadoEnsayo.TERMINADO;
     }
 }

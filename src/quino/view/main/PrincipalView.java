@@ -15,8 +15,8 @@ import quino.clases.model.Paciente;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.event.ListSelectionEvent;
-import quino.view.test.ManualConfigView;
-import quino.view.test.AutoConfigView;
+import quino.view.test.FormaABManualConfigView;
+import quino.view.test.FormaABAutoConfigView;
 import quino.clases.model.Registro;
 import quino.clases.config.ConfigEnsayoFormaABAuto;
 import quino.util.test.Prueba;
@@ -30,7 +30,7 @@ import quino.view.paciente.FichaPacienteView;
 import quino.view.paciente.ModificarPacienteView;
 import quino.view.paciente.NuevoPacienteView;
 import quino.view.test.ResultView;
-import quino.view.test.PerifericaTestView;
+import quino.view.test.FormaBTestView;
 import java.io.File;
 import javax.swing.filechooser.*;
 import javax.swing.JFileChooser;
@@ -43,8 +43,8 @@ import quino.clases.config.ConfigEnsayoEnrejadoAuto;
 import quino.clases.config.ConfigEnsayoGaborAuto;
 import quino.clases.config.ConfigEnsayoShapeDetectAuto;
 import quino.util.Aleatorio;
-import quino.util.test.PruebaFoveal;
-import quino.util.test.PruebaPeriferica;
+import quino.util.test.PruebaFormaA;
+import quino.util.test.PruebaFormaB;
 import quino.util.test.PruebaShape;
 import quino.util.QuinoTableModel;
 import quino.util.QuinoTools;
@@ -56,7 +56,7 @@ import quino.util.test.PruebaEnrejado;
 import quino.util.test.PruebaGabor;
 import quino.view.test2nd.EnrejadoTestView;
 import quino.view.test2nd.ShapeDetectTestView;
-import quino.view.test.FovealTestView;
+import quino.view.test.FormaATestView;
 import quino.view.test2nd.GaborTestView;
 import quino.view.test2nd.ShapeDetectManualConfigView;
 
@@ -70,7 +70,7 @@ public class PrincipalView extends javax.swing.JFrame {
     private Prueba prueba;
     private Registro registro;
     private Paciente pacienteActual;
-    private Aleatorio random;
+    private Aleatorio random = new Aleatorio();
 
     public ConfigEnsayo getConf() {
         return conf;
@@ -596,6 +596,12 @@ public class PrincipalView extends javax.swing.JFrame {
             }
         });
         jMenu8.add(jMenuItem19);
+
+        jMenuItem20.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem20ActionPerformed(evt);
+            }
+        });
         jMenu8.add(jMenuItem20);
 
         jMenuItem21.setIcon(new javax.swing.ImageIcon(getClass().getResource("/quino/view/main/icons/package-upgrade.png"))); // NOI18N
@@ -620,7 +626,7 @@ public class PrincipalView extends javax.swing.JFrame {
         jMenu2.setText("Prueba");
         jMenu2.setFont(new java.awt.Font("Tahoma", 0, 12));
 
-        jMenuItem16.setFont(new java.awt.Font("Tahoma", 0, 12));
+        jMenuItem16.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jMenuItem16.setIcon(new javax.swing.ImageIcon(getClass().getResource("/quino/view/main/icons/stock_properties.png"))); // NOI18N
         jMenuItem16.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -629,7 +635,7 @@ public class PrincipalView extends javax.swing.JFrame {
         });
         jMenu2.add(jMenuItem16);
 
-        jMenuItem17.setFont(new java.awt.Font("Tahoma", 0, 12));
+        jMenuItem17.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jMenuItem17.setIcon(new javax.swing.ImageIcon(getClass().getResource("/quino/view/main/icons/stock_print-setup.png"))); // NOI18N
         jMenuItem17.setText("Configuración Automática");
         jMenuItem17.addActionListener(new java.awt.event.ActionListener() {
@@ -893,42 +899,42 @@ public class PrincipalView extends javax.swing.JFrame {
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
         // TODO add your handling code here:
-        ManualConfigView c = new ManualConfigView(this, true);
+        FormaABManualConfigView c = new FormaABManualConfigView(this, true);
         c.setVisible(true);
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
         // TODO add your handling code here:
-        AutoConfigView c = new AutoConfigView(this, true);
+        FormaABAutoConfigView c = new FormaABAutoConfigView(this, true);
         c.setVisible(true);
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
     private void jMenuItem18ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem18ActionPerformed
         // TODO add your handling code here:
         conf = new ConfigEnsayoFormaABAuto(false, random.nextInt(0, 8));
-        prueba = new PruebaFoveal((ConfigEnsayoFormaABAuto) conf, ConfigApp.CANT_ENSAYOS);
-        FovealTestView t = new FovealTestView(this, true, true);
+        prueba = new PruebaFormaA((ConfigEnsayoFormaABAuto) conf, ConfigApp.CANT_ENSAYOS);
+        FormaATestView t = new FormaATestView(this, true, true);
         t.setVisible(true);
     }//GEN-LAST:event_jMenuItem18ActionPerformed
 
     private void jMenuItem19ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem19ActionPerformed
         // TODO add your handling code here:
         conf = new ConfigEnsayoFormaABAuto(false, random.nextInt(0, 2));
-        prueba = new PruebaPeriferica((ConfigEnsayoFormaABAuto) conf, ConfigApp.CANT_ENSAYOS);
-        PerifericaTestView t = new PerifericaTestView(this, true, true);
+        prueba = new PruebaFormaB((ConfigEnsayoFormaABAuto) conf, ConfigApp.CANT_ENSAYOS);
+        FormaBTestView t = new FormaBTestView(this, true, true);
         t.setVisible(true);
     }//GEN-LAST:event_jMenuItem19ActionPerformed
 
     private void jMenuItem16ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem16ActionPerformed
         // TODO add your handling code here:
-        ManualConfigView c = new ManualConfigView(this, true);
+        FormaABManualConfigView c = new FormaABManualConfigView(this, true);
         c.setVisible(true);
     }//GEN-LAST:event_jMenuItem16ActionPerformed
 
     private void jMenuItem17ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem17ActionPerformed
         // TODO add your handling code here:
         conf = new ConfigEnsayoFormaABAuto();
-        AutoConfigView c = new AutoConfigView(this, true);
+        FormaABAutoConfigView c = new FormaABAutoConfigView(this, true);
         c.setVisible(true);
     }//GEN-LAST:event_jMenuItem17ActionPerformed
 
@@ -982,7 +988,7 @@ public class PrincipalView extends javax.swing.JFrame {
     private void jMenuItem21ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem21ActionPerformed
         // TODO add your handling code here:
         conf = new ConfigEnsayoEnrejadoAuto();
-        prueba = new PruebaEnrejado((ConfigEnsayoEnrejadoAuto) conf);
+        prueba = new PruebaEnrejado((ConfigEnsayoEnrejadoAuto) conf, /*ConfigApp.CANT_ENSAYOS*/ 1);
         EnrejadoTestView etv = new EnrejadoTestView(this, true, true);
         etv.setVisible(true);
     }//GEN-LAST:event_jMenuItem21ActionPerformed
@@ -1001,13 +1007,13 @@ public class PrincipalView extends javax.swing.JFrame {
 
     private void jMenuItem16ActionPerformed1(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem16ActionPerformed1
         // TODO add your handling code here:
-        ManualConfigView c = new ManualConfigView(this, true);
+        FormaABManualConfigView c = new FormaABManualConfigView(this, true);
         c.setVisible(true);
     }//GEN-LAST:event_jMenuItem16ActionPerformed1
 
     private void jMenuItem23ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem23ActionPerformed
         // TODO add your handling code here:
-        ManualConfigView c = new ManualConfigView(this, true);
+        FormaABManualConfigView c = new FormaABManualConfigView(this, true);
         c.setVisible(true);
     }//GEN-LAST:event_jMenuItem23ActionPerformed
 

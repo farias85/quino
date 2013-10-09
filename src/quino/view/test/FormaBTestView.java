@@ -13,7 +13,7 @@ package quino.view.test;
 import quino.view.main.*;
 import quino.util.JPanelQuino;
 import quino.util.JPanelCentral;
-import quino.util.timer.PerifericaTimer;
+import quino.util.timer.FormaBTimer;
 import java.awt.Color;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -23,15 +23,15 @@ import quino.clases.config.ConfigEnsayoFormaAB;
  *
  * @author Casa
  */
-public class PerifericaTestView extends javax.swing.JDialog {
+public class FormaBTestView extends javax.swing.JDialog {
     
     private PrincipalView parent;
     private ConfigEnsayoFormaAB conf;
 
-    public PerifericaTestView() {
+    public FormaBTestView() {
     }
 
-    public PerifericaTestView(PrincipalView parent, boolean modal, boolean practica) {
+    public FormaBTestView(PrincipalView parent, boolean modal, boolean practica) {
         super(parent, modal);
 
         if (parent.getConf() instanceof ConfigEnsayoFormaAB) {
@@ -47,7 +47,7 @@ public class PerifericaTestView extends javax.swing.JDialog {
         setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
         getContentPane().setBackground(Color.BLACK);
 
-        TimerTask task = new PerifericaTimer(parent.getPrueba(), 
+        TimerTask task = new FormaBTimer(parent.getPrueba(),
                 (JPanelQuino) jPanel1, (JPanelQuino) jPanel2,
                 (JPanelCentral) jPanel3, this, practica);
 
@@ -150,7 +150,7 @@ public class PerifericaTestView extends javax.swing.JDialog {
         java.awt.EventQueue.invokeLater(new Runnable() {
 
             public void run() {
-                PerifericaTestView dialog = new PerifericaTestView();
+                FormaBTestView dialog = new FormaBTestView();
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
 
                     @Override

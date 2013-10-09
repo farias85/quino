@@ -13,8 +13,8 @@ package quino.view.test;
 import quino.view.main.*;
 import quino.clases.config.ConfigEnsayoFormaAB;
 import quino.util.Aleatorio;
-import quino.util.test.PruebaFoveal;
-import quino.util.test.PruebaPeriferica;
+import quino.util.test.PruebaFormaA;
+import quino.util.test.PruebaFormaB;
 import quino.util.QuinoTools;
 //import clases.prueba.Ensayo;
 
@@ -22,7 +22,7 @@ import quino.util.QuinoTools;
  *
  * @author davisito
  */
-public class ManualConfigView extends javax.swing.JDialog {
+public class FormaABManualConfigView extends javax.swing.JDialog {
 
     private PrincipalView parent;
     private int tiempo_movimiento;
@@ -37,7 +37,7 @@ public class ManualConfigView extends javax.swing.JDialog {
 
     /** Creates new form ManualConfigView */
     @SuppressWarnings("empty-statement")
-    public ManualConfigView(PrincipalView parent, boolean modal) {
+    public FormaABManualConfigView(PrincipalView parent, boolean modal) {
         super(parent, modal);
         this.parent = parent;
         initComponents();
@@ -311,7 +311,7 @@ public class ManualConfigView extends javax.swing.JDialog {
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Tipo de Prueba", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12))); // NOI18N
         jPanel2.setFont(new java.awt.Font("Tahoma", 1, 12));
 
-        jRadioButton1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jRadioButton1.setFont(new java.awt.Font("Tahoma", 1, 12));
         jRadioButton1.setText("Forma A");
         jRadioButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -319,7 +319,7 @@ public class ManualConfigView extends javax.swing.JDialog {
             }
         });
 
-        jRadioButton2.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jRadioButton2.setFont(new java.awt.Font("Tahoma", 1, 12));
         jRadioButton2.setText("Forma B");
         jRadioButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -592,16 +592,16 @@ public class ManualConfigView extends javax.swing.JDialog {
             if (foveal) {
                 parent.setConf(new ConfigEnsayoFormaAB(tiempo_movimiento, densidad,
                         cantidad, direccion, asincronico, control, random.nextInt(0, 8)));
-                parent.setPrueba(new PruebaFoveal(((ConfigEnsayoFormaAB)parent.getConf()), ensayos));
-                FovealTestView t = new FovealTestView(parent, true, false);
+                parent.setPrueba(new PruebaFormaA(((ConfigEnsayoFormaAB)parent.getConf()), ensayos));
+                FormaATestView t = new FormaATestView(parent, true, false);
                 t.setVisible(true);
                 setVisible(false);
                 dispose();
             } else {
                 parent.setConf(new ConfigEnsayoFormaAB(tiempo_movimiento, densidad,
                         cantidad, direccion, asincronico, control, random.nextInt(0, 2)));
-                parent.setPrueba(new PruebaPeriferica(((ConfigEnsayoFormaAB)parent.getConf()), ensayos));
-                PerifericaTestView t = new PerifericaTestView(parent, true, false);
+                parent.setPrueba(new PruebaFormaB(((ConfigEnsayoFormaAB)parent.getConf()), ensayos));
+                FormaBTestView t = new FormaBTestView(parent, true, false);
                 t.setVisible(true);
                 setVisible(false);
                 dispose();
@@ -684,7 +684,7 @@ public class ManualConfigView extends javax.swing.JDialog {
         java.awt.EventQueue.invokeLater(new Runnable() {
 
             public void run() {
-                ManualConfigView dialog = new ManualConfigView(new PrincipalView(), true);
+                FormaABManualConfigView dialog = new FormaABManualConfigView(new PrincipalView(), true);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
 
                     @Override

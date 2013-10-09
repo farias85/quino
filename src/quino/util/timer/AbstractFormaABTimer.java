@@ -73,7 +73,7 @@ public abstract class AbstractFormaABTimer extends AbstractQuinoTimer {
         resultado.setKey(k);
 
         if (ensayo.getConfiguracion().getPanelEstimulo() > 0) {
-            resultado.setTiempoRespuesta(tiempoTranscurrido - (enEspera + preparado + 1));
+            resultado.setTiempoRespuesta((int) (getTiempoTranscurrido() - (enEspera + preparado + 1)));
         }
 
         controlarEnsayo();

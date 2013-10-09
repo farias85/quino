@@ -2,7 +2,6 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package quino.util.timer;
 
 import quino.util.test.Prueba;
@@ -26,18 +25,14 @@ public abstract class AbstractNoMoveTimer extends AbstractQuinoTimer {
             case PREPARADO:
                 execEsperandoRespuesta();
                 break;
-            case EJECUTANDO_MOVIMIENTO:
-                execEsperandoRespuesta();
-                break;
             case ESPERANDO_RESPUESTA:
                 execEsperandoRespuesta();
                 break;
             case TERMINADO:
                 execTerminado();
+                startTime = 0;
                 break;
-            default:
         }
-        tiempoTranscurrido++;
     }
 
     @Override

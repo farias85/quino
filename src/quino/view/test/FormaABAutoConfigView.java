@@ -14,14 +14,14 @@ import quino.clases.config.ConfigEnsayoFormaAB;
 import quino.view.main.*;
 import quino.clases.config.ConfigEnsayoFormaABAuto;
 import quino.util.Aleatorio;
-import quino.util.test.PruebaFoveal;
-import quino.util.test.PruebaPeriferica;
+import quino.util.test.PruebaFormaA;
+import quino.util.test.PruebaFormaB;
 
 /**
  *
  * @author Felipe Rodriguez Arias
  */
-public class AutoConfigView extends javax.swing.JDialog {
+public class FormaABAutoConfigView extends javax.swing.JDialog {
 
     private PrincipalView parent;
     private ConfigEnsayoFormaAB conf;
@@ -30,7 +30,7 @@ public class AutoConfigView extends javax.swing.JDialog {
     private Aleatorio random = new Aleatorio();
 
     /** Creates new form AutoConfigView */
-    public AutoConfigView(PrincipalView parent, boolean modal) {
+    public FormaABAutoConfigView(PrincipalView parent, boolean modal) {
         super(parent, modal);
 
         if (parent.getConf() instanceof ConfigEnsayoFormaAB) {
@@ -100,7 +100,7 @@ public class AutoConfigView extends javax.swing.JDialog {
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Tipo de Prueba", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12))); // NOI18N
 
-        jRadioButton1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jRadioButton1.setFont(new java.awt.Font("Tahoma", 1, 12));
         jRadioButton1.setText("Forma A");
         jRadioButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -108,7 +108,7 @@ public class AutoConfigView extends javax.swing.JDialog {
             }
         });
 
-        jRadioButton2.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jRadioButton2.setFont(new java.awt.Font("Tahoma", 1, 12));
         jRadioButton2.setText("Forma B");
         jRadioButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -205,18 +205,18 @@ public class AutoConfigView extends javax.swing.JDialog {
             if (foveal) {
                 parent.setConf(new ConfigEnsayoFormaABAuto(control, random.nextInt(0, 8)));
                 conf.setDensidad(conf.getDensidad() / 8);
-                parent.setPrueba(new PruebaFoveal(conf, cant_ensayos));
+                parent.setPrueba(new PruebaFormaA(conf, cant_ensayos));
 
-                FovealTestView t = new FovealTestView(parent, true, false);
+                FormaATestView t = new FormaATestView(parent, true, false);
                 t.setVisible(true);
                 setVisible(false);
                 dispose();
             } else {
                 parent.setConf(new ConfigEnsayoFormaABAuto(control, random.nextInt(0, 2)));
                 conf.setDensidad((conf.getDensidad() / 8));
-                parent.setPrueba(new PruebaPeriferica(conf, cant_ensayos));
+                parent.setPrueba(new PruebaFormaB(conf, cant_ensayos));
 
-                PerifericaTestView test = new PerifericaTestView(parent, true, false);
+                FormaBTestView test = new FormaBTestView(parent, true, false);
                 test.setVisible(true);
                 setVisible(false);
                 dispose();
@@ -255,7 +255,7 @@ public class AutoConfigView extends javax.swing.JDialog {
         java.awt.EventQueue.invokeLater(new Runnable() {
 
             public void run() {
-                AutoConfigView dialog = new AutoConfigView(new PrincipalView(), true);
+                FormaABAutoConfigView dialog = new FormaABAutoConfigView(new PrincipalView(), true);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
 
                     @Override

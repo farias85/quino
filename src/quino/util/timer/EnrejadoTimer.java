@@ -32,19 +32,21 @@ public class EnrejadoTimer extends AbstractSinusoideTimer {
         this.test = test;
         this.jPanel = jPanel;
         mtx = new Mat(470, 660, CvType.CV_8SC1, new Scalar(255));
-
-        if (ensayo.getConfiguracion() instanceof ConfigEnsayoEnrejado) {
-            this.configEnsayo = ((ConfigEnsayoEnrejado) ensayo.getConfiguracion());
-        } else {
-            System.err.println("El ensayo no es de tipo ConfigEnsayoEnrejado en la clase EnrejadoTimer");
-        }
     }
 
     @Override
     protected void execEnEspera() {
         if (inOut) {
             inOut = false;
-            System.out.println("en espera " + tiempoTranscurrido);
+            System.out.println("en espera " + getTiempoTranscurrido());
+
+            if (ensayo.getConfiguracion() instanceof ConfigEnsayoEnrejado) {
+                this.configEnsayo = ((ConfigEnsayoEnrejado) ensayo.getConfiguracion());
+            } else {
+                System.err.println("El ensayo no es de tipo ConfigEnsayoEnrejado en la clase EnrejadoTimer");
+            }
+
+            jPanel.repaint();
         }
     }
 
@@ -52,13 +54,7 @@ public class EnrejadoTimer extends AbstractSinusoideTimer {
     protected void execEsperandoRespuesta() {
         if (!inOut) {
             inOut = true;
-            System.out.println("preparado " + tiempoTranscurrido);
-
-            //panelsRellenar();
-            //panelsRepaint();
-
-            System.out.println("esperando respuesta " + tiempoTranscurrido);
-            inOut = true;
+            System.out.println("preparado " + getTiempoTranscurrido());
 
             keyPress = new KeyListener() {
 
@@ -73,16 +69,16 @@ public class EnrejadoTimer extends AbstractSinusoideTimer {
 
                         resultado.setKey(k);
 
-                        if (ensayo.getConfiguracion().getPanelEstimulo() > 0) {
-                            resultado.setTiempoRespuesta(tiempoTranscurrido - (enEspera + 1));
+                        if (configEnsayo.getDireccion() > 0) {
+                            resultado.setTiempoRespuesta((int) (getTiempoTranscurrido() - (enEspera + 1)));
                         }
 
-                        if (ensayo.getConfiguracion().getPanelEstimulo() == 0) {
+                        if (configEnsayo.getDireccion() == 0) {
                             resultado.setError(true);
-                            resultado.setDescripcion("No hubo estímulo");
-                        } else if (ensayo.getConfiguracion().getKey() != resultado.getKey()) {
+                            resultado.setDescripcion("No hubo movimiento");
+                        } else if (configEnsayo.getKey() != resultado.getKey()) {
                             resultado.setError(true);
-                            resultado.setDescripcion("Dirección incorrecta");
+                            resultado.setDescripcion("La tecla presionada no es la esperada");
                         }
 
                         puedeTeclear = false;
@@ -96,18 +92,23 @@ public class EnrejadoTimer extends AbstractSinusoideTimer {
 
             test.addKeyListener(keyPress);
             puedeTeclear = true;
+
+            runMatrix();
         }
 
-        runMatrix();
-        tiempoTranscurrido += 100;
+        if (configEnsayo.isOnMove()) {
+            runMatrix();
+        }
+
+        //tiempoTranscurrido += 50;
     }
 
     @Override
     protected void execTerminado() {
-        System.out.println("terminado " + tiempoTranscurrido);
+        System.out.println("terminado " + getTiempoTranscurrido());
         test.removeKeyListener(keyPress);
 
-        if (resultado.getKey() == 0 && ensayo.getConfiguracion().getPanelEstimulo() > 0) {
+        if (resultado.getKey() == 0 && configEnsayo.getDireccion() > 0) {
             resultado.setError(true);
             resultado.setDescripcion("Omisión");
         }
@@ -141,6 +142,6 @@ public class EnrejadoTimer extends AbstractSinusoideTimer {
         jPanel.getGraphics().drawImage(image, 0, 0, jPanel);
 
         System.out.println(count + " enrejado");
-        count--;
+        count += configEnsayo.isSentidoUpLeft() ? 1 : -1;
     }
 }

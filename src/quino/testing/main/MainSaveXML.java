@@ -13,6 +13,7 @@ import java.util.logging.Logger;
 import quino.clases.config.ConfigEnsayoShapeDetectAuto;
 import quino.clases.model.Resultado;
 import quino.util.Aleatorio;
+import quino.util.QuinoTools;
 import quino.util.test.PruebaShape;
 
 /**
@@ -23,8 +24,13 @@ public class MainSaveXML {
 
     public static void main(String[] args) {
 
-        Aleatorio a = new Aleatorio();
-        System.out.println(a.nextFloat());
+        /*Aleatorio a = new Aleatorio();
+        System.out.println(a.nextFloat());*/
+
+        long time1 = System.currentTimeMillis();
+        //QuinoTools.cargarConfiguracion();
+        long time2 = System.currentTimeMillis();
+        System.out.println(time2 - time1);
 
         /*try {
             Aleatorio random = new Aleatorio();

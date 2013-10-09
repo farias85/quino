@@ -25,9 +25,9 @@ import org.opencv.core.Mat;
 import quino.clases.config.ConfigApp;
 import quino.util.test.Prueba;
 import quino.util.test.PruebaEnrejado;
-import quino.util.test.PruebaFoveal;
+import quino.util.test.PruebaFormaA;
 import quino.util.test.PruebaGabor;
-import quino.util.test.PruebaPeriferica;
+import quino.util.test.PruebaFormaB;
 import quino.util.test.PruebaShape;
 import quino.view.main.ErrorDialog;
 import quino.view.main.PrincipalView;
@@ -97,7 +97,7 @@ public class QuinoTools {
      * @return El nombre del panel
      */
     public static String getPanelMovimiento(Prueba prueba, int panel) {
-        if (prueba instanceof PruebaFoveal) {
+        if (prueba instanceof PruebaFormaA) {
             switch (panel) {
                 case 1:
                     return "Superior Izquierdo";
@@ -146,9 +146,9 @@ public class QuinoTools {
         //String nombrePrueba = prueba instanceof PruebaFoveal ? "Foveal" : "Periférica";
 
         Prueba pruebaPaciente = null;
-        if (prueba instanceof PruebaFoveal) {
+        if (prueba instanceof PruebaFormaA) {
             pruebaPaciente = principalView.getPacienteActual().getFoveal();
-        } else if (prueba instanceof PruebaPeriferica) {
+        } else if (prueba instanceof PruebaFormaB) {
             pruebaPaciente = principalView.getPacienteActual().getPeriferica();
         } else if (prueba instanceof PruebaShape) {
             pruebaPaciente = principalView.getPacienteActual().getForma();
@@ -182,10 +182,10 @@ public class QuinoTools {
 
     private static void actualizarPruebaDePaciente(PrincipalView principalView, Prueba prueba) {
 
-        if (prueba instanceof PruebaFoveal) {
-            principalView.getPacienteActual().setFoveal((PruebaFoveal) prueba);
-        } else if (prueba instanceof PruebaPeriferica) {
-            principalView.getPacienteActual().setPeriferica((PruebaPeriferica) prueba);
+        if (prueba instanceof PruebaFormaA) {
+            principalView.getPacienteActual().setFoveal((PruebaFormaA) prueba);
+        } else if (prueba instanceof PruebaFormaB) {
+            principalView.getPacienteActual().setPeriferica((PruebaFormaB) prueba);
         } else if (prueba instanceof PruebaShape) {
             principalView.getPacienteActual().setForma((PruebaShape) prueba);
         } else if (prueba instanceof PruebaGabor) {

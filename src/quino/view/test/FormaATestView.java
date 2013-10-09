@@ -12,7 +12,7 @@ package quino.view.test;
 
 import quino.util.JPanelCentral;
 import quino.util.JPanelQuino;
-import quino.util.timer.FovealTimer;
+import quino.util.timer.FormaAlTimer;
 import java.awt.Color;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -23,15 +23,15 @@ import quino.view.main.PrincipalView;
  *
  * @author Felipe Rodriguez Arias
  */
-public class FovealTestView extends javax.swing.JDialog {
+public class FormaATestView extends javax.swing.JDialog {
 
     private PrincipalView parent;
     private ConfigEnsayoFormaAB conf;
 
-    public FovealTestView() {
+    public FormaATestView() {
     }
 
-    public FovealTestView(PrincipalView parent, boolean modal, boolean practica) {
+    public FormaATestView(PrincipalView parent, boolean modal, boolean practica) {
         super(parent, modal);
 
         if (parent.getConf() instanceof ConfigEnsayoFormaAB) {
@@ -47,7 +47,7 @@ public class FovealTestView extends javax.swing.JDialog {
         setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
         getContentPane().setBackground(Color.BLACK);
 
-        TimerTask task = new FovealTimer(parent.getPrueba(),
+        TimerTask task = new FormaAlTimer(parent.getPrueba(),
                 (JPanelQuino) jPanel1,
                 (JPanelQuino) jPanel2, (JPanelQuino) jPanel3,
                 (JPanelQuino) jPanel4, (JPanelQuino) jPanel5,
@@ -286,7 +286,7 @@ public class FovealTestView extends javax.swing.JDialog {
         java.awt.EventQueue.invokeLater(new Runnable() {
 
             public void run() {
-                FovealTestView dialog = new FovealTestView();
+                FormaATestView dialog = new FormaATestView();
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
 
                     @Override

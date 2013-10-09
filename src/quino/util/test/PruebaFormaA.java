@@ -14,17 +14,17 @@ import quino.clases.model.Ensayo;
  * Representa una prueba de tipo Foveal
  * @author Felipe Rodriguez Arias
  */
-public class PruebaFoveal extends PruebaFormaAB{
+public class PruebaFormaA extends PruebaFormaAB{
 
-    public PruebaFoveal(Date fecha, ArrayList<Ensayo> ensayos) {
+    public PruebaFormaA(Date fecha, ArrayList<Ensayo> ensayos) {
         super(fecha, ensayos);
     }
 
-    public PruebaFoveal(ConfigEnsayoFormaAB configEnsayo, int cantEnsayos) {
+    public PruebaFormaA(ConfigEnsayoFormaAB configEnsayo, int cantEnsayos) {
         super(configEnsayo, cantEnsayos);
     }
 
-    public PruebaFoveal() {
+    public PruebaFormaA() {
         super();
     }
 

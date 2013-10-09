@@ -15,18 +15,19 @@ import quino.util.Aleatorio;
  *
  * @author farias
  */
-public class PruebaEnrejado extends PruebaSingleEnsayo {
+public class PruebaEnrejado extends PruebaMultiEnsayo {
 
     public PruebaEnrejado(ConfigEnsayoEnrejado configEnsayo, int cantEnsayos) {
-        super();
+        super(cantEnsayos);
         Aleatorio random = new Aleatorio();
-
+        
         for (int i = 0; i < cantEnsayos; i++) {
             if (configEnsayo instanceof ConfigEnsayoEnrejadoAuto) {
                 configEnsayo = new ConfigEnsayoEnrejadoAuto();
             } else {
                 boolean onMove = random.nextInt(0, 15) % 3 == 0 ? false : true;
-                configEnsayo = new ConfigEnsayoEnrejado(configEnsayo.getDireccion(), configEnsayo.getPpi(), onMove);
+                configEnsayo = new ConfigEnsayoEnrejado(configEnsayo.getDireccion(),
+                        configEnsayo.getPpi(), onMove, configEnsayo.getContrat(), configEnsayo.getIntensidadMedia());
             }
 
             Ensayo ensayo = new Ensayo(configEnsayo);

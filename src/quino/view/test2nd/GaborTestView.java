@@ -35,8 +35,7 @@ public class GaborTestView extends javax.swing.JDialog {
         this.parent = parent;
         initComponents();
         setLocationRelativeTo(null);
-
-        System.loadLibrary("opencv_java245");
+        
         getContentPane().setBackground(Color.BLACK);
         jPanel1.setBackground(Color.BLACK);
 

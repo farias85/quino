@@ -130,7 +130,7 @@ public class EnrejadoTimer extends AbstractSinusoideTimer {
             double periodo = i / configEnsayo.getFs();
 
             for (int j = 0; j < mtx.rows(); j++) {
-                double intensidad = 128 + 40.8
+                double intensidad = configEnsayo.getIntensidadMedia() + configEnsayo.getIntensidadMax() //40.8
                         * Math.cos(2.0 * Math.PI * (configEnsayo.getFspa_cpp_x() * (i + count)
                         + configEnsayo.getFspa_cpp_y() * (j + count) + periodo));
 

@@ -52,9 +52,17 @@ public abstract class ConfigEnsayoSinusoide extends ConfigEnsayo {
      */
     protected int direccion = 1;
     /**
-     * True cuando la matrix enrejada se va a mover, falso en caso contrario
+     * El contraste de las rejas
      */
-    protected boolean onMove = false;
+    protected double contrat = 0.99;
+    /**
+     * La intensidad media q se desea tener entre rejas
+     */
+    protected byte intensidadMedia = (byte) 128;
+    /**
+     * Intensidad máxima
+     */
+    protected byte intensidadMax = (byte) (contrat * intensidadMedia);
 
     public ConfigEnsayoSinusoide() {
         super();
@@ -62,7 +70,8 @@ public abstract class ConfigEnsayoSinusoide extends ConfigEnsayo {
 
     public ConfigEnsayoSinusoide(int key, int panelEstimulo, int fs, double fspa_cpi_x,
             double fspa_cpi_y, int ppi, double fspa_cpp_x, double fspa_cpp_y,
-            boolean sentidoUpLeft, int direccion, boolean onMove) {
+            boolean sentidoUpLeft, int direccion, double contrat,
+            byte intensidadMedia) {
         super(key, panelEstimulo);
 
         this.fs = fs;
@@ -73,15 +82,25 @@ public abstract class ConfigEnsayoSinusoide extends ConfigEnsayo {
         this.fspa_cpp_y = fspa_cpp_y;
         this.sentidoUpLeft = sentidoUpLeft;
         this.direccion = direccion;
-        this.onMove = onMove;
+        this.contrat = contrat;
+        this.intensidadMedia = intensidadMedia;
+
+        this.intensidadMax = (byte) (contrat * intensidadMedia);
     }
 
-    public ConfigEnsayoSinusoide(int direccion, int ppi, boolean onMove) {
+    public ConfigEnsayoSinusoide(int direccion, int ppi) {
         super(0, 0);
         this.ppi = ppi;
-        this.onMove = onMove;
         getConfiguracionXDireccion(direccion);
-        this.key = onMove ? 32 : 0;
+    }
+
+    public ConfigEnsayoSinusoide(int direccion, int ppi, double contrat,
+            byte intensidadMedia) {
+        this(direccion, ppi);
+
+        this.contrat = contrat;
+        this.intensidadMedia = intensidadMedia;
+        this.intensidadMax = (byte) (contrat * intensidadMedia);
     }
 
     protected void getConfiguracionXDireccion(int direccion) {
@@ -208,11 +227,27 @@ public abstract class ConfigEnsayoSinusoide extends ConfigEnsayo {
         this.direccion = direccion;
     }
 
-    public boolean isOnMove() {
-        return onMove;
+    public double getContrat() {
+        return contrat;
     }
 
-    public void setOnMove(boolean onMove) {
-        this.onMove = onMove;
+    public void setContrat(double contrat) {
+        this.contrat = contrat;
+    }
+
+    public byte getIntensidadMax() {
+        return intensidadMax;
+    }
+
+    public void setIntensidadMax(byte intensidadMax) {
+        this.intensidadMax = intensidadMax;
+    }
+
+    public byte getIntensidadMedia() {
+        return intensidadMedia;
+    }
+
+    public void setIntensidadMedia(byte intensidadMedia) {
+        this.intensidadMedia = intensidadMedia;
     }
 }

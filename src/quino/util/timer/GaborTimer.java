@@ -34,14 +34,6 @@ public class GaborTimer extends AbstractSinusoideTimer {
         this.test = test;
         this.jPanel = jPanel;
         mtx = new Mat(470, 460, CvType.CV_8SC1, new Scalar(0));
-
-        if (ensayo.getConfiguracion() instanceof ConfigEnsayoGabor) {
-            this.configEnsayo = ((ConfigEnsayoGabor) ensayo.getConfiguracion());
-        } else {
-            System.err.println("El ensayo no es de tipo ConfigEnsayoGabor en la clase GaborTimer");
-        }
-
-        configEnsayo.setCentro(new Point(mtx.width() / 2, mtx.height() / 2));
     }
 
     @Override
@@ -49,6 +41,15 @@ public class GaborTimer extends AbstractSinusoideTimer {
         if (inOut) {
             inOut = false;
             System.out.println("en espera " + getTiempoTranscurrido());
+
+            if (ensayo.getConfiguracion() instanceof ConfigEnsayoGabor) {
+                this.configEnsayo = ((ConfigEnsayoGabor) ensayo.getConfiguracion());
+            } else {
+                System.err.println("El ensayo no es de tipo ConfigEnsayoGabor en la clase GaborTimer");
+            }
+
+            configEnsayo.setCentro(new Point(mtx.width() / 2, mtx.height() / 2));
+            jPanel.repaint();
         }
     }
 
@@ -71,16 +72,16 @@ public class GaborTimer extends AbstractSinusoideTimer {
 
                         resultado.setKey(k);
 
-                        if (ensayo.getConfiguracion().getPanelEstimulo() > 0) {
+                        if (configEnsayo.getDireccion() > 0) {
                             resultado.setTiempoRespuesta((int) (getTiempoTranscurrido() - (enEspera + 1)));
                         }
 
-                        if (ensayo.getConfiguracion().getPanelEstimulo() == 0) {
+                        if (configEnsayo.getDireccion() == 0) {
                             resultado.setError(true);
-                            resultado.setDescripcion("No hubo estímulo");
-                        } else if (ensayo.getConfiguracion().getKey() != resultado.getKey()) {
+                            resultado.setDescripcion("No hubo movimiento");
+                        } else if (configEnsayo.getKey() != resultado.getKey()) {
                             resultado.setError(true);
-                            resultado.setDescripcion("Dirección incorrecta");
+                            resultado.setDescripcion("La tecla presionada no es la esperada");
                         }
 
                         puedeTeclear = false;
@@ -105,7 +106,7 @@ public class GaborTimer extends AbstractSinusoideTimer {
         System.out.println("terminado " + getTiempoTranscurrido());
         test.removeKeyListener(keyPress);
 
-        if (resultado.getKey() == 0 && ensayo.getConfiguracion().getPanelEstimulo() > 0) {
+        if (resultado.getKey() == 0 && configEnsayo.getDireccion() > 0) {
             resultado.setError(true);
             resultado.setDescripcion("Omisión");
         }
@@ -153,8 +154,8 @@ public class GaborTimer extends AbstractSinusoideTimer {
         Image image = QuinoTools.matToBufferedImage(mtx);
         jPanel.getGraphics().drawImage(image, 0, 0, jPanel);
 
-        System.out.println(count + " esto es una prueba");
-        count++;
+        System.out.println(count + " esto es run matrix");
+        count += configEnsayo.isSentidoUpLeft() ? 1 : -1;
     }
 
     private boolean gaborLocation(Point point) {

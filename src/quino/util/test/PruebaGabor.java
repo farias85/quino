@@ -9,6 +9,7 @@ import java.util.Date;
 import quino.clases.config.ConfigEnsayoGabor;
 import quino.clases.config.ConfigEnsayoGaborAuto;
 import quino.clases.model.Ensayo;
+import quino.util.Aleatorio;
 
 /**
  *
@@ -18,13 +19,28 @@ public class PruebaGabor extends PruebaMultiEnsayo {
 
     public PruebaGabor(ConfigEnsayoGabor configEnsayo, int cantEnsayos) {
         super(cantEnsayos);
+        Aleatorio random = new Aleatorio();
+        ConfigEnsayoGabor ceg = new ConfigEnsayoGabor();
 
         for (int i = 0; i < cantEnsayos; i++) {
             if (configEnsayo instanceof ConfigEnsayoGaborAuto) {
-                configEnsayo = new ConfigEnsayoGaborAuto();
+                ceg = new ConfigEnsayoGaborAuto();
+            } else if (configEnsayo instanceof ConfigEnsayoGabor) {
+                if (configEnsayo.getDireccion() == 0) {
+                    int direccion = random.nextInt(1, 4);
+                    ceg = new ConfigEnsayoGabor(direccion, configEnsayo.getPpi(),
+                            configEnsayo.getContrat(), configEnsayo.getIntensidadMedia(),
+                            configEnsayo.getGaussianStdpix(), configEnsayo.getRadio1(),
+                            configEnsayo.getRadio2());
+                } else {
+                    ceg = new ConfigEnsayoGabor(configEnsayo.getDireccion(), configEnsayo.getPpi(),
+                            configEnsayo.getContrat(), configEnsayo.getIntensidadMedia(),
+                            configEnsayo.getGaussianStdpix(), configEnsayo.getRadio1(),
+                            configEnsayo.getRadio2());
+                }
             }
 
-            Ensayo ensayo = new Ensayo(configEnsayo);
+            Ensayo ensayo = new Ensayo(ceg);
             ensayos.add(ensayo);
         }
 

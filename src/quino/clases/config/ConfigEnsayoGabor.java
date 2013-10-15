@@ -59,8 +59,12 @@ public class ConfigEnsayoGabor extends ConfigEnsayoSinusoide {
         super();
     }
 
-    public ConfigEnsayoGabor(int direccion, int ppi, double contrat, byte intensidadMedia) {
+    public ConfigEnsayoGabor(int direccion, int ppi, double contrat, byte intensidadMedia,
+            double gaussianStdpix, int radio1, int radio2) {
         super(direccion, ppi, contrat, intensidadMedia);
+        this.gaussianStdpix = gaussianStdpix;
+        this.radio1 = radio1;
+        this.radio2 = radio2;
         this.key = getKey2Press(direccion);
     }
 

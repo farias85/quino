@@ -10,35 +10,23 @@
  */
 package quino.view.test2nd;
 
-import quino.view.test.*;
+import quino.clases.config.ConfigEnsayoEnrejado;
 import quino.view.main.*;
-import quino.clases.config.ConfigEnsayoFormaAB;
-import quino.util.Aleatorio;
-import quino.util.test.PruebaFormaA;
-import quino.util.test.PruebaFormaB;
-import quino.util.QuinoTools;
+import quino.util.test.PruebaEnrejado;
 //import clases.prueba.Ensayo;
 
 /**
  *
- * @author davisito
+ * @author Felipe Rodriguez Arias
  */
-public class EnrejadoManualConfigView extends javax.swing.JDialog {
+public class ManualEnrejadoConfigView extends javax.swing.JDialog {
 
     private PrincipalView parent;
-    private int tiempo_movimiento;
-    private int densidad;
-    private int cantidad;
-    private int direccion;
-    private boolean asincronico;
-    private int ensayos;
-    private boolean foveal = true;
-    private boolean control;
-    private Aleatorio random = new Aleatorio();
+    private int direccion = 0;
 
     /** Creates new form ManualConfigView */
     @SuppressWarnings("empty-statement")
-    public EnrejadoManualConfigView(PrincipalView parent, boolean modal) {
+    public ManualEnrejadoConfigView(PrincipalView parent, boolean modal) {
         super(parent, modal);
         this.parent = parent;
         initComponents();
@@ -62,8 +50,8 @@ public class EnrejadoManualConfigView extends javax.swing.JDialog {
         jLabel3 = new javax.swing.JLabel();
         jTextField2 = new javax.swing.JTextField();
         jTextField3 = new javax.swing.JTextField();
-        jLabel4 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
+        jToggleButton1 = new javax.swing.JToggleButton();
         jToggleButton2 = new javax.swing.JToggleButton();
         jToggleButton3 = new javax.swing.JToggleButton();
         jToggleButton4 = new javax.swing.JToggleButton();
@@ -73,7 +61,6 @@ public class EnrejadoManualConfigView extends javax.swing.JDialog {
         jToggleButton8 = new javax.swing.JToggleButton();
         jToggleButton9 = new javax.swing.JToggleButton();
         jLabel5 = new javax.swing.JLabel();
-        jTextField4 = new javax.swing.JTextField();
         jTextField5 = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
 
@@ -83,7 +70,7 @@ public class EnrejadoManualConfigView extends javax.swing.JDialog {
         setIconImages(null);
         setResizable(false);
 
-        jButton1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jButton1.setFont(new java.awt.Font("Tahoma", 1, 12));
         jButton1.setText("Comenzar");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -91,7 +78,7 @@ public class EnrejadoManualConfigView extends javax.swing.JDialog {
             }
         });
 
-        jButton2.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jButton2.setFont(new java.awt.Font("Tahoma", 1, 12));
         jButton2.setText("Cancelar");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -99,25 +86,20 @@ public class EnrejadoManualConfigView extends javax.swing.JDialog {
             }
         });
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 12));
         jLabel1.setText("Cantidad de Ensayos");
 
         jTextField1.setFont(new java.awt.Font("Tahoma", 1, 12));
         jTextField1.setText("4");
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
-            }
-        });
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 12));
-        jLabel2.setText("Densidad de Puntos");
+        jLabel2.setText("Contraste");
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 12));
-        jLabel3.setText("Puntos a Mover");
+        jLabel3.setText("Intensidad Media");
 
         jTextField2.setFont(new java.awt.Font("Tahoma", 1, 12));
-        jTextField2.setText("600");
+        jTextField2.setText("0.89");
         jTextField2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField2ActionPerformed(evt);
@@ -130,22 +112,23 @@ public class EnrejadoManualConfigView extends javax.swing.JDialog {
         });
 
         jTextField3.setFont(new java.awt.Font("Tahoma", 1, 12));
-        jTextField3.setText("23");
+        jTextField3.setText("128");
         jTextField3.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
                 jTextField3FocusLost(evt);
             }
         });
-        jTextField3.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                jTextField3KeyReleased(evt);
-            }
-        });
-
-        jLabel4.setFont(new java.awt.Font("Tahoma", 1, 12));
-        jLabel4.setText("%");
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Dirección", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12))); // NOI18N
+
+        jToggleButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/quino/view/main/icons/asincronico.gif"))); // NOI18N
+        jToggleButton1.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/quino/view/main/icons/asincronico_clk.gif"))); // NOI18N
+        jToggleButton1.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/quino/view/main/icons/asincronico_clk.gif"))); // NOI18N
+        jToggleButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jToggleButton1ActionPerformed(evt);
+            }
+        });
 
         jToggleButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/quino/view/main/icons/direccion1.gif"))); // NOI18N
         jToggleButton2.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/quino/view/main/icons/direccion1_clk.gif"))); // NOI18N
@@ -223,8 +206,10 @@ public class EnrejadoManualConfigView extends javax.swing.JDialog {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(37, 37, 37)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(20, Short.MAX_VALUE)
+                .addComponent(jToggleButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jToggleButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(7, 7, 7)
                 .addComponent(jToggleButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -240,17 +225,18 @@ public class EnrejadoManualConfigView extends javax.swing.JDialog {
                 .addComponent(jToggleButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jToggleButton9, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(41, Short.MAX_VALUE))
+                .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(17, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jToggleButton9, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jToggleButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jToggleButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jToggleButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jToggleButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jToggleButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jToggleButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jToggleButton8, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -258,6 +244,7 @@ public class EnrejadoManualConfigView extends javax.swing.JDialog {
                 .addContainerGap())
         );
 
+        jToggleButton1.getAccessibleContext().setAccessibleName("direccion0");
         jToggleButton2.getAccessibleContext().setAccessibleName("direccion1");
         jToggleButton3.getAccessibleContext().setAccessibleName("direccion7");
         jToggleButton4.getAccessibleContext().setAccessibleName("direccion3");
@@ -268,16 +255,12 @@ public class EnrejadoManualConfigView extends javax.swing.JDialog {
         jToggleButton9.getAccessibleContext().setAccessibleName("direccion8");
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 1, 12));
-        jLabel5.setText("Tiempo de Movimiento");
+        jLabel5.setText("Pixel/Pulgada Barras");
 
-        jTextField4.setEditable(false);
-        jTextField4.setFont(new java.awt.Font("Tahoma", 1, 12));
-        jTextField4.setText("0000");
+        jTextField5.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jTextField5.setText("25");
 
-        jTextField5.setFont(new java.awt.Font("Tahoma", 1, 12));
-        jTextField5.setText("60");
-
-        jLabel6.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel6.setFont(new java.awt.Font("Tahoma", 1, 14));
         jLabel6.setText("Configuración Manual Enrejado");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -287,68 +270,55 @@ public class EnrejadoManualConfigView extends javax.swing.JDialog {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                            .addComponent(jButton1)
-                            .addGap(54, 54, 54)
-                            .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(111, 111, 111))
-                        .addGroup(layout.createSequentialGroup()
-                            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addContainerGap())
-                        .addGroup(layout.createSequentialGroup()
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(jLabel2)
-                                .addComponent(jLabel1))
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(jTextField2)
-                                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGap(18, 18, 18)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addComponent(jLabel3)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(jLabel4)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(jTextField4, javax.swing.GroupLayout.DEFAULT_SIZE, 114, Short.MAX_VALUE))
-                                .addGroup(layout.createSequentialGroup()
-                                    .addComponent(jLabel5)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 71, Short.MAX_VALUE)))
-                            .addContainerGap()))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 249, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(117, 117, 117))))
+                        .addComponent(jButton1)
+                        .addGap(54, 54, 54)
+                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(111, 111, 111))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addContainerGap())
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel1)
+                            .addComponent(jLabel2))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addComponent(jTextField2)
+                                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(38, 38, 38)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel5)
+                                    .addComponent(jLabel3))
+                                .addGap(40, 40, 40)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 229, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addContainerGap(30, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(19, 19, 19)
                 .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel5)
+                    .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel2)
+                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel3))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel1)
-                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel2)
-                            .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel3)
-                            .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel4)
-                            .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabel5)
-                        .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(18, 18, 18)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -370,18 +340,27 @@ public class EnrejadoManualConfigView extends javax.swing.JDialog {
         dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
-
     private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField2ActionPerformed
 
+    private void jToggleButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton1ActionPerformed
+        // TODO add your handling code here:
+        direccion = 0;
+        jToggleButton2.setSelected(false);
+        jToggleButton3.setSelected(false);
+        jToggleButton4.setSelected(false);
+        jToggleButton5.setSelected(false);
+        jToggleButton6.setSelected(false);
+        jToggleButton7.setSelected(false);
+        jToggleButton8.setSelected(false);
+        jToggleButton9.setSelected(false);
+    }//GEN-LAST:event_jToggleButton1ActionPerformed
+
     private void jToggleButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton2ActionPerformed
         // TODO add your handling code here:
         direccion = 1;
-        asincronico = false;
+        jToggleButton1.setSelected(false);
         jToggleButton3.setSelected(false);
         jToggleButton4.setSelected(false);
         jToggleButton5.setSelected(false);
@@ -394,7 +373,7 @@ public class EnrejadoManualConfigView extends javax.swing.JDialog {
     private void jToggleButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton7ActionPerformed
         // TODO add your handling code here:
         direccion = 2;
-        asincronico = false;
+        jToggleButton1.setSelected(false);
         jToggleButton3.setSelected(false);
         jToggleButton4.setSelected(false);
         jToggleButton5.setSelected(false);
@@ -407,7 +386,7 @@ public class EnrejadoManualConfigView extends javax.swing.JDialog {
     private void jToggleButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton4ActionPerformed
         // TODO add your handling code here:
         direccion = 3;
-        asincronico = false;
+        jToggleButton1.setSelected(false);
         jToggleButton3.setSelected(false);
         jToggleButton2.setSelected(false);
         jToggleButton5.setSelected(false);
@@ -420,7 +399,7 @@ public class EnrejadoManualConfigView extends javax.swing.JDialog {
     private void jToggleButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton6ActionPerformed
         // TODO add your handling code here:
         direccion = 4;
-        asincronico = false;
+        jToggleButton1.setSelected(false);
         jToggleButton3.setSelected(false);
         jToggleButton4.setSelected(false);
         jToggleButton5.setSelected(false);
@@ -433,7 +412,7 @@ public class EnrejadoManualConfigView extends javax.swing.JDialog {
     private void jToggleButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton5ActionPerformed
         // TODO add your handling code here:
         direccion = 5;
-        asincronico = false;
+        jToggleButton1.setSelected(false);
         jToggleButton3.setSelected(false);
         jToggleButton4.setSelected(false);
         jToggleButton2.setSelected(false);
@@ -446,7 +425,7 @@ public class EnrejadoManualConfigView extends javax.swing.JDialog {
     private void jToggleButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton8ActionPerformed
         // TODO add your handling code here:
         direccion = 6;
-        asincronico = false;
+        jToggleButton1.setSelected(false);
         jToggleButton3.setSelected(false);
         jToggleButton4.setSelected(false);
         jToggleButton5.setSelected(false);
@@ -459,7 +438,7 @@ public class EnrejadoManualConfigView extends javax.swing.JDialog {
     private void jToggleButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton3ActionPerformed
         // TODO add your handling code here:
         direccion = 7;
-        asincronico = false;
+        jToggleButton1.setSelected(false);
         jToggleButton2.setSelected(false);
         jToggleButton4.setSelected(false);
         jToggleButton5.setSelected(false);
@@ -472,7 +451,7 @@ public class EnrejadoManualConfigView extends javax.swing.JDialog {
     private void jToggleButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton9ActionPerformed
         // TODO add your handling code here:
         direccion = 8;
-        asincronico = false;
+        jToggleButton1.setSelected(false);
         jToggleButton3.setSelected(false);
         jToggleButton4.setSelected(false);
         jToggleButton5.setSelected(false);
@@ -486,80 +465,46 @@ public class EnrejadoManualConfigView extends javax.swing.JDialog {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         try {
-            if (jTextField1.getText().isEmpty() || jTextField2.getText().isEmpty() || jTextField3.getText().isEmpty()) {
+            if (jTextField1.getText().isEmpty() || jTextField2.getText().isEmpty()
+                    || jTextField3.getText().isEmpty() || jTextField5.getText().isEmpty()) {
                 throw new Exception("No puede dejar datos en blanco");
             }
-            if (!asincronico && direccion == 0) {
-                throw new Exception("Seleccione algún control de dirección");
-            }
-            int dens = Integer.parseInt(jTextField2.getText());
-            int porciento = Integer.parseInt(jTextField3.getText());
-            cantidad = (porciento * dens) / 100;
 
-            tiempo_movimiento = Integer.parseInt(jTextField5.getText());
-            densidad = Integer.parseInt(jTextField2.getText());
-            ensayos = Integer.parseInt(jTextField1.getText());
-
-            if (foveal) {
-                parent.setConf(new ConfigEnsayoFormaAB(tiempo_movimiento, densidad,
-                        cantidad, direccion, asincronico, control, random.nextInt(0, 8)));
-                parent.setPrueba(new PruebaFormaA(((ConfigEnsayoFormaAB)parent.getConf()), ensayos));
-                FormaATestView t = new FormaATestView(parent, true, false);
-                t.setVisible(true);
-                setVisible(false);
-                dispose();
-            } else {
-                parent.setConf(new ConfigEnsayoFormaAB(tiempo_movimiento, densidad,
-                        cantidad, direccion, asincronico, control, random.nextInt(0, 2)));
-                parent.setPrueba(new PruebaFormaB(((ConfigEnsayoFormaAB)parent.getConf()), ensayos));
-                FormaBTestView t = new FormaBTestView(parent, true, false);
-                t.setVisible(true);
-                setVisible(false);
-                dispose();
+            int cantEnsayos, ppi, intensidadMedia;
+            float contraste;
+            try {
+                cantEnsayos = Integer.parseInt(jTextField1.getText());
+                contraste = Float.parseFloat(jTextField2.getText());
+                contraste = (float) (Math.rint(contraste * 100) / 100);
+                intensidadMedia = Integer.parseInt(jTextField3.getText());
+                if (intensidadMedia < 0 || intensidadMedia > 255) {
+                    throw new Exception();
+                }
+                ppi = Integer.parseInt(jTextField5.getText());
+            } catch (Exception e) {
+                throw new Exception("El formato de los datos no es correcto");
             }
+
+            parent.setConf(new ConfigEnsayoEnrejado(direccion, ppi, true, contraste, (byte) intensidadMedia));
+            parent.setPrueba(new PruebaEnrejado(((ConfigEnsayoEnrejado) parent.getConf()), cantEnsayos));
+
+            EnrejadoTestView etv = new EnrejadoTestView(parent, true, false);
+            etv.setVisible(true);
+            setVisible(false);
+            dispose();
+
         } catch (Exception e) {
             ErrorDialog err = new ErrorDialog(parent, true, e.getMessage());
             err.setVisible(true);
         }
-
     }//GEN-LAST:event_jButton1ActionPerformed
-
-    private void verPorciento() {
-        try {
-            int dens = Integer.parseInt(jTextField2.getText());
-            int porciento = Integer.parseInt(jTextField3.getText());
-            double cant = QuinoTools.porciento(porciento, dens);
-            jTextField4.setText(Double.toString(cant));
-        } catch (Exception e) {
-        }
-    }
 
     private void jTextField3FocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextField3FocusLost
         // TODO add your handling code here:
-        try {
-            if (jTextField2.getText().isEmpty()) {
-                throw new Exception("La Densidad no puede estar vacia");
-            }
-            if (jTextField3.getText().isEmpty()) {
-                throw new Exception("Debe escribir el porciento");
-            }
-            if (Integer.parseInt(jTextField2.getText()) == 0) {
-                throw new Exception("La Densidad no puede ser cero");
-            }
-        } catch (Exception e) {
-            ErrorDialog er = new ErrorDialog(parent, true, e.getMessage());
-            er.setVisible(true);
-        }
     }//GEN-LAST:event_jTextField3FocusLost
-
-    private void jTextField3KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField3KeyReleased
-        // TODO add your handling code here:
-        verPorciento();
-    }//GEN-LAST:event_jTextField3KeyReleased
 
     private void jTextField2KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField2KeyReleased
         // TODO add your handling code here:
-        verPorciento();
     }//GEN-LAST:event_jTextField2KeyReleased
 
     /**
@@ -569,7 +514,7 @@ public class EnrejadoManualConfigView extends javax.swing.JDialog {
         java.awt.EventQueue.invokeLater(new Runnable() {
 
             public void run() {
-                EnrejadoManualConfigView dialog = new EnrejadoManualConfigView(new PrincipalView(), true);
+                ManualEnrejadoConfigView dialog = new ManualEnrejadoConfigView(new PrincipalView(), true);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
 
                     @Override
@@ -587,15 +532,14 @@ public class EnrejadoManualConfigView extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
     private javax.swing.JTextField jTextField5;
+    private javax.swing.JToggleButton jToggleButton1;
     private javax.swing.JToggleButton jToggleButton2;
     private javax.swing.JToggleButton jToggleButton3;
     private javax.swing.JToggleButton jToggleButton4;

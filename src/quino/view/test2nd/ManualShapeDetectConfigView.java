@@ -20,13 +20,13 @@ import quino.util.test.PruebaShape;
  *
  * @author davisito
  */
-public class ShapeDetectManualConfigView extends javax.swing.JDialog {
+public class ManualShapeDetectConfigView extends javax.swing.JDialog {
 
     private PrincipalView parent;
 
     /** Creates new form ManualConfigView */
     @SuppressWarnings("empty-statement")
-    public ShapeDetectManualConfigView(PrincipalView parent, boolean modal) {
+    public ManualShapeDetectConfigView(PrincipalView parent, boolean modal) {
         super(parent, modal);
         this.parent = parent;
         initComponents();
@@ -63,7 +63,7 @@ public class ShapeDetectManualConfigView extends javax.swing.JDialog {
         setIconImages(null);
         setResizable(false);
 
-        jButton1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jButton1.setFont(new java.awt.Font("Tahoma", 1, 12));
         jButton1.setText("Comenzar");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -71,7 +71,7 @@ public class ShapeDetectManualConfigView extends javax.swing.JDialog {
             }
         });
 
-        jButton2.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jButton2.setFont(new java.awt.Font("Tahoma", 1, 12));
         jButton2.setText("Cancelar");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -82,7 +82,7 @@ public class ShapeDetectManualConfigView extends javax.swing.JDialog {
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 12));
         jLabel1.setText("Cantidad de Ensayos");
 
-        jTextField1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jTextField1.setFont(new java.awt.Font("Tahoma", 1, 12));
         jTextField1.setText("4");
         jTextField1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -90,13 +90,13 @@ public class ShapeDetectManualConfigView extends javax.swing.JDialog {
             }
         });
 
-        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 12));
         jLabel2.setText("Densidad");
 
-        jLabel3.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel3.setFont(new java.awt.Font("Tahoma", 1, 12));
         jLabel3.setText("% Forma");
 
-        jTextField2.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jTextField2.setFont(new java.awt.Font("Tahoma", 1, 12));
         jTextField2.setText("600");
         jTextField2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -109,7 +109,7 @@ public class ShapeDetectManualConfigView extends javax.swing.JDialog {
             }
         });
 
-        jTextField3.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jTextField3.setFont(new java.awt.Font("Tahoma", 1, 12));
         jTextField3.setText("9");
         jTextField3.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
@@ -122,20 +122,20 @@ public class ShapeDetectManualConfigView extends javax.swing.JDialog {
             }
         });
 
-        jLabel4.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel4.setFont(new java.awt.Font("Tahoma", 1, 12));
         jLabel4.setText("%");
 
-        jLabel5.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel5.setFont(new java.awt.Font("Tahoma", 1, 12));
         jLabel5.setText("Tolerancia");
 
         jTextField4.setEditable(false);
-        jTextField4.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jTextField4.setFont(new java.awt.Font("Tahoma", 1, 12));
         jTextField4.setText("0000");
 
-        jTextField5.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jTextField5.setFont(new java.awt.Font("Tahoma", 1, 12));
         jTextField5.setText("1");
 
-        jLabel6.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel6.setFont(new java.awt.Font("Tahoma", 1, 14));
         jLabel6.setText("Configuración Manual Detección de Forma");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -316,7 +316,7 @@ public class ShapeDetectManualConfigView extends javax.swing.JDialog {
         java.awt.EventQueue.invokeLater(new Runnable() {
 
             public void run() {
-                ShapeDetectManualConfigView dialog = new ShapeDetectManualConfigView(new PrincipalView(), true);
+                ManualShapeDetectConfigView dialog = new ManualShapeDetectConfigView(new PrincipalView(), true);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
 
                     @Override

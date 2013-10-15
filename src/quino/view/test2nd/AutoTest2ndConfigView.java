@@ -11,9 +11,13 @@
 package quino.view.test2nd;
 
 import quino.clases.config.ConfigEnsayoEnrejadoAuto;
+import quino.clases.config.ConfigEnsayoGaborAuto;
+import quino.clases.config.ConfigEnsayoOrientacionAuto;
 import quino.clases.config.ConfigEnsayoShapeDetectAuto;
 import quino.util.test.Prueba;
 import quino.util.test.PruebaEnrejado;
+import quino.util.test.PruebaGabor;
+import quino.util.test.PruebaOrientacion;
 import quino.util.test.PruebaShape;
 import quino.view.main.ErrorDialog;
 import quino.view.main.PrincipalView;
@@ -22,17 +26,27 @@ import quino.view.main.PrincipalView;
  *
  * @author Administrador
  */
-public class Test2ndAutoConfigView extends javax.swing.JDialog {
+public class AutoTest2ndConfigView extends javax.swing.JDialog {
 
     private PrincipalView parent;
 
     /** Creates new form Test2ndAutoConfigView */
-    public Test2ndAutoConfigView(PrincipalView parent, boolean modal) {
+    public AutoTest2ndConfigView(PrincipalView parent, boolean modal) {
         super(parent, modal);
 
         initComponents();
         this.parent = parent;
         setLocationRelativeTo(null);
+
+        if (parent.getConf() instanceof ConfigEnsayoShapeDetectAuto) {
+            jLabel6.setText(jLabel6.getText() + "Detección de Forma");
+        } else if (parent.getConf() instanceof ConfigEnsayoEnrejadoAuto) {
+            jLabel6.setText(jLabel6.getText() + "Enrejado");
+        } else if (parent.getConf() instanceof ConfigEnsayoGaborAuto) {
+            jLabel6.setText(jLabel6.getText() + "Gabor");
+        } else if (parent.getConf() instanceof ConfigEnsayoOrientacionAuto) {
+            jLabel6.setText(jLabel6.getText() + "Detección de Orientación");
+        }
     }
 
     /** This method is called from within the constructor to
@@ -52,13 +66,13 @@ public class Test2ndAutoConfigView extends javax.swing.JDialog {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        jLabel6.setFont(new java.awt.Font("Tahoma", 1, 14));
-        jLabel6.setText("Configuración Automática Detección de Forma");
+        jLabel6.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel6.setText("Configuración Automática ");
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 12));
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel1.setText("Cantidad de Ensayos");
 
-        jButton1.setFont(new java.awt.Font("Tahoma", 1, 12));
+        jButton1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jButton1.setText("Aceptar");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -66,7 +80,7 @@ public class Test2ndAutoConfigView extends javax.swing.JDialog {
             }
         });
 
-        jButton2.setFont(new java.awt.Font("Tahoma", 1, 12));
+        jButton2.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jButton2.setText("Cancelar");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -80,33 +94,42 @@ public class Test2ndAutoConfigView extends javax.swing.JDialog {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(35, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(29, 29, 29)
+                .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, 383, Short.MAX_VALUE)
+                .addContainerGap())
+            .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 340, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jButton1)
-                            .addComponent(jLabel1))
-                        .addGap(49, 49, 49)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jSpinner1, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton2)))))
+                        .addGap(85, 85, 85)
+                        .addComponent(jButton1))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(65, 65, 65)
+                        .addComponent(jLabel1)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
+                        .addComponent(jSpinner1, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(86, 86, 86))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(62, 62, 62)
+                        .addComponent(jButton2)
+                        .addContainerGap())))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(46, 46, 46)
                 .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(30, 30, 30)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(jSpinner1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 44, Short.MAX_VALUE)
+                    .addComponent(jSpinner1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel1))
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1)
                     .addComponent(jButton2))
-                .addContainerGap())
+                .addContainerGap(64, Short.MAX_VALUE))
         );
 
         pack();
@@ -126,6 +149,21 @@ public class Test2ndAutoConfigView extends javax.swing.JDialog {
                 parent.setPrueba(prueba);
                 ShapeDetectTestView sdtv = new ShapeDetectTestView(parent, true, false);
                 sdtv.setVisible(true);
+            } else if (parent.getConf() instanceof ConfigEnsayoEnrejadoAuto) {
+                Prueba prueba = new PruebaEnrejado((ConfigEnsayoEnrejadoAuto) parent.getConf(), cantEnsayos);
+                parent.setPrueba(prueba);
+                EnrejadoTestView etv = new EnrejadoTestView(parent, true, false);
+                etv.setVisible(true);
+            } else if (parent.getConf() instanceof ConfigEnsayoGaborAuto) {
+                Prueba prueba = new PruebaGabor((ConfigEnsayoGaborAuto) parent.getConf(), cantEnsayos);
+                parent.setPrueba(prueba);
+                GaborTestView gtv = new GaborTestView(parent, true, false);
+                gtv.setVisible(true);
+            } else if (parent.getConf() instanceof ConfigEnsayoOrientacionAuto) {
+                Prueba prueba = new PruebaOrientacion((ConfigEnsayoOrientacionAuto) parent.getConf(), cantEnsayos);
+                parent.setPrueba(prueba);
+                OrientacionTestView otv = new OrientacionTestView(parent, true, false);
+                otv.setVisible(true);
             }
             setVisible(false);
             dispose();
@@ -148,7 +186,7 @@ public class Test2ndAutoConfigView extends javax.swing.JDialog {
         java.awt.EventQueue.invokeLater(new Runnable() {
 
             public void run() {
-                Test2ndAutoConfigView dialog = new Test2ndAutoConfigView(new PrincipalView(), true);
+                AutoTest2ndConfigView dialog = new AutoTest2ndConfigView(new PrincipalView(), true);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
 
                     @Override

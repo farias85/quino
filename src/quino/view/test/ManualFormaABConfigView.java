@@ -22,7 +22,7 @@ import quino.util.QuinoTools;
  *
  * @author davisito
  */
-public class FormaABManualConfigView extends javax.swing.JDialog {
+public class ManualFormaABConfigView extends javax.swing.JDialog {
 
     private PrincipalView parent;
     private int tiempo_movimiento;
@@ -37,7 +37,7 @@ public class FormaABManualConfigView extends javax.swing.JDialog {
 
     /** Creates new form ManualConfigView */
     @SuppressWarnings("empty-statement")
-    public FormaABManualConfigView(PrincipalView parent, boolean modal) {
+    public ManualFormaABConfigView(PrincipalView parent, boolean modal) {
         super(parent, modal);
         this.parent = parent;
         initComponents();
@@ -355,7 +355,7 @@ public class FormaABManualConfigView extends javax.swing.JDialog {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(132, Short.MAX_VALUE)
+                .addContainerGap(136, Short.MAX_VALUE)
                 .addComponent(jButton1)
                 .addGap(54, 54, 54)
                 .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -385,7 +385,7 @@ public class FormaABManualConfigView extends javax.swing.JDialog {
                                 .addComponent(jLabel5)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 71, Short.MAX_VALUE))))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 75, Short.MAX_VALUE))))
                     .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
@@ -641,32 +641,6 @@ public class FormaABManualConfigView extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_jTextField3FocusLost
 
-    private void jRadioButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton1ActionPerformed
-        // TODO add your handling code here:
-        foveal = true;
-        jRadioButton2.setSelected(false);
-    }//GEN-LAST:event_jRadioButton1ActionPerformed
-
-    private void jRadioButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton2ActionPerformed
-        // TODO add your handling code here:
-        foveal = false;
-        jRadioButton1.setSelected(false);
-    }//GEN-LAST:event_jRadioButton2ActionPerformed
-
-    private void jCheckBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jCheckBox1ActionPerformed
-
-    private void jCheckBox1StateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jCheckBox1StateChanged
-        // TODO add your handling code here:
-        control = jCheckBox1.isSelected();
-        if (control) {
-            jToggleButton1.setEnabled(false);
-        } else {
-            jToggleButton1.setEnabled(true);
-        }
-    }//GEN-LAST:event_jCheckBox1StateChanged
-
     private void jTextField3KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField3KeyReleased
         // TODO add your handling code here:
         verPorciento();
@@ -677,6 +651,32 @@ public class FormaABManualConfigView extends javax.swing.JDialog {
         verPorciento();
     }//GEN-LAST:event_jTextField2KeyReleased
 
+    private void jCheckBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox1ActionPerformed
+        // TODO add your handling code here:
+}//GEN-LAST:event_jCheckBox1ActionPerformed
+
+    private void jCheckBox1StateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jCheckBox1StateChanged
+        // TODO add your handling code here:
+        control = jCheckBox1.isSelected();
+        if (control) {
+            jToggleButton1.setEnabled(false);
+        } else {
+            jToggleButton1.setEnabled(true);
+        }
+}//GEN-LAST:event_jCheckBox1StateChanged
+
+    private void jRadioButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton2ActionPerformed
+        // TODO add your handling code here:
+        foveal = false;
+        jRadioButton1.setSelected(false);
+}//GEN-LAST:event_jRadioButton2ActionPerformed
+
+    private void jRadioButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton1ActionPerformed
+        // TODO add your handling code here:
+        foveal = true;
+        jRadioButton2.setSelected(false);
+}//GEN-LAST:event_jRadioButton1ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -684,7 +684,7 @@ public class FormaABManualConfigView extends javax.swing.JDialog {
         java.awt.EventQueue.invokeLater(new Runnable() {
 
             public void run() {
-                FormaABManualConfigView dialog = new FormaABManualConfigView(new PrincipalView(), true);
+                ManualFormaABConfigView dialog = new ManualFormaABConfigView(new PrincipalView(), true);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
 
                     @Override

@@ -6,8 +6,8 @@ package quino.util.test;
 
 import java.util.ArrayList;
 import java.util.Date;
-import quino.clases.config.ConfigEnsayoEnrejado;
-import quino.clases.config.ConfigEnsayoEnrejadoAuto;
+import quino.clases.config.ConfigEnsayoOrientacion;
+import quino.clases.config.ConfigEnsayoOrientacionAuto;
 import quino.clases.model.Ensayo;
 import quino.util.Aleatorio;
 
@@ -25,30 +25,39 @@ public class PruebaOrientacion extends PruebaMultiEnsayo {
         super(fecha, ensayos);
     }
 
-    public PruebaOrientacion(ConfigEnsayoEnrejado configEnsayo, int cantEnsayos) {
+    public PruebaOrientacion(ConfigEnsayoOrientacion configEnsayo, int cantEnsayos) {
         super(cantEnsayos);
         Aleatorio random = new Aleatorio();
+        ConfigEnsayoOrientacion ceo = new ConfigEnsayoOrientacion();
 
         for (int i = 0; i < cantEnsayos; i++) {
             int panelEstimulo = random.nextInt(0, 2);
-            if (configEnsayo instanceof ConfigEnsayoEnrejadoAuto) {
-                configEnsayo = new ConfigEnsayoEnrejadoAuto();
-            } else {
-                configEnsayo = new ConfigEnsayoEnrejado(configEnsayo.getDireccion(),
-                        configEnsayo.getPpi(), false, configEnsayo.getContrat(), configEnsayo.getIntensidadMedia());
+            if (configEnsayo instanceof ConfigEnsayoOrientacionAuto) {
+                ceo = new ConfigEnsayoOrientacionAuto();
+            } else if (configEnsayo instanceof ConfigEnsayoOrientacion) {
+                int direccion = random.nextInt(5, 6);
+                if (configEnsayo.getDireccion() == 0) {
+                    ceo = new ConfigEnsayoOrientacion(direccion,
+                            configEnsayo.getPpi(), false, configEnsayo.getContrat(),
+                            configEnsayo.getIntensidadMedia());
+                } else {
+                    ceo = new ConfigEnsayoOrientacion(configEnsayo.getDireccion(),
+                            configEnsayo.getPpi(), false, configEnsayo.getContrat(),
+                            configEnsayo.getIntensidadMedia());
+                }
             }
 
-            configEnsayo.setPanelEstimulo(panelEstimulo);
+            ceo.setPanelEstimulo(panelEstimulo);
             switch (panelEstimulo) {
                 case 1:
-                    configEnsayo.setKey(37);
+                    ceo.setKey(37);
                     break;
                 case 2:
-                    configEnsayo.setKey(39);
+                    ceo.setKey(39);
                     break;
             }
 
-            Ensayo ensayo = new Ensayo(configEnsayo);
+            Ensayo ensayo = new Ensayo(ceo);
             ensayos.add(ensayo);
         }
     }

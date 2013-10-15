@@ -20,17 +20,26 @@ public class PruebaEnrejado extends PruebaMultiEnsayo {
     public PruebaEnrejado(ConfigEnsayoEnrejado configEnsayo, int cantEnsayos) {
         super(cantEnsayos);
         Aleatorio random = new Aleatorio();
-        
+        ConfigEnsayoEnrejado cee = new ConfigEnsayoEnrejado();
+
         for (int i = 0; i < cantEnsayos; i++) {
             if (configEnsayo instanceof ConfigEnsayoEnrejadoAuto) {
-                configEnsayo = new ConfigEnsayoEnrejadoAuto();
+                cee = new ConfigEnsayoEnrejadoAuto();
             } else {
                 boolean onMove = random.nextInt(0, 15) % 3 == 0 ? false : true;
-                configEnsayo = new ConfigEnsayoEnrejado(configEnsayo.getDireccion(),
-                        configEnsayo.getPpi(), onMove, configEnsayo.getContrat(), configEnsayo.getIntensidadMedia());
+                if (configEnsayo.getDireccion() == 0) {
+                    int direccion = random.nextInt(1, 8);
+                    cee = new ConfigEnsayoEnrejado(direccion,
+                            configEnsayo.getPpi(), onMove, configEnsayo.getContrat(),
+                            configEnsayo.getIntensidadMedia());
+                } else {
+                    cee = new ConfigEnsayoEnrejado(configEnsayo.getDireccion(),
+                            configEnsayo.getPpi(), onMove, configEnsayo.getContrat(),
+                            configEnsayo.getIntensidadMedia());
+                }
             }
 
-            Ensayo ensayo = new Ensayo(configEnsayo);
+            Ensayo ensayo = new Ensayo(cee);
             ensayos.add(ensayo);
         }
     }

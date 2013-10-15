@@ -21,7 +21,7 @@ import quino.util.test.PruebaFormaB;
  *
  * @author Felipe Rodriguez Arias
  */
-public class FormaABAutoConfigView extends javax.swing.JDialog {
+public class AutoFormaABConfigView extends javax.swing.JDialog {
 
     private PrincipalView parent;
     private ConfigEnsayoFormaAB conf;
@@ -30,7 +30,7 @@ public class FormaABAutoConfigView extends javax.swing.JDialog {
     private Aleatorio random = new Aleatorio();
 
     /** Creates new form AutoConfigView */
-    public FormaABAutoConfigView(PrincipalView parent, boolean modal) {
+    public AutoFormaABConfigView(PrincipalView parent, boolean modal) {
         super(parent, modal);
 
         if (parent.getConf() instanceof ConfigEnsayoFormaAB) {
@@ -255,7 +255,7 @@ public class FormaABAutoConfigView extends javax.swing.JDialog {
         java.awt.EventQueue.invokeLater(new Runnable() {
 
             public void run() {
-                FormaABAutoConfigView dialog = new FormaABAutoConfigView(new PrincipalView(), true);
+                AutoFormaABConfigView dialog = new AutoFormaABConfigView(new PrincipalView(), true);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
 
                     @Override

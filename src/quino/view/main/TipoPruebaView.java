@@ -12,8 +12,8 @@ package quino.view.main;
 
 import quino.view.main.ErrorDialog;
 import quino.view.main.PrincipalView;
-import quino.view.test.FormaABAutoConfigView;
-import quino.view.test.FormaABManualConfigView;
+import quino.view.test.AutoFormaABConfigView;
+import quino.view.test.ManualFormaABConfigView;
 
 /**
  *
@@ -130,10 +130,10 @@ public class TipoPruebaView extends javax.swing.JDialog {
             if (!jRadioButton1.isSelected() && !jRadioButton2.isSelected()) {
                 throw new Exception("Debe seleccionar un tipo de Prueba");
             } else if (jRadioButton1.isSelected()) {
-                FormaABManualConfigView conf = new FormaABManualConfigView(parent, true);
+                ManualFormaABConfigView conf = new ManualFormaABConfigView(parent, true);
                 conf.setVisible(true);
             } else if (jRadioButton2.isSelected()) {
-                FormaABAutoConfigView c = new FormaABAutoConfigView(parent, true);
+                AutoFormaABConfigView c = new AutoFormaABConfigView(parent, true);
                 c.setVisible(true);
             }
             setVisible(false);

@@ -12,8 +12,7 @@ import javax.swing.JPanel;
 import org.opencv.core.CvType;
 import org.opencv.core.Mat;
 import org.opencv.core.Scalar;
-import quino.clases.config.ConfigEnsayoEnrejado;
-import quino.util.Aleatorio;
+import quino.clases.config.ConfigEnsayoOrientacion;
 import quino.util.test.Prueba;
 import quino.util.QuinoTools;
 import quino.view.test.ResultView;
@@ -21,14 +20,14 @@ import quino.view.test2nd.OrientacionTestView;
 
 /**
  *
- * @author Administrador
+ * @author Felipe Rodriguez Arias
  */
 public class OrientacionTimer extends AbstractNoMoveTimer {
 
     private JPanel jpanel1;
     private JPanel jpanel2;
     private OrientacionTestView test;
-    private ConfigEnsayoEnrejado configEnsayo;
+    private ConfigEnsayoOrientacion configEnsayo;
     private int radio = 150;
 
     public OrientacionTimer(Prueba prueba, JPanel panel1, JPanel panel2,
@@ -46,10 +45,10 @@ public class OrientacionTimer extends AbstractNoMoveTimer {
             inOut = false;
             System.out.println("en espera " + getTiempoTranscurrido());
 
-            if (ensayo.getConfiguracion() instanceof ConfigEnsayoEnrejado) {
-                this.configEnsayo = ((ConfigEnsayoEnrejado) ensayo.getConfiguracion());
+            if (ensayo.getConfiguracion() instanceof ConfigEnsayoOrientacion) {
+                this.configEnsayo = ((ConfigEnsayoOrientacion) ensayo.getConfiguracion());
             } else {
-                System.err.println("El ensayo no es de tipo ConfigEnsayoEnrejado en la clase OrientacionTimer");
+                System.err.println("El ensayo no es de tipo ConfigEnsayoOrientacion en la clase OrientacionTimer");
             }
 
             panelsRepaint();
@@ -132,7 +131,7 @@ public class OrientacionTimer extends AbstractNoMoveTimer {
         jpanel2.repaint();
     }
 
-    private void runMatrix(JPanel jpanel, ConfigEnsayoEnrejado cee) {
+    private void runMatrix(JPanel jpanel, ConfigEnsayoOrientacion cee) {
         Mat mtx = new Mat(470, 460, CvType.CV_8SC1, new Scalar(0));
         Point centro = new Point(mtx.width() / 2, mtx.height() / 2);
 
@@ -162,9 +161,8 @@ public class OrientacionTimer extends AbstractNoMoveTimer {
 
     @Override
     protected void panelsRellenar() {
-        ConfigEnsayoEnrejado patronEstatico = new ConfigEnsayoEnrejado(3, configEnsayo.getPpi(), false);
-        Aleatorio random = new Aleatorio();
-        ConfigEnsayoEnrejado patronPrueba = new ConfigEnsayoEnrejado(random.nextInt(5, 6), configEnsayo.getPpi(), false);
+        ConfigEnsayoOrientacion patronEstatico = new ConfigEnsayoOrientacion(3, configEnsayo.getPpi(), false,
+                configEnsayo.getContrat(), configEnsayo.getIntensidadMedia());
 
         switch (ensayo.getConfiguracion().getPanelEstimulo()) {
             case 0:
@@ -172,12 +170,12 @@ public class OrientacionTimer extends AbstractNoMoveTimer {
                 runMatrix(jpanel2, patronEstatico);
                 break;
             case 1:
-                runMatrix(jpanel1, patronPrueba);
+                runMatrix(jpanel1, configEnsayo);
                 runMatrix(jpanel2, patronEstatico);
                 break;
             case 2:
                 runMatrix(jpanel1, patronEstatico);
-                runMatrix(jpanel2, patronPrueba);
+                runMatrix(jpanel2, configEnsayo);
                 break;
         }
     }

@@ -15,8 +15,8 @@ import quino.clases.model.Paciente;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.event.ListSelectionEvent;
-import quino.view.test.FormaABManualConfigView;
-import quino.view.test.FormaABAutoConfigView;
+import quino.view.test.ManualFormaABConfigView;
+import quino.view.test.AutoFormaABConfigView;
 import quino.clases.model.Registro;
 import quino.clases.config.ConfigEnsayoFormaABAuto;
 import quino.util.test.Prueba;
@@ -39,9 +39,10 @@ import javax.swing.table.DefaultTableCellRenderer;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import quino.clases.config.ConfigApp;
 import quino.clases.config.ConfigEnsayo;
-import quino.clases.config.ConfigEnsayoEnrejado;
 import quino.clases.config.ConfigEnsayoEnrejadoAuto;
 import quino.clases.config.ConfigEnsayoGaborAuto;
+import quino.clases.config.ConfigEnsayoOrientacion;
+import quino.clases.config.ConfigEnsayoOrientacionAuto;
 import quino.clases.config.ConfigEnsayoShapeDetectAuto;
 import quino.util.Aleatorio;
 import quino.util.test.PruebaFormaA;
@@ -59,13 +60,17 @@ import quino.util.test.PruebaOrientacion;
 import quino.view.test2nd.EnrejadoTestView;
 import quino.view.test2nd.ShapeDetectTestView;
 import quino.view.test.FormaATestView;
+import quino.view.test2nd.ManualEnrejadoConfigView;
 import quino.view.test2nd.GaborTestView;
 import quino.view.test2nd.OrientacionTestView;
-import quino.view.test2nd.ShapeDetectManualConfigView;
+import quino.view.test2nd.ManualShapeDetectConfigView;
+import quino.view.test2nd.AutoTest2ndConfigView;
+import quino.view.test2nd.ManualGaborConfigView;
+import quino.view.test2nd.ManualOrientacionConfigView;
 
 /**
  *
- * @author davisito
+ * @author Felipe Rodriguez Arias
  */
 public class PrincipalView extends javax.swing.JFrame {
 
@@ -308,6 +313,13 @@ public class PrincipalView extends javax.swing.JFrame {
         jMenuItem24 = new javax.swing.JMenuItem();
         jMenuItem25 = new javax.swing.JMenuItem();
         jMenuItem26 = new javax.swing.JMenuItem();
+        jMenuItem33 = new javax.swing.JMenuItem();
+        jMenu9 = new javax.swing.JMenu();
+        jMenuItem28 = new javax.swing.JMenuItem();
+        jMenuItem29 = new javax.swing.JMenuItem();
+        jMenuItem31 = new javax.swing.JMenuItem();
+        jMenuItem30 = new javax.swing.JMenuItem();
+        jMenuItem32 = new javax.swing.JMenuItem();
         jMenu4 = new javax.swing.JMenu();
         jMenuItem4 = new javax.swing.JMenuItem();
         jMenuItem5 = new javax.swing.JMenuItem();
@@ -526,7 +538,7 @@ public class PrincipalView extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        jMenuBar1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jMenuBar1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(-16777216,true)));
         jMenuBar1.setFont(new java.awt.Font("Tahoma", 1, 12));
 
         jMenu6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/quino/view/main/icons/add-folder-to-archive.png"))); // NOI18N
@@ -581,7 +593,6 @@ public class PrincipalView extends javax.swing.JFrame {
 
         jMenuBar1.add(jMenu6);
 
-        jMenu8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/quino/view/main/icons/view-list-details-symbolic.png"))); // NOI18N
         jMenu8.setText("Entrenamiento");
         jMenu8.setFont(new java.awt.Font("Tahoma", 0, 12));
 
@@ -626,7 +637,6 @@ public class PrincipalView extends javax.swing.JFrame {
         });
         jMenu8.add(jMenuItem22);
 
-        jMenuItem27.setText("Detección de Orientación");
         jMenuItem27.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem27ActionPerformed(evt);
@@ -659,8 +669,6 @@ public class PrincipalView extends javax.swing.JFrame {
         });
         jMenu2.add(jMenuItem17);
 
-        jMenu7.setText("Configuración Manual");
-
         jMenuItem23.setText("Forma A,B");
         jMenuItem23.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -669,7 +677,6 @@ public class PrincipalView extends javax.swing.JFrame {
         });
         jMenu7.add(jMenuItem23);
 
-        jMenuItem24.setText("Detección Forma");
         jMenuItem24.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem24ActionPerformed(evt);
@@ -677,13 +684,62 @@ public class PrincipalView extends javax.swing.JFrame {
         });
         jMenu7.add(jMenuItem24);
 
-        jMenuItem25.setText("Enrejado");
+        jMenuItem25.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem25ActionPerformed(evt);
+            }
+        });
         jMenu7.add(jMenuItem25);
 
         jMenuItem26.setText("Gabor");
+        jMenuItem26.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem26ActionPerformed(evt);
+            }
+        });
         jMenu7.add(jMenuItem26);
 
+        jMenuItem33.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem33ActionPerformed(evt);
+            }
+        });
+        jMenu7.add(jMenuItem33);
+
         jMenu2.add(jMenu7);
+
+        jMenuItem28.setText("Forma A, B");
+        jMenuItem28.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem28ActionPerformed(evt);
+            }
+        });
+        jMenu9.add(jMenuItem28);
+
+        jMenuItem29.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem29ActionPerformed(evt);
+            }
+        });
+        jMenu9.add(jMenuItem29);
+
+        jMenuItem31.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem31ActionPerformed1(evt);
+            }
+        });
+        jMenu9.add(jMenuItem31);
+
+        jMenuItem30.setText("Enrejado");
+        jMenuItem30.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem30ActionPerformed1(evt);
+            }
+        });
+        jMenu9.add(jMenuItem30);
+        jMenu9.add(jMenuItem32);
+
+        jMenu2.add(jMenu9);
 
         jMenuBar1.add(jMenu2);
 
@@ -913,13 +969,13 @@ public class PrincipalView extends javax.swing.JFrame {
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
         // TODO add your handling code here:
-        FormaABManualConfigView c = new FormaABManualConfigView(this, true);
+        ManualFormaABConfigView c = new ManualFormaABConfigView(this, true);
         c.setVisible(true);
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
         // TODO add your handling code here:
-        FormaABAutoConfigView c = new FormaABAutoConfigView(this, true);
+        AutoFormaABConfigView c = new AutoFormaABConfigView(this, true);
         c.setVisible(true);
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
@@ -941,14 +997,14 @@ public class PrincipalView extends javax.swing.JFrame {
 
     private void jMenuItem16ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem16ActionPerformed
         // TODO add your handling code here:
-        FormaABManualConfigView c = new FormaABManualConfigView(this, true);
+        ManualFormaABConfigView c = new ManualFormaABConfigView(this, true);
         c.setVisible(true);
     }//GEN-LAST:event_jMenuItem16ActionPerformed
 
     private void jMenuItem17ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem17ActionPerformed
         // TODO add your handling code here:
         conf = new ConfigEnsayoFormaABAuto();
-        FormaABAutoConfigView c = new FormaABAutoConfigView(this, true);
+        AutoFormaABConfigView c = new AutoFormaABConfigView(this, true);
         c.setVisible(true);
     }//GEN-LAST:event_jMenuItem17ActionPerformed
 
@@ -1021,29 +1077,103 @@ public class PrincipalView extends javax.swing.JFrame {
 
     private void jMenuItem16ActionPerformed1(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem16ActionPerformed1
         // TODO add your handling code here:
-        FormaABManualConfigView c = new FormaABManualConfigView(this, true);
+        ManualFormaABConfigView c = new ManualFormaABConfigView(this, true);
         c.setVisible(true);
     }//GEN-LAST:event_jMenuItem16ActionPerformed1
 
     private void jMenuItem23ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem23ActionPerformed
         // TODO add your handling code here:
-        FormaABManualConfigView c = new FormaABManualConfigView(this, true);
+        ManualFormaABConfigView c = new ManualFormaABConfigView(this, true);
         c.setVisible(true);
     }//GEN-LAST:event_jMenuItem23ActionPerformed
 
     private void jMenuItem24ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem24ActionPerformed
         // TODO add your handling code here:
-        ShapeDetectManualConfigView c = new ShapeDetectManualConfigView(this, true);
+        ManualShapeDetectConfigView c = new ManualShapeDetectConfigView(this, true);
         c.setVisible(true);
     }//GEN-LAST:event_jMenuItem24ActionPerformed
 
     private void jMenuItem27ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem27ActionPerformed
         // TODO add your handling code here:
-        conf = new ConfigEnsayoEnrejadoAuto();
-        prueba = new PruebaOrientacion((ConfigEnsayoEnrejadoAuto) conf, ConfigApp.CANT_ENSAYOS);
+        conf = new ConfigEnsayoOrientacionAuto();
+        prueba = new PruebaOrientacion((ConfigEnsayoOrientacionAuto) conf, ConfigApp.CANT_ENSAYOS);
         OrientacionTestView otv = new OrientacionTestView(this, true, true);
         otv.setVisible(true);
     }//GEN-LAST:event_jMenuItem27ActionPerformed
+
+    private void jMenuItem25ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem25ActionPerformed
+        // TODO add your handling code here:
+        ManualEnrejadoConfigView emcv = new ManualEnrejadoConfigView(this, true);
+        emcv.setVisible(true);
+    }//GEN-LAST:event_jMenuItem25ActionPerformed
+
+    private void jMenuItem28ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem28ActionPerformed
+        // TODO add your handling code here:
+        conf = new ConfigEnsayoFormaABAuto();
+        AutoFormaABConfigView c = new AutoFormaABConfigView(this, true);
+        c.setVisible(true);
+    }//GEN-LAST:event_jMenuItem28ActionPerformed
+
+    private void jMenuItem29ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem29ActionPerformed
+        // TODO add your handling code here:
+        conf = new ConfigEnsayoShapeDetectAuto();
+        AutoTest2ndConfigView tacv = new AutoTest2ndConfigView(this, true);
+        tacv.setVisible(true);
+    }//GEN-LAST:event_jMenuItem29ActionPerformed
+
+    private void jMenuItem30ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem30ActionPerformed
+        // TODO add your handling code here:
+        conf = new ConfigEnsayoEnrejadoAuto();
+        AutoTest2ndConfigView tacv = new AutoTest2ndConfigView(this, true);
+        tacv.setVisible(true);
+    }//GEN-LAST:event_jMenuItem30ActionPerformed
+
+    private void jMenuItem31ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem31ActionPerformed
+        // TODO add your handling code here:
+        conf = new ConfigEnsayoGaborAuto();
+        AutoTest2ndConfigView tacv = new AutoTest2ndConfigView(this, true);
+        tacv.setVisible(true);
+    }//GEN-LAST:event_jMenuItem31ActionPerformed
+
+    private void jMenuItem32ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem32ActionPerformed
+        // TODO add your handling code here:
+        conf = new ConfigEnsayoOrientacionAuto();
+        AutoTest2ndConfigView tacv = new AutoTest2ndConfigView(this, true);
+        tacv.setVisible(true);
+    }//GEN-LAST:event_jMenuItem32ActionPerformed
+
+    private void jMenuItem26ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem26ActionPerformed
+        // TODO add your handling code here:
+        ManualGaborConfigView mgcv = new ManualGaborConfigView(this, true);
+        mgcv.setVisible(true);
+    }//GEN-LAST:event_jMenuItem26ActionPerformed
+
+    private void jMenuItem32ActionPerformed1(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem32ActionPerformed1
+        // TODO add your handling code here:
+        conf = new ConfigEnsayoOrientacionAuto();
+        AutoTest2ndConfigView tacv = new AutoTest2ndConfigView(this, true);
+        tacv.setVisible(true);
+    }//GEN-LAST:event_jMenuItem32ActionPerformed1
+
+    private void jMenuItem30ActionPerformed1(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem30ActionPerformed1
+        // TODO add your handling code here:
+        conf = new ConfigEnsayoEnrejadoAuto();
+        AutoTest2ndConfigView tacv = new AutoTest2ndConfigView(this, true);
+        tacv.setVisible(true);
+    }//GEN-LAST:event_jMenuItem30ActionPerformed1
+
+    private void jMenuItem31ActionPerformed1(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem31ActionPerformed1
+        // TODO add your handling code here:
+        conf = new ConfigEnsayoGaborAuto();
+        AutoTest2ndConfigView tacv = new AutoTest2ndConfigView(this, true);
+        tacv.setVisible(true);
+    }//GEN-LAST:event_jMenuItem31ActionPerformed1
+
+    private void jMenuItem33ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem33ActionPerformed
+        // TODO add your handling code here:
+        ManualOrientacionConfigView mocv = new ManualOrientacionConfigView(this, true);
+        mocv.setVisible(true);
+    }//GEN-LAST:event_jMenuItem33ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -1076,6 +1206,7 @@ public class PrincipalView extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu6;
     private javax.swing.JMenu jMenu7;
     private javax.swing.JMenu jMenu8;
+    private javax.swing.JMenu jMenu9;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem10;
@@ -1097,7 +1228,13 @@ public class PrincipalView extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem25;
     private javax.swing.JMenuItem jMenuItem26;
     private javax.swing.JMenuItem jMenuItem27;
+    private javax.swing.JMenuItem jMenuItem28;
+    private javax.swing.JMenuItem jMenuItem29;
     private javax.swing.JMenuItem jMenuItem3;
+    private javax.swing.JMenuItem jMenuItem30;
+    private javax.swing.JMenuItem jMenuItem31;
+    private javax.swing.JMenuItem jMenuItem32;
+    private javax.swing.JMenuItem jMenuItem33;
     private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem jMenuItem5;
     private javax.swing.JMenuItem jMenuItem6;

@@ -43,7 +43,7 @@ public class MainData {
             Aleatorio random = new Aleatorio();
             Registro registro = new Registro();
 
-            for (int i = 0; i < 20; i++) {
+            for (int i = 0; i < 1; i++) {
 
                 PruebaFormaA foveal = new PruebaFormaA(new ConfigEnsayoFormaABAuto(false, random.nextInt(0, 8)), random.nextInt(5, 9));
                 for (int j = 0; j < foveal.getEnsayos().size(); j++) {

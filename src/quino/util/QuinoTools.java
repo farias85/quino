@@ -195,6 +195,8 @@ public class QuinoTools {
             principalView.getPacienteActual().setGabor((PruebaGabor) prueba);
         } else if (prueba instanceof PruebaEnrejado) {
             principalView.getPacienteActual().setEnrejado((PruebaEnrejado) prueba);
+        } else if (prueba instanceof PruebaOrientacion) {
+            principalView.getPacienteActual().setOrientacion((PruebaOrientacion) prueba);
         }
 
         principalView.getRegistro().salvarRegistro(ConfigApp.REGISTRO_FILE_NAME);

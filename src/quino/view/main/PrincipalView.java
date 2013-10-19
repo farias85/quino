@@ -344,7 +344,7 @@ public class PrincipalView extends javax.swing.JFrame {
         jMenu5.setText("Realizar Prueba");
         jMenu5.setFont(new java.awt.Font("Tahoma", 1, 12));
 
-        jMenu10.setText("Configuración Atomática");
+        jMenu10.setText("Configuración Manual");
         jMenu10.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
 
         jMenuItem1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
@@ -394,7 +394,7 @@ public class PrincipalView extends javax.swing.JFrame {
 
         jMenu5.add(jMenu10);
 
-        jMenu11.setText("Configuración Manual");
+        jMenu11.setText("Configuración Automática");
         jMenu11.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
 
         jMenuItem39.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
@@ -792,7 +792,7 @@ public class PrincipalView extends javax.swing.JFrame {
         jMenu2.setText("Prueba");
         jMenu2.setFont(new java.awt.Font("Tahoma", 0, 12));
 
-        jMenu7.setText("Configuración Automática");
+        jMenu7.setText("Configuración Manual");
         jMenu7.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
 
         jMenuItem23.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
@@ -846,7 +846,7 @@ public class PrincipalView extends javax.swing.JFrame {
 
         jMenu2.add(jMenu7);
 
-        jMenu9.setText("Configuración Manual");
+        jMenu9.setText("Configuración Automática");
         jMenu9.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
 
         jMenuItem28.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
@@ -931,7 +931,7 @@ public class PrincipalView extends javax.swing.JFrame {
         jMenu1.setText("Herramientas");
         jMenu1.setFont(new java.awt.Font("Tahoma", 0, 12));
 
-        jMenuItem10.setFont(new java.awt.Font("Tahoma", 0, 12));
+        jMenuItem10.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jMenuItem10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/quino/view/main/icons/stock_fullscreen.png"))); // NOI18N
         jMenuItem10.setText("Configuración Avanzada");
         jMenuItem10.setName(""); // NOI18N
@@ -1330,7 +1330,7 @@ public class PrincipalView extends javax.swing.JFrame {
 
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
         // TODO add your handling code here:
-         ManualFormaABConfigView c = new ManualFormaABConfigView(this, true);
+       ManualShapeDetectConfigView c = new ManualShapeDetectConfigView(this, true);
         c.setVisible(true);
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 

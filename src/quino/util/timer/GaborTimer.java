@@ -81,7 +81,7 @@ public class GaborTimer extends AbstractSinusoideTimer {
                             resultado.setDescripcion("No hubo movimiento");
                         } else if (configEnsayo.getKey() != resultado.getKey()) {
                             resultado.setError(true);
-                            resultado.setDescripcion("La tecla presionada no es la esperada");
+                            resultado.setDescripcion("Dirección incorrecta");
                         }
 
                         puedeTeclear = false;

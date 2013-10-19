@@ -22,7 +22,7 @@ public class ConfigEnsayoShapeDetectAuto extends ConfigEnsayoShapeDetect {
         Aleatorio random = new Aleatorio();
         densidad = random.nextInt(1000, 1500);
         tolerancia = random.nextInt(0, 1);
-        pcShape = random.nextInt(20, 21);
+        pcShape = random.nextInt(8, 12);
         numFigura = random.nextInt(1, 4);
 
         panelEstimulo = random.nextInt(0, 2);

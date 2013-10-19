@@ -34,6 +34,7 @@ import quino.view.test.FormaBTestView;
 import java.io.File;
 import javax.swing.filechooser.*;
 import javax.swing.JFileChooser;
+import javax.swing.JMenu;
 import javax.swing.UIManager;
 import javax.swing.table.DefaultTableCellRenderer;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
@@ -120,8 +121,8 @@ public class PrincipalView extends javax.swing.JFrame {
 
         initComponents();
         this.setLocationRelativeTo(null);
-        jMenuItem16.setEnabled(false);
-        jMenuItem17.setEnabled(false);
+        jMenu7.setEnabled(false);
+        jMenu9.setEnabled(false);
 
         try {
             registro = new Registro();
@@ -136,8 +137,8 @@ public class PrincipalView extends javax.swing.JFrame {
                 b_fich.setEnabled(false);
                 b_mod.setEnabled(false);
                 b_prueba.setEnabled(false);
-                jMenuItem16.setEnabled(false);
-                jMenuItem17.setEnabled(false);
+                jMenu7.setEnabled(false);
+                jMenu9.setEnabled(false);
                 throw new Exception("No existen Pacientes registrados");
             }
         } catch (Exception e) {
@@ -177,9 +178,9 @@ public class PrincipalView extends javax.swing.JFrame {
         b_fich.setToolTipText("Mostrar la Ficha del Paciente seleccionado");
         b_mod.setToolTipText("Modificar el Paciente seleccionado");
         b_prueba.setToolTipText("Realizar Prueba al Paciente seleccionado");
-        jMenuItem4.setText("Prueba Forma A ");
-        jMenuItem9.setText("Prueba Forma B ");
 
+        jMenu10.add(jMenuItem1);
+        jMenu10.add(jMenuItem2);
     }
 
     private void habilitarComponentes(boolean habilitar) {
@@ -192,8 +193,8 @@ public class PrincipalView extends javax.swing.JFrame {
         b_fich.setEnabled(habilitar);
         b_mod.setEnabled(habilitar);
         b_prueba.setEnabled(habilitar);
-        jMenuItem16.setEnabled(habilitar);
-        jMenuItem17.setEnabled(habilitar);
+        jMenu7.setEnabled(habilitar);
+        jMenu9.setEnabled(habilitar);
     }
 
     public final void modificarTableModel() {
@@ -237,7 +238,7 @@ public class PrincipalView extends javax.swing.JFrame {
     }
 
     public void ActivarPractica() {
-        jMenuItem16.setEnabled(true);
+        jMenu7.setEnabled(true);
     }
 
     private void eliminarPaciente() {
@@ -273,14 +274,28 @@ public class PrincipalView extends javax.swing.JFrame {
 
         menu = new javax.swing.JPopupMenu();
         jMenu5 = new javax.swing.JMenu();
+        jMenu10 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
         jMenuItem2 = new javax.swing.JMenuItem();
+        jMenuItem16 = new javax.swing.JMenuItem();
+        jMenuItem17 = new javax.swing.JMenuItem();
+        jMenuItem38 = new javax.swing.JMenuItem();
+        jMenu11 = new javax.swing.JMenu();
+        jMenuItem39 = new javax.swing.JMenuItem();
+        jMenuItem40 = new javax.swing.JMenuItem();
+        jMenuItem41 = new javax.swing.JMenuItem();
+        jMenuItem42 = new javax.swing.JMenuItem();
+        jMenuItem43 = new javax.swing.JMenuItem();
         jMenuItem6 = new javax.swing.JMenuItem();
         jMenuItem7 = new javax.swing.JMenuItem();
         jMenuItem8 = new javax.swing.JMenuItem();
         Resultados = new javax.swing.JMenu();
         jMenuItem9 = new javax.swing.JMenuItem();
         jMenuItem14 = new javax.swing.JMenuItem();
+        jMenuItem34 = new javax.swing.JMenuItem();
+        jMenuItem35 = new javax.swing.JMenuItem();
+        jMenuItem36 = new javax.swing.JMenuItem();
+        jMenuItem37 = new javax.swing.JMenuItem();
         jFileChooser1 = new javax.swing.JFileChooser();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
@@ -306,8 +321,6 @@ public class PrincipalView extends javax.swing.JFrame {
         jMenuItem22 = new javax.swing.JMenuItem();
         jMenuItem27 = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
-        jMenuItem16 = new javax.swing.JMenuItem();
-        jMenuItem17 = new javax.swing.JMenuItem();
         jMenu7 = new javax.swing.JMenu();
         jMenuItem23 = new javax.swing.JMenuItem();
         jMenuItem24 = new javax.swing.JMenuItem();
@@ -331,27 +344,109 @@ public class PrincipalView extends javax.swing.JFrame {
         jMenu5.setText("Realizar Prueba");
         jMenu5.setFont(new java.awt.Font("Tahoma", 1, 12));
 
-        jMenuItem1.setFont(new java.awt.Font("Tahoma", 1, 12));
-        jMenuItem1.setText("Configuración Manual");
+        jMenu10.setText("Configuración Atomática");
+        jMenu10.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+
+        jMenuItem1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jMenuItem1.setText("Forma A, B");
         jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem1ActionPerformed(evt);
             }
         });
-        jMenu5.add(jMenuItem1);
+        jMenu10.add(jMenuItem1);
 
-        jMenuItem2.setFont(new java.awt.Font("Tahoma", 1, 12));
-        jMenuItem2.setText("Configuración Automática");
+        jMenuItem2.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jMenuItem2.setText("Detección de Forma");
         jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem2ActionPerformed(evt);
             }
         });
-        jMenu5.add(jMenuItem2);
+        jMenu10.add(jMenuItem2);
+
+        jMenuItem16.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jMenuItem16.setText("Enrejado");
+        jMenuItem16.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem16ActionPerformed(evt);
+            }
+        });
+        jMenu10.add(jMenuItem16);
+
+        jMenuItem17.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jMenuItem17.setText("Campana de Gabor");
+        jMenuItem17.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem17ActionPerformed(evt);
+            }
+        });
+        jMenu10.add(jMenuItem17);
+
+        jMenuItem38.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jMenuItem38.setText("Detección de Orientación");
+        jMenuItem38.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem38ActionPerformed(evt);
+            }
+        });
+        jMenu10.add(jMenuItem38);
+
+        jMenu5.add(jMenu10);
+
+        jMenu11.setText("Configuración Manual");
+        jMenu11.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+
+        jMenuItem39.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jMenuItem39.setText("Forma A, B");
+        jMenuItem39.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem39ActionPerformed(evt);
+            }
+        });
+        jMenu11.add(jMenuItem39);
+
+        jMenuItem40.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jMenuItem40.setText("Detección de Forma");
+        jMenuItem40.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem40ActionPerformed(evt);
+            }
+        });
+        jMenu11.add(jMenuItem40);
+
+        jMenuItem41.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jMenuItem41.setText("Enrejado");
+        jMenuItem41.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem41ActionPerformed(evt);
+            }
+        });
+        jMenu11.add(jMenuItem41);
+
+        jMenuItem42.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jMenuItem42.setText("Campana de Gabor");
+        jMenuItem42.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem42ActionPerformed(evt);
+            }
+        });
+        jMenu11.add(jMenuItem42);
+
+        jMenuItem43.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jMenuItem43.setText("Detección de Orientación");
+        jMenuItem43.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem43ActionPerformed(evt);
+            }
+        });
+        jMenu11.add(jMenuItem43);
+
+        jMenu5.add(jMenu11);
 
         menu.add(jMenu5);
 
-        jMenuItem6.setFont(new java.awt.Font("Tahoma", 1, 12));
+        jMenuItem6.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jMenuItem6.setText("Modificar Datos");
         jMenuItem6.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -360,7 +455,7 @@ public class PrincipalView extends javax.swing.JFrame {
         });
         menu.add(jMenuItem6);
 
-        jMenuItem7.setFont(new java.awt.Font("Tahoma", 1, 12));
+        jMenuItem7.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jMenuItem7.setText("Mostrar Ficha");
         jMenuItem7.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -369,7 +464,7 @@ public class PrincipalView extends javax.swing.JFrame {
         });
         menu.add(jMenuItem7);
 
-        jMenuItem8.setFont(new java.awt.Font("Tahoma", 1, 12));
+        jMenuItem8.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jMenuItem8.setText("Eliminar");
         jMenuItem8.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -381,8 +476,8 @@ public class PrincipalView extends javax.swing.JFrame {
         Resultados.setText("Mostrar Resultados");
         Resultados.setFont(new java.awt.Font("Tahoma", 1, 12));
 
-        jMenuItem9.setFont(new java.awt.Font("Tahoma", 1, 12));
-        jMenuItem9.setText("Prueba Periférica");
+        jMenuItem9.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jMenuItem9.setText("Prueba Forma B");
         jMenuItem9.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem9ActionPerformed(evt);
@@ -390,8 +485,8 @@ public class PrincipalView extends javax.swing.JFrame {
         });
         Resultados.add(jMenuItem9);
 
-        jMenuItem14.setFont(new java.awt.Font("Tahoma", 1, 12));
-        jMenuItem14.setText("Prueba Fobeal");
+        jMenuItem14.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jMenuItem14.setText("Prueba Forma A");
         jMenuItem14.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem14ActionPerformed(evt);
@@ -399,13 +494,49 @@ public class PrincipalView extends javax.swing.JFrame {
         });
         Resultados.add(jMenuItem14);
 
+        jMenuItem34.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jMenuItem34.setText("Prueba Detección Forma");
+        jMenuItem34.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem34ActionPerformed(evt);
+            }
+        });
+        Resultados.add(jMenuItem34);
+
+        jMenuItem35.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jMenuItem35.setText("Prueba Enrejado");
+        jMenuItem35.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem35ActionPerformed(evt);
+            }
+        });
+        Resultados.add(jMenuItem35);
+
+        jMenuItem36.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jMenuItem36.setText("Prueba Gabor");
+        jMenuItem36.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem36ActionPerformed(evt);
+            }
+        });
+        Resultados.add(jMenuItem36);
+
+        jMenuItem37.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jMenuItem37.setText("Prueba Detección de Orientación");
+        jMenuItem37.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem37ActionPerformed(evt);
+            }
+        });
+        Resultados.add(jMenuItem37);
+
         menu.add(Resultados);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setIconImages(null);
         setResizable(false);
 
-        jTable1.setFont(new java.awt.Font("Tahoma", 0, 12));
+        jTable1.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jTable1.getTableHeader().setFont(new java.awt.Font("Tahoma", 1, 12));
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -538,7 +669,7 @@ public class PrincipalView extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        jMenuBar1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(-16777216,true)));
+        jMenuBar1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jMenuBar1.setFont(new java.awt.Font("Tahoma", 1, 12));
 
         jMenu6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/quino/view/main/icons/add-folder-to-archive.png"))); // NOI18N
@@ -596,6 +727,7 @@ public class PrincipalView extends javax.swing.JFrame {
         jMenu8.setText("Entrenamiento");
         jMenu8.setFont(new java.awt.Font("Tahoma", 0, 12));
 
+        jMenuItem18.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jMenuItem18.setIcon(new javax.swing.ImageIcon(getClass().getResource("/quino/view/main/icons/package-installed-updated.png"))); // NOI18N
         jMenuItem18.setText("Forma A");
         jMenuItem18.addActionListener(new java.awt.event.ActionListener() {
@@ -605,6 +737,7 @@ public class PrincipalView extends javax.swing.JFrame {
         });
         jMenu8.add(jMenuItem18);
 
+        jMenuItem19.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jMenuItem19.setIcon(new javax.swing.ImageIcon(getClass().getResource("/quino/view/main/icons/package-broken.png"))); // NOI18N
         jMenuItem19.setText("Forma B");
         jMenuItem19.addActionListener(new java.awt.event.ActionListener() {
@@ -614,6 +747,9 @@ public class PrincipalView extends javax.swing.JFrame {
         });
         jMenu8.add(jMenuItem19);
 
+        jMenuItem20.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jMenuItem20.setIcon(new javax.swing.ImageIcon(getClass().getResource("/quino/view/main/icons/package-remove.png"))); // NOI18N
+        jMenuItem20.setText("Detección de Forma");
         jMenuItem20.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem20ActionPerformed(evt);
@@ -621,7 +757,9 @@ public class PrincipalView extends javax.swing.JFrame {
         });
         jMenu8.add(jMenuItem20);
 
-        jMenuItem21.setIcon(new javax.swing.ImageIcon(getClass().getResource("/quino/view/main/icons/package-upgrade.png"))); // NOI18N
+        jMenuItem21.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jMenuItem21.setIcon(new javax.swing.ImageIcon(getClass().getResource("/quino/view/main/icons/star.png"))); // NOI18N
+        jMenuItem21.setText("Enrejado");
         jMenuItem21.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem21ActionPerformed(evt);
@@ -629,7 +767,9 @@ public class PrincipalView extends javax.swing.JFrame {
         });
         jMenu8.add(jMenuItem21);
 
-        jMenuItem22.setIcon(new javax.swing.ImageIcon(getClass().getResource("/quino/view/main/icons/view-list-icons.png"))); // NOI18N
+        jMenuItem22.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jMenuItem22.setIcon(new javax.swing.ImageIcon(getClass().getResource("/quino/view/main/icons/package-supported.png"))); // NOI18N
+        jMenuItem22.setText("Campana de Gabor");
         jMenuItem22.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem22ActionPerformed(evt);
@@ -637,6 +777,8 @@ public class PrincipalView extends javax.swing.JFrame {
         });
         jMenu8.add(jMenuItem22);
 
+        jMenuItem27.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jMenuItem27.setText("Detección de Orientación");
         jMenuItem27.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem27ActionPerformed(evt);
@@ -650,25 +792,10 @@ public class PrincipalView extends javax.swing.JFrame {
         jMenu2.setText("Prueba");
         jMenu2.setFont(new java.awt.Font("Tahoma", 0, 12));
 
-        jMenuItem16.setFont(new java.awt.Font("Tahoma", 0, 12));
-        jMenuItem16.setIcon(new javax.swing.ImageIcon(getClass().getResource("/quino/view/main/icons/stock_properties.png"))); // NOI18N
-        jMenuItem16.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem16ActionPerformed1(evt);
-            }
-        });
-        jMenu2.add(jMenuItem16);
+        jMenu7.setText("Configuración Automática");
+        jMenu7.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
 
-        jMenuItem17.setFont(new java.awt.Font("Tahoma", 0, 12));
-        jMenuItem17.setIcon(new javax.swing.ImageIcon(getClass().getResource("/quino/view/main/icons/stock_print-setup.png"))); // NOI18N
-        jMenuItem17.setText("Configuración Automática");
-        jMenuItem17.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem17ActionPerformed(evt);
-            }
-        });
-        jMenu2.add(jMenuItem17);
-
+        jMenuItem23.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jMenuItem23.setText("Forma A,B");
         jMenuItem23.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -677,13 +804,19 @@ public class PrincipalView extends javax.swing.JFrame {
         });
         jMenu7.add(jMenuItem23);
 
+        jMenuItem24.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jMenuItem24.setIcon(new javax.swing.ImageIcon(getClass().getResource("/quino/view/main/icons/package-supported.png"))); // NOI18N
+        jMenuItem24.setText("Detección de Forma");
         jMenuItem24.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem24ActionPerformed(evt);
+                jMenuItem24ActionPerformed1(evt);
             }
         });
         jMenu7.add(jMenuItem24);
 
+        jMenuItem25.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jMenuItem25.setIcon(new javax.swing.ImageIcon(getClass().getResource("/quino/view/main/icons/star.png"))); // NOI18N
+        jMenuItem25.setText("Enrejado");
         jMenuItem25.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem25ActionPerformed(evt);
@@ -691,7 +824,9 @@ public class PrincipalView extends javax.swing.JFrame {
         });
         jMenu7.add(jMenuItem25);
 
-        jMenuItem26.setText("Gabor");
+        jMenuItem26.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jMenuItem26.setIcon(new javax.swing.ImageIcon(getClass().getResource("/quino/view/main/icons/package-supported.png"))); // NOI18N
+        jMenuItem26.setText("Campana de Gabor");
         jMenuItem26.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem26ActionPerformed(evt);
@@ -699,6 +834,9 @@ public class PrincipalView extends javax.swing.JFrame {
         });
         jMenu7.add(jMenuItem26);
 
+        jMenuItem33.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jMenuItem33.setIcon(new javax.swing.ImageIcon(getClass().getResource("/quino/view/main/icons/mail-send.png"))); // NOI18N
+        jMenuItem33.setText("Detección de Orientación");
         jMenuItem33.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem33ActionPerformed(evt);
@@ -708,6 +846,11 @@ public class PrincipalView extends javax.swing.JFrame {
 
         jMenu2.add(jMenu7);
 
+        jMenu9.setText("Configuración Manual");
+        jMenu9.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+
+        jMenuItem28.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jMenuItem28.setIcon(new javax.swing.ImageIcon(getClass().getResource("/quino/view/main/icons/package-installed-updated.png"))); // NOI18N
         jMenuItem28.setText("Forma A, B");
         jMenuItem28.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -716,6 +859,8 @@ public class PrincipalView extends javax.swing.JFrame {
         });
         jMenu9.add(jMenuItem28);
 
+        jMenuItem29.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jMenuItem29.setText("Detección de Forma");
         jMenuItem29.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem29ActionPerformed(evt);
@@ -723,6 +868,9 @@ public class PrincipalView extends javax.swing.JFrame {
         });
         jMenu9.add(jMenuItem29);
 
+        jMenuItem31.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jMenuItem31.setIcon(new javax.swing.ImageIcon(getClass().getResource("/quino/view/main/icons/star.png"))); // NOI18N
+        jMenuItem31.setText("Enrejado");
         jMenuItem31.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem31ActionPerformed1(evt);
@@ -730,13 +878,24 @@ public class PrincipalView extends javax.swing.JFrame {
         });
         jMenu9.add(jMenuItem31);
 
-        jMenuItem30.setText("Enrejado");
+        jMenuItem30.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jMenuItem30.setIcon(new javax.swing.ImageIcon(getClass().getResource("/quino/view/main/icons/package-supported.png"))); // NOI18N
+        jMenuItem30.setText("Campana de Gabor");
         jMenuItem30.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem30ActionPerformed1(evt);
             }
         });
         jMenu9.add(jMenuItem30);
+
+        jMenuItem32.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jMenuItem32.setIcon(new javax.swing.ImageIcon(getClass().getResource("/quino/view/main/icons/mail-send.png"))); // NOI18N
+        jMenuItem32.setText("Detección de Orientación");
+        jMenuItem32.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem32ActionPerformed(evt);
+            }
+        });
         jMenu9.add(jMenuItem32);
 
         jMenu2.add(jMenu9);
@@ -747,7 +906,7 @@ public class PrincipalView extends javax.swing.JFrame {
         jMenu4.setText("Paciente   ");
         jMenu4.setFont(new java.awt.Font("Tahoma", 0, 12));
 
-        jMenuItem4.setFont(new java.awt.Font("Tahoma", 0, 12));
+        jMenuItem4.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jMenuItem4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/quino/view/main/icons/stock_new-bcard.png"))); // NOI18N
         jMenuItem4.setText("Nuevo Paciente");
         jMenuItem4.addActionListener(new java.awt.event.ActionListener() {
@@ -757,9 +916,8 @@ public class PrincipalView extends javax.swing.JFrame {
         });
         jMenu4.add(jMenuItem4);
 
-        jMenuItem5.setFont(new java.awt.Font("Tahoma", 0, 12));
         jMenuItem5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/quino/view/main/icons/stock_zoom-in.png"))); // NOI18N
-        jMenuItem5.setText("Buscar");
+        jMenuItem5.setText("Buscar Paciente");
         jMenuItem5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem5ActionPerformed(evt);
@@ -863,14 +1021,7 @@ public class PrincipalView extends javax.swing.JFrame {
     private void jMenuItem9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem9ActionPerformed
         // TODO add your handling code here:
         prueba = pacienteActual.getPeriferica();
-        if (prueba != null) {
-            ResultView resultado = new ResultView(this, true);
-            resultado.setVisible(true);
-        } else {
-            ErrorDialog err = new ErrorDialog(this, true,
-                    "A este paciente no se le ha realizado este tipo de prueba");
-            err.setVisible(true);
-        }
+        verResultadoDPrueba();
     }//GEN-LAST:event_jMenuItem9ActionPerformed
 
     private void jMenuItem12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem12ActionPerformed
@@ -957,27 +1108,8 @@ public class PrincipalView extends javax.swing.JFrame {
     private void jMenuItem14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem14ActionPerformed
         // TODO add your handling code here:
         prueba = pacienteActual.getFoveal();
-        if (prueba != null) {
-            ResultView resultado = new ResultView(this, true);
-            resultado.setVisible(true);
-        } else {
-            ErrorDialog err = new ErrorDialog(this, true,
-                    "A este paciente no se le ha realizdo este tipo de prueba");
-            err.setVisible(true);
-        }
+        verResultadoDPrueba();
     }//GEN-LAST:event_jMenuItem14ActionPerformed
-
-    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
-        // TODO add your handling code here:
-        ManualFormaABConfigView c = new ManualFormaABConfigView(this, true);
-        c.setVisible(true);
-    }//GEN-LAST:event_jMenuItem1ActionPerformed
-
-    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
-        // TODO add your handling code here:
-        AutoFormaABConfigView c = new AutoFormaABConfigView(this, true);
-        c.setVisible(true);
-    }//GEN-LAST:event_jMenuItem2ActionPerformed
 
     private void jMenuItem18ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem18ActionPerformed
         // TODO add your handling code here:
@@ -997,16 +1129,9 @@ public class PrincipalView extends javax.swing.JFrame {
 
     private void jMenuItem16ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem16ActionPerformed
         // TODO add your handling code here:
-        ManualFormaABConfigView c = new ManualFormaABConfigView(this, true);
-        c.setVisible(true);
+        ManualEnrejadoConfigView emcv = new ManualEnrejadoConfigView(this, true);
+        emcv.setVisible(true);
     }//GEN-LAST:event_jMenuItem16ActionPerformed
-
-    private void jMenuItem17ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem17ActionPerformed
-        // TODO add your handling code here:
-        conf = new ConfigEnsayoFormaABAuto();
-        AutoFormaABConfigView c = new AutoFormaABConfigView(this, true);
-        c.setVisible(true);
-    }//GEN-LAST:event_jMenuItem17ActionPerformed
 
     private void jMenuItem10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem10ActionPerformed
         // TODO add your handling code here:
@@ -1075,12 +1200,6 @@ public class PrincipalView extends javax.swing.JFrame {
         gtv.setVisible(true);
     }//GEN-LAST:event_jMenuItem22ActionPerformed
 
-    private void jMenuItem16ActionPerformed1(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem16ActionPerformed1
-        // TODO add your handling code here:
-        ManualFormaABConfigView c = new ManualFormaABConfigView(this, true);
-        c.setVisible(true);
-    }//GEN-LAST:event_jMenuItem16ActionPerformed1
-
     private void jMenuItem23ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem23ActionPerformed
         // TODO add your handling code here:
         ManualFormaABConfigView c = new ManualFormaABConfigView(this, true);
@@ -1089,8 +1208,6 @@ public class PrincipalView extends javax.swing.JFrame {
 
     private void jMenuItem24ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem24ActionPerformed
         // TODO add your handling code here:
-        ManualShapeDetectConfigView c = new ManualShapeDetectConfigView(this, true);
-        c.setVisible(true);
     }//GEN-LAST:event_jMenuItem24ActionPerformed
 
     private void jMenuItem27ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem27ActionPerformed
@@ -1157,14 +1274,14 @@ public class PrincipalView extends javax.swing.JFrame {
 
     private void jMenuItem30ActionPerformed1(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem30ActionPerformed1
         // TODO add your handling code here:
-        conf = new ConfigEnsayoEnrejadoAuto();
+        conf = new ConfigEnsayoGaborAuto();
         AutoTest2ndConfigView tacv = new AutoTest2ndConfigView(this, true);
         tacv.setVisible(true);
     }//GEN-LAST:event_jMenuItem30ActionPerformed1
 
     private void jMenuItem31ActionPerformed1(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem31ActionPerformed1
         // TODO add your handling code here:
-        conf = new ConfigEnsayoGaborAuto();
+        conf = new ConfigEnsayoEnrejadoAuto();
         AutoTest2ndConfigView tacv = new AutoTest2ndConfigView(this, true);
         tacv.setVisible(true);
     }//GEN-LAST:event_jMenuItem31ActionPerformed1
@@ -1174,6 +1291,106 @@ public class PrincipalView extends javax.swing.JFrame {
         ManualOrientacionConfigView mocv = new ManualOrientacionConfigView(this, true);
         mocv.setVisible(true);
     }//GEN-LAST:event_jMenuItem33ActionPerformed
+
+    private void jMenuItem34ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem34ActionPerformed
+        // TODO add your handling code here:
+        prueba = pacienteActual.getForma();
+        verResultadoDPrueba();
+    }//GEN-LAST:event_jMenuItem34ActionPerformed
+
+    private void jMenuItem35ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem35ActionPerformed
+        // TODO add your handling code here:]
+        prueba = pacienteActual.getEnrejado();
+        verResultadoDPrueba();
+    }//GEN-LAST:event_jMenuItem35ActionPerformed
+
+    private void jMenuItem36ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem36ActionPerformed
+        // TODO add your handling code here:
+        prueba = pacienteActual.getGabor();
+        verResultadoDPrueba();
+    }//GEN-LAST:event_jMenuItem36ActionPerformed
+
+    private void jMenuItem37ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem37ActionPerformed
+        // TODO add your handling code here:
+        prueba = pacienteActual.getOrientacion();
+        verResultadoDPrueba();
+    }//GEN-LAST:event_jMenuItem37ActionPerformed
+
+    private void jMenuItem24ActionPerformed1(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem24ActionPerformed1
+        // TODO add your handling code here:
+        ManualShapeDetectConfigView c = new ManualShapeDetectConfigView(this, true);
+        c.setVisible(true);
+    }//GEN-LAST:event_jMenuItem24ActionPerformed1
+
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+        // TODO add your handling code here:
+        ManualFormaABConfigView c = new ManualFormaABConfigView(this, true);
+        c.setVisible(true);
+    }//GEN-LAST:event_jMenuItem1ActionPerformed
+
+    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+        // TODO add your handling code here:
+         ManualFormaABConfigView c = new ManualFormaABConfigView(this, true);
+        c.setVisible(true);
+    }//GEN-LAST:event_jMenuItem2ActionPerformed
+
+    private void jMenuItem17ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem17ActionPerformed
+        // TODO add your handling code here:
+        ManualGaborConfigView mgcv = new ManualGaborConfigView(this, true);
+        mgcv.setVisible(true);
+    }//GEN-LAST:event_jMenuItem17ActionPerformed
+
+    private void jMenuItem38ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem38ActionPerformed
+        // TODO add your handling code here:
+        ManualOrientacionConfigView mocv = new ManualOrientacionConfigView(this, true);
+        mocv.setVisible(true);
+    }//GEN-LAST:event_jMenuItem38ActionPerformed
+
+    private void jMenuItem39ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem39ActionPerformed
+        // TODO add your handling code here:
+        conf = new ConfigEnsayoFormaABAuto();
+        AutoFormaABConfigView c = new AutoFormaABConfigView(this, true);
+        c.setVisible(true);
+    }//GEN-LAST:event_jMenuItem39ActionPerformed
+
+    private void jMenuItem40ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem40ActionPerformed
+        // TODO add your handling code here:
+        conf = new ConfigEnsayoShapeDetectAuto();
+        AutoTest2ndConfigView tacv = new AutoTest2ndConfigView(this, true);
+        tacv.setVisible(true);
+    }//GEN-LAST:event_jMenuItem40ActionPerformed
+
+    private void jMenuItem41ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem41ActionPerformed
+        // TODO add your handling code here:
+        conf = new ConfigEnsayoEnrejadoAuto();
+        AutoTest2ndConfigView tacv = new AutoTest2ndConfigView(this, true);
+        tacv.setVisible(true);
+    }//GEN-LAST:event_jMenuItem41ActionPerformed
+
+    private void jMenuItem42ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem42ActionPerformed
+        // TODO add your handling code here:
+        conf = new ConfigEnsayoGaborAuto();
+        AutoTest2ndConfigView tacv = new AutoTest2ndConfigView(this, true);
+        tacv.setVisible(true);
+    }//GEN-LAST:event_jMenuItem42ActionPerformed
+
+    private void jMenuItem43ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem43ActionPerformed
+        // TODO add your handling code here:
+        conf = new ConfigEnsayoOrientacionAuto();
+        AutoTest2ndConfigView tacv = new AutoTest2ndConfigView(this, true);
+        tacv.setVisible(true);
+    }//GEN-LAST:event_jMenuItem43ActionPerformed
+
+    private void verResultadoDPrueba() {
+        if (prueba != null) {
+            ResultView resultado = new ResultView(this, true);
+            resultado.setVisible(true);
+        } else {
+            ErrorDialog err = new ErrorDialog(this, true,
+                    "A este paciente no se le ha realizdo este tipo de prueba");
+            err.setVisible(true);
+        }
+    }
 
     /**
      * @param args the command line arguments
@@ -1199,6 +1416,8 @@ public class PrincipalView extends javax.swing.JFrame {
     private javax.swing.JButton b_prueba;
     private javax.swing.JFileChooser jFileChooser1;
     private javax.swing.JMenu jMenu1;
+    private javax.swing.JMenu jMenu10;
+    private javax.swing.JMenu jMenu11;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenu jMenu4;
@@ -1235,7 +1454,17 @@ public class PrincipalView extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem31;
     private javax.swing.JMenuItem jMenuItem32;
     private javax.swing.JMenuItem jMenuItem33;
+    private javax.swing.JMenuItem jMenuItem34;
+    private javax.swing.JMenuItem jMenuItem35;
+    private javax.swing.JMenuItem jMenuItem36;
+    private javax.swing.JMenuItem jMenuItem37;
+    private javax.swing.JMenuItem jMenuItem38;
+    private javax.swing.JMenuItem jMenuItem39;
     private javax.swing.JMenuItem jMenuItem4;
+    private javax.swing.JMenuItem jMenuItem40;
+    private javax.swing.JMenuItem jMenuItem41;
+    private javax.swing.JMenuItem jMenuItem42;
+    private javax.swing.JMenuItem jMenuItem43;
     private javax.swing.JMenuItem jMenuItem5;
     private javax.swing.JMenuItem jMenuItem6;
     private javax.swing.JMenuItem jMenuItem7;

@@ -30,9 +30,13 @@ import quino.view.main.ErrorDialog;
 import quino.view.main.PrincipalView;
 import quino.clases.model.Ensayo;
 import quino.clases.config.ConfigEnsayoFormaAB;
+import quino.clases.config.ConfigEnsayoGabor;
+import quino.clases.config.ConfigEnsayoOrientacion;
 import quino.clases.config.ConfigEnsayoShapeDetect;
 import quino.util.test.PruebaEnrejado;
 import quino.util.test.PruebaFormaAB;
+import quino.util.test.PruebaGabor;
+import quino.util.test.PruebaOrientacion;
 import quino.util.test.PruebaShape;
 
 /**
@@ -66,6 +70,10 @@ public class ResultView extends javax.swing.JDialog {
                     menuDeteccionForma();
                 } else if (parent.getPrueba() instanceof PruebaEnrejado) {
                     menuEnrejado();
+                } else if (parent.getPrueba() instanceof PruebaGabor) {
+                    menuGabor();
+                } else if (parent.getPrueba() instanceof PruebaOrientacion) {
+                    menuOrientacion();
                 }
 
                 t_trespg1.setText(String.valueOf(parent.getPrueba().tiempoRespuestaPromedio()));
@@ -111,12 +119,86 @@ public class ResultView extends javax.swing.JDialog {
                         mostrarDatosFormaAB(ensayo);
                     } else if (configEnsayo instanceof ConfigEnsayoShapeDetect) {
                         mostrarDatosDeteccionForma(ensayo);
+                    } else if (configEnsayo instanceof ConfigEnsayoOrientacion) {
+                        mostrarDatosOrientacion(ensayo);
                     } else if (configEnsayo instanceof ConfigEnsayoEnrejado) {
                         mostrarDatosEnrejado(ensayo);
+                    } else if (configEnsayo instanceof ConfigEnsayoGabor) {
+                        mostrarDatosGabor(ensayo);
                     }
                 }
             }
         });
+    }
+
+    private void menuOrientacion() {
+        jLabel9.setVisible(false);
+        jLabel33.setText("Pixel/Pulgada Barras:");
+        jLabel31.setText("Contraste:");
+        jLabel24.setText("Intensidad Media:");
+        jLabel25.setVisible(false);
+        jLabel26.setVisible(false);
+        jLabel11.setVisible(false);
+        jLabel29.setVisible(false);
+        jLabel34.setVisible(false);
+    }
+
+    private void mostrarDatosOrientacion(Ensayo ensayo) {
+        ConfigEnsayoOrientacion configEnsayo = ((ConfigEnsayoOrientacion) ensayo.getConfiguracion());
+        Resultado resultado = ensayo.getResultado();
+
+        menuOrientacion();
+
+        t_densidad1.setText(String.valueOf(configEnsayo.getPpi()));
+        t_cantidad1.setText(String.valueOf(Math.rint(configEnsayo.getContrat() * 100) / 100));
+        t_vmov1.setText(String.valueOf(Math.abs((int) configEnsayo.getIntensidadMedia())));
+
+        t_trespuesta1.setText(resultado.getTiempoRespuesta() == 0 ? "N/R" : String.valueOf(resultado.getTiempoRespuesta()));
+        ImageIcon resultIcon = CambiarError(resultado.isError());
+        t_resultado1.setIcon(resultIcon);
+
+        e_desc.setText(resultado.getDescripcion());
+
+        String panel = QuinoTools.getPanelMovimiento(parent.getPrueba(), ensayo.getConfiguracion().getPanelEstimulo());
+        t_pestimulo1.setText(panel);
+    }
+
+    private void menuGabor() {
+        jLabel9.setVisible(false);
+        jLabel33.setText("Pixel/Pulgada Barras:");
+        jLabel31.setText("Contraste:");
+        jLabel24.setText("Intensidad Media:");
+        jLabel25.setText("Gaussian Std:");
+        jLabel26.setText("Radio Int/Ext:");
+        jLabel28.setVisible(false);
+        jLabel11.setVisible(false);
+    }
+
+    private void mostrarDatosGabor(Ensayo ensayo) {
+        ConfigEnsayoGabor configEnsayo = ((ConfigEnsayoGabor) ensayo.getConfiguracion());
+        Resultado resultado = ensayo.getResultado();
+
+        menuGabor();
+
+        t_densidad1.setText(String.valueOf(configEnsayo.getPpi()));
+        t_cantidad1.setText(String.valueOf(Math.rint(configEnsayo.getContrat() * 100) / 100));
+        t_vmov1.setText(String.valueOf(Math.abs((int) configEnsayo.getIntensidadMedia())));
+
+        t_trespuesta1.setText(resultado.getTiempoRespuesta() == 0 ? "N/R" : String.valueOf(resultado.getTiempoRespuesta()));
+        ImageIcon resultIcon = CambiarError(resultado.isError());
+        t_resultado1.setIcon(resultIcon);
+
+        ImageIcon dirIcon = CambiarDireccion(configEnsayo.getDireccion(),
+                configEnsayo.getDireccion());
+        t_direccion1.setIcon(dirIcon);
+
+        e_desc.setText(resultado.getDescripcion());
+
+        t_velocidad.setText(String.valueOf(configEnsayo.getGaussianStdpix()));
+        t_angulo.setText(String.valueOf(configEnsayo.getRadio1() + " / " + configEnsayo.getRadio2()));
+
+        ImageIcon keyIcon = CambiarArrowKey(resultado.getKey());
+        b_keypressed.setIcon(keyIcon);
     }
 
     private void menuEnrejado() {
@@ -128,6 +210,7 @@ public class ResultView extends javax.swing.JDialog {
         jLabel26.setVisible(false);
         jLabel28.setVisible(false);
         jLabel11.setVisible(false);
+        jLabel34.setVisible(false);
     }
 
     private void mostrarDatosEnrejado(Ensayo ensayo) {
@@ -137,25 +220,18 @@ public class ResultView extends javax.swing.JDialog {
         menuEnrejado();
 
         t_densidad1.setText(String.valueOf(configEnsayo.getPpi()));
-        t_cantidad1.setText(String.valueOf(configEnsayo.getContrat()));
-        t_vmov1.setText(String.valueOf(configEnsayo.getIntensidadMedia()));
+        t_cantidad1.setText(String.valueOf(Math.rint(configEnsayo.getContrat() * 100) / 100));
+        t_vmov1.setText(String.valueOf(Math.abs((int) configEnsayo.getIntensidadMedia())));
 
         t_trespuesta1.setText(resultado.getTiempoRespuesta() == 0 ? "N/R" : String.valueOf(resultado.getTiempoRespuesta()));
         ImageIcon resultIcon = CambiarError(resultado.isError());
         t_resultado1.setIcon(resultIcon);
 
         ImageIcon dirIcon = CambiarDireccion(configEnsayo.getDireccion(),
-               configEnsayo.getDireccion());
+                configEnsayo.getDireccion());
         t_direccion1.setIcon(dirIcon);
-        
-        e_desc.setText(resultado.getDescripcion());
 
-        /*if (configEnsayo.getDireccion() == 0) {
-            t_cantidad1.setText("-");
-            t_vmov1.setText(String.valueOf("-"));
-            t_velocidad.setText("-");
-            t_angulo.setText("-");
-        }*/
+        e_desc.setText(resultado.getDescripcion());
     }
 
     private void menuDeteccionForma() {
@@ -303,6 +379,24 @@ public class ResultView extends javax.swing.JDialog {
             }
             case 97: {
                 return new ImageIcon(getClass().getResource(ConfigApp.RESOURCES_LOCATION + "direccion8.gif"));
+            }
+        }
+        return new ImageIcon(getClass().getResource(ConfigApp.RESOURCES_LOCATION + "error.gif"));
+    }
+
+    private ImageIcon CambiarArrowKey(int key) {
+        switch (key) {
+            case 38: {
+                return new ImageIcon(getClass().getResource(ConfigApp.RESOURCES_LOCATION + "direccion1.gif"));
+            }
+            case 40: {
+                return new ImageIcon(getClass().getResource(ConfigApp.RESOURCES_LOCATION + "direccion2.gif"));
+            }
+            case 39: {
+                return new ImageIcon(getClass().getResource(ConfigApp.RESOURCES_LOCATION + "direccion3.gif"));
+            }
+            case 37: {
+                return new ImageIcon(getClass().getResource(ConfigApp.RESOURCES_LOCATION + "direccion4.gif"));
             }
         }
         return new ImageIcon(getClass().getResource(ConfigApp.RESOURCES_LOCATION + "error.gif"));

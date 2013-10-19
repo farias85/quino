@@ -9,6 +9,8 @@ import java.util.logging.Logger;
 import quino.clases.config.ConfigApp;
 import quino.clases.config.ConfigEnsayoEnrejadoAuto;
 import quino.clases.config.ConfigEnsayoFormaABAuto;
+import quino.clases.config.ConfigEnsayoGaborAuto;
+import quino.clases.config.ConfigEnsayoOrientacionAuto;
 import quino.clases.config.ConfigEnsayoShapeDetectAuto;
 import quino.clases.model.Paciente;
 import quino.util.test.PruebaFormaA;
@@ -17,6 +19,8 @@ import quino.clases.model.Registro;
 import quino.clases.model.Resultado;
 import quino.util.Aleatorio;
 import quino.util.test.PruebaEnrejado;
+import quino.util.test.PruebaGabor;
+import quino.util.test.PruebaOrientacion;
 import quino.util.test.PruebaShape;
 
 /**
@@ -78,6 +82,24 @@ public class MainData {
                     pruebaEnrejado.getEnsayos().get(j).setResultado(results);
                 }
 
+                PruebaGabor pruebaGabor = new PruebaGabor(new ConfigEnsayoGaborAuto(), 3);
+                for (int j = 0; j < pruebaGabor.getEnsayos().size(); j++) {
+                    boolean error = j % 3 == 0 ? true : false;
+                    Resultado results = new Resultado(random.nextInt(300, 620),
+                            error, "Descrip", 32, random.nextDouble(),
+                            random.nextInt(5, 15));
+                    pruebaGabor.getEnsayos().get(j).setResultado(results);
+                }
+
+                PruebaOrientacion pruebaOrientacion = new PruebaOrientacion(new ConfigEnsayoOrientacionAuto(), 3);
+                for (int j = 0; j < pruebaOrientacion.getEnsayos().size(); j++) {
+                    boolean error = j % 3 == 0 ? true : false;
+                    Resultado results = new Resultado(random.nextInt(300, 620),
+                            error, "Descrip", 32, random.nextDouble(),
+                            random.nextInt(5, 15));
+                    pruebaOrientacion.getEnsayos().get(j).setResultado(results);
+                }
+
                 String anno = String.valueOf(random.nextInt(10, 99));
                 String mes = String.valueOf(random.nextInt(1, 12));
                 String dia = String.valueOf(random.nextInt(1, 27));
@@ -101,8 +123,9 @@ public class MainData {
                 String escolaridad = String.valueOf(random.nextInt(4, 6)) + "to";
 
                 Paciente paciente = new Paciente(nombreCompleto, random.nextInt(5, 50),
-                        sexo, escolaridad, historia, ci, "Ficha", escuela, 
-                        periferica, foveal, pruebaShape, null, pruebaEnrejado);
+                        sexo, escolaridad, historia, ci, "Ficha", escuela,
+                        periferica, foveal, pruebaShape, pruebaGabor, pruebaEnrejado,
+                        pruebaOrientacion);
 
                 /*Paciente paciente = new Paciente(nombreCompleto, random.nextInt(5, 50),
                 sexo, escolaridad, historia, ci, "Ficha",

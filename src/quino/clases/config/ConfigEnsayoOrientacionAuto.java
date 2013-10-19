@@ -9,7 +9,7 @@ import quino.util.Aleatorio;
 
 /**
  *
- * @author admin
+ * @author Felipe Rodriguez Arias
  */
 public class ConfigEnsayoOrientacionAuto extends ConfigEnsayoOrientacion {
 
@@ -17,9 +17,9 @@ public class ConfigEnsayoOrientacionAuto extends ConfigEnsayoOrientacion {
         super();
 
         Aleatorio random = new Aleatorio();
-        onMove = random.nextInt(0, 15) % 3 == 0 ? false : true;
+        onMove = false;
         ppi = random.nextInt(10, 50);
-        this.getConfiguracionXDireccion(random.nextInt(1, 8));
+        this.getConfiguracionXDireccion(random.nextInt(5, 6));
 
         this.key = onMove ? 32 : 0;
     }

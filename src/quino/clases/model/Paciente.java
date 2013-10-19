@@ -8,6 +8,7 @@ import quino.util.test.PruebaEnrejado;
 import quino.util.test.PruebaFormaB;
 import quino.util.test.PruebaFormaA;
 import quino.util.test.PruebaGabor;
+import quino.util.test.PruebaOrientacion;
 import quino.util.test.PruebaShape;
 
 /**
@@ -70,13 +71,18 @@ public class Paciente {
      */
     private PruebaEnrejado enrejado;
 
+    /**
+     * Prueba de tipo detección de Orientación
+     */
+    private PruebaOrientacion orientacion;
+
     public Paciente() {
     }
 
     public Paciente(String nombre, int edad, String sexo, String escolaridad,
             String historia, long ci, String ficha, String escuela, PruebaFormaB periferica,
             PruebaFormaA foveal, PruebaShape forma, PruebaGabor gabor,
-            PruebaEnrejado enrejado) {
+            PruebaEnrejado enrejado, PruebaOrientacion orientacion) {
         this.nombre = nombre;
         this.edad = edad;
         this.sexo = sexo;
@@ -90,6 +96,7 @@ public class Paciente {
         this.forma = forma;
         this.gabor = gabor;
         this.enrejado = enrejado;
+        this.orientacion = orientacion;
     }
 
     public Paciente(String nombre, int edad, String sexo, String escolaridad, String historia, long ci, String ficha, String escuela) {
@@ -205,5 +212,13 @@ public class Paciente {
 
     public void setGabor(PruebaGabor gabor) {
         this.gabor = gabor;
+    }
+
+    public PruebaOrientacion getOrientacion() {
+        return orientacion;
+    }
+
+    public void setOrientacion(PruebaOrientacion orientacion) {
+        this.orientacion = orientacion;
     }
 }

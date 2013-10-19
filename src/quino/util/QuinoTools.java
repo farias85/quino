@@ -28,6 +28,7 @@ import quino.util.test.PruebaEnrejado;
 import quino.util.test.PruebaFormaA;
 import quino.util.test.PruebaGabor;
 import quino.util.test.PruebaFormaB;
+import quino.util.test.PruebaOrientacion;
 import quino.util.test.PruebaShape;
 import quino.view.main.ErrorDialog;
 import quino.view.main.PrincipalView;
@@ -156,6 +157,8 @@ public class QuinoTools {
             pruebaPaciente = principalView.getPacienteActual().getGabor();
         } else if (prueba instanceof PruebaEnrejado) {
             pruebaPaciente = principalView.getPacienteActual().getEnrejado();
+        } else if (prueba instanceof PruebaOrientacion) {
+            pruebaPaciente = principalView.getPacienteActual().getOrientacion();
         }
 
         try {

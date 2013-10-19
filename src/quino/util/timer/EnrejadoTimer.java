@@ -73,12 +73,12 @@ public class EnrejadoTimer extends AbstractSinusoideTimer {
                             resultado.setTiempoRespuesta((int) (getTiempoTranscurrido() - (enEspera + 1)));
                         }
 
-                        if (configEnsayo.getDireccion() == 0) {
+                        if (!configEnsayo.isOnMove()) {
                             resultado.setError(true);
                             resultado.setDescripcion("No hubo movimiento");
                         } else if (configEnsayo.getKey() != resultado.getKey()) {
                             resultado.setError(true);
-                            resultado.setDescripcion("La tecla presionada no es la esperada");
+                            resultado.setDescripcion("Tecla incorrecta");
                         }
 
                         puedeTeclear = false;
@@ -108,7 +108,7 @@ public class EnrejadoTimer extends AbstractSinusoideTimer {
         System.out.println("terminado " + getTiempoTranscurrido());
         test.removeKeyListener(keyPress);
 
-        if (resultado.getKey() == 0 && configEnsayo.getDireccion() > 0) {
+        if (configEnsayo.isOnMove() && resultado.getKey() == 0) {
             resultado.setError(true);
             resultado.setDescripcion("Omisión");
         }

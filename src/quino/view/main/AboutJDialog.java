@@ -56,7 +56,7 @@ public class AboutJDialog extends javax.swing.JDialog {
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/quino/view/main/icons/about.png"))); // NOI18N
 
-        appDescLabel.setText("Descripción del acrónimo...");
+        appDescLabel.setText("\"Test de Exploración Visual de la percepción del movimiento\"");
 
         versionLabel.setFont(versionLabel.getFont().deriveFont(versionLabel.getFont().getStyle() | java.awt.Font.BOLD));
         versionLabel.setText("Versión del producto:");
@@ -71,7 +71,7 @@ public class AboutJDialog extends javax.swing.JDialog {
 
         appVendorLabel.setText("CENPIS");
 
-        appVersionLabel.setText("2.0");
+        appVersionLabel.setText("2.1");
 
         jButton1.setText("Cerrar");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -105,7 +105,7 @@ public class AboutJDialog extends javax.swing.JDialog {
                                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                         .addComponent(jButton1)
                                         .addComponent(appHomepageLabel))))
-                            .addComponent(appDescLabel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 268, Short.MAX_VALUE))))
+                            .addComponent(appDescLabel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addContainerGap())
         );
         layout.setVerticalGroup(

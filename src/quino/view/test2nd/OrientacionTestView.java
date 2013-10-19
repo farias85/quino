@@ -14,7 +14,6 @@ import quino.view.main.*;
 import java.awt.Color;
 import java.util.Timer;
 import java.util.TimerTask;
-import quino.clases.config.ConfigEnsayoEnrejado;
 import quino.util.timer.OrientacionTimer;
 
 /**

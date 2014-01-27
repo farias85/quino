@@ -16,13 +16,11 @@ import quino.util.test.Prueba;
  */
 public abstract class AbstractFormaABTimer extends AbstractQuinoTimer {
 
-    protected ConfigEnsayoFormaAB configEnsayo;
-
     public AbstractFormaABTimer(Prueba prueba, boolean practica) {
         super(prueba, practica);
 
         if (ensayo.getConfiguracion() instanceof ConfigEnsayoFormaAB) {
-            this.configEnsayo = ((ConfigEnsayoFormaAB) ensayo.getConfiguracion());
+            //this.configEnsayo = ((ConfigEnsayoFormaAB) ensayo.getConfiguracion());
         } else {
             System.err.println("El ensayo no es de tipo ConfigEnsayoFormaAB en la clase AbstractFormaABTimer");
         }
@@ -33,10 +31,10 @@ public abstract class AbstractFormaABTimer extends AbstractQuinoTimer {
      * @param quinoJPanel El jpanel en el q se moverán los puntos
      */
     protected void moverPuntoYRepintar(JPanelQuino quinoJPanel) {
-        if (configEnsayo.isAsincronico()) {
+        if (((ConfigEnsayoFormaAB)ensayo.getConfiguracion()).isAsincronico()) {
             quinoJPanel.moverAsincronico();
         } else {
-            quinoJPanel.moverEnDireccion(configEnsayo.getDireccion());
+            quinoJPanel.moverEnDireccion(((ConfigEnsayoFormaAB)ensayo.getConfiguracion()).getDireccion());
         }
         quinoJPanel.repaint();
     }
@@ -45,7 +43,7 @@ public abstract class AbstractFormaABTimer extends AbstractQuinoTimer {
      * Controla el resultado de la interacción con el teclado en el ensayo
      */
     protected void controlarEnsayo() {
-        if (configEnsayo.isControl()
+        if (((ConfigEnsayoFormaAB)ensayo.getConfiguracion()).isControl()
                 && ensayo.getConfiguracion().getPanelEstimulo() > 0) {
             int keyEsperada = ensayo.getConfiguracion().getKey();
             if (keyEsperada != resultado.getKey()) {
@@ -85,7 +83,7 @@ public abstract class AbstractFormaABTimer extends AbstractQuinoTimer {
      * prueba en cuestión
      */
     protected void obtenerResultado() {
-        resultado.setVelocidad(QuinoTools.getVelocidad(configEnsayo.getTiempoMovimiento()));
+        resultado.setVelocidad(QuinoTools.getVelocidad(((ConfigEnsayoFormaAB)ensayo.getConfiguracion()).getTiempoMovimiento()));
         resultado.setAngulo(buscarAngulo());
         ensayo.setResultado(resultado);
     }

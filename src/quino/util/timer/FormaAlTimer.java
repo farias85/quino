@@ -10,6 +10,7 @@ import quino.util.test.Prueba;
 import java.awt.Color;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import quino.clases.config.ConfigEnsayoFormaAB;
 import quino.util.QuinoTools;
 import quino.view.test.FormaATestView;
 import quino.view.test.ResultView;
@@ -262,13 +263,13 @@ public class FormaAlTimer extends AbstractFormaABTimer {
 
     @Override
     protected void panelsRellenar() {
-        panel1.rellenar(configEnsayo.getDensidad(), configEnsayo.getCantidad());
-        panel2.rellenar(configEnsayo.getDensidad(), configEnsayo.getCantidad());
-        panel3.rellenar(configEnsayo.getDensidad(), configEnsayo.getCantidad());
-        panel4.rellenar(configEnsayo.getDensidad(), configEnsayo.getCantidad());
-        panel5.rellenar(configEnsayo.getDensidad(), configEnsayo.getCantidad());
-        panel6.rellenar(configEnsayo.getDensidad(), configEnsayo.getCantidad());
-        panel7.rellenar(configEnsayo.getDensidad(), configEnsayo.getCantidad());
-        panel8.rellenar(configEnsayo.getDensidad(), configEnsayo.getCantidad());
+        panel1.rellenar(((ConfigEnsayoFormaAB)ensayo.getConfiguracion()).getDensidad(), ((ConfigEnsayoFormaAB)ensayo.getConfiguracion()).getCantidad());
+        panel2.rellenar(((ConfigEnsayoFormaAB)ensayo.getConfiguracion()).getDensidad(), ((ConfigEnsayoFormaAB)ensayo.getConfiguracion()).getCantidad());
+        panel3.rellenar(((ConfigEnsayoFormaAB)ensayo.getConfiguracion()).getDensidad(), ((ConfigEnsayoFormaAB)ensayo.getConfiguracion()).getCantidad());
+        panel4.rellenar(((ConfigEnsayoFormaAB)ensayo.getConfiguracion()).getDensidad(), ((ConfigEnsayoFormaAB)ensayo.getConfiguracion()).getCantidad());
+        panel5.rellenar(((ConfigEnsayoFormaAB)ensayo.getConfiguracion()).getDensidad(), ((ConfigEnsayoFormaAB)ensayo.getConfiguracion()).getCantidad());
+        panel6.rellenar(((ConfigEnsayoFormaAB)ensayo.getConfiguracion()).getDensidad(), ((ConfigEnsayoFormaAB)ensayo.getConfiguracion()).getCantidad());
+        panel7.rellenar(((ConfigEnsayoFormaAB)ensayo.getConfiguracion()).getDensidad(), ((ConfigEnsayoFormaAB)ensayo.getConfiguracion()).getCantidad());
+        panel8.rellenar(((ConfigEnsayoFormaAB)ensayo.getConfiguracion()).getDensidad(), ((ConfigEnsayoFormaAB)ensayo.getConfiguracion()).getCantidad());
     }
 }

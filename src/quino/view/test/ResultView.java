@@ -227,9 +227,15 @@ public class ResultView extends javax.swing.JDialog {
         ImageIcon resultIcon = CambiarError(resultado.isError());
         t_resultado1.setIcon(resultIcon);
 
-        ImageIcon dirIcon = CambiarDireccion(configEnsayo.getDireccion(),
-                configEnsayo.getDireccion());
-        t_direccion1.setIcon(dirIcon);
+        if (configEnsayo.isOnMove()) {
+            ImageIcon dirIcon = CambiarDireccion(configEnsayo.getDireccion(),
+                    configEnsayo.getDireccion());
+            t_direccion1.setIcon(dirIcon);
+        } else {
+            ImageIcon dirIcon = CambiarDireccion(configEnsayo.getDireccion(), 0);
+            t_direccion1.setIcon(dirIcon);
+        }
+
 
         e_desc.setText(resultado.getDescripcion());
     }
@@ -238,6 +244,7 @@ public class ResultView extends javax.swing.JDialog {
         jLabel31.setText("% de Rectas:");
         jLabel24.setText("Tolerancia:");
         jLabel25.setText("Figura");
+        jLabel26.setVisible(false);
         jLabel29.setVisible(false);
         jLabel34.setVisible(false);
         jLabel11.setVisible(false);
@@ -251,7 +258,7 @@ public class ResultView extends javax.swing.JDialog {
 
         t_densidad1.setText(String.valueOf(configEnsayo.getDensidad()));
         t_cantidad1.setText(String.valueOf(configEnsayo.getPcShape()));
-        t_angulo.setText(String.valueOf(resultado.getAngulo()));
+        //t_angulo.setText(String.valueOf(resultado.getAngulo()));
         t_vmov1.setText(String.valueOf(configEnsayo.getTolerancia()));
         t_pestimulo1.setText(ensayo.getConfiguracion().getPanelEstimulo() == 0 ? "-" : configEnsayo.getKey() == 37 ? "Panel Izquierdo" : "Panel Derecho");
         t_trespuesta1.setText(resultado.getTiempoRespuesta() == 0 ? "N/R" : String.valueOf(resultado.getTiempoRespuesta()));

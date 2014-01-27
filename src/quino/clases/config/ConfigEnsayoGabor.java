@@ -5,6 +5,7 @@
 package quino.clases.config;
 
 import java.awt.Point;
+import java.awt.Toolkit;
 
 /**
  *
@@ -46,25 +47,29 @@ public class ConfigEnsayoGabor extends ConfigEnsayoSinusoide {
      * external radious
      */
     private int radio2 = 180;
+    protected int ppi2 = Toolkit.getDefaultToolkit().getScreenResolution() / 4;
     /**
      * spatial frequency in x,cicles / pixels
      */
-    private double fspa_cpp_x_per = fspa_cpi_x_per / ppi;
+    private double fspa_cpp_x_per = fspa_cpi_x_per / ppi2;
     /**
      * spatial frequency in y,cicles / pixels
      */
-    private double fspa_cpp_y_per = fspa_cpi_y_per / ppi;
+    private double fspa_cpp_y_per = fspa_cpi_y_per / ppi2;
 
     public ConfigEnsayoGabor() {
         super();
+        fspa_cpp_x_per = fspa_cpi_x_per / ppi2;
+        fspa_cpp_y_per = fspa_cpi_y_per / ppi2;
     }
 
     public ConfigEnsayoGabor(int direccion, int ppi, double contrat, byte intensidadMedia,
-            double gaussianStdpix, int radio1, int radio2) {
+            double gaussianStdpix, int radio1, int radio2, int ppi2) {
         super(direccion, ppi, contrat, intensidadMedia);
         this.gaussianStdpix = gaussianStdpix;
         this.radio1 = radio1;
         this.radio2 = radio2;
+        this.ppi2 = ppi2;
         this.key = getKey2Press(direccion);
     }
 
@@ -178,5 +183,13 @@ public class ConfigEnsayoGabor extends ConfigEnsayoSinusoide {
 
     public void setRadio2(int radio2) {
         this.radio2 = radio2;
+    }
+
+    public int getPpi2() {
+        return ppi2;
+    }
+
+    public void setPpi2(int ppi2) {
+        this.ppi2 = ppi2;
     }
 }

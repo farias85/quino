@@ -36,6 +36,7 @@ public class GaborTestView extends javax.swing.JDialog {
         initComponents();
         setLocationRelativeTo(null);
         
+        setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
         getContentPane().setBackground(Color.BLACK);
         jPanel1.setBackground(Color.BLACK);
 

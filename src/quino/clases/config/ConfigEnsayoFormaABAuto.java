@@ -46,7 +46,6 @@ public class ConfigEnsayoFormaABAuto extends ConfigEnsayoFormaAB {
             this.asincronico = true;
         } else {
             this.asincronico = false;
-            this.direccion = random.nextInt(1, 8);
         }
 
         tiempoMovimiento = random.nextInt(50, 200);

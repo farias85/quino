@@ -79,8 +79,8 @@ public class ManualShapeDetectConfigView extends javax.swing.JDialog {
             }
         });
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 12));
-        jLabel1.setText("Cantidad de Ensayos");
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel1.setText("Cantidad de ensayos");
 
         jTextField1.setFont(new java.awt.Font("Tahoma", 1, 12));
         jTextField1.setText("4");
@@ -90,11 +90,11 @@ public class ManualShapeDetectConfigView extends javax.swing.JDialog {
             }
         });
 
-        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 12));
-        jLabel2.setText("Densidad");
+        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel2.setText("Densidad total de puntos");
 
-        jLabel3.setFont(new java.awt.Font("Tahoma", 1, 12));
-        jLabel3.setText("% Forma");
+        jLabel3.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel3.setText("% de puntos para la figura");
 
         jTextField2.setFont(new java.awt.Font("Tahoma", 1, 12));
         jTextField2.setText("600");
@@ -125,14 +125,14 @@ public class ManualShapeDetectConfigView extends javax.swing.JDialog {
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 12));
         jLabel4.setText("%");
 
-        jLabel5.setFont(new java.awt.Font("Tahoma", 1, 12));
-        jLabel5.setText("Tolerancia");
+        jLabel5.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel5.setText("Grosor de los lados de la figura");
 
         jTextField4.setEditable(false);
         jTextField4.setFont(new java.awt.Font("Tahoma", 1, 12));
         jTextField4.setText("0000");
 
-        jTextField5.setFont(new java.awt.Font("Tahoma", 1, 12));
+        jTextField5.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jTextField5.setText("1");
 
         jLabel6.setFont(new java.awt.Font("Tahoma", 1, 14));
@@ -161,17 +161,17 @@ public class ManualShapeDetectConfigView extends javax.swing.JDialog {
                                     .addComponent(jLabel3))
                                 .addGap(18, 18, 18)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGroup(layout.createSequentialGroup()
                                         .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jLabel4)))
-                                .addGap(22, 22, 22)
-                                .addComponent(jTextField4, javax.swing.GroupLayout.DEFAULT_SIZE, 79, Short.MAX_VALUE)
+                                        .addComponent(jLabel4)
+                                        .addGap(27, 27, 27)
+                                        .addComponent(jTextField4, javax.swing.GroupLayout.DEFAULT_SIZE, 29, Short.MAX_VALUE))
+                                    .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addContainerGap())
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addComponent(jButton1)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 40, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 118, Short.MAX_VALUE)
                                 .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(106, 106, 106))))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
@@ -202,8 +202,8 @@ public class ManualShapeDetectConfigView extends javax.swing.JDialog {
                                 .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(jLabel4)))
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel5))))
+                            .addComponent(jLabel5)
+                            .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGap(41, 41, 41)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)

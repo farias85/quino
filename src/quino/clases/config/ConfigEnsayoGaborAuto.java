@@ -17,7 +17,7 @@ public class ConfigEnsayoGaborAuto extends ConfigEnsayoGabor {
 
         Aleatorio random = new Aleatorio();
         ppi = random.nextInt(10, 50);
-        ppi = 20;
+        ppi2 = random.nextInt(10, 50);
         int dir = random.nextInt(1, 4);
         this.getConfiguracionXDireccion(dir);
         this.key = getKey2Press(direccion);

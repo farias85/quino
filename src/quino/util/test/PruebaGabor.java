@@ -31,12 +31,12 @@ public class PruebaGabor extends PruebaMultiEnsayo {
                     ceg = new ConfigEnsayoGabor(direccion, configEnsayo.getPpi(),
                             configEnsayo.getContrat(), configEnsayo.getIntensidadMedia(),
                             configEnsayo.getGaussianStdpix(), configEnsayo.getRadio1(),
-                            configEnsayo.getRadio2());
+                            configEnsayo.getRadio2(), configEnsayo.getPpi2());
                 } else {
                     ceg = new ConfigEnsayoGabor(configEnsayo.getDireccion(), configEnsayo.getPpi(),
                             configEnsayo.getContrat(), configEnsayo.getIntensidadMedia(),
                             configEnsayo.getGaussianStdpix(), configEnsayo.getRadio1(),
-                            configEnsayo.getRadio2());
+                            configEnsayo.getRadio2(), configEnsayo.getPpi2());
                 }
             }
 

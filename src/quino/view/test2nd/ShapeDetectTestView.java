@@ -43,6 +43,7 @@ public class ShapeDetectTestView extends javax.swing.JDialog {
         initComponents();
         setLocationRelativeTo(null);
 
+        setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
         getContentPane().setBackground(Color.BLACK);
 
         TimerTask task = new ShapeTimer(parent.getPrueba(),

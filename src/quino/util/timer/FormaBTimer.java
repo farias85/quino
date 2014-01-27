@@ -10,6 +10,7 @@ import quino.util.test.Prueba;
 import java.awt.Color;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import quino.clases.config.ConfigEnsayoFormaAB;
 import quino.util.QuinoTools;
 import quino.view.test.FormaBTestView;
 import quino.view.test.ResultView;
@@ -155,8 +156,8 @@ public class FormaBTimer extends AbstractFormaABTimer {
 
     @Override
     protected void panelsRellenar() {
-        panel1.rellenar(configEnsayo.getDensidad(), configEnsayo.getCantidad());
-        panel2.rellenar(configEnsayo.getDensidad(), configEnsayo.getCantidad());
+        panel1.rellenar(((ConfigEnsayoFormaAB)ensayo.getConfiguracion()).getDensidad(), ((ConfigEnsayoFormaAB)ensayo.getConfiguracion()).getCantidad());
+        panel2.rellenar(((ConfigEnsayoFormaAB)ensayo.getConfiguracion()).getDensidad(), ((ConfigEnsayoFormaAB)ensayo.getConfiguracion()).getCantidad());
     }
 
     @Override

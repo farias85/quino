@@ -10,6 +10,7 @@ import quino.clases.config.ConfigEnsayo;
 import quino.clases.config.ConfigEnsayoFormaAB;
 import quino.clases.config.ConfigEnsayoFormaABAuto;
 import quino.clases.model.Ensayo;
+import quino.util.Aleatorio;
 
 /**
  *
@@ -19,14 +20,33 @@ public abstract class PruebaFormaAB extends PruebaMultiEnsayo {
 
     public PruebaFormaAB(ConfigEnsayoFormaAB configEnsayo, int cantEnsayos) {
         super(cantEnsayos);
+        Aleatorio random = new Aleatorio();
 
         for (int i = 0; i < cantEnsayos; i++) {
+            ConfigEnsayoFormaAB result = new ConfigEnsayoFormaAB();
 
             if (configEnsayo instanceof ConfigEnsayoFormaABAuto) {
-                configEnsayo = new ConfigEnsayoFormaABAuto(configEnsayo.isControl(), configEnsayo.getPanelEstimulo());
+                if (this instanceof PruebaFormaA) {
+                    result = new ConfigEnsayoFormaABAuto(configEnsayo.isControl(), random.nextInt(0, 8));
+                } else {
+                    result = new ConfigEnsayoFormaABAuto(configEnsayo.isControl(), random.nextInt(0, 2));
+                }
+            } else {
+                if (this instanceof PruebaFormaA) {
+                    result = new ConfigEnsayoFormaAB(configEnsayo.getTiempoMovimiento(),
+                            configEnsayo.getDensidad(), configEnsayo.getCantidad(),
+                            configEnsayo.getDireccion(), configEnsayo.isAsincronico(),
+                            configEnsayo.isControl(), random.nextInt(0, 8));
+                } else {
+                    result = new ConfigEnsayoFormaAB(configEnsayo.getTiempoMovimiento(),
+                            configEnsayo.getDensidad(), configEnsayo.getCantidad(),
+                            configEnsayo.getDireccion(), configEnsayo.isAsincronico(),
+                            configEnsayo.isControl(), random.nextInt(0, 2));
+                }
             }
 
-            Ensayo ensayo = new Ensayo(configEnsayo);
+
+            Ensayo ensayo = new Ensayo(result);
             ensayos.add(ensayo);
         }
     }

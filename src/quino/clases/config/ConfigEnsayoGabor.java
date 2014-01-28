@@ -47,7 +47,10 @@ public class ConfigEnsayoGabor extends ConfigEnsayoSinusoide {
      * external radious
      */
     private int radio2 = 180;
-    protected int ppi2 = Toolkit.getDefaultToolkit().getScreenResolution() / 4;
+    /**
+     * ppi2
+     */
+    protected int ppi2 = Toolkit.getDefaultToolkit().getScreenResolution() / 8;
     /**
      * spatial frequency in x,cicles / pixels
      */
@@ -58,9 +61,7 @@ public class ConfigEnsayoGabor extends ConfigEnsayoSinusoide {
     private double fspa_cpp_y_per = fspa_cpi_y_per / ppi2;
 
     public ConfigEnsayoGabor() {
-        super();
-        fspa_cpp_x_per = fspa_cpi_x_per / ppi2;
-        fspa_cpp_y_per = fspa_cpi_y_per / ppi2;
+        super();        
     }
 
     public ConfigEnsayoGabor(int direccion, int ppi, double contrat, byte intensidadMedia,
@@ -71,6 +72,9 @@ public class ConfigEnsayoGabor extends ConfigEnsayoSinusoide {
         this.radio2 = radio2;
         this.ppi2 = ppi2;
         this.key = getKey2Press(direccion);
+
+        fspa_cpp_x_per = fspa_cpi_x_per / ppi2;
+        fspa_cpp_y_per = fspa_cpi_y_per / ppi2;
     }
 
     public ConfigEnsayoGabor(int direccion, int ppi) {

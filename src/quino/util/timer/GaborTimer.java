@@ -155,7 +155,7 @@ public class GaborTimer extends AbstractSinusoideTimer {
         jPanel.getGraphics().drawImage(image, 0, 0, jPanel);
 
         System.out.println(count + " esto es run matrix");
-        count += configEnsayo.isSentidoUpLeft() ? 1 : -1;
+        count += configEnsayo.isSentidoUpLeft() ? 5 : -5;
     }
 
     private boolean gaborLocation(Point point) {

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<java version="1.7.0" class="java.beans.XMLDecoder">
+<java version="1.7.0_03" class="java.beans.XMLDecoder">
  <object class="quino.clases.model.Registro">
   <void property="pacientes">
    <void method="add">
@@ -26,6 +26,9 @@
             <void property="fspa_cpi_x">
              <double>0.0</double>
             </void>
+            <void property="fspa_cpi_y">
+             <double>0.0</double>
+            </void>
             <void property="fspa_cpp_x">
              <double>0.021739130434782608</double>
             </void>
@@ -34,6 +37,9 @@
             </void>
             <void property="ppi">
              <int>46</int>
+            </void>
+            <void property="sentidoUpLeft">
+             <boolean>true</boolean>
             </void>
            </object>
           </void>
@@ -65,23 +71,23 @@
          <object class="quino.clases.model.Ensayo">
           <void property="configuracion">
            <object class="quino.clases.config.ConfigEnsayoEnrejadoAuto">
-            <void property="direccion">
-             <int>8</int>
-            </void>
-            <void property="fspa_cpi_x">
-             <double>-0.4</double>
-            </void>
-            <void property="fspa_cpi_y">
-             <double>1.0</double>
-            </void>
             <void property="fspa_cpp_x">
              <double>0.07142857142857142</double>
             </void>
             <void property="fspa_cpp_y">
              <double>0.02040816326530612</double>
             </void>
+            <void property="key">
+             <int>0</int>
+            </void>
+            <void property="onMove">
+             <boolean>false</boolean>
+            </void>
             <void property="ppi">
              <int>14</int>
+            </void>
+            <void property="sentidoUpLeft">
+             <boolean>true</boolean>
             </void>
            </object>
           </void>
@@ -111,10 +117,13 @@
           <void property="configuracion">
            <object class="quino.clases.config.ConfigEnsayoEnrejadoAuto">
             <void property="direccion">
-             <int>5</int>
+             <int>1</int>
             </void>
             <void property="fspa_cpi_x">
-             <double>-0.4</double>
+             <double>0.0</double>
+            </void>
+            <void property="fspa_cpi_y">
+             <double>1.0</double>
             </void>
             <void property="fspa_cpp_x">
              <double>-0.022222222222222223</double>
@@ -122,11 +131,14 @@
             <void property="fspa_cpp_y">
              <double>0.05555555555555555</double>
             </void>
+            <void property="key">
+             <int>32</int>
+            </void>
+            <void property="onMove">
+             <boolean>true</boolean>
+            </void>
             <void property="ppi">
              <int>18</int>
-            </void>
-            <void property="sentidoUpLeft">
-             <boolean>true</boolean>
             </void>
            </object>
           </void>
@@ -182,19 +194,13 @@
              <int>1465</int>
             </void>
             <void property="key">
-             <int>39</int>
-            </void>
-            <void property="numFigura">
-             <int>4</int>
+             <int>0</int>
             </void>
             <void property="panelEstimulo">
-             <int>2</int>
-            </void>
-            <void property="pcShape">
-             <double>10.0</double>
+             <int>0</int>
             </void>
             <void property="tolerancia">
-             <int>0</int>
+             <int>1</int>
             </void>
            </object>
           </void>
@@ -230,19 +236,16 @@
              <int>1399</int>
             </void>
             <void property="key">
-             <int>39</int>
+             <int>37</int>
             </void>
             <void property="numFigura">
-             <int>2</int>
+             <int>1</int>
             </void>
             <void property="panelEstimulo">
-             <int>2</int>
+             <int>1</int>
             </void>
             <void property="pcShape">
              <double>8.0</double>
-            </void>
-            <void property="tolerancia">
-             <int>0</int>
             </void>
            </object>
           </void>
@@ -497,6 +500,12 @@
             <void property="key">
              <int>37</int>
             </void>
+            <void property="ppi">
+             <int>40</int>
+            </void>
+            <void property="ppi2">
+             <int>42</int>
+            </void>
            </object>
           </void>
           <void property="resultado">
@@ -527,11 +536,17 @@
          <object class="quino.clases.model.Ensayo">
           <void property="configuracion">
            <object class="quino.clases.config.ConfigEnsayoGaborAuto">
-            <void property="direccion">
-             <int>1</int>
+            <void property="fspa_cpp_x">
+             <double>0.02564102564102564</double>
             </void>
-            <void property="key">
-             <int>38</int>
+            <void property="fspa_cpp_y">
+             <double>0.058823529411764705</double>
+            </void>
+            <void property="ppi">
+             <int>17</int>
+            </void>
+            <void property="ppi2">
+             <int>26</int>
             </void>
            </object>
           </void>
@@ -561,7 +576,7 @@
           <void property="configuracion">
            <object class="quino.clases.config.ConfigEnsayoGaborAuto">
             <void property="direccion">
-             <int>1</int>
+             <int>2</int>
             </void>
             <void property="fspa_cpi_x">
              <double>0.0</double>
@@ -576,7 +591,13 @@
              <double>0.05</double>
             </void>
             <void property="key">
-             <int>38</int>
+             <int>40</int>
+            </void>
+            <void property="ppi2">
+             <int>39</int>
+            </void>
+            <void property="sentidoUpLeft">
+             <boolean>false</boolean>
             </void>
            </object>
           </void>
@@ -671,16 +692,16 @@
           <void property="configuracion">
            <object class="quino.clases.config.ConfigEnsayoOrientacionAuto">
             <void property="direccion">
-             <int>5</int>
+             <int>6</int>
             </void>
             <void property="fspa_cpi_x">
-             <double>-0.4</double>
+             <double>1.0</double>
             </void>
             <void property="fspa_cpp_x">
              <double>0.03225806451612903</double>
             </void>
             <void property="fspa_cpp_y">
-             <double>0.03225806451612903</double>
+             <double>0.04</double>
             </void>
             <void property="key">
              <int>37</int>
@@ -689,7 +710,7 @@
              <int>1</int>
             </void>
             <void property="ppi">
-             <int>31</int>
+             <int>25</int>
             </void>
            </object>
           </void>
@@ -722,10 +743,10 @@
              <double>-0.011111111111111112</double>
             </void>
             <void property="fspa_cpp_y">
-             <double>0.027777777777777776</double>
+             <double>0.06666666666666667</double>
             </void>
             <void property="ppi">
-             <int>36</int>
+             <int>15</int>
             </void>
            </object>
           </void>
@@ -957,17 +978,23 @@
             <void property="fspa_cpi_x">
              <double>1.0</double>
             </void>
+            <void property="fspa_cpi_y">
+             <double>0.0</double>
+            </void>
             <void property="fspa_cpp_x">
              <double>-0.009090909090909092</double>
             </void>
             <void property="fspa_cpp_y">
              <double>0.022727272727272728</double>
             </void>
+            <void property="key">
+             <int>0</int>
+            </void>
+            <void property="onMove">
+             <boolean>false</boolean>
+            </void>
             <void property="ppi">
              <int>44</int>
-            </void>
-            <void property="sentidoUpLeft">
-             <boolean>false</boolean>
             </void>
            </object>
           </void>
@@ -999,14 +1026,8 @@
          <object class="quino.clases.model.Ensayo">
           <void property="configuracion">
            <object class="quino.clases.config.ConfigEnsayoEnrejadoAuto">
-            <void property="direccion">
-             <int>8</int>
-            </void>
             <void property="fspa_cpi_x">
-             <double>-0.4</double>
-            </void>
-            <void property="fspa_cpi_y">
-             <double>1.0</double>
+             <double>0.0</double>
             </void>
             <void property="fspa_cpp_x">
              <double>0.1</double>
@@ -1014,17 +1035,8 @@
             <void property="fspa_cpp_y">
              <double>0.1</double>
             </void>
-            <void property="key">
-             <int>32</int>
-            </void>
-            <void property="onMove">
-             <boolean>true</boolean>
-            </void>
             <void property="ppi">
              <int>10</int>
-            </void>
-            <void property="sentidoUpLeft">
-             <boolean>false</boolean>
             </void>
            </object>
           </void>
@@ -1054,19 +1066,13 @@
           <void property="configuracion">
            <object class="quino.clases.config.ConfigEnsayoEnrejadoAuto">
             <void property="direccion">
-             <int>4</int>
+             <int>3</int>
             </void>
             <void property="fspa_cpi_x">
              <double>0.0</double>
             </void>
-            <void property="fspa_cpi_y">
-             <double>0.0</double>
-            </void>
             <void property="fspa_cpp_x">
              <double>0.08333333333333333</double>
-            </void>
-            <void property="fspa_cpp_y">
-             <double>0.0</double>
             </void>
             <void property="ppi">
              <int>12</int>
@@ -1128,13 +1134,13 @@
              <int>0</int>
             </void>
             <void property="numFigura">
-             <int>1</int>
+             <int>4</int>
             </void>
             <void property="panelEstimulo">
              <int>0</int>
             </void>
             <void property="pcShape">
-             <double>12.0</double>
+             <double>10.0</double>
             </void>
            </object>
           </void>
@@ -1169,11 +1175,14 @@
             <void property="densidad">
              <int>1027</int>
             </void>
-            <void property="numFigura">
-             <int>4</int>
+            <void property="key">
+             <int>39</int>
+            </void>
+            <void property="panelEstimulo">
+             <int>2</int>
             </void>
             <void property="pcShape">
-             <double>8.0</double>
+             <double>11.0</double>
             </void>
            </object>
           </void>
@@ -1207,6 +1216,9 @@
             </void>
             <void property="pcShape">
              <double>10.0</double>
+            </void>
+            <void property="tolerancia">
+             <int>1</int>
             </void>
            </object>
           </void>
@@ -1416,11 +1428,14 @@
          <object class="quino.clases.model.Ensayo">
           <void property="configuracion">
            <object class="quino.clases.config.ConfigEnsayoGaborAuto">
-            <void property="direccion">
-             <int>4</int>
+            <void property="fspa_cpp_x">
+             <double>0.022222222222222223</double>
             </void>
-            <void property="key">
-             <int>37</int>
+            <void property="ppi">
+             <int>45</int>
+            </void>
+            <void property="ppi2">
+             <int>26</int>
             </void>
            </object>
           </void>
@@ -1455,8 +1470,20 @@
             <void property="direccion">
              <int>4</int>
             </void>
+            <void property="fspa_cpp_x">
+             <double>0.02</double>
+            </void>
+            <void property="fspa_cpp_y">
+             <double>0.02564102564102564</double>
+            </void>
             <void property="key">
              <int>37</int>
+            </void>
+            <void property="ppi">
+             <int>39</int>
+            </void>
+            <void property="ppi2">
+             <int>19</int>
             </void>
            </object>
           </void>
@@ -1485,6 +1512,9 @@
          <object class="quino.clases.model.Ensayo">
           <void property="configuracion">
            <object class="quino.clases.config.ConfigEnsayoGaborAuto">
+            <void property="direccion">
+             <int>2</int>
+            </void>
             <void property="fspa_cpi_x">
              <double>1.0</double>
             </void>
@@ -1496,6 +1526,18 @@
             </void>
             <void property="fspa_cpp_y">
              <double>0.0</double>
+            </void>
+            <void property="key">
+             <int>40</int>
+            </void>
+            <void property="ppi">
+             <int>26</int>
+            </void>
+            <void property="ppi2">
+             <int>28</int>
+            </void>
+            <void property="sentidoUpLeft">
+             <boolean>false</boolean>
             </void>
            </object>
           </void>
@@ -1537,31 +1579,46 @@
      <void property="orientacion">
       <object class="quino.util.test.PruebaOrientacion">
        <void property="cantEnsayos">
-        <int>3</int>
+        <int>4</int>
        </void>
        <void property="ensayos">
         <void method="add">
          <object class="quino.clases.model.Ensayo">
           <void property="configuracion">
-           <object class="quino.clases.config.ConfigEnsayoOrientacionAuto">
+           <object class="quino.clases.config.ConfigEnsayoOrientacion">
+            <void property="contrat">
+             <double>0.75</double>
+            </void>
+            <void property="direccion">
+             <int>5</int>
+            </void>
             <void property="fspa_cpp_x">
-             <double>-0.02666666666666667</double>
+             <double>-0.006666666666666667</double>
             </void>
             <void property="fspa_cpp_y">
-             <double>0.06666666666666667</double>
+             <double>0.016666666666666666</double>
+            </void>
+            <void property="intensidadMax">
+             <byte>-96</byte>
+            </void>
+            <void property="key">
+             <int>39</int>
+            </void>
+            <void property="panelEstimulo">
+             <int>2</int>
             </void>
             <void property="ppi">
-             <int>15</int>
+             <int>60</int>
+            </void>
+            <void property="sentidoUpLeft">
+             <boolean>true</boolean>
             </void>
            </object>
           </void>
           <void property="resultado">
            <object class="quino.clases.model.Resultado">
-            <void property="angulo">
-             <double>5.0</double>
-            </void>
             <void property="descripcion">
-             <string>Descrip</string>
+             <string>Dirección incorrecta</string>
             </void>
             <void property="error">
              <boolean>true</boolean>
@@ -1570,10 +1627,7 @@
              <int>32</int>
             </void>
             <void property="tiempoRespuesta">
-             <int>605</int>
-            </void>
-            <void property="velocidad">
-             <double>0.6300127636037743</double>
+             <int>1438</int>
             </void>
            </object>
           </void>
@@ -1582,91 +1636,109 @@
         <void method="add">
          <object class="quino.clases.model.Ensayo">
           <void property="configuracion">
-           <object class="quino.clases.config.ConfigEnsayoOrientacionAuto">
+           <object class="quino.clases.config.ConfigEnsayoOrientacion">
+            <void property="contrat">
+             <double>0.75</double>
+            </void>
+            <void property="direccion">
+             <int>6</int>
+            </void>
+            <void property="fspa_cpi_x">
+             <double>1.0</double>
+            </void>
+            <void property="fspa_cpp_x">
+             <double>0.016666666666666666</double>
+            </void>
+            <void property="fspa_cpp_y">
+             <double>0.016666666666666666</double>
+            </void>
+            <void property="intensidadMax">
+             <byte>-96</byte>
+            </void>
+            <void property="ppi">
+             <int>60</int>
+            </void>
+            <void property="sentidoUpLeft">
+             <boolean>true</boolean>
+            </void>
+           </object>
+          </void>
+          <void property="resultado">
+           <object class="quino.clases.model.Resultado"/>
+          </void>
+         </object>
+        </void>
+        <void method="add">
+         <object class="quino.clases.model.Ensayo">
+          <void property="configuracion">
+           <object class="quino.clases.config.ConfigEnsayoOrientacion">
+            <void property="contrat">
+             <double>0.75</double>
+            </void>
             <void property="direccion">
              <int>5</int>
             </void>
-            <void property="fspa_cpi_x">
-             <double>-0.4</double>
-            </void>
             <void property="fspa_cpp_x">
-             <double>-0.008695652173913044</double>
+             <double>-0.006666666666666667</double>
             </void>
             <void property="fspa_cpp_y">
-             <double>0.021739130434782608</double>
+             <double>0.016666666666666666</double>
+            </void>
+            <void property="intensidadMax">
+             <byte>-96</byte>
             </void>
             <void property="ppi">
-             <int>46</int>
+             <int>60</int>
+            </void>
+            <void property="sentidoUpLeft">
+             <boolean>true</boolean>
             </void>
            </object>
           </void>
           <void property="resultado">
-           <object class="quino.clases.model.Resultado">
-            <void property="angulo">
-             <double>9.0</double>
-            </void>
-            <void property="descripcion">
-             <string>Descrip</string>
-            </void>
-            <void property="key">
-             <int>32</int>
-            </void>
-            <void property="tiempoRespuesta">
-             <int>438</int>
-            </void>
-            <void property="velocidad">
-             <double>0.05039148750653499</double>
-            </void>
-           </object>
+           <object class="quino.clases.model.Resultado"/>
           </void>
          </object>
         </void>
         <void method="add">
          <object class="quino.clases.model.Ensayo">
           <void property="configuracion">
-           <object class="quino.clases.config.ConfigEnsayoOrientacionAuto">
+           <object class="quino.clases.config.ConfigEnsayoOrientacion">
+            <void property="contrat">
+             <double>0.75</double>
+            </void>
+            <void property="direccion">
+             <int>6</int>
+            </void>
+            <void property="fspa_cpi_x">
+             <double>1.0</double>
+            </void>
             <void property="fspa_cpp_x">
-             <double>-0.00975609756097561</double>
+             <double>0.016666666666666666</double>
             </void>
             <void property="fspa_cpp_y">
-             <double>0.024390243902439025</double>
+             <double>0.016666666666666666</double>
             </void>
-            <void property="key">
-             <int>37</int>
-            </void>
-            <void property="panelEstimulo">
-             <int>1</int>
+            <void property="intensidadMax">
+             <byte>-96</byte>
             </void>
             <void property="ppi">
-             <int>41</int>
+             <int>60</int>
+            </void>
+            <void property="sentidoUpLeft">
+             <boolean>true</boolean>
             </void>
            </object>
           </void>
           <void property="resultado">
-           <object class="quino.clases.model.Resultado">
-            <void property="angulo">
-             <double>10.0</double>
-            </void>
-            <void property="descripcion">
-             <string>Descrip</string>
-            </void>
-            <void property="key">
-             <int>32</int>
-            </void>
-            <void property="tiempoRespuesta">
-             <int>367</int>
-            </void>
-            <void property="velocidad">
-             <double>0.04659635969412779</double>
-            </void>
-           </object>
+           <object class="quino.clases.model.Resultado"/>
           </void>
          </object>
         </void>
        </void>
        <void property="fecha">
         <object class="java.util.Date">
-         <long>1382195473020</long>
+         <long>1400517146985</long>
         </object>
        </void>
       </object>
@@ -1990,17 +2062,20 @@
             <void property="direccion">
              <int>2</int>
             </void>
+            <void property="fspa_cpi_x">
+             <double>-0.4</double>
+            </void>
             <void property="fspa_cpi_y">
              <double>0.0</double>
+            </void>
+            <void property="fspa_cpp_x">
+             <double>0.06666666666666667</double>
             </void>
             <void property="fspa_cpp_y">
              <double>0.021739130434782608</double>
             </void>
             <void property="ppi">
              <int>46</int>
-            </void>
-            <void property="sentidoUpLeft">
-             <boolean>false</boolean>
             </void>
            </object>
           </void>
@@ -2047,11 +2122,14 @@
             <void property="fspa_cpp_y">
              <double>0.03225806451612903</double>
             </void>
-            <void property="ppi">
-             <int>31</int>
+            <void property="key">
+             <int>32</int>
             </void>
-            <void property="sentidoUpLeft">
+            <void property="onMove">
              <boolean>true</boolean>
+            </void>
+            <void property="ppi">
+             <int>42</int>
             </void>
            </object>
           </void>
@@ -2097,9 +2175,6 @@
             </void>
             <void property="ppi">
              <int>30</int>
-            </void>
-            <void property="sentidoUpLeft">
-             <boolean>true</boolean>
             </void>
            </object>
           </void>
@@ -2154,14 +2229,17 @@
             <void property="densidad">
              <int>1082</int>
             </void>
+            <void property="key">
+             <int>39</int>
+            </void>
             <void property="numFigura">
+             <int>4</int>
+            </void>
+            <void property="panelEstimulo">
              <int>2</int>
             </void>
             <void property="pcShape">
              <double>12.0</double>
-            </void>
-            <void property="tolerancia">
-             <int>0</int>
             </void>
            </object>
           </void>
@@ -2197,19 +2275,16 @@
              <int>1171</int>
             </void>
             <void property="key">
-             <int>39</int>
+             <int>0</int>
             </void>
             <void property="numFigura">
              <int>3</int>
             </void>
             <void property="panelEstimulo">
-             <int>2</int>
+             <int>0</int>
             </void>
             <void property="pcShape">
              <double>12.0</double>
-            </void>
-            <void property="tolerancia">
-             <int>0</int>
             </void>
            </object>
           </void>
@@ -2245,13 +2320,16 @@
              <int>37</int>
             </void>
             <void property="numFigura">
-             <int>2</int>
+             <int>1</int>
             </void>
             <void property="panelEstimulo">
              <int>1</int>
             </void>
             <void property="pcShape">
              <double>8.0</double>
+            </void>
+            <void property="tolerancia">
+             <int>0</int>
             </void>
            </object>
           </void>
@@ -2420,13 +2498,25 @@
           <void property="configuracion">
            <object class="quino.clases.config.ConfigEnsayoGaborAuto">
             <void property="direccion">
-             <int>3</int>
+             <int>1</int>
+            </void>
+            <void property="fspa_cpp_x">
+             <double>0.02</double>
+            </void>
+            <void property="fspa_cpp_y">
+             <double>0.07142857142857142</double>
             </void>
             <void property="key">
-             <int>39</int>
+             <int>38</int>
+            </void>
+            <void property="ppi">
+             <int>50</int>
+            </void>
+            <void property="ppi2">
+             <int>33</int>
             </void>
             <void property="sentidoUpLeft">
-             <boolean>false</boolean>
+             <boolean>true</boolean>
             </void>
            </object>
           </void>
@@ -2461,8 +2551,23 @@
             <void property="direccion">
              <int>2</int>
             </void>
+            <void property="fspa_cpp_x">
+             <double>0.02857142857142857</double>
+            </void>
+            <void property="fspa_cpp_y">
+             <double>0.047619047619047616</double>
+            </void>
             <void property="key">
              <int>40</int>
+            </void>
+            <void property="ppi">
+             <int>21</int>
+            </void>
+            <void property="ppi2">
+             <int>44</int>
+            </void>
+            <void property="sentidoUpLeft">
+             <boolean>false</boolean>
             </void>
            </object>
           </void>
@@ -2494,20 +2599,20 @@
             <void property="direccion">
              <int>2</int>
             </void>
-            <void property="fspa_cpi_x">
-             <double>0.0</double>
-            </void>
-            <void property="fspa_cpi_y">
-             <double>1.0</double>
-            </void>
             <void property="fspa_cpp_x">
-             <double>0.0</double>
+             <double>0.023255813953488372</double>
             </void>
             <void property="fspa_cpp_y">
              <double>0.05</double>
             </void>
             <void property="key">
              <int>40</int>
+            </void>
+            <void property="ppi">
+             <int>28</int>
+            </void>
+            <void property="ppi2">
+             <int>14</int>
             </void>
             <void property="sentidoUpLeft">
              <boolean>false</boolean>
@@ -2552,18 +2657,59 @@
      <void property="orientacion">
       <object class="quino.util.test.PruebaOrientacion">
        <void property="cantEnsayos">
-        <int>3</int>
+        <int>4</int>
        </void>
        <void property="ensayos">
         <void method="add">
          <object class="quino.clases.model.Ensayo">
           <void property="configuracion">
-           <object class="quino.clases.config.ConfigEnsayoOrientacionAuto">
+           <object class="quino.clases.config.ConfigEnsayoOrientacion">
+            <void property="contrat">
+             <double>0.75</double>
+            </void>
+            <void property="direccion">
+             <int>5</int>
+            </void>
             <void property="fspa_cpp_x">
-             <double>-0.008333333333333333</double>
+             <double>-0.006666666666666667</double>
             </void>
             <void property="fspa_cpp_y">
-             <double>0.020833333333333332</double>
+             <double>0.016666666666666666</double>
+            </void>
+            <void property="intensidadMax">
+             <byte>-96</byte>
+            </void>
+            <void property="ppi">
+             <int>60</int>
+            </void>
+            <void property="sentidoUpLeft">
+             <boolean>true</boolean>
+            </void>
+           </object>
+          </void>
+          <void property="resultado">
+           <object class="quino.clases.model.Resultado"/>
+          </void>
+         </object>
+        </void>
+        <void method="add">
+         <object class="quino.clases.model.Ensayo">
+          <void property="configuracion">
+           <object class="quino.clases.config.ConfigEnsayoOrientacion">
+            <void property="contrat">
+             <double>0.75</double>
+            </void>
+            <void property="direccion">
+             <int>5</int>
+            </void>
+            <void property="fspa_cpp_x">
+             <double>-0.006666666666666667</double>
+            </void>
+            <void property="fspa_cpp_y">
+             <double>0.016666666666666666</double>
+            </void>
+            <void property="intensidadMax">
+             <byte>-96</byte>
             </void>
             <void property="key">
              <int>39</int>
@@ -2572,29 +2718,26 @@
              <int>2</int>
             </void>
             <void property="ppi">
-             <int>48</int>
+             <int>60</int>
+            </void>
+            <void property="sentidoUpLeft">
+             <boolean>true</boolean>
             </void>
            </object>
           </void>
           <void property="resultado">
            <object class="quino.clases.model.Resultado">
-            <void property="angulo">
-             <double>10.0</double>
-            </void>
             <void property="descripcion">
-             <string>Descrip</string>
+             <string>Dirección incorrecta</string>
             </void>
             <void property="error">
              <boolean>true</boolean>
             </void>
             <void property="key">
-             <int>32</int>
+             <int>37</int>
             </void>
             <void property="tiempoRespuesta">
-             <int>311</int>
-            </void>
-            <void property="velocidad">
-             <double>0.6061046214374868</double>
+             <int>888</int>
             </void>
            </object>
           </void>
@@ -2603,12 +2746,53 @@
         <void method="add">
          <object class="quino.clases.model.Ensayo">
           <void property="configuracion">
-           <object class="quino.clases.config.ConfigEnsayoOrientacionAuto">
+           <object class="quino.clases.config.ConfigEnsayoOrientacion">
+            <void property="contrat">
+             <double>0.75</double>
+            </void>
+            <void property="direccion">
+             <int>5</int>
+            </void>
             <void property="fspa_cpp_x">
-             <double>0.043478260869565216</double>
+             <double>-0.006666666666666667</double>
             </void>
             <void property="fspa_cpp_y">
-             <double>0.043478260869565216</double>
+             <double>0.016666666666666666</double>
+            </void>
+            <void property="intensidadMax">
+             <byte>-96</byte>
+            </void>
+            <void property="ppi">
+             <int>60</int>
+            </void>
+            <void property="sentidoUpLeft">
+             <boolean>true</boolean>
+            </void>
+           </object>
+          </void>
+          <void property="resultado">
+           <object class="quino.clases.model.Resultado"/>
+          </void>
+         </object>
+        </void>
+        <void method="add">
+         <object class="quino.clases.model.Ensayo">
+          <void property="configuracion">
+           <object class="quino.clases.config.ConfigEnsayoOrientacion">
+            <void property="contrat">
+             <double>0.75</double>
+            </void>
+            <void property="direccion">
+             <int>5</int>
+            </void>
+            <void property="fspa_cpp_x">
+             <double>-0.006666666666666667</double>
+            </void>
+            <void property="fspa_cpp_y">
+             <double>0.016666666666666666</double>
+            </void>
+            <void property="intensidadMax">
+             <byte>-96</byte>
             </void>
             <void property="key">
              <int>39</int>
@@ -2617,62 +2801,20 @@
              <int>2</int>
             </void>
             <void property="ppi">
-             <int>23</int>
+             <int>60</int>
+            </void>
+            <void property="sentidoUpLeft">
+             <boolean>true</boolean>
             </void>
            </object>
           </void>
           <void property="resultado">
            <object class="quino.clases.model.Resultado">
-            <void property="angulo">
-             <double>10.0</double>
-            </void>
-            <void property="descripcion">
-             <string>Descrip</string>
-            </void>
             <void property="key">
-             <int>32</int>
+             <int>39</int>
             </void>
             <void property="tiempoRespuesta">
-             <int>444</int>
-            </void>
-            <void property="velocidad">
-             <double>0.466424035274528</double>
-            </void>
-           </object>
-          </void>
-         </object>
-        </void>
-        <void method="add">
-         <object class="quino.clases.model.Ensayo">
-          <void property="configuracion">
-           <object class="quino.clases.config.ConfigEnsayoOrientacionAuto">
-            <void property="fspa_cpp_x">
-             <double>0.07692307692307693</double>
-            </void>
-            <void property="fspa_cpp_y">
-             <double>0.07692307692307693</double>
-            </void>
-            <void property="ppi">
-             <int>13</int>
-            </void>
-           </object>
-          </void>
-          <void property="resultado">
-           <object class="quino.clases.model.Resultado">
-            <void property="angulo">
-             <double>5.0</double>
-            </void>
-            <void property="descripcion">
-             <string>Descrip</string>
-            </void>
-            <void property="key">
-             <int>32</int>
-            </void>
-            <void property="tiempoRespuesta">
-             <int>372</int>
-            </void>
-            <void property="velocidad">
-             <double>0.713538650832508</double>
+             <int>816</int>
             </void>
            </object>
           </void>
@@ -2681,7 +2823,7 @@
        </void>
        <void property="fecha">
         <object class="java.util.Date">
-         <long>1382195473021</long>
+         <long>1400516741803</long>
         </object>
        </void>
       </object>
@@ -3215,20 +3357,11 @@
             <void property="densidad">
              <int>1203</int>
             </void>
-            <void property="key">
-             <int>39</int>
-            </void>
             <void property="numFigura">
              <int>3</int>
             </void>
-            <void property="panelEstimulo">
-             <int>2</int>
-            </void>
             <void property="pcShape">
              <double>9.0</double>
-            </void>
-            <void property="tolerancia">
-             <int>0</int>
             </void>
            </object>
           </void>
@@ -3262,15 +3395,6 @@
            <object class="quino.clases.config.ConfigEnsayoShapeDetectAuto">
             <void property="densidad">
              <int>1320</int>
-            </void>
-            <void property="key">
-             <int>37</int>
-            </void>
-            <void property="numFigura">
-             <int>4</int>
-            </void>
-            <void property="panelEstimulo">
-             <int>1</int>
             </void>
             <void property="pcShape">
              <double>12.0</double>
@@ -3565,22 +3689,25 @@
           <void property="configuracion">
            <object class="quino.clases.config.ConfigEnsayoGaborAuto">
             <void property="direccion">
-             <int>1</int>
-            </void>
-            <void property="fspa_cpi_x">
-             <double>0.0</double>
-            </void>
-            <void property="fspa_cpi_y">
-             <double>1.0</double>
+             <int>3</int>
             </void>
             <void property="fspa_cpp_x">
-             <double>0.0</double>
+             <double>0.0625</double>
             </void>
             <void property="fspa_cpp_y">
              <double>0.05</double>
             </void>
             <void property="key">
-             <int>38</int>
+             <int>39</int>
+            </void>
+            <void property="ppi">
+             <int>45</int>
+            </void>
+            <void property="ppi2">
+             <int>15</int>
+            </void>
+            <void property="sentidoUpLeft">
+             <boolean>false</boolean>
             </void>
            </object>
           </void>
@@ -3612,23 +3739,23 @@
          <object class="quino.clases.model.Ensayo">
           <void property="configuracion">
            <object class="quino.clases.config.ConfigEnsayoGaborAuto">
-            <void property="direccion">
-             <int>4</int>
-            </void>
             <void property="fspa_cpi_x">
-             <double>1.0</double>
+             <double>0.0</double>
             </void>
             <void property="fspa_cpi_y">
-             <double>0.0</double>
+             <double>1.0</double>
             </void>
             <void property="fspa_cpp_x">
              <double>0.05</double>
             </void>
             <void property="fspa_cpp_y">
-             <double>0.0</double>
+             <double>0.03125</double>
             </void>
-            <void property="key">
-             <int>37</int>
+            <void property="ppi">
+             <int>36</int>
+            </void>
+            <void property="ppi2">
+             <int>22</int>
             </void>
            </object>
           </void>
@@ -3657,26 +3784,14 @@
          <object class="quino.clases.model.Ensayo">
           <void property="configuracion">
            <object class="quino.clases.config.ConfigEnsayoGaborAuto">
-            <void property="direccion">
-             <int>1</int>
-            </void>
-            <void property="fspa_cpi_x">
-             <double>0.0</double>
-            </void>
-            <void property="fspa_cpi_y">
-             <double>1.0</double>
-            </void>
-            <void property="fspa_cpp_x">
-             <double>0.0</double>
-            </void>
             <void property="fspa_cpp_y">
              <double>0.05</double>
             </void>
-            <void property="key">
-             <int>38</int>
+            <void property="ppi">
+             <int>11</int>
             </void>
-            <void property="sentidoUpLeft">
-             <boolean>true</boolean>
+            <void property="ppi2">
+             <int>29</int>
             </void>
            </object>
           </void>
@@ -3770,12 +3885,6 @@
          <object class="quino.clases.model.Ensayo">
           <void property="configuracion">
            <object class="quino.clases.config.ConfigEnsayoOrientacionAuto">
-            <void property="direccion">
-             <int>6</int>
-            </void>
-            <void property="fspa_cpi_x">
-             <double>1.0</double>
-            </void>
             <void property="fspa_cpp_x">
              <double>-0.03636363636363637</double>
             </void>
@@ -3818,6 +3927,12 @@
          <object class="quino.clases.model.Ensayo">
           <void property="configuracion">
            <object class="quino.clases.config.ConfigEnsayoOrientacionAuto">
+            <void property="direccion">
+             <int>5</int>
+            </void>
+            <void property="fspa_cpi_x">
+             <double>-0.4</double>
+            </void>
             <void property="fspa_cpp_x">
              <double>0.025</double>
             </void>
@@ -4045,20 +4160,14 @@
             <void property="direccion">
              <int>2</int>
             </void>
-            <void property="fspa_cpi_x">
-             <double>0.0</double>
-            </void>
             <void property="fspa_cpp_x">
-             <double>0.0</double>
+             <double>0.06666666666666667</double>
             </void>
             <void property="fspa_cpp_y">
              <double>0.03333333333333333</double>
             </void>
             <void property="ppi">
              <int>30</int>
-            </void>
-            <void property="sentidoUpLeft">
-             <boolean>false</boolean>
             </void>
            </object>
           </void>
@@ -4094,7 +4203,7 @@
              <int>4</int>
             </void>
             <void property="fspa_cpi_x">
-             <double>-0.4</double>
+             <double>1.0</double>
             </void>
             <void property="fspa_cpi_y">
              <double>0.0</double>
@@ -4106,16 +4215,13 @@
              <double>0.037037037037037035</double>
             </void>
             <void property="key">
-             <int>0</int>
+             <int>32</int>
             </void>
             <void property="onMove">
-             <boolean>false</boolean>
+             <boolean>true</boolean>
             </void>
             <void property="ppi">
              <int>27</int>
-            </void>
-            <void property="sentidoUpLeft">
-             <boolean>true</boolean>
             </void>
            </object>
           </void>
@@ -4147,14 +4253,26 @@
             <void property="direccion">
              <int>6</int>
             </void>
+            <void property="fspa_cpi_x">
+             <double>-0.4</double>
+            </void>
             <void property="fspa_cpp_x">
              <double>0.05263157894736842</double>
             </void>
             <void property="fspa_cpp_y">
              <double>0.03333333333333333</double>
             </void>
+            <void property="key">
+             <int>32</int>
+            </void>
+            <void property="onMove">
+             <boolean>true</boolean>
+            </void>
             <void property="ppi">
              <int>30</int>
+            </void>
+            <void property="sentidoUpLeft">
+             <boolean>false</boolean>
             </void>
            </object>
           </void>
@@ -4210,16 +4328,19 @@
              <int>1087</int>
             </void>
             <void property="key">
-             <int>0</int>
+             <int>39</int>
             </void>
             <void property="numFigura">
-             <int>2</int>
+             <int>3</int>
             </void>
             <void property="panelEstimulo">
-             <int>0</int>
+             <int>2</int>
+            </void>
+            <void property="pcShape">
+             <double>8.0</double>
             </void>
             <void property="tolerancia">
-             <int>0</int>
+             <int>1</int>
             </void>
            </object>
           </void>
@@ -4258,13 +4379,13 @@
              <int>37</int>
             </void>
             <void property="numFigura">
-             <int>2</int>
+             <int>3</int>
             </void>
             <void property="panelEstimulo">
              <int>1</int>
             </void>
             <void property="pcShape">
-             <double>9.0</double>
+             <double>10.0</double>
             </void>
             <void property="tolerancia">
              <int>0</int>
@@ -4300,13 +4421,16 @@
              <int>1359</int>
             </void>
             <void property="key">
-             <int>0</int>
+             <int>37</int>
             </void>
             <void property="numFigura">
              <int>4</int>
             </void>
             <void property="panelEstimulo">
-             <int>0</int>
+             <int>1</int>
+            </void>
+            <void property="pcShape">
+             <double>12.0</double>
             </void>
             <void property="tolerancia">
              <int>1</int>
@@ -4597,23 +4721,20 @@
          <object class="quino.clases.model.Ensayo">
           <void property="configuracion">
            <object class="quino.clases.config.ConfigEnsayoGaborAuto">
-            <void property="direccion">
-             <int>2</int>
-            </void>
-            <void property="fspa_cpi_x">
-             <double>0.0</double>
-            </void>
-            <void property="fspa_cpi_y">
-             <double>1.0</double>
-            </void>
             <void property="fspa_cpp_x">
-             <double>0.0</double>
+             <double>0.05263157894736842</double>
             </void>
             <void property="fspa_cpp_y">
              <double>0.05</double>
             </void>
-            <void property="key">
-             <int>40</int>
+            <void property="ppi">
+             <int>17</int>
+            </void>
+            <void property="ppi2">
+             <int>12</int>
+            </void>
+            <void property="sentidoUpLeft">
+             <boolean>true</boolean>
             </void>
            </object>
           </void>
@@ -4644,7 +4765,35 @@
         <void method="add">
          <object class="quino.clases.model.Ensayo">
           <void property="configuracion">
-           <object class="quino.clases.config.ConfigEnsayoGaborAuto"/>
+           <object class="quino.clases.config.ConfigEnsayoGaborAuto">
+            <void property="direccion">
+             <int>4</int>
+            </void>
+            <void property="fspa_cpi_x">
+             <double>1.0</double>
+            </void>
+            <void property="fspa_cpi_y">
+             <double>0.0</double>
+            </void>
+            <void property="fspa_cpp_x">
+             <double>0.021739130434782608</double>
+            </void>
+            <void property="fspa_cpp_y">
+             <double>0.0</double>
+            </void>
+            <void property="key">
+             <int>37</int>
+            </void>
+            <void property="ppi">
+             <int>46</int>
+            </void>
+            <void property="ppi2">
+             <int>47</int>
+            </void>
+            <void property="sentidoUpLeft">
+             <boolean>true</boolean>
+            </void>
+           </object>
           </void>
           <void property="resultado">
            <object class="quino.clases.model.Resultado">
@@ -4674,8 +4823,17 @@
             <void property="direccion">
              <int>3</int>
             </void>
+            <void property="fspa_cpp_y">
+             <double>0.05263157894736842</double>
+            </void>
             <void property="key">
              <int>39</int>
+            </void>
+            <void property="ppi">
+             <int>19</int>
+            </void>
+            <void property="ppi2">
+             <int>41</int>
             </void>
            </object>
           </void>
@@ -4717,58 +4875,16 @@
      <void property="orientacion">
       <object class="quino.util.test.PruebaOrientacion">
        <void property="cantEnsayos">
-        <int>3</int>
+        <int>4</int>
        </void>
        <void property="ensayos">
         <void method="add">
          <object class="quino.clases.model.Ensayo">
           <void property="configuracion">
-           <object class="quino.clases.config.ConfigEnsayoOrientacionAuto">
-            <void property="fspa_cpp_x">
-             <double>-0.03076923076923077</double>
+           <object class="quino.clases.config.ConfigEnsayoOrientacion">
+            <void property="contrat">
+             <double>0.75</double>
             </void>
-            <void property="fspa_cpp_y">
-             <double>0.07692307692307693</double>
-            </void>
-            <void property="key">
-             <int>37</int>
-            </void>
-            <void property="panelEstimulo">
-             <int>1</int>
-            </void>
-            <void property="ppi">
-             <int>13</int>
-            </void>
-           </object>
-          </void>
-          <void property="resultado">
-           <object class="quino.clases.model.Resultado">
-            <void property="angulo">
-             <double>6.0</double>
-            </void>
-            <void property="descripcion">
-             <string>Descrip</string>
-            </void>
-            <void property="error">
-             <boolean>true</boolean>
-            </void>
-            <void property="key">
-             <int>32</int>
-            </void>
-            <void property="tiempoRespuesta">
-             <int>409</int>
-            </void>
-            <void property="velocidad">
-             <double>0.8676331645982018</double>
-            </void>
-           </object>
-          </void>
-         </object>
-        </void>
-        <void method="add">
-         <object class="quino.clases.model.Ensayo">
-          <void property="configuracion">
-           <object class="quino.clases.config.ConfigEnsayoOrientacionAuto">
             <void property="direccion">
              <int>6</int>
             </void>
@@ -4776,32 +4892,76 @@
              <double>1.0</double>
             </void>
             <void property="fspa_cpp_x">
-             <double>-0.010256410256410256</double>
+             <double>0.016666666666666666</double>
             </void>
             <void property="fspa_cpp_y">
-             <double>0.02564102564102564</double>
+             <double>0.016666666666666666</double>
+            </void>
+            <void property="intensidadMax">
+             <byte>-96</byte>
             </void>
             <void property="ppi">
+             <int>60</int>
+            </void>
+            <void property="sentidoUpLeft">
+             <boolean>true</boolean>
+            </void>
+           </object>
+          </void>
+          <void property="resultado">
+           <object class="quino.clases.model.Resultado"/>
+          </void>
+         </object>
+        </void>
+        <void method="add">
+         <object class="quino.clases.model.Ensayo">
+          <void property="configuracion">
+           <object class="quino.clases.config.ConfigEnsayoOrientacion">
+            <void property="contrat">
+             <double>0.75</double>
+            </void>
+            <void property="direccion">
+             <int>6</int>
+            </void>
+            <void property="fspa_cpi_x">
+             <double>1.0</double>
+            </void>
+            <void property="fspa_cpp_x">
+             <double>0.016666666666666666</double>
+            </void>
+            <void property="fspa_cpp_y">
+             <double>0.016666666666666666</double>
+            </void>
+            <void property="intensidadMax">
+             <byte>-96</byte>
+            </void>
+            <void property="key">
              <int>39</int>
+            </void>
+            <void property="panelEstimulo">
+             <int>2</int>
+            </void>
+            <void property="ppi">
+             <int>60</int>
+            </void>
+            <void property="sentidoUpLeft">
+             <boolean>true</boolean>
             </void>
            </object>
           </void>
           <void property="resultado">
            <object class="quino.clases.model.Resultado">
-            <void property="angulo">
-             <double>13.0</double>
-            </void>
             <void property="descripcion">
-             <string>Descrip</string>
+             <string>Dirección incorrecta</string>
+            </void>
+            <void property="error">
+             <boolean>true</boolean>
             </void>
             <void property="key">
-             <int>32</int>
+             <int>37</int>
             </void>
             <void property="tiempoRespuesta">
-             <int>517</int>
-            </void>
-            <void property="velocidad">
-             <double>0.7767796246003532</double>
+             <int>1534</int>
             </void>
            </object>
           </void>
@@ -4810,46 +4970,84 @@
         <void method="add">
          <object class="quino.clases.model.Ensayo">
           <void property="configuracion">
-           <object class="quino.clases.config.ConfigEnsayoOrientacionAuto">
+           <object class="quino.clases.config.ConfigEnsayoOrientacion">
+            <void property="contrat">
+             <double>0.75</double>
+            </void>
+            <void property="direccion">
+             <int>6</int>
+            </void>
+            <void property="fspa_cpi_x">
+             <double>1.0</double>
+            </void>
+            <void property="fspa_cpp_x">
+             <double>0.016666666666666666</double>
+            </void>
+            <void property="fspa_cpp_y">
+             <double>0.016666666666666666</double>
+            </void>
+            <void property="intensidadMax">
+             <byte>-96</byte>
+            </void>
+            <void property="ppi">
+             <int>60</int>
+            </void>
+            <void property="sentidoUpLeft">
+             <boolean>true</boolean>
+            </void>
+           </object>
+          </void>
+          <void property="resultado">
+           <object class="quino.clases.model.Resultado"/>
+          </void>
+         </object>
+        </void>
+        <void method="add">
+         <object class="quino.clases.model.Ensayo">
+          <void property="configuracion">
+           <object class="quino.clases.config.ConfigEnsayoOrientacion">
+            <void property="contrat">
+             <double>0.75</double>
+            </void>
             <void property="direccion">
              <int>5</int>
             </void>
-            <void property="fspa_cpi_x">
-             <double>-0.4</double>
-            </void>
             <void property="fspa_cpp_x">
-             <double>-0.013333333333333334</double>
+             <double>-0.006666666666666667</double>
             </void>
             <void property="fspa_cpp_y">
-             <double>0.03333333333333333</double>
+             <double>0.016666666666666666</double>
+            </void>
+            <void property="intensidadMax">
+             <byte>-96</byte>
             </void>
             <void property="key">
-             <int>37</int>
+             <int>39</int>
             </void>
             <void property="panelEstimulo">
-             <int>1</int>
+             <int>2</int>
             </void>
             <void property="ppi">
-             <int>30</int>
+             <int>60</int>
+            </void>
+            <void property="sentidoUpLeft">
+             <boolean>true</boolean>
             </void>
            </object>
           </void>
           <void property="resultado">
            <object class="quino.clases.model.Resultado">
-            <void property="angulo">
-             <double>14.0</double>
-            </void>
             <void property="descripcion">
-             <string>Descrip</string>
+             <string>Dirección incorrecta</string>
+            </void>
+            <void property="error">
+             <boolean>true</boolean>
             </void>
             <void property="key">
-             <int>32</int>
+             <int>37</int>
             </void>
             <void property="tiempoRespuesta">
-             <int>389</int>
-            </void>
-            <void property="velocidad">
-             <double>0.1347927553760514</double>
+             <int>1741</int>
             </void>
            </object>
           </void>
@@ -4858,7 +5056,7 @@
        </void>
        <void property="fecha">
         <object class="java.util.Date">
-         <long>1382195473021</long>
+         <long>1400517104553</long>
         </object>
        </void>
       </object>
@@ -5170,17 +5368,8 @@
             <void property="fspa_cpp_x">
              <double>0.0</double>
             </void>
-            <void property="fspa_cpp_y">
-             <double>0.024390243902439025</double>
-            </void>
-            <void property="key">
-             <int>0</int>
-            </void>
-            <void property="onMove">
-             <boolean>false</boolean>
-            </void>
             <void property="ppi">
-             <int>41</int>
+             <int>33</int>
             </void>
             <void property="sentidoUpLeft">
              <boolean>false</boolean>
@@ -5215,11 +5404,26 @@
          <object class="quino.clases.model.Ensayo">
           <void property="configuracion">
            <object class="quino.clases.config.ConfigEnsayoEnrejadoAuto">
+            <void property="direccion">
+             <int>4</int>
+            </void>
             <void property="fspa_cpi_x">
+             <double>1.0</double>
+            </void>
+            <void property="fspa_cpi_y">
              <double>0.0</double>
             </void>
             <void property="fspa_cpp_x">
              <double>0.02040816326530612</double>
+            </void>
+            <void property="fspa_cpp_y">
+             <double>0.0</double>
+            </void>
+            <void property="key">
+             <int>32</int>
+            </void>
+            <void property="onMove">
+             <boolean>true</boolean>
             </void>
             <void property="ppi">
              <int>49</int>
@@ -5254,20 +5458,17 @@
             <void property="direccion">
              <int>1</int>
             </void>
-            <void property="fspa_cpi_x">
-             <double>0.0</double>
-            </void>
-            <void property="fspa_cpi_y">
-             <double>1.0</double>
-            </void>
             <void property="fspa_cpp_x">
-             <double>0.0</double>
+             <double>0.058823529411764705</double>
             </void>
             <void property="fspa_cpp_y">
              <double>0.09090909090909091</double>
             </void>
             <void property="ppi">
              <int>11</int>
+            </void>
+            <void property="sentidoUpLeft">
+             <boolean>false</boolean>
             </void>
            </object>
           </void>
@@ -5869,11 +6070,23 @@
          <object class="quino.clases.model.Ensayo">
           <void property="configuracion">
            <object class="quino.clases.config.ConfigEnsayoGaborAuto">
-            <void property="direccion">
-             <int>3</int>
+            <void property="fspa_cpi_x">
+             <double>0.0</double>
             </void>
-            <void property="key">
-             <int>39</int>
+            <void property="fspa_cpi_y">
+             <double>1.0</double>
+            </void>
+            <void property="fspa_cpp_x">
+             <double>0.0</double>
+            </void>
+            <void property="fspa_cpp_y">
+             <double>0.024390243902439025</double>
+            </void>
+            <void property="ppi">
+             <int>41</int>
+            </void>
+            <void property="ppi2">
+             <int>35</int>
             </void>
             <void property="sentidoUpLeft">
              <boolean>false</boolean>
@@ -5911,20 +6124,20 @@
             <void property="direccion">
              <int>4</int>
             </void>
-            <void property="fspa_cpi_x">
-             <double>1.0</double>
-            </void>
-            <void property="fspa_cpi_y">
-             <double>0.0</double>
-            </void>
             <void property="fspa_cpp_x">
              <double>0.05</double>
             </void>
             <void property="fspa_cpp_y">
-             <double>0.0</double>
+             <double>0.030303030303030304</double>
             </void>
             <void property="key">
              <int>37</int>
+            </void>
+            <void property="ppi">
+             <int>50</int>
+            </void>
+            <void property="ppi2">
+             <int>24</int>
             </void>
             <void property="sentidoUpLeft">
              <boolean>true</boolean>
@@ -5956,17 +6169,20 @@
          <object class="quino.clases.model.Ensayo">
           <void property="configuracion">
            <object class="quino.clases.config.ConfigEnsayoGaborAuto">
-            <void property="fspa_cpi_x">
-             <double>1.0</double>
-            </void>
-            <void property="fspa_cpi_y">
-             <double>0.0</double>
+            <void property="direccion">
+             <int>2</int>
             </void>
             <void property="fspa_cpp_x">
              <double>0.05</double>
             </void>
-            <void property="fspa_cpp_y">
-             <double>0.0</double>
+            <void property="key">
+             <int>40</int>
+            </void>
+            <void property="ppi">
+             <int>37</int>
+            </void>
+            <void property="ppi2">
+             <int>48</int>
             </void>
            </object>
           </void>
@@ -6060,6 +6276,12 @@
          <object class="quino.clases.model.Ensayo">
           <void property="configuracion">
            <object class="quino.clases.config.ConfigEnsayoOrientacionAuto">
+            <void property="direccion">
+             <int>6</int>
+            </void>
+            <void property="fspa_cpi_x">
+             <double>1.0</double>
+            </void>
             <void property="fspa_cpp_x">
              <double>-0.018181818181818184</double>
             </void>
@@ -6291,10 +6513,10 @@
              <double>0.0</double>
             </void>
             <void property="key">
-             <int>32</int>
+             <int>0</int>
             </void>
             <void property="onMove">
-             <boolean>true</boolean>
+             <boolean>false</boolean>
             </void>
             <void property="ppi">
              <int>32</int>
@@ -6332,23 +6554,11 @@
             <void property="direccion">
              <int>1</int>
             </void>
-            <void property="fspa_cpi_x">
-             <double>0.0</double>
-            </void>
-            <void property="fspa_cpi_y">
-             <double>0.0</double>
-            </void>
             <void property="fspa_cpp_x">
-             <double>0.0</double>
+             <double>0.043478260869565216</double>
             </void>
             <void property="fspa_cpp_y">
              <double>0.05</double>
-            </void>
-            <void property="key">
-             <int>32</int>
-            </void>
-            <void property="onMove">
-             <boolean>true</boolean>
             </void>
             <void property="ppi">
              <int>20</int>
@@ -6386,11 +6596,8 @@
             <void property="direccion">
              <int>8</int>
             </void>
-            <void property="fspa_cpi_x">
-             <double>-0.4</double>
-            </void>
             <void property="fspa_cpi_y">
-             <double>1.0</double>
+             <double>0.0</double>
             </void>
             <void property="fspa_cpp_x">
              <double>0.05</double>
@@ -6463,11 +6670,14 @@
             <void property="densidad">
              <int>1287</int>
             </void>
-            <void property="numFigura">
-             <int>3</int>
+            <void property="key">
+             <int>37</int>
+            </void>
+            <void property="panelEstimulo">
+             <int>1</int>
             </void>
             <void property="pcShape">
-             <double>12.0</double>
+             <double>8.0</double>
             </void>
            </object>
           </void>
@@ -6506,13 +6716,16 @@
              <int>0</int>
             </void>
             <void property="numFigura">
-             <int>4</int>
+             <int>2</int>
             </void>
             <void property="panelEstimulo">
              <int>0</int>
             </void>
             <void property="pcShape">
              <double>12.0</double>
+            </void>
+            <void property="tolerancia">
+             <int>1</int>
             </void>
            </object>
           </void>
@@ -6544,8 +6757,14 @@
             <void property="densidad">
              <int>1001</int>
             </void>
+            <void property="key">
+             <int>39</int>
+            </void>
             <void property="numFigura">
              <int>4</int>
+            </void>
+            <void property="panelEstimulo">
+             <int>2</int>
             </void>
             <void property="pcShape">
              <double>10.0</double>
@@ -6930,13 +7149,28 @@
           <void property="configuracion">
            <object class="quino.clases.config.ConfigEnsayoGaborAuto">
             <void property="direccion">
-             <int>1</int>
+             <int>4</int>
+            </void>
+            <void property="fspa_cpi_x">
+             <double>1.0</double>
+            </void>
+            <void property="fspa_cpi_y">
+             <double>0.0</double>
+            </void>
+            <void property="fspa_cpp_x">
+             <double>0.02857142857142857</double>
+            </void>
+            <void property="fspa_cpp_y">
+             <double>0.0</double>
             </void>
             <void property="key">
-             <int>38</int>
+             <int>37</int>
             </void>
-            <void property="sentidoUpLeft">
-             <boolean>true</boolean>
+            <void property="ppi">
+             <int>35</int>
+            </void>
+            <void property="ppi2">
+             <int>23</int>
             </void>
            </object>
           </void>
@@ -6971,8 +7205,26 @@
             <void property="direccion">
              <int>3</int>
             </void>
+            <void property="fspa_cpi_x">
+             <double>0.0</double>
+            </void>
+            <void property="fspa_cpi_y">
+             <double>1.0</double>
+            </void>
+            <void property="fspa_cpp_x">
+             <double>0.0</double>
+            </void>
+            <void property="fspa_cpp_y">
+             <double>0.03225806451612903</double>
+            </void>
             <void property="key">
              <int>39</int>
+            </void>
+            <void property="ppi">
+             <int>31</int>
+            </void>
+            <void property="ppi2">
+             <int>28</int>
             </void>
            </object>
           </void>
@@ -7002,22 +7254,25 @@
           <void property="configuracion">
            <object class="quino.clases.config.ConfigEnsayoGaborAuto">
             <void property="direccion">
-             <int>1</int>
-            </void>
-            <void property="fspa_cpi_x">
-             <double>0.0</double>
-            </void>
-            <void property="fspa_cpi_y">
-             <double>1.0</double>
+             <int>3</int>
             </void>
             <void property="fspa_cpp_x">
-             <double>0.0</double>
+             <double>0.058823529411764705</double>
             </void>
             <void property="fspa_cpp_y">
              <double>0.05</double>
             </void>
             <void property="key">
-             <int>38</int>
+             <int>39</int>
+            </void>
+            <void property="ppi">
+             <int>13</int>
+            </void>
+            <void property="ppi2">
+             <int>42</int>
+            </void>
+            <void property="sentidoUpLeft">
+             <boolean>false</boolean>
             </void>
            </object>
           </void>
@@ -7059,64 +7314,16 @@
      <void property="orientacion">
       <object class="quino.util.test.PruebaOrientacion">
        <void property="cantEnsayos">
-        <int>3</int>
+        <int>4</int>
        </void>
        <void property="ensayos">
         <void method="add">
          <object class="quino.clases.model.Ensayo">
           <void property="configuracion">
-           <object class="quino.clases.config.ConfigEnsayoOrientacionAuto">
-            <void property="direccion">
-             <int>5</int>
+           <object class="quino.clases.config.ConfigEnsayoOrientacion">
+            <void property="contrat">
+             <double>0.75</double>
             </void>
-            <void property="fspa_cpi_x">
-             <double>-0.4</double>
-            </void>
-            <void property="fspa_cpp_x">
-             <double>0.030303030303030304</double>
-            </void>
-            <void property="fspa_cpp_y">
-             <double>0.030303030303030304</double>
-            </void>
-            <void property="key">
-             <int>37</int>
-            </void>
-            <void property="panelEstimulo">
-             <int>1</int>
-            </void>
-            <void property="ppi">
-             <int>33</int>
-            </void>
-           </object>
-          </void>
-          <void property="resultado">
-           <object class="quino.clases.model.Resultado">
-            <void property="angulo">
-             <double>9.0</double>
-            </void>
-            <void property="descripcion">
-             <string>Descrip</string>
-            </void>
-            <void property="error">
-             <boolean>true</boolean>
-            </void>
-            <void property="key">
-             <int>32</int>
-            </void>
-            <void property="tiempoRespuesta">
-             <int>546</int>
-            </void>
-            <void property="velocidad">
-             <double>0.20374185090632202</double>
-            </void>
-           </object>
-          </void>
-         </object>
-        </void>
-        <void method="add">
-         <object class="quino.clases.model.Ensayo">
-          <void property="configuracion">
-           <object class="quino.clases.config.ConfigEnsayoOrientacionAuto">
             <void property="direccion">
              <int>6</int>
             </void>
@@ -7124,10 +7331,48 @@
              <double>1.0</double>
             </void>
             <void property="fspa_cpp_x">
-             <double>0.021739130434782608</double>
+             <double>0.016666666666666666</double>
             </void>
             <void property="fspa_cpp_y">
-             <double>0.021739130434782608</double>
+             <double>0.016666666666666666</double>
+            </void>
+            <void property="intensidadMax">
+             <byte>-96</byte>
+            </void>
+            <void property="ppi">
+             <int>60</int>
+            </void>
+            <void property="sentidoUpLeft">
+             <boolean>true</boolean>
+            </void>
+           </object>
+          </void>
+          <void property="resultado">
+           <object class="quino.clases.model.Resultado"/>
+          </void>
+         </object>
+        </void>
+        <void method="add">
+         <object class="quino.clases.model.Ensayo">
+          <void property="configuracion">
+           <object class="quino.clases.config.ConfigEnsayoOrientacion">
+            <void property="contrat">
+             <double>0.75</double>
+            </void>
+            <void property="direccion">
+             <int>6</int>
+            </void>
+            <void property="fspa_cpi_x">
+             <double>1.0</double>
+            </void>
+            <void property="fspa_cpp_x">
+             <double>0.016666666666666666</double>
+            </void>
+            <void property="fspa_cpp_y">
+             <double>0.016666666666666666</double>
+            </void>
+            <void property="intensidadMax">
+             <byte>-96</byte>
             </void>
             <void property="key">
              <int>39</int>
@@ -7136,26 +7381,20 @@
              <int>2</int>
             </void>
             <void property="ppi">
-             <int>46</int>
+             <int>60</int>
+            </void>
+            <void property="sentidoUpLeft">
+             <boolean>true</boolean>
             </void>
            </object>
           </void>
           <void property="resultado">
            <object class="quino.clases.model.Resultado">
-            <void property="angulo">
-             <double>6.0</double>
-            </void>
-            <void property="descripcion">
-             <string>Descrip</string>
-            </void>
             <void property="key">
-             <int>32</int>
+             <int>39</int>
             </void>
             <void property="tiempoRespuesta">
-             <int>301</int>
-            </void>
-            <void property="velocidad">
-             <double>0.8853318540842104</double>
+             <int>862</int>
             </void>
            </object>
           </void>
@@ -7164,12 +7403,24 @@
         <void method="add">
          <object class="quino.clases.model.Ensayo">
           <void property="configuracion">
-           <object class="quino.clases.config.ConfigEnsayoOrientacionAuto">
+           <object class="quino.clases.config.ConfigEnsayoOrientacion">
+            <void property="contrat">
+             <double>0.75</double>
+            </void>
+            <void property="direccion">
+             <int>6</int>
+            </void>
+            <void property="fspa_cpi_x">
+             <double>1.0</double>
+            </void>
             <void property="fspa_cpp_x">
-             <double>0.03125</double>
+             <double>0.016666666666666666</double>
             </void>
             <void property="fspa_cpp_y">
-             <double>0.03125</double>
+             <double>0.016666666666666666</double>
+            </void>
+            <void property="intensidadMax">
+             <byte>-96</byte>
             </void>
             <void property="key">
              <int>39</int>
@@ -7178,26 +7429,68 @@
              <int>2</int>
             </void>
             <void property="ppi">
-             <int>32</int>
+             <int>60</int>
+            </void>
+            <void property="sentidoUpLeft">
+             <boolean>true</boolean>
             </void>
            </object>
           </void>
           <void property="resultado">
            <object class="quino.clases.model.Resultado">
-            <void property="angulo">
-             <double>7.0</double>
-            </void>
-            <void property="descripcion">
-             <string>Descrip</string>
-            </void>
             <void property="key">
-             <int>32</int>
+             <int>39</int>
             </void>
             <void property="tiempoRespuesta">
-             <int>517</int>
+             <int>846</int>
             </void>
-            <void property="velocidad">
-             <double>0.1923585137255852</double>
+           </object>
+          </void>
+         </object>
+        </void>
+        <void method="add">
+         <object class="quino.clases.model.Ensayo">
+          <void property="configuracion">
+           <object class="quino.clases.config.ConfigEnsayoOrientacion">
+            <void property="contrat">
+             <double>0.75</double>
+            </void>
+            <void property="direccion">
+             <int>6</int>
+            </void>
+            <void property="fspa_cpi_x">
+             <double>1.0</double>
+            </void>
+            <void property="fspa_cpp_x">
+             <double>0.016666666666666666</double>
+            </void>
+            <void property="fspa_cpp_y">
+             <double>0.016666666666666666</double>
+            </void>
+            <void property="intensidadMax">
+             <byte>-96</byte>
+            </void>
+            <void property="key">
+             <int>39</int>
+            </void>
+            <void property="panelEstimulo">
+             <int>2</int>
+            </void>
+            <void property="ppi">
+             <int>60</int>
+            </void>
+            <void property="sentidoUpLeft">
+             <boolean>true</boolean>
+            </void>
+           </object>
+          </void>
+          <void property="resultado">
+           <object class="quino.clases.model.Resultado">
+            <void property="key">
+             <int>39</int>
+            </void>
+            <void property="tiempoRespuesta">
+             <int>647</int>
             </void>
            </object>
           </void>
@@ -7206,7 +7499,7 @@
        </void>
        <void property="fecha">
         <object class="java.util.Date">
-         <long>1382195473022</long>
+         <long>1400517180736</long>
         </object>
        </void>
       </object>
@@ -7578,6 +7871,12 @@
             <void property="direccion">
              <int>8</int>
             </void>
+            <void property="fspa_cpi_x">
+             <double>-0.4</double>
+            </void>
+            <void property="fspa_cpi_y">
+             <double>0.0</double>
+            </void>
             <void property="fspa_cpp_x">
              <double>-0.021052631578947368</double>
             </void>
@@ -7629,6 +7928,9 @@
             <void property="direccion">
              <int>3</int>
             </void>
+            <void property="fspa_cpi_x">
+             <double>-0.4</double>
+            </void>
             <void property="fspa_cpi_y">
              <double>0.0</double>
             </void>
@@ -7646,6 +7948,9 @@
             </void>
             <void property="ppi">
              <int>34</int>
+            </void>
+            <void property="sentidoUpLeft">
+             <boolean>false</boolean>
             </void>
            </object>
           </void>
@@ -7674,17 +7979,20 @@
          <object class="quino.clases.model.Ensayo">
           <void property="configuracion">
            <object class="quino.clases.config.ConfigEnsayoEnrejadoAuto">
-            <void property="direccion">
-             <int>5</int>
-            </void>
-            <void property="fspa_cpi_x">
-             <double>-0.4</double>
+            <void property="fspa_cpi_y">
+             <double>0.0</double>
             </void>
             <void property="fspa_cpp_x">
              <double>-0.009523809523809525</double>
             </void>
             <void property="fspa_cpp_y">
              <double>0.023809523809523808</double>
+            </void>
+            <void property="key">
+             <int>0</int>
+            </void>
+            <void property="onMove">
+             <boolean>false</boolean>
             </void>
             <void property="ppi">
              <int>42</int>
@@ -7746,7 +8054,7 @@
              <int>39</int>
             </void>
             <void property="numFigura">
-             <int>4</int>
+             <int>1</int>
             </void>
             <void property="panelEstimulo">
              <int>2</int>
@@ -7793,9 +8101,6 @@
             <void property="panelEstimulo">
              <int>1</int>
             </void>
-            <void property="pcShape">
-             <double>9.0</double>
-            </void>
            </object>
           </void>
           <void property="resultado">
@@ -7826,14 +8131,17 @@
             <void property="densidad">
              <int>1275</int>
             </void>
+            <void property="key">
+             <int>0</int>
+            </void>
             <void property="numFigura">
-             <int>4</int>
+             <int>3</int>
+            </void>
+            <void property="panelEstimulo">
+             <int>0</int>
             </void>
             <void property="pcShape">
              <double>9.0</double>
-            </void>
-            <void property="tolerancia">
-             <int>1</int>
             </void>
            </object>
           </void>
@@ -8169,8 +8477,20 @@
             <void property="direccion">
              <int>3</int>
             </void>
+            <void property="fspa_cpp_x">
+             <double>0.030303030303030304</double>
+            </void>
+            <void property="fspa_cpp_y">
+             <double>0.05263157894736842</double>
+            </void>
             <void property="key">
              <int>39</int>
+            </void>
+            <void property="ppi">
+             <int>33</int>
+            </void>
+            <void property="ppi2">
+             <int>22</int>
             </void>
             <void property="sentidoUpLeft">
              <boolean>false</boolean>
@@ -8223,8 +8543,11 @@
             <void property="key">
              <int>38</int>
             </void>
-            <void property="sentidoUpLeft">
-             <boolean>true</boolean>
+            <void property="ppi">
+             <int>17</int>
+            </void>
+            <void property="ppi2">
+             <int>13</int>
             </void>
            </object>
           </void>
@@ -8253,23 +8576,14 @@
          <object class="quino.clases.model.Ensayo">
           <void property="configuracion">
            <object class="quino.clases.config.ConfigEnsayoGaborAuto">
-            <void property="direccion">
-             <int>4</int>
-            </void>
-            <void property="fspa_cpi_x">
-             <double>1.0</double>
-            </void>
-            <void property="fspa_cpi_y">
-             <double>0.0</double>
-            </void>
             <void property="fspa_cpp_x">
              <double>0.05</double>
             </void>
             <void property="fspa_cpp_y">
-             <double>0.0</double>
+             <double>0.1</double>
             </void>
-            <void property="key">
-             <int>37</int>
+            <void property="ppi">
+             <int>34</int>
             </void>
            </object>
           </void>
@@ -8318,6 +8632,12 @@
          <object class="quino.clases.model.Ensayo">
           <void property="configuracion">
            <object class="quino.clases.config.ConfigEnsayoOrientacionAuto">
+            <void property="direccion">
+             <int>6</int>
+            </void>
+            <void property="fspa_cpi_x">
+             <double>1.0</double>
+            </void>
             <void property="fspa_cpp_x">
              <double>0.02564102564102564</double>
             </void>
@@ -8399,12 +8719,6 @@
          <object class="quino.clases.model.Ensayo">
           <void property="configuracion">
            <object class="quino.clases.config.ConfigEnsayoOrientacionAuto">
-            <void property="direccion">
-             <int>5</int>
-            </void>
-            <void property="fspa_cpi_x">
-             <double>-0.4</double>
-            </void>
             <void property="fspa_cpp_x">
              <double>-0.010810810810810811</double>
             </void>
@@ -9214,23 +9528,17 @@
          <object class="quino.clases.model.Ensayo">
           <void property="configuracion">
            <object class="quino.clases.config.ConfigEnsayoGaborAuto">
-            <void property="direccion">
-             <int>2</int>
-            </void>
-            <void property="fspa_cpi_x">
-             <double>0.0</double>
-            </void>
-            <void property="fspa_cpi_y">
-             <double>1.0</double>
-            </void>
-            <void property="fspa_cpp_x">
-             <double>0.0</double>
-            </void>
             <void property="fspa_cpp_y">
              <double>0.05</double>
             </void>
-            <void property="key">
+            <void property="ppi">
+             <int>17</int>
+            </void>
+            <void property="ppi2">
              <int>40</int>
+            </void>
+            <void property="sentidoUpLeft">
+             <boolean>true</boolean>
             </void>
            </object>
           </void>
@@ -9265,8 +9573,17 @@
             <void property="direccion">
              <int>3</int>
             </void>
+            <void property="fspa_cpp_y">
+             <double>0.02857142857142857</double>
+            </void>
             <void property="key">
              <int>39</int>
+            </void>
+            <void property="ppi">
+             <int>35</int>
+            </void>
+            <void property="ppi2">
+             <int>22</int>
             </void>
            </object>
           </void>
@@ -9294,7 +9611,32 @@
         <void method="add">
          <object class="quino.clases.model.Ensayo">
           <void property="configuracion">
-           <object class="quino.clases.config.ConfigEnsayoGaborAuto"/>
+           <object class="quino.clases.config.ConfigEnsayoGaborAuto">
+            <void property="direccion">
+             <int>2</int>
+            </void>
+            <void property="fspa_cpi_x">
+             <double>0.0</double>
+            </void>
+            <void property="fspa_cpi_y">
+             <double>1.0</double>
+            </void>
+            <void property="fspa_cpp_x">
+             <double>0.02</double>
+            </void>
+            <void property="fspa_cpp_y">
+             <double>0.05555555555555555</double>
+            </void>
+            <void property="key">
+             <int>40</int>
+            </void>
+            <void property="ppi">
+             <int>50</int>
+            </void>
+            <void property="ppi2">
+             <int>45</int>
+            </void>
+           </object>
           </void>
           <void property="resultado">
            <object class="quino.clases.model.Resultado">
@@ -9340,23 +9682,7 @@
         <void method="add">
          <object class="quino.clases.model.Ensayo">
           <void property="configuracion">
-           <object class="quino.clases.config.ConfigEnsayoOrientacionAuto">
-            <void property="direccion">
-             <int>6</int>
-            </void>
-            <void property="fspa_cpi_x">
-             <double>1.0</double>
-            </void>
-            <void property="fspa_cpp_x">
-             <double>0.037037037037037035</double>
-            </void>
-            <void property="fspa_cpp_y">
-             <double>0.037037037037037035</double>
-            </void>
-            <void property="ppi">
-             <int>27</int>
-            </void>
-           </object>
+           <object class="quino.clases.config.ConfigEnsayoOrientacionAuto"/>
           </void>
           <void property="resultado">
            <object class="quino.clases.model.Resultado">
@@ -9428,12 +9754,6 @@
          <object class="quino.clases.model.Ensayo">
           <void property="configuracion">
            <object class="quino.clases.config.ConfigEnsayoOrientacionAuto">
-            <void property="direccion">
-             <int>6</int>
-            </void>
-            <void property="fspa_cpi_x">
-             <double>1.0</double>
-            </void>
             <void property="fspa_cpp_x">
              <double>-0.008333333333333333</double>
             </void>
@@ -9643,12 +9963,6 @@
          <object class="quino.clases.model.Ensayo">
           <void property="configuracion">
            <object class="quino.clases.config.ConfigEnsayoEnrejadoAuto">
-            <void property="direccion">
-             <int>8</int>
-            </void>
-            <void property="fspa_cpi_x">
-             <double>-0.4</double>
-            </void>
             <void property="fspa_cpi_y">
              <double>0.0</double>
             </void>
@@ -9658,17 +9972,8 @@
             <void property="fspa_cpp_y">
              <double>0.0625</double>
             </void>
-            <void property="key">
-             <int>0</int>
-            </void>
-            <void property="onMove">
-             <boolean>false</boolean>
-            </void>
             <void property="ppi">
              <int>16</int>
-            </void>
-            <void property="sentidoUpLeft">
-             <boolean>false</boolean>
             </void>
            </object>
           </void>
@@ -9703,23 +10008,17 @@
             <void property="direccion">
              <int>4</int>
             </void>
+            <void property="fspa_cpi_x">
+             <double>0.0</double>
+            </void>
             <void property="fspa_cpp_x">
              <double>0.022727272727272728</double>
             </void>
             <void property="fspa_cpp_y">
              <double>0.024390243902439025</double>
             </void>
-            <void property="key">
-             <int>32</int>
-            </void>
-            <void property="onMove">
-             <boolean>true</boolean>
-            </void>
             <void property="ppi">
              <int>41</int>
-            </void>
-            <void property="sentidoUpLeft">
-             <boolean>true</boolean>
             </void>
            </object>
           </void>
@@ -9748,8 +10047,11 @@
          <object class="quino.clases.model.Ensayo">
           <void property="configuracion">
            <object class="quino.clases.config.ConfigEnsayoEnrejadoAuto">
+            <void property="direccion">
+             <int>7</int>
+            </void>
             <void property="fspa_cpi_y">
-             <double>0.0</double>
+             <double>1.0</double>
             </void>
             <void property="fspa_cpp_x">
              <double>-0.011111111111111112</double>
@@ -9757,11 +10059,14 @@
             <void property="fspa_cpp_y">
              <double>0.027777777777777776</double>
             </void>
+            <void property="key">
+             <int>0</int>
+            </void>
+            <void property="onMove">
+             <boolean>false</boolean>
+            </void>
             <void property="ppi">
              <int>36</int>
-            </void>
-            <void property="sentidoUpLeft">
-             <boolean>true</boolean>
             </void>
            </object>
           </void>
@@ -9820,13 +10125,16 @@
              <int>39</int>
             </void>
             <void property="numFigura">
-             <int>4</int>
+             <int>3</int>
             </void>
             <void property="panelEstimulo">
              <int>2</int>
             </void>
             <void property="pcShape">
-             <double>9.0</double>
+             <double>11.0</double>
+            </void>
+            <void property="tolerancia">
+             <int>1</int>
             </void>
            </object>
           </void>
@@ -9871,10 +10179,10 @@
              <int>0</int>
             </void>
             <void property="pcShape">
-             <double>8.0</double>
+             <double>11.0</double>
             </void>
             <void property="tolerancia">
-             <int>0</int>
+             <int>1</int>
             </void>
            </object>
           </void>
@@ -9906,8 +10214,14 @@
             <void property="densidad">
              <int>1440</int>
             </void>
+            <void property="key">
+             <int>37</int>
+            </void>
             <void property="numFigura">
-             <int>4</int>
+             <int>1</int>
+            </void>
+            <void property="panelEstimulo">
+             <int>1</int>
             </void>
             <void property="pcShape">
              <double>11.0</double>
@@ -10276,8 +10590,17 @@
             <void property="direccion">
              <int>1</int>
             </void>
+            <void property="fspa_cpp_x">
+             <double>0.1</double>
+            </void>
             <void property="key">
              <int>38</int>
+            </void>
+            <void property="ppi">
+             <int>10</int>
+            </void>
+            <void property="ppi2">
+             <int>24</int>
             </void>
            </object>
           </void>
@@ -10309,11 +10632,17 @@
          <object class="quino.clases.model.Ensayo">
           <void property="configuracion">
            <object class="quino.clases.config.ConfigEnsayoGaborAuto">
-            <void property="direccion">
-             <int>4</int>
+            <void property="fspa_cpp_x">
+             <double>0.02</double>
             </void>
-            <void property="key">
-             <int>37</int>
+            <void property="fspa_cpp_y">
+             <double>0.027777777777777776</double>
+            </void>
+            <void property="ppi">
+             <int>50</int>
+            </void>
+            <void property="ppi2">
+             <int>35</int>
             </void>
            </object>
           </void>
@@ -10343,10 +10672,19 @@
           <void property="configuracion">
            <object class="quino.clases.config.ConfigEnsayoGaborAuto">
             <void property="direccion">
-             <int>4</int>
+             <int>1</int>
+            </void>
+            <void property="fspa_cpp_y">
+             <double>0.03333333333333333</double>
             </void>
             <void property="key">
-             <int>37</int>
+             <int>38</int>
+            </void>
+            <void property="ppi">
+             <int>30</int>
+            </void>
+            <void property="ppi2">
+             <int>47</int>
             </void>
             <void property="sentidoUpLeft">
              <boolean>true</boolean>
@@ -10398,6 +10736,12 @@
          <object class="quino.clases.model.Ensayo">
           <void property="configuracion">
            <object class="quino.clases.config.ConfigEnsayoOrientacionAuto">
+            <void property="direccion">
+             <int>6</int>
+            </void>
+            <void property="fspa_cpi_x">
+             <double>1.0</double>
+            </void>
             <void property="fspa_cpp_x">
              <double>-0.009302325581395349</double>
             </void>
@@ -10443,12 +10787,6 @@
          <object class="quino.clases.model.Ensayo">
           <void property="configuracion">
            <object class="quino.clases.config.ConfigEnsayoOrientacionAuto">
-            <void property="direccion">
-             <int>6</int>
-            </void>
-            <void property="fspa_cpi_x">
-             <double>1.0</double>
-            </void>
             <void property="fspa_cpp_x">
              <double>0.02040816326530612</double>
             </void>
@@ -10491,12 +10829,6 @@
          <object class="quino.clases.model.Ensayo">
           <void property="configuracion">
            <object class="quino.clases.config.ConfigEnsayoOrientacionAuto">
-            <void property="direccion">
-             <int>6</int>
-            </void>
-            <void property="fspa_cpi_x">
-             <double>1.0</double>
-            </void>
             <void property="fspa_cpp_x">
              <double>0.07692307692307693</double>
             </void>
@@ -10928,17 +11260,20 @@
          <object class="quino.clases.model.Ensayo">
           <void property="configuracion">
            <object class="quino.clases.config.ConfigEnsayoEnrejadoAuto">
+            <void property="direccion">
+             <int>3</int>
+            </void>
+            <void property="fspa_cpi_x">
+             <double>-0.4</double>
+            </void>
+            <void property="fspa_cpi_y">
+             <double>0.0</double>
+            </void>
             <void property="fspa_cpp_x">
              <double>0.058823529411764705</double>
             </void>
             <void property="fspa_cpp_y">
              <double>0.058823529411764705</double>
-            </void>
-            <void property="key">
-             <int>0</int>
-            </void>
-            <void property="onMove">
-             <boolean>false</boolean>
             </void>
             <void property="ppi">
              <int>17</int>
@@ -10976,6 +11311,9 @@
             <void property="direccion">
              <int>7</int>
             </void>
+            <void property="fspa_cpi_x">
+             <double>-0.4</double>
+            </void>
             <void property="fspa_cpp_x">
              <double>0.030303030303030304</double>
             </void>
@@ -10983,16 +11321,16 @@
              <double>0.030303030303030304</double>
             </void>
             <void property="key">
-             <int>32</int>
+             <int>0</int>
             </void>
             <void property="onMove">
-             <boolean>true</boolean>
+             <boolean>false</boolean>
             </void>
             <void property="ppi">
              <int>33</int>
             </void>
             <void property="sentidoUpLeft">
-             <boolean>true</boolean>
+             <boolean>false</boolean>
             </void>
            </object>
           </void>
@@ -11024,9 +11362,6 @@
             <void property="direccion">
              <int>7</int>
             </void>
-            <void property="fspa_cpi_y">
-             <double>1.0</double>
-            </void>
             <void property="fspa_cpp_x">
              <double>0.02857142857142857</double>
             </void>
@@ -11035,6 +11370,9 @@
             </void>
             <void property="ppi">
              <int>35</int>
+            </void>
+            <void property="sentidoUpLeft">
+             <boolean>true</boolean>
             </void>
            </object>
           </void>
@@ -11090,19 +11428,16 @@
              <int>1457</int>
             </void>
             <void property="key">
-             <int>39</int>
+             <int>37</int>
             </void>
             <void property="numFigura">
-             <int>2</int>
+             <int>4</int>
             </void>
             <void property="panelEstimulo">
-             <int>2</int>
-            </void>
-            <void property="pcShape">
-             <double>9.0</double>
+             <int>1</int>
             </void>
             <void property="tolerancia">
-             <int>0</int>
+             <int>1</int>
             </void>
            </object>
           </void>
@@ -11137,11 +11472,8 @@
             <void property="densidad">
              <int>1445</int>
             </void>
-            <void property="numFigura">
-             <int>3</int>
-            </void>
             <void property="pcShape">
-             <double>11.0</double>
+             <double>12.0</double>
             </void>
            </object>
           </void>
@@ -11173,11 +11505,14 @@
             <void property="densidad">
              <int>1135</int>
             </void>
-            <void property="key">
-             <int>0</int>
+            <void property="numFigura">
+             <int>3</int>
             </void>
-            <void property="panelEstimulo">
-             <int>0</int>
+            <void property="pcShape">
+             <double>11.0</double>
+            </void>
+            <void property="tolerancia">
+             <int>1</int>
             </void>
            </object>
           </void>
@@ -11483,6 +11818,15 @@
             <void property="key">
              <int>38</int>
             </void>
+            <void property="ppi">
+             <int>24</int>
+            </void>
+            <void property="ppi2">
+             <int>50</int>
+            </void>
+            <void property="sentidoUpLeft">
+             <boolean>true</boolean>
+            </void>
            </object>
           </void>
           <void property="resultado">
@@ -11516,20 +11860,20 @@
             <void property="direccion">
              <int>2</int>
             </void>
-            <void property="fspa_cpi_x">
-             <double>0.0</double>
-            </void>
-            <void property="fspa_cpi_y">
-             <double>1.0</double>
-            </void>
-            <void property="fspa_cpp_x">
-             <double>0.0</double>
-            </void>
             <void property="fspa_cpp_y">
              <double>0.05</double>
             </void>
             <void property="key">
              <int>40</int>
+            </void>
+            <void property="ppi">
+             <int>20</int>
+            </void>
+            <void property="ppi2">
+             <int>18</int>
+            </void>
+            <void property="sentidoUpLeft">
+             <boolean>false</boolean>
             </void>
            </object>
           </void>
@@ -11557,7 +11901,32 @@
         <void method="add">
          <object class="quino.clases.model.Ensayo">
           <void property="configuracion">
-           <object class="quino.clases.config.ConfigEnsayoGaborAuto"/>
+           <object class="quino.clases.config.ConfigEnsayoGaborAuto">
+            <void property="direccion">
+             <int>2</int>
+            </void>
+            <void property="fspa_cpi_x">
+             <double>0.0</double>
+            </void>
+            <void property="fspa_cpi_y">
+             <double>1.0</double>
+            </void>
+            <void property="fspa_cpp_x">
+             <double>0.045454545454545456</double>
+            </void>
+            <void property="fspa_cpp_y">
+             <double>0.038461538461538464</double>
+            </void>
+            <void property="key">
+             <int>40</int>
+            </void>
+            <void property="ppi">
+             <int>22</int>
+            </void>
+            <void property="ppi2">
+             <int>34</int>
+            </void>
+           </object>
           </void>
           <void property="resultado">
            <object class="quino.clases.model.Resultado">
@@ -11605,10 +11974,10 @@
           <void property="configuracion">
            <object class="quino.clases.config.ConfigEnsayoOrientacionAuto">
             <void property="direccion">
-             <int>6</int>
+             <int>5</int>
             </void>
             <void property="fspa_cpi_x">
-             <double>1.0</double>
+             <double>-0.4</double>
             </void>
             <void property="fspa_cpp_x">
              <double>0.029411764705882353</double>
@@ -11697,12 +12066,6 @@
          <object class="quino.clases.model.Ensayo">
           <void property="configuracion">
            <object class="quino.clases.config.ConfigEnsayoOrientacionAuto">
-            <void property="direccion">
-             <int>6</int>
-            </void>
-            <void property="fspa_cpi_x">
-             <double>1.0</double>
-            </void>
             <void property="fspa_cpp_x">
              <double>0.045454545454545456</double>
             </void>
@@ -12152,8 +12515,8 @@
          <object class="quino.clases.model.Ensayo">
           <void property="configuracion">
            <object class="quino.clases.config.ConfigEnsayoEnrejadoAuto">
-            <void property="direccion">
-             <int>7</int>
+            <void property="fspa_cpi_y">
+             <double>0.0</double>
             </void>
             <void property="fspa_cpp_x">
              <double>0.03333333333333333</double>
@@ -12161,11 +12524,14 @@
             <void property="fspa_cpp_y">
              <double>0.03333333333333333</double>
             </void>
+            <void property="key">
+             <int>32</int>
+            </void>
+            <void property="onMove">
+             <boolean>true</boolean>
+            </void>
             <void property="ppi">
              <int>30</int>
-            </void>
-            <void property="sentidoUpLeft">
-             <boolean>true</boolean>
             </void>
            </object>
           </void>
@@ -12197,11 +12563,8 @@
          <object class="quino.clases.model.Ensayo">
           <void property="configuracion">
            <object class="quino.clases.config.ConfigEnsayoEnrejadoAuto">
-            <void property="direccion">
-             <int>1</int>
-            </void>
             <void property="fspa_cpi_y">
-             <double>1.0</double>
+             <double>0.0</double>
             </void>
             <void property="fspa_cpp_x">
              <double>-0.02666666666666667</double>
@@ -12211,9 +12574,6 @@
             </void>
             <void property="ppi">
              <int>45</int>
-            </void>
-            <void property="sentidoUpLeft">
-             <boolean>true</boolean>
             </void>
            </object>
           </void>
@@ -12243,7 +12603,13 @@
           <void property="configuracion">
            <object class="quino.clases.config.ConfigEnsayoEnrejadoAuto">
             <void property="direccion">
-             <int>6</int>
+             <int>5</int>
+            </void>
+            <void property="fspa_cpi_x">
+             <double>-0.4</double>
+            </void>
+            <void property="fspa_cpi_y">
+             <double>1.0</double>
             </void>
             <void property="fspa_cpp_x">
              <double>0.06666666666666667</double>
@@ -12253,9 +12619,6 @@
             </void>
             <void property="ppi">
              <int>15</int>
-            </void>
-            <void property="sentidoUpLeft">
-             <boolean>true</boolean>
             </void>
            </object>
           </void>
@@ -12310,8 +12673,17 @@
             <void property="densidad">
              <int>1351</int>
             </void>
+            <void property="key">
+             <int>37</int>
+            </void>
             <void property="numFigura">
              <int>2</int>
+            </void>
+            <void property="panelEstimulo">
+             <int>1</int>
+            </void>
+            <void property="tolerancia">
+             <int>0</int>
             </void>
            </object>
           </void>
@@ -12346,14 +12718,14 @@
             <void property="densidad">
              <int>1494</int>
             </void>
-            <void property="key">
-             <int>0</int>
-            </void>
             <void property="numFigura">
              <int>4</int>
             </void>
-            <void property="panelEstimulo">
-             <int>0</int>
+            <void property="pcShape">
+             <double>11.0</double>
+            </void>
+            <void property="tolerancia">
+             <int>1</int>
             </void>
            </object>
           </void>
@@ -12780,25 +13152,28 @@
           <void property="configuracion">
            <object class="quino.clases.config.ConfigEnsayoGaborAuto">
             <void property="direccion">
-             <int>4</int>
+             <int>1</int>
             </void>
             <void property="fspa_cpi_x">
-             <double>1.0</double>
+             <double>0.0</double>
             </void>
             <void property="fspa_cpi_y">
-             <double>0.0</double>
+             <double>1.0</double>
             </void>
             <void property="fspa_cpp_x">
              <double>0.05</double>
             </void>
             <void property="fspa_cpp_y">
-             <double>0.0</double>
+             <double>0.1</double>
             </void>
             <void property="key">
-             <int>37</int>
+             <int>38</int>
             </void>
-            <void property="sentidoUpLeft">
-             <boolean>true</boolean>
+            <void property="ppi">
+             <int>10</int>
+            </void>
+            <void property="ppi2">
+             <int>32</int>
             </void>
            </object>
           </void>
@@ -12831,10 +13206,31 @@
           <void property="configuracion">
            <object class="quino.clases.config.ConfigEnsayoGaborAuto">
             <void property="direccion">
-             <int>3</int>
+             <int>1</int>
+            </void>
+            <void property="fspa_cpi_x">
+             <double>0.0</double>
+            </void>
+            <void property="fspa_cpi_y">
+             <double>1.0</double>
+            </void>
+            <void property="fspa_cpp_x">
+             <double>0.05263157894736842</double>
+            </void>
+            <void property="fspa_cpp_y">
+             <double>0.027777777777777776</double>
             </void>
             <void property="key">
-             <int>39</int>
+             <int>38</int>
+            </void>
+            <void property="ppi">
+             <int>19</int>
+            </void>
+            <void property="ppi2">
+             <int>48</int>
+            </void>
+            <void property="sentidoUpLeft">
+             <boolean>true</boolean>
             </void>
            </object>
           </void>
@@ -12862,7 +13258,26 @@
         <void method="add">
          <object class="quino.clases.model.Ensayo">
           <void property="configuracion">
-           <object class="quino.clases.config.ConfigEnsayoGaborAuto"/>
+           <object class="quino.clases.config.ConfigEnsayoGaborAuto">
+            <void property="fspa_cpi_x">
+             <double>1.0</double>
+            </void>
+            <void property="fspa_cpi_y">
+             <double>0.0</double>
+            </void>
+            <void property="fspa_cpp_x">
+             <double>0.02631578947368421</double>
+            </void>
+            <void property="fspa_cpp_y">
+             <double>0.038461538461538464</double>
+            </void>
+            <void property="ppi">
+             <int>26</int>
+            </void>
+            <void property="ppi2">
+             <int>22</int>
+            </void>
+           </object>
           </void>
           <void property="resultado">
            <object class="quino.clases.model.Resultado">
@@ -12909,12 +13324,6 @@
          <object class="quino.clases.model.Ensayo">
           <void property="configuracion">
            <object class="quino.clases.config.ConfigEnsayoOrientacionAuto">
-            <void property="direccion">
-             <int>5</int>
-            </void>
-            <void property="fspa_cpi_x">
-             <double>-0.4</double>
-            </void>
             <void property="fspa_cpp_x">
              <double>-0.021052631578947368</double>
             </void>
@@ -13224,7 +13633,10 @@
              <int>5</int>
             </void>
             <void property="fspa_cpi_x">
-             <double>-0.4</double>
+             <double>0.0</double>
+            </void>
+            <void property="fspa_cpi_y">
+             <double>1.0</double>
             </void>
             <void property="fspa_cpp_x">
              <double>-0.008</double>
@@ -13232,11 +13644,14 @@
             <void property="fspa_cpp_y">
              <double>0.02</double>
             </void>
+            <void property="key">
+             <int>32</int>
+            </void>
+            <void property="onMove">
+             <boolean>true</boolean>
+            </void>
             <void property="ppi">
              <int>50</int>
-            </void>
-            <void property="sentidoUpLeft">
-             <boolean>false</boolean>
             </void>
            </object>
           </void>
@@ -13280,6 +13695,12 @@
             <void property="fspa_cpp_y">
              <double>0.05</double>
             </void>
+            <void property="key">
+             <int>0</int>
+            </void>
+            <void property="onMove">
+             <boolean>false</boolean>
+            </void>
             <void property="ppi">
              <int>20</int>
             </void>
@@ -13314,13 +13735,13 @@
           <void property="configuracion">
            <object class="quino.clases.config.ConfigEnsayoEnrejadoAuto">
             <void property="direccion">
-             <int>5</int>
+             <int>4</int>
             </void>
             <void property="fspa_cpi_x">
-             <double>-0.4</double>
+             <double>1.0</double>
             </void>
             <void property="fspa_cpi_y">
-             <double>1.0</double>
+             <double>0.0</double>
             </void>
             <void property="fspa_cpp_x">
              <double>0.05</double>
@@ -13328,11 +13749,14 @@
             <void property="fspa_cpp_y">
              <double>0.05</double>
             </void>
+            <void property="key">
+             <int>0</int>
+            </void>
+            <void property="onMove">
+             <boolean>false</boolean>
+            </void>
             <void property="ppi">
              <int>20</int>
-            </void>
-            <void property="sentidoUpLeft">
-             <boolean>false</boolean>
             </void>
            </object>
           </void>
@@ -13387,17 +13811,11 @@
             <void property="densidad">
              <int>1330</int>
             </void>
-            <void property="key">
-             <int>37</int>
-            </void>
-            <void property="panelEstimulo">
-             <int>1</int>
+            <void property="numFigura">
+             <int>3</int>
             </void>
             <void property="pcShape">
-             <double>9.0</double>
-            </void>
-            <void property="tolerancia">
-             <int>0</int>
+             <double>10.0</double>
             </void>
            </object>
           </void>
@@ -13432,20 +13850,11 @@
             <void property="densidad">
              <int>1384</int>
             </void>
-            <void property="key">
-             <int>37</int>
-            </void>
-            <void property="numFigura">
-             <int>4</int>
-            </void>
-            <void property="panelEstimulo">
-             <int>1</int>
-            </void>
             <void property="pcShape">
-             <double>12.0</double>
+             <double>10.0</double>
             </void>
             <void property="tolerancia">
-             <int>1</int>
+             <int>0</int>
             </void>
            </object>
           </void>
@@ -13778,26 +14187,14 @@
          <object class="quino.clases.model.Ensayo">
           <void property="configuracion">
            <object class="quino.clases.config.ConfigEnsayoGaborAuto">
-            <void property="direccion">
-             <int>2</int>
-            </void>
-            <void property="fspa_cpi_x">
-             <double>0.0</double>
-            </void>
-            <void property="fspa_cpi_y">
-             <double>1.0</double>
-            </void>
-            <void property="fspa_cpp_x">
-             <double>0.0</double>
-            </void>
             <void property="fspa_cpp_y">
              <double>0.05</double>
             </void>
-            <void property="key">
-             <int>40</int>
+            <void property="ppi">
+             <int>27</int>
             </void>
-            <void property="sentidoUpLeft">
-             <boolean>false</boolean>
+            <void property="ppi2">
+             <int>15</int>
             </void>
            </object>
           </void>
@@ -13829,26 +14226,14 @@
          <object class="quino.clases.model.Ensayo">
           <void property="configuracion">
            <object class="quino.clases.config.ConfigEnsayoGaborAuto">
-            <void property="direccion">
-             <int>1</int>
-            </void>
-            <void property="fspa_cpi_x">
-             <double>0.0</double>
-            </void>
-            <void property="fspa_cpi_y">
-             <double>1.0</double>
-            </void>
-            <void property="fspa_cpp_x">
-             <double>0.0</double>
-            </void>
             <void property="fspa_cpp_y">
              <double>0.05</double>
             </void>
-            <void property="key">
-             <int>38</int>
+            <void property="ppi">
+             <int>18</int>
             </void>
-            <void property="sentidoUpLeft">
-             <boolean>true</boolean>
+            <void property="ppi2">
+             <int>38</int>
             </void>
            </object>
           </void>
@@ -13880,11 +14265,17 @@
             <void property="direccion">
              <int>1</int>
             </void>
+            <void property="fspa_cpp_x">
+             <double>0.03571428571428571</double>
+            </void>
             <void property="key">
              <int>38</int>
             </void>
-            <void property="sentidoUpLeft">
-             <boolean>true</boolean>
+            <void property="ppi">
+             <int>28</int>
+            </void>
+            <void property="ppi2">
+             <int>30</int>
             </void>
            </object>
           </void>
@@ -13933,12 +14324,6 @@
          <object class="quino.clases.model.Ensayo">
           <void property="configuracion">
            <object class="quino.clases.config.ConfigEnsayoOrientacionAuto">
-            <void property="direccion">
-             <int>6</int>
-            </void>
-            <void property="fspa_cpi_x">
-             <double>1.0</double>
-            </void>
             <void property="fspa_cpp_x">
              <double>0.06666666666666667</double>
             </void>
@@ -14014,6 +14399,12 @@
          <object class="quino.clases.model.Ensayo">
           <void property="configuracion">
            <object class="quino.clases.config.ConfigEnsayoOrientacionAuto">
+            <void property="direccion">
+             <int>6</int>
+            </void>
+            <void property="fspa_cpi_x">
+             <double>1.0</double>
+            </void>
             <void property="fspa_cpp_x">
              <double>0.0625</double>
             </void>
@@ -14278,19 +14669,19 @@
           <void property="configuracion">
            <object class="quino.clases.config.ConfigEnsayoEnrejadoAuto">
             <void property="direccion">
-             <int>3</int>
+             <int>7</int>
+            </void>
+            <void property="fspa_cpi_x">
+             <double>0.0</double>
+            </void>
+            <void property="fspa_cpi_y">
+             <double>1.0</double>
             </void>
             <void property="fspa_cpp_x">
              <double>0.045454545454545456</double>
             </void>
             <void property="fspa_cpp_y">
              <double>0.02040816326530612</double>
-            </void>
-            <void property="key">
-             <int>0</int>
-            </void>
-            <void property="onMove">
-             <boolean>false</boolean>
             </void>
             <void property="ppi">
              <int>22</int>
@@ -14329,7 +14720,10 @@
           <void property="configuracion">
            <object class="quino.clases.config.ConfigEnsayoEnrejadoAuto">
             <void property="direccion">
-             <int>5</int>
+             <int>3</int>
+            </void>
+            <void property="fspa_cpi_y">
+             <double>0.0</double>
             </void>
             <void property="fspa_cpp_x">
              <double>-0.016</double>
@@ -14373,8 +14767,14 @@
          <object class="quino.clases.model.Ensayo">
           <void property="configuracion">
            <object class="quino.clases.config.ConfigEnsayoEnrejadoAuto">
+            <void property="direccion">
+             <int>8</int>
+            </void>
+            <void property="fspa_cpi_x">
+             <double>0.0</double>
+            </void>
             <void property="fspa_cpi_y">
-             <double>1.0</double>
+             <double>0.0</double>
             </void>
             <void property="fspa_cpp_x">
              <double>0.07692307692307693</double>
@@ -14389,7 +14789,10 @@
              <boolean>true</boolean>
             </void>
             <void property="ppi">
-             <int>13</int>
+             <int>25</int>
+            </void>
+            <void property="sentidoUpLeft">
+             <boolean>false</boolean>
             </void>
            </object>
           </void>
@@ -14450,6 +14853,9 @@
             <void property="pcShape">
              <double>10.0</double>
             </void>
+            <void property="tolerancia">
+             <int>1</int>
+            </void>
            </object>
           </void>
           <void property="resultado">
@@ -14483,20 +14889,11 @@
             <void property="densidad">
              <int>1231</int>
             </void>
-            <void property="key">
-             <int>39</int>
-            </void>
             <void property="numFigura">
              <int>4</int>
             </void>
-            <void property="panelEstimulo">
-             <int>2</int>
-            </void>
             <void property="pcShape">
-             <double>12.0</double>
-            </void>
-            <void property="tolerancia">
-             <int>0</int>
+             <double>8.0</double>
             </void>
            </object>
           </void>
@@ -14528,17 +14925,8 @@
             <void property="densidad">
              <int>1441</int>
             </void>
-            <void property="key">
-             <int>0</int>
-            </void>
             <void property="numFigura">
-             <int>1</int>
-            </void>
-            <void property="panelEstimulo">
-             <int>0</int>
-            </void>
-            <void property="pcShape">
-             <double>9.0</double>
+             <int>4</int>
             </void>
            </object>
           </void>
@@ -14827,22 +15215,22 @@
           <void property="configuracion">
            <object class="quino.clases.config.ConfigEnsayoGaborAuto">
             <void property="direccion">
-             <int>1</int>
-            </void>
-            <void property="fspa_cpi_x">
-             <double>1.0</double>
-            </void>
-            <void property="fspa_cpi_y">
-             <double>0.0</double>
+             <int>3</int>
             </void>
             <void property="fspa_cpp_x">
              <double>0.05</double>
             </void>
-            <void property="fspa_cpp_y">
-             <double>0.0</double>
-            </void>
             <void property="key">
-             <int>38</int>
+             <int>39</int>
+            </void>
+            <void property="ppi">
+             <int>48</int>
+            </void>
+            <void property="ppi2">
+             <int>29</int>
+            </void>
+            <void property="sentidoUpLeft">
+             <boolean>false</boolean>
             </void>
            </object>
           </void>
@@ -14877,11 +15265,17 @@
             <void property="direccion">
              <int>4</int>
             </void>
+            <void property="fspa_cpp_y">
+             <double>0.05</double>
+            </void>
             <void property="key">
              <int>37</int>
             </void>
-            <void property="sentidoUpLeft">
-             <boolean>true</boolean>
+            <void property="ppi">
+             <int>20</int>
+            </void>
+            <void property="ppi2">
+             <int>41</int>
             </void>
            </object>
           </void>
@@ -14911,22 +15305,31 @@
           <void property="configuracion">
            <object class="quino.clases.config.ConfigEnsayoGaborAuto">
             <void property="direccion">
-             <int>2</int>
+             <int>4</int>
             </void>
             <void property="fspa_cpi_x">
-             <double>0.0</double>
-            </void>
-            <void property="fspa_cpi_y">
              <double>1.0</double>
             </void>
-            <void property="fspa_cpp_x">
+            <void property="fspa_cpi_y">
              <double>0.0</double>
+            </void>
+            <void property="fspa_cpp_x">
+             <double>0.03125</double>
             </void>
             <void property="fspa_cpp_y">
              <double>0.05</double>
             </void>
             <void property="key">
-             <int>40</int>
+             <int>37</int>
+            </void>
+            <void property="ppi">
+             <int>16</int>
+            </void>
+            <void property="ppi2">
+             <int>43</int>
+            </void>
+            <void property="sentidoUpLeft">
+             <boolean>true</boolean>
             </void>
            </object>
           </void>
@@ -15068,12 +15471,6 @@
          <object class="quino.clases.model.Ensayo">
           <void property="configuracion">
            <object class="quino.clases.config.ConfigEnsayoOrientacionAuto">
-            <void property="direccion">
-             <int>5</int>
-            </void>
-            <void property="fspa_cpi_x">
-             <double>-0.4</double>
-            </void>
             <void property="fspa_cpp_x">
              <double>-0.009302325581395349</double>
             </void>
@@ -15346,20 +15743,23 @@
             <void property="direccion">
              <int>6</int>
             </void>
-            <void property="fspa_cpi_x">
-             <double>-0.4</double>
-            </void>
             <void property="fspa_cpp_x">
              <double>0.03571428571428571</double>
             </void>
             <void property="fspa_cpp_y">
              <double>0.03571428571428571</double>
             </void>
+            <void property="key">
+             <int>32</int>
+            </void>
+            <void property="onMove">
+             <boolean>true</boolean>
+            </void>
             <void property="ppi">
              <int>28</int>
             </void>
             <void property="sentidoUpLeft">
-             <boolean>true</boolean>
+             <boolean>false</boolean>
             </void>
            </object>
           </void>
@@ -15391,8 +15791,14 @@
          <object class="quino.clases.model.Ensayo">
           <void property="configuracion">
            <object class="quino.clases.config.ConfigEnsayoEnrejadoAuto">
+            <void property="direccion">
+             <int>8</int>
+            </void>
             <void property="fspa_cpi_x">
              <double>-0.4</double>
+            </void>
+            <void property="fspa_cpi_y">
+             <double>1.0</double>
             </void>
             <void property="fspa_cpp_x">
              <double>0.047619047619047616</double>
@@ -15404,7 +15810,7 @@
              <int>49</int>
             </void>
             <void property="sentidoUpLeft">
-             <boolean>false</boolean>
+             <boolean>true</boolean>
             </void>
            </object>
           </void>
@@ -15433,11 +15839,8 @@
          <object class="quino.clases.model.Ensayo">
           <void property="configuracion">
            <object class="quino.clases.config.ConfigEnsayoEnrejadoAuto">
-            <void property="fspa_cpi_x">
-             <double>1.0</double>
-            </void>
-            <void property="fspa_cpi_y">
-             <double>0.0</double>
+            <void property="direccion">
+             <int>8</int>
             </void>
             <void property="fspa_cpp_x">
              <double>-0.04</double>
@@ -15447,6 +15850,9 @@
             </void>
             <void property="ppi">
              <int>10</int>
+            </void>
+            <void property="sentidoUpLeft">
+             <boolean>false</boolean>
             </void>
            </object>
           </void>
@@ -15501,14 +15907,17 @@
             <void property="densidad">
              <int>1060</int>
             </void>
+            <void property="key">
+             <int>0</int>
+            </void>
             <void property="numFigura">
-             <int>3</int>
+             <int>1</int>
+            </void>
+            <void property="panelEstimulo">
+             <int>0</int>
             </void>
             <void property="pcShape">
-             <double>10.0</double>
-            </void>
-            <void property="tolerancia">
-             <int>1</int>
+             <double>11.0</double>
             </void>
            </object>
           </void>
@@ -15544,16 +15953,16 @@
              <int>1211</int>
             </void>
             <void property="key">
-             <int>39</int>
+             <int>0</int>
             </void>
             <void property="numFigura">
              <int>1</int>
             </void>
             <void property="panelEstimulo">
-             <int>2</int>
+             <int>0</int>
             </void>
             <void property="pcShape">
-             <double>9.0</double>
+             <double>12.0</double>
             </void>
             <void property="tolerancia">
              <int>0</int>
@@ -15937,26 +16346,23 @@
          <object class="quino.clases.model.Ensayo">
           <void property="configuracion">
            <object class="quino.clases.config.ConfigEnsayoGaborAuto">
-            <void property="direccion">
-             <int>4</int>
-            </void>
             <void property="fspa_cpi_x">
-             <double>1.0</double>
+             <double>0.0</double>
             </void>
             <void property="fspa_cpi_y">
-             <double>0.0</double>
+             <double>1.0</double>
             </void>
             <void property="fspa_cpp_x">
              <double>0.05</double>
             </void>
             <void property="fspa_cpp_y">
-             <double>0.0</double>
+             <double>0.02631578947368421</double>
             </void>
-            <void property="key">
-             <int>37</int>
+            <void property="ppi">
+             <int>17</int>
             </void>
-            <void property="sentidoUpLeft">
-             <boolean>true</boolean>
+            <void property="ppi2">
+             <int>49</int>
             </void>
            </object>
           </void>
@@ -15991,11 +16397,26 @@
             <void property="direccion">
              <int>3</int>
             </void>
+            <void property="fspa_cpi_x">
+             <double>1.0</double>
+            </void>
+            <void property="fspa_cpi_y">
+             <double>0.0</double>
+            </void>
+            <void property="fspa_cpp_x">
+             <double>0.025</double>
+            </void>
+            <void property="fspa_cpp_y">
+             <double>0.02857142857142857</double>
+            </void>
             <void property="key">
              <int>39</int>
             </void>
-            <void property="sentidoUpLeft">
-             <boolean>false</boolean>
+            <void property="ppi">
+             <int>40</int>
+            </void>
+            <void property="ppi2">
+             <int>33</int>
             </void>
            </object>
           </void>
@@ -16027,20 +16448,20 @@
             <void property="direccion">
              <int>4</int>
             </void>
-            <void property="fspa_cpi_x">
-             <double>1.0</double>
-            </void>
-            <void property="fspa_cpi_y">
-             <double>0.0</double>
-            </void>
             <void property="fspa_cpp_x">
              <double>0.05</double>
             </void>
             <void property="fspa_cpp_y">
-             <double>0.0</double>
+             <double>0.03571428571428571</double>
             </void>
             <void property="key">
              <int>37</int>
+            </void>
+            <void property="ppi">
+             <int>46</int>
+            </void>
+            <void property="ppi2">
+             <int>33</int>
             </void>
            </object>
           </void>
@@ -16099,7 +16520,7 @@
              <double>-0.017391304347826087</double>
             </void>
             <void property="fspa_cpp_y">
-             <double>0.043478260869565216</double>
+             <double>0.05263157894736842</double>
             </void>
             <void property="key">
              <int>37</int>
@@ -16108,7 +16529,7 @@
              <int>1</int>
             </void>
             <void property="ppi">
-             <int>23</int>
+             <int>19</int>
             </void>
            </object>
           </void>
@@ -16176,6 +16597,12 @@
          <object class="quino.clases.model.Ensayo">
           <void property="configuracion">
            <object class="quino.clases.config.ConfigEnsayoOrientacionAuto">
+            <void property="direccion">
+             <int>5</int>
+            </void>
+            <void property="fspa_cpi_x">
+             <double>-0.4</double>
+            </void>
             <void property="fspa_cpp_x">
              <double>0.029411764705882353</double>
             </void>
@@ -16565,6 +16992,126 @@
      </void>
      <void property="sexo">
       <string>Femenino</string>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="quino.clases.model.Paciente">
+     <void property="ci">
+      <long>85051100306</long>
+     </void>
+     <void property="edad">
+      <int>29</int>
+     </void>
+     <void property="escolaridad">
+      <string>Primaria</string>
+     </void>
+     <void property="escuela">
+      <string>Kmilo Cienfuegos</string>
+     </void>
+     <void property="ficha">
+      <string>Yo soy el paciente</string>
+     </void>
+     <void property="foveal">
+      <object class="quino.util.test.PruebaFormaA">
+       <void property="cantEnsayos">
+        <int>2</int>
+       </void>
+       <void property="ensayos">
+        <void method="add">
+         <object class="quino.clases.model.Ensayo">
+          <void property="configuracion">
+           <object class="quino.clases.config.ConfigEnsayoFormaAB">
+            <void property="cantidad">
+             <int>138</int>
+            </void>
+            <void property="densidad">
+             <int>600</int>
+            </void>
+            <void property="direccion">
+             <int>1</int>
+            </void>
+            <void property="key">
+             <int>32</int>
+            </void>
+            <void property="tiempoMovimiento">
+             <double>60.0</double>
+            </void>
+           </object>
+          </void>
+          <void property="resultado">
+           <object class="quino.clases.model.Resultado">
+            <void property="velocidad">
+             <double>0.00174</double>
+            </void>
+           </object>
+          </void>
+         </object>
+        </void>
+        <void method="add">
+         <object class="quino.clases.model.Ensayo">
+          <void property="configuracion">
+           <object class="quino.clases.config.ConfigEnsayoFormaAB">
+            <void property="cantidad">
+             <int>138</int>
+            </void>
+            <void property="densidad">
+             <int>600</int>
+            </void>
+            <void property="direccion">
+             <int>1</int>
+            </void>
+            <void property="key">
+             <int>32</int>
+            </void>
+            <void property="panelEstimulo">
+             <int>1</int>
+            </void>
+            <void property="tiempoMovimiento">
+             <double>60.0</double>
+            </void>
+           </object>
+          </void>
+          <void property="resultado">
+           <object class="quino.clases.model.Resultado">
+            <void property="angulo">
+             <double>7.26</double>
+            </void>
+            <void property="descripcion">
+             <string>No se ha presionado la barra espaciadora</string>
+            </void>
+            <void property="error">
+             <boolean>true</boolean>
+            </void>
+            <void property="key">
+             <int>38</int>
+            </void>
+            <void property="tiempoRespuesta">
+             <int>672</int>
+            </void>
+            <void property="velocidad">
+             <double>0.00174</double>
+            </void>
+           </object>
+          </void>
+         </object>
+        </void>
+       </void>
+       <void property="fecha">
+        <object class="java.util.Date">
+         <long>1400522774503</long>
+        </object>
+       </void>
+      </object>
+     </void>
+     <void property="historia">
+      <string>85051100301</string>
+     </void>
+     <void property="nombre">
+      <string>Felipe Rodriguez Arias</string>
+     </void>
+     <void property="sexo">
+      <string>Masculino</string>
      </void>
     </object>
    </void>

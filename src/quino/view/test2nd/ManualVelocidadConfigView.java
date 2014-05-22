@@ -2,7 +2,6 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package quino.view.test2nd;
 
 import quino.clases.config.ConfigEnsayoOrientacion;
@@ -13,14 +12,14 @@ import quino.util.test.PruebaOrientacion;
  *
  * @author Felipe Rodriguez Arias
  */
-public class ManualOrientacionConfigView extends javax.swing.JDialog {
+public class ManualVelocidadConfigView extends javax.swing.JDialog {
 
     private PrincipalView parent;
     private int direccion = 0;
 
     /** Creates new form ManualConfigView */
     @SuppressWarnings("empty-statement")
-    public ManualOrientacionConfigView(PrincipalView parent, boolean modal) {
+    public ManualVelocidadConfigView(PrincipalView parent, boolean modal) {
         super(parent, modal);
         this.parent = parent;
         initComponents();
@@ -44,10 +43,6 @@ public class ManualOrientacionConfigView extends javax.swing.JDialog {
         jLabel3 = new javax.swing.JLabel();
         jTextField2 = new javax.swing.JTextField();
         jTextField3 = new javax.swing.JTextField();
-        jPanel1 = new javax.swing.JPanel();
-        jToggleButton1 = new javax.swing.JToggleButton();
-        jToggleButton5 = new javax.swing.JToggleButton();
-        jToggleButton8 = new javax.swing.JToggleButton();
         jLabel5 = new javax.swing.JLabel();
         jTextField5 = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
@@ -58,7 +53,7 @@ public class ManualOrientacionConfigView extends javax.swing.JDialog {
         setIconImages(null);
         setResizable(false);
 
-        jButton1.setFont(new java.awt.Font("Tahoma", 1, 12));
+        jButton1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jButton1.setText("Comenzar");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -66,7 +61,7 @@ public class ManualOrientacionConfigView extends javax.swing.JDialog {
             }
         });
 
-        jButton2.setFont(new java.awt.Font("Tahoma", 1, 12));
+        jButton2.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jButton2.setText("Cancelar");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -86,7 +81,7 @@ public class ManualOrientacionConfigView extends javax.swing.JDialog {
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 12));
         jLabel3.setText("Intensidad Media");
 
-        jTextField2.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jTextField2.setFont(new java.awt.Font("Tahoma", 1, 12));
         jTextField2.setText("0.75");
         jTextField2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -107,62 +102,6 @@ public class ManualOrientacionConfigView extends javax.swing.JDialog {
             }
         });
 
-        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Dirección", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12))); // NOI18N
-
-        jToggleButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/quino/view/main/icons/asincronico.gif"))); // NOI18N
-        jToggleButton1.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/quino/view/main/icons/asincronico_clk.gif"))); // NOI18N
-        jToggleButton1.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/quino/view/main/icons/asincronico_clk.gif"))); // NOI18N
-        jToggleButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jToggleButton1ActionPerformed(evt);
-            }
-        });
-
-        jToggleButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/quino/view/main/icons/direccion5.gif"))); // NOI18N
-        jToggleButton5.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/quino/view/main/icons/direccion5_clk.gif"))); // NOI18N
-        jToggleButton5.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/quino/view/main/icons/direccion5_clk.gif"))); // NOI18N
-        jToggleButton5.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jToggleButton5ActionPerformed(evt);
-            }
-        });
-
-        jToggleButton8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/quino/view/main/icons/direccion6.gif"))); // NOI18N
-        jToggleButton8.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/quino/view/main/icons/direccion6_clk.gif"))); // NOI18N
-        jToggleButton8.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/quino/view/main/icons/direccion6_clk.gif"))); // NOI18N
-        jToggleButton8.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jToggleButton8ActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(166, Short.MAX_VALUE)
-                .addComponent(jToggleButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jToggleButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jToggleButton8, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(157, 157, 157))
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jToggleButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jToggleButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jToggleButton8, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-
-        jToggleButton1.getAccessibleContext().setAccessibleName("direccion0");
-        jToggleButton5.getAccessibleContext().setAccessibleName("direccion5");
-        jToggleButton8.getAccessibleContext().setAccessibleName("direccion6");
-
         jLabel5.setFont(new java.awt.Font("Tahoma", 1, 12));
         jLabel5.setText("Pixel/Pulgada Barras");
 
@@ -179,32 +118,31 @@ public class ManualOrientacionConfigView extends javax.swing.JDialog {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(layout.createSequentialGroup()
-                            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addContainerGap())
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                            .addComponent(jButton1)
-                            .addGap(54, 54, 54)
-                            .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(111, 111, 111))
-                        .addGroup(layout.createSequentialGroup()
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jLabel1)
-                                .addComponent(jLabel2))
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(jTextField2)
-                                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGap(38, 38, 38)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jLabel5)
-                                .addComponent(jLabel3))
-                            .addGap(40, 40, 40)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addContainerGap(32, Short.MAX_VALUE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel1)
+                                    .addComponent(jLabel2))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addComponent(jTextField2)
+                                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(jButton1))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(38, 38, 38)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel5)
+                                    .addComponent(jLabel3))
+                                .addGap(40, 40, 40)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(54, 54, 54)
+                                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addContainerGap(32, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 352, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(66, 66, 66))))
@@ -226,13 +164,11 @@ public class ManualOrientacionConfigView extends javax.swing.JDialog {
                     .addComponent(jLabel2)
                     .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel3))
-                .addGap(18, 18, 18)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(28, 28, 28)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(22, Short.MAX_VALUE))
         );
 
         jButton1.getAccessibleContext().setAccessibleName("b_Comenzar");
@@ -253,27 +189,6 @@ public class ManualOrientacionConfigView extends javax.swing.JDialog {
     private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField2ActionPerformed
-
-    private void jToggleButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton1ActionPerformed
-        // TODO add your handling code here:
-        direccion = 0;
-        jToggleButton5.setSelected(false);
-        jToggleButton8.setSelected(false);
-    }//GEN-LAST:event_jToggleButton1ActionPerformed
-
-    private void jToggleButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton5ActionPerformed
-        // TODO add your handling code here:
-        direccion = 5;
-        jToggleButton1.setSelected(false);
-        jToggleButton8.setSelected(false);
-    }//GEN-LAST:event_jToggleButton5ActionPerformed
-
-    private void jToggleButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton8ActionPerformed
-        // TODO add your handling code here:
-        direccion = 6;
-        jToggleButton1.setSelected(false);
-        jToggleButton5.setSelected(false);
-    }//GEN-LAST:event_jToggleButton8ActionPerformed
 
     @SuppressWarnings("static-access")
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -301,9 +216,9 @@ public class ManualOrientacionConfigView extends javax.swing.JDialog {
             parent.setConf(new ConfigEnsayoOrientacion(direccion, ppi, false, contraste, (byte) intensidadMedia));
             parent.setPrueba(new PruebaOrientacion(((ConfigEnsayoOrientacion) parent.getConf()), cantEnsayos));
 
-            OrientacionTestView otv = new OrientacionTestView(parent, true, false);
-            otv.setVisible(true);
-            
+            VelocidadTestView vtv = new VelocidadTestView(parent, true, true);
+            vtv.setVisible(true);
+
             setVisible(false);
             dispose();
 
@@ -328,7 +243,7 @@ public class ManualOrientacionConfigView extends javax.swing.JDialog {
         java.awt.EventQueue.invokeLater(new Runnable() {
 
             public void run() {
-                ManualOrientacionConfigView dialog = new ManualOrientacionConfigView(new PrincipalView(), true);
+                ManualVelocidadConfigView dialog = new ManualVelocidadConfigView(new PrincipalView(), true);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
 
                     @Override
@@ -348,13 +263,9 @@ public class ManualOrientacionConfigView extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JPanel jPanel1;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
     private javax.swing.JTextField jTextField5;
-    private javax.swing.JToggleButton jToggleButton1;
-    private javax.swing.JToggleButton jToggleButton5;
-    private javax.swing.JToggleButton jToggleButton8;
     // End of variables declaration//GEN-END:variables
 }

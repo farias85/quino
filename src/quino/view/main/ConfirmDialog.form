@@ -82,8 +82,11 @@
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Tahoma" size="12" style="1"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="Esta seguro que desea eliminar el paciente seleccionado?"/>
+        <Property name="text" type="java.lang.String" value="Est&#xe1; seguro que desea llevar a cabo la acci&#xf3;n de eliminaci&#xf3;n?"/>
       </Properties>
+      <AccessibilityProperties>
+        <Property name="AccessibleContext.accessibleName" type="java.lang.String" value="Est&#xe1; seguro que desea llevar a cabo la acci&#xf3;n de eliminaci&#xf3;n?"/>
+      </AccessibilityProperties>
     </Component>
   </SubComponents>
 </Form>

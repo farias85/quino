@@ -69,8 +69,8 @@ public class ConfirmDialog extends javax.swing.JDialog {
             }
         });
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 12));
-        jLabel1.setText("Esta seguro que desea eliminar el paciente seleccionado?");
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel1.setText("Está seguro que desea llevar a cabo la acción de eliminación?");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -102,6 +102,8 @@ public class ConfirmDialog extends javax.swing.JDialog {
                     .addComponent(okButton))
                 .addContainerGap())
         );
+
+        jLabel1.getAccessibleContext().setAccessibleName("Está seguro que desea llevar a cabo la acción de eliminación?");
 
         pack();
     }// </editor-fold>//GEN-END:initComponents

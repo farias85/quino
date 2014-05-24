@@ -20,7 +20,7 @@ import quino.clases.config.ConfigEnsayoFormaAB;
  *
  * @author farias
  */
-public class InformeParametrosXEnsayo extends AbstractInformeExcel {
+public class InformeParametrosXEnsayo extends AbstractInformeAB {
 
     public InformeParametrosXEnsayo(HSSFWorkbook book) {
         super(book);
@@ -31,13 +31,16 @@ public class InformeParametrosXEnsayo extends AbstractInformeExcel {
         HSSFSheet sheet1 = book.createSheet();
         getTitulo(sheet1, "Parámetros x ensayo - Foveal");
         getEncabezado(sheet1);
-        getCuerpo(sheet1, true);
+        foveal = true;
+        getCuerpo(sheet1);
 
         rowCount = 0;
+        
         HSSFSheet sheet2 = book.createSheet();
         getTitulo(sheet2, "Parámetros x ensayo - Periférica");
         getEncabezado(sheet2);
-        getCuerpo(sheet2, false);
+        foveal = false;
+        getCuerpo(sheet2);
     }
 
     protected void getEncabezado(HSSFSheet sheet) {
@@ -47,7 +50,7 @@ public class InformeParametrosXEnsayo extends AbstractInformeExcel {
         crearEncabezado(sheet, heads);
     }
 
-    protected void getCuerpo(HSSFSheet sheet, boolean foveal) {
+    protected void getCuerpo(HSSFSheet sheet) {
         rowCount++;
         List<Paciente> pacientes = registro.getPacientes();
 

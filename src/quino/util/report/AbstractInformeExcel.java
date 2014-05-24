@@ -22,7 +22,7 @@ public abstract class AbstractInformeExcel {
 
     protected Registro registro = Registro.cargarRegistro(ConfigApp.REGISTRO_FILE_NAME);
     protected HSSFWorkbook book;
-    protected int rowCount;
+    protected int rowCount = 0;
     private HSSFFont fontTitulo;
     private HSSFCellStyle styleTitulo;
     private HSSFFont fontCabecera;
@@ -93,7 +93,7 @@ public abstract class AbstractInformeExcel {
         }
     }
 
-    protected abstract void getCuerpo(HSSFSheet sheet, boolean foveal);
+    protected abstract void getCuerpo(HSSFSheet sheet);
 
     protected HSSFCell getCelda(HSSFRow row, int numRow, int cellType, boolean error) {
         HSSFCell celda = row.createCell(numRow);

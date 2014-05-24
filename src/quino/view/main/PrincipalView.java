@@ -53,9 +53,11 @@ import quino.util.test.PruebaShape;
 import quino.util.QuinoTableModel;
 import quino.util.QuinoTools;
 import quino.util.QuinoSplash;
+import quino.util.report.AbstractInformeAB;
 import quino.util.report.AbstractInformeExcel;
 import quino.util.report.InformeCampoVisual;
 import quino.util.report.InformeParametrosXEnsayo;
+import quino.util.report.estadisticas.EstadisticaFormaAB;
 import quino.util.test.PruebaEnrejado;
 import quino.util.test.PruebaGabor;
 import quino.util.test.PruebaOrientacion;
@@ -290,10 +292,16 @@ public class PrincipalView extends javax.swing.JFrame {
 
         if (respuesta == 1) {
             try {
-                String hist = pacienteActual.getHistoria();
-                registro.eliminarXHistoria(hist);
+                int[] nums = jTable1.getSelectedRows();
+                
+                for (int i = nums.length - 1; i >= 0; i--) {
+                    Paciente p = registro.getPacientes().get(nums[i]);
+                    String hist = p.getHistoria();
+                    registro.eliminarXHistoria(hist);
+                }
 
                 modificarTableModel();
+                
                 registro.salvarRegistro(ConfigApp.REGISTRO_FILE_NAME);
             } catch (Exception e) {
                 ErrorDialog err = new ErrorDialog(this, true, e.getMessage());
@@ -352,6 +360,14 @@ public class PrincipalView extends javax.swing.JFrame {
         jMenuItem11 = new javax.swing.JMenuItem();
         jMenuItem12 = new javax.swing.JMenuItem();
         jMenuItem3 = new javax.swing.JMenuItem();
+        jMenu12 = new javax.swing.JMenu();
+        jMenuItem45 = new javax.swing.JMenuItem();
+        jMenuItem46 = new javax.swing.JMenuItem();
+        jMenuItem47 = new javax.swing.JMenuItem();
+        jMenuItem50 = new javax.swing.JMenuItem();
+        jMenuItem51 = new javax.swing.JMenuItem();
+        jMenuItem48 = new javax.swing.JMenuItem();
+        jMenuItem49 = new javax.swing.JMenuItem();
         jSeparator1 = new javax.swing.JSeparator();
         jMenuItem13 = new javax.swing.JMenuItem();
         jMenu8 = new javax.swing.JMenu();
@@ -606,7 +622,7 @@ public class PrincipalView extends javax.swing.JFrame {
         jTable1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jTable1.setRowHeight(20);
         jTable1.setSelectionBackground(new java.awt.Color(0, 153, 255));
-        jTable1.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        jTable1.setSelectionMode(javax.swing.ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
         jTable1.getTableHeader().setReorderingAllowed(false);
         jScrollPane1.setViewportView(jTable1);
         jTable1.getColumnModel().getColumn(0).setPreferredWidth(40);
@@ -743,7 +759,7 @@ public class PrincipalView extends javax.swing.JFrame {
         });
         jMenu6.add(jMenuItem12);
 
-        jMenuItem3.setFont(new java.awt.Font("Tahoma", 0, 12));
+        jMenuItem3.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jMenuItem3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/quino/view/main/icons/view-sort-ascending.png"))); // NOI18N
         jMenuItem3.setText("Exportar informe");
         jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
@@ -752,6 +768,49 @@ public class PrincipalView extends javax.swing.JFrame {
             }
         });
         jMenu6.add(jMenuItem3);
+
+        jMenu12.setText("Exportar Estadísticas");
+        jMenu12.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+
+        jMenuItem45.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jMenuItem45.setText("Forma A");
+        jMenuItem45.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem45ActionPerformed(evt);
+            }
+        });
+        jMenu12.add(jMenuItem45);
+
+        jMenuItem46.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jMenuItem46.setText("Forma B");
+        jMenuItem46.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem46ActionPerformed(evt);
+            }
+        });
+        jMenu12.add(jMenuItem46);
+
+        jMenuItem47.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jMenuItem47.setText("Detección de Forma");
+        jMenu12.add(jMenuItem47);
+
+        jMenuItem50.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jMenuItem50.setText("Enrejado");
+        jMenu12.add(jMenuItem50);
+
+        jMenuItem51.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jMenuItem51.setText("Campana de Gabor");
+        jMenu12.add(jMenuItem51);
+
+        jMenuItem48.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jMenuItem48.setText("Detección de Orientación");
+        jMenu12.add(jMenuItem48);
+
+        jMenuItem49.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jMenuItem49.setText("Deteccion de Velocidad");
+        jMenu12.add(jMenuItem49);
+
+        jMenu6.add(jMenu12);
         jMenu6.add(jSeparator1);
 
         jMenuItem13.setFont(new java.awt.Font("Tahoma", 0, 12));
@@ -834,7 +893,7 @@ public class PrincipalView extends javax.swing.JFrame {
         jMenu2.setText("Prueba");
         jMenu2.setFont(new java.awt.Font("Tahoma", 0, 12));
 
-        jMenu7.setText("Configuración Manual");
+        jMenu7.setText("Configuración Manual   ");
         jMenu7.setFont(new java.awt.Font("Tahoma", 0, 12));
 
         jMenuItem23.setFont(new java.awt.Font("Tahoma", 0, 12));
@@ -876,7 +935,7 @@ public class PrincipalView extends javax.swing.JFrame {
         });
         jMenu7.add(jMenuItem26);
 
-        jMenuItem33.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jMenuItem33.setFont(new java.awt.Font("Tahoma", 0, 12));
         jMenuItem33.setIcon(new javax.swing.ImageIcon(getClass().getResource("/quino/view/main/icons/mail-send.png"))); // NOI18N
         jMenuItem33.setText("Detección de Orientación");
         jMenuItem33.addActionListener(new java.awt.event.ActionListener() {
@@ -887,7 +946,7 @@ public class PrincipalView extends javax.swing.JFrame {
         jMenu7.add(jMenuItem33);
 
         jMenuItem44.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        jMenuItem44.setText("Detección de Movimiento");
+        jMenuItem44.setText("Detección de Velocidad");
         jMenuItem44.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem44ActionPerformed(evt);
@@ -1438,6 +1497,44 @@ public class PrincipalView extends javax.swing.JFrame {
         mvcv.setVisible(true);
     }//GEN-LAST:event_jMenuItem44ActionPerformed
 
+    private void jMenuItem45ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem45ActionPerformed
+        // TODO add your handling code here:
+        FileNameExtensionFilter filter = new FileNameExtensionFilter("Archivos Excel(*.xls)", "xls");
+        jFileChooser1.addChoosableFileFilter(filter);
+        jFileChooser1.setDialogTitle("Exportar informe de datos xls");
+        jFileChooser1.setDialogType(JFileChooser.SAVE_DIALOG);
+        jFileChooser1.showSaveDialog(this);
+        File selectPlaced = jFileChooser1.getSelectedFile();
+
+        HSSFWorkbook book = new HSSFWorkbook();
+        AbstractInformeAB excel1 = new EstadisticaFormaAB(book);
+        excel1.setFoveal(true);
+        excel1.getInformeExcel();
+
+        if (selectPlaced != null) {
+            QuinoTools.salvarLibroExcel(selectPlaced.getPath() + "." + filter.getExtensions()[0], book);
+        }
+    }//GEN-LAST:event_jMenuItem45ActionPerformed
+
+    private void jMenuItem46ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem46ActionPerformed
+        // TODO add your handling code here:
+        FileNameExtensionFilter filter = new FileNameExtensionFilter("Archivos Excel(*.xls)", "xls");
+        jFileChooser1.addChoosableFileFilter(filter);
+        jFileChooser1.setDialogTitle("Exportar informe de datos xls");
+        jFileChooser1.setDialogType(JFileChooser.SAVE_DIALOG);
+        jFileChooser1.showSaveDialog(this);
+        File selectPlaced = jFileChooser1.getSelectedFile();
+
+        HSSFWorkbook book = new HSSFWorkbook();
+        AbstractInformeAB excel1 = new EstadisticaFormaAB(book);
+        excel1.setFoveal(false);
+        excel1.getInformeExcel();
+
+        if (selectPlaced != null) {
+            QuinoTools.salvarLibroExcel(selectPlaced.getPath() + "." + filter.getExtensions()[0], book);
+        }
+    }//GEN-LAST:event_jMenuItem46ActionPerformed
+
     private void verResultadoDPrueba() {
         if (prueba != null) {
             ResultView resultado = new ResultView(this, true);
@@ -1475,6 +1572,7 @@ public class PrincipalView extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu10;
     private javax.swing.JMenu jMenu11;
+    private javax.swing.JMenu jMenu12;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenu jMenu4;
@@ -1523,7 +1621,14 @@ public class PrincipalView extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem42;
     private javax.swing.JMenuItem jMenuItem43;
     private javax.swing.JMenuItem jMenuItem44;
+    private javax.swing.JMenuItem jMenuItem45;
+    private javax.swing.JMenuItem jMenuItem46;
+    private javax.swing.JMenuItem jMenuItem47;
+    private javax.swing.JMenuItem jMenuItem48;
+    private javax.swing.JMenuItem jMenuItem49;
     private javax.swing.JMenuItem jMenuItem5;
+    private javax.swing.JMenuItem jMenuItem50;
+    private javax.swing.JMenuItem jMenuItem51;
     private javax.swing.JMenuItem jMenuItem6;
     private javax.swing.JMenuItem jMenuItem7;
     private javax.swing.JMenuItem jMenuItem8;

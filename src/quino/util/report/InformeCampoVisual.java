@@ -14,12 +14,13 @@ import quino.util.test.Prueba;
 import quino.util.test.PruebaFormaA;
 import quino.util.QuinoTools;
 import quino.clases.model.Ensayo;
+import quino.util.report.estadisticas.EstadisticaFormaAB;
 
 /**
  *
  * @author farias
  */
-public class InformeCampoVisual extends AbstractInformeExcel {
+public class InformeCampoVisual extends AbstractInformeAB {
 
     public InformeCampoVisual(HSSFWorkbook book) {
         super(book);
@@ -32,7 +33,8 @@ public class InformeCampoVisual extends AbstractInformeExcel {
         HSSFSheet sheet1 = book.createSheet();
         getTitulo(sheet1, "Posición Campo Visual - Foveal");
         getEncabezado(sheet1);
-        getCuerpo(sheet1, true);
+        foveal = true;
+        getCuerpo(sheet1);
     }
 
     @Override
@@ -46,7 +48,7 @@ public class InformeCampoVisual extends AbstractInformeExcel {
     }
 
     @Override
-    protected void getCuerpo(HSSFSheet sheet, boolean foveal) {
+    protected void getCuerpo(HSSFSheet sheet) {
         rowCount++;
         List<Paciente> pacientes = registro.getPacientes();
 

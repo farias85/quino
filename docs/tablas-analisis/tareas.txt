@@ -1,0 +1,6 @@
+Marcar las pruebas que ya se han realizado en el menu secundario.
+
+contraste configurable para el circulo de adentro en el parche de gabor.
+
+
+borrar del 1 al X configurable

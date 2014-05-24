@@ -1,0 +1,10 @@
+valor alto 25
+
+
+
+valor medio 15.5
+
+
+
+
+valor bajo 6

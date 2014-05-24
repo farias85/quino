@@ -16,6 +16,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JDialog;
@@ -39,6 +40,93 @@ import quino.view.main.PrincipalView;
  * @author Felipe Rodriguez Arias
  */
 public class QuinoTools {
+
+    public static double calcAlphaCronbach(ArrayList<double[]> data) {
+
+        double cronbach = 0;
+
+        if (!data.isEmpty()) {
+            int itemsCount = data.get(0).length;
+
+            double[] vSuma = new double[data.size()];
+            double[] vVarianza = new double[itemsCount];
+
+            for (int i = 0; i < data.size(); i++) {
+                vSuma[i] = sumVector(data.get(i));
+            }
+
+            for (int i = 0; i < itemsCount; i++) {
+                vVarianza[i] = calcVarianza(getElements(data, i));
+            }
+
+            double varianzaSuma = calcVarianza(vSuma);
+
+            //calcular valor de k
+            double k = itemsCount / (itemsCount - 1);
+
+            //sumar varianzas de los datos de la variable data 
+            //sin contar el valor varianzaSuma
+            double sumaVarianzas = sumVector(vVarianza);
+
+            //calcular coeficiente de cronbach
+            cronbach = k * (1 - (sumaVarianzas / varianzaSuma));
+        }
+
+        return cronbach;
+    }
+
+    private static double[] getElements(ArrayList<double[]> data, int pos) {
+        double[] result = new double[data.size()];
+
+        int i = 0;
+        for (double[] ds : data) {
+            result[i] = ds[pos];
+            i++;
+        }
+
+        return result;
+    }
+
+    public static double calcVarianza(double[] vector) {
+        double media = calcMedia(vector);
+        double[] aux = new double[vector.length];
+
+        int i = 0;
+        for (double d : vector) {
+            aux[i] = Math.pow(d - media, 2);
+            i++;
+        }
+
+        return calcMedia(aux);
+    }
+
+    public static double calcMedia(double[] vector) {
+        return sumVector(vector) / vector.length;
+    }
+
+    public static double sumVector(double[] vector) {
+        double result = 0;
+        for (double d : vector) {
+            result += d;
+        }
+        return result;
+    }
+
+    public static int escolaridad2Int(String escolaridad) {
+        int result = 0;
+        try {
+            result = Integer.parseInt(escolaridad);
+            return result;
+        } catch (Exception e) {
+            try {
+                String str = escolaridad.substring(escolaridad.length() - 3, escolaridad.length() - 2);
+                result = Integer.parseInt(str);
+                return result;
+            } catch (Exception e2) {
+            }
+        }
+        return result;
+    }
 
     /**
      * Devuelve el ancho q debe tener una celda para que todo el texto

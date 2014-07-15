@@ -44,30 +44,43 @@ public class QuinoTools {
     public static String getDireccion(int value) {
         String result = "";
         switch (value) {
+            case 104:
             case 1:
                 result += "Arriba";
                 break;
+            case 98:
             case 2:
                 result += "Abajo";
                 break;
+            case 102:
             case 3:
                 result += "Derecha";
                 break;
+            case 100:
             case 4:
                 result += "Izquierda";
                 break;
+            case 105:
             case 5:
                 result += "Derecha + Arriba";
                 break;
+            case 103:
             case 6:
                 result += "Izquierda + Arriba";
                 break;
+            case 99:
             case 7:
                 result += "Derecha + Abajo";
                 break;
+            case 97:
             case 8:
                 result += "Izquierda + Abajo";
                 break;
+            case 32:
+                result += "Barra Espaciadora";
+                break;
+            default:
+                result += "Otro";
         }
 
         return result;

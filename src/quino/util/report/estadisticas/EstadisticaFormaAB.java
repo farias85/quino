@@ -299,7 +299,7 @@ public class EstadisticaFormaAB extends AbstractInformeAB {
                     celda.setCellValue(QuinoTools.getDireccion(configEnsayoActual.getDireccion()));
 
                     celda = getCelda(row, 8, HSSFCell.CELL_TYPE_NUMERIC, false);
-                    celda.setCellValue(resultadoActual.getKey());
+                    celda.setCellValue(QuinoTools.getDireccion(resultadoActual.getKey()));
 
                     celda = getCelda(row, 9, HSSFCell.CELL_TYPE_STRING, false);
                     celda.setCellValue(QuinoTools.getPanelMovimiento(pruebaX, configEnsayoActual.getPanelEstimulo()));

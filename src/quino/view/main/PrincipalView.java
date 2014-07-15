@@ -43,7 +43,6 @@ import quino.clases.config.ConfigApp;
 import quino.clases.config.ConfigEnsayo;
 import quino.clases.config.ConfigEnsayoEnrejadoAuto;
 import quino.clases.config.ConfigEnsayoGaborAuto;
-import quino.clases.config.ConfigEnsayoOrientacion;
 import quino.clases.config.ConfigEnsayoOrientacionAuto;
 import quino.clases.config.ConfigEnsayoShapeDetectAuto;
 import quino.util.Aleatorio;
@@ -60,6 +59,7 @@ import quino.util.report.InformeParametrosXEnsayo;
 import quino.util.report.estadisticas.EstadisticaDeteccionForma;
 import quino.util.report.estadisticas.EstadisticaEnrejado;
 import quino.util.report.estadisticas.EstadisticaFormaAB;
+import quino.util.report.estadisticas.EstadisticaGabor;
 import quino.util.report.estadisticas.FrecuenciaEspacial;
 import quino.util.test.PruebaEnrejado;
 import quino.util.test.PruebaGabor;
@@ -75,7 +75,6 @@ import quino.view.test2nd.AutoTest2ndConfigView;
 import quino.view.test2nd.ManualGaborConfigView;
 import quino.view.test2nd.ManualOrientacionConfigView;
 import quino.view.test2nd.ManualVelocidadConfigView;
-import quino.view.test2nd.VelocidadTestView;
 
 /**
  *
@@ -371,8 +370,6 @@ public class PrincipalView extends javax.swing.JFrame {
         jMenuItem51 = new javax.swing.JMenuItem();
         jMenuItem48 = new javax.swing.JMenuItem();
         jMenuItem49 = new javax.swing.JMenuItem();
-        jMenuItem52 = new javax.swing.JMenuItem();
-        jMenuItem53 = new javax.swing.JMenuItem();
         jSeparator1 = new javax.swing.JSeparator();
         jMenuItem13 = new javax.swing.JMenuItem();
         jMenu8 = new javax.swing.JMenu();
@@ -599,7 +596,7 @@ public class PrincipalView extends javax.swing.JFrame {
         setIconImages(null);
         setResizable(false);
 
-        jTable1.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jTable1.setFont(new java.awt.Font("Tahoma", 0, 12));
         jTable1.getTableHeader().setFont(new java.awt.Font("Tahoma", 1, 12));
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -764,7 +761,7 @@ public class PrincipalView extends javax.swing.JFrame {
         });
         jMenu6.add(jMenuItem12);
 
-        jMenuItem3.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jMenuItem3.setFont(new java.awt.Font("Tahoma", 0, 12));
         jMenuItem3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/quino/view/main/icons/view-sort-ascending.png"))); // NOI18N
         jMenuItem3.setText("Exportar informe  ");
         jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
@@ -776,7 +773,6 @@ public class PrincipalView extends javax.swing.JFrame {
 
         jMenu12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/quino/view/main/icons/add-folder-to-archive.png"))); // NOI18N
         jMenu12.setText("Exportar Estadísticas    ");
-        jMenu12.setFont(new java.awt.Font("Tahoma", 0, 12));
 
         jMenuItem45.setFont(new java.awt.Font("Tahoma", 0, 12));
         jMenuItem45.setText("Forma A");
@@ -787,7 +783,7 @@ public class PrincipalView extends javax.swing.JFrame {
         });
         jMenu12.add(jMenuItem45);
 
-        jMenuItem46.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jMenuItem46.setFont(new java.awt.Font("Tahoma", 0, 12));
         jMenuItem46.setText("Forma B");
         jMenuItem46.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -796,7 +792,7 @@ public class PrincipalView extends javax.swing.JFrame {
         });
         jMenu12.add(jMenuItem46);
 
-        jMenuItem47.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jMenuItem47.setFont(new java.awt.Font("Tahoma", 0, 12));
         jMenuItem47.setText("Detección de Forma");
         jMenuItem47.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -813,7 +809,7 @@ public class PrincipalView extends javax.swing.JFrame {
         });
         jMenu12.add(jMenuItem50);
 
-        jMenuItem51.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jMenuItem51.setFont(new java.awt.Font("Tahoma", 0, 12));
         jMenuItem51.setText("Enrejado High");
         jMenuItem51.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -822,7 +818,7 @@ public class PrincipalView extends javax.swing.JFrame {
         });
         jMenu12.add(jMenuItem51);
 
-        jMenuItem48.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jMenuItem48.setFont(new java.awt.Font("Tahoma", 0, 12));
         jMenuItem48.setText("Enrejado Low");
         jMenuItem48.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -833,15 +829,12 @@ public class PrincipalView extends javax.swing.JFrame {
 
         jMenuItem49.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jMenuItem49.setText("Campana de Gabor");
+        jMenuItem49.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem49ActionPerformed(evt);
+            }
+        });
         jMenu12.add(jMenuItem49);
-
-        jMenuItem52.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        jMenuItem52.setText("Detección de Orientación");
-        jMenu12.add(jMenuItem52);
-
-        jMenuItem53.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        jMenuItem53.setText("Detección de Velocidad");
-        jMenu12.add(jMenuItem53);
 
         jMenu6.add(jMenu12);
         jMenu6.add(jSeparator1);
@@ -1620,6 +1613,19 @@ public class PrincipalView extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jMenuItem48ActionPerformed
 
+    private void jMenuItem49ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem49ActionPerformed
+        // TODO add your handling code here:
+        File selectPlaced = openFileChooser2Estadistica();
+
+        HSSFWorkbook book = new HSSFWorkbook();
+        AbstractInformeExcel excel1 = new EstadisticaGabor(book);
+        excel1.getInformeExcel();
+
+        if (selectPlaced != null) {
+            QuinoTools.salvarLibroExcel(selectPlaced.getPath() + "." + "xls", book);
+        }
+    }//GEN-LAST:event_jMenuItem49ActionPerformed
+
     private void verResultadoDPrueba() {
         if (prueba != null) {
             ResultView resultado = new ResultView(this, true);
@@ -1714,8 +1720,6 @@ public class PrincipalView extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem5;
     private javax.swing.JMenuItem jMenuItem50;
     private javax.swing.JMenuItem jMenuItem51;
-    private javax.swing.JMenuItem jMenuItem52;
-    private javax.swing.JMenuItem jMenuItem53;
     private javax.swing.JMenuItem jMenuItem6;
     private javax.swing.JMenuItem jMenuItem7;
     private javax.swing.JMenuItem jMenuItem8;

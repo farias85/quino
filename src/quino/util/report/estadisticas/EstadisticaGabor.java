@@ -2,6 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
+
 package quino.util.report.estadisticas;
 
 import java.util.ArrayList;
@@ -11,7 +12,7 @@ import org.apache.poi.hssf.usermodel.HSSFRow;
 import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import quino.clases.config.ConfigApp;
-import quino.clases.config.ConfigEnsayoEnrejado;
+import quino.clases.config.ConfigEnsayoGabor;
 import quino.clases.model.Ensayo;
 import quino.clases.model.Paciente;
 import quino.clases.model.Resultado;
@@ -23,53 +24,44 @@ import quino.util.test.Prueba;
  *
  * @author produccion
  */
-public class EstadisticaEnrejado extends AbstractInformeExcel {
+public class EstadisticaGabor extends AbstractInformeExcel{
 
-    private FrecuenciaEspacial FE;
-
-    public EstadisticaEnrejado(HSSFWorkbook book, FrecuenciaEspacial FE) {
+    public EstadisticaGabor(HSSFWorkbook book) {
         super(book);
-        this.FE = FE;
     }
 
     @Override
     protected void getEncabezado(HSSFSheet sheet) {
         String[] heads = {"Sujeto", "Ensayo", "Pixel/Pulgada Barras",
-            "Contraste", "Intensidad Media", "Dirección del Movimiento",
+            "Contraste", "Intensidad Media", "Gaussian Std", "Radio Interior",
+            "Radio Exterior", "Dirección del Movimiento", "Dirección Presionada",
             "Tiempo de respuesta (ms)", "Resultado", "Descripción del error"};
         crearEncabezado(sheet, heads);
     }
 
-    private List<Ensayo> ensayosXFrecuencia(List<Ensayo> ensayosAux) {
-        List<Ensayo> ensayos = new ArrayList<Ensayo>();
+    @Override
+    public void getInformeExcel() {
 
-        if (this.FE != FrecuenciaEspacial.ALL) {
-            for (Ensayo ensayo : ensayosAux) {
-                ConfigEnsayoEnrejado config = null;
-                if (ensayo.getConfiguracion() instanceof ConfigEnsayoEnrejado) {
-                    config = ((ConfigEnsayoEnrejado) ensayo.getConfiguracion());
-                }
-                switch (FE) {
-                    case HIGH:
-                        if (config.getPpi() >= 25) {
-                            ensayos.add(ensayo);
-                        }
-                        break;
-                    case LOW:
-                        if (config.getPpi() <= 6) {
-                            ensayos.add(ensayo);
-                        }
-                        break;
-                }
-            }
-        } else {
-            ensayos = new ArrayList<Ensayo>(ensayosAux);
-        }
+        HSSFSheet sheet1 = book.createSheet("Parámetros por ensayo");
+        String str = "Campana de Gabor";
+        getTitulo(sheet1, str);
+        getEncabezado(sheet1);
+        getCuerpo(sheet1);
 
-        return ensayos;
+        rowCount = 0;
+
+        HSSFSheet sheet2 = book.createSheet("Parámetros generales");
+        getTitulo(sheet2, str);
+        buildSheet2(sheet2);
+
+        rowCount = 0;
+
+        HSSFSheet sheet3 = book.createSheet("Alfa de Cronbach");
+        getTitulo(sheet3, str);
+        buildSheet3(sheet3);
     }
 
-    @Override
+     @Override
     protected void getCuerpo(HSSFSheet sheet) {
         rowCount++;
         List<Paciente> pacientes = registro.getPacientes();
@@ -77,18 +69,18 @@ public class EstadisticaEnrejado extends AbstractInformeExcel {
         for (int i = 0; i < pacientes.size(); i++) {
             Paciente pacienteAcutal = pacientes.get(i);
 
-            Prueba pruebaX = pacientes.get(i).getEnrejado();
+            Prueba pruebaX = pacientes.get(i).getGabor();
 
             if (pruebaX != null) {
-                List<Ensayo> ensayos = ensayosXFrecuencia(pruebaX.getEnsayos());
+                List<Ensayo> ensayos = pruebaX.getEnsayos();
 
                 for (int j = 0; j < ensayos.size(); j++) {
                     Ensayo ensayoActual = ensayos.get(j);
                     Resultado resultadoActual = ensayoActual.getResultado();
 
-                    ConfigEnsayoEnrejado configEnsayoActual = null;
-                    if (ensayos.get(j).getConfiguracion() instanceof ConfigEnsayoEnrejado) {
-                        configEnsayoActual = ((ConfigEnsayoEnrejado) ensayos.get(j).getConfiguracion());
+                    ConfigEnsayoGabor configEnsayoActual = null;
+                    if (ensayos.get(j).getConfiguracion() instanceof ConfigEnsayoGabor) {
+                        configEnsayoActual = ((ConfigEnsayoGabor) ensayos.get(j).getConfiguracion());
                     }
 
                     HSSFRow row = sheet.createRow(rowCount);
@@ -111,9 +103,21 @@ public class EstadisticaEnrejado extends AbstractInformeExcel {
 
                     celda = getCelda(row, colNum++, HSSFCell.CELL_TYPE_NUMERIC, false);
                     celda.setCellValue(configEnsayoActual.getIntensidadMedia());
+                    
+                    celda = getCelda(row, colNum++, HSSFCell.CELL_TYPE_NUMERIC, false);
+                    celda.setCellValue(configEnsayoActual.getGaussianStdpix());
+                    
+                    celda = getCelda(row, colNum++, HSSFCell.CELL_TYPE_NUMERIC, false);
+                    celda.setCellValue(configEnsayoActual.getRadio1());
+                    
+                    celda = getCelda(row, colNum++, HSSFCell.CELL_TYPE_NUMERIC, false);
+                    celda.setCellValue(configEnsayoActual.getRadio2());
 
                     celda = getCelda(row, colNum++, HSSFCell.CELL_TYPE_NUMERIC, false);
                     celda.setCellValue(QuinoTools.getDireccion(configEnsayoActual.getDireccion()));
+                    
+                    celda = getCelda(row, colNum++, HSSFCell.CELL_TYPE_NUMERIC, false);
+                    celda.setCellValue(QuinoTools.getDireccion(resultadoActual.getKey()));
 
                     if (resultadoActual.isError()) {
                         celda = getCelda(row, colNum++, HSSFCell.CELL_TYPE_STRING, true);
@@ -140,42 +144,9 @@ public class EstadisticaEnrejado extends AbstractInformeExcel {
         }
     }
 
-    @Override
-    public void getInformeExcel() {
-
-        HSSFSheet sheet1 = book.createSheet("Parámetros por ensayo");
-        String str = "Enrejado sinusoidal ";
-
-        switch (FE) {
-            case HIGH:
-                str += "| FE HIGH";
-                break;
-            case LOW:
-                str += "| FE LOW";
-                break;
-        }
-
-        getTitulo(sheet1, str);
-        getEncabezado(sheet1);
-        getCuerpo(sheet1);
-
-        rowCount = 0;
-
-        HSSFSheet sheet2 = book.createSheet("Parámetros generales");
-        getTitulo(sheet2, str);
-        buildSheet2(sheet2);
-
-        rowCount = 0;
-
-        HSSFSheet sheet3 = book.createSheet("Alfa de Cronbach");
-        getTitulo(sheet3, str);
-        buildSheet3(sheet3);
-    }
-
-    protected void buildSheet2(HSSFSheet sheet) {
-
+     protected void buildSheet2(HSSFSheet sheet) {
         String[] heads = {"#", "Sujeto", "Ensayos", "Edad",
-            "Sexo", "Grado", "Errores", "Tiempo de respuesta promedio (ms)",
+            "Sexo", "Grado", "Errores", "Densidad Promedio", "Tiempo de respuesta promedio (ms)",
             "Duración del ensayo (ms)"};
         crearEncabezado(sheet, heads);
 
@@ -185,7 +156,7 @@ public class EstadisticaEnrejado extends AbstractInformeExcel {
         for (int i = 0; i < pacientes.size(); i++) {
             Paciente pacienteAcutal = pacientes.get(i);
 
-            Prueba pruebaX = pacientes.get(i).getEnrejado();
+            Prueba pruebaX = pacienteAcutal.getGabor();
 
             if (pruebaX != null) {
                 HSSFRow row = sheet.createRow(rowCount);
@@ -224,13 +195,14 @@ public class EstadisticaEnrejado extends AbstractInformeExcel {
         }
     }
 
-    protected void buildSheet3(HSSFSheet sheet) {
+     protected void buildSheet3(HSSFSheet sheet) {
 
         ArrayList<double[]> data = new ArrayList<double[]>();
 
         String[] heads = {"#", "Sujeto", "Ensayos", "Pixel/Pulgada Barras",
-            "Contraste", "Intensidad Media", "Dirección del Movimiento",
-            "Tiempo de respuesta (ms)", "Resultado", "Descripción del error"};
+            "Contraste", "Intensidad Media", "Gaussian Std", "Radio Interior",
+            "Radio Exterior", "Dirección del Movimiento", "Dirección Presionada",
+            "Tiempo de respuesta (ms)", "Resultado"};
         crearEncabezado(sheet, heads);
 
         rowCount++;
@@ -239,18 +211,18 @@ public class EstadisticaEnrejado extends AbstractInformeExcel {
         for (int i = 0; i < pacientes.size(); i++) {
             Paciente pacienteAcutal = pacientes.get(i);
 
-            Prueba pruebaX = pacientes.get(i).getEnrejado();
+            Prueba pruebaX = pacientes.get(i).getGabor();
 
             if (pruebaX != null) {
-                List<Ensayo> ensayos = ensayosXFrecuencia(pruebaX.getEnsayos());
+                List<Ensayo> ensayos = pruebaX.getEnsayos();
 
                 for (int j = 0; j < ensayos.size(); j++) {
                     Ensayo ensayoActual = ensayos.get(j);
                     Resultado resultadoActual = ensayoActual.getResultado();
 
-                    ConfigEnsayoEnrejado configEnsayoActual = null;
-                    if (ensayos.get(j).getConfiguracion() instanceof ConfigEnsayoEnrejado) {
-                        configEnsayoActual = ((ConfigEnsayoEnrejado) ensayos.get(j).getConfiguracion());
+                    ConfigEnsayoGabor configEnsayoActual = null;
+                    if (ensayos.get(j).getConfiguracion() instanceof ConfigEnsayoGabor) {
+                        configEnsayoActual = ((ConfigEnsayoGabor) ensayos.get(j).getConfiguracion());
                     }
 
                     HSSFRow row = sheet.createRow(rowCount);
@@ -285,8 +257,24 @@ public class EstadisticaEnrejado extends AbstractInformeExcel {
                     values[k++] = configEnsayoActual.getIntensidadMedia();
 
                     celda = getCelda(row, colNum++, HSSFCell.CELL_TYPE_NUMERIC, false);
+                    celda.setCellValue(configEnsayoActual.getGaussianStdpix());
+                    values[k++] = configEnsayoActual.getGaussianStdpix();
+
+                    celda = getCelda(row, colNum++, HSSFCell.CELL_TYPE_NUMERIC, false);
+                    celda.setCellValue(configEnsayoActual.getRadio1());
+                    values[k++] = configEnsayoActual.getRadio1();
+
+                    celda = getCelda(row, colNum++, HSSFCell.CELL_TYPE_NUMERIC, false);
+                    celda.setCellValue(configEnsayoActual.getRadio2());
+                    values[k++] = configEnsayoActual.getRadio2();
+
+                    celda = getCelda(row, colNum++, HSSFCell.CELL_TYPE_NUMERIC, false);
                     celda.setCellValue(configEnsayoActual.getDireccion());
                     values[k++] = configEnsayoActual.getDireccion();
+
+                    celda = getCelda(row, colNum++, HSSFCell.CELL_TYPE_NUMERIC, false);
+                    celda.setCellValue(resultadoActual.getKey());
+                    values[k++] = resultadoActual.getKey();
 
                     if (resultadoActual.isError()) {
                         celda = getCelda(row, colNum++, HSSFCell.CELL_TYPE_NUMERIC, true);

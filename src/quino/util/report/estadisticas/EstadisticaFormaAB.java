@@ -195,8 +195,8 @@ public class EstadisticaFormaAB extends AbstractInformeAB {
 
     protected void buildSheet2(HSSFSheet sheet) {
         String[] heads = {"#", "Sujeto", "Ensayos", "Edad",
-            "Sexo", "Grado", "Errores", "Densidad Promedio", "Tiempo de respuesta promedio",
-            "Duración del ensayo"};
+            "Sexo", "Grado", "Errores", "Densidad Promedio", "Tiempo de respuesta promedio (ms)",
+            "Duración del ensayo (ms)"};
         crearEncabezado(sheet, heads);
 
         List<Paciente> pacientes = registro.getPacientes();
@@ -296,7 +296,7 @@ public class EstadisticaFormaAB extends AbstractInformeAB {
                     celda.setCellValue(resultadoActual.getAngulo());
 
                     celda = getCelda(row, 7, HSSFCell.CELL_TYPE_NUMERIC, false);
-                    celda.setCellValue(configEnsayoActual.getDireccion());
+                    celda.setCellValue(QuinoTools.getDireccion(configEnsayoActual.getDireccion()));
 
                     celda = getCelda(row, 8, HSSFCell.CELL_TYPE_NUMERIC, false);
                     celda.setCellValue(resultadoActual.getKey());

@@ -64,7 +64,7 @@ public class ConfigEnsayoGabor extends ConfigEnsayoSinusoide {
         super();        
     }
 
-    public ConfigEnsayoGabor(int direccion, int ppi, double contrat, byte intensidadMedia,
+    public ConfigEnsayoGabor(int direccion, int ppi, double contrat, double intensidadMedia,
             double gaussianStdpix, int radio1, int radio2, int ppi2) {
         super(direccion, ppi, contrat, intensidadMedia);
         this.gaussianStdpix = gaussianStdpix;
@@ -104,7 +104,7 @@ public class ConfigEnsayoGabor extends ConfigEnsayoSinusoide {
     public ConfigEnsayoGabor(int key, int panelEstimulo, int fs, double fspa_cpi_x,
             double fspa_cpi_y, int ppi, double fspa_cpp_x, double fspa_cpp_y,
             boolean sentidoUpLeft, int direccion, double contrat,
-            byte intensidadMedia) {
+            double intensidadMedia) {
         super(key, panelEstimulo, fs, fspa_cpi_x, fspa_cpi_y, ppi, fspa_cpp_x,
                 fspa_cpp_y, sentidoUpLeft, direccion, contrat, intensidadMedia);
     }

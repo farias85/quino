@@ -11,31 +11,63 @@ import org.apache.poi.hssf.usermodel.HSSFRow;
 import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import quino.clases.config.ConfigApp;
-import quino.clases.config.ConfigEnsayoShapeDetect;
+import quino.clases.config.ConfigEnsayoEnrejado;
 import quino.clases.model.Ensayo;
 import quino.clases.model.Paciente;
 import quino.clases.model.Resultado;
 import quino.util.QuinoTools;
 import quino.util.report.AbstractInformeExcel;
 import quino.util.test.Prueba;
-import quino.util.test.PruebaShape;
+import quino.util.test.PruebaEnrejado;
 
 /**
  *
- * @author farias-i3
+ * @author produccion
  */
-public class EstadisticaDeteccionForma extends AbstractInformeExcel {
+public class EstadisticaEnrejado extends AbstractInformeExcel {
 
-    public EstadisticaDeteccionForma(HSSFWorkbook book) {
+    private FrecuenciaEspacial FE;
+
+    public EstadisticaEnrejado(HSSFWorkbook book, FrecuenciaEspacial FE) {
         super(book);
+        this.FE = FE;
     }
 
     @Override
     protected void getEncabezado(HSSFSheet sheet) {
-        String[] heads = {"Sujeto", "Ensayo", "Densidad de puntos",
-            "Porciento de rectas (%)", "Tolerancia", "Figura", "Ángulo (grados)", "Panel de estímulo",
+        String[] heads = {"Sujeto", "Ensayo", "Pixel/Pulgada Barras",
+            "Contraste", "Intensidad Media", "Dirección del Movimiento",
             "Tiempo de respuesta (ms)", "Resultado", "Descripción del error"};
         crearEncabezado(sheet, heads);
+    }
+
+    private List<Ensayo> ensayosXFrecuencia(List<Ensayo> ensayosAux) {
+        List<Ensayo> ensayos = new ArrayList<Ensayo>();
+
+        if (this.FE != FrecuenciaEspacial.ALL) {
+            for (Ensayo ensayo : ensayosAux) {
+                ConfigEnsayoEnrejado config = null;
+                if (ensayo.getConfiguracion() instanceof ConfigEnsayoEnrejado) {
+                    config = ((ConfigEnsayoEnrejado) ensayo.getConfiguracion());
+                }
+                switch (FE) {
+                    case HIGH:
+                        if (config.getPpi() >= 25) {
+                            ensayos.add(ensayo);
+                        }
+                        break;
+                    case LOW:
+                        if (config.getPpi() <= 6) {
+                            ensayos.add(ensayo);
+                        }
+                        break;
+                }
+            }
+        } else {
+            ensayos = new ArrayList<Ensayo>(ensayosAux);
+        }
+
+        return ensayos;
     }
 
     @Override
@@ -46,18 +78,18 @@ public class EstadisticaDeteccionForma extends AbstractInformeExcel {
         for (int i = 0; i < pacientes.size(); i++) {
             Paciente pacienteAcutal = pacientes.get(i);
 
-            Prueba pruebaX = pacientes.get(i).getForma();
+            Prueba pruebaX = pacientes.get(i).getEnrejado();
 
             if (pruebaX != null) {
-                List<Ensayo> ensayos = pruebaX.getEnsayos();
+                List<Ensayo> ensayos = ensayosXFrecuencia(pruebaX.getEnsayos());
 
                 for (int j = 0; j < ensayos.size(); j++) {
                     Ensayo ensayoActual = ensayos.get(j);
                     Resultado resultadoActual = ensayoActual.getResultado();
 
-                    ConfigEnsayoShapeDetect configEnsayoActual = null;
-                    if (ensayos.get(j).getConfiguracion() instanceof ConfigEnsayoShapeDetect) {
-                        configEnsayoActual = ((ConfigEnsayoShapeDetect) ensayos.get(j).getConfiguracion());
+                    ConfigEnsayoEnrejado configEnsayoActual = null;
+                    if (ensayos.get(j).getConfiguracion() instanceof ConfigEnsayoEnrejado) {
+                        configEnsayoActual = ((ConfigEnsayoEnrejado) ensayos.get(j).getConfiguracion());
                     }
 
                     HSSFRow row = sheet.createRow(rowCount);
@@ -73,22 +105,16 @@ public class EstadisticaDeteccionForma extends AbstractInformeExcel {
                     celda.setCellValue(j + 1);
 
                     celda = getCelda(row, colNum++, HSSFCell.CELL_TYPE_NUMERIC, false);
-                    celda.setCellValue(configEnsayoActual.getDensidad());
+                    celda.setCellValue(configEnsayoActual.getPpi());
 
                     celda = getCelda(row, colNum++, HSSFCell.CELL_TYPE_NUMERIC, false);
-                    celda.setCellValue(configEnsayoActual.getPcShape());
+                    celda.setCellValue(configEnsayoActual.getContrat());
 
                     celda = getCelda(row, colNum++, HSSFCell.CELL_TYPE_NUMERIC, false);
-                    celda.setCellValue(configEnsayoActual.getTolerancia());
+                    celda.setCellValue(configEnsayoActual.getIntensidadMedia());
 
                     celda = getCelda(row, colNum++, HSSFCell.CELL_TYPE_NUMERIC, false);
-                    celda.setCellValue(QuinoTools.getNombreFigura(configEnsayoActual.getNumFigura()));
-
-                    celda = getCelda(row, colNum++, HSSFCell.CELL_TYPE_NUMERIC, false);
-                    celda.setCellValue(resultadoActual.getAngulo());
-
-                    celda = getCelda(row, colNum++, HSSFCell.CELL_TYPE_STRING, false);
-                    celda.setCellValue(QuinoTools.getPanelMovimiento(pruebaX, configEnsayoActual.getPanelEstimulo()));
+                    celda.setCellValue(QuinoTools.getDireccion(configEnsayoActual.getDireccion()));
 
                     if (resultadoActual.isError()) {
                         celda = getCelda(row, colNum++, HSSFCell.CELL_TYPE_STRING, true);
@@ -119,7 +145,17 @@ public class EstadisticaDeteccionForma extends AbstractInformeExcel {
     public void getInformeExcel() {
 
         HSSFSheet sheet1 = book.createSheet("Parámetros por ensayo");
-        String str = "Detección de forma";
+        String str = "Enrejado sinusoidal ";
+
+        switch (FE) {
+            case HIGH:
+                str += "| FE HIGH";
+                break;
+            case LOW:
+                str += "| FE LOW";
+                break;
+        }
+
         getTitulo(sheet1, str);
         getEncabezado(sheet1);
         getCuerpo(sheet1);
@@ -140,7 +176,7 @@ public class EstadisticaDeteccionForma extends AbstractInformeExcel {
     protected void buildSheet2(HSSFSheet sheet) {
 
         String[] heads = {"#", "Sujeto", "Ensayos", "Edad",
-            "Sexo", "Grado", "Errores", "Densidad Promedio", "Tiempo de respuesta promedio (ms)",
+            "Sexo", "Grado", "Errores", "Tiempo de respuesta promedio (ms)",
             "Duración del ensayo (ms)"};
         crearEncabezado(sheet, heads);
 
@@ -150,7 +186,7 @@ public class EstadisticaDeteccionForma extends AbstractInformeExcel {
         for (int i = 0; i < pacientes.size(); i++) {
             Paciente pacienteAcutal = pacientes.get(i);
 
-            Prueba pruebaX = pacientes.get(i).getForma();
+            Prueba pruebaX = pacientes.get(i).getEnrejado();
 
             if (pruebaX != null) {
                 HSSFRow row = sheet.createRow(rowCount);
@@ -179,14 +215,10 @@ public class EstadisticaDeteccionForma extends AbstractInformeExcel {
                 celda.setCellValue(pruebaX.cantErrores());
 
                 celda = getCelda(row, colNum++, HSSFCell.CELL_TYPE_NUMERIC, false);
-                celda.setCellValue(((PruebaShape) pruebaX).densidadPromedio());
-
-                celda = getCelda(row, colNum++, HSSFCell.CELL_TYPE_NUMERIC, false);
                 celda.setCellValue(pruebaX.tiempoRespuestaPromedio());
 
                 celda = getCelda(row, colNum++, HSSFCell.CELL_TYPE_NUMERIC, false);
                 celda.setCellValue(ConfigApp.TIEMPO_DURACION);
-                //celda.setCellValue(((ConfigEnsayoFormaAB) pruebaX.getEnsayos().get(0).getConfiguracion()).getTiempoMovimiento());
 
                 rowCount++;
             }
@@ -197,11 +229,9 @@ public class EstadisticaDeteccionForma extends AbstractInformeExcel {
 
         ArrayList<double[]> data = new ArrayList<double[]>();
 
-        String[] heads = {"#", "Sujeto", "Ensayos", "Edad",
-            "Sexo", "Grado", "Densidad de puntos",
-            "# de puntos", "Tiempo de desplazamiento (ms)", "Velocidad del movimiento",
-            "Ángulo", "Dirección movimiento", "Panel de estímulo",
-            "Resultado", "Tiempo de respuesta (ms)"};
+        String[] heads = {"#", "Sujeto", "Ensayos", "Pixel/Pulgada Barras",
+            "Contraste", "Intensidad Media", "Dirección del Movimiento",
+            "Tiempo de respuesta (ms)", "Resultado", "Descripción del error"};
         crearEncabezado(sheet, heads);
 
         rowCount++;
@@ -210,18 +240,18 @@ public class EstadisticaDeteccionForma extends AbstractInformeExcel {
         for (int i = 0; i < pacientes.size(); i++) {
             Paciente pacienteAcutal = pacientes.get(i);
 
-            Prueba pruebaX = pacientes.get(i).getForma();
+            Prueba pruebaX = pacientes.get(i).getEnrejado();
 
             if (pruebaX != null) {
-                List<Ensayo> ensayos = pruebaX.getEnsayos();
+                List<Ensayo> ensayos = ensayosXFrecuencia(pruebaX.getEnsayos());
 
                 for (int j = 0; j < ensayos.size(); j++) {
                     Ensayo ensayoActual = ensayos.get(j);
                     Resultado resultadoActual = ensayoActual.getResultado();
 
-                    ConfigEnsayoShapeDetect configEnsayoActual = null;
-                    if (ensayos.get(j).getConfiguracion() instanceof ConfigEnsayoShapeDetect) {
-                        configEnsayoActual = ((ConfigEnsayoShapeDetect) ensayos.get(j).getConfiguracion());
+                    ConfigEnsayoEnrejado configEnsayoActual = null;
+                    if (ensayos.get(j).getConfiguracion() instanceof ConfigEnsayoEnrejado) {
+                        configEnsayoActual = ((ConfigEnsayoEnrejado) ensayos.get(j).getConfiguracion());
                     }
 
                     HSSFRow row = sheet.createRow(rowCount);
@@ -244,28 +274,20 @@ public class EstadisticaDeteccionForma extends AbstractInformeExcel {
                     values[k++] = j + 1;
 
                     celda = getCelda(row, colNum++, HSSFCell.CELL_TYPE_NUMERIC, false);
-                    celda.setCellValue(configEnsayoActual.getDensidad());
-                    values[k++] = configEnsayoActual.getDensidad();
+                    celda.setCellValue(configEnsayoActual.getPpi());
+                    values[k++] = configEnsayoActual.getPpi();
 
                     celda = getCelda(row, colNum++, HSSFCell.CELL_TYPE_NUMERIC, false);
-                    celda.setCellValue(configEnsayoActual.getPcShape());
-                    values[k++] = configEnsayoActual.getPcShape();
+                    celda.setCellValue(configEnsayoActual.getContrat());
+                    values[k++] = configEnsayoActual.getContrat();
 
                     celda = getCelda(row, colNum++, HSSFCell.CELL_TYPE_NUMERIC, false);
-                    celda.setCellValue(configEnsayoActual.getTolerancia());
-                    values[k++] = configEnsayoActual.getTolerancia();                    
+                    celda.setCellValue(configEnsayoActual.getIntensidadMedia());
+                    values[k++] = configEnsayoActual.getIntensidadMedia();
 
                     celda = getCelda(row, colNum++, HSSFCell.CELL_TYPE_NUMERIC, false);
-                    celda.setCellValue(configEnsayoActual.getNumFigura());
-                    values[k++] = configEnsayoActual.getNumFigura();
-
-                    celda = getCelda(row, colNum++, HSSFCell.CELL_TYPE_NUMERIC, false);
-                    celda.setCellValue(resultadoActual.getAngulo());
-                    values[k++] = resultadoActual.getAngulo();
-
-                    celda = getCelda(row, colNum++, HSSFCell.CELL_TYPE_NUMERIC, false);
-                    celda.setCellValue(configEnsayoActual.getPanelEstimulo());
-                    values[k++] = configEnsayoActual.getPanelEstimulo();
+                    celda.setCellValue(configEnsayoActual.getDireccion());
+                    values[k++] = configEnsayoActual.getDireccion();
 
                     if (resultadoActual.isError()) {
                         celda = getCelda(row, colNum++, HSSFCell.CELL_TYPE_NUMERIC, true);
@@ -304,4 +326,5 @@ public class EstadisticaDeteccionForma extends AbstractInformeExcel {
         celda.setCellValue(QuinoTools.calcAlphaCronbach(data));
 
     }
+
 }

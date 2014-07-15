@@ -485,7 +485,7 @@ public class ManualEnrejadoConfigView extends javax.swing.JDialog {
                 throw new Exception("El formato de los datos no es correcto");
             }
 
-            parent.setConf(new ConfigEnsayoEnrejado(direccion, ppi, true, contraste, (byte) intensidadMedia));
+            parent.setConf(new ConfigEnsayoEnrejado(direccion, ppi, true, contraste, intensidadMedia));
             parent.setPrueba(new PruebaEnrejado(((ConfigEnsayoEnrejado) parent.getConf()), cantEnsayos));
 
             EnrejadoTestView etv = new EnrejadoTestView(parent, true, false);

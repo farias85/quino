@@ -41,6 +41,38 @@ import quino.view.main.PrincipalView;
  */
 public class QuinoTools {
 
+    public static String getDireccion(int value) {
+        String result = "";
+        switch (value) {
+            case 1:
+                result += "Arriba";
+                break;
+            case 2:
+                result += "Abajo";
+                break;
+            case 3:
+                result += "Derecha";
+                break;
+            case 4:
+                result += "Izquierda";
+                break;
+            case 5:
+                result += "Derecha + Arriba";
+                break;
+            case 6:
+                result += "Izquierda + Arriba";
+                break;
+            case 7:
+                result += "Derecha + Abajo";
+                break;
+            case 8:
+                result += "Izquierda + Abajo";
+                break;
+        }
+
+        return result;
+    }
+
     public static double calcAlphaCronbach(ArrayList<double[]> data) {
 
         double cronbach = 0;

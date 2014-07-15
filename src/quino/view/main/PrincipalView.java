@@ -57,7 +57,10 @@ import quino.util.report.AbstractInformeAB;
 import quino.util.report.AbstractInformeExcel;
 import quino.util.report.InformeCampoVisual;
 import quino.util.report.InformeParametrosXEnsayo;
+import quino.util.report.estadisticas.EstadisticaDeteccionForma;
+import quino.util.report.estadisticas.EstadisticaEnrejado;
 import quino.util.report.estadisticas.EstadisticaFormaAB;
+import quino.util.report.estadisticas.FrecuenciaEspacial;
 import quino.util.test.PruebaEnrejado;
 import quino.util.test.PruebaGabor;
 import quino.util.test.PruebaOrientacion;
@@ -293,7 +296,7 @@ public class PrincipalView extends javax.swing.JFrame {
         if (respuesta == 1) {
             try {
                 int[] nums = jTable1.getSelectedRows();
-                
+
                 for (int i = nums.length - 1; i >= 0; i--) {
                     Paciente p = registro.getPacientes().get(nums[i]);
                     String hist = p.getHistoria();
@@ -301,7 +304,7 @@ public class PrincipalView extends javax.swing.JFrame {
                 }
 
                 modificarTableModel();
-                
+
                 registro.salvarRegistro(ConfigApp.REGISTRO_FILE_NAME);
             } catch (Exception e) {
                 ErrorDialog err = new ErrorDialog(this, true, e.getMessage());
@@ -368,6 +371,8 @@ public class PrincipalView extends javax.swing.JFrame {
         jMenuItem51 = new javax.swing.JMenuItem();
         jMenuItem48 = new javax.swing.JMenuItem();
         jMenuItem49 = new javax.swing.JMenuItem();
+        jMenuItem52 = new javax.swing.JMenuItem();
+        jMenuItem53 = new javax.swing.JMenuItem();
         jSeparator1 = new javax.swing.JSeparator();
         jMenuItem13 = new javax.swing.JMenuItem();
         jMenu8 = new javax.swing.JMenu();
@@ -761,7 +766,7 @@ public class PrincipalView extends javax.swing.JFrame {
 
         jMenuItem3.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jMenuItem3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/quino/view/main/icons/view-sort-ascending.png"))); // NOI18N
-        jMenuItem3.setText("Exportar informe");
+        jMenuItem3.setText("Exportar informe  ");
         jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem3ActionPerformed(evt);
@@ -769,10 +774,11 @@ public class PrincipalView extends javax.swing.JFrame {
         });
         jMenu6.add(jMenuItem3);
 
-        jMenu12.setText("Exportar Estadísticas");
-        jMenu12.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jMenu12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/quino/view/main/icons/add-folder-to-archive.png"))); // NOI18N
+        jMenu12.setText("Exportar Estadísticas    ");
+        jMenu12.setFont(new java.awt.Font("Tahoma", 0, 12));
 
-        jMenuItem45.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jMenuItem45.setFont(new java.awt.Font("Tahoma", 0, 12));
         jMenuItem45.setText("Forma A");
         jMenuItem45.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -792,23 +798,50 @@ public class PrincipalView extends javax.swing.JFrame {
 
         jMenuItem47.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jMenuItem47.setText("Detección de Forma");
+        jMenuItem47.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem47ActionPerformed(evt);
+            }
+        });
         jMenu12.add(jMenuItem47);
 
-        jMenuItem50.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        jMenuItem50.setText("Enrejado");
+        jMenuItem50.setText("Enrejad0 ");
+        jMenuItem50.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem50ActionPerformed(evt);
+            }
+        });
         jMenu12.add(jMenuItem50);
 
         jMenuItem51.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        jMenuItem51.setText("Campana de Gabor");
+        jMenuItem51.setText("Enrejado High");
+        jMenuItem51.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem51ActionPerformed(evt);
+            }
+        });
         jMenu12.add(jMenuItem51);
 
         jMenuItem48.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        jMenuItem48.setText("Detección de Orientación");
+        jMenuItem48.setText("Enrejado Low");
+        jMenuItem48.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem48ActionPerformed(evt);
+            }
+        });
         jMenu12.add(jMenuItem48);
 
         jMenuItem49.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        jMenuItem49.setText("Deteccion de Velocidad");
+        jMenuItem49.setText("Campana de Gabor");
         jMenu12.add(jMenuItem49);
+
+        jMenuItem52.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jMenuItem52.setText("Detección de Orientación");
+        jMenu12.add(jMenuItem52);
+
+        jMenuItem53.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jMenuItem53.setText("Detección de Velocidad");
+        jMenu12.add(jMenuItem53);
 
         jMenu6.add(jMenu12);
         jMenu6.add(jSeparator1);
@@ -945,7 +978,7 @@ public class PrincipalView extends javax.swing.JFrame {
         });
         jMenu7.add(jMenuItem33);
 
-        jMenuItem44.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jMenuItem44.setFont(new java.awt.Font("Tahoma", 0, 12));
         jMenuItem44.setText("Detección de Velocidad");
         jMenuItem44.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1499,12 +1532,7 @@ public class PrincipalView extends javax.swing.JFrame {
 
     private void jMenuItem45ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem45ActionPerformed
         // TODO add your handling code here:
-        FileNameExtensionFilter filter = new FileNameExtensionFilter("Archivos Excel(*.xls)", "xls");
-        jFileChooser1.addChoosableFileFilter(filter);
-        jFileChooser1.setDialogTitle("Exportar informe de datos xls");
-        jFileChooser1.setDialogType(JFileChooser.SAVE_DIALOG);
-        jFileChooser1.showSaveDialog(this);
-        File selectPlaced = jFileChooser1.getSelectedFile();
+        File selectPlaced = openFileChooser2Estadistica();
 
         HSSFWorkbook book = new HSSFWorkbook();
         AbstractInformeAB excel1 = new EstadisticaFormaAB(book);
@@ -1512,18 +1540,23 @@ public class PrincipalView extends javax.swing.JFrame {
         excel1.getInformeExcel();
 
         if (selectPlaced != null) {
-            QuinoTools.salvarLibroExcel(selectPlaced.getPath() + "." + filter.getExtensions()[0], book);
+            QuinoTools.salvarLibroExcel(selectPlaced.getPath() + "." + "xls", book);
         }
     }//GEN-LAST:event_jMenuItem45ActionPerformed
 
-    private void jMenuItem46ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem46ActionPerformed
-        // TODO add your handling code here:
+    private File openFileChooser2Estadistica() {
+        
         FileNameExtensionFilter filter = new FileNameExtensionFilter("Archivos Excel(*.xls)", "xls");
         jFileChooser1.addChoosableFileFilter(filter);
         jFileChooser1.setDialogTitle("Exportar informe de datos xls");
         jFileChooser1.setDialogType(JFileChooser.SAVE_DIALOG);
         jFileChooser1.showSaveDialog(this);
-        File selectPlaced = jFileChooser1.getSelectedFile();
+        return jFileChooser1.getSelectedFile();
+    }
+
+    private void jMenuItem46ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem46ActionPerformed
+        // TODO add your handling code here:
+        File selectPlaced = openFileChooser2Estadistica();
 
         HSSFWorkbook book = new HSSFWorkbook();
         AbstractInformeAB excel1 = new EstadisticaFormaAB(book);
@@ -1531,9 +1564,61 @@ public class PrincipalView extends javax.swing.JFrame {
         excel1.getInformeExcel();
 
         if (selectPlaced != null) {
-            QuinoTools.salvarLibroExcel(selectPlaced.getPath() + "." + filter.getExtensions()[0], book);
+            QuinoTools.salvarLibroExcel(selectPlaced.getPath() + "." + "xls", book);
         }
     }//GEN-LAST:event_jMenuItem46ActionPerformed
+
+    private void jMenuItem47ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem47ActionPerformed
+        // TODO add your handling code here:
+        File selectPlaced = openFileChooser2Estadistica();
+
+        HSSFWorkbook book = new HSSFWorkbook();
+        AbstractInformeExcel excel1 = new EstadisticaDeteccionForma(book);
+        excel1.getInformeExcel();
+
+        if (selectPlaced != null) {
+            QuinoTools.salvarLibroExcel(selectPlaced.getPath() + "." + "xls", book);
+        }
+    }//GEN-LAST:event_jMenuItem47ActionPerformed
+
+    private void jMenuItem50ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem50ActionPerformed
+        // TODO add your handling code here:
+        File selectPlaced = openFileChooser2Estadistica();
+
+        HSSFWorkbook book = new HSSFWorkbook();
+        AbstractInformeExcel excel1 = new EstadisticaEnrejado(book, FrecuenciaEspacial.ALL);
+        excel1.getInformeExcel();
+
+        if (selectPlaced != null) {
+            QuinoTools.salvarLibroExcel(selectPlaced.getPath() + "." + "xls", book);
+        }
+    }//GEN-LAST:event_jMenuItem50ActionPerformed
+
+    private void jMenuItem51ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem51ActionPerformed
+        // TODO add your handling code here:
+        File selectPlaced = openFileChooser2Estadistica();
+
+        HSSFWorkbook book = new HSSFWorkbook();
+        AbstractInformeExcel excel1 = new EstadisticaEnrejado(book, FrecuenciaEspacial.HIGH);
+        excel1.getInformeExcel();
+
+        if (selectPlaced != null) {
+            QuinoTools.salvarLibroExcel(selectPlaced.getPath() + "." + "xls", book);
+        }
+    }//GEN-LAST:event_jMenuItem51ActionPerformed
+
+    private void jMenuItem48ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem48ActionPerformed
+        // TODO add your handling code here:
+        File selectPlaced = openFileChooser2Estadistica();
+
+        HSSFWorkbook book = new HSSFWorkbook();
+        AbstractInformeExcel excel1 = new EstadisticaEnrejado(book, FrecuenciaEspacial.LOW);
+        excel1.getInformeExcel();
+
+        if (selectPlaced != null) {
+            QuinoTools.salvarLibroExcel(selectPlaced.getPath() + "." + "xls", book);
+        }
+    }//GEN-LAST:event_jMenuItem48ActionPerformed
 
     private void verResultadoDPrueba() {
         if (prueba != null) {
@@ -1629,6 +1714,8 @@ public class PrincipalView extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem5;
     private javax.swing.JMenuItem jMenuItem50;
     private javax.swing.JMenuItem jMenuItem51;
+    private javax.swing.JMenuItem jMenuItem52;
+    private javax.swing.JMenuItem jMenuItem53;
     private javax.swing.JMenuItem jMenuItem6;
     private javax.swing.JMenuItem jMenuItem7;
     private javax.swing.JMenuItem jMenuItem8;

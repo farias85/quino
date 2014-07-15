@@ -25,7 +25,7 @@ public class ConfigEnsayoEnrejado extends ConfigEnsayoSinusoide {
         this.key = onMove ? 32 : 0;
     }
 
-    public ConfigEnsayoEnrejado(int direccion, int ppi, boolean onMove, double contrat, byte intensidadMedia) {
+    public ConfigEnsayoEnrejado(int direccion, int ppi, boolean onMove, double contrat, double intensidadMedia) {
         super(direccion, ppi, contrat, intensidadMedia);
         this.onMove = onMove;
         this.key = onMove ? 32 : 0;
@@ -34,7 +34,7 @@ public class ConfigEnsayoEnrejado extends ConfigEnsayoSinusoide {
     public ConfigEnsayoEnrejado(int key, int panelEstimulo, int fs, double fspa_cpi_x, 
             double fspa_cpi_y, int ppi, double fspa_cpp_x, double fspa_cpp_y, 
             boolean sentidoUpLeft, int direccion, boolean onMove, double contrat,
-            byte intensidadMedia) {
+            double intensidadMedia) {
         super(key, panelEstimulo, fs, fspa_cpi_x, fspa_cpi_y, ppi, fspa_cpp_x, 
                 fspa_cpp_y, sentidoUpLeft, direccion, contrat, intensidadMedia);
         this.onMove = onMove;

@@ -58,11 +58,11 @@ public abstract class ConfigEnsayoSinusoide extends ConfigEnsayo {
     /**
      * La intensidad media q se desea tener entre rejas
      */
-    protected byte intensidadMedia = (byte) 128;
+    protected double intensidadMedia = 128;
     /**
      * Intensidad máxima
      */
-    protected byte intensidadMax = (byte) (contrat * intensidadMedia);
+    protected double intensidadMax = contrat * intensidadMedia;
 
     public ConfigEnsayoSinusoide() {
         super();
@@ -71,7 +71,7 @@ public abstract class ConfigEnsayoSinusoide extends ConfigEnsayo {
     public ConfigEnsayoSinusoide(int key, int panelEstimulo, int fs, double fspa_cpi_x,
             double fspa_cpi_y, int ppi, double fspa_cpp_x, double fspa_cpp_y,
             boolean sentidoUpLeft, int direccion, double contrat,
-            byte intensidadMedia) {
+            double intensidadMedia) {
         super(key, panelEstimulo);
 
         this.fs = fs;
@@ -85,7 +85,7 @@ public abstract class ConfigEnsayoSinusoide extends ConfigEnsayo {
         this.contrat = contrat;
         this.intensidadMedia = intensidadMedia;
 
-        this.intensidadMax = (byte) (contrat * intensidadMedia);
+        this.intensidadMax = contrat * intensidadMedia;
     }
 
     public ConfigEnsayoSinusoide(int direccion, int ppi) {
@@ -95,12 +95,12 @@ public abstract class ConfigEnsayoSinusoide extends ConfigEnsayo {
     }
 
     public ConfigEnsayoSinusoide(int direccion, int ppi, double contrat,
-            byte intensidadMedia) {
+            double intensidadMedia) {
         this(direccion, ppi);
 
         this.contrat = contrat;
         this.intensidadMedia = intensidadMedia;
-        this.intensidadMax = (byte) (contrat * intensidadMedia);
+        this.intensidadMax = contrat * intensidadMedia;
     }
 
     protected void getConfiguracionXDireccion(int direccion) {
@@ -235,19 +235,19 @@ public abstract class ConfigEnsayoSinusoide extends ConfigEnsayo {
         this.contrat = contrat;
     }
 
-    public byte getIntensidadMax() {
+    public double getIntensidadMax() {
         return intensidadMax;
     }
 
-    public void setIntensidadMax(byte intensidadMax) {
+    public void setIntensidadMax(double intensidadMax) {
         this.intensidadMax = intensidadMax;
     }
 
-    public byte getIntensidadMedia() {
+    public double getIntensidadMedia() {
         return intensidadMedia;
     }
 
-    public void setIntensidadMedia(byte intensidadMedia) {
+    public void setIntensidadMedia(double intensidadMedia) {
         this.intensidadMedia = intensidadMedia;
     }
 }

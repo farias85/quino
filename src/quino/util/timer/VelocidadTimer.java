@@ -29,7 +29,8 @@ public class VelocidadTimer extends AbstractNoMoveTimer {
     private VelocidadTestView test;
     private ConfigEnsayoOrientacion configEnsayo;
     private int radio = 150;
-    protected int count = 0;
+    private Velocidad lento = new Velocidad(1);
+    private Velocidad rapido = new Velocidad(8);
 
     public VelocidadTimer(Prueba prueba, JPanel panel1, JPanel panel2,
             VelocidadTestView test, boolean practica) {
@@ -134,7 +135,8 @@ public class VelocidadTimer extends AbstractNoMoveTimer {
         jpanel2.repaint();
     }
 
-    private void runMatrix(JPanel jpanel, ConfigEnsayoOrientacion cee) {
+    private void runMatrix(JPanel jpanel, ConfigEnsayoOrientacion cee, Velocidad factor) {
+
         Mat mtx = new Mat(470, 460, CvType.CV_8SC1, new Scalar(0));
         Point centro = new Point(mtx.width() / 2, mtx.height() / 2);
 
@@ -146,8 +148,8 @@ public class VelocidadTimer extends AbstractNoMoveTimer {
 
                 if (circleLocation(point, centro)) {
                     double intensidad = cee.getIntensidadMedia() + cee.getIntensidadMax() //40.8
-                            * Math.cos(2.0 * Math.PI * (cee.getFspa_cpp_x() * (i + count)
-                            + cee.getFspa_cpp_y() * (j + count) + periodo));
+                            * Math.cos(2.0 * Math.PI * (cee.getFspa_cpp_x() * (i + factor.getCount())
+                            + cee.getFspa_cpp_y() * (j + factor.getCount()) + periodo));
 
                     mtx.put(j, i, (byte) intensidad);
                 }
@@ -156,7 +158,8 @@ public class VelocidadTimer extends AbstractNoMoveTimer {
 
         jpanel.getGraphics().drawImage(QuinoTools.matToBufferedImage(mtx), 0, 0, jpanel);
 
-        count += 2;
+        factor.go();
+        System.out.println("Factor: " + factor.getCount());
     }
 
     private boolean circleLocation(Point point, Point centro) {
@@ -164,24 +167,42 @@ public class VelocidadTimer extends AbstractNoMoveTimer {
         return distancia < radio;
     }
 
+    private class Velocidad {
+
+        int count = 0;
+        int aceleracion;
+
+        public Velocidad(int aceleracion) {
+            this.aceleracion = aceleracion;
+        }
+
+        public void go() {
+            count += aceleracion;
+        }
+
+        public int getCount() {
+            return count;
+        }
+    }
+
     @Override
     protected void panelsRellenar() {
-        ConfigEnsayoOrientacion patronEstatico = new ConfigEnsayoOrientacion(3, configEnsayo.getPpi(), false,
-                configEnsayo.getContrat(), configEnsayo.getIntensidadMedia());
-
         switch (ensayo.getConfiguracion().getPanelEstimulo()) {
-            case 0:
-                runMatrix(jpanel1, patronEstatico);
-                runMatrix(jpanel2, patronEstatico);
-                break;
-            case 1:
-                runMatrix(jpanel1, configEnsayo);
-                runMatrix(jpanel2, patronEstatico);
-                break;
-            case 2:
-                runMatrix(jpanel1, patronEstatico);
-                runMatrix(jpanel2, configEnsayo);
-                break;
+            case 0: {
+                runMatrix(jpanel1, configEnsayo, rapido);
+                runMatrix(jpanel2, configEnsayo, lento);
+            }
+            break;
+            case 1: {
+                runMatrix(jpanel1, configEnsayo, lento);
+                runMatrix(jpanel2, configEnsayo, rapido);
+            }
+            break;
+            case 2: {
+                runMatrix(jpanel1, configEnsayo, lento);
+                runMatrix(jpanel2, configEnsayo, lento);
+            }
+            break;
         }
     }
 }

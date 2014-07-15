@@ -135,13 +135,16 @@ public class GaborTimer extends AbstractSinusoideTimer {
                 double distancia = Line2D.ptSegDist(point.x, point.y, point.x, point.y, configEnsayo.getCentro().x, configEnsayo.getCentro().y);
 
                 if (distancia < configEnsayo.getRadio2()) {
+                    //Circulo de adentro
                     double intensidad1 = 0;
                     intensidad1 = Math.pow(i - configEnsayo.getCentro().x, 2) + Math.pow(j - configEnsayo.getCentro().y, 2);
                     intensidad1 /= 2 * Math.pow(configEnsayo.getGaussianStdpix(), 2);
                     intensidad1 = configEnsayo.getIntensidadMax() * Math.exp(-intensidad1);
                     intensidad1 *= Math.cos(2.0 * Math.PI * (configEnsayo.getFspa_cpp_x() * (i + count)
                             + configEnsayo.getFspa_cpp_y() * (j + count) + periodo * configEnsayo.getFtemp()));
+                    //intensidad1 += configEnsayo.getIntensidadMax();
 
+                    //Circulo de afuera
                     double intensidad2 = configEnsayo.getIntensidadMedia() + configEnsayo.getIntensidadMax()
                             * Math.cos(2.0 * Math.PI * (configEnsayo.getFspa_cpp_x_per() * (i + count)
                             + configEnsayo.getFspa_cpp_y_per() * (j + count) + periodo * configEnsayo.getFtemp_per()));
@@ -155,7 +158,7 @@ public class GaborTimer extends AbstractSinusoideTimer {
         jPanel.getGraphics().drawImage(image, 0, 0, jPanel);
 
         System.out.println(count + " esto es run matrix");
-        count += configEnsayo.isSentidoUpLeft() ? 5 : -5;
+        count += configEnsayo.isSentidoUpLeft() ? 1 : -1;
     }
 
     private boolean gaborLocation(Point point) {

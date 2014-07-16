@@ -32,10 +32,12 @@ public class PruebaOrientacion extends PruebaMultiEnsayo {
 
         for (int i = 0; i < cantEnsayos; i++) {
             int panelEstimulo = random.nextInt(0, 2);
+
             if (configEnsayo instanceof ConfigEnsayoOrientacionAuto) {
                 ceo = new ConfigEnsayoOrientacionAuto();
             } else if (configEnsayo instanceof ConfigEnsayoOrientacion) {
                 int direccion = random.nextInt(5, 6);
+
                 if (configEnsayo.getDireccion() == 0) {
                     ceo = new ConfigEnsayoOrientacion(direccion,
                             configEnsayo.getPpi(), false, configEnsayo.getContrat(),

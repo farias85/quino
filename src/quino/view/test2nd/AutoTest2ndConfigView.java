@@ -14,11 +14,14 @@ import quino.clases.config.ConfigEnsayoEnrejadoAuto;
 import quino.clases.config.ConfigEnsayoGaborAuto;
 import quino.clases.config.ConfigEnsayoOrientacionAuto;
 import quino.clases.config.ConfigEnsayoShapeDetectAuto;
+import quino.clases.config.ConfigEnsayoVelocidad;
+import quino.clases.config.ConfigEnsayoVelocidadAuto;
 import quino.util.test.Prueba;
 import quino.util.test.PruebaEnrejado;
 import quino.util.test.PruebaGabor;
 import quino.util.test.PruebaOrientacion;
 import quino.util.test.PruebaShape;
+import quino.util.test.PruebaVelocidad;
 import quino.view.main.ErrorDialog;
 import quino.view.main.PrincipalView;
 
@@ -40,6 +43,8 @@ public class AutoTest2ndConfigView extends javax.swing.JDialog {
 
         if (parent.getConf() instanceof ConfigEnsayoShapeDetectAuto) {
             jLabel6.setText(jLabel6.getText() + "Detección de Forma");
+        } else if (parent.getConf() instanceof ConfigEnsayoVelocidad) {
+            jLabel6.setText(jLabel6.getText() + "Detección de Velocidad");
         } else if (parent.getConf() instanceof ConfigEnsayoEnrejadoAuto) {
             jLabel6.setText(jLabel6.getText() + "Enrejado");
         } else if (parent.getConf() instanceof ConfigEnsayoGaborAuto) {
@@ -149,6 +154,11 @@ public class AutoTest2ndConfigView extends javax.swing.JDialog {
                 parent.setPrueba(prueba);
                 ShapeDetectTestView sdtv = new ShapeDetectTestView(parent, true, false);
                 sdtv.setVisible(true);
+            } else if (parent.getConf() instanceof ConfigEnsayoVelocidadAuto) {
+                Prueba prueba = new PruebaVelocidad((ConfigEnsayoVelocidadAuto) parent.getConf(), cantEnsayos);
+                parent.setPrueba(prueba);
+                VelocidadTestView vtv = new VelocidadTestView(parent, true, false);
+                vtv.setVisible(true);
             } else if (parent.getConf() instanceof ConfigEnsayoEnrejadoAuto) {
                 Prueba prueba = new PruebaEnrejado((ConfigEnsayoEnrejadoAuto) parent.getConf(), cantEnsayos);
                 parent.setPrueba(prueba);

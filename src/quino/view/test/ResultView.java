@@ -38,6 +38,7 @@ import quino.util.test.PruebaFormaAB;
 import quino.util.test.PruebaGabor;
 import quino.util.test.PruebaOrientacion;
 import quino.util.test.PruebaShape;
+import quino.util.test.PruebaVelocidad;
 
 /**
  *
@@ -68,6 +69,8 @@ public class ResultView extends javax.swing.JDialog {
                 } else if (parent.getPrueba() instanceof PruebaShape) {
                     t_denpromedio1.setText(String.valueOf(((PruebaShape) parent.getPrueba()).densidadPromedio()));
                     menuDeteccionForma();
+                } else if (parent.getPrueba() instanceof PruebaVelocidad) {
+                    menuEnrejado();
                 } else if (parent.getPrueba() instanceof PruebaEnrejado) {
                     menuEnrejado();
                 } else if (parent.getPrueba() instanceof PruebaGabor) {

@@ -10,6 +10,7 @@ import quino.util.test.PruebaFormaA;
 import quino.util.test.PruebaGabor;
 import quino.util.test.PruebaOrientacion;
 import quino.util.test.PruebaShape;
+import quino.util.test.PruebaVelocidad;
 
 /**
  * Representa al paciente al cual se le realizan las pruebas
@@ -76,13 +77,18 @@ public class Paciente {
      */
     private PruebaOrientacion orientacion;
 
+    /**
+     * Prueba de tipo Detección de Velocidad
+     */
+    private PruebaVelocidad velocidad;
+
     public Paciente() {
     }
 
     public Paciente(String nombre, int edad, String sexo, String escolaridad,
             String historia, long ci, String ficha, String escuela, PruebaFormaB periferica,
             PruebaFormaA foveal, PruebaShape forma, PruebaGabor gabor,
-            PruebaEnrejado enrejado, PruebaOrientacion orientacion) {
+            PruebaEnrejado enrejado, PruebaOrientacion orientacion, PruebaVelocidad velocidad) {
         this.nombre = nombre;
         this.edad = edad;
         this.sexo = sexo;
@@ -97,9 +103,11 @@ public class Paciente {
         this.gabor = gabor;
         this.enrejado = enrejado;
         this.orientacion = orientacion;
+        this.velocidad = velocidad;
     }
 
-    public Paciente(String nombre, int edad, String sexo, String escolaridad, String historia, long ci, String ficha, String escuela) {
+    public Paciente(String nombre, int edad, String sexo, String escolaridad,
+            String historia, long ci, String ficha, String escuela) {
         this.nombre = nombre;
         this.edad = edad;
         this.sexo = sexo;
@@ -220,5 +228,13 @@ public class Paciente {
 
     public void setOrientacion(PruebaOrientacion orientacion) {
         this.orientacion = orientacion;
+    }
+
+    public PruebaVelocidad getVelocidad() {
+        return velocidad;
+    }
+
+    public void setVelocidad(PruebaVelocidad velocidad) {
+        this.velocidad = velocidad;
     }
 }

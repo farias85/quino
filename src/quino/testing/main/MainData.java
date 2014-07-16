@@ -12,6 +12,7 @@ import quino.clases.config.ConfigEnsayoFormaABAuto;
 import quino.clases.config.ConfigEnsayoGaborAuto;
 import quino.clases.config.ConfigEnsayoOrientacionAuto;
 import quino.clases.config.ConfigEnsayoShapeDetectAuto;
+import quino.clases.config.ConfigEnsayoVelocidadAuto;
 import quino.clases.model.Paciente;
 import quino.util.test.PruebaFormaA;
 import quino.util.test.PruebaFormaB;
@@ -22,6 +23,7 @@ import quino.util.test.PruebaEnrejado;
 import quino.util.test.PruebaGabor;
 import quino.util.test.PruebaOrientacion;
 import quino.util.test.PruebaShape;
+import quino.util.test.PruebaVelocidad;
 
 /**
  * Clase ejecutable para la generación de datos de prueba
@@ -100,6 +102,15 @@ public class MainData {
                     pruebaOrientacion.getEnsayos().get(j).setResultado(results);
                 }
 
+                PruebaVelocidad pruebaVelocidad = new PruebaVelocidad(new ConfigEnsayoVelocidadAuto(), 3);
+                for (int j = 0; j < pruebaVelocidad.getEnsayos().size(); j++) {
+                    boolean error = j % 3 == 0 ? true : false;
+                    Resultado results = new Resultado(random.nextInt(300, 620),
+                            error, "Descrip", 32, random.nextDouble(),
+                            random.nextInt(5, 15));
+                    pruebaVelocidad.getEnsayos().get(j).setResultado(results);
+                }
+
                 String anno = String.valueOf(random.nextInt(10, 99));
                 String mes = String.valueOf(random.nextInt(1, 12));
                 String dia = String.valueOf(random.nextInt(1, 27));
@@ -125,7 +136,7 @@ public class MainData {
                 Paciente paciente = new Paciente(nombreCompleto, random.nextInt(5, 50),
                         sexo, escolaridad, historia, ci, "Ficha", escuela,
                         periferica, foveal, pruebaShape, pruebaGabor, pruebaEnrejado,
-                        pruebaOrientacion);
+                        pruebaOrientacion, pruebaVelocidad);
 
                 /*Paciente paciente = new Paciente(nombreCompleto, random.nextInt(5, 50),
                 sexo, escolaridad, historia, ci, "Ficha",

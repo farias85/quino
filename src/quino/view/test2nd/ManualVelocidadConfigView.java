@@ -4,9 +4,13 @@
  */
 package quino.view.test2nd;
 
+import java.util.Random;
 import quino.clases.config.ConfigEnsayoOrientacion;
+import quino.clases.config.ConfigEnsayoVelocidad;
+import quino.util.Aleatorio;
 import quino.view.main.*;
 import quino.util.test.PruebaOrientacion;
+import quino.util.test.PruebaVelocidad;
 
 /**
  *
@@ -213,10 +217,13 @@ public class ManualVelocidadConfigView extends javax.swing.JDialog {
                 throw new Exception("El formato de los datos no es correcto");
             }
 
-            parent.setConf(new ConfigEnsayoOrientacion(direccion, ppi, false, contraste, (byte) intensidadMedia));
-            parent.setPrueba(new PruebaOrientacion(((ConfigEnsayoOrientacion) parent.getConf()), cantEnsayos));
+            Aleatorio random = new Aleatorio();
+            direccion = random.nextInt(0, 7);
 
-            VelocidadTestView vtv = new VelocidadTestView(parent, true, true);
+            parent.setConf(new ConfigEnsayoVelocidad(direccion, ppi, true, contraste, intensidadMedia));
+            parent.setPrueba(new PruebaVelocidad(((ConfigEnsayoVelocidad) parent.getConf()), cantEnsayos));
+
+            VelocidadTestView vtv = new VelocidadTestView(parent, true, false);
             vtv.setVisible(true);
 
             setVisible(false);

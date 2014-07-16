@@ -12,7 +12,7 @@ import javax.swing.JPanel;
 import org.opencv.core.CvType;
 import org.opencv.core.Mat;
 import org.opencv.core.Scalar;
-import quino.clases.config.ConfigEnsayoOrientacion;
+import quino.clases.config.ConfigEnsayoVelocidad;
 import quino.util.test.Prueba;
 import quino.util.QuinoTools;
 import quino.view.test.ResultView;
@@ -27,7 +27,7 @@ public class VelocidadTimer extends AbstractNoMoveTimer {
     private JPanel jpanel1;
     private JPanel jpanel2;
     private VelocidadTestView test;
-    private ConfigEnsayoOrientacion configEnsayo;
+    private ConfigEnsayoVelocidad configEnsayo;
     private int radio = 150;
     private Velocidad lento = new Velocidad(1);
     private Velocidad rapido = new Velocidad(8);
@@ -47,10 +47,10 @@ public class VelocidadTimer extends AbstractNoMoveTimer {
             inOut = false;
             System.out.println("en espera " + getTiempoTranscurrido());
 
-            if (ensayo.getConfiguracion() instanceof ConfigEnsayoOrientacion) {
-                this.configEnsayo = ((ConfigEnsayoOrientacion) ensayo.getConfiguracion());
+            if (ensayo.getConfiguracion() instanceof ConfigEnsayoVelocidad) {
+                this.configEnsayo = ((ConfigEnsayoVelocidad) ensayo.getConfiguracion());
             } else {
-                System.err.println("El ensayo no es de tipo ConfigEnsayoOrientacion en la clase OrientacionTimer");
+                System.err.println("El ensayo no es de tipo ConfigEnsayoVelocidad en la clase VelocidadTimer");
             }
 
             panelsRepaint();
@@ -88,7 +88,7 @@ public class VelocidadTimer extends AbstractNoMoveTimer {
                             resultado.setDescripcion("No hubo estímulo");
                         } else if (ensayo.getConfiguracion().getKey() != resultado.getKey()) {
                             resultado.setError(true);
-                            resultado.setDescripcion("Dirección incorrecta");
+                            resultado.setDescripcion("Opción incorrecta");
                         }
 
                         puedeTeclear = false;
@@ -135,7 +135,7 @@ public class VelocidadTimer extends AbstractNoMoveTimer {
         jpanel2.repaint();
     }
 
-    private void runMatrix(JPanel jpanel, ConfigEnsayoOrientacion cee, Velocidad factor) {
+    private void runMatrix(JPanel jpanel, ConfigEnsayoVelocidad cee, Velocidad factor) {
 
         Mat mtx = new Mat(470, 460, CvType.CV_8SC1, new Scalar(0));
         Point centro = new Point(mtx.width() / 2, mtx.height() / 2);
@@ -189,18 +189,18 @@ public class VelocidadTimer extends AbstractNoMoveTimer {
     protected void panelsRellenar() {
         switch (ensayo.getConfiguracion().getPanelEstimulo()) {
             case 0: {
-                runMatrix(jpanel1, configEnsayo, rapido);
+                runMatrix(jpanel1, configEnsayo, lento);
                 runMatrix(jpanel2, configEnsayo, lento);
             }
             break;
             case 1: {
-                runMatrix(jpanel1, configEnsayo, lento);
-                runMatrix(jpanel2, configEnsayo, rapido);
+                runMatrix(jpanel1, configEnsayo, rapido);
+                runMatrix(jpanel2, configEnsayo, lento);
             }
             break;
             case 2: {
                 runMatrix(jpanel1, configEnsayo, lento);
-                runMatrix(jpanel2, configEnsayo, lento);
+                runMatrix(jpanel2, configEnsayo, rapido);
             }
             break;
         }

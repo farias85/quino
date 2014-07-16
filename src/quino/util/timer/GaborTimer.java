@@ -139,10 +139,11 @@ public class GaborTimer extends AbstractSinusoideTimer {
                     double intensidad1 = 0;
                     intensidad1 = Math.pow(i - configEnsayo.getCentro().x, 2) + Math.pow(j - configEnsayo.getCentro().y, 2);
                     intensidad1 /= 2 * Math.pow(configEnsayo.getGaussianStdpix(), 2);
-                    intensidad1 = configEnsayo.getIntensidadMax() * Math.exp(-intensidad1);
+                    intensidad1 = configEnsayo.getIntensidadMedia() * Math.exp(-intensidad1);
                     intensidad1 *= Math.cos(2.0 * Math.PI * (configEnsayo.getFspa_cpp_x() * (i + count)
                             + configEnsayo.getFspa_cpp_y() * (j + count) + periodo * configEnsayo.getFtemp()));
-                    //intensidad1 += configEnsayo.getIntensidadMax();
+                    //intensidad1 += configEnsayo.getIntensidadMax() * 0.5f;
+                    intensidad1 /= configEnsayo.getContrat();
 
                     //Circulo de afuera
                     double intensidad2 = configEnsayo.getIntensidadMedia() + configEnsayo.getIntensidadMax()

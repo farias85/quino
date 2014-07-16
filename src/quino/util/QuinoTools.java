@@ -31,6 +31,7 @@ import quino.util.test.PruebaGabor;
 import quino.util.test.PruebaFormaB;
 import quino.util.test.PruebaOrientacion;
 import quino.util.test.PruebaShape;
+import quino.util.test.PruebaVelocidad;
 import quino.view.main.ErrorDialog;
 import quino.view.main.PrincipalView;
 
@@ -286,6 +287,8 @@ public class QuinoTools {
             pruebaPaciente = principalView.getPacienteActual().getPeriferica();
         } else if (prueba instanceof PruebaShape) {
             pruebaPaciente = principalView.getPacienteActual().getForma();
+        } else if (prueba instanceof PruebaVelocidad) {
+            pruebaPaciente = principalView.getPacienteActual().getVelocidad();
         } else if (prueba instanceof PruebaGabor) {
             pruebaPaciente = principalView.getPacienteActual().getGabor();
         } else if (prueba instanceof PruebaEnrejado) {
@@ -324,6 +327,8 @@ public class QuinoTools {
             principalView.getPacienteActual().setPeriferica((PruebaFormaB) prueba);
         } else if (prueba instanceof PruebaShape) {
             principalView.getPacienteActual().setForma((PruebaShape) prueba);
+        } else if (prueba instanceof PruebaVelocidad) {
+            principalView.getPacienteActual().setVelocidad((PruebaVelocidad) prueba);
         } else if (prueba instanceof PruebaGabor) {
             principalView.getPacienteActual().setGabor((PruebaGabor) prueba);
         } else if (prueba instanceof PruebaEnrejado) {

@@ -13,9 +13,9 @@ import quino.clases.model.Velocidad;
  */
 public class ConfigEnsayoVelocidad extends ConfigEnsayoEnrejado {
     
-    private Velocidad velocidadPrimaria = new Velocidad(24);
-    private Velocidad velocidadSecundaria = new Velocidad(1);
-    private double frecuenciaMuestreo = 8;
+    protected Velocidad velocidadPrimaria = new Velocidad(24);
+    protected Velocidad velocidadSecundaria = new Velocidad(1);
+    protected double frecuenciaMuestreo = 8;
     
     public ConfigEnsayoVelocidad(int direccion, double ppi, boolean onMove,
             double contrat, double intensidadMedia, Velocidad primaria, 

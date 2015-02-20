@@ -5,6 +5,7 @@
 
 package quino.clases.config;
 
+import quino.clases.model.Velocidad;
 import quino.util.Aleatorio;
 
 /**
@@ -35,6 +36,17 @@ public class ConfigEnsayoVelocidadAuto extends ConfigEnsayoVelocidad {
                 key = 39;//tecla de la flecha derecha
                 break;
         }
+        
+        int vprimaria = random.nextInt(15, 25);
+        int vsecundaria = random.nextInt(1, 3);
+        int fmuestreo = random.nextInt(1, 20);
+        
+        this.velocidadPrimaria = new Velocidad(vprimaria);
+        this.velocidadSecundaria = new Velocidad(vsecundaria);
+        this.frecuenciaMuestreo = fmuestreo;
+        
+        this.intensidadMedia = random.nextInt(120, 140);
+        this.contrat = (double)(random.nextInt(70, 99)) / 100;
 
         onMove = true;
     }

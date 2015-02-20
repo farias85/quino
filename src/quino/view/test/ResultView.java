@@ -235,8 +235,8 @@ public class ResultView extends javax.swing.JDialog {
 
         menuVelocidad();
 
-        t_densidad1.setText(String.valueOf(QuinoTools.getPPiXFrecuenciaEspacial(configEnsayo.getPpi())));
-        t_cantidad1.setText(String.valueOf(Math.rint(configEnsayo.getContrat() * 100) / 100));
+        t_densidad1.setText(String.valueOf(Math.rint(QuinoTools.getPPiXFrecuenciaEspacial(configEnsayo.getPpi()) * 1000) / 1000));
+        t_cantidad1.setText(String.valueOf(Math.rint(configEnsayo.getContrat() * 1000) / 1000));
         t_vmov1.setText(String.valueOf(Math.abs((int) configEnsayo.getIntensidadMedia())));        
         
         t_velocidad.setText(String.valueOf(Math.rint(configEnsayo.getVelocidadPrimaria().getAceleracion() * 100) / 100));

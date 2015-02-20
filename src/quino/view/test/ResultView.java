@@ -33,6 +33,7 @@ import quino.clases.config.ConfigEnsayoFormaAB;
 import quino.clases.config.ConfigEnsayoGabor;
 import quino.clases.config.ConfigEnsayoOrientacion;
 import quino.clases.config.ConfigEnsayoShapeDetect;
+import quino.clases.config.ConfigEnsayoVelocidad;
 import quino.util.test.PruebaEnrejado;
 import quino.util.test.PruebaFormaAB;
 import quino.util.test.PruebaGabor;
@@ -70,7 +71,7 @@ public class ResultView extends javax.swing.JDialog {
                     t_denpromedio1.setText(String.valueOf(((PruebaShape) parent.getPrueba()).densidadPromedio()));
                     menuDeteccionForma();
                 } else if (parent.getPrueba() instanceof PruebaVelocidad) {
-                    menuEnrejado();
+                    menuVelocidad();
                 } else if (parent.getPrueba() instanceof PruebaEnrejado) {
                     menuEnrejado();
                 } else if (parent.getPrueba() instanceof PruebaGabor) {
@@ -124,6 +125,8 @@ public class ResultView extends javax.swing.JDialog {
                         mostrarDatosDeteccionForma(ensayo);
                     } else if (configEnsayo instanceof ConfigEnsayoOrientacion) {
                         mostrarDatosOrientacion(ensayo);
+                    } else if (configEnsayo instanceof ConfigEnsayoVelocidad) {
+                        mostrarDatosVelocidad(ensayo);
                     } else if (configEnsayo instanceof ConfigEnsayoEnrejado) {
                         mostrarDatosEnrejado(ensayo);
                     } else if (configEnsayo instanceof ConfigEnsayoGabor) {
@@ -203,12 +206,64 @@ public class ResultView extends javax.swing.JDialog {
         ImageIcon keyIcon = CambiarArrowKey(resultado.getKey());
         b_keypressed.setIcon(keyIcon);
     }
+    
+    private void menuVelocidad() {
+        jLabel9.setVisible(false);
+        jLabel33.setText("Frecuencia espacial (Hz):");
+        jLabel31.setText("Contraste:");
+        jLabel24.setText("Intensidad media:");
+        
+        jLabel25.setVisible(true);
+        jLabel25.setText("Velocidad 1 (grado/ms):");
+        
+        jLabel26.setVisible(true);
+        jLabel26.setText("Velocidad 2 (grado/ms):");
+        
+        jLabel28.setVisible(true);
+        jLabel28.setText("Frecuencia temporal (Hz):");
+        
+        t_pestimulo1.setVisible(true);
+        t_pestimulo1.setEnabled(true);
+        
+        jLabel11.setVisible(false);
+        jLabel34.setVisible(false);
+    }
+    
+    private void mostrarDatosVelocidad(Ensayo ensayo) {
+        ConfigEnsayoVelocidad configEnsayo = ((ConfigEnsayoVelocidad) ensayo.getConfiguracion());
+        Resultado resultado = ensayo.getResultado();
 
+        menuVelocidad();
+
+        t_densidad1.setText(String.valueOf(QuinoTools.getPPiXFrecuenciaEspacial(configEnsayo.getPpi())));
+        t_cantidad1.setText(String.valueOf(Math.rint(configEnsayo.getContrat() * 100) / 100));
+        t_vmov1.setText(String.valueOf(Math.abs((int) configEnsayo.getIntensidadMedia())));        
+        
+        t_velocidad.setText(String.valueOf(Math.rint(configEnsayo.getVelocidadPrimaria().getAceleracion() * 100) / 100));
+        t_angulo.setText(String.valueOf(Math.rint(configEnsayo.getVelocidadSecundaria().getAceleracion() * 100) / 100));
+        t_pestimulo1.setText(String.valueOf(Math.rint(configEnsayo.getFrecuenciaMuestreo() * 100) / 100));
+
+        t_trespuesta1.setText(resultado.getTiempoRespuesta() == 0 ? "N/R" : String.valueOf(resultado.getTiempoRespuesta()));
+        ImageIcon resultIcon = CambiarError(resultado.isError());
+        t_resultado1.setIcon(resultIcon);
+
+        if (configEnsayo.isOnMove()) {
+            ImageIcon dirIcon = CambiarDireccion(configEnsayo.getDireccion(),
+                    configEnsayo.getDireccion());
+            t_direccion1.setIcon(dirIcon);
+        } else {
+            ImageIcon dirIcon = CambiarDireccion(configEnsayo.getDireccion(), 0);
+            t_direccion1.setIcon(dirIcon);
+        }
+
+        e_desc.setText(resultado.getDescripcion());
+    }
+    
     private void menuEnrejado() {
         jLabel9.setVisible(false);
-        jLabel33.setText("Pixel/Pulgada Barras:");
+        jLabel33.setText("Frecuencia espacial (Hz):");
         jLabel31.setText("Contraste:");
-        jLabel24.setText("Intensidad Media:");
+        jLabel24.setText("Intensidad media:");
         jLabel25.setVisible(false);
         jLabel26.setVisible(false);
         jLabel28.setVisible(false);
@@ -238,7 +293,6 @@ public class ResultView extends javax.swing.JDialog {
             ImageIcon dirIcon = CambiarDireccion(configEnsayo.getDireccion(), 0);
             t_direccion1.setIcon(dirIcon);
         }
-
 
         e_desc.setText(resultado.getDescripcion());
     }
@@ -442,10 +496,10 @@ public class ResultView extends javax.swing.JDialog {
         }
     }
 
-    /** This method is called from within the constructor to
-     * initialize the form.
-     * WARNING: Do NOT modify this code. The content of this method is
-     * always regenerated by the Form Editor.
+    /**
+     * This method is called from within the constructor to initialize the form.
+     * WARNING: Do NOT modify this code. The content of this method is always
+     * regenerated by the Form Editor.
      */
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents

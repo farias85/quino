@@ -50,7 +50,7 @@ public class ConfigEnsayoGabor extends ConfigEnsayoSinusoide {
     /**
      * ppi2
      */
-    protected int ppi2 = Toolkit.getDefaultToolkit().getScreenResolution() / 8;
+    protected double ppi2 = Toolkit.getDefaultToolkit().getScreenResolution() / 8;
     /**
      * spatial frequency in x,cicles / pixels
      */
@@ -64,8 +64,8 @@ public class ConfigEnsayoGabor extends ConfigEnsayoSinusoide {
         super();        
     }
 
-    public ConfigEnsayoGabor(int direccion, int ppi, double contrat, double intensidadMedia,
-            double gaussianStdpix, int radio1, int radio2, int ppi2) {
+    public ConfigEnsayoGabor(int direccion, double ppi, double contrat, double intensidadMedia,
+            double gaussianStdpix, int radio1, int radio2, double ppi2) {
         super(direccion, ppi, contrat, intensidadMedia);
         this.gaussianStdpix = gaussianStdpix;
         this.radio1 = radio1;
@@ -77,7 +77,7 @@ public class ConfigEnsayoGabor extends ConfigEnsayoSinusoide {
         fspa_cpp_y_per = fspa_cpi_y_per / ppi2;
     }
 
-    public ConfigEnsayoGabor(int direccion, int ppi) {
+    public ConfigEnsayoGabor(int direccion, double ppi) {
         super(direccion, ppi);
         this.key = getKey2Press(direccion);
     }
@@ -102,7 +102,7 @@ public class ConfigEnsayoGabor extends ConfigEnsayoSinusoide {
     }
 
     public ConfigEnsayoGabor(int key, int panelEstimulo, int fs, double fspa_cpi_x,
-            double fspa_cpi_y, int ppi, double fspa_cpp_x, double fspa_cpp_y,
+            double fspa_cpi_y, double ppi, double fspa_cpp_x, double fspa_cpp_y,
             boolean sentidoUpLeft, int direccion, double contrat,
             double intensidadMedia) {
         super(key, panelEstimulo, fs, fspa_cpi_x, fspa_cpi_y, ppi, fspa_cpp_x,
@@ -189,11 +189,11 @@ public class ConfigEnsayoGabor extends ConfigEnsayoSinusoide {
         this.radio2 = radio2;
     }
 
-    public int getPpi2() {
+    public double getPpi2() {
         return ppi2;
     }
 
-    public void setPpi2(int ppi2) {
+    public void setPpi2(double ppi2) {
         this.ppi2 = ppi2;
     }
 }

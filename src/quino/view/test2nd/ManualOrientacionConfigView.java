@@ -77,8 +77,7 @@ public class ManualOrientacionConfigView extends javax.swing.JDialog {
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 12));
         jLabel1.setText("Cantidad de Ensayos");
 
-        jTextField1.setFont(new java.awt.Font("Tahoma", 1, 12));
-        jTextField1.setText("4");
+        jTextField1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 12));
         jLabel2.setText("Contraste");
@@ -86,7 +85,7 @@ public class ManualOrientacionConfigView extends javax.swing.JDialog {
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 12));
         jLabel3.setText("Intensidad Media");
 
-        jTextField2.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jTextField2.setFont(new java.awt.Font("Tahoma", 1, 12));
         jTextField2.setText("0.75");
         jTextField2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

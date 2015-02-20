@@ -13,6 +13,7 @@ import org.opencv.core.CvType;
 import org.opencv.core.Mat;
 import org.opencv.core.Scalar;
 import quino.clases.config.ConfigEnsayoVelocidad;
+import quino.clases.model.Velocidad;
 import quino.util.test.Prueba;
 import quino.util.QuinoTools;
 import quino.view.test.ResultView;
@@ -29,8 +30,6 @@ public class VelocidadTimer extends AbstractNoMoveTimer {
     private VelocidadTestView test;
     private ConfigEnsayoVelocidad configEnsayo;
     private int radio = 150;
-    private Velocidad lento = new Velocidad(1);
-    private Velocidad rapido = new Velocidad(8);
 
     public VelocidadTimer(Prueba prueba, JPanel panel1, JPanel panel2,
             VelocidadTestView test, boolean practica) {
@@ -139,7 +138,7 @@ public class VelocidadTimer extends AbstractNoMoveTimer {
 
         Mat mtx = new Mat(470, 460, CvType.CV_8SC1, new Scalar(0));
         Point centro = new Point(mtx.width() / 2, mtx.height() / 2);
-
+        
         for (int i = 0; i < mtx.cols(); i++) {
             double periodo = i / cee.getFs();
 
@@ -167,26 +166,12 @@ public class VelocidadTimer extends AbstractNoMoveTimer {
         return distancia < radio;
     }
 
-    private class Velocidad {
-
-        int count = 0;
-        int aceleracion;
-
-        public Velocidad(int aceleracion) {
-            this.aceleracion = aceleracion;
-        }
-
-        public void go() {
-            count += aceleracion;
-        }
-
-        public int getCount() {
-            return count;
-        }
-    }
-
     @Override
     protected void panelsRellenar() {
+        
+        Velocidad lento = configEnsayo.getVelocidadSecundaria();
+        Velocidad rapido = configEnsayo.getVelocidadPrimaria();
+        
         switch (ensayo.getConfiguracion().getPanelEstimulo()) {
             case 0: {
                 runMatrix(jpanel1, configEnsayo, lento);

@@ -27,7 +27,7 @@ public abstract class ConfigEnsayoSinusoide extends ConfigEnsayo {
     /**
      * screen pixels x inch
      */
-    protected int ppi = Toolkit.getDefaultToolkit().getScreenResolution() / 3;
+    protected double ppi = Toolkit.getDefaultToolkit().getScreenResolution() / 3;
     /**
      * spatial frequency in x,cicles / pixels
      */
@@ -69,7 +69,7 @@ public abstract class ConfigEnsayoSinusoide extends ConfigEnsayo {
     }
 
     public ConfigEnsayoSinusoide(int key, int panelEstimulo, int fs, double fspa_cpi_x,
-            double fspa_cpi_y, int ppi, double fspa_cpp_x, double fspa_cpp_y,
+            double fspa_cpi_y, double ppi, double fspa_cpp_x, double fspa_cpp_y,
             boolean sentidoUpLeft, int direccion, double contrat,
             double intensidadMedia) {
         super(key, panelEstimulo);
@@ -88,13 +88,13 @@ public abstract class ConfigEnsayoSinusoide extends ConfigEnsayo {
         this.intensidadMax = contrat * intensidadMedia;
     }
 
-    public ConfigEnsayoSinusoide(int direccion, int ppi) {
+    public ConfigEnsayoSinusoide(int direccion, double ppi) {
         super(0, 0);
         this.ppi = ppi;
         getConfiguracionXDireccion(direccion);
     }
 
-    public ConfigEnsayoSinusoide(int direccion, int ppi, double contrat,
+    public ConfigEnsayoSinusoide(int direccion, double ppi, double contrat,
             double intensidadMedia) {
         this(direccion, ppi);
 
@@ -203,11 +203,11 @@ public abstract class ConfigEnsayoSinusoide extends ConfigEnsayo {
         this.fspa_cpp_y = fspa_cpp_y;
     }
 
-    public int getPpi() {
+    public double getPpi() {
         return ppi;
     }
 
-    public void setPpi(int ppi) {
+    public void setPpi(double ppi) {
         this.ppi = ppi;
     }
 

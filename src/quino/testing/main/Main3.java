@@ -75,7 +75,7 @@ public class Main3 {
         int a = 2;
         }*/
 
-        Point p1 = new Point(150, 150);
+        /*Point p1 = new Point(150, 150);
         double densidad1 = QuinoTools.porciento(25, 600);
 
         Point p2 = new Point(140, 10);
@@ -105,6 +105,8 @@ public class Main3 {
         angle = Math.atan(a);
         direccion = (int) (Math.abs(angle) / Math.PI / 10);
 
-        Segment2D sd2 = new Segment2D(p1.x, guia.getPendiente(), guia.getOrdenada());
+        Segment2D sd2 = new Segment2D(p1.x, guia.getPendiente(), guia.getOrdenada());*/
+        
+        //double ppi = QuinoTools.getPPiXFrecuenciaEspacial(frecuenciaEspacial)
     }
 }

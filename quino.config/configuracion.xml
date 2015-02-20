@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<java version="1.7.0" class="java.beans.XMLDecoder">
+<java version="1.7.0_03" class="java.beans.XMLDecoder">
  <object class="quino.clases.config.ConfigApp">
   <void property="cantEnsayos">
    <int>3</int>
@@ -8,10 +8,10 @@
    <double>30.0</double>
   </void>
   <void property="pcEsperandoRespuesta">
-   <double>30.0</double>
+   <double>20.0</double>
   </void>
   <void property="pcPreparado">
-   <double>40.0</double>
+   <double>50.0</double>
   </void>
   <void property="tiempoDuracion">
    <double>6000.0</double>

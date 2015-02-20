@@ -38,9 +38,45 @@ import quino.view.main.PrincipalView;
 /**
  * Todos los métodos de esta clase son estáticos. Se definen acá métodos de
  * utilidad en el trabajo en toda la aplicación
+ *
  * @author Felipe Rodriguez Arias
  */
 public class QuinoTools {
+
+    public static double getPeriodoXFrecuencia(double frecuencia) {
+
+        //calculo el período y lo multiplico por 1000 pa convertirlo en en milisegundo
+        //que es lo que utiliza el parámetro del timertask
+        double periodo = 1 / frecuencia;
+        periodo *= 1000;
+
+        return periodo;
+    }
+
+    public static double getK2() {
+        //distancia por defecto entre el sujeto y la pantalla 60 cm
+        double distanciaDeVisualizacion = 0.60d;
+        //distancia de un grado en la pantalla
+        double dist = distanciaDeVisualizacion * Math.tan(1);
+
+        //calcular pixeles por segundo
+        //Factor de Kell para pantallas CRT
+        double k = 0.7;
+        double k2 = dist * k;
+
+        return k2 * 20;
+    }
+
+    /**
+     * Este método se utiliza para encontrar el ppi de una frecuencia especifica
+     * Tambien para encontrar la frecuencia de un ppi especifico
+     * @param frecuenciaEspacial
+     * @return 
+     */
+    public static double getPPiXFrecuenciaEspacial(double frecuenciaEspacial) {
+        double k2 = getK2();
+        return 1 / frecuenciaEspacial * k2;
+    }
 
     public static String getDireccion(int value) {
         String result = "";
@@ -108,7 +144,7 @@ public class QuinoTools {
             double varianzaSuma = calcVarianza(vSuma);
 
             //calcular valor de k
-            double k = itemsCount / (itemsCount - 1);
+            double k = (double) itemsCount / ((double) itemsCount - 1);
 
             //sumar varianzas de los datos de la variable data 
             //sin contar el valor varianzaSuma
@@ -175,10 +211,11 @@ public class QuinoTools {
     }
 
     /**
-     * Devuelve el ancho q debe tener una celda para que todo el texto
-     * q contiene una celda se vea en la celda y no se solape con otras celdas
+     * Devuelve el ancho q debe tener una celda para que todo el texto q
+     * contiene una celda se vea en la celda y no se solape con otras celdas
      * vecinas. Una celda por defecto tiene valor de width de 2048 y caben en
      * ella 9 caracteres mas o menos
+     *
      * @param strlength El tamaño del texto str.length
      * @return El ancho de la celda
      */
@@ -189,6 +226,7 @@ public class QuinoTools {
     /**
      * Devuelve el codigo ascii de la tecla presionada. Especificamente las
      * teclas del num lock con las cuales se controla el movimiento
+     *
      * @param direccion Ladireccion del movimiento
      * @return El codigo ascci de la tecla presionada
      */
@@ -227,6 +265,7 @@ public class QuinoTools {
 
     /**
      * Devuelve el nombre del panel en el que ha ocurrido el movimiento
+     *
      * @param prueba El tipo de prueba efectuada
      * @param panel El número del panel donde se efectuó el movimiento
      * @return El nombre del panel
@@ -266,9 +305,10 @@ public class QuinoTools {
     }
 
     /**
-     * Salva una prueba en el registro. Luego de la realización de una prueba
-     * si existía en el registro del paciente una prueba igual q la q se realizó
-     * se pregunta si se desea sobre escrbir la antigua prueba.
+     * Salva una prueba en el registro. Luego de la realización de una prueba si
+     * existía en el registro del paciente una prueba igual q la q se realizó se
+     * pregunta si se desea sobre escrbir la antigua prueba.
+     *
      * @param principalView Ventana Principal
      * @param testView Ventana de la Prueba (Fovela o Periférica)
      * @param prueba Tipo de prueba realizada
@@ -277,9 +317,8 @@ public class QuinoTools {
         int option = -1;
 
         /*Prueba pruebaActual = prueba instanceof PruebaFoveal ? principalView.getPacienteActual().getFoveal()
-        : principalView.getPacienteActual().getPeriferica();*/
+         : principalView.getPacienteActual().getPeriferica();*/
         //String nombrePrueba = prueba instanceof PruebaFoveal ? "Foveal" : "Periférica";
-
         Prueba pruebaPaciente = null;
         if (prueba instanceof PruebaFormaA) {
             pruebaPaciente = principalView.getPacienteActual().getFoveal();
@@ -344,6 +383,7 @@ public class QuinoTools {
     /**
      * Dado una cadena de caracteres, devuelve true si cada valor del String es
      * un número
+     *
      * @param valor Cadena de caracteres del suppuesto número
      * @return True si es un numero, false en caso contrario.
      */
@@ -366,6 +406,7 @@ public class QuinoTools {
 
     /**
      * Chequea si el carnet de identidad de un paciente es válido
+     *
      * @param ci Cadena de caracteres del CI del paciente
      * @return El carnét de identidad formateado a long
      * @throws Exception lanza excepción en caso de no ser válido el carné
@@ -402,6 +443,7 @@ public class QuinoTools {
 
     /**
      * Salva un libro excel en la dirección dada.
+     *
      * @param path Dirección para guardar el archivo
      * @param book Libro excel a guardar
      */
@@ -454,10 +496,11 @@ public class QuinoTools {
     }
 
     /**
-     * Devuelve el valor del porciento de tiempo que se utiliza en una tarea
-     * a partir del tiempo de duración total IConfiguracion.TIEMPO_DURACION
-     * @param porcentaje Porcentaje asignado en IConfiguracion para la
-     * tarea en cuestión, por ejemplo: IConfiguracion.PC_EN_ESPERA
+     * Devuelve el valor del porciento de tiempo que se utiliza en una tarea a
+     * partir del tiempo de duración total IConfiguracion.TIEMPO_DURACION
+     *
+     * @param porcentaje Porcentaje asignado en IConfiguracion para la tarea en
+     * cuestión, por ejemplo: IConfiguracion.PC_EN_ESPERA
      * @return El valor del porciento respecto al tiempo de duración
      */
     public static int porcientoDuracion(double porcentaje) {
@@ -465,8 +508,9 @@ public class QuinoTools {
     }
 
     /**
-     * Devuelve el valor del porciento de tiempo que se utiliza en una tarea
-     * a partir del tiempo de duración total tiempoDuracion
+     * Devuelve el valor del porciento de tiempo que se utiliza en una tarea a
+     * partir del tiempo de duración total tiempoDuracion
+     *
      * @param porcentaje Valor del procentaje
      * @return El valor del porciento respecto al tiempo de duración
      */
@@ -477,6 +521,7 @@ public class QuinoTools {
 
     /**
      * Calcula la distancia desde el punto p1 a punto p2
+     *
      * @param p1 Punto de inicio
      * @param p2 Punto de fin
      * @return Distancia entre ambos puntos
@@ -496,6 +541,7 @@ public class QuinoTools {
     /**
      * Calcula el angulo P1-PA-P2, donde PA es vértices del ángulo y P1 y P2 los
      * extremos. PA representa la posición del paciente frente a la pantalla
+     *
      * @param p1 Punto 1 de inicio del movimiento
      * @param p2 Punto 2 de fin
      * @return El ángulo en el vértice PA
@@ -512,8 +558,9 @@ public class QuinoTools {
 
     /**
      * Calcula el angulo P1-PA-P2, donde PA es vértices del ángulo y P1 y P2 los
-     * extremos. PA representa la posición del paciente frente a la pantalla y P1
-     * es el centro de la pantalla
+     * extremos. PA representa la posición del paciente frente a la pantalla y
+     * P1 es el centro de la pantalla
+     *
      * @param p2 Punto de la pantalla
      * @return El ángulo en el vértice PA
      */
@@ -524,11 +571,14 @@ public class QuinoTools {
 
     /**
      * Calcula el angulo P1-PA-P2, donde PA es vértices del ángulo y P1 y P2 los
-     * extremos. PA representa la posición del paciente frente a la pantalla y P1
-     * es el centro de la pantalla
+     * extremos. PA representa la posición del paciente frente a la pantalla y
+     * P1 es el centro de la pantalla
+     *
      * @param p2 Punto de la pantalla
-     * @param desplazamientX El desplazamiento en el eje X respecto al borde lateral izquierdo de la pantalla
-     * @param desplazamientoY El desplazamiento en el eje Y respecto al borde superior de la pantalla
+     * @param desplazamientX El desplazamiento en el eje X respecto al borde
+     * lateral izquierdo de la pantalla
+     * @param desplazamientoY El desplazamiento en el eje Y respecto al borde
+     * superior de la pantalla
      * @return El ángulo en el vértice PA
      */
     public static double getAngulo(Punto p2, double desplazamientX, double desplazamientoY) {
@@ -539,6 +589,7 @@ public class QuinoTools {
 
     /**
      * Devuelve las cordenadas del centro de la pantalla
+     *
      * @return El Punto(X,Y) del centro de la pantalla
      */
     public static Punto getCentroPantalla() {
@@ -550,8 +601,9 @@ public class QuinoTools {
 
     /**
      * Calcula la velocidad de traslación de los puntos
+     *
      * @param tiempoMovimiento El tiempo de movimiento, debe ser un valor entre
-     *  y 200
+     * y 200
      * @return
      */
     public static double getVelocidad(double tiempoMovimiento) {
@@ -563,7 +615,9 @@ public class QuinoTools {
     }
 
     /**
-     * Convierte una matrix de tipo Mat de opencv a BufferedImage para mostrar por pantalla
+     * Convierte una matrix de tipo Mat de opencv a BufferedImage para mostrar
+     * por pantalla
+     *
      * @param matrix Matrix de la imagen generada con opencv
      * @return La representación de la imagen en el tipo BufferedImage
      */

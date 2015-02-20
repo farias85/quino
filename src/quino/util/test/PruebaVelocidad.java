@@ -38,9 +38,11 @@ public class PruebaVelocidad extends PruebaMultiEnsayo {
 
                 int direccion = random.nextInt(0, 8);
 
-                cev = new ConfigEnsayoVelocidad(direccion,
+                //BORRAR número, dirección
+                cev = new ConfigEnsayoVelocidad(1,
                         configEnsayo.getPpi(), true, configEnsayo.getContrat(),
-                        configEnsayo.getIntensidadMedia());
+                        configEnsayo.getIntensidadMedia(), configEnsayo.getVelocidadPrimaria(), 
+                        configEnsayo.getVelocidadSecundaria(), configEnsayo.getFrecuenciaMuestreo());
 
             }
 

@@ -5,29 +5,54 @@
 
 package quino.clases.config;
 
+import quino.clases.model.Velocidad;
+
 /**
  *
  * @author produccion
  */
 public class ConfigEnsayoVelocidad extends ConfigEnsayoEnrejado {
-
-    public ConfigEnsayoVelocidad(int key, int panelEstimulo, int fs, double fspa_cpi_x,
-            double fspa_cpi_y, int ppi, double fspa_cpp_x, double fspa_cpp_y, boolean sentidoUpLeft,
-            int direccion, boolean onMove, double contrat, double intensidadMedia) {
-        super(key, panelEstimulo, fs, fspa_cpi_x, fspa_cpi_y, ppi, fspa_cpp_x,
-                fspa_cpp_y, sentidoUpLeft, direccion, onMove, contrat, intensidadMedia);
-    }
-
-    public ConfigEnsayoVelocidad(int direccion, int ppi, boolean onMove,
-            double contrat, double intensidadMedia) {
+    
+    private Velocidad velocidadPrimaria = new Velocidad(24);
+    private Velocidad velocidadSecundaria = new Velocidad(1);
+    private double frecuenciaMuestreo = 8;
+    
+    public ConfigEnsayoVelocidad(int direccion, double ppi, boolean onMove,
+            double contrat, double intensidadMedia, Velocidad primaria, 
+            Velocidad secundaria, double frecuenciaMuestro) {
         super(direccion, ppi, onMove, contrat, intensidadMedia);
-    }
-
-    public ConfigEnsayoVelocidad(int direccion, int ppi, boolean onMove) {
-        super(direccion, ppi, onMove);
+        
+        this.velocidadPrimaria = primaria;
+        this.velocidadSecundaria = secundaria;
+        this.frecuenciaMuestreo = frecuenciaMuestro;
     }
 
     public ConfigEnsayoVelocidad() {
         super();
     }
+    
+    public Velocidad getVelocidadPrimaria() {
+        return velocidadPrimaria;
+    }
+
+    public void setVelocidadPrimaria(Velocidad velocidadPrimaria) {
+        this.velocidadPrimaria = velocidadPrimaria;
+    }
+
+    public Velocidad getVelocidadSecundaria() {
+        return velocidadSecundaria;
+    }
+
+    public void setVelocidadSecundaria(Velocidad velocidadSecundaria) {
+        this.velocidadSecundaria = velocidadSecundaria;
+    }
+    
+    public double getFrecuenciaMuestreo() {
+        return frecuenciaMuestreo;
+    }
+
+    public void setFrecuenciaMuestreo(double frecuenciaMuestreo) {
+        this.frecuenciaMuestreo = frecuenciaMuestreo;
+    }
+
 }

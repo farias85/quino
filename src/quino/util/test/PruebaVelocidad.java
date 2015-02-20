@@ -37,9 +37,8 @@ public class PruebaVelocidad extends PruebaMultiEnsayo {
             } else if (configEnsayo instanceof ConfigEnsayoVelocidad) {
 
                 int direccion = random.nextInt(0, 8);
-
-                //BORRAR número, dirección
-                cev = new ConfigEnsayoVelocidad(1,
+                
+                cev = new ConfigEnsayoVelocidad(direccion,
                         configEnsayo.getPpi(), true, configEnsayo.getContrat(),
                         configEnsayo.getIntensidadMedia(), configEnsayo.getVelocidadPrimaria(), 
                         configEnsayo.getVelocidadSecundaria(), configEnsayo.getFrecuenciaMuestreo());

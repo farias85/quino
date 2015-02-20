@@ -26,17 +26,20 @@ public class PruebaEnrejado extends PruebaMultiEnsayo {
             if (configEnsayo instanceof ConfigEnsayoEnrejadoAuto) {
                 cee = new ConfigEnsayoEnrejadoAuto();
             } else {
-                boolean onMove = random.nextInt(0, 15) % 3 == 0 ? false : true;
+                boolean onMove = random.nextInt(0, 15) % 3 != 0;
                 if (configEnsayo.getDireccion() == 0) {
                     int direccion = random.nextInt(1, 8);
                     cee = new ConfigEnsayoEnrejado(direccion,
                             configEnsayo.getPpi(), onMove, configEnsayo.getContrat(),
-                            configEnsayo.getIntensidadMedia());
+                            configEnsayo.getIntensidadMedia());                    
                 } else {
                     cee = new ConfigEnsayoEnrejado(configEnsayo.getDireccion(),
                             configEnsayo.getPpi(), onMove, configEnsayo.getContrat(),
                             configEnsayo.getIntensidadMedia());
                 }
+                
+                cee.setFrecuenciaMuestreo(configEnsayo.getFrecuenciaMuestreo());
+                cee.setVelocidadPrimaria(configEnsayo.getVelocidadPrimaria());
             }
 
             Ensayo ensayo = new Ensayo(cee);

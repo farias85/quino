@@ -13,6 +13,10 @@ package quino.view.test2nd;
 import java.awt.Color;
 import java.util.Timer;
 import java.util.TimerTask;
+import quino.clases.config.ConfigEnsayoEnrejado;
+import quino.clases.config.ConfigEnsayoVelocidad;
+import quino.clases.model.Ensayo;
+import quino.util.QuinoTools;
 import quino.util.timer.EnrejadoTimer;
 import quino.view.main.*;
 
@@ -38,8 +42,17 @@ public class EnrejadoTestView extends javax.swing.JDialog {
         jPanel1.setBackground(Color.BLACK);
 
         TimerTask task = new EnrejadoTimer(parent.getPrueba(), practica, jPanel1, this);
+        
+        //El parámetro de frecuencia temporal debe ser igual en cada uno de los ensayos
+        Ensayo ensayo = parent.getPrueba().getEnsayos().get(0);
+        ConfigEnsayoEnrejado configEnsayo = null;
+        if (ensayo.getConfiguracion() instanceof ConfigEnsayoEnrejado) {
+            configEnsayo = ((ConfigEnsayoEnrejado) ensayo.getConfiguracion());
+        }
+        long periodo = (long)QuinoTools.getPeriodoXFrecuencia(configEnsayo.getFrecuenciaMuestreo());
+                
         Timer ti = new Timer();
-        ti.scheduleAtFixedRate(task, 0, 1);
+        ti.scheduleAtFixedRate(task, 0, periodo);
     }
 
     public PrincipalView getParentView() {

@@ -4,6 +4,8 @@
  */
 package quino.clases.config;
 
+import quino.clases.model.Velocidad;
+
 /**
  *
  * @author farias
@@ -19,25 +21,15 @@ public class ConfigEnsayoEnrejado extends ConfigEnsayoSinusoide {
         super();
     }
 
-    public ConfigEnsayoEnrejado(int direccion, double ppi, boolean onMove) {
-        super(direccion, ppi);
-        this.onMove = onMove;
-        this.key = onMove ? 32 : 0;
-    }
-
-    public ConfigEnsayoEnrejado(int direccion, double ppi, boolean onMove, double contrat, double intensidadMedia) {
+    //No se puse la velocidad ni la frecuencia de muestreo en el constructor
+    //xq la prueba de Orientacion hereda de esta prueba y ahi no hay movimiento
+    //los valores hay que setearlos luego del constructor
+    public ConfigEnsayoEnrejado(int direccion, double ppi, boolean onMove, 
+            double contrat, double intensidadMedia) {
         super(direccion, ppi, contrat, intensidadMedia);
+        
         this.onMove = onMove;
         this.key = onMove ? 32 : 0;
-    }
-
-    public ConfigEnsayoEnrejado(int key, int panelEstimulo, int fs, double fspa_cpi_x, 
-            double fspa_cpi_y, double ppi, double fspa_cpp_x, double fspa_cpp_y, 
-            boolean sentidoUpLeft, int direccion, boolean onMove, double contrat,
-            double intensidadMedia) {
-        super(key, panelEstimulo, fs, fspa_cpi_x, fspa_cpi_y, ppi, fspa_cpp_x, 
-                fspa_cpp_y, sentidoUpLeft, direccion, contrat, intensidadMedia);
-        this.onMove = onMove;
     }
 
     public boolean isOnMove() {

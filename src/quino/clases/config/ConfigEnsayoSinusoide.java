@@ -5,6 +5,7 @@
 package quino.clases.config;
 
 import java.awt.Toolkit;
+import quino.clases.model.Velocidad;
 
 /**
  *
@@ -63,6 +64,10 @@ public abstract class ConfigEnsayoSinusoide extends ConfigEnsayo {
      * Intensidad máxima
      */
     protected double intensidadMax = contrat * intensidadMedia;
+    
+    protected Velocidad velocidadPrimaria = new Velocidad(24);
+    
+    protected double frecuenciaMuestreo = 8;
 
     public ConfigEnsayoSinusoide() {
         super();
@@ -249,5 +254,21 @@ public abstract class ConfigEnsayoSinusoide extends ConfigEnsayo {
 
     public void setIntensidadMedia(double intensidadMedia) {
         this.intensidadMedia = intensidadMedia;
+    }
+    
+    public Velocidad getVelocidadPrimaria() {
+        return velocidadPrimaria;
+    }
+
+    public void setVelocidadPrimaria(Velocidad velocidadPrimaria) {
+        this.velocidadPrimaria = velocidadPrimaria;
+    }
+
+    public double getFrecuenciaMuestreo() {
+        return frecuenciaMuestreo;
+    }
+
+    public void setFrecuenciaMuestreo(double frecuenciaMuestreo) {
+        this.frecuenciaMuestreo = frecuenciaMuestreo;
     }
 }

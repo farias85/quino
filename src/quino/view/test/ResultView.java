@@ -98,6 +98,8 @@ public class ResultView extends javax.swing.JDialog {
             setVisible(false);
             dispose();
         }
+        
+        jLabel27.setVisible(false);
     }
 
     private void Arbol(final ArrayList<Ensayo> ensayos) {
@@ -139,7 +141,7 @@ public class ResultView extends javax.swing.JDialog {
 
     private void menuOrientacion() {
         jLabel9.setVisible(false);
-        jLabel33.setText("Pixel/Pulgada Barras:");
+        jLabel33.setText("Frecuencia espacial (Hz):");
         jLabel31.setText("Contraste:");
         jLabel24.setText("Intensidad Media:");
         jLabel25.setVisible(false);
@@ -154,8 +156,8 @@ public class ResultView extends javax.swing.JDialog {
         Resultado resultado = ensayo.getResultado();
 
         menuOrientacion();
-
-        t_densidad1.setText(String.valueOf(configEnsayo.getPpi()));
+        
+        t_densidad1.setText(String.valueOf(Math.rint(QuinoTools.getPPiXFrecuenciaEspacial(configEnsayo.getPpi()) * 1000) / 1000));
         t_cantidad1.setText(String.valueOf(Math.rint(configEnsayo.getContrat() * 100) / 100));
         t_vmov1.setText(String.valueOf(Math.abs((int) configEnsayo.getIntensidadMedia())));
 
@@ -171,12 +173,18 @@ public class ResultView extends javax.swing.JDialog {
 
     private void menuGabor() {
         jLabel9.setVisible(false);
-        jLabel33.setText("Pixel/Pulgada Barras:");
+        jLabel33.setText("F. espacial Int/Ext (Hz):");
         jLabel31.setText("Contraste:");
         jLabel24.setText("Intensidad Media:");
-        jLabel25.setText("Gaussian Std:");
-        jLabel26.setText("Radio Int/Ext:");
-        jLabel28.setVisible(false);
+        jLabel25.setText("Campana de Gabor (px):");
+        jLabel26.setText("Radio Int/Ext (px):");
+        
+        jLabel27.setVisible(true);
+        jLabel27.setText("Velocidad (grado/ms):");
+        
+        jLabel28.setVisible(true);
+        jLabel28.setText("Frecuencia temporal (Hz):");
+        
         jLabel11.setVisible(false);
     }
 
@@ -186,10 +194,14 @@ public class ResultView extends javax.swing.JDialog {
 
         menuGabor();
 
-        t_densidad1.setText(String.valueOf(configEnsayo.getPpi()));
+        t_densidad1.setText(String.valueOf(Math.rint(configEnsayo.getPpi() * 1000) / 1000)
+                        + " / " + String.valueOf(Math.rint(configEnsayo.getPpi2() * 1000) / 1000));
         t_cantidad1.setText(String.valueOf(Math.rint(configEnsayo.getContrat() * 100) / 100));
         t_vmov1.setText(String.valueOf(Math.abs((int) configEnsayo.getIntensidadMedia())));
 
+        t_angulo1.setText(String.valueOf(Math.rint(configEnsayo.getVelocidadPrimaria().getAceleracion() * 100) / 100));
+        t_pestimulo1.setText(String.valueOf(Math.rint(configEnsayo.getFrecuenciaMuestreo() * 100) / 100));
+        
         t_trespuesta1.setText(resultado.getTiempoRespuesta() == 0 ? "N/R" : String.valueOf(resultado.getTiempoRespuesta()));
         ImageIcon resultIcon = CambiarError(resultado.isError());
         t_resultado1.setIcon(resultIcon);
@@ -264,9 +276,14 @@ public class ResultView extends javax.swing.JDialog {
         jLabel33.setText("Frecuencia espacial (Hz):");
         jLabel31.setText("Contraste:");
         jLabel24.setText("Intensidad media:");
-        jLabel25.setVisible(false);
+        
+        jLabel25.setVisible(true);
+        jLabel25.setText("Velocidad 1 (grado/ms):");
+        
+        jLabel28.setVisible(true);
+        jLabel28.setText("Frecuencia temporal (Hz):");
+        
         jLabel26.setVisible(false);
-        jLabel28.setVisible(false);
         jLabel11.setVisible(false);
         jLabel34.setVisible(false);
     }
@@ -277,10 +294,13 @@ public class ResultView extends javax.swing.JDialog {
 
         menuEnrejado();
 
-        t_densidad1.setText(String.valueOf(configEnsayo.getPpi()));
+        t_densidad1.setText(String.valueOf(Math.rint(QuinoTools.getPPiXFrecuenciaEspacial(configEnsayo.getPpi()) * 1000) / 1000));
         t_cantidad1.setText(String.valueOf(Math.rint(configEnsayo.getContrat() * 100) / 100));
         t_vmov1.setText(String.valueOf(Math.abs((int) configEnsayo.getIntensidadMedia())));
 
+        t_velocidad.setText(String.valueOf(Math.rint(configEnsayo.getVelocidadPrimaria().getAceleracion() * 100) / 100));
+        t_pestimulo1.setText(String.valueOf(Math.rint(configEnsayo.getFrecuenciaMuestreo() * 100) / 100));
+        
         t_trespuesta1.setText(resultado.getTiempoRespuesta() == 0 ? "N/R" : String.valueOf(resultado.getTiempoRespuesta()));
         ImageIcon resultIcon = CambiarError(resultado.isError());
         t_resultado1.setIcon(resultIcon);
@@ -547,6 +567,8 @@ public class ResultView extends javax.swing.JDialog {
         jLabel26 = new javax.swing.JLabel();
         t_velocidad = new javax.swing.JTextField();
         t_angulo = new javax.swing.JTextField();
+        jLabel27 = new javax.swing.JLabel();
+        t_angulo1 = new javax.swing.JTextField();
         jLabel11 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
         t_densayo = new javax.swing.JTextField();
@@ -562,7 +584,7 @@ public class ResultView extends javax.swing.JDialog {
         setIconImages(null);
         setResizable(false);
 
-        jTabbedPane1.setFont(new java.awt.Font("Tahoma", 1, 12));
+        jTabbedPane1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jTabbedPane1.addChangeListener(new javax.swing.event.ChangeListener() {
             public void stateChanged(javax.swing.event.ChangeEvent evt) {
                 jTabbedPane1StateChanged(evt);
@@ -571,51 +593,51 @@ public class ResultView extends javax.swing.JDialog {
 
         jPanel5.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Parámetros Generales", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 14))); // NOI18N
 
-        jLabel7.setFont(new java.awt.Font("Tahoma", 1, 12));
+        jLabel7.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel7.setText("Ensayos Realizados:");
 
-        jLabel8.setFont(new java.awt.Font("Tahoma", 1, 12));
+        jLabel8.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel8.setText("Cantidad de Errores:");
 
-        jLabel9.setFont(new java.awt.Font("Tahoma", 1, 12));
+        jLabel9.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel9.setText("Densidad Promedio:");
 
-        jLabel10.setFont(new java.awt.Font("Tahoma", 1, 12));
+        jLabel10.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel10.setText("Tiempo de Respuesta:");
 
         t_ensayos1.setEditable(false);
-        t_ensayos1.setFont(new java.awt.Font("Tahoma", 1, 12));
+        t_ensayos1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         t_ensayos1.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         t_ensayos1.setBorder(null);
 
         t_errores1.setEditable(false);
-        t_errores1.setFont(new java.awt.Font("Tahoma", 1, 12));
+        t_errores1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         t_errores1.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         t_errores1.setBorder(null);
 
         t_denpromedio1.setEditable(false);
-        t_denpromedio1.setFont(new java.awt.Font("Tahoma", 1, 12));
+        t_denpromedio1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         t_denpromedio1.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         t_denpromedio1.setBorder(null);
 
         t_trespg1.setEditable(false);
-        t_trespg1.setFont(new java.awt.Font("Tahoma", 1, 12));
+        t_trespg1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         t_trespg1.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         t_trespg1.setBorder(null);
 
-        jLabel13.setFont(new java.awt.Font("Tahoma", 1, 12));
+        jLabel13.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel13.setText("Prueba");
 
         tipoLabel.setEditable(false);
-        tipoLabel.setFont(new java.awt.Font("Tahoma", 1, 12));
+        tipoLabel.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         tipoLabel.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         tipoLabel.setBorder(null);
 
-        jLabel14.setFont(new java.awt.Font("Tahoma", 1, 12));
+        jLabel14.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel14.setText("Fecha:");
 
         fechaLabel.setEditable(false);
-        fechaLabel.setFont(new java.awt.Font("Tahoma", 1, 12));
+        fechaLabel.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         fechaLabel.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         fechaLabel.setBorder(null);
         fechaLabel.addActionListener(new java.awt.event.ActionListener() {
@@ -694,41 +716,41 @@ public class ResultView extends javax.swing.JDialog {
         jPanel7.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Parámetros por Ensayos", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 14))); // NOI18N
 
         jTree1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        jTree1.setFont(new java.awt.Font("Tahoma", 1, 12));
+        jTree1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         javax.swing.tree.DefaultMutableTreeNode treeNode1 = new javax.swing.tree.DefaultMutableTreeNode("root");
         jTree1.setModel(new javax.swing.tree.DefaultTreeModel(treeNode1));
         jScrollPane2.setViewportView(jTree1);
 
-        jLabel28.setFont(new java.awt.Font("Tahoma", 1, 12));
+        jLabel28.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel28.setText("Panel de Estímulo:");
 
-        jLabel24.setFont(new java.awt.Font("Tahoma", 1, 12));
+        jLabel24.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel24.setText("Tiempo de Desplazamiento");
 
         t_trespuesta1.setEditable(false);
-        t_trespuesta1.setFont(new java.awt.Font("Tahoma", 1, 12));
+        t_trespuesta1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         t_trespuesta1.setHorizontalAlignment(javax.swing.JTextField.LEFT);
         t_trespuesta1.setBorder(null);
 
-        jLabel29.setFont(new java.awt.Font("Tahoma", 1, 12));
+        jLabel29.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel29.setText("Dirección de Movimiento:");
 
-        jLabel30.setFont(new java.awt.Font("Tahoma", 1, 12));
+        jLabel30.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel30.setText("Tiempo de Respuesta:");
 
-        jLabel31.setFont(new java.awt.Font("Tahoma", 1, 12));
+        jLabel31.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel31.setText("% de Puntos:");
 
         t_cantidad1.setEditable(false);
-        t_cantidad1.setFont(new java.awt.Font("Tahoma", 1, 12));
+        t_cantidad1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         t_cantidad1.setHorizontalAlignment(javax.swing.JTextField.LEFT);
         t_cantidad1.setBorder(null);
 
-        jLabel32.setFont(new java.awt.Font("Tahoma", 1, 12));
+        jLabel32.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel32.setText("Resultado:");
 
         t_vmov1.setEditable(false);
-        t_vmov1.setFont(new java.awt.Font("Tahoma", 1, 12));
+        t_vmov1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         t_vmov1.setHorizontalAlignment(javax.swing.JTextField.LEFT);
         t_vmov1.setBorder(null);
         t_vmov1.addActionListener(new java.awt.event.ActionListener() {
@@ -737,16 +759,16 @@ public class ResultView extends javax.swing.JDialog {
             }
         });
 
-        jLabel33.setFont(new java.awt.Font("Tahoma", 1, 12));
+        jLabel33.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel33.setText("Densidad de Puntos:");
 
         t_pestimulo1.setEditable(false);
-        t_pestimulo1.setFont(new java.awt.Font("Tahoma", 1, 12));
+        t_pestimulo1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         t_pestimulo1.setHorizontalAlignment(javax.swing.JTextField.LEFT);
         t_pestimulo1.setBorder(null);
 
         t_densidad1.setEditable(false);
-        t_densidad1.setFont(new java.awt.Font("Tahoma", 1, 12));
+        t_densidad1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         t_densidad1.setHorizontalAlignment(javax.swing.JTextField.LEFT);
         t_densidad1.setBorder(null);
 
@@ -760,10 +782,10 @@ public class ResultView extends javax.swing.JDialog {
             }
         });
 
-        jLabel34.setFont(new java.awt.Font("Tahoma", 1, 12));
+        jLabel34.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel34.setText("Dirección Presionada:");
 
-        jLabel35.setFont(new java.awt.Font("Tahoma", 1, 12));
+        jLabel35.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel35.setText("Descripción del Error:");
 
         b_keypressed.setIcon(new javax.swing.ImageIcon(getClass().getResource("/quino/view/main/icons/vacio.gif"))); // NOI18N
@@ -772,26 +794,34 @@ public class ResultView extends javax.swing.JDialog {
         b_keypressed.setMinimumSize(new java.awt.Dimension(65, 43));
         b_keypressed.setPreferredSize(new java.awt.Dimension(65, 43));
 
-        e_desc.setBackground(new java.awt.Color(240, 240, 240));
         e_desc.setEditable(false);
-        e_desc.setFont(new java.awt.Font("Tahoma", 1, 12));
+        e_desc.setBackground(new java.awt.Color(240, 240, 240));
+        e_desc.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         e_desc.setBorder(null);
 
-        jLabel25.setFont(new java.awt.Font("Tahoma", 1, 12));
+        jLabel25.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel25.setText("Velocidad de Movimiento:");
 
-        jLabel26.setFont(new java.awt.Font("Tahoma", 1, 12));
+        jLabel26.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel26.setText("Ángulo:");
 
         t_velocidad.setEditable(false);
-        t_velocidad.setFont(new java.awt.Font("Tahoma", 1, 12));
+        t_velocidad.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         t_velocidad.setHorizontalAlignment(javax.swing.JTextField.LEFT);
         t_velocidad.setBorder(null);
 
         t_angulo.setEditable(false);
-        t_angulo.setFont(new java.awt.Font("Tahoma", 1, 12));
+        t_angulo.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         t_angulo.setHorizontalAlignment(javax.swing.JTextField.LEFT);
         t_angulo.setBorder(null);
+
+        jLabel27.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel27.setText("Ángulo:");
+
+        t_angulo1.setEditable(false);
+        t_angulo1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        t_angulo1.setHorizontalAlignment(javax.swing.JTextField.LEFT);
+        t_angulo1.setBorder(null);
 
         javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
         jPanel7.setLayout(jPanel7Layout);
@@ -834,7 +864,8 @@ public class ResultView extends javax.swing.JDialog {
                                     .addComponent(jLabel26)
                                     .addComponent(jLabel24)
                                     .addComponent(jLabel31)
-                                    .addComponent(jLabel33)))
+                                    .addComponent(jLabel33)
+                                    .addComponent(jLabel27)))
                             .addGroup(jPanel7Layout.createSequentialGroup()
                                 .addGap(104, 104, 104)
                                 .addComponent(t_direccion1, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -846,11 +877,12 @@ public class ResultView extends javax.swing.JDialog {
                                         .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                             .addComponent(t_vmov1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 140, Short.MAX_VALUE)
                                             .addComponent(t_cantidad1, javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(t_densidad1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                             .addComponent(t_velocidad, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 140, Short.MAX_VALUE)
-                                            .addComponent(t_angulo, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 140, Short.MAX_VALUE))
+                                            .addComponent(t_angulo, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 140, Short.MAX_VALUE)
+                                            .addComponent(t_densidad1, javax.swing.GroupLayout.Alignment.LEADING))
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 6, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addComponent(jLabel34)))
+                                    .addComponent(jLabel34)
+                                    .addComponent(t_angulo1, javax.swing.GroupLayout.DEFAULT_SIZE, 146, Short.MAX_VALUE)))
                             .addGroup(jPanel7Layout.createSequentialGroup()
                                 .addGap(65, 65, 65)
                                 .addComponent(b_keypressed, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)))))
@@ -881,7 +913,11 @@ public class ResultView extends javax.swing.JDialog {
                         .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel26)
                             .addComponent(t_angulo, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel27)
+                            .addComponent(t_angulo1, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(5, 5, 5)
                         .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel34)
                             .addComponent(jLabel29))
@@ -908,23 +944,23 @@ public class ResultView extends javax.swing.JDialog {
                             .addGroup(jPanel7Layout.createSequentialGroup()
                                 .addGap(27, 27, 27)
                                 .addComponent(jLabel32))))
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 373, Short.MAX_VALUE))
+                    .addComponent(jScrollPane2))
                 .addContainerGap())
         );
 
-        jLabel11.setFont(new java.awt.Font("Tahoma", 1, 12));
+        jLabel11.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel11.setText("Tiempo Interestímulo:");
 
-        jLabel12.setFont(new java.awt.Font("Tahoma", 1, 12));
+        jLabel12.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel12.setText("Duración de Ensayo:");
 
         t_densayo.setEditable(false);
-        t_densayo.setFont(new java.awt.Font("Tahoma", 1, 12));
+        t_densayo.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         t_densayo.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         t_densayo.setBorder(null);
 
         t_interestimulo.setEditable(false);
-        t_interestimulo.setFont(new java.awt.Font("Tahoma", 1, 12));
+        t_interestimulo.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         t_interestimulo.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         t_interestimulo.setBorder(null);
 
@@ -945,14 +981,14 @@ public class ResultView extends javax.swing.JDialog {
                             .addComponent(t_interestimulo, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 90, Short.MAX_VALUE)))
                     .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, 625, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, 410, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(49, 49, 49)
@@ -966,7 +1002,7 @@ public class ResultView extends javax.swing.JDialog {
                 .addContainerGap())
         );
 
-        jButton2.setFont(new java.awt.Font("Tahoma", 1, 12));
+        jButton2.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jButton2.setText("Cerrar");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -995,7 +1031,7 @@ public class ResultView extends javax.swing.JDialog {
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(29, Short.MAX_VALUE))
+                .addContainerGap(30, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Resultados", jPanel1);
@@ -1011,7 +1047,7 @@ public class ResultView extends javax.swing.JDialog {
             .addGap(0, 316, Short.MAX_VALUE)
         );
 
-        jButton1.setFont(new java.awt.Font("Tahoma", 1, 12));
+        jButton1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jButton1.setText("Mostrar");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1019,7 +1055,7 @@ public class ResultView extends javax.swing.JDialog {
             }
         });
 
-        jButton3.setFont(new java.awt.Font("Tahoma", 1, 12));
+        jButton3.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jButton3.setText("Cerrar");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1061,7 +1097,7 @@ public class ResultView extends javax.swing.JDialog {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 799, Short.MAX_VALUE))
+                .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 799, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1141,6 +1177,7 @@ public class ResultView extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel24;
     private javax.swing.JLabel jLabel25;
     private javax.swing.JLabel jLabel26;
+    private javax.swing.JLabel jLabel27;
     private javax.swing.JLabel jLabel28;
     private javax.swing.JLabel jLabel29;
     private javax.swing.JLabel jLabel30;
@@ -1162,6 +1199,7 @@ public class ResultView extends javax.swing.JDialog {
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTree jTree1;
     private javax.swing.JTextField t_angulo;
+    private javax.swing.JTextField t_angulo1;
     private javax.swing.JTextField t_cantidad1;
     private javax.swing.JTextField t_denpromedio1;
     private javax.swing.JTextField t_densayo;

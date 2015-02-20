@@ -4,6 +4,7 @@
  */
 package quino.clases.config;
 
+import quino.clases.model.Velocidad;
 import quino.util.Aleatorio;
 
 /**
@@ -21,5 +22,14 @@ public class ConfigEnsayoGaborAuto extends ConfigEnsayoGabor {
         int dir = random.nextInt(1, 4);
         this.getConfiguracionXDireccion(dir);
         this.key = getKey2Press(direccion);
+        
+        int vprimaria = random.nextInt(15, 25);
+        int fmuestreo = random.nextInt(1, 20);
+        
+        this.velocidadPrimaria = new Velocidad(vprimaria);
+        this.frecuenciaMuestreo = fmuestreo;
+        
+        this.radio1 = random.nextInt(50, 80);
+        this.radio2 = random.nextInt(150, 180);
     }
 }

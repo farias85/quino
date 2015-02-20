@@ -132,7 +132,7 @@ public class EnrejadoTimer extends AbstractSinusoideTimer {
             for (int j = 0; j < mtx.rows(); j++) {
                 double intensidad = configEnsayo.getIntensidadMedia() + configEnsayo.getIntensidadMax() //40.8
                         * Math.cos(2.0 * Math.PI * (configEnsayo.getFspa_cpp_x() * (i + count)
-                        + configEnsayo.getFspa_cpp_y() * (j + count) + periodo));
+                                + configEnsayo.getFspa_cpp_y() * (j + count) + periodo));
 
                 mtx.put(j, i, (byte) intensidad);
             }
@@ -142,6 +142,8 @@ public class EnrejadoTimer extends AbstractSinusoideTimer {
         jPanel.getGraphics().drawImage(image, 0, 0, jPanel);
 
         System.out.println(count + " enrejado");
-        count += configEnsayo.isSentidoUpLeft() ? 1 : -1;
+        count += configEnsayo.isSentidoUpLeft()
+                ? configEnsayo.getVelocidadPrimaria().getAceleracion()
+                : -configEnsayo.getVelocidadPrimaria().getAceleracion();
     }
 }

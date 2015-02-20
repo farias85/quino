@@ -6,6 +6,7 @@
 package quino.view.test2nd;
 
 import quino.clases.config.ConfigEnsayoOrientacion;
+import quino.util.QuinoTools;
 import quino.view.main.*;
 import quino.util.test.PruebaOrientacion;
 
@@ -48,9 +49,9 @@ public class ManualOrientacionConfigView extends javax.swing.JDialog {
         jToggleButton1 = new javax.swing.JToggleButton();
         jToggleButton5 = new javax.swing.JToggleButton();
         jToggleButton8 = new javax.swing.JToggleButton();
-        jLabel5 = new javax.swing.JLabel();
-        jTextField5 = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        jComboBox1 = new javax.swing.JComboBox();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Prueba de Configuración Manual");
@@ -58,7 +59,7 @@ public class ManualOrientacionConfigView extends javax.swing.JDialog {
         setIconImages(null);
         setResizable(false);
 
-        jButton1.setFont(new java.awt.Font("Tahoma", 1, 12));
+        jButton1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jButton1.setText("Comenzar");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -66,7 +67,7 @@ public class ManualOrientacionConfigView extends javax.swing.JDialog {
             }
         });
 
-        jButton2.setFont(new java.awt.Font("Tahoma", 1, 12));
+        jButton2.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jButton2.setText("Cancelar");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -74,18 +75,19 @@ public class ManualOrientacionConfigView extends javax.swing.JDialog {
             }
         });
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 12));
-        jLabel1.setText("Cantidad de Ensayos");
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel1.setText("Cantidad de ensayos");
 
         jTextField1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jTextField1.setText("2");
 
-        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 12));
-        jLabel2.setText("Contraste");
+        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel2.setText("Contraste (0..1)");
 
-        jLabel3.setFont(new java.awt.Font("Tahoma", 1, 12));
-        jLabel3.setText("Intensidad Media");
+        jLabel3.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel3.setText("Intensidad media (0..255)");
 
-        jTextField2.setFont(new java.awt.Font("Tahoma", 1, 12));
+        jTextField2.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jTextField2.setText("0.75");
         jTextField2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -98,7 +100,7 @@ public class ManualOrientacionConfigView extends javax.swing.JDialog {
             }
         });
 
-        jTextField3.setFont(new java.awt.Font("Tahoma", 1, 12));
+        jTextField3.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jTextField3.setText("128");
         jTextField3.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
@@ -162,14 +164,14 @@ public class ManualOrientacionConfigView extends javax.swing.JDialog {
         jToggleButton5.getAccessibleContext().setAccessibleName("direccion5");
         jToggleButton8.getAccessibleContext().setAccessibleName("direccion6");
 
-        jLabel5.setFont(new java.awt.Font("Tahoma", 1, 12));
-        jLabel5.setText("Pixel/Pulgada Barras");
-
-        jTextField5.setFont(new java.awt.Font("Tahoma", 1, 12));
-        jTextField5.setText("60");
-
-        jLabel6.setFont(new java.awt.Font("Tahoma", 1, 14));
+        jLabel6.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel6.setText("Configuración Manual Detección de Orientación");
+
+        jLabel7.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel7.setText("Frecuencia espacial (Hz)");
+
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "0.01", "0.0125", "0.025", "0.04", "0.05", "0.057", "0.07", "0.1", "0.15", "0.17", "0.173", "0.25", "0.3", "0.5", "0.59", "0.9", "0.93", "1.17", "1.4", "1.559", "2.34", "4", "8" }));
+        jComboBox1.setSelectedIndex(12);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -197,13 +199,13 @@ public class ManualOrientacionConfigView extends javax.swing.JDialog {
                                 .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGap(38, 38, 38)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jLabel5)
-                                .addComponent(jLabel3))
-                            .addGap(40, 40, 40)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addContainerGap(32, Short.MAX_VALUE)))
+                                .addComponent(jLabel3)
+                                .addComponent(jLabel7))
+                            .addGap(23, 23, 23)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(jComboBox1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jTextField3))
+                            .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 352, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(66, 66, 66))))
@@ -217,8 +219,8 @@ public class ManualOrientacionConfigView extends javax.swing.JDialog {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel5)
-                    .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel7)
+                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -279,11 +281,12 @@ public class ManualOrientacionConfigView extends javax.swing.JDialog {
         // TODO add your handling code here:
         try {
             if (jTextField1.getText().isEmpty() || jTextField2.getText().isEmpty()
-                    || jTextField3.getText().isEmpty() || jTextField5.getText().isEmpty()) {
+                    || jTextField3.getText().isEmpty()) {
                 throw new Exception("No puede dejar datos en blanco");
             }
 
-            int cantEnsayos, ppi, intensidadMedia;
+            int cantEnsayos, intensidadMedia;
+            double ppi = 0;
             float contraste;
             try {
                 cantEnsayos = Integer.parseInt(jTextField1.getText());
@@ -292,7 +295,9 @@ public class ManualOrientacionConfigView extends javax.swing.JDialog {
                 if (intensidadMedia < 0 || intensidadMedia > 255) {
                     throw new Exception();
                 }
-                ppi = Integer.parseInt(jTextField5.getText());
+                //ppi = Integer.parseInt(jTextField5.getText());
+                double value = Double.parseDouble(jComboBox1.getModel().getSelectedItem().toString());
+                ppi = QuinoTools.getPPiXFrecuenciaEspacial(value);
             } catch (Exception e) {
                 throw new Exception("El formato de los datos no es correcto");
             }
@@ -342,16 +347,16 @@ public class ManualOrientacionConfigView extends javax.swing.JDialog {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
+    private javax.swing.JComboBox jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField5;
     private javax.swing.JToggleButton jToggleButton1;
     private javax.swing.JToggleButton jToggleButton5;
     private javax.swing.JToggleButton jToggleButton8;

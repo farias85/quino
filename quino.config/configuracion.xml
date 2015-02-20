@@ -5,16 +5,16 @@
    <int>3</int>
   </void>
   <void property="pcEnEspera">
-   <double>30.0</double>
+   <double>20.0</double>
   </void>
   <void property="pcEsperandoRespuesta">
    <double>20.0</double>
   </void>
   <void property="pcPreparado">
-   <double>50.0</double>
+   <double>60.0</double>
   </void>
   <void property="tiempoDuracion">
-   <double>6000.0</double>
+   <double>7000.0</double>
   </void>
  </object>
 </java>

@@ -11,6 +11,8 @@
 package quino.view.test2nd;
 
 import quino.clases.config.ConfigEnsayoEnrejado;
+import quino.clases.model.Velocidad;
+import quino.util.QuinoTools;
 import quino.view.main.*;
 import quino.util.test.PruebaEnrejado;
 //import clases.prueba.Ensayo;
@@ -61,8 +63,12 @@ public class ManualEnrejadoConfigView extends javax.swing.JDialog {
         jToggleButton8 = new javax.swing.JToggleButton();
         jToggleButton9 = new javax.swing.JToggleButton();
         jLabel5 = new javax.swing.JLabel();
-        jTextField5 = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
+        jComboBox1 = new javax.swing.JComboBox();
+        jComboBox2 = new javax.swing.JComboBox();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        jComboBox4 = new javax.swing.JComboBox();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Prueba de Configuración Manual");
@@ -70,7 +76,7 @@ public class ManualEnrejadoConfigView extends javax.swing.JDialog {
         setIconImages(null);
         setResizable(false);
 
-        jButton1.setFont(new java.awt.Font("Tahoma", 1, 12));
+        jButton1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jButton1.setText("Comenzar");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -78,7 +84,7 @@ public class ManualEnrejadoConfigView extends javax.swing.JDialog {
             }
         });
 
-        jButton2.setFont(new java.awt.Font("Tahoma", 1, 12));
+        jButton2.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jButton2.setText("Cancelar");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -86,19 +92,19 @@ public class ManualEnrejadoConfigView extends javax.swing.JDialog {
             }
         });
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 12));
-        jLabel1.setText("Cantidad de Ensayos");
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel1.setText("Cantidad de ensayos");
 
-        jTextField1.setFont(new java.awt.Font("Tahoma", 1, 12));
-        jTextField1.setText("4");
+        jTextField1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jTextField1.setText("2");
 
-        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 12));
-        jLabel2.setText("Contraste");
+        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel2.setText("Contraste (0..1)");
 
-        jLabel3.setFont(new java.awt.Font("Tahoma", 1, 12));
-        jLabel3.setText("Intensidad Media");
+        jLabel3.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel3.setText("Intensidad media (0..255)");
 
-        jTextField2.setFont(new java.awt.Font("Tahoma", 1, 12));
+        jTextField2.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jTextField2.setText("0.89");
         jTextField2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -111,7 +117,7 @@ public class ManualEnrejadoConfigView extends javax.swing.JDialog {
             }
         });
 
-        jTextField3.setFont(new java.awt.Font("Tahoma", 1, 12));
+        jTextField3.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jTextField3.setText("128");
         jTextField3.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
@@ -207,7 +213,7 @@ public class ManualEnrejadoConfigView extends javax.swing.JDialog {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(20, Short.MAX_VALUE)
+                .addContainerGap(24, Short.MAX_VALUE)
                 .addComponent(jToggleButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jToggleButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -254,14 +260,26 @@ public class ManualEnrejadoConfigView extends javax.swing.JDialog {
         jToggleButton8.getAccessibleContext().setAccessibleName("direccion6");
         jToggleButton9.getAccessibleContext().setAccessibleName("direccion8");
 
-        jLabel5.setFont(new java.awt.Font("Tahoma", 1, 12));
-        jLabel5.setText("Pixel/Pulgada Barras");
+        jLabel5.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel5.setText("Frecuencia espacial (Hz)");
 
-        jTextField5.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jTextField5.setText("25");
-
-        jLabel6.setFont(new java.awt.Font("Tahoma", 1, 14));
+        jLabel6.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel6.setText("Configuración Manual Enrejado");
+
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "0.01", "0.0125", "0.025", "0.04", "0.05", "0.057", "0.07", "0.1", "0.15", "0.17", "0.173", "0.25", "0.3", "0.5", "0.59", "0.9", "0.93", "1.17", "1.4", "1.559", "2.34", "4", "8" }));
+        jComboBox1.setSelectedIndex(12);
+
+        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "1.5", "3", "6", "12", "24" }));
+        jComboBox2.setSelectedIndex(4);
+
+        jLabel4.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel4.setText("Velocidad (grado/ms)");
+
+        jLabel8.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel8.setText("Frecuencia temporal (Hz)");
+
+        jComboBox4.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "0.5", "1", "2", "3", "4", "6", "7", "8", "10", "12", "18", "24" }));
+        jComboBox4.setSelectedIndex(10);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -270,34 +288,42 @@ public class ManualEnrejadoConfigView extends javax.swing.JDialog {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jButton1)
-                        .addGap(54, 54, 54)
-                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(111, 111, 111))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addContainerGap())
+                    .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel1)
-                            .addComponent(jLabel2))
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel4))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                     .addComponent(jTextField2)
-                                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(jTextField1, javax.swing.GroupLayout.DEFAULT_SIZE, 57, Short.MAX_VALUE)
+                                    .addComponent(jComboBox2, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                 .addGap(38, 38, 38)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel5)
-                                    .addComponent(jLabel3))
-                                .addGap(40, 40, 40)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jLabel5)
+                                            .addComponent(jLabel3))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                            .addComponent(jComboBox1, 0, 66, Short.MAX_VALUE)
+                                            .addComponent(jTextField3)))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jLabel8)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(jComboBox4, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                             .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 229, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addContainerGap(30, Short.MAX_VALUE))))
+                        .addGap(0, 4, Short.MAX_VALUE)))
+                .addContainerGap())
+            .addGroup(layout.createSequentialGroup()
+                .addGap(141, 141, 141)
+                .addComponent(jButton1)
+                .addGap(43, 43, 43)
+                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -309,20 +335,26 @@ public class ManualEnrejadoConfigView extends javax.swing.JDialog {
                     .addComponent(jLabel1)
                     .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel5)
-                    .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2)
                     .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel3))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel8)
+                    .addComponent(jComboBox4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel4)
+                    .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         jButton1.getAccessibleContext().setAccessibleName("b_Comenzar");
@@ -466,11 +498,12 @@ public class ManualEnrejadoConfigView extends javax.swing.JDialog {
         // TODO add your handling code here:
         try {
             if (jTextField1.getText().isEmpty() || jTextField2.getText().isEmpty()
-                    || jTextField3.getText().isEmpty() || jTextField5.getText().isEmpty()) {
+                    || jTextField3.getText().isEmpty()) {
                 throw new Exception("No puede dejar datos en blanco");
             }
 
-            int cantEnsayos, ppi, intensidadMedia;
+            int cantEnsayos, intensidadMedia;
+            double ppi = 0, pVel1 = 0, ft = 0;
             float contraste;
             try {
                 cantEnsayos = Integer.parseInt(jTextField1.getText());
@@ -480,12 +513,21 @@ public class ManualEnrejadoConfigView extends javax.swing.JDialog {
                 if (intensidadMedia < 0 || intensidadMedia > 255) {
                     throw new Exception();
                 }
-                ppi = Integer.parseInt(jTextField5.getText());
+                //ppi = Integer.parseInt(jTextField5.getText());
+                double value = Double.parseDouble(jComboBox1.getModel().getSelectedItem().toString());
+                ppi = QuinoTools.getPPiXFrecuenciaEspacial(value);
+                
+                pVel1 = Double.parseDouble(jComboBox2.getModel().getSelectedItem().toString());
+                ft = Double.parseDouble(jComboBox4.getModel().getSelectedItem().toString());
+                
             } catch (Exception e) {
                 throw new Exception("El formato de los datos no es correcto");
             }
 
-            parent.setConf(new ConfigEnsayoEnrejado(direccion, ppi, true, contraste, intensidadMedia));
+            ConfigEnsayoEnrejado cee = new ConfigEnsayoEnrejado(direccion, ppi, true, contraste, intensidadMedia);
+            cee.setFrecuenciaMuestreo(ft);
+            cee.setVelocidadPrimaria(new Velocidad(pVel1));
+            parent.setConf(cee);
             parent.setPrueba(new PruebaEnrejado(((ConfigEnsayoEnrejado) parent.getConf()), cantEnsayos));
 
             EnrejadoTestView etv = new EnrejadoTestView(parent, true, false);
@@ -529,16 +571,20 @@ public class ManualEnrejadoConfigView extends javax.swing.JDialog {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
+    private javax.swing.JComboBox jComboBox1;
+    private javax.swing.JComboBox jComboBox2;
+    private javax.swing.JComboBox jComboBox4;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField5;
     private javax.swing.JToggleButton jToggleButton1;
     private javax.swing.JToggleButton jToggleButton2;
     private javax.swing.JToggleButton jToggleButton3;

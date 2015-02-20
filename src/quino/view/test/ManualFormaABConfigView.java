@@ -87,7 +87,7 @@ public class ManualFormaABConfigView extends javax.swing.JDialog {
         setIconImages(null);
         setResizable(false);
 
-        jButton1.setFont(new java.awt.Font("Tahoma", 1, 12));
+        jButton1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jButton1.setText("Comenzar");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -95,7 +95,7 @@ public class ManualFormaABConfigView extends javax.swing.JDialog {
             }
         });
 
-        jButton2.setFont(new java.awt.Font("Tahoma", 1, 12));
+        jButton2.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jButton2.setText("Cancelar");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -103,10 +103,10 @@ public class ManualFormaABConfigView extends javax.swing.JDialog {
             }
         });
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 12));
-        jLabel1.setText("Cantidad de Ensayos");
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel1.setText("Cantidad de ensayos");
 
-        jTextField1.setFont(new java.awt.Font("Tahoma", 1, 12));
+        jTextField1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jTextField1.setText("4");
         jTextField1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -114,13 +114,13 @@ public class ManualFormaABConfigView extends javax.swing.JDialog {
             }
         });
 
-        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 12));
-        jLabel2.setText("Densidad de Puntos");
+        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel2.setText("Densidad de puntos");
 
-        jLabel3.setFont(new java.awt.Font("Tahoma", 1, 12));
-        jLabel3.setText("Puntos a Mover");
+        jLabel3.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel3.setText("Puntos a mover");
 
-        jTextField2.setFont(new java.awt.Font("Tahoma", 1, 12));
+        jTextField2.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jTextField2.setText("600");
         jTextField2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -133,7 +133,7 @@ public class ManualFormaABConfigView extends javax.swing.JDialog {
             }
         });
 
-        jTextField3.setFont(new java.awt.Font("Tahoma", 1, 12));
+        jTextField3.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jTextField3.setText("23");
         jTextField3.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
@@ -146,7 +146,7 @@ public class ManualFormaABConfigView extends javax.swing.JDialog {
             }
         });
 
-        jLabel4.setFont(new java.awt.Font("Tahoma", 1, 12));
+        jLabel4.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel4.setText("%");
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Dirección", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12))); // NOI18N
@@ -232,8 +232,8 @@ public class ManualFormaABConfigView extends javax.swing.JDialog {
             }
         });
 
-        jCheckBox1.setFont(new java.awt.Font("Tahoma", 1, 12));
-        jCheckBox1.setText("Controlar Dirección");
+        jCheckBox1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jCheckBox1.setText("Controlar dirección");
         jCheckBox1.addChangeListener(new javax.swing.event.ChangeListener() {
             public void stateChanged(javax.swing.event.ChangeEvent evt) {
                 jCheckBox1StateChanged(evt);
@@ -301,17 +301,17 @@ public class ManualFormaABConfigView extends javax.swing.JDialog {
         jToggleButton8.getAccessibleContext().setAccessibleName("direccion6");
         jToggleButton9.getAccessibleContext().setAccessibleName("direccion8");
 
-        jLabel5.setFont(new java.awt.Font("Tahoma", 1, 12));
-        jLabel5.setText("Tiempo de Movimiento");
+        jLabel5.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel5.setText("Tiempo de movimiento");
 
         jTextField4.setEditable(false);
-        jTextField4.setFont(new java.awt.Font("Tahoma", 1, 12));
+        jTextField4.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jTextField4.setText("0000");
 
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Tipo de Prueba", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12))); // NOI18N
-        jPanel2.setFont(new java.awt.Font("Tahoma", 1, 12));
+        jPanel2.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
 
-        jRadioButton1.setFont(new java.awt.Font("Tahoma", 1, 12));
+        jRadioButton1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jRadioButton1.setText("Forma A");
         jRadioButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -319,7 +319,7 @@ public class ManualFormaABConfigView extends javax.swing.JDialog {
             }
         });
 
-        jRadioButton2.setFont(new java.awt.Font("Tahoma", 1, 12));
+        jRadioButton2.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jRadioButton2.setText("Forma B");
         jRadioButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -347,7 +347,7 @@ public class ManualFormaABConfigView extends javax.swing.JDialog {
                     .addComponent(jRadioButton1)))
         );
 
-        jTextField5.setFont(new java.awt.Font("Tahoma", 1, 12));
+        jTextField5.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jTextField5.setText("60");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());

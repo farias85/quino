@@ -42,11 +42,11 @@ public class ConfigEnsayoGabor extends ConfigEnsayoSinusoide {
     /**
      * internal radious
      */
-    private int radio1 = 75;
+    protected int radio1 = 75;
     /**
      * external radious
      */
-    private int radio2 = 180;
+    protected int radio2 = 180;
     /**
      * ppi2
      */

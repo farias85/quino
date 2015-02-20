@@ -107,12 +107,19 @@ public class Main3 {
 
         Segment2D sd2 = new Segment2D(p1.x, guia.getPendiente(), guia.getOrdenada());*/
         
-        //double ppi = QuinoTools.getPPiXFrecuenciaEspacial(frecuenciaEspacial)
+        //Pixel/Pulgada - FrtecuenciaEspacial
+        //100 - 0.130
+        //60 - 0.21
+        //10 - 1.30
+        //1 - 13.0
+        
+        double value = QuinoTools.getPPiXFrecuenciaEspacial(100);
         
         //double value = Math.rint(QuinoTools.getPPiXFrecuenciaEspacial(1.32) * 1000) / 1000;
         //0.0054145874
-        Aleatorio random = new Aleatorio();
-        double value = (double)(random.nextInt(50, 99)) / 100;
+        //Aleatorio random = new Aleatorio();
+        //double value = (double)(random.nextInt(50, 99)) / 100;
+                
         System.out.println(value);
     }
 }

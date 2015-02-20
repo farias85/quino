@@ -13,9 +13,7 @@ import quino.clases.model.Velocidad;
  */
 public class ConfigEnsayoVelocidad extends ConfigEnsayoEnrejado {
     
-    protected Velocidad velocidadPrimaria = new Velocidad(24);
     protected Velocidad velocidadSecundaria = new Velocidad(1);
-    protected double frecuenciaMuestreo = 8;
     
     public ConfigEnsayoVelocidad(int direccion, double ppi, boolean onMove,
             double contrat, double intensidadMedia, Velocidad primaria, 
@@ -30,14 +28,6 @@ public class ConfigEnsayoVelocidad extends ConfigEnsayoEnrejado {
     public ConfigEnsayoVelocidad() {
         super();
     }
-    
-    public Velocidad getVelocidadPrimaria() {
-        return velocidadPrimaria;
-    }
-
-    public void setVelocidadPrimaria(Velocidad velocidadPrimaria) {
-        this.velocidadPrimaria = velocidadPrimaria;
-    }
 
     public Velocidad getVelocidadSecundaria() {
         return velocidadSecundaria;
@@ -45,14 +35,6 @@ public class ConfigEnsayoVelocidad extends ConfigEnsayoEnrejado {
 
     public void setVelocidadSecundaria(Velocidad velocidadSecundaria) {
         this.velocidadSecundaria = velocidadSecundaria;
-    }
-    
-    public double getFrecuenciaMuestreo() {
-        return frecuenciaMuestreo;
-    }
-
-    public void setFrecuenciaMuestreo(double frecuenciaMuestreo) {
-        this.frecuenciaMuestreo = frecuenciaMuestreo;
     }
 
 }

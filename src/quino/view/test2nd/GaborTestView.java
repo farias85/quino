@@ -14,6 +14,10 @@ package quino.view.test2nd;
 import java.awt.Color;
 import java.util.Timer;
 import java.util.TimerTask;
+import quino.clases.config.ConfigEnsayoGabor;
+import quino.clases.config.ConfigEnsayoVelocidad;
+import quino.clases.model.Ensayo;
+import quino.util.QuinoTools;
 import quino.util.timer.GaborTimer;
 import quino.view.main.PrincipalView;
 
@@ -41,8 +45,17 @@ public class GaborTestView extends javax.swing.JDialog {
         jPanel1.setBackground(Color.BLACK);
 
         TimerTask task = new GaborTimer(parent.getPrueba(), practica, jPanel1, this);
+        
+        //El parámetro de frecuencia temporal debe ser igual en cada uno de los ensayos
+        Ensayo ensayo = parent.getPrueba().getEnsayos().get(0);
+        ConfigEnsayoGabor configEnsayo = null;
+        if (ensayo.getConfiguracion() instanceof ConfigEnsayoGabor) {
+            configEnsayo = ((ConfigEnsayoGabor) ensayo.getConfiguracion());
+        }
+        long periodo = (long)QuinoTools.getPeriodoXFrecuencia(configEnsayo.getFrecuenciaMuestreo());
+        
         Timer ti = new Timer();
-        ti.scheduleAtFixedRate(task, 0, 1);
+        ti.scheduleAtFixedRate(task, 0, periodo);
     }
 
     public PrincipalView getParentView() {

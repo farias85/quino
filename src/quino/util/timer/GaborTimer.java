@@ -143,12 +143,12 @@ public class GaborTimer extends AbstractSinusoideTimer {
                     intensidad1 *= Math.cos(2.0 * Math.PI * (configEnsayo.getFspa_cpp_x() * (i + count)
                             + configEnsayo.getFspa_cpp_y() * (j + count) + periodo * configEnsayo.getFtemp()));
                     //intensidad1 += configEnsayo.getIntensidadMax() * 0.5f;
-                    intensidad1 /= configEnsayo.getContrat();
+                    //intensidad1 /= configEnsayo.getContrat();
 
                     //Circulo de afuera
                     double intensidad2 = configEnsayo.getIntensidadMedia() + configEnsayo.getIntensidadMax()
                             * Math.cos(2.0 * Math.PI * (configEnsayo.getFspa_cpp_x_per() * (i + count)
-                            + configEnsayo.getFspa_cpp_y_per() * (j + count) + periodo * configEnsayo.getFtemp_per()));
+                                    + configEnsayo.getFspa_cpp_y_per() * (j + count) + periodo * configEnsayo.getFtemp_per()));
 
                     mtx.put(j, i, gaborLocation(point) ? (byte) intensidad1 : (byte) intensidad2);
                 }
@@ -159,7 +159,9 @@ public class GaborTimer extends AbstractSinusoideTimer {
         jPanel.getGraphics().drawImage(image, 0, 0, jPanel);
 
         System.out.println(count + " esto es run matrix");
-        count += configEnsayo.isSentidoUpLeft() ? 1 : -1;
+        count += configEnsayo.isSentidoUpLeft()
+                ? configEnsayo.getVelocidadPrimaria().getAceleracion()
+                : -configEnsayo.getVelocidadPrimaria().getAceleracion();
     }
 
     private boolean gaborLocation(Point point) {

@@ -38,6 +38,9 @@ public class PruebaGabor extends PruebaMultiEnsayo {
                             configEnsayo.getGaussianStdpix(), configEnsayo.getRadio1(),
                             configEnsayo.getRadio2(), configEnsayo.getPpi2());
                 }
+                
+                ceg.setFrecuenciaMuestreo(configEnsayo.getFrecuenciaMuestreo());
+                ceg.setVelocidadPrimaria(configEnsayo.getVelocidadPrimaria());
             }
 
             Ensayo ensayo = new Ensayo(ceg);

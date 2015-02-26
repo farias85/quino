@@ -34,7 +34,7 @@ public class EstadisticaEnrejado extends AbstractInformeExcel {
 
     @Override
     protected void getEncabezado(HSSFSheet sheet) {
-        String[] heads = {"Sujeto", "Ensayo", "Pixel/Pulgada Barras",
+        String[] heads = {"Sujeto", "Ensayo", "Frecuencia Espacial",
             "Contraste", "Intensidad Media", "Dirección del Movimiento",
             "Tiempo de respuesta (ms)", "Resultado", "Descripción del error"};
         crearEncabezado(sheet, heads);
@@ -104,7 +104,7 @@ public class EstadisticaEnrejado extends AbstractInformeExcel {
                     celda.setCellValue(j + 1);
 
                     celda = getCelda(row, colNum++, HSSFCell.CELL_TYPE_NUMERIC, false);
-                    celda.setCellValue(configEnsayoActual.getPpi());
+                    celda.setCellValue(QuinoTools.getPPiXFrecuenciaEspacial(configEnsayoActual.getPpi()));
 
                     celda = getCelda(row, colNum++, HSSFCell.CELL_TYPE_NUMERIC, false);
                     celda.setCellValue(configEnsayoActual.getContrat());
@@ -228,9 +228,8 @@ public class EstadisticaEnrejado extends AbstractInformeExcel {
 
         ArrayList<double[]> data = new ArrayList<double[]>();
 
-        String[] heads = {"#", "Sujeto", "Ensayos", "Pixel/Pulgada Barras",
-            "Contraste", "Intensidad Media", "Dirección del Movimiento",
-            "Tiempo de respuesta (ms)", "Resultado", "Descripción del error"};
+        String[] heads = {"#", "Sujeto", "Ensayos", "Frecuencia Espacial",
+            "Dirección del Movimiento", "Resultado"};
         crearEncabezado(sheet, heads);
 
         rowCount++;
@@ -270,19 +269,11 @@ public class EstadisticaEnrejado extends AbstractInformeExcel {
 
                     celda = getCelda(row, colNum++, HSSFCell.CELL_TYPE_NUMERIC, false);
                     celda.setCellValue(j + 1);
-                    values[k++] = j + 1;
+                    values[k++] = ensayos.size();
 
                     celda = getCelda(row, colNum++, HSSFCell.CELL_TYPE_NUMERIC, false);
-                    celda.setCellValue(configEnsayoActual.getPpi());
-                    values[k++] = configEnsayoActual.getPpi();
-
-                    celda = getCelda(row, colNum++, HSSFCell.CELL_TYPE_NUMERIC, false);
-                    celda.setCellValue(configEnsayoActual.getContrat());
-                    values[k++] = configEnsayoActual.getContrat();
-
-                    celda = getCelda(row, colNum++, HSSFCell.CELL_TYPE_NUMERIC, false);
-                    celda.setCellValue(configEnsayoActual.getIntensidadMedia());
-                    values[k++] = configEnsayoActual.getIntensidadMedia();
+                    celda.setCellValue(QuinoTools.getPPiXFrecuenciaEspacial(configEnsayoActual.getPpi()));
+                    values[k++] = QuinoTools.getPPiXFrecuenciaEspacial(configEnsayoActual.getPpi());
 
                     celda = getCelda(row, colNum++, HSSFCell.CELL_TYPE_NUMERIC, false);
                     celda.setCellValue(configEnsayoActual.getDireccion());
@@ -292,18 +283,10 @@ public class EstadisticaEnrejado extends AbstractInformeExcel {
                         celda = getCelda(row, colNum++, HSSFCell.CELL_TYPE_NUMERIC, true);
                         celda.setCellValue(0);
                         values[k++] = 0;
-
-                        celda = getCelda(row, colNum++, HSSFCell.CELL_TYPE_NUMERIC, true);
-                        celda.setCellValue(0);
-                        values[k++] = 0;
                     } else {
                         celda = getCelda(row, colNum++, HSSFCell.CELL_TYPE_NUMERIC, false);
                         celda.setCellValue(1);
                         values[k++] = 1;
-
-                        celda = getCelda(row, colNum++, HSSFCell.CELL_TYPE_NUMERIC, false);
-                        celda.setCellValue(resultadoActual.getTiempoRespuesta());
-                        values[k++] = resultadoActual.getTiempoRespuesta();
                     }
 
                     data.add(values);

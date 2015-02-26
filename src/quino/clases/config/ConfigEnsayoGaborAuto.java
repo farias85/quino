@@ -24,7 +24,7 @@ public class ConfigEnsayoGaborAuto extends ConfigEnsayoGabor {
         this.key = getKey2Press(direccion);
         
         int vprimaria = random.nextInt(15, 25);
-        int fmuestreo = random.nextInt(1, 20);
+        int fmuestreo = random.nextInt(15, 20);
         
         this.velocidadPrimaria = new Velocidad(vprimaria);
         this.frecuenciaMuestreo = fmuestreo;

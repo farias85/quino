@@ -61,6 +61,8 @@ import quino.util.report.estadisticas.EstadisticaDeteccionForma;
 import quino.util.report.estadisticas.EstadisticaEnrejado;
 import quino.util.report.estadisticas.EstadisticaFormaAB;
 import quino.util.report.estadisticas.EstadisticaGabor;
+import quino.util.report.estadisticas.EstadisticaOrientacion;
+import quino.util.report.estadisticas.EstadisticaVelocidad;
 import quino.util.report.estadisticas.FrecuenciaEspacial;
 import quino.util.test.PruebaEnrejado;
 import quino.util.test.PruebaGabor;
@@ -379,6 +381,8 @@ public class PrincipalView extends javax.swing.JFrame {
         jMenuItem51 = new javax.swing.JMenuItem();
         jMenuItem48 = new javax.swing.JMenuItem();
         jMenuItem49 = new javax.swing.JMenuItem();
+        jMenuItem57 = new javax.swing.JMenuItem();
+        jMenuItem58 = new javax.swing.JMenuItem();
         jSeparator1 = new javax.swing.JSeparator();
         jMenuItem13 = new javax.swing.JMenuItem();
         jMenu8 = new javax.swing.JMenu();
@@ -413,12 +417,12 @@ public class PrincipalView extends javax.swing.JFrame {
         jMenuItem15 = new javax.swing.JMenuItem();
 
         jMenu5.setText("Realizar Prueba");
-        jMenu5.setFont(new java.awt.Font("Tahoma", 1, 12));
+        jMenu5.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
 
         jMenu10.setText("Configuración Manual");
-        jMenu10.setFont(new java.awt.Font("Tahoma", 1, 12));
+        jMenu10.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
 
-        jMenuItem1.setFont(new java.awt.Font("Tahoma", 1, 12));
+        jMenuItem1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jMenuItem1.setText("Forma A, B");
         jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -475,9 +479,9 @@ public class PrincipalView extends javax.swing.JFrame {
         jMenu5.add(jMenu10);
 
         jMenu11.setText("Configuración Automática");
-        jMenu11.setFont(new java.awt.Font("Tahoma", 1, 12));
+        jMenu11.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
 
-        jMenuItem39.setFont(new java.awt.Font("Tahoma", 1, 12));
+        jMenuItem39.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jMenuItem39.setText("Forma A, B");
         jMenuItem39.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -495,7 +499,7 @@ public class PrincipalView extends javax.swing.JFrame {
         });
         jMenu11.add(jMenuItem40);
 
-        jMenuItem41.setFont(new java.awt.Font("Tahoma", 1, 12));
+        jMenuItem41.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jMenuItem41.setText("Enrejado");
         jMenuItem41.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -504,7 +508,7 @@ public class PrincipalView extends javax.swing.JFrame {
         });
         jMenu11.add(jMenuItem41);
 
-        jMenuItem42.setFont(new java.awt.Font("Tahoma", 1, 12));
+        jMenuItem42.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jMenuItem42.setText("Campana de Gabor");
         jMenuItem42.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -535,7 +539,7 @@ public class PrincipalView extends javax.swing.JFrame {
 
         menu.add(jMenu5);
 
-        jMenuItem6.setFont(new java.awt.Font("Tahoma", 1, 12));
+        jMenuItem6.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jMenuItem6.setText("Modificar Datos");
         jMenuItem6.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -544,7 +548,7 @@ public class PrincipalView extends javax.swing.JFrame {
         });
         menu.add(jMenuItem6);
 
-        jMenuItem7.setFont(new java.awt.Font("Tahoma", 1, 12));
+        jMenuItem7.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jMenuItem7.setText("Mostrar Ficha");
         jMenuItem7.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -553,7 +557,7 @@ public class PrincipalView extends javax.swing.JFrame {
         });
         menu.add(jMenuItem7);
 
-        jMenuItem8.setFont(new java.awt.Font("Tahoma", 1, 12));
+        jMenuItem8.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jMenuItem8.setText("Eliminar");
         jMenuItem8.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -563,9 +567,9 @@ public class PrincipalView extends javax.swing.JFrame {
         menu.add(jMenuItem8);
 
         Resultados.setText("Mostrar Resultados");
-        Resultados.setFont(new java.awt.Font("Tahoma", 1, 12));
+        Resultados.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
 
-        jMenuItem9.setFont(new java.awt.Font("Tahoma", 1, 12));
+        jMenuItem9.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jMenuItem9.setText("Prueba Forma B");
         jMenuItem9.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -574,7 +578,7 @@ public class PrincipalView extends javax.swing.JFrame {
         });
         Resultados.add(jMenuItem9);
 
-        jMenuItem14.setFont(new java.awt.Font("Tahoma", 1, 12));
+        jMenuItem14.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jMenuItem14.setText("Prueba Forma A");
         jMenuItem14.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -665,13 +669,15 @@ public class PrincipalView extends javax.swing.JFrame {
         jTable1.setSelectionMode(javax.swing.ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
         jTable1.getTableHeader().setReorderingAllowed(false);
         jScrollPane1.setViewportView(jTable1);
-        jTable1.getColumnModel().getColumn(0).setPreferredWidth(40);
-        jTable1.getColumnModel().getColumn(1).setPreferredWidth(250);
-        jTable1.getColumnModel().getColumn(2).setResizable(false);
-        jTable1.getColumnModel().getColumn(2).setPreferredWidth(70);
-        jTable1.getColumnModel().getColumn(3).setPreferredWidth(20);
-        jTable1.getColumnModel().getColumn(4).setPreferredWidth(80);
-        jTable1.getColumnModel().getColumn(5).setPreferredWidth(30);
+        if (jTable1.getColumnModel().getColumnCount() > 0) {
+            jTable1.getColumnModel().getColumn(0).setPreferredWidth(40);
+            jTable1.getColumnModel().getColumn(1).setPreferredWidth(250);
+            jTable1.getColumnModel().getColumn(2).setResizable(false);
+            jTable1.getColumnModel().getColumn(2).setPreferredWidth(70);
+            jTable1.getColumnModel().getColumn(3).setPreferredWidth(20);
+            jTable1.getColumnModel().getColumn(4).setPreferredWidth(80);
+            jTable1.getColumnModel().getColumn(5).setPreferredWidth(30);
+        }
 
         b_add.setIcon(new javax.swing.ImageIcon(getClass().getResource("/quino/view/main/icons/add_paciente.gif"))); // NOI18N
         b_add.setBorder(null);
@@ -768,18 +774,18 @@ public class PrincipalView extends javax.swing.JFrame {
         );
 
         jMenuBar1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jMenuBar1.setFont(new java.awt.Font("Tahoma", 1, 12));
+        jMenuBar1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
 
         jMenu6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/quino/view/main/icons/add-folder-to-archive.png"))); // NOI18N
         jMenu6.setText("Archivo");
-        jMenu6.setFont(new java.awt.Font("Tahoma", 0, 12));
+        jMenu6.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jMenu6.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenu6ActionPerformed(evt);
             }
         });
 
-        jMenuItem11.setFont(new java.awt.Font("Tahoma", 0, 12));
+        jMenuItem11.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jMenuItem11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/quino/view/main/icons/package-upgrade.png"))); // NOI18N
         jMenuItem11.setText("Cargar base de datos ");
         jMenuItem11.addActionListener(new java.awt.event.ActionListener() {
@@ -799,7 +805,7 @@ public class PrincipalView extends javax.swing.JFrame {
         });
         jMenu6.add(jMenuItem12);
 
-        jMenuItem3.setFont(new java.awt.Font("Tahoma", 0, 12));
+        jMenuItem3.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jMenuItem3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/quino/view/main/icons/view-sort-ascending.png"))); // NOI18N
         jMenuItem3.setText("Exportar informe  ");
         jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
@@ -811,6 +817,7 @@ public class PrincipalView extends javax.swing.JFrame {
 
         jMenu12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/quino/view/main/icons/add-folder-to-archive.png"))); // NOI18N
         jMenu12.setText("Exportar Estadísticas    ");
+        jMenu12.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
 
         jMenuItem45.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jMenuItem45.setIcon(new javax.swing.ImageIcon(getClass().getResource("/quino/view/main/icons/package-installed-updated.png"))); // NOI18N
@@ -833,7 +840,7 @@ public class PrincipalView extends javax.swing.JFrame {
         jMenu12.add(jMenuItem46);
 
         jMenuItem47.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        jMenuItem47.setIcon(new javax.swing.ImageIcon(getClass().getResource("/quino/view/main/icons/package-supported.png"))); // NOI18N
+        jMenuItem47.setIcon(new javax.swing.ImageIcon(getClass().getResource("/quino/view/main/icons/package-remove.png"))); // NOI18N
         jMenuItem47.setText("Detección de Forma");
         jMenuItem47.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -873,7 +880,7 @@ public class PrincipalView extends javax.swing.JFrame {
         jMenu12.add(jMenuItem48);
 
         jMenuItem49.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        jMenuItem49.setIcon(new javax.swing.ImageIcon(getClass().getResource("/quino/view/main/icons/lpi-translate.png"))); // NOI18N
+        jMenuItem49.setIcon(new javax.swing.ImageIcon(getClass().getResource("/quino/view/main/icons/package-supported.png"))); // NOI18N
         jMenuItem49.setText("Campana de Gabor   ");
         jMenuItem49.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -882,10 +889,30 @@ public class PrincipalView extends javax.swing.JFrame {
         });
         jMenu12.add(jMenuItem49);
 
+        jMenuItem57.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jMenuItem57.setIcon(new javax.swing.ImageIcon(getClass().getResource("/quino/view/main/icons/mail-send.png"))); // NOI18N
+        jMenuItem57.setText("Detección de Orientación");
+        jMenuItem57.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem57ActionPerformed(evt);
+            }
+        });
+        jMenu12.add(jMenuItem57);
+
+        jMenuItem58.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jMenuItem58.setIcon(new javax.swing.ImageIcon(getClass().getResource("/quino/view/main/icons/lpi-translate.png"))); // NOI18N
+        jMenuItem58.setText("Detección de Velocidad");
+        jMenuItem58.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem58ActionPerformed(evt);
+            }
+        });
+        jMenu12.add(jMenuItem58);
+
         jMenu6.add(jMenu12);
         jMenu6.add(jSeparator1);
 
-        jMenuItem13.setFont(new java.awt.Font("Tahoma", 0, 12));
+        jMenuItem13.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jMenuItem13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/quino/view/main/icons/system-shutdown-restart-panel.png"))); // NOI18N
         jMenuItem13.setText("Salir");
         jMenuItem13.addActionListener(new java.awt.event.ActionListener() {
@@ -898,7 +925,7 @@ public class PrincipalView extends javax.swing.JFrame {
         jMenuBar1.add(jMenu6);
 
         jMenu8.setText("Entrenamiento");
-        jMenu8.setFont(new java.awt.Font("Tahoma", 0, 12));
+        jMenu8.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
 
         jMenuItem18.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jMenuItem18.setIcon(new javax.swing.ImageIcon(getClass().getResource("/quino/view/main/icons/package-installed-updated.png"))); // NOI18N
@@ -930,7 +957,7 @@ public class PrincipalView extends javax.swing.JFrame {
         });
         jMenu8.add(jMenuItem20);
 
-        jMenuItem21.setFont(new java.awt.Font("Tahoma", 0, 12));
+        jMenuItem21.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jMenuItem21.setIcon(new javax.swing.ImageIcon(getClass().getResource("/quino/view/main/icons/star.png"))); // NOI18N
         jMenuItem21.setText("Enrejado");
         jMenuItem21.addActionListener(new java.awt.event.ActionListener() {
@@ -940,7 +967,7 @@ public class PrincipalView extends javax.swing.JFrame {
         });
         jMenu8.add(jMenuItem21);
 
-        jMenuItem22.setFont(new java.awt.Font("Tahoma", 0, 12));
+        jMenuItem22.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jMenuItem22.setIcon(new javax.swing.ImageIcon(getClass().getResource("/quino/view/main/icons/package-supported.png"))); // NOI18N
         jMenuItem22.setText("Campana de Gabor");
         jMenuItem22.addActionListener(new java.awt.event.ActionListener() {
@@ -974,10 +1001,10 @@ public class PrincipalView extends javax.swing.JFrame {
 
         jMenu2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/quino/view/main/icons/view-list-icons.png"))); // NOI18N
         jMenu2.setText("Prueba");
-        jMenu2.setFont(new java.awt.Font("Tahoma", 0, 12));
+        jMenu2.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
 
         jMenu7.setText("Configuración Manual   ");
-        jMenu7.setFont(new java.awt.Font("Tahoma", 0, 12));
+        jMenu7.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
 
         jMenuItem23.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jMenuItem23.setIcon(new javax.swing.ImageIcon(getClass().getResource("/quino/view/main/icons/package-installed-updated.png"))); // NOI18N
@@ -990,7 +1017,7 @@ public class PrincipalView extends javax.swing.JFrame {
         jMenu7.add(jMenuItem23);
 
         jMenuItem24.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        jMenuItem24.setIcon(new javax.swing.ImageIcon(getClass().getResource("/quino/view/main/icons/package-supported.png"))); // NOI18N
+        jMenuItem24.setIcon(new javax.swing.ImageIcon(getClass().getResource("/quino/view/main/icons/package-remove.png"))); // NOI18N
         jMenuItem24.setText("Detección de Forma");
         jMenuItem24.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1029,6 +1056,7 @@ public class PrincipalView extends javax.swing.JFrame {
         });
         jMenu7.add(jMenuItem33);
 
+        jMenuItem44.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jMenuItem44.setIcon(new javax.swing.ImageIcon(getClass().getResource("/quino/view/main/icons/lpi-translate.png"))); // NOI18N
         jMenuItem44.setText("Detección de Velocidad  ");
         jMenuItem44.addActionListener(new java.awt.event.ActionListener() {
@@ -1041,7 +1069,7 @@ public class PrincipalView extends javax.swing.JFrame {
         jMenu2.add(jMenu7);
 
         jMenu9.setText("Configuración Automática");
-        jMenu9.setFont(new java.awt.Font("Tahoma", 0, 12));
+        jMenu9.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
 
         jMenuItem28.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jMenuItem28.setIcon(new javax.swing.ImageIcon(getClass().getResource("/quino/view/main/icons/package-installed-updated.png"))); // NOI18N
@@ -1054,7 +1082,7 @@ public class PrincipalView extends javax.swing.JFrame {
         jMenu9.add(jMenuItem28);
 
         jMenuItem29.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        jMenuItem29.setIcon(new javax.swing.ImageIcon(getClass().getResource("/quino/view/main/icons/package-supported.png"))); // NOI18N
+        jMenuItem29.setIcon(new javax.swing.ImageIcon(getClass().getResource("/quino/view/main/icons/package-remove.png"))); // NOI18N
         jMenuItem29.setText("Detección de Forma");
         jMenuItem29.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1109,9 +1137,9 @@ public class PrincipalView extends javax.swing.JFrame {
 
         jMenu4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/quino/view/main/icons/tools-check-spelling.png"))); // NOI18N
         jMenu4.setText("Paciente");
-        jMenu4.setFont(new java.awt.Font("Tahoma", 0, 12));
+        jMenu4.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
 
-        jMenuItem4.setFont(new java.awt.Font("Tahoma", 0, 12));
+        jMenuItem4.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jMenuItem4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/quino/view/main/icons/stock_new-bcard.png"))); // NOI18N
         jMenuItem4.setText("Nuevo Paciente");
         jMenuItem4.addActionListener(new java.awt.event.ActionListener() {
@@ -1134,9 +1162,9 @@ public class PrincipalView extends javax.swing.JFrame {
 
         jMenu1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/quino/view/main/icons/window_nofullscreen.png"))); // NOI18N
         jMenu1.setText("Herramienta         ");
-        jMenu1.setFont(new java.awt.Font("Tahoma", 0, 12));
+        jMenu1.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
 
-        jMenuItem10.setFont(new java.awt.Font("Tahoma", 0, 12));
+        jMenuItem10.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jMenuItem10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/quino/view/main/icons/stock_fullscreen.png"))); // NOI18N
         jMenuItem10.setText("Configuración Avanzada");
         jMenuItem10.setName(""); // NOI18N
@@ -1151,9 +1179,9 @@ public class PrincipalView extends javax.swing.JFrame {
 
         jMenu3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/quino/view/main/icons/gtk-about.png"))); // NOI18N
         jMenu3.setText("Ayuda   ");
-        jMenu3.setFont(new java.awt.Font("Tahoma", 0, 12));
+        jMenu3.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
 
-        jMenuItem15.setFont(new java.awt.Font("Tahoma", 0, 12));
+        jMenuItem15.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jMenuItem15.setIcon(new javax.swing.ImageIcon(getClass().getResource("/quino/view/main/icons/gtk-info.png"))); // NOI18N
         jMenuItem15.setText("Acerca de...");
         jMenuItem15.addActionListener(new java.awt.event.ActionListener() {
@@ -1729,6 +1757,32 @@ public class PrincipalView extends javax.swing.JFrame {
         tacv.setVisible(true);
     }//GEN-LAST:event_jMenuItem56ActionPerformed
 
+    private void jMenuItem57ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem57ActionPerformed
+        // TODO add your handling code here:
+        File selectPlaced = openFileChooser2Estadistica();
+
+        HSSFWorkbook book = new HSSFWorkbook();
+        AbstractInformeExcel excel1 = new EstadisticaOrientacion(book);
+        excel1.getInformeExcel();
+
+        if (selectPlaced != null) {
+            QuinoTools.salvarLibroExcel(selectPlaced.getPath() + "." + "xls", book);
+        }
+    }//GEN-LAST:event_jMenuItem57ActionPerformed
+
+    private void jMenuItem58ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem58ActionPerformed
+        // TODO add your handling code here:
+        File selectPlaced = openFileChooser2Estadistica();
+
+        HSSFWorkbook book = new HSSFWorkbook();
+        AbstractInformeExcel excel1 = new EstadisticaVelocidad(book);
+        excel1.getInformeExcel();
+
+        if (selectPlaced != null) {
+            QuinoTools.salvarLibroExcel(selectPlaced.getPath() + "." + "xls", book);
+        }
+    }//GEN-LAST:event_jMenuItem58ActionPerformed
+
     private void verResultadoDPrueba() {
         if (prueba != null) {
             ResultView resultado = new ResultView(this, true);
@@ -1828,6 +1882,8 @@ public class PrincipalView extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem54;
     private javax.swing.JMenuItem jMenuItem55;
     private javax.swing.JMenuItem jMenuItem56;
+    private javax.swing.JMenuItem jMenuItem57;
+    private javax.swing.JMenuItem jMenuItem58;
     private javax.swing.JMenuItem jMenuItem6;
     private javax.swing.JMenuItem jMenuItem7;
     private javax.swing.JMenuItem jMenuItem8;

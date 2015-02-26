@@ -24,7 +24,7 @@ public class ConfigEnsayoEnrejadoAuto extends ConfigEnsayoEnrejado {
         this.key = onMove ? 32 : 0;
         
         int vprimaria = random.nextInt(15, 25);
-        int fmuestreo = random.nextInt(1, 20);
+        int fmuestreo = random.nextInt(15, 20);
         
         this.velocidadPrimaria = new Velocidad(vprimaria);
         this.frecuenciaMuestreo = fmuestreo;

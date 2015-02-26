@@ -2,7 +2,6 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package quino.util.report.estadisticas;
 
 import java.util.ArrayList;
@@ -24,7 +23,7 @@ import quino.util.test.Prueba;
  *
  * @author produccion
  */
-public class EstadisticaGabor extends AbstractInformeExcel{
+public class EstadisticaGabor extends AbstractInformeExcel {
 
     public EstadisticaGabor(HSSFWorkbook book) {
         super(book);
@@ -32,7 +31,7 @@ public class EstadisticaGabor extends AbstractInformeExcel{
 
     @Override
     protected void getEncabezado(HSSFSheet sheet) {
-        String[] heads = {"Sujeto", "Ensayo", "Pixel/Pulgada Barras",
+        String[] heads = {"Sujeto", "Ensayo", "Frecuencia Espacial",
             "Contraste", "Intensidad Media", "Gaussian Std", "Radio Interior",
             "Radio Exterior", "Dirección del Movimiento", "Dirección Presionada",
             "Tiempo de respuesta (ms)", "Resultado", "Descripción del error"};
@@ -61,7 +60,7 @@ public class EstadisticaGabor extends AbstractInformeExcel{
         buildSheet3(sheet3);
     }
 
-     @Override
+    @Override
     protected void getCuerpo(HSSFSheet sheet) {
         rowCount++;
         List<Paciente> pacientes = registro.getPacientes();
@@ -96,26 +95,26 @@ public class EstadisticaGabor extends AbstractInformeExcel{
                     celda.setCellValue(j + 1);
 
                     celda = getCelda(row, colNum++, HSSFCell.CELL_TYPE_NUMERIC, false);
-                    celda.setCellValue(configEnsayoActual.getPpi());
+                    celda.setCellValue(QuinoTools.getPPiXFrecuenciaEspacial(configEnsayoActual.getPpi()));
 
                     celda = getCelda(row, colNum++, HSSFCell.CELL_TYPE_NUMERIC, false);
                     celda.setCellValue(configEnsayoActual.getContrat());
 
                     celda = getCelda(row, colNum++, HSSFCell.CELL_TYPE_NUMERIC, false);
-                    celda.setCellValue(configEnsayoActual.getIntensidadMedia());
-                    
+                    celda.setCellValue(Math.abs(configEnsayoActual.getIntensidadMedia()));
+
                     celda = getCelda(row, colNum++, HSSFCell.CELL_TYPE_NUMERIC, false);
                     celda.setCellValue(configEnsayoActual.getGaussianStdpix());
-                    
+
                     celda = getCelda(row, colNum++, HSSFCell.CELL_TYPE_NUMERIC, false);
                     celda.setCellValue(configEnsayoActual.getRadio1());
-                    
+
                     celda = getCelda(row, colNum++, HSSFCell.CELL_TYPE_NUMERIC, false);
                     celda.setCellValue(configEnsayoActual.getRadio2());
 
                     celda = getCelda(row, colNum++, HSSFCell.CELL_TYPE_NUMERIC, false);
                     celda.setCellValue(QuinoTools.getDireccion(configEnsayoActual.getDireccion()));
-                    
+
                     celda = getCelda(row, colNum++, HSSFCell.CELL_TYPE_NUMERIC, false);
                     celda.setCellValue(QuinoTools.getDireccion(resultadoActual.getKey()));
 
@@ -144,9 +143,9 @@ public class EstadisticaGabor extends AbstractInformeExcel{
         }
     }
 
-     protected void buildSheet2(HSSFSheet sheet) {
+    protected void buildSheet2(HSSFSheet sheet) {
         String[] heads = {"#", "Sujeto", "Ensayos", "Edad",
-            "Sexo", "Grado", "Errores", "Densidad Promedio", "Tiempo de respuesta promedio (ms)",
+            "Sexo", "Grado", "Errores", "Tiempo de respuesta promedio (ms)",
             "Duración del ensayo (ms)"};
         crearEncabezado(sheet, heads);
 
@@ -195,14 +194,13 @@ public class EstadisticaGabor extends AbstractInformeExcel{
         }
     }
 
-     protected void buildSheet3(HSSFSheet sheet) {
+    protected void buildSheet3(HSSFSheet sheet) {
 
         ArrayList<double[]> data = new ArrayList<double[]>();
 
-        String[] heads = {"#", "Sujeto", "Ensayos", "Pixel/Pulgada Barras",
-            "Contraste", "Intensidad Media", "Gaussian Std", "Radio Interior",
-            "Radio Exterior", "Dirección del Movimiento", "Dirección Presionada",
-            "Tiempo de respuesta (ms)", "Resultado"};
+        String[] heads = {"#", "Sujeto", "Ensayos", "Frecuencia Espacial",
+            "Gaussian Std", "Radio Interior",
+            "Radio Exterior", "Dirección del Movimiento", "Resultado"};
         crearEncabezado(sheet, heads);
 
         rowCount++;
@@ -242,45 +240,29 @@ public class EstadisticaGabor extends AbstractInformeExcel{
 
                     celda = getCelda(row, colNum++, HSSFCell.CELL_TYPE_NUMERIC, false);
                     celda.setCellValue(j + 1);
-                    values[k++] = j + 1;
+                    values[k++] = ensayos.size();
 
                     celda = getCelda(row, colNum++, HSSFCell.CELL_TYPE_NUMERIC, false);
-                    celda.setCellValue(configEnsayoActual.getPpi());
-                    values[k++] = configEnsayoActual.getPpi();
-
-                    celda = getCelda(row, colNum++, HSSFCell.CELL_TYPE_NUMERIC, false);
-                    celda.setCellValue(configEnsayoActual.getContrat());
-                    values[k++] = configEnsayoActual.getContrat();
-
-                    celda = getCelda(row, colNum++, HSSFCell.CELL_TYPE_NUMERIC, false);
-                    celda.setCellValue(configEnsayoActual.getIntensidadMedia());
-                    values[k++] = configEnsayoActual.getIntensidadMedia();
+                    celda.setCellValue(QuinoTools.getPPiXFrecuenciaEspacial(configEnsayoActual.getPpi()));
+                    values[k++] = Math.abs(QuinoTools.getPPiXFrecuenciaEspacial(configEnsayoActual.getPpi()));
 
                     celda = getCelda(row, colNum++, HSSFCell.CELL_TYPE_NUMERIC, false);
                     celda.setCellValue(configEnsayoActual.getGaussianStdpix());
-                    values[k++] = configEnsayoActual.getGaussianStdpix();
+                    values[k++] = Math.abs(configEnsayoActual.getGaussianStdpix());
 
                     celda = getCelda(row, colNum++, HSSFCell.CELL_TYPE_NUMERIC, false);
                     celda.setCellValue(configEnsayoActual.getRadio1());
-                    values[k++] = configEnsayoActual.getRadio1();
+                    values[k++] = Math.abs(configEnsayoActual.getRadio1());
 
                     celda = getCelda(row, colNum++, HSSFCell.CELL_TYPE_NUMERIC, false);
                     celda.setCellValue(configEnsayoActual.getRadio2());
-                    values[k++] = configEnsayoActual.getRadio2();
+                    values[k++] = Math.abs(configEnsayoActual.getRadio2());
 
                     celda = getCelda(row, colNum++, HSSFCell.CELL_TYPE_NUMERIC, false);
                     celda.setCellValue(configEnsayoActual.getDireccion());
-                    values[k++] = configEnsayoActual.getDireccion();
-
-                    celda = getCelda(row, colNum++, HSSFCell.CELL_TYPE_NUMERIC, false);
-                    celda.setCellValue(resultadoActual.getKey());
-                    values[k++] = resultadoActual.getKey();
+                    values[k++] = Math.abs(configEnsayoActual.getDireccion());
 
                     if (resultadoActual.isError()) {
-                        celda = getCelda(row, colNum++, HSSFCell.CELL_TYPE_NUMERIC, true);
-                        celda.setCellValue(0);
-                        values[k++] = 0;
-
                         celda = getCelda(row, colNum++, HSSFCell.CELL_TYPE_NUMERIC, true);
                         celda.setCellValue(0);
                         values[k++] = 0;
@@ -288,10 +270,6 @@ public class EstadisticaGabor extends AbstractInformeExcel{
                         celda = getCelda(row, colNum++, HSSFCell.CELL_TYPE_NUMERIC, false);
                         celda.setCellValue(1);
                         values[k++] = 1;
-
-                        celda = getCelda(row, colNum++, HSSFCell.CELL_TYPE_NUMERIC, false);
-                        celda.setCellValue(resultadoActual.getTiempoRespuesta());
-                        values[k++] = resultadoActual.getTiempoRespuesta();
                     }
 
                     data.add(values);

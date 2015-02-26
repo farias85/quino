@@ -67,11 +67,9 @@ public class EstadisticaFormaAB extends AbstractInformeAB {
 
         ArrayList<double[]> data = new ArrayList<double[]>();
 
-        String[] heads = {"#", "Sujeto", "Ensayos", "Edad",
-            "Sexo", "Grado", "Densidad de puntos",
-            "# de puntos", "Tiempo de desplazamiento (ms)", "Velocidad del movimiento",
-            "Ángulo", "Dirección movimiento", "Panel de estímulo",
-            "Resultado", "Tiempo de respuesta (ms)"};
+        String[] heads = {"#", "Sujeto", "Ensayos", "Densidad de puntos",
+            "# de puntos", "Dirección movimiento", "Panel de estímulo",
+            "Resultado"};
         crearEncabezado(sheet, heads);
 
         rowCount++;
@@ -108,24 +106,10 @@ public class EstadisticaFormaAB extends AbstractInformeAB {
                     int colNum = 2;
                     int k = 0;
                     double[] values = new double[heads.length - colNum];
-
+                    
                     celda = getCelda(row, colNum++, HSSFCell.CELL_TYPE_NUMERIC, false);
                     celda.setCellValue(j + 1);
-                    values[k++] = j + 1;
-
-                    celda = getCelda(row, colNum++, HSSFCell.CELL_TYPE_NUMERIC, false);
-                    celda.setCellValue(pacienteAcutal.getEdad());
-                    values[k++] = pacienteAcutal.getEdad();
-
-                    celda = getCelda(row, colNum++, HSSFCell.CELL_TYPE_NUMERIC, false);
-                    int sexo = pacienteAcutal.getSexo().equalsIgnoreCase("Femenino") ? 0 : 1;
-                    celda.setCellValue(sexo);
-                    values[k++] = sexo;
-
-                    celda = getCelda(row, colNum++, HSSFCell.CELL_TYPE_NUMERIC, false);
-                    int escolaridad = QuinoTools.escolaridad2Int(pacienteAcutal.getEscolaridad());
-                    celda.setCellValue(escolaridad);
-                    values[k++] = escolaridad;
+                    values[k++] = ensayos.size();
 
                     celda = getCelda(row, colNum++, HSSFCell.CELL_TYPE_NUMERIC, false);
                     celda.setCellValue(configEnsayoActual.getDensidad());
@@ -134,18 +118,6 @@ public class EstadisticaFormaAB extends AbstractInformeAB {
                     celda = getCelda(row, colNum++, HSSFCell.CELL_TYPE_NUMERIC, false);
                     celda.setCellValue(configEnsayoActual.getCantidad());
                     values[k++] = configEnsayoActual.getCantidad();
-
-                    celda = getCelda(row, colNum++, HSSFCell.CELL_TYPE_NUMERIC, false);
-                    celda.setCellValue(configEnsayoActual.getTiempoMovimiento());
-                    values[k++] = configEnsayoActual.getTiempoMovimiento();
-
-                    celda = getCelda(row, colNum++, HSSFCell.CELL_TYPE_NUMERIC, false);
-                    celda.setCellValue(resultadoActual.getVelocidad());
-                    values[k++] = resultadoActual.getVelocidad();
-
-                    celda = getCelda(row, colNum++, HSSFCell.CELL_TYPE_NUMERIC, false);
-                    celda.setCellValue(resultadoActual.getAngulo());
-                    values[k++] = resultadoActual.getAngulo();
 
                     celda = getCelda(row, colNum++, HSSFCell.CELL_TYPE_NUMERIC, false);
                     celda.setCellValue(configEnsayoActual.getDireccion());
@@ -159,18 +131,10 @@ public class EstadisticaFormaAB extends AbstractInformeAB {
                         celda = getCelda(row, colNum++, HSSFCell.CELL_TYPE_NUMERIC, true);
                         celda.setCellValue(0);
                         values[k++] = 0;
-
-                        celda = getCelda(row, colNum++, HSSFCell.CELL_TYPE_NUMERIC, true);
-                        celda.setCellValue(0);
-                        values[k++] = 0;
                     } else {
                         celda = getCelda(row, colNum++, HSSFCell.CELL_TYPE_NUMERIC, false);
                         celda.setCellValue(1);
                         values[k++] = 1;
-
-                        celda = getCelda(row, colNum++, HSSFCell.CELL_TYPE_NUMERIC, false);
-                        celda.setCellValue(resultadoActual.getTiempoRespuesta());
-                        values[k++] = resultadoActual.getTiempoRespuesta();
                     }
 
                     data.add(values);
@@ -184,13 +148,13 @@ public class EstadisticaFormaAB extends AbstractInformeAB {
 
         rowCount++;
         HSSFRow row = sheet.createRow(rowCount);
-        
+
         HSSFCell celda = getCelda(row, 1, HSSFCell.CELL_TYPE_STRING, false);
         celda.setCellValue("Alpha de Cronbach");
 
         celda = getCelda(row, 2, HSSFCell.CELL_TYPE_NUMERIC, false);
         celda.setCellValue(QuinoTools.calcAlphaCronbach(data));
-        
+
     }
 
     protected void buildSheet2(HSSFSheet sheet) {
@@ -303,7 +267,6 @@ public class EstadisticaFormaAB extends AbstractInformeAB {
 
                     celda = getCelda(row, 9, HSSFCell.CELL_TYPE_STRING, false);
                     celda.setCellValue(QuinoTools.getPanelMovimiento(pruebaX, configEnsayoActual.getPanelEstimulo()));
-
 
                     if (resultadoActual.isError()) {
                         celda = getCelda(row, 10, HSSFCell.CELL_TYPE_STRING, true);

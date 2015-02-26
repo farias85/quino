@@ -39,13 +39,13 @@ public class ConfigEnsayoVelocidadAuto extends ConfigEnsayoVelocidad {
         
         int vprimaria = random.nextInt(15, 25);
         int vsecundaria = random.nextInt(1, 3);
-        int fmuestreo = random.nextInt(1, 20);
+        int fmuestreo = random.nextInt(15, 20);
         
         this.velocidadPrimaria = new Velocidad(vprimaria);
         this.velocidadSecundaria = new Velocidad(vsecundaria);
         this.frecuenciaMuestreo = fmuestreo;
         
-        this.intensidadMedia = random.nextInt(120, 140);
+        this.intensidadMedia = random.nextInt(120, 130);
         this.contrat = (double)(random.nextInt(70, 99)) / 100;
 
         onMove = true;

@@ -111,6 +111,9 @@ public class EstadisticaVelocidad extends AbstractInformeExcel {
                     celda.setCellValue(configEnsayoActual.getVelocidadSecundaria().getAceleracion());
                     
                     celda = getCelda(row, colNum++, HSSFCell.CELL_TYPE_NUMERIC, false);
+                    celda.setCellValue(configEnsayoActual.getFrecuenciaMuestreo());
+                    
+                    celda = getCelda(row, colNum++, HSSFCell.CELL_TYPE_NUMERIC, false);
                     celda.setCellValue(QuinoTools.getDireccion(configEnsayoActual.getDireccion()));
 
                     celda = getCelda(row, colNum++, HSSFCell.CELL_TYPE_NUMERIC, false);

@@ -123,7 +123,7 @@ public class PrincipalView extends javax.swing.JFrame {
 
     /** Creates new form PrincipalView */
     public PrincipalView() {
-        System.loadLibrary("opencv_java245");
+        System.loadLibrary("opencv_java2411");
 
         try {
             UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());

@@ -115,7 +115,7 @@ public class ManualVelocidadConfigView extends javax.swing.JDialog {
         jLabel5.setText("Frecuencia espacial (Hz)");
 
         jLabel6.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel6.setText("Configuración Manual Detección de Velocidad");
+        jLabel6.setText("Configuración Manual Discriminación de Velocidad");
 
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "0.01", "0.0125", "0.025", "0.04", "0.05", "0.057", "0.07", "0.1", "0.15", "0.17", "0.173", "0.25", "0.3", "0.5", "0.59", "0.9", "0.93", "1.17", "1.4", "1.559", "2.34", "4", "8" }));
         jComboBox1.setSelectedIndex(12);

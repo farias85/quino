@@ -165,7 +165,7 @@ public class ManualOrientacionConfigView extends javax.swing.JDialog {
         jToggleButton8.getAccessibleContext().setAccessibleName("direccion6");
 
         jLabel6.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel6.setText("Configuración Manual Detección de Orientación");
+        jLabel6.setText("Configuración Manual Discriminación de Orientación");
 
         jLabel7.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel7.setText("Frecuencia espacial (Hz)");

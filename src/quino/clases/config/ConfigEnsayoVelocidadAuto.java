@@ -2,11 +2,11 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package quino.clases.config;
 
 import quino.clases.model.Velocidad;
 import quino.util.Aleatorio;
+import quino.util.QuinoTools;
 
 /**
  *
@@ -18,12 +18,19 @@ public class ConfigEnsayoVelocidadAuto extends ConfigEnsayoVelocidad {
         super();
 
         Aleatorio random = new Aleatorio();
-        ppi = random.nextInt(10, 50);
+        ppi = QuinoTools.FRECUENCIA_ESPACIAL[random.nextInt(0, QuinoTools.FRECUENCIA_ESPACIAL.length - 1)];
+        ppi = QuinoTools.getPPiXFrecuenciaEspacial(ppi);
 
         int rnd = random.nextInt(0, 8);
         this.getConfiguracionXDireccion(rnd);
 
-        panelEstimulo = random.nextInt(0, 2);
+        float vprimaria = QuinoTools.VELOCIDAD[random.nextInt(0, QuinoTools.VELOCIDAD.length - 1)];
+        float vsecundaria = QuinoTools.VELOCIDAD[random.nextInt(0, QuinoTools.VELOCIDAD.length - 1)];
+
+        panelEstimulo = 0;
+        if (vprimaria != vsecundaria) {
+            panelEstimulo = random.nextInt(1, 2);
+        }
 
         switch (panelEstimulo) {
             case 0:
@@ -36,17 +43,13 @@ public class ConfigEnsayoVelocidadAuto extends ConfigEnsayoVelocidad {
                 key = 39;//tecla de la flecha derecha
                 break;
         }
-        
-        int vprimaria = random.nextInt(15, 25);
-        int vsecundaria = random.nextInt(1, 3);
-        int fmuestreo = random.nextInt(15, 20);
-        
+
         this.velocidadPrimaria = new Velocidad(vprimaria);
         this.velocidadSecundaria = new Velocidad(vsecundaria);
-        this.frecuenciaMuestreo = fmuestreo;
-        
+        this.frecuenciaMuestreo = QuinoTools.FRECUENCIA_TEMPORAL[random.nextInt(0, QuinoTools.FRECUENCIA_TEMPORAL.length - 1)];
+
         this.intensidadMedia = random.nextInt(120, 130);
-        this.contrat = (double)(random.nextInt(70, 99)) / 100;
+        this.contrat = (double) (random.nextInt(70, 99)) / 100;
 
         onMove = true;
     }

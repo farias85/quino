@@ -6,6 +6,7 @@
 package quino.clases.config;
 
 import quino.util.Aleatorio;
+import quino.util.QuinoTools;
 
 /**
  *
@@ -18,7 +19,9 @@ public class ConfigEnsayoOrientacionAuto extends ConfigEnsayoOrientacion {
 
         Aleatorio random = new Aleatorio();
         onMove = false;
-        ppi = random.nextInt(10, 50);
+        ppi = QuinoTools.FRECUENCIA_ESPACIAL[random.nextInt(0, QuinoTools.FRECUENCIA_ESPACIAL.length - 1)];
+        ppi = QuinoTools.getPPiXFrecuenciaEspacial(ppi);
+        
         this.getConfiguracionXDireccion(random.nextInt(5, 6));
 
         this.key = onMove ? 32 : 0;

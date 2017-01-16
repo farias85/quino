@@ -603,7 +603,7 @@
                 <StringItem index="22" value="8"/>
               </StringArray>
             </Property>
-            <Property name="selectedIndex" type="int" value="7"/>
+            <Property name="selectedIndex" type="int" value="15"/>
           </Properties>
         </Component>
       </SubComponents>

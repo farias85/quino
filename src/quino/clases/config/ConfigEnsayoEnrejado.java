@@ -4,8 +4,6 @@
  */
 package quino.clases.config;
 
-import quino.clases.model.Velocidad;
-
 /**
  *
  * @author farias

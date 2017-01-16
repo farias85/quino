@@ -43,6 +43,13 @@ import quino.view.main.PrincipalView;
  */
 public class QuinoTools {
 
+    public static float[] VELOCIDAD = {1.5f, 3.0f, 6.0f, 12.0f, 24.0f};
+
+    public static float[] FRECUENCIA_ESPACIAL = {/*0.01f, 0.0125f, 0.025f,*/ 0.04f, 0.05f, 0.057f, 0.07f, 0.1f,
+         0.15f, 0.17f, 0.173f, 0.25f, 0.3f, 0.5f, 0.59f, 0.9f,/* 0.93f, 1.17f, 1.4f, 1.559f, 2.34f, 4.0f, 8.0f*/};
+
+    public static float[] FRECUENCIA_TEMPORAL = {/*0.5f, 1.0f, 2.0f, 3.0f, 4.0f, 6.0f, 7.0f, 8.0f, */10.0f, 12.0f, 18.0f, 24.0f};
+
     public static double getPeriodoXFrecuencia(double frecuencia) {
 
         //calculo el período y lo multiplico por 1000 pa convertirlo en en milisegundo
@@ -70,8 +77,9 @@ public class QuinoTools {
     /**
      * Este método se utiliza para encontrar el ppi de una frecuencia especifica
      * Tambien para encontrar la frecuencia de un ppi especifico
+     *
      * @param frecuenciaEspacial
-     * @return 
+     * @return
      */
     public static double getPPiXFrecuenciaEspacial(double frecuenciaEspacial) {
         double k2 = getK2();

@@ -14,7 +14,6 @@ import java.awt.Color;
 import java.util.Timer;
 import java.util.TimerTask;
 import quino.clases.config.ConfigEnsayoEnrejado;
-import quino.clases.config.ConfigEnsayoVelocidad;
 import quino.clases.model.Ensayo;
 import quino.util.QuinoTools;
 import quino.util.timer.EnrejadoTimer;

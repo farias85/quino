@@ -266,7 +266,7 @@ public class ManualGaborConfigView extends javax.swing.JDialog {
         jComboBox1.setSelectedIndex(15);
 
         jComboBox2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "0.01", "0.0125", "0.025", "0.04", "0.05", "0.057", "0.07", "0.1", "0.15", "0.17", "0.173", "0.25", "0.3", "0.5", "0.59", "0.9", "0.93", "1.17", "1.4", "1.559", "2.34", "4", "8" }));
-        jComboBox2.setSelectedIndex(7);
+        jComboBox2.setSelectedIndex(15);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -522,10 +522,12 @@ public class ManualGaborConfigView extends javax.swing.JDialog {
                 //ppi2 = Integer.parseInt(jTextField8.getText());
                 
                 double value = Double.parseDouble(jComboBox1.getModel().getSelectedItem().toString());
-                ppi = QuinoTools.getPPiXFrecuenciaEspacial(value);
+                //ppi = QuinoTools.getPPiXFrecuenciaEspacial(value);
+                ppi = value;
                 
                 value = Double.parseDouble(jComboBox2.getModel().getSelectedItem().toString());
-                ppi2 = QuinoTools.getPPiXFrecuenciaEspacial(value);
+                //ppi2 = QuinoTools.getPPiXFrecuenciaEspacial(value);
+                ppi2 = value;
                 
                 pVel1 = Double.parseDouble(jComboBox3.getModel().getSelectedItem().toString());
                 ft = Double.parseDouble(jComboBox4.getModel().getSelectedItem().toString());

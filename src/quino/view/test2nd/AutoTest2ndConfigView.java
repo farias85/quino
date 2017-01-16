@@ -31,9 +31,13 @@ import quino.view.main.PrincipalView;
  */
 public class AutoTest2ndConfigView extends javax.swing.JDialog {
 
-    private PrincipalView parent;
+    private final PrincipalView parent;
 
-    /** Creates new form Test2ndAutoConfigView */
+    /**
+     * 
+     * @param parent
+     * @param modal 
+     */
     public AutoTest2ndConfigView(PrincipalView parent, boolean modal) {
         super(parent, modal);
 
@@ -44,13 +48,13 @@ public class AutoTest2ndConfigView extends javax.swing.JDialog {
         if (parent.getConf() instanceof ConfigEnsayoShapeDetectAuto) {
             jLabel7.setText(jLabel7.getText() + "Detección de Forma");
         } else if (parent.getConf() instanceof ConfigEnsayoVelocidad) {
-            jLabel7.setText(jLabel7.getText() + "Detección de Velocidad");
+            jLabel7.setText(jLabel7.getText() + "Discriminación de Velocidad");
         } else if (parent.getConf() instanceof ConfigEnsayoEnrejadoAuto) {
             jLabel7.setText(jLabel7.getText() + "Enrejado");
         } else if (parent.getConf() instanceof ConfigEnsayoGaborAuto) {
             jLabel7.setText(jLabel7.getText() + "Campana de Gabor");
         } else if (parent.getConf() instanceof ConfigEnsayoOrientacionAuto) {
-            jLabel7.setText(jLabel7.getText() + "Detección de Orientación");
+            jLabel7.setText(jLabel7.getText() + "Discriminación de Orientación");
         }
     }
 

@@ -35,17 +35,17 @@ public class PruebaVelocidad extends PruebaMultiEnsayo {
             if (configEnsayo instanceof ConfigEnsayoVelocidadAuto) {
                 cev = new ConfigEnsayoVelocidadAuto();
             } else if (configEnsayo instanceof ConfigEnsayoVelocidad) {
-
                 int direccion = random.nextInt(0, 8);
-                
                 cev = new ConfigEnsayoVelocidad(direccion,
                         configEnsayo.getPpi(), true, configEnsayo.getContrat(),
-                        configEnsayo.getIntensidadMedia(), configEnsayo.getVelocidadPrimaria(), 
+                        configEnsayo.getIntensidadMedia(), configEnsayo.getVelocidadPrimaria(),
                         configEnsayo.getVelocidadSecundaria(), configEnsayo.getFrecuenciaMuestreo());
-
             }
 
-            int panelEstimulo = random.nextInt(0, 2);
+            int panelEstimulo = 0;
+            if (cev.getVelocidadPrimaria().getAceleracion() != cev.getVelocidadSecundaria().getAceleracion()) {
+                panelEstimulo = random.nextInt(1, 2);
+            }
             cev.setPanelEstimulo(panelEstimulo);
 
             switch (panelEstimulo) {

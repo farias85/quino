@@ -1,6 +1,17 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
+/**
+ * Licensed under the Apache License, Version 2.0 (the "License"); you may not
+ * use this file except in compliance with the License. You may obtain a copy of
+ * the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
+ * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
+ * License for the specific language governing permissions and limitations under
+ * the License.
+ *
+ * Created by Felipe Rodriguez Arias <ucifarias@gmail.com> on 04/07/2013.
  */
 package quino.clases.config;
 
@@ -8,13 +19,11 @@ import quino.util.QuinoTools;
 
 /**
  * Representa la configuración de una prueba
- * @author Felipe Rodriguez Arias
  */
 public class ConfigEnsayoFormaAB extends ConfigEnsayo {
 
     /**
-     * Tiempo de movimiento de los puntos, el valor debe estar entre
-     * 50 y 200
+     * Tiempo de movimiento de los puntos, el valor debe estar entre 50 y 200
      */
     protected double tiempoMovimiento;
     /**
@@ -45,7 +54,7 @@ public class ConfigEnsayoFormaAB extends ConfigEnsayo {
     public ConfigEnsayoFormaAB(double tiempoMovimiento, int densidad, int cantidad,
             int direccion, boolean asincronico, boolean control, int panelEstimulo) {
         super(control ? QuinoTools.getKeyDireccion(direccion) : 32, panelEstimulo);
-        
+
         this.tiempoMovimiento = tiempoMovimiento;
         this.densidad = densidad;
         this.cantidad = cantidad;
@@ -58,9 +67,9 @@ public class ConfigEnsayoFormaAB extends ConfigEnsayo {
     }
 
     /**
-     * Constrctor para crear una configuracion de prueba
-     * El tiempo de movimiento de los puntos, el valor debe estar entre
-     * 50 y 200
+     * Constrctor para crear una configuracion de prueba El tiempo de movimiento
+     * de los puntos, el valor debe estar entre 50 y 200
+     *
      * @param tiempoMovimiento el valor debe estar entre 50 y 200
      * @param densidad
      * @param cantidad

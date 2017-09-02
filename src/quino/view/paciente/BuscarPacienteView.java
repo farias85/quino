@@ -1,12 +1,17 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-
-/*
- * BuscarPacienteView.java
+/**
+ * Licensed under the Apache License, Version 2.0 (the "License"); you may not
+ * use this file except in compliance with the License. You may obtain a copy of
+ * the License at
  *
- * Created on 17-sep-2010, 12:09:28
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
+ * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
+ * License for the specific language governing permissions and limitations under
+ * the License.
+ *
+ * Created by Felipe Rodriguez Arias <ucifarias@gmail.com> on 24/06/2013.
  */
 package quino.view.paciente;
 
@@ -15,10 +20,6 @@ import quino.view.main.TipoPruebaView;
 import quino.view.main.ErrorDialog;
 import quino.view.main.PrincipalView;
 
-/**
- *
- * @author Davisito
- */
 public class BuscarPacienteView extends javax.swing.JDialog {
 
     private PrincipalView parent;
@@ -26,6 +27,11 @@ public class BuscarPacienteView extends javax.swing.JDialog {
     public BuscarPacienteView() {
     }
 
+    /**
+     * 
+     * @param parent
+     * @param modal 
+     */
     public BuscarPacienteView(PrincipalView parent, boolean modal) {
         super(parent, modal);
 
@@ -392,9 +398,9 @@ public class BuscarPacienteView extends javax.swing.JDialog {
             if (ci.length() == 11) //Si contiene 11 dígitos
             {
 
-                int day = new Integer(String.valueOf(ci.charAt(4)) + String.valueOf(ci.charAt(5))).intValue();
-                int month = new Integer(String.valueOf(ci.charAt(2)) + String.valueOf(ci.charAt(3))).intValue();
-                int year = new Integer(String.valueOf(ci.charAt(0)) + String.valueOf(ci.charAt(1))).intValue();
+                int day = new Integer(String.valueOf(ci.charAt(4)) + String.valueOf(ci.charAt(5)));
+                int month = new Integer(String.valueOf(ci.charAt(2)) + String.valueOf(ci.charAt(3)));
+                int year = Integer.parseInt(String.valueOf(ci.charAt(0)) + String.valueOf(ci.charAt(1)));
 
                 if (month >= 1 && month <= 12) //Si el mes está comprendido entre 1 y 12
                 {

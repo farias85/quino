@@ -1,6 +1,17 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
+/**
+ * Licensed under the Apache License, Version 2.0 (the "License"); you may not
+ * use this file except in compliance with the License. You may obtain a copy of
+ * the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
+ * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
+ * License for the specific language governing permissions and limitations under
+ * the License.
+ *
+ * Created by Felipe Rodriguez Arias <ucifarias@gmail.com> on 24/05/2014.
  */
 package quino.util.report;
 
@@ -16,16 +27,13 @@ import quino.clases.model.Resultado;
 import quino.util.QuinoTools;
 import quino.clases.config.ConfigEnsayoFormaAB;
 
-/**
- *
- * @author farias
- */
 public class InformeParametrosXEnsayo extends AbstractInformeAB {
 
     public InformeParametrosXEnsayo(HSSFWorkbook book) {
         super(book);
     }
 
+    @Override
     public void getInformeExcel() {
 
         HSSFSheet sheet1 = book.createSheet();
@@ -35,7 +43,7 @@ public class InformeParametrosXEnsayo extends AbstractInformeAB {
         getCuerpo(sheet1);
 
         rowCount = 0;
-        
+
         HSSFSheet sheet2 = book.createSheet();
         getTitulo(sheet2, "Parámetros x ensayo - Periférica");
         getEncabezado(sheet2);
@@ -43,6 +51,7 @@ public class InformeParametrosXEnsayo extends AbstractInformeAB {
         getCuerpo(sheet2);
     }
 
+    @Override
     protected void getEncabezado(HSSFSheet sheet) {
         String[] heads = {"Sujeto", "Ensayo", "Densidad de puntos",
             "% de puntos", "Velocidad del movimiento", "Panel de estímulo",
@@ -50,6 +59,7 @@ public class InformeParametrosXEnsayo extends AbstractInformeAB {
         crearEncabezado(sheet, heads);
     }
 
+    @Override
     protected void getCuerpo(HSSFSheet sheet) {
         rowCount++;
         List<Paciente> pacientes = registro.getPacientes();
@@ -66,43 +76,42 @@ public class InformeParametrosXEnsayo extends AbstractInformeAB {
                     Ensayo ensayoActual = ensayos.get(j);
                     Resultado resultadoActual = ensayos.get(j).getResultado();
 
-                    ConfigEnsayoFormaAB configEnsayoActual = null;
                     if (ensayos.get(j).getConfiguracion() instanceof ConfigEnsayoFormaAB) {
-                        configEnsayoActual = ((ConfigEnsayoFormaAB)ensayos.get(j).getConfiguracion());
+                        ConfigEnsayoFormaAB configEnsayoActual = ((ConfigEnsayoFormaAB) ensayos.get(j).getConfiguracion());
+
+                        HSSFRow row = sheet.createRow(rowCount);
+                        HSSFCell celda;
+
+                        if (j == 0) {
+                            celda = getCelda(row, 0, HSSFCell.CELL_TYPE_STRING, false);
+                            celda.setCellValue(pacienteAcutal.getNombre());
+                        }
+
+                        celda = getCelda(row, 1, HSSFCell.CELL_TYPE_NUMERIC, false);
+                        celda.setCellValue(j + 1);
+
+                        celda = getCelda(row, 2, HSSFCell.CELL_TYPE_NUMERIC, false);
+                        celda.setCellValue(configEnsayoActual.getDensidad());
+
+                        celda = getCelda(row, 3, HSSFCell.CELL_TYPE_NUMERIC, false);
+                        celda.setCellValue(configEnsayoActual.getCantidad());
+
+                        celda = getCelda(row, 4, HSSFCell.CELL_TYPE_NUMERIC, false);
+                        celda.setCellValue(configEnsayoActual.getTiempoMovimiento());
+
+                        celda = getCelda(row, 5, HSSFCell.CELL_TYPE_STRING, false);
+                        celda.setCellValue(QuinoTools.getPanelMovimiento(pruebaX, ensayoActual.getConfiguracion().getPanelEstimulo()));
+
+                        if (resultadoActual.getTiempoRespuesta() == 0) {
+                            celda = getCelda(row, 6, HSSFCell.CELL_TYPE_STRING, true);
+                            celda.setCellValue("N/R");
+                        } else {
+                            celda = getCelda(row, 6, HSSFCell.CELL_TYPE_NUMERIC, false);
+                            celda.setCellValue(resultadoActual.getTiempoRespuesta());
+                        }
+
+                        rowCount++;
                     }
-
-                    HSSFRow row = sheet.createRow(rowCount);
-                    HSSFCell celda = null;
-
-                    if (j == 0) {
-                        celda = getCelda(row, 0, HSSFCell.CELL_TYPE_STRING, false);
-                        celda.setCellValue(pacienteAcutal.getNombre());
-                    }
-
-                    celda = getCelda(row, 1, HSSFCell.CELL_TYPE_NUMERIC, false);
-                    celda.setCellValue(j + 1);
-
-                    celda = getCelda(row, 2, HSSFCell.CELL_TYPE_NUMERIC, false);
-                    celda.setCellValue(configEnsayoActual.getDensidad());
-
-                    celda = getCelda(row, 3, HSSFCell.CELL_TYPE_NUMERIC, false);
-                    celda.setCellValue(configEnsayoActual.getCantidad());
-
-                    celda = getCelda(row, 4, HSSFCell.CELL_TYPE_NUMERIC, false);
-                    celda.setCellValue(configEnsayoActual.getTiempoMovimiento());
-
-                    celda = getCelda(row, 5, HSSFCell.CELL_TYPE_STRING, false);
-                    celda.setCellValue(QuinoTools.getPanelMovimiento(pruebaX, ensayoActual.getConfiguracion().getPanelEstimulo()));
-
-                    if (resultadoActual.getTiempoRespuesta() == 0) {
-                        celda = getCelda(row, 6, HSSFCell.CELL_TYPE_STRING, true);
-                        celda.setCellValue("N/R");
-                    } else {
-                        celda = getCelda(row, 6, HSSFCell.CELL_TYPE_NUMERIC, false);
-                        celda.setCellValue(resultadoActual.getTiempoRespuesta());
-                    }
-
-                    rowCount++;
                 }
                 sheet.createRow(rowCount);
                 rowCount++;

@@ -1,6 +1,17 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
+/**
+ * Licensed under the Apache License, Version 2.0 (the "License"); you may not
+ * use this file except in compliance with the License. You may obtain a copy of
+ * the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
+ * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
+ * License for the specific language governing permissions and limitations under
+ * the License.
+ *
+ * Created by Felipe Rodriguez Arias <ucifarias@gmail.com> on 04/07/2013.
  */
 package quino.clases.config;
 
@@ -10,7 +21,6 @@ import java.text.DecimalFormat;
  * Clase para la configuración del sistema. La clase permite su utilización de
  * forma estática, no es necesario construir objetos de esta clase para su
  * utilización.
- * @author Felipe Rodriguez Arias
  */
 public class ConfigApp {
 
@@ -18,7 +28,7 @@ public class ConfigApp {
      * Directorio de las miscelaneas del proyecto, íconos, imagenes, etc...
      */
     public static final String RESOURCES_LOCATION = "/quino/view/main/icons/";
-    
+
     /**
      * Directorio de el archivo de base de datos interno del sistema
      */
@@ -46,24 +56,24 @@ public class ConfigApp {
     public static double TIEMPO_DURACION = 6000;
 
     /**
-     * Porciento de duración para esta etapa respecto al tiempo
-     * de duración general TIEMPO_DURACION, en la configuración del ensayo.
-     * Es el tiempo de espera antes de ejecutar un ensayo
+     * Porciento de duración para esta etapa respecto al tiempo de duración
+     * general TIEMPO_DURACION, en la configuración del ensayo. Es el tiempo de
+     * espera antes de ejecutar un ensayo
      */
     public static double PC_EN_ESPERA = 30;
 
     /**
-     * Porciento de duración para esta etapa respecto al tiempo
-     * de duración general TIEMPO_DURACION, en la configuración del ensayo.
-     * Representa el primer lapso de luego de el tiempo de espera, y antes de
-     * ejecutarse o no el movimiento
+     * Porciento de duración para esta etapa respecto al tiempo de duración
+     * general TIEMPO_DURACION, en la configuración del ensayo. Representa el
+     * primer lapso de luego de el tiempo de espera, y antes de ejecutarse o no
+     * el movimiento
      */
     public static double PC_PREPARADO = 40;
 
     /**
-     * Porciento de duración para esta etapa respecto al tiempo
-     * de duración general TIEMPO_DURACION, en la configuración del ensayo.
-     * Representa el tiempo de espera luego de ejecutado el movimiento
+     * Porciento de duración para esta etapa respecto al tiempo de duración
+     * general TIEMPO_DURACION, en la configuración del ensayo. Representa el
+     * tiempo de espera luego de ejecutado el movimiento
      */
     public static double PC_ESPERANDO_RESPUESTA = 30;
 
@@ -79,24 +89,24 @@ public class ConfigApp {
     private double tiempoDuracion;
 
     /**
-     * Porciento de duración para esta etapa respecto al tiempo
-     * de duración general TIEMPO_DURACION, en la configuración del ensayo.
-     * Es el tiempo de espera antes de ejecutar un ensayo
+     * Porciento de duración para esta etapa respecto al tiempo de duración
+     * general TIEMPO_DURACION, en la configuración del ensayo. Es el tiempo de
+     * espera antes de ejecutar un ensayo
      */
     private double pcEnEspera;
 
     /**
-     * Porciento de duración para esta etapa respecto al tiempo
-     * de duración general TIEMPO_DURACION, en la configuración del ensayo.
-     * Representa el primer lapso de luego de el tiempo de espera, y antes de
-     * ejecutarse o no el movimiento
+     * Porciento de duración para esta etapa respecto al tiempo de duración
+     * general TIEMPO_DURACION, en la configuración del ensayo. Representa el
+     * primer lapso de luego de el tiempo de espera, y antes de ejecutarse o no
+     * el movimiento
      */
     private double pcPreparado;
 
     /**
-     * Porciento de duración para esta etapa respecto al tiempo
-     * de duración general TIEMPO_DURACION, en la configuración del ensayo.
-     * Representa el tiempo de espera luego de ejecutado el movimiento
+     * Porciento de duración para esta etapa respecto al tiempo de duración
+     * general TIEMPO_DURACION, en la configuración del ensayo. Representa el
+     * tiempo de espera luego de ejecutado el movimiento
      */
     private double pcEsperandoRespuesta;
 
@@ -107,6 +117,7 @@ public class ConfigApp {
      * Este constructor solo debe ser invocado para obtener el objeto q se
      * guardará en el archivo configuración.xml. Utilizar siempre los valores
      * estáticos
+     *
      * @param cantEnsayos
      * @param tiempoDuracion
      * @param pcEnEspera

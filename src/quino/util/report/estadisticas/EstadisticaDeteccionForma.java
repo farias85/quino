@@ -1,6 +1,17 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
+/**
+ * Licensed under the Apache License, Version 2.0 (the "License"); you may not
+ * use this file except in compliance with the License. You may obtain a copy of
+ * the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
+ * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
+ * License for the specific language governing permissions and limitations under
+ * the License.
+ *
+ * Created by Felipe Rodriguez Arias <ucifarias@gmail.com> on 24/05/2014.
  */
 package quino.util.report.estadisticas;
 
@@ -20,10 +31,6 @@ import quino.util.report.AbstractInformeExcel;
 import quino.util.test.Prueba;
 import quino.util.test.PruebaShape;
 
-/**
- *
- * @author farias-i3
- */
 public class EstadisticaDeteccionForma extends AbstractInformeExcel {
 
     public EstadisticaDeteccionForma(HSSFWorkbook book) {
@@ -55,59 +62,58 @@ public class EstadisticaDeteccionForma extends AbstractInformeExcel {
                     Ensayo ensayoActual = ensayos.get(j);
                     Resultado resultadoActual = ensayoActual.getResultado();
 
-                    ConfigEnsayoShapeDetect configEnsayoActual = null;
                     if (ensayos.get(j).getConfiguracion() instanceof ConfigEnsayoShapeDetect) {
-                        configEnsayoActual = ((ConfigEnsayoShapeDetect) ensayos.get(j).getConfiguracion());
-                    }
+                        ConfigEnsayoShapeDetect configEnsayoActual = ((ConfigEnsayoShapeDetect) ensayos.get(j).getConfiguracion());
 
-                    HSSFRow row = sheet.createRow(rowCount);
-                    HSSFCell celda = null;
+                        HSSFRow row = sheet.createRow(rowCount);
+                        HSSFCell celda;
 
-                    if (j == 0) {
-                        celda = getCelda(row, 0, HSSFCell.CELL_TYPE_STRING, false);
-                        celda.setCellValue(pacienteAcutal.getNombre());
-                    }
+                        if (j == 0) {
+                            celda = getCelda(row, 0, HSSFCell.CELL_TYPE_STRING, false);
+                            celda.setCellValue(pacienteAcutal.getNombre());
+                        }
 
-                    int colNum = 1;
-                    celda = getCelda(row, colNum++, HSSFCell.CELL_TYPE_NUMERIC, false);
-                    celda.setCellValue(j + 1);
-
-                    celda = getCelda(row, colNum++, HSSFCell.CELL_TYPE_NUMERIC, false);
-                    celda.setCellValue(configEnsayoActual.getDensidad());
-
-                    celda = getCelda(row, colNum++, HSSFCell.CELL_TYPE_NUMERIC, false);
-                    celda.setCellValue(configEnsayoActual.getPcShape());
-
-                    celda = getCelda(row, colNum++, HSSFCell.CELL_TYPE_NUMERIC, false);
-                    celda.setCellValue(configEnsayoActual.getTolerancia());
-
-                    celda = getCelda(row, colNum++, HSSFCell.CELL_TYPE_NUMERIC, false);
-                    celda.setCellValue(QuinoTools.getNombreFigura(configEnsayoActual.getNumFigura()));
-
-                    celda = getCelda(row, colNum++, HSSFCell.CELL_TYPE_NUMERIC, false);
-                    celda.setCellValue(resultadoActual.getAngulo());
-
-                    celda = getCelda(row, colNum++, HSSFCell.CELL_TYPE_STRING, false);
-                    celda.setCellValue(QuinoTools.getPanelMovimiento(pruebaX, configEnsayoActual.getPanelEstimulo()));
-
-                    if (resultadoActual.isError()) {
-                        celda = getCelda(row, colNum++, HSSFCell.CELL_TYPE_STRING, true);
-                        celda.setCellValue("N/R");
-
-                        celda = getCelda(row, colNum++, HSSFCell.CELL_TYPE_STRING, true);
-                        celda.setCellValue("Error");
-                    } else {
+                        int colNum = 1;
                         celda = getCelda(row, colNum++, HSSFCell.CELL_TYPE_NUMERIC, false);
-                        celda.setCellValue(resultadoActual.getTiempoRespuesta());
+                        celda.setCellValue(j + 1);
+
+                        celda = getCelda(row, colNum++, HSSFCell.CELL_TYPE_NUMERIC, false);
+                        celda.setCellValue(configEnsayoActual.getDensidad());
+
+                        celda = getCelda(row, colNum++, HSSFCell.CELL_TYPE_NUMERIC, false);
+                        celda.setCellValue(configEnsayoActual.getPcShape());
+
+                        celda = getCelda(row, colNum++, HSSFCell.CELL_TYPE_NUMERIC, false);
+                        celda.setCellValue(configEnsayoActual.getTolerancia());
+
+                        celda = getCelda(row, colNum++, HSSFCell.CELL_TYPE_NUMERIC, false);
+                        celda.setCellValue(QuinoTools.getNombreFigura(configEnsayoActual.getNumFigura()));
+
+                        celda = getCelda(row, colNum++, HSSFCell.CELL_TYPE_NUMERIC, false);
+                        celda.setCellValue(resultadoActual.getAngulo());
 
                         celda = getCelda(row, colNum++, HSSFCell.CELL_TYPE_STRING, false);
-                        celda.setCellValue("OK");
+                        celda.setCellValue(QuinoTools.getPanelMovimiento(pruebaX, configEnsayoActual.getPanelEstimulo()));
+
+                        if (resultadoActual.isError()) {
+                            celda = getCelda(row, colNum++, HSSFCell.CELL_TYPE_STRING, true);
+                            celda.setCellValue("N/R");
+
+                            celda = getCelda(row, colNum++, HSSFCell.CELL_TYPE_STRING, true);
+                            celda.setCellValue("Error");
+                        } else {
+                            celda = getCelda(row, colNum++, HSSFCell.CELL_TYPE_NUMERIC, false);
+                            celda.setCellValue(resultadoActual.getTiempoRespuesta());
+
+                            celda = getCelda(row, colNum++, HSSFCell.CELL_TYPE_STRING, false);
+                            celda.setCellValue("OK");
+                        }
+
+                        celda = getCelda(row, colNum++, HSSFCell.CELL_TYPE_STRING, true);
+                        celda.setCellValue(resultadoActual.isError() ? resultadoActual.getDescripcion() : "");
+
+                        rowCount++;
                     }
-
-                    celda = getCelda(row, colNum++, HSSFCell.CELL_TYPE_STRING, true);
-                    celda.setCellValue(resultadoActual.isError() ? resultadoActual.getDescripcion() : "");
-
-                    rowCount++;
                 }
                 sheet.createRow(rowCount);
                 rowCount++;
@@ -154,7 +160,7 @@ public class EstadisticaDeteccionForma extends AbstractInformeExcel {
 
             if (pruebaX != null) {
                 HSSFRow row = sheet.createRow(rowCount);
-                HSSFCell celda = null;
+                HSSFCell celda;
 
                 int colNum = 0;
                 celda = getCelda(row, colNum++, HSSFCell.CELL_TYPE_NUMERIC, false);
@@ -216,59 +222,58 @@ public class EstadisticaDeteccionForma extends AbstractInformeExcel {
                     Ensayo ensayoActual = ensayos.get(j);
                     Resultado resultadoActual = ensayoActual.getResultado();
 
-                    ConfigEnsayoShapeDetect configEnsayoActual = null;
                     if (ensayos.get(j).getConfiguracion() instanceof ConfigEnsayoShapeDetect) {
-                        configEnsayoActual = ((ConfigEnsayoShapeDetect) ensayos.get(j).getConfiguracion());
-                    }
+                        ConfigEnsayoShapeDetect configEnsayoActual = ((ConfigEnsayoShapeDetect) ensayos.get(j).getConfiguracion());
 
-                    HSSFRow row = sheet.createRow(rowCount);
-                    HSSFCell celda = null;
+                        HSSFRow row = sheet.createRow(rowCount);
+                        HSSFCell celda;
 
-                    if (j == 0) {
-                        celda = getCelda(row, 0, HSSFCell.CELL_TYPE_NUMERIC, false);
-                        celda.setCellValue(i + 1);
+                        if (j == 0) {
+                            celda = getCelda(row, 0, HSSFCell.CELL_TYPE_NUMERIC, false);
+                            celda.setCellValue(i + 1);
 
-                        celda = getCelda(row, 1, HSSFCell.CELL_TYPE_STRING, false);
-                        celda.setCellValue(pacienteAcutal.getNombre());
-                    }
+                            celda = getCelda(row, 1, HSSFCell.CELL_TYPE_STRING, false);
+                            celda.setCellValue(pacienteAcutal.getNombre());
+                        }
 
-                    int colNum = 2;
-                    int k = 0;
-                    double[] values = new double[heads.length - colNum];
-
-                    celda = getCelda(row, colNum++, HSSFCell.CELL_TYPE_NUMERIC, false);
-                    celda.setCellValue(j + 1);
-                    values[k++] = ensayos.size();
-
-                    celda = getCelda(row, colNum++, HSSFCell.CELL_TYPE_NUMERIC, false);
-                    celda.setCellValue(configEnsayoActual.getNumFigura());
-                    values[k++] = configEnsayoActual.getNumFigura();
-
-                    celda = getCelda(row, colNum++, HSSFCell.CELL_TYPE_NUMERIC, false);
-                    celda.setCellValue(configEnsayoActual.getPanelEstimulo());
-                    values[k++] = configEnsayoActual.getPanelEstimulo();
-
-                    if (resultadoActual.isError()) {
-                        celda = getCelda(row, colNum++, HSSFCell.CELL_TYPE_NUMERIC, true);
-                        celda.setCellValue(0);
-                        values[k++] = 0;
-
-                        celda = getCelda(row, colNum++, HSSFCell.CELL_TYPE_NUMERIC, true);
-                        celda.setCellValue(0);
-                        values[k++] = 0;
-                    } else {
-                        celda = getCelda(row, colNum++, HSSFCell.CELL_TYPE_NUMERIC, false);
-                        celda.setCellValue(1);
-                        values[k++] = 1;
+                        int colNum = 2;
+                        int k = 0;
+                        double[] values = new double[heads.length - colNum];
 
                         celda = getCelda(row, colNum++, HSSFCell.CELL_TYPE_NUMERIC, false);
-                        celda.setCellValue(resultadoActual.getTiempoRespuesta());
-                        values[k++] = resultadoActual.getTiempoRespuesta();
+                        celda.setCellValue(j + 1);
+                        values[k++] = ensayos.size();
+
+                        celda = getCelda(row, colNum++, HSSFCell.CELL_TYPE_NUMERIC, false);
+                        celda.setCellValue(configEnsayoActual.getNumFigura());
+                        values[k++] = configEnsayoActual.getNumFigura();
+
+                        celda = getCelda(row, colNum++, HSSFCell.CELL_TYPE_NUMERIC, false);
+                        celda.setCellValue(configEnsayoActual.getPanelEstimulo());
+                        values[k++] = configEnsayoActual.getPanelEstimulo();
+
+                        if (resultadoActual.isError()) {
+                            celda = getCelda(row, colNum++, HSSFCell.CELL_TYPE_NUMERIC, true);
+                            celda.setCellValue(0);
+                            values[k++] = 0;
+
+                            celda = getCelda(row, colNum++, HSSFCell.CELL_TYPE_NUMERIC, true);
+                            celda.setCellValue(0);
+                            values[k++] = 0;
+                        } else {
+                            celda = getCelda(row, colNum++, HSSFCell.CELL_TYPE_NUMERIC, false);
+                            celda.setCellValue(1);
+                            values[k++] = 1;
+
+                            celda = getCelda(row, colNum++, HSSFCell.CELL_TYPE_NUMERIC, false);
+                            celda.setCellValue(resultadoActual.getTiempoRespuesta());
+                            values[k++] = resultadoActual.getTiempoRespuesta();
+                        }
+
+                        data.add(values);
+
+                        rowCount++;
                     }
-
-                    data.add(values);
-
-                    rowCount++;
                 }
                 sheet.createRow(rowCount);
                 rowCount++;

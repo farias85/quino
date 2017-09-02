@@ -1,12 +1,17 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-
-/*
- * PrincipalView.java
+/**
+ * Licensed under the Apache License, Version 2.0 (the "License"); you may not
+ * use this file except in compliance with the License. You may obtain a copy of
+ * the License at
  *
- * Created on 24-jul-2010, 10:23:06
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
+ * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
+ * License for the specific language governing permissions and limitations under
+ * the License.
+ *
+ * Created by Felipe Rodriguez Arias <ucifarias@gmail.com> on 22/05/2014.
  */
 package quino.view.main;
 
@@ -81,10 +86,6 @@ import quino.view.test2nd.ManualOrientacionConfigView;
 import quino.view.test2nd.ManualVelocidadConfigView;
 import quino.view.test2nd.VelocidadTestView;
 
-/**
- *
- * @author Felipe Rodriguez Arias
- */
 public class PrincipalView extends javax.swing.JFrame {
 
     private ConfigEnsayo conf;
@@ -157,7 +158,7 @@ public class PrincipalView extends javax.swing.JFrame {
 
             modificarTableModel();
 
-            if (registro.getPacientes().size() == 0) {
+            if (registro.getPacientes().isEmpty()) {
                 b_busc.setEnabled(false);
                 b_del.setEnabled(false);
                 b_fich.setEnabled(false);
@@ -183,6 +184,7 @@ public class PrincipalView extends javax.swing.JFrame {
 
         jTable1.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
 
+            @Override
             public void valueChanged(ListSelectionEvent e) {
                 ListSelectionModel lsm = (ListSelectionModel) e.getSource();
                 if (lsm.isSelectionEmpty()) {
@@ -266,7 +268,7 @@ public class PrincipalView extends javax.swing.JFrame {
     public final void modificarTableModel() {
         DefaultTableModel tm = new QuinoTableModel(registro);
 
-        if (registro.getPacientes().size() == 0) {
+        if (registro.getPacientes().isEmpty()) {
             b_busc.setEnabled(false);
         } else {
             b_busc.setEnabled(true);

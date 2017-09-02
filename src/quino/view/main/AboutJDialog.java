@@ -1,27 +1,32 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-
-/*
- * AboutJDialog.java
+/**
+ * Licensed under the Apache License, Version 2.0 (the "License"); you may not
+ * use this file except in compliance with the License. You may obtain a copy of
+ * the License at
  *
- * Created on 06-jul-2013, 22:01:56
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
+ * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
+ * License for the specific language governing permissions and limitations under
+ * the License.
+ *
+ * Created by Felipe Rodriguez Arias <ucifarias@gmail.com> on 06/07/2013.
  */
 package quino.view.main;
 
-/**
- *
- * @author Administrador
- */
 public class AboutJDialog extends javax.swing.JDialog {
 
     private PrincipalView parent;
 
     public AboutJDialog() {
     }
-
-    /** Creates new form AboutJDialog */
+    
+    /**
+     * Creates new form AboutJDialog
+     * @param parent
+     * @param modal 
+     */
     public AboutJDialog(PrincipalView parent, boolean modal) {
         super(parent, modal);
         initComponents();
@@ -67,7 +72,7 @@ public class AboutJDialog extends javax.swing.JDialog {
         homepageLabel.setFont(homepageLabel.getFont().deriveFont(homepageLabel.getFont().getStyle() | java.awt.Font.BOLD));
         homepageLabel.setText("Contactos:");
 
-        appHomepageLabel.setText("http://www.cenpis.uo.edu.cu");
+        appHomepageLabel.setText("<ucifarias@gmail.com>");
 
         appVendorLabel.setText("CENPIS");
 
@@ -127,7 +132,7 @@ public class AboutJDialog extends javax.swing.JDialog {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(homepageLabel)
                     .addComponent(appHomepageLabel))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jButton1)
                 .addContainerGap())
             .addComponent(jLabel1)

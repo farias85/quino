@@ -1,12 +1,17 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-
-/*
- * ManualConfigView.java
+/**
+ * Licensed under the Apache License, Version 2.0 (the "License"); you may not
+ * use this file except in compliance with the License. You may obtain a copy of
+ * the License at
  *
- * Created on 25-jul-2010, 16:30:43
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
+ * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
+ * License for the specific language governing permissions and limitations under
+ * the License.
+ *
+ * Created by Felipe Rodriguez Arias <ucifarias@gmail.com> on 15/10/2013.
  */
 package quino.view.test2nd;
 
@@ -14,17 +19,16 @@ import quino.view.main.*;
 import quino.clases.config.ConfigEnsayoShapeDetect;
 import quino.util.QuinoTools;
 import quino.util.test.PruebaShape;
-//import clases.prueba.Ensayo;
 
-/**
- *
- * @author davisito
- */
 public class ManualShapeDetectConfigView extends javax.swing.JDialog {
 
-    private PrincipalView parent;
-
-    /** Creates new form ManualConfigView */
+    private final PrincipalView parent;
+    
+    /**
+     * Creates new form ManualConfigView
+     * @param parent
+     * @param modal 
+     */
     @SuppressWarnings("empty-statement")
     public ManualShapeDetectConfigView(PrincipalView parent, boolean modal) {
         super(parent, modal);
@@ -210,9 +214,9 @@ public class ManualShapeDetectConfigView extends javax.swing.JDialog {
                             .addComponent(jLabel5)
                             .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel7)
-                    .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel7))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -259,7 +263,7 @@ public class ManualShapeDetectConfigView extends javax.swing.JDialog {
                 densidad = Integer.parseInt(jTextField2.getText());
                 porciento = Integer.parseInt(jTextField3.getText());
                 tolerancia = Integer.parseInt(jTextField5.getText());
-            } catch (Exception exception) {
+            } catch (NumberFormatException exception) {
                 throw new Exception("Los valores de los datos del formulario deben ser números enteros");
             }
             
@@ -286,7 +290,7 @@ public class ManualShapeDetectConfigView extends javax.swing.JDialog {
             int porciento = Integer.parseInt(jTextField3.getText());
             double cant = QuinoTools.porciento(porciento, dens);
             jTextField4.setText(Double.toString(cant));
-        } catch (Exception e) {
+        } catch (NumberFormatException e) {
         }
     }
 

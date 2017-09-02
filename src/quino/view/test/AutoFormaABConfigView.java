@@ -1,12 +1,17 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-
-/*
- * AutoConfigView.java
+/**
+ * Licensed under the Apache License, Version 2.0 (the "License"); you may not
+ * use this file except in compliance with the License. You may obtain a copy of
+ * the License at
  *
- * Created on 16-sep-2010, 16:24:25
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
+ * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
+ * License for the specific language governing permissions and limitations under
+ * the License.
+ *
+ * Created by Felipe Rodriguez Arias <ucifarias@gmail.com> on 04/10/2013.
  */
 package quino.view.test;
 
@@ -17,19 +22,19 @@ import quino.util.Aleatorio;
 import quino.util.test.PruebaFormaA;
 import quino.util.test.PruebaFormaB;
 
-/**
- *
- * @author Felipe Rodriguez Arias
- */
 public class AutoFormaABConfigView extends javax.swing.JDialog {
 
-    private PrincipalView parent;
+    private final PrincipalView parent;
     private ConfigEnsayoFormaAB conf;
     private boolean foveal = true;
     private boolean control;
-    private Aleatorio random = new Aleatorio();
-
-    /** Creates new form AutoConfigView */
+    private final Aleatorio random = new Aleatorio();
+    
+    /**
+     * Creates new form AutoConfigView
+     * @param parent
+     * @param modal 
+     */
     public AutoFormaABConfigView(PrincipalView parent, boolean modal) {
         super(parent, modal);
 

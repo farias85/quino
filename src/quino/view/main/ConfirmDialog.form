@@ -1,8 +1,9 @@
-<?xml version="1.1" encoding="UTF-8" ?>
+<?xml version="1.0" encoding="UTF-8" ?>
 
 <Form version="1.3" maxVersion="1.7" type="org.netbeans.modules.form.forminfo.JDialogFormInfo">
   <SyntheticProperties>
     <SyntheticProperty name="formSizePolicy" type="int" value="1"/>
+    <SyntheticProperty name="generateCenter" type="boolean" value="false"/>
   </SyntheticProperties>
   <Events>
     <EventHandler event="windowClosing" listener="java.awt.event.WindowListener" parameters="java.awt.event.WindowEvent" handler="closeDialog"/>
@@ -84,9 +85,6 @@
         </Property>
         <Property name="text" type="java.lang.String" value="Est&#xe1; seguro que desea llevar a cabo la acci&#xf3;n de eliminaci&#xf3;n?"/>
       </Properties>
-      <AccessibilityProperties>
-        <Property name="AccessibleContext.accessibleName" type="java.lang.String" value="Est&#xe1; seguro que desea llevar a cabo la acci&#xf3;n de eliminaci&#xf3;n?"/>
-      </AccessibilityProperties>
     </Component>
   </SubComponents>
 </Form>

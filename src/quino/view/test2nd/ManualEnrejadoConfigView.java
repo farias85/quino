@@ -1,12 +1,17 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-
-/*
- * ManualConfigView.java
+/**
+ * Licensed under the Apache License, Version 2.0 (the "License"); you may not
+ * use this file except in compliance with the License. You may obtain a copy of
+ * the License at
  *
- * Created on 25-jul-2010, 16:30:43
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
+ * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
+ * License for the specific language governing permissions and limitations under
+ * the License.
+ *
+ * Created by Felipe Rodriguez Arias <ucifarias@gmail.com> on 15/10/2013.
  */
 package quino.view.test2nd;
 
@@ -15,18 +20,17 @@ import quino.clases.model.Velocidad;
 import quino.util.QuinoTools;
 import quino.view.main.*;
 import quino.util.test.PruebaEnrejado;
-//import clases.prueba.Ensayo;
 
-/**
- *
- * @author Felipe Rodriguez Arias
- */
 public class ManualEnrejadoConfigView extends javax.swing.JDialog {
 
-    private PrincipalView parent;
+    private final PrincipalView parent;
     private int direccion = 0;
-
-    /** Creates new form ManualConfigView */
+    
+    /**
+     * Creates new form ManualConfigView
+     * @param parent
+     * @param modal 
+     */
     @SuppressWarnings("empty-statement")
     public ManualEnrejadoConfigView(PrincipalView parent, boolean modal) {
         super(parent, modal);

@@ -1,6 +1,17 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
+/**
+ * Licensed under the Apache License, Version 2.0 (the "License"); you may not
+ * use this file except in compliance with the License. You may obtain a copy of
+ * the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
+ * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
+ * License for the specific language governing permissions and limitations under
+ * the License.
+ *
+ * Created by Felipe Rodriguez Arias <ucifarias@gmail.com> on 13/09/2013.
  */
 package quino.clases.model;
 
@@ -8,10 +19,6 @@ import java.awt.Point;
 import java.util.ArrayList;
 import quino.util.Aleatorio;
 
-/**
- *
- * @author Administrador
- */
 public abstract class AbstractShape {
 
     protected ArrayList<Segment2DGuia> segment2DGuias = new ArrayList<Segment2DGuia>();
@@ -37,24 +44,26 @@ public abstract class AbstractShape {
     }
 
     /**
-     * 
-     * @param guia Super Método, :-)
+     * Super Método, :-)
+     *
+     * @param guia
+     * @param densidadParcial
      */
     protected void buscarSegmentosCercanos(Segment2DGuia guia, int densidadParcial) {
         Aleatorio random = new Aleatorio();
 
         while (densidadParcial != 0) {
-            
+
             double angle = Math.atan(guia.getPendiente());
             double incremento = tolerancia * Math.sin(Math.abs(angle));
-            
+
             int inf = (int) (guia.getOrdenada() - tolerancia - incremento);
             int sup = (int) (guia.getOrdenada() + tolerancia + incremento);
             int ordenada = random.nextInt(inf, sup);
 
             if (!guia.isVertical()) {
                 int deltaX = (int) (Math.abs(guia.getP1().getX() - guia.getP2().getX()));
-                boolean isGuiaP1 = guia.getP1().x < guia.getP2().x ? true : false;
+                boolean isGuiaP1 = guia.getP1().x < guia.getP2().x;
                 int xInicio = isGuiaP1 ? random.nextInt(guia.getP1().x, guia.getP1().x - deltaX)
                         : random.nextInt(guia.getP2().x, guia.getP2().x + deltaX);
 
@@ -62,7 +71,7 @@ public abstract class AbstractShape {
                 segmentos.add(nuevo);
             } else {
                 int deltaY = (int) (Math.abs(guia.getP1().getY() - guia.getP2().getY()));
-                boolean isGuiaP1 = guia.getP1().y < guia.getP2().y ? true : false;
+                boolean isGuiaP1 = guia.getP1().y < guia.getP2().y;
 
                 int yInicio = isGuiaP1 ? random.nextInt(guia.getP1().y, guia.getP1().y - deltaY)
                         : random.nextInt(guia.getP2().y, guia.getP2().y + deltaY);
@@ -74,8 +83,6 @@ public abstract class AbstractShape {
             }
             densidadParcial--;
         }
-
-        //segmentos.add((Segment2D) guia);
     }
 
     public ArrayList<Segment2D> getSegmentos() {

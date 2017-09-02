@@ -1,15 +1,22 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
+/**
+ * Licensed under the Apache License, Version 2.0 (the "License"); you may not
+ * use this file except in compliance with the License. You may obtain a copy of
+ * the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
+ * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
+ * License for the specific language governing permissions and limitations under
+ * the License.
+ *
+ * Created by Felipe Rodriguez Arias <ucifarias@gmail.com> on 04/07/2013.
  */
 package quino.clases.config;
 
 import quino.util.Aleatorio;
 
-/**
- *
- * @author farias
- */
 public class ConfigEnsayoShapeDetect extends ConfigEnsayo {
 
     /**
@@ -18,7 +25,8 @@ public class ConfigEnsayoShapeDetect extends ConfigEnsayo {
     protected int densidad;
     /**
      * Tolerancia respecto a la guia q define un trazo o lado de una figura.
-     * tolerancia = 0, las rectas alrededor de la guia se pintan justamente sobre la guia
+     * tolerancia = 0, las rectas alrededor de la guia se pintan justamente
+     * sobre la guia
      */
     protected int tolerancia;
     /**
@@ -26,7 +34,8 @@ public class ConfigEnsayoShapeDetect extends ConfigEnsayo {
      */
     protected double pcShape;
     /**
-     * El numero de la figura, 1. Cuadrado, 2. Rectangulo, 3. Triangulo, 4. Circulo
+     * El numero de la figura, 1. Cuadrado, 2. Rectangulo, 3. Triangulo, 4.
+     * Circulo
      */
     protected int numFigura;
 

@@ -1,12 +1,17 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-
-/*
- * PerifericaTestView.java
+/**
+ * Licensed under the Apache License, Version 2.0 (the "License"); you may not
+ * use this file except in compliance with the License. You may obtain a copy of
+ * the License at
  *
- * Created on 14-ago-2010, 19:30:39
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
+ * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
+ * License for the specific language governing permissions and limitations under
+ * the License.
+ *
+ * Created by Felipe Rodriguez Arias <ucifarias@gmail.com> on 15/10/2013.
  */
 package quino.view.test2nd;
 
@@ -19,10 +24,6 @@ import quino.clases.model.Ensayo;
 import quino.util.QuinoTools;
 import quino.util.timer.VelocidadTimer;
 
-/**
- *
- * @author Casa
- */
 public class VelocidadTestView extends javax.swing.JDialog {
 
     private PrincipalView parent;
@@ -46,14 +47,15 @@ public class VelocidadTestView extends javax.swing.JDialog {
 
         //El parámetro de frecuencia temporal debe ser igual en cada uno de los ensayos
         Ensayo ensayo = parent.getPrueba().getEnsayos().get(0);
-        ConfigEnsayoVelocidad configEnsayo = null;
+
         if (ensayo.getConfiguracion() instanceof ConfigEnsayoVelocidad) {
-            configEnsayo = ((ConfigEnsayoVelocidad) ensayo.getConfiguracion());
+            ConfigEnsayoVelocidad configEnsayo = ((ConfigEnsayoVelocidad) ensayo.getConfiguracion());
+            long periodo = (long) QuinoTools.getPeriodoXFrecuencia(configEnsayo.getFrecuenciaMuestreo());
+            Timer ti = new Timer();
+            ti.scheduleAtFixedRate(task, 0, periodo);
+        } else {
+            System.out.println("quino.view.test2nd.VelocidadTestView.<init>() no ha enviado una configuracion ConfigEnsayoVelocidad");
         }
-        long periodo = (long)QuinoTools.getPeriodoXFrecuencia(configEnsayo.getFrecuenciaMuestreo());
-        
-        Timer ti = new Timer();
-        ti.scheduleAtFixedRate(task, 0, periodo);
     }
 
     public PrincipalView getParentView() {
